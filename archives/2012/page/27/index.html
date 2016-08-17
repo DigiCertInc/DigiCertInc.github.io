@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Archives: 2012 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-03-29T08:39:44.000Z" itemprop="datePublished">
+          2012-03-29
+      </time>
+    
+    
+    | 
+    <a href='/tag/添加swap空间/'>添加swap空间</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/329.seo/">添加Linux业务服务器SWAP空间</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        今天一客户突然打电话过来，说有一台Linux服务器发出swap空间不足的报警，要我们过去查看一下并解决。赶到客户机房后，仔细查看一番，发现没有内存泄漏，是真的swap不足。原本是想直接kill掉memcached，但其公司的应用程序使用人员说大半年才存满这点cache，kill掉就全毁了，那么就只能是直接添加swap分区了。由于是要在业务服务器上直接操作，那么就需要很小心加细心的操作，以免造成损失，在此就将增加SWAP空间大小步骤和大家
+      
+      </p>
+      
+      <p>
+          <a href="/329.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-03-28T23:05:43.000Z" itemprop="datePublished">
+          2012-03-29
+      </time>
+    
+    
+    | 
+    <a href='/tag/传奇私服/'>传奇私服</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/325.seo/">传奇私服中的setup详解</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>[Server]<br>;服务器群中的编号，默认为0<br>ServerIndex=0<br>;服务器名称<br>ServerName=诗颖传奇<br>;服务器组编号，默认为0<br>ServerNumber=0<br>;冒险形式服务器，FALSE为否，TRUE为是<br>VentureServer=FALSE<br>;测试形式服务器，FALSE为否，TRUE为是，收费改FALSE，不收费改TRUE<br>TestServer=TRUE<br>;注册用户初始化等级，调整范围0-500<br>TestLevel=1<br>;注册用户初始化金币，调整范围0-10000000<br>TestGold=30000<br>;允许最大参加测试人数<br>TestServerUserLimit=1000<br>;服务性模式，FALSE为否，TRUE为是，如果在收费模式下选择了冒险形式服务器这里必须改为TRUE<br>ServiceMode=TRUE<br>;不允许PK服务器，FALSE为否，TRUE为是，只有在付费服务器生效<br>NonPKServer=FALSE<br>;数据库IP<br>DBAddr=192.168.0.150<br>;数据库端口<br>DBPort=6000<br>;注册信息IP<br>IDSAddr=192.168.0.150<br>;注册信息端口<br>IDSPort=5600<br>MsgSrvAddr=192.168.0.150</p>
+      
+      </p>
+      
+      <p>
+          <a href="/325.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-03-28T08:59:05.000Z" itemprop="datePublished">
+          2012-03-28
+      </time>
+    
+    
+    | 
+    <a href='/tag/3600safe/'>3600safe</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/323.seo/">且看3600safe如何查杀高端Rootkit</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><h4>&nbsp;</h4> <p> -强大的3600safe无视360中。。</p> <p>作者：3600safe <p>如今网络雨水浑浊，各种木马各类远控比我国人口还多，因此哪怕你做好了十足的防御，装了 一大堆安全防御软件，也难免中招。某日，突然感觉电脑出现异常，用了 Xuetr，PowerTool，RkUnhooker，Gmer扫描了一下，并没有觉得有什么异常，如图1： <p><a href="http://www.3600safe.com/content/uploadfile/201202/4a47a0db6e60853dedfcfdf08a5ca24920120224073835.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/3600safeRootkit_D75/clip_image001.png" width="244" height="134"></a> <p>这个时候，千万不要掉以轻心，有可能你系统很安全，也有可能你已经遭遇了高端的rootkit。在半信半疑的情况下，轮到3600safe出马一扫，顿时冷汗大冒，如图2： <p><a href="http://www.3600safe.com/content/uploadfile/201202/fb5c81ed3a220004b71069645f11286720120224074024.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/3600safeRootkit_D75/clip_image002.png" width="244" height="135"></a></p>
+      
+      </p>
+      
+      <p>
+          <a href="/323.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-03-28T08:48:21.000Z" itemprop="datePublished">
+          2012-03-28
+      </time>
+    
+    
+    | 
+    <a href='/tag/溢出/'>溢出</a>,
+    
+    <a href='/tag/Fuzzing/'>Fuzzing</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/321.seo/">超简单的溢出漏洞发掘技术Fuzzing</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>Fuzzing的由来<br>正像瓦特为了解放人类双手提高生产率而发明蒸气机一样，一些或者某位杰出的黑客在研究漏洞发掘技术的时候发明了Fuzzing技术。可以说这是一种非常快速而有效的发掘技术。Fuzzing技术的思想就是利用“暴力”来实现对目标程序的自动化测试，然后监视检查其最后的结果，如果符合某种情况就认为程序可能存在某种漏洞或者问题。这里的“暴力”并不是说我们通常说得武力，而是说利用不断地向目标程序发送或者传递不同格式的数据来测试目标程序的反应。<br>为什么选择Fuzzing测试<br>我们在发现一些溢出漏洞的时候，往往是不断地给目标程序输入不同长度的字符串变量来测试目标程序是不是存在溢出漏洞的。</p>
+      
+      </p>
+      
+      <p>
+          <a href="/321.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-03-26T19:46:11.000Z" itemprop="datePublished">
+          2012-03-27
+      </time>
+    
+    
+    | 
+    <a href='/tag/Apache/'>Apache</a>,
+    
+    <a href='/tag/Tomcat/'>Tomcat</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/309.seo/">Tomcat VS. Apache：您钟情于哪一款？</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><strong>导读：原文作者Michael Dorf是一名专业的软件架构师，Web开发者，开源爱好者，最近沉迷于WordPress。他在Java和J2EE开发领域拥有十几年的开发经验。文中探讨了Apache与Apache Tomcat之间的区别，帮助开发者选择更加适宜的Web服务器。</strong></p>
+<p><img src="http://articles.csdn.net/uploads/allimg/120322/94_120322160558_1.png" alt="" width="576" height="120" border="0" /></p>
+<p>当你选择使用哪种Web服务器时，或许会因它们的差异性和技术细节等方面而困扰。如何区分Web服务器以及如何为你的项目挑选一款最佳的Web服务器，或许对你来说这是一个很难的决定。鉴于Apache目前最流行的一款Web服务器，本文将探讨Apache与Apache Tomcat两者之间的区别，以满足不同开发者的需求。</p>
+<p>Apache Web服务器通常比称之为“Apache”或者“httpd”，1995年由Robert McCool和它的团队开发，由Apache软件基金会提供支持与维护。Apache是目前最流行的Web应用服务器，拥有超过一亿的网站用户和占据互联网应用服务器63%的份额以及全球最繁忙网站中有66%采用Apache的（比方说，维基百科网站服务器就是使用Apache）。
+      
+      </p>
+      
+      <p>
+          <a href="/309.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-03-21T11:35:02.000Z" itemprop="datePublished">
+          2012-03-21
+      </time>
+    
+    
+    | 
+    <a href='/tag/创业/'>创业</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/305.seo/">创业教父Paul Graham：吓退庸众的五个创业想法</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>大晚上的，看点文章激励下自己</p>
+<p><strong>编者按：Y Combinator是现在美国最火的技术创业孵化器公司，已经培养出Dropbox、Heroku、Airbnb、Bump、Justin.tv、Reddit、Disqus、Posterous等明星公司，其创始人Paul Graham也被媒体称为硅谷创业教父、撼动硅谷的人。本文节选自他的最新博客文章，文中他提出了若干大胆的创业想法，本文择取与IT相关的五点，让我们一起来看看创业教父是怎样的艺高人胆大。</strong></p>
+<p><img src="http://articles.csdn.net/uploads/allimg/120314/119_120314080002_1.jpg" alt="" width="600" height="400" border="0" /></p>
+<p>Y Combinator公司创始人Paul Graham</p>
+<p>我在Y Combinator工作时注意到最惊奇的事情是，那些最具野心的创业公司的想法是多么地吓人；在此篇文章里我将举例说明这种现象。这些想法或许能够成就亿万富翁，却也足够令人望而却步。</p>
+<p>但请勿担心，恐惧不意味着软弱，而可以说是理智的表现。创业公司拥有的最大想法往往令人畏惧，它们不仅意味着繁重的工作，还在威胁着你的自我认同，让你对能否有足够的抱负坚持到底产生怀疑。《成为约翰·马尔科维奇》中有这样一幕：书呆子英雄邂逅了极有魅力、饱经风尘的女人。她对他说：“你看，即使你得到了我，也罩不住我。”对我们来说，这些想法也是这样。</p>
+<p>这是你理解创业公司需要知道的最重要的事情。你曾期待伟大的创业想法是具有吸引力的，然而它们往往与你不合。这会导致一堆后果：对于试图思考创业创意的人，伟大的想法遮蔽起来，被他们的潜意识过滤掉了，即使是最有野心的人，对于这些想法也是敬而远之为上。</p>
+<p><h5>一、新的搜索引擎</h5><br>最棒的创意反而被视为不可能。我不知道再造一个搜索引擎是否是最棒的想法，但它或许会被认为是不可能的。最近我发现看似坚不可摧的Google们，防御要塞上也出现了裂痕。</p>
+<p>微软决定干搜索这个行当时，我就知道它已经迷失了自己的方向。对微软而言，这不是它既定的动作，这么做是因为它们惧怕Google，而Google在做搜索。这意味着两点：一、Google在为微软设定日程表；二、微软的日程表里有它不擅长的东西。</p>
+<p>这么说这并不是必然再需要一个搜索引擎。只不过，最近我有点怀念以前Google的时候，彼时的Google还没那么社交化，总能快速而简洁地带给我正确答案。现在呢，搜索结果似乎<strong>盲目地迷信科学（受到科学神教的启发？），</strong>正确与否需要自己判断。并且页面不再给人清新、极简的感觉。Google搜索的结果曾经像Unix工具的输出，现在如果我不小心把鼠标点错了地方，不知道会发生什么。
+      
+      </p>
+      
+      <p>
+          <a href="/305.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    <a class="newer-posts" href="/archives/2012/page/26/">← Newer Posts</a>
+    <span class="page-number">Page 27 of 29</span>
+    <a class="older-posts" href="/archives/2012/page/28/">Older Posts →</a>
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archive"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/2014-10-28-wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/2014-09-11-mabao/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

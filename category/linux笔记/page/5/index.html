@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Category: linux笔记 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2011-12-16T06:49:13.000Z" itemprop="datePublished">
+          2011-12-16
+      </time>
+    
+    
+    | 
+    <a href='/tag/Tengine/'>Tengine</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/199.seo/">淘宝Web服务器Tengine基本安装步骤</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>我们很高兴的宣布由淘宝网核心系统部开发的<a href="http://tengine.taobao.org/">Tengine</a>服务器终于正式开源了。<a href="http://www.taobao.com/">淘宝网</a>是亚洲最大的电子商务 网站，Alexa全球排名第12位。每天访问淘宝网的PV超过了几十亿。大压力的访问，对淘宝网的Web服务器提出了严苛的要求。</p>  <p>经过一系列的对比，我们 最终选择了Nginx作为我们的Web服务器，因为它性能高，又非常节省资源（CPU和内存），并且有足够的灵活性。    <br />一开始我们使用Nginx还仅仅用它来处理静态文件、PHP等，接着我们又在Nginx上开发了几十个各种用途的模块。随着对Nginx的 越来越了解，我们发现它本身已经不能够完全满足我们的需求了，所以我们就开始对Nginx核心进行定制和开发。考虑到我们开发的功能中的一些对其它的互联 网用户也可能有用处，所以我们就想到了把这些公用的功能开源出来。淘宝网是开源软件的用户和受益者，我们也想成为开源软件的贡献者。这就是我们决定开源 Tengine的原因。     <br />Tengine基于最新的Nginx稳定版（Nginx-1.0.10），在它的基础上开发了一些功能和做了一些bug修复，比如：</p>  <li>组合多个CSS、JavaScript文件的访问请求变成一个请求； </li>  <li>支持管道和syslog形式的日志和抽样； </li>  <li>自动根据CPU数目设置亲缘性； </li>  <li>监控系统的负载和资源占用从而对系统进行保护； </li>  <li>显示对运维人员更友好的出错信息，便于定位出错机器； </li>  <li>更强大的访问速度限制模块； </li>  <li>backtrace模块，程序崩溃的时候可以显示出错的调用栈； </li>  <li>根据文件类型设置过期时间； </li>  <li>…    <br />基本上，Tengine可以被看作一个更好的Nginx，或者是Nginx的超集。最新1.2.1版可以在这里下载：     <br /><a href="http://tengine.taobao.org/download/tengine-1.2.1.tar.gz">http://tengine.taobao.org/download/tengine-1.2.1.tar.gz</a>     <br />在这里，我们想向Nginx团队致谢，尤其感谢Nginx的作者Igor Sysoev的伟大工作。我们也很乐意并在接下来的时间里将我们的工作成果捐献给Nginx官方。     <br />坦率的讲，现在Tengine的特性还不够多，但这是我们将我们在Nginx上的工作推向开源的第一步。我们已经围绕Tengine组建了 一个团队，而且内部还有一个很长的计划列表。Tengine开源不是项目开发的结束，而是开发的开始。相信接下来大家会看到我们在Tengine上的更多 工作进展。</li>
+      
+      </p>
+      
+      <p>
+          <a href="/199.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2011-12-16T03:57:35.000Z" itemprop="datePublished">
+          2011-12-16
+      </time>
+    
+    
+    | 
+    <a href='/tag/Linux/'>Linux</a>,
+    
+    <a href='/tag/虚拟主机/'>虚拟主机</a>,
+    
+    <a href='/tag/管理系统/'>管理系统</a>,
+    
+    <a href='/tag/VPS/'>VPS</a>,
+    
+    <a href='/tag/CPanel/'>CPanel</a>,
+    
+    <a href='/tag/ZPanel/'>ZPanel</a>,
+    
+    <a href='/tag/Webmin/'>Webmin</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/197.seo/">Linux下的六个免费的虚拟主机管理系统</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>收费的虚拟主机控制面板（比如CPanel，DirectAdmin）由于价格昂贵，花钱买不划算。于是一直在苦苦寻找免费或者破解的类似于DirectAdmin的虚拟主机管理系统,没想到开源界已经产生了如此多优秀的免费的虚拟主机管理系统：ZPanel，web-cp，VHCS，virtualmin，PHPMyWebHosting，SysCP。另外还有Kloxo……</p>
+      
+      </p>
+      
+      <p>
+          <a href="/197.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2011-11-12T12:24:56.000Z" itemprop="datePublished">
+          2011-11-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/Linux/'>Linux</a>,
+    
+    <a href='/tag/集群/'>集群</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/182.seo/">集群]基础</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><p>1.请简要什么是集群技术？为什么要使用集群技术？</p>  <blockquote>   <p>集群是一组协同工作的服务实体，用以提供比单一服务实体<strong>更具扩展性和可用性</strong>的服务平台。</p> </blockquote>  <p>2.请说出你所知道的集群种类，和实现方案？</p>  <blockquote>   <p>目前Linux下的集群主要有三种类型 </p>    <p>1. HA (High Availability) </p>    <p>2. LB (Load Balancing) </p>    <p>3. HPC (High performance Computing) </p>    <p>○ DC (Distributed Computing) </p> </blockquote>  <blockquote>   <p>○ PC (Parallel Computing)</p> </blockquote>  <p></p>
+      
+      </p>
+      
+      <p>
+          <a href="/182.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2011-10-19T23:00:46.000Z" itemprop="datePublished">
+          2011-10-20
+      </time>
+    
+    
+    | 
+    <a href='/tag/Qubes/'>Qubes</a>,
+    
+    <a href='/tag/Xen/'>Xen</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/133.seo/">Qubes系统</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        由著名的波兰美女黑客Joanna Rutkowska发布的一个基于Xen和Linux的开源操作系统。  最低配置：     4GB内存    64位Intel或AMD处理器（又名x86_64的64又名AMD64）    英特尔GPU的强烈偏好（如果你有NVIDIA GPU，准备一些故障排除 ;我们没有测试ATI硬件）    10GB磁盘（请注意，它是可能的外部USB硬盘上安装的Qubes，所以，你可以尝试在不牺牲你当前的系统，它记住，但
+      
+      </p>
+      
+      <p>
+          <a href="/133.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2011-10-10T23:19:41.000Z" itemprop="datePublished">
+          2011-10-11
+      </time>
+    
+    
+    | 
+    <a href='/tag/CentOS/'>CentOS</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/121.seo/">Linux下多线程下载工具 - Axel</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>Axel 是 Linux 下一个不错的HTTP/FTP高速下载工具。支持多线程下载、断点续传，且可以从多个地址或者从一个地址的多个连接来下载同一个文件。适合网速不给力时多线程下载提高下载速度。比如在国内VPS或服务器上下载lnmp一键安装包用Axel就比wget快。 </p>  <p>CentOS安装Axel： </p>  <p>目前yum源上没有Axel，我们可以到<a href="http://pkgs.repoforge.org/axel/下载rpm包安装。">http://pkgs.repoforge.org/axel/下载rpm包安装。</a> </p>  <p>32位CentOS执行下面命令： </p>  <p>wget -c <a href="http://pkgs.repoforge.org/axel/axel-2.4-1.el5.rf.i386.rpm">http://pkgs.repoforge.org/axel/axel-2.4-1.el5.rf.i386.rpm</a>    <br />rpm -ivh axel-2.4-1.el5.rf.i386.rpm</p>
+      
+      </p>
+      
+      <p>
+          <a href="/121.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2011-10-08T21:42:44.000Z" itemprop="datePublished">
+          2011-10-09
+      </time>
+    
+    
+    | 
+    <a href='/tag/MeeGo/'>MeeGo</a>,
+    
+    <a href='/tag/双系统/'>双系统</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/117.seo/">安装MeeGo双系统</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>MeeGo的常规安装方法是从MeeGo官方网站下载MeeGo最新的镜像，然后用工具写到U盘中，将目标机器从此U盘启动，选择安装MeeGo，按默认方式MeeGo就会被安装到此目标机器中。如果目标机器原来有linux分区，则默认情况下linux分区将会被删除，重新按MeeGo默认方式分区；或者如果原来没有linux分区，有剩余空间，则会在剩余空间上按MeeGo默认方式分区。</p>  <p>&#160;&#160;&#160; 为了能体验不同版本的MeeGo系统，而手头上兼容MeeGo的机器有限的情况下，那如何办呢？有一种方式是主机安装一个系统，其他的系统用U盘直接启动。这种方法不方便的地方有两个：一个是需要为每个MeeGo系统准备一个U盘；二是U盘启动的系统安装的软件 写入的数据好像是不会保存的。现在的电脑一般都有比较大的硬盘，是有足够多的空间安装多个MeeGo系统的，显然只安装一个MeeGo系统是太浪费了。</p>  <p>&#160;&#160;&#160; 笔者的环境是这样的，在一台Lenovo S10-3t可旋转触屏的上网本上已经安装了MeeGo 1.1的Netbook版本，由于最新推出了MeeGo 1.2 tablet预览版，笔者想同时体验一下，需要在同一台上网本上再安装上Tablet系统。下载镜像，写入U盘，然后从U盘启动，在进入到处理分区的如下页面时，我们需要选择“Create custom layout”。   <br /><a href="http://software.intel.com/zh-cn/blogs/wordpress/wp-content/uploads/2011/03/Meego_install_02.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="wps_clip_image-14810" border="0" alt="wps_clip_image-14810" src="http://img.cker.in/MeeGo_BE46/wps_clip_image14810.png" width="244" height="184" /></a></p>
+      
+      </p>
+      
+      <p>
+          <a href="/117.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    <a class="newer-posts" href="/category/linux笔记/page/4/">← Newer Posts</a>
+    <span class="page-number">Page 5 of 6</span>
+    <a class="older-posts" href="/category/linux笔记/page/6/">Older Posts →</a>
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archive"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/2014-10-28-wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/2014-09-11-mabao/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

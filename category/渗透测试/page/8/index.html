@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Category: 渗透测试 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-21T10:16:39.000Z" itemprop="datePublished">
+          2012-06-21
+      </time>
+    
+    
+    | 
+    <a href='/tag/入侵/'>入侵</a>,
+    
+    <a href='/tag/中央民族大学/'>中央民族大学</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/551.seo/">入侵中央民族大学主站服务器</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>作者：晓华[岁月联盟]</p>  <p>此文谨献给我亲爱的爸爸妈妈和热情的黑手读者！</p>  <p>来到大学快二个月了，感觉很好，认识了很多朋友，在这里结识了我的好兄弟夜枫。我学的是信息安全专业，感觉国内对这块投入很少，再加上有些网络系统管理员的安全意识比较低，总是认为我安装了最厉害的杀毒软件和严密的防火墙，并且把它们升级到最新版本，天天自动升级病毒库。恶意攻击可以避免，其实不是这样的。网络技术飞速的发展，网络安全技术和黑客攻击技术也在同步的发展，都是相互推动的，在做好了完整的安全防护外，我们还需要对系统的关键部分进行模拟的入侵测试，以找出系统存在的安全隐患并加以修复。人的意识最重要，别总是把希望寄托与强悍的杀毒软件和坚固的防火墙。</p>  <p>下面我将给新手朋友介绍下MYSQL5+PHP环境下的入侵技术。目标就拿中央民族大学主站作为入侵演示，之前朋友叫我检测下该站安全。现在用PHP做站的越来越多，PHP运行效率高，消耗系统资源比较低。再加上MYSQL是免费的数据库。PHP+MYSQL组合是黄金搭档，它们的安全问题也尤为重要。下面就简单介绍下基本入侵思路和MYSQL5注射的技巧。</p>  <p>既然是安全检测，肯定要用到网络安全扫描器进行系统信息收集。通过PING命令很轻松的得到该站IP地址，扫描软件我就用尖刀端口扫描器，速度快的它可以提高我们的入侵效率。扫描结果如下图1：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/663349f87027_1FC5/clip_image002.jpg" width="686" height="381" /></p>  <p>目标机器只对外开放了三个端口。溢出漏洞就别想了，这里就只留给我们二个端口可以突破，暴力破解终端密码？貌似我还没见人那样做哈。我们还是选择直接从80端口渗透进去吧！不知道目标站点的脚本程序安全怎么样。打开主站，是PHP的页面。后台数据库很可能是MYSQL，主机限制了3306端口对外开放，管理员对敏感端口的基本安全意识还是有的嘛！</p>
+      
+      </p>
+      
+      <p>
+          <a href="/551.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-20T12:33:41.000Z" itemprop="datePublished">
+          2012-06-20
+      </time>
+    
+    
+    | 
+    <a href='/tag/iis解析漏洞/'>iis解析漏洞</a>,
+    
+    <a href='/tag/PowerEasy/'>PowerEasy</a>,
+    
+    <a href='/tag/动易/'>动易</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/544.seo/">动易net版本后台拿shell</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        根据我的最近的制作网站！发现动易的net开发的源码！那个模板里面可以直接上传iis解析漏洞的木马！未做任何的过滤！   比如我们传到博客模板！    传完的木马位置在    Template\xx政府模板方案\博客模板\木马.asp;l.html    似乎所有的这些net开发的！    系统设置》模板标签管理》模板管理    大家可以去尝试下！呵呵！文章稍微有点水！但是重点说出来了！    
+      
+      </p>
+      
+      <p>
+          <a href="/544.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-20T12:17:35.000Z" itemprop="datePublished">
+          2012-06-20
+      </time>
+    
+    
+    | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/DJ/'>DJ</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/541.seo/">一种DJ站的漏洞</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>哈客首发 <a href="http://www.hake.cc">www.hake.cc</a>    <br />转载注明 哈客部落    <br />目标站 <a href="http://www.xufandj.com/">http://www.xufandj.com/</a>    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/DJ_3C06/clip_image002.jpg" width="604" height="374" />    <br />默认数据库地址    <br />/data/#Ylmv_Data.asa    <br />/data/#Ylmv_Data1.asa    <br />/data/#Ylmv_Data.mdb    <br />/data/#Ylmv_Data1.mdb    <br />下载到数据库之后 我们来找下管理帐号和密码</p>
+      
+      </p>
+      
+      <p>
+          <a href="/541.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-20T12:09:25.000Z" itemprop="datePublished">
+          2012-06-20
+      </time>
+    
+    
+    | 
+    <a href='/tag/监控拦截系统/'>监控拦截系统</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/536.seo/">顶着监控拦截系统渗透某县信息网站</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        话说某日虐天兄扔一个网站过来说要我和谐下、我打开一看、晕 信息网站 、不是CMS    随便看了一下、这个网站貌似有监控拦截系统       这种监控拦截系统最恶劣了、啥都拦截、什么一句话木马 大马小马通吃 BT的很    无奈用google看看吧？应该是个注入     屁颠屁颠的打开了 试一下能注入不？悲剧！拦截了    依然google 找找后台吧      intext:管理员 intext:密码 等等也是一样、有的是出来一堆没有
+      
+      </p>
+      
+      <p>
+          <a href="/536.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-14T04:41:27.000Z" itemprop="datePublished">
+          2012-06-14
+      </time>
+    
+    
+    | 
+    <a href='/tag/入侵/'>入侵</a>,
+    
+    <a href='/tag/snmp/'>snmp</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/522.seo/">snmp弱口令在一次常规入侵中的应用</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>常常见到论坛里面或qq里面有人问snmp的若口令怎么利用，其实网上已经有了一些关于snmp弱口令的介绍，无奈的是，我还没有看到谁做过教程，刚好这次入侵过程中snmp弱口令给了我很大的启发，于是就把他写了下来，希望给大家一些启发。</p>  <p>最近看到某个主页做得很烂，似乎很长时间没有做过维护了，不巧他的网速很快，于是我有了把他做成肉鸡的念头。首先当然是刺探信息了，开了x-scan,扫了一会儿，结果出来了：</p>  <p>主机地址</p>  <p>端口/服务</p>  <p>服务漏洞</p>  <p>202.<em>.</em>.<em> ftp (21/tcp) 发现安全提示</p>  <p>202.</em>.<em>.</em> telnet (23/tcp) 发现安全提示</p>  <p>202.<em>.</em>.<em> unknown (1080/tcp) 发现安全提示</p>  <p>202.</em>.<em>.</em> www (80/tcp) 发现安全漏洞</p>  <p>202.<em>.</em>.<em> unknown (3389/tcp) 发现安全提示</p>  <p>202.</em>.<em>.</em> snmp (161/udp) 发现安全漏洞</p>  <p>漏洞 snmp (161/udp) Snmp口令: &quot;public&quot;</p>
+      
+      </p>
+      
+      <p>
+          <a href="/522.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-13T09:06:02.000Z" itemprop="datePublished">
+          2012-06-13
+      </time>
+    
+    
+    | 
+    <a href='/tag/oracle注入/'>oracle注入</a>,
+    
+    <a href='/tag/渗透实例/'>渗透实例</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/516.seo/">对著名快递公司的一次艰难的oracle注入</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>作者：rebeyond</p>  <p>● 轻车熟路    <br />一个对新飞鸿有意见的亲密朋友找我说能不能把这个公司的网站给搞了，我一听公司，心想，企业站都是垃圾，好搞，便痛快答应（人品真好！），呵呵，但是后来才发现没我想像的那么简单。站面如图</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/oracle_F4A/image.png" width="314" height="366" /> </p>
+      
+      </p>
+      
+      <p>
+          <a href="/516.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    <a class="newer-posts" href="/category/渗透测试/page/7/">← Newer Posts</a>
+    <span class="page-number">Page 8 of 11</span>
+    <a class="older-posts" href="/category/渗透测试/page/9/">Older Posts →</a>
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archive"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/2014-10-28-wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/2014-09-11-mabao/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Archives: 2012/6 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-12T09:35:13.000Z" itemprop="datePublished">
+          2012-06-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>,
+    
+    <a href='/tag/入侵/'>入侵</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/478.seo/">社工+渗透某IDC服务器</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>作者：hu1s4</p>  <p>最近准备做个教育资源站，就打算在网上买个空间，ok百度下吧看看哪个好点</p>  <p>最后准备去这个站注册www.xxxxx.com</p>  <p>西部万维，西部IDC行业领跑，以最值得信赖的信誉为您提供服务器托管、服务器租用、域名注册、服务器租用、VPS、独立IP虚拟主机等服务</p>  <p>淘宝—网银—支付宝—支付成功！！</p>  <p>嘻嘻 邮箱收信了、</p>  <p>嘿嘿…空间到手了，进入FTP传个大马，因为我购买的是全能型空间，所以直接上传asp php asp.net jsp四类大马</p>  <p>查看，哎，权限bt啊，</p>  <p>（如果权限不bt，难道想被万人骑啊 hoho~~~）</p>  <p>试试看.net马吧</p>  <p>貌似权限比ASP的要大 可跳转</p>  <p>在C:\Program Files 发现了360还有星外的主机管理系统</p>  <p>一、提权之旅</p>  <p>在网上看了很多的星外提权文章，大概可以分为：</p>  <p>星外sa注册表位置在这里可以翻到sa的密码 不过需要破解</p>  <p>HKEY_LOCAL_MACHINE\SYSTEM\LIWEIWENSOFT\INSTALLFREEADMIN\11</p>  <p>C:\Documents and Settings\All Users\Application Data\Microsoft\Media Index\ 星外可写目录</p>  <p>还有一些就不列举了经过测试没有一个可行 ……峰回路转</p>  <p>正我郁闷的时候看到了Global.asa，激动的打开一看既然是sa用户</p>  <p>呵呵提权没问题了吧，不过却：</p>  <p>SQL Server 阻止了对组件 ‘xp_cmdshell’ 的过程’sys.xp_cmdshell’ 的访问</p>  <p>组件删除了，没关系我们恢复</p>  <p>dbcc addextendedproc (&quot;sp_oacreate&quot;,&quot;odsole70.dll&quot;)&#160; <br />dbcc addextendedproc (&quot;xp_cmdshell&quot;,&quot;xplog70.dll&quot;)</p>  <p>恢复好了，执行下命令在创建用户加入管理，，OK搞定</p>  <p>远程连接的时候悲剧了既然限制了管理用户组的权限。哎</p>  <p>继续想其他办法，在网上看了一篇文章</p>  <p>知道星外的ftp是自带的，我们可以通过IIS配置来读取用户密码</p>  <p>打开aspx的IIS间谍功能，既然没有禁止，教大家一个禁止aspx查看IIS配置的方法</p>  <p>找到C:\WINDOWS\system32\activeds.tlb这个文件，取消users权限即可，别人就不能查看你的IIS了</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/IDC_15DB/clip_image001.png" width="558" height="233" /></p>  <p>大家看到上面的比较了红色的FREE….</p>  <p>Freehostrunat这个用户是安装星外时建立的后面的密码并不是什么加密方式其实就是明文密码</p>  <p>我们可以直接远程登陆,在内网的话就转发</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/IDC_15DB/clip_image002.png" width="513" height="375" /></p>  <p>好了，成功拿下服务器…. 继续渗透….</p>
+      
+      </p>
+      
+      <p>
+          <a href="/478.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-12T09:29:54.000Z" itemprop="datePublished">
+          2012-06-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/476.seo/">某官网的渗透笔记</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        某官网的渗透笔记，挖掘的某0DAY拿到webshell，USER权限，联通外网，提权SYSTEM的EXP无效，看来打的补丁很全，服务器用的是微软FTP,MSSQL，没啥突破口。路过其他盘，发现一个小有年份的BKF文件，貌似这个是用于系统的恢复和还原的.复制到WEB 目录下回来。装个虚拟机还原BKF文件。虚拟机就变成目标主机的系统了。没有密码登陆不进去了。插入WINPE光盘，替换sethc.exe ，做个shift后门，按5次shift进
+      
+      </p>
+      
+      <p>
+          <a href="/476.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-12T09:27:34.000Z" itemprop="datePublished">
+          2012-06-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/内网渗透/'>内网渗透</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/473.seo/">渗透某大型内网入侵过程</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        本文阐述：文章从网站入侵到内网渗透提权，作者给大家带来了一篇精彩的内网渗透文章。读后此文你能清晰的认识到内网入侵的细节技术。   由于平时比较忙，用了很久的VPN肉鸡飞掉了，近来正好有时间于是打开google搜索upfile.asp开始找肉鸡，来了台湾某XX站，，为了不必要的麻烦，我隐藏了敏感内容。直接到传asp提示错误，那么直接传了gif以后，查看上传路径发现自己重命名了，如果没有重命名的话在IIS6下百分之90以上可以拿shell了
+      
+      </p>
+      
+      <p>
+          <a href="/473.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-12T09:17:58.000Z" itemprop="datePublished">
+          2012-06-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/入侵/'>入侵</a>,
+    
+    <a href='/tag/dis9/'>dis9</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/470.seo/">入侵泰国政府网站</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>看了一个泰国政府的网站被伊朗的黑客挂页，上面写着   <br />“Your Box 0wn3z By Behrooz_Ice - Q7x -Sha2ow -Virangar -Ali_Eagle -iman_taktaz - Satanic2000”    <br />“We Love Iran”    <br />“Ashiyane Digital Security Team”    <br />这样的话云云。    <br />下面我就讲讲怎么捅了他们的PP(<a href="http://203.154.183.18/ash_hack.htm">http://203.154.183.18/ash_hack.htm</a>)    <br />网站服务器ip为：203.154.183.18上面一共有大约一百多个xx.cad.go.th(泰国<a href="http://gov.com.im/art_design/2012/0419/%E5%85%A5%E4%BE%B5%E6%B3%B0%E5%9B%BD%E6%94%BF%E5%BA%9C%E7%BD%91%E7%AB%99.html">政府</a>域名后缀)的网站    <br />包括主域名：<a href="http://www.cad.go.th/">www.cad.go.th</a>(<a href="http://www.cad.go.th/webadmin/">www.cad.go.th/webadmin/</a>)    <br />我先是看了看上面站的构架，基本上都是一个模板出来的，似乎有点脚本问题，不过不从这边下手。直接访问ip可以看到一个管理后台</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/24a24e5761a3_1231/clip_image001.png" width="474" height="238" /></p>
+      
+      </p>
+      
+      <p>
+          <a href="/470.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-12T09:14:27.000Z" itemprop="datePublished">
+          2012-06-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/九区大黑阔/'>九区大黑阔</a>,
+    
+    <a href='/tag/dis9/'>dis9</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/467.seo/">渗透菲律宾星报官网</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        渗透菲律宾星报 官网  首发九区：www.dis9.com    作者：yingzi &amp; www.7xz.us    渗透目标:www.philstar.com    &#160;&#160; 起因     &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 2012-4.28对菲律宾星报 主站进行了一次渗透。在渗透进主站服务器后，由于目标服务器遭遇到国内肥猪
+      
+      </p>
+      
+      <p>
+          <a href="/467.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-12T09:11:30.000Z" itemprop="datePublished">
+          2012-06-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/内网渗透/'>内网渗透</a>,
+    
+    <a href='/tag/渗透/'>渗透</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/465.seo/">浅析企业内网渗透</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        2010年起，Google、SONY、RSA等诸多大型企业遭受APT渗透攻击，对机密资料的保护和内部控制越来越受到人们的重视。本文以攻击者的角度，分析企业内网安全的入侵突破点，希望能给大家带来启发，更好的做好内网防控。一个企业，可以是不同行业，他们所包含的机密数据，隐蔽数据，功能控制，和对整个旗下的可信任域都是极为重要的安全方向。对于初具规模的企业来说，内部沟通需要邮件，即时沟通需要im软件，需要有域控，需要有核心交换机，有几个指定内外
+      
+      </p>
+      
+      <p>
+          <a href="/465.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    <a class="newer-posts" href="/archives/2012/06/page/8/">← Newer Posts</a>
+    <span class="page-number">Page 9 of 11</span>
+    <a class="older-posts" href="/archives/2012/06/page/10/">Older Posts →</a>
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archive"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/2014-10-28-wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/2014-09-11-mabao/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

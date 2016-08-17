@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Archives: 2013 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-11-06T22:41:30.000Z" itemprop="datePublished">
+          2013-11-07
+      </time>
+    
+    
+    | 
+    <a href='/tag/git/'>git</a>,
+    
+    <a href='/tag/SQLmap/'>SQLmap</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1049.seo/">Mac安装SQLMAP</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        cd /usr/bin/  sudo git clone https://github.com/sqlmapproject/sqlmap.git sqlmap-dev  alias sqlmap=’python /usr/bin/sqlmap-dev/sqlmap.py’  
+      
+      </p>
+      
+      <p>
+          <a href="/1049.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-11-06T22:40:19.000Z" itemprop="datePublished">
+          2013-11-07
+      </time>
+    
+    
+    | 
+    <a href='/tag/git/'>git</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1048.seo/">在CentOS上安装Git</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        CentOS的yum源中没有git，只能自己编译安装，现在记录下编译安装的内容，留给自己备忘。   确保已安装了依赖的包   yum install curl   yum install curl-devel    yum install zlib-devel    yum install openssl-devel    yum install perl    yum install cpio    yum install expat
+      
+      </p>
+      
+      <p>
+          <a href="/1048.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-10-27T23:24:57.000Z" itemprop="datePublished">
+          2013-10-28
+      </time>
+    
+    
+    | 
+    <a href='/tag/jboss/'>jboss</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1047.seo/">Jboss环境搭建（WindowsXP）</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>首先安装jre</p>  <p><a href="http://jdk8.java.net/">http://jdk8.java.net/</a> <a href="http://jdk7.java.net/">http://jdk7.java.net/</a> <a href="http://jdk6.java.net/">http://jdk6.java.net/</a> 去随便下个jre</p>  <p>安装jre-7u11-windows-i586.exe略过、设置环境变量略过。</p>  <p>下载<a href="http://Ha.Cker.In/tag/JBoss" target="_blank">Jboss</a></p>  <p><a href="http://sourceforge.net/projects/jboss/files/">http://sourceforge.net/projects/jboss/files/</a></p>  <p>jboss-4.2.0.GA.zip</p>  <p>解压到D:\jboss-4.2.0.GA</p>  <p>运行run.bat</p>  <p><a href="http://img.cker.in/JbossWindowsXP_D867/clip_image002.jpg"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="397" alt="clip_image002" src="http://img.cker.in/JbossWindowsXP_D867/clip_image002_thumb.jpg" width="596" border="0" /></a></p>  <p>提示找不到</p>  <p>C:\Program Files\Java\jre7\bin\server\jvm.dll</p>  <p>发现C:\Program Files\Java\jre7\bin\client\下有个jvm.dll 复制一份C:\Program Files\Java\jre7\bin\server\jvm.dll</p>  <p>再运行D:\jboss-4.2.0.GA\run.bat</p>  <p>Ok。。</p>  <p><a href="http://img.cker.in/JbossWindowsXP_D867/clip_image004.jpg"><img title="clip_image004" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="701" alt="clip_image004" src="http://img.cker.in/JbossWindowsXP_D867/clip_image004_thumb.jpg" width="596" border="0" /></a></p>  <p>浏览器打开默认端口8080</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/1047.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-10-24T18:01:31.000Z" itemprop="datePublished">
+          2013-10-25
+      </time>
+    
+</span>
+      <h2 class="post-title"><a href="/1046.seo/">图片攻击-BMP图片中注入恶意JS代码</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        译自 碳基体  昨天看到一篇文章《hacking throung images》，里面介绍了如何在BMP格式的图片里注入JS代码，使得BMP图片既可以正常显示，    也可以运行其中的JS代码，觉得相当有趣。    执行JS注入的脚本    关键：构造符合正常BMP格式的图片    步骤    1. 将原BMP文件的第三，第四字节替换为\x2F\x2A， 对应js中的注释符号/    BMP文件的第三、四、五、六字节表示BMP文件的大小
+      
+      </p>
+      
+      <p>
+          <a href="/1046.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-10-24T06:31:35.000Z" itemprop="datePublished">
+          2013-10-24
+      </time>
+    
+</span>
+      <h2 class="post-title"><a href="/1045.seo/">ali</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        &#160;  好啊，你们来吧，   我已经在监狱待了400年    再去那儿过个4年5年无所谓    但我不会跑10000英里…    去帮助杀戮那些可怜的民族    如果我想死，我就死在这儿，立刻！    和你们战斗！如果我想死    你们才是我的敌人，不是中国人，    不是越共，也不是日本人    我要自由的时候你们就是我的对手！    我要正义的时候你们就是我的对手！    我要平等的时候你们就是我的对手！    你们想让我去
+      
+      </p>
+      
+      <p>
+          <a href="/1045.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-10-21T23:57:30.000Z" itemprop="datePublished">
+          2013-10-22
+      </time>
+    
+    
+    | 
+    <a href='/tag/Apache/'>Apache</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1044.seo/">http-only型cookie截取及利用</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><a href="http://Ha.Cker.In/tag/Apache" target="_blank">Apache</a>服务器2.2.0-2.2.21版本存在一个漏洞（CVE-2012-0053），攻击者可通过给网站植入超大的Cookie，使得HTTP头超过apache的LimitRequestFieldSize（最大请求长度）8192字节，apache便会返回400错误，状态页中就包含了http-only保护的cookies。</p>  <p><a href="http://img.cker.in/httponlycookie_E01C/image.png"><img title="image" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="580" alt="image" src="http://img.cker.in/httponlycookie_E01C/image_thumb.png" width="701" border="0" /></a>&#160;</p>  <p><a href="http://Ha.Cker.In/tag/httpOnly" target="_blank">httpOnly</a>型cookie截取及利用(Apache CVE：2112-0053)</p>  <p>漏洞名称：<a href="http://Ha.Cker.In/tag/Apache" target="_blank">APACHE</a> <a href="http://Ha.Cker.In/tag/httpOnly" target="_blank">Httponly</a> Cookie Disclosure（CVE：2112-0053）    <br />测试目标环境：Windows xp sp3、discuz x2.5、apache2.2.17（漏洞存在的版本）</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/1044.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    <a class="newer-posts" href="/archives/2013/page/2/">← Newer Posts</a>
+    <span class="page-number">Page 3 of 4</span>
+    <a class="older-posts" href="/archives/2013/page/4/">Older Posts →</a>
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archive"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/2014-10-28-wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/2014-09-11-mabao/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

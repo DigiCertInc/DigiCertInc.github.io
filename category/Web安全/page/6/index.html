@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Category: Web安全 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-04-14T16:08:56.000Z" itemprop="datePublished">
+          2012-04-15
+      </time>
+    
+    
+    | 
+    <a href='/tag/FTP/'>FTP</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/388.seo/">通过注册表读ftp路径</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        这个漏洞貌似鸡肋，但是也有强大的用处。但是懂得怎么利用他，完全靠得自己，我只是给一个小小思路。进入主题！  重要注册表：HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\MSFtpsvc\Parameters\Virtual Roots\ControlSet002这个目录可以是ControlSet001 ControlSet003注明：不是用第三方软件分配出来的ftp用户，一定要是基于ii
+      
+      </p>
+      
+      <p>
+          <a href="/388.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-04-14T15:47:28.000Z" itemprop="datePublished">
+          2012-04-14
+      </time>
+    
+    
+    | 
+    <a href='/tag/Discuz-X2-5/'>Discuz!X2.5</a>,
+    
+    <a href='/tag/Discuz-X2升级/'>Discuz!X2升级</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/386.seo/">完美Discuz!X2 utf8升级为Discuz!X2.5 GBK记录</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><strong>首先说明：</strong>  <p>1、该教程不考虑插件问题，插件必须重新卸载再安装相应编码  <p>2、使用前最好先全站备份，这样出了问题也好恢复  <p>因为原论坛安装的是Discuz!X2 UTF8比较占用空间，而且官方正好有发布了Discuz!X2.5正式版，因此就想转成直接升级为Discuz!X2.5 GBK版。  <p>经过多次摸索并参考相关转换教程，终于找到这种转换方式的方法，实现完美转换了，下面给大家分享此经验。  <p><strong>具体教程如下：</strong>  <p>一、首先将Discuz!X2 UTF8转换为Discuz!X2 GBK  <p>1、备份已修改文件：  <p>这个主要是图片的修改，一般来说，备份以下文件即可：  <p>1.1、static/image/common/logo.png  <p>1.2、static/image/common/logo_sc.png  <p>1.3、static/image/common/logo_88_31.gif  <p>1.4、static/image/mobile/logo.gif  <p>1.5、favicon.ico  <p>1.6、.htaccess  <p>2、安装TOOLS：  <p>下载<a href="http://www.discuz.net/thread-2659440-1-1.html">Tools 1.9M for Discuz!X</a>，然后按照官方教程安装并使用。  <p>3、利用TOOLS进行转码：  <p>首先把论坛关闭，避免转换过程中影响会员使用；  <p>然后再进行转码，点击模块化那个大大的TOOLS，然后点击左边栏的：编码转换（如下图所示）  <p>然后点提交，等待转换完成，接下来就是最重要的修改部分了。  <p>4、修改并用新的GBK编码程序文件上传覆盖原UTF8文件：  <p>4.1、首先从官方下载最新的Discuz!X2 GBK<a href="http://download.comsenz.com/DiscuzX/2.0/Discuz_X2_SC_GBK.zip，并解压到默认的Discuz_X2_SC_GBK文件夹；">http://download.comsenz.com/DiscuzX/2.0/Discuz_X2_SC_GBK.zip，并解压到默认的Discuz_X2_SC_GBK文件夹；</a>  <p>4.2、接着把论坛中原UTF8版的三个文件下载并覆盖到对应的解压好Discuz_X2_SC_GBK文件夹中，如下图所示： </p>
+      
+      </p>
+      
+      <p>
+          <a href="/386.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-04-10T00:15:21.000Z" itemprop="datePublished">
+          2012-04-10
+      </time>
+    
+    
+    | 
+    <a href='/tag/cookie欺骗/'>cookie欺骗</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/367.seo/">聚商宝2.0暴库及cookies欺骗缺陷及修复</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        程序：聚商宝2.0　　google关键字：intext:技术支持：奔明科技 聚商宝　　前几天遇到了个程序叫聚商宝，把源码下载过来了，今天才有时间简单的看了看……　　漏洞：暴库以及后台cookies欺骗　　1）直接访问conn/conn.asp 暴出数据库地址，下载，解密，登录后台　　2）cookies欺骗，admin文件夹下check.asp文件中的代码片段：　　dim uid,upwd www.**.com　　uid=Replace_
+      
+      </p>
+      
+      <p>
+          <a href="/367.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-04-09T20:07:14.000Z" itemprop="datePublished">
+          2012-04-10
+      </time>
+    
+    
+    | 
+    <a href='/tag/Discuz/'>Discuz</a>,
+    
+    <a href='/tag/Get-Shell/'>Get Shell</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/365.seo/">discuz! X1.0 &ndash; X1.5 Blind SQL injection exploit & Get Shell</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        ################################################### Exploit Title: [discuz! X1.0 - X1.5 Blind SQL injection exploit &amp; Get Shell]# Date: [06-04-2012]# Author: [Hacker-Fire]# Category:: [ webapps]# Google dork: [Powere
+      
+      </p>
+      
+      <p>
+          <a href="/365.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-04-09T20:05:19.000Z" itemprop="datePublished">
+          2012-04-10
+      </time>
+    
+    
+    | 
+    <a href='/tag/Webshell/'>Webshell</a>,
+    
+    <a href='/tag/0day/'>0day</a>,
+    
+    <a href='/tag/SiteEngine/'>SiteEngine</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/363.seo/">SiteEngine 7.1 会员上传WEBSHELL漏洞0DAY</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        作者:hackdn 转载注明 zend编码解密的不完整，也懒得看代码了，用Tamper之类的插件测试的POST参数，反正就是$sFile = $oFile[‘name’];的过滤太傻瓜了，貌似 第5版本之后就修改了函数了。。这次是会员发站内短信上传附件的漏洞，问题出在pms.php上，具体代码分析懒得啰嗦了，POC就不放了，都懂的。 直接说方法： 1： register.php注册账号 2：打开pms.php?action=send&a
+      
+      </p>
+      
+      <p>
+          <a href="/363.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-04-09T10:58:24.000Z" itemprop="datePublished">
+          2012-04-09
+      </time>
+    
+    
+    | 
+    <a href='/tag/ThinkPHP/'>ThinkPHP</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/357.seo/">ThinkPHP framework 任意代码执行漏洞预警</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        ThinkPHP是一个国内使用很广泛的老牌PHP MVC框架。貌似国内有不少创业公司或者项目都用了这个框架。最近官方发布了一个安全补丁，官方表述是：该URL安全漏洞会造成用户在客户端伪造URL，执行非法代码。可是貌似大多数开发者和使用者并没有注意到此漏洞的危害性，应者了了，更不用说有多少人去升级了。随后我对其进行了分析，发现此问题果然是一个非常严重的问题，只要使用了thinkphp框架，就可以直接执行任意php代码。特此发帖预警各位。我
+      
+      </p>
+      
+      <p>
+          <a href="/357.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    <a class="newer-posts" href="/category/Web安全/page/5/">← Newer Posts</a>
+    <span class="page-number">Page 6 of 8</span>
+    <a class="older-posts" href="/category/Web安全/page/7/">Older Posts →</a>
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archive"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/2014-10-28-wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/2014-09-11-mabao/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>
