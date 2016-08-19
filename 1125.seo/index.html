@@ -56,7 +56,7 @@
 </span>
     <h1 class="post-title">Cobaltstrike发送钓鱼邮件</h1>
     <section class="post-content">
-      <p>转载有毒By Secer@<a href="http://ha.cker.in" target="_blank" rel="external">http://ha.cker.in</a></p>  <p>Cobaltstrike有发送传播Email的功能，借助此客户端我们可以方便的发送钓鱼邮件到目标群。</p>  <p>我们需要Cobaltstrike环境，一个smtp邮箱帐号，邮件模版。</p>  <p>首先，登录上<a href="http://ha.cker.in/tag/cobaltstrike" target="_blank">Cobaltstrike</a>客户端，菜单栏Attack下Spear Phish工具打开</p>  <p><a href="http://img.cker.in/Cobaltstrike_96CD/clip_image001.png" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Cobaltstrike_96CD/clip_image001_thumb.png" width="321" height="197"></a></p>  <p>界面如下：</p>  <p><a href="http://img.cker.in/Cobaltstrike_96CD/clip_image002.png" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Cobaltstrike_96CD/clip_image002_thumb.png" width="496" height="410"></a></p>  <p>Targets处导入目标群邮箱地址列表，如：</p>  <p><a href="mailto:msb@gmail.com" msb@gmail.com<="" a="" target="_blank" rel="external"> Mr.SB</a></p>  <p><a href="mailto:mdsb@outlook.com" mdsb@outlook.com<="" a="" target="_blank" rel="external"> Mr.Dsb</a></p>  <p>Template处导入邮件内容模版，模版来自要仿照的邮件源内容，我演示以下。接下来我的目标是土耳其的一些黑裤们，我打算去土耳其网站内容里找点有意思的内容通过网站提供的分享功能发送到我的邮箱，以此源内容当模版。我默默打开了msn.com.tr，选择语言为Turky……</p>  <p><a href="http://img.cker.in/Cobaltstrike_96CD/clip_image004.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/Cobaltstrike_96CD/clip_image004_thumb.jpg" width="580" height="372"></a></p>  <p>把源内容拷贝到TEMPLATE.txt 文件，记得修改From: 字段和下面Bounce To的字段保持一致，然后保存，Spear Phish加载。</p>  <p>此外，Embed URL处填上我们已经控制站点的一个landing page（里面插入了最近的flash 0day网马），邮件内受害者可能点击的链接都将改为此URL。</p>  <p>Mail Server选项需要填上发送者的smtp服务器、帐号密码，我是随便日了zimbra加了个用户。</p>  <p>Bounce To则填上伪造的发送者地址，以增加信任度。最终如图</p>  <p><a href="http://img.cker.in/Cobaltstrike_96CD/clip_image005.png" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/Cobaltstrike_96CD/clip_image005_thumb.png" width="485" height="444"></a></p>  <p>Preview可预览下源码效果，Send发送之。。。</p>  <p>Cobaltstrike界面看到SUCCESS</p>  <p><a href="http://img.cker.in/Cobaltstrike_96CD/clip_image006.png" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/Cobaltstrike_96CD/clip_image006_thumb.png" width="585" height="444"></a></p>  <p>嗯，成功了我们看下效果，当然这只是一个测试邮箱，其实收件人是我的小号，一个有经验的垂钓者都是这么做的。</p>  <p><a href="http://img.cker.in/Cobaltstrike_96CD/clip_image008.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/Cobaltstrike_96CD/clip_image008_thumb.jpg" width="580" height="375"></a></p>  <p>看看源码，检查一遍，没有问题，重复以上过程给真正的目标发过去吧，接下来就等鱼儿上钩。钓鱼也就这么点意思了。</p>
+      <p>转载有毒By Secer@<a href="http://ha.cker.in">http://ha.cker.in</a></p>  <p>Cobaltstrike有发送传播Email的功能，借助此客户端我们可以方便的发送钓鱼邮件到目标群。</p>  <p>我们需要Cobaltstrike环境，一个smtp邮箱帐号，邮件模版。</p>  <p>首先，登录上<a href="http://ha.cker.in/tag/cobaltstrike" target="_blank">Cobaltstrike</a>客户端，菜单栏Attack下Spear Phish工具打开</p>  <p><a href="http://img.cker.in/Cobaltstrike_96CD/clip_image001.png" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Cobaltstrike_96CD/clip_image001_thumb.png" width="321" height="197"></a></p>  <p>界面如下：</p>  <p><a href="http://img.cker.in/Cobaltstrike_96CD/clip_image002.png" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Cobaltstrike_96CD/clip_image002_thumb.png" width="496" height="410"></a></p>  <p>Targets处导入目标群邮箱地址列表，如：</p>  <p><a href="mailto:msb@gmail.com" msb@gmail.com<="" a="" target="_blank" rel="external"> Mr.SB</a></p>  <p><a href="mailto:mdsb@outlook.com" mdsb@outlook.com<="" a="" target="_blank" rel="external"> Mr.Dsb</a></p>  <p>Template处导入邮件内容模版，模版来自要仿照的邮件源内容，我演示以下。接下来我的目标是土耳其的一些黑裤们，我打算去土耳其网站内容里找点有意思的内容通过网站提供的分享功能发送到我的邮箱，以此源内容当模版。我默默打开了msn.com.tr，选择语言为Turky……</p>  <p><a href="http://img.cker.in/Cobaltstrike_96CD/clip_image004.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/Cobaltstrike_96CD/clip_image004_thumb.jpg" width="580" height="372"></a></p>  <p>把源内容拷贝到TEMPLATE.txt 文件，记得修改From: 字段和下面Bounce To的字段保持一致，然后保存，Spear Phish加载。</p>  <p>此外，Embed URL处填上我们已经控制站点的一个landing page（里面插入了最近的flash 0day网马），邮件内受害者可能点击的链接都将改为此URL。</p>  <p>Mail Server选项需要填上发送者的smtp服务器、帐号密码，我是随便日了zimbra加了个用户。</p>  <p>Bounce To则填上伪造的发送者地址，以增加信任度。最终如图</p>  <p><a href="http://img.cker.in/Cobaltstrike_96CD/clip_image005.png" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/Cobaltstrike_96CD/clip_image005_thumb.png" width="485" height="444"></a></p>  <p>Preview可预览下源码效果，Send发送之。。。</p>  <p>Cobaltstrike界面看到SUCCESS</p>  <p><a href="http://img.cker.in/Cobaltstrike_96CD/clip_image006.png" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/Cobaltstrike_96CD/clip_image006_thumb.png" width="585" height="444"></a></p>  <p>嗯，成功了我们看下效果，当然这只是一个测试邮箱，其实收件人是我的小号，一个有经验的垂钓者都是这么做的。</p>  <p><a href="http://img.cker.in/Cobaltstrike_96CD/clip_image008.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/Cobaltstrike_96CD/clip_image008_thumb.jpg" width="580" height="375"></a></p>  <p>看看源码，检查一遍，没有问题，重复以上过程给真正的目标发过去吧，接下来就等鱼儿上钩。钓鱼也就这么点意思了。</p>
     </section>
     <footer class="post-footer">
       <section class="author">
@@ -65,18 +65,18 @@
 </section>
       <section class="share">
     <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://www.cker.in/1125.seo/" target="_blank">
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1125.seo/" target="_blank">
         <span class="hidden">weibo</span>
     </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://www.cker.in/1125.seo/"
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1125.seo/"
        onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
         <span class="hidden">Twitter</span>
     </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://www.cker.in/1125.seo/"
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1125.seo/"
        onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
         <span class="hidden">Facebook</span>
     </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://www.cker.in/1125.seo/"
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1125.seo/"
        onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
         <span class="hidden">Google+</span>
     </a>
@@ -132,15 +132,15 @@
 
           <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archive"><span>Archive</span></a>
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
 
           <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/2014-10-28-wiki/"><span>Wiki</span></a>
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
 
           <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/2014-09-11-mabao/"><span>Contact</span></a>
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
 
 </nav>
 

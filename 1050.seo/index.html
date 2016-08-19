@@ -56,7 +56,7 @@
 </span>
     <h1 class="post-title">SQlMap Tamper注入Base64编码注入点</h1>
     <section class="post-content">
-      <p>WVS扫某站就出来一个SQL Injection，参数还是base64编码的，手工注入麻烦一步，用<a href="http://Ha.Cker.In/tag/sqlmap" target="_blank">sqlmap</a>怎么自动注射呢？</p>  <p><a href="http://Ha.Cker.In/tag/sqlmap" target="_blank">sqlmap</a>的tamper里有个base64encode.py</p>  <p>使用如下</p>  <p>sqlmap -u <a href="http://ha.cker.in/index.php?tel=LTEnIG9yICc4OCc9Jzg5" target="_blank" rel="external">http://ha.cker.in/index.php?tel=LTEnIG9yICc4OCc9Jzg5</a> –tamper base64encode.py –dbs</p>  <p>&#160;</p>  <p><a href="http://Ha.Cker.In/tag/sqlmap" target="_blank">sqlmap</a>拥有很多功能强力的插件，插件的使用方法： – tamper “插件名称” </p>  <p>其中常用到的bypass脚本绕过<a href="http://Ha.Cker.In/tag/sqlmap" target="_blank">SQLMAP</a>主要两个脚本： </p>  <p>space2hash.py ，对于MYSQL数据库 4.0, 5.0注入    <br>space2morehash.py ，对于MYSQL数据库 &gt;= 5.1.13 和 MySQL 5.1.41 注入     <br>首先确定目标数据库版本，然后选择相应的脚本。     <br>-v 3 –batch –tamper &quot;space2hash.py&quot; </p>  <p>还有其他一些插件：    <br>encodes编码 ——charencode.py     <br>base64编码 —— base64encode.py     <br>替换空格和关键字 —— halfversionedmorekeywords.py</p>
+      <p>WVS扫某站就出来一个SQL Injection，参数还是base64编码的，手工注入麻烦一步，用<a href="http://Ha.Cker.In/tag/sqlmap" target="_blank">sqlmap</a>怎么自动注射呢？</p>  <p><a href="http://Ha.Cker.In/tag/sqlmap" target="_blank">sqlmap</a>的tamper里有个base64encode.py</p>  <p>使用如下</p>  <p>sqlmap -u <a href="http://ha.cker.in/index.php?tel=LTEnIG9yICc4OCc9Jzg5">http://ha.cker.in/index.php?tel=LTEnIG9yICc4OCc9Jzg5</a> –tamper base64encode.py –dbs</p>  <p>&#160;</p>  <p><a href="http://Ha.Cker.In/tag/sqlmap" target="_blank">sqlmap</a>拥有很多功能强力的插件，插件的使用方法： – tamper “插件名称” </p>  <p>其中常用到的bypass脚本绕过<a href="http://Ha.Cker.In/tag/sqlmap" target="_blank">SQLMAP</a>主要两个脚本： </p>  <p>space2hash.py ，对于MYSQL数据库 4.0, 5.0注入    <br>space2morehash.py ，对于MYSQL数据库 &gt;= 5.1.13 和 MySQL 5.1.41 注入     <br>首先确定目标数据库版本，然后选择相应的脚本。     <br>-v 3 –batch –tamper &quot;space2hash.py&quot; </p>  <p>还有其他一些插件：    <br>encodes编码 ——charencode.py     <br>base64编码 —— base64encode.py     <br>替换空格和关键字 —— halfversionedmorekeywords.py</p>
     </section>
     <footer class="post-footer">
       <section class="author">
@@ -65,18 +65,18 @@
 </section>
       <section class="share">
     <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://www.cker.in/1050.seo/" target="_blank">
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1050.seo/" target="_blank">
         <span class="hidden">weibo</span>
     </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://www.cker.in/1050.seo/"
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1050.seo/"
        onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
         <span class="hidden">Twitter</span>
     </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://www.cker.in/1050.seo/"
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1050.seo/"
        onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
         <span class="hidden">Facebook</span>
     </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://www.cker.in/1050.seo/"
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1050.seo/"
        onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
         <span class="hidden">Google+</span>
     </a>
@@ -132,15 +132,15 @@
 
           <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archive"><span>Archive</span></a>
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
 
           <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/2014-10-28-wiki/"><span>Wiki</span></a>
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
 
           <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/2014-09-11-mabao/"><span>Contact</span></a>
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
 
 </nav>
 

