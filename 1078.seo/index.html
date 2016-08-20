@@ -1,149 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>浅析白盒审计中的字符编码及SQL注入 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>浅析白盒审计中的字符编码及SQL注入 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="尽管现在呼吁所有的程序都使用unicode编码，所有的网站都使用utf-8编码，来一个统一的国际规范。但仍然有很多，包括国内及国外（特别是非英语国家）的一些cms，仍然使用着自己国家的一套编码，比如gbk，作为自己默认的编码类型。也有一些cms为了考虑老用户，所以出了gbk和utf-8两个版本。  我们就以gbk字符编码为示范，拉开帷幕。gbk是一种多字符编码，具体定义自行百度。但有一个地方尤其要注意：  通常来说，一个gbk编码汉字，占用2个字节。一个utf-8编码的汉字，占用3个字节。在php中，我们可以通过输出  echo strlen(&amp;quot;和&amp;quot;);  来测试。当将页面编码保存为gbk时输出2，utf-8时输出3。  除了gbk以外，所有ANSI编码都是2个字节。ansi只是一个标准，在不用的电脑上它代表的编码可能不相同，比如简体中文系统中ANSI就代表是GBK。  以上是一点关于多字节编码的小知识，只有我们足够了解它的组成及特性以后，才能更好地去分析它身上存在的问题。  说了这么多废话，现在来研究一下在SQL注入中，字符编码带来的各种问题。  0×01 MYSQL中的宽字符注入  这是一个老话题了，也被人玩过无数遍。但作为我们这篇文章的序幕，也是基础，是必须要提的。  我们先搭建一个实验环境。暂且称之为phithon内容管理系统v1.0，首先先新建一个数据库，把如下压缩包中的sql文件导入：  测试代码及数据库：http://pan.baidu.com/s/1eQmUArw 提取密码:75tu  之后的phithon内容管理系统会逐步完善，但会一直使用这个数据表。  源码很简单（注意先关闭自己php环境的magic_quotes_gpc）：  &amp;lt;?php  //连接数据库部分，注意使用了gbk编码，把数据库信息填写进去  $conn = mysql_connect(‘localhost’, ‘root’, ‘toor!@#$’) or die(‘bad!’);  mysql_query(&amp;quot;SET NAMES ‘gbk’&amp;quot;);  mysql_select_db(‘test’, $conn) OR emMsg(&amp;quot;连接数据库失败，未找到您填写的数据库&amp;quot;);  //执行sql语句  $id = isset($_GET[‘id’]) ? addslashes($_GET[‘id’]) : 1;  $sql = &amp;quot;SELECT  FROM news WHERE tid=’{$id}’&amp;quot;;  $result = mysql_query($sql, $conn) or die(mysql_error()); //sql出错会报错，方便观察  ?&amp;gt;  &amp;lt;!DOCTYPE html&amp;gt;  &amp;lt;html&amp;gt;  &amp;lt;head&amp;gt;  &amp;lt;meta charset=&amp;quot;gbk&amp;quot; /&amp;gt;  &amp;lt;title&amp;gt;新闻&amp;lt;/title&amp;gt;  &amp;lt;/head&amp;gt;  &amp;lt;body&amp;gt;  &amp;lt;?php  $row = mysql_fetch_array($result, MYSQL_ASSOC);  echo &amp;quot;&amp;lt;h2&amp;gt;{$row[‘title’]}&amp;lt;/h2&amp;gt;&amp;lt;p&amp;gt;{$row[‘content’]}&amp;lt;p&amp;gt;\n&amp;quot;;  mysql_free_result($result);  ?&amp;gt;  &amp;lt;/body&amp;gt;  &amp;lt;/html&amp;gt;  SQL语句是SELECT  FROM news WHERE tid=’{$id}’，就是根据文章的id把文章从news表中取出来。  在这个sql语句前面，我们使用了一个addslashes函数，将$id的值转义。这是通常cms中对sql注入进行的操作，只要我们的输入参数在单引号中，就逃逸不出单引号的限制，无法注入，如下图：    那么怎么逃过addslashes的限制？众所周知addslashes函数产生的效果就是，让’变成\’，让引号变得不再是“单引号”，只是一撇而已。一般绕过方式就是，想办法处理\’前面的\：  1.想办法给\前面再加一个\（或单数个即可），变成\’，这样\被转义了，’逃出了限制  2.想办法把\弄没有。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="浅析白盒审计中的字符编码及SQL注入 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/1078.seo/" title="浅析白盒审计中的字符编码及SQL注入" itemprop="url">浅析白盒审计中的字符编码及SQL注入</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2014-04-17T07:24:02.000Z" itemprop="datePublished">2014-04-17</time>
+    Updated:<time datetime="2016-08-20T11:03:54.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p><b>尽管现在呼吁所有的程序都使用unicode编码，所有的网站都使用utf-8编码，来一个统一的国际规范。但仍然有很多，包括国内及国外（特别是非英语国家）的一些cms，仍然使用着自己国家的一套编码，比如gbk，作为自己默认的编码类型。</b>也有一些cms为了考虑老用户，所以出了gbk和utf-8两个版本。</p>  <p>我们就以gbk字符编码为示范，拉开帷幕。gbk是一种多字符编码，具体定义自行百度。但有一个地方尤其要注意：</p>  <p>通常来说，一个gbk编码汉字，占用2个字节。一个utf-8编码的汉字，占用3个字节。在php中，我们可以通过输出</p>  <p>echo strlen(&quot;和&quot;);</p>  <p>来测试。当将页面编码保存为gbk时输出2，utf-8时输出3。</p>  <p>除了gbk以外，所有ANSI编码都是2个字节。ansi只是一个标准，在不用的电脑上它代表的编码可能不相同，比如简体中文系统中ANSI就代表是GBK。</p>  <p>以上是一点关于多字节编码的小知识，只有我们足够了解它的组成及特性以后，才能更好地去分析它身上存在的问题。</p>  <p>说了这么多废话，现在来研究一下在<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>中，字符编码带来的各种问题。</p>  <p><b>0</b><b>×01 MYSQL中的宽字符注入</b><b></b></p>  <p>这是一个老话题了，也被人玩过无数遍。但作为我们这篇文章的序幕，也是基础，是必须要提的。</p>  <p>我们先搭建一个实验环境。暂且称之为phithon内容管理系统v1.0，首先先新建一个数据库，把如下压缩包中的sql文件导入：</p>  <p>测试代码及数据库：<a href="http://pan.baidu.com/s/1eQmUArw" target="_blank" rel="external">http://pan.baidu.com/s/1eQmUArw</a> 提取密码:75tu</p>  <p>之后的phithon内容管理系统会逐步完善，但会一直使用这个数据表。</p>  <p>源码很简单（注意先关闭自己php环境的magic_quotes_gpc）：</p>  <p>&lt;?php</p>  <p>//连接数据库部分，注意使用了gbk编码，把数据库信息填写进去</p>  <p>$conn = mysql_connect(‘localhost’, ‘root’, ‘toor!@#$’) or die(‘bad!’);</p>  <p>mysql_query(&quot;SET NAMES ‘gbk’&quot;);</p>  <p>mysql_select_db(‘test’, $conn) OR emMsg(&quot;连接数据库失败，未找到您填写的数据库&quot;);</p>  <p>//执行sql语句</p>  <p>$id = isset($_GET[‘id’]) ? addslashes($_GET[‘id’]) : 1;</p>  <p>$sql = &quot;SELECT <em> FROM news WHERE tid=’{$id}’&quot;;</em></p>  <p>$result = mysql_query($sql, $conn) or die(mysql_error()); //sql出错会报错，方便观察</p>  <p>?&gt;</p>  <p>&lt;!DOCTYPE html&gt;</p>  <p>&lt;html&gt;</p>  <p>&lt;head&gt;</p>  <p>&lt;meta charset=&quot;gbk&quot; /&gt;</p>  <p>&lt;title&gt;新闻&lt;/title&gt;</p>  <p>&lt;/head&gt;</p>  <p>&lt;body&gt;</p>  <p>&lt;?php</p>  <p>$row = mysql_fetch_array($result, MYSQL_ASSOC);</p>  <p>echo &quot;&lt;h2&gt;{$row[‘title’]}&lt;/h2&gt;&lt;p&gt;{$row[‘content’]}&lt;p&gt;\n&quot;;</p>  <p>mysql_free_result($result);</p>  <p>?&gt;</p>  <p>&lt;/body&gt;</p>  <p>&lt;/html&gt;</p>  <p>SQL语句是SELECT  FROM news WHERE tid=’{$id}’，就是根据文章的id把文章从news表中取出来。</p>  <p>在这个sql语句前面，我们使用了一个addslashes函数，将$id的值转义。这是通常cms中对sql注入进行的操作，只要我们的输入参数在单引号中，就逃逸不出单引号的限制，无法注入，如下图：</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image001.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="001.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image001_thumb.jpg" width="378" height="347"></a></p>  <p>那么怎么逃过addslashes的限制？众所周知addslashes函数产生的效果就是，让’变成\’，让引号变得不再是“单引号”，只是一撇而已。一般绕过方式就是，想办法处理\’前面的\：</p>  <p>1.想办法给\前面再加一个\（或单数个即可），变成\’，这样\被转义了，’逃出了限制</p>  <p>2.想办法把\弄没有。</p><br><a id="more"></a><br><p></p>  <p>我们这里的宽字节注入是利用mysql的一个特性，mysql在使用GBK编码的时候，会认为两个字符是一个汉字（前一个ascii码要大于128，才到汉字的范围）。如果我们输入%df’看会怎样：</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image002.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="003.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image002_thumb.jpg" width="694" height="113"></a></p>  <p>我们可以看到，已经报错了。我们看到报错，说明sql语句出错，看到出错说明可以注入了。</p>  <p>为什么从刚才到现在，只是在’也就是%27前面加了一个%df就报错了？而且从图中可以看到，报错的原因就是多了一个单引号，而单引号前面的反斜杠不见了。</p>  <p>这就是mysql的特性，因为gbk是多字节编码，他认为两个字节代表一个汉字，所以%df和后面的\也就是%5c变成了一个汉字“運”，而’逃逸了出来。</p>  <p>因为两个字节代表一个汉字，所以我们可以试试“%df%df%27”：</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image003.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="004.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image003_thumb.jpg" width="449" height="240"></a></p>  <p>不报错了。因为%df%df是一个汉字，%5c%27不是汉字，仍然是\’。</p>  <p>那么mysql怎么判断一个字符是不是汉字，根据gbk编码，第一个字节ascii码大于128，基本上就可以了。比如我们不用%df，用%a1也可以：</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image004.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="005.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image004_thumb.jpg" width="575" height="137"></a></p>  <p>%a1%5c他可能不是汉字，但一定会被mysql认为是一个宽字符，就能够让后面的%27逃逸了出来。</p>  <p>于是我可以构造一个exp出来，查询管理员账号密码：</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image005.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="006.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image005_thumb.jpg" width="694" height="208"></a></p>  <p><b>0</b><b>×02 GB2312与GBK的不同</b></p>  <p>曾经有一个问题一直困扰我很久。</p>  <p>gb2312和gbk应该都是宽字节家族的一员。但我们来做个小实验。把phithon内容管理系统中set names修改成gb2312:</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image006.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="007.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image006_thumb.jpg" width="678" height="200"></a></p>  <p>结果就是不能注入了：</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image007.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="008.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image007_thumb.jpg" width="395" height="252"></a></p>  <p>有些同学不信的话，也可以把数据库编码也改成gb2312，也是不成功的。</p>  <p>为什么，这归结于gb2312编码的取值范围。它的高位范围是0xA1~0xF7，低位范围是0xA1~0xFE，而\是0x5c，是不在低位范围中的。所以，0x5c根本不是gb2312中的编码，所以自然也是不会被吃掉的。</p>  <p>所以，把这个思路扩展到世界上所有多字节编码，我们可以这样认为：只要低位的范围中含有0x5c的编码，就可以进行宽字符注入。</p>  <p><b>0</b><b>×03 mysql_real_escape_string解决问题？</b></p>  <p>‍‍‍‍‍‍部分cms对宽字节注入有所了解，于是寻求解决方案。在php文档中，大家会发现一个函数，mysql_real_escape_string，文档里说了，考虑到连接的当前字符集。‍‍‍‍‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image008.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="009.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image008_thumb.jpg" width="694" height="277"></a></p>  <p>‍‍于是，有的cms就把addslashes替换成mysql_real_escape_string，来抵御宽字符注入。我们继续做试验，phithon内容管理系统v1.2:，就用mysql_real_escape_string来过滤输入：‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image009.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0010.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image009_thumb.jpg" width="694" height="430"></a></p>  <p>‍‍我们来试试能不能注入：‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image010.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0011.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image010_thumb.jpg" width="694" height="137"></a></p>  <p>‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍一样没压力注入。为什么，明明我用了mysql_real_escape_string，但却仍然不能抵御宽字符注入。</p>  <p>原因就是，你没有指定php连接mysql的字符集。我们需要在执行sql语句之前调用一下mysql_set_charset函数，设置当前连接的字符集为gbk。‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image011.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0012.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image011_thumb.jpg" width="680" height="489"></a></p>  <p>‍‍就可以避免这个问题了：‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image012.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0013.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image012_thumb.jpg" width="337" height="186"></a></p>  <p><b>0</b><b>×04</b><b> </b><b>宽字符注入的修复</b><b></b></p>  <p>‍‍‍‍‍‍‍‍在3中我们说到了一种修复方法，就是先调用mysql_set_charset函数设置连接所使用的字符集为gbk，再调用mysql_real_escape_string来过滤用户输入。</p>  <p>这个方式是可行的，但有部分老的cms，在多处使用addslashes来过滤字符串，我们不可能去一个一个把addslashes都修改成mysql_real_escape_string。我们第二个解决方案就是，将character_set_client设置为binary（二进制）。</p>  <p>只需在所有sql语句前指定一下连接的形式是二进制：‍‍‍‍‍‍‍‍</p>  <p><b>mysql_query(&quot;SET character_set_connection=gbk, character_set_results=gbk,character_set_client=binary&quot;, $conn);</b></p>  <p>‍‍‍‍‍‍‍‍‍‍这几个变量是什么意思？</p>  <p>当我们的mysql接受到客户端的数据后，会认为他的编码是character_set_client，然后会将之将换成character_set_connection的编码，然后进入具体表和字段后，再转换成字段对应的编码。</p>  <p>然后，当查询结果产生后，会从表和字段的编码，转换成character_set_results编码，返回给客户端。</p>  <p>所以，我们将character_set_client设置成binary，就不存在宽字节或多字节的问题了，所有数据以二进制的形式传递，就能有效避免宽字符注入。</p>  <p>比如，我们的phithon内容管理系统v2.0版本更新如下：‍‍‍‍‍‍‍‍‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image013.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0014.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image013_thumb.jpg" width="694" height="342"></a></p>  <p>‍‍‍‍已经不能够注入了：‍‍‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image014.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0015.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image014_thumb.jpg" width="371" height="268"></a></p>  <p>‍‍‍‍‍‍在我审计过的代码中，大部分cms是以这样的方式来避免宽字符注入的。这个方法可以说是有效的，但如果开发者画蛇添足地增加一些东西，会让之前的努力前功尽弃。‍‍‍‍‍‍</p>  <p><b>0</b><b>×05</b><b> </b><b>iconv</b><b>导致的致命后果</b><b></b></p>  <p>‍‍‍‍‍‍‍‍很多cms，不止一个，我就不提名字了，他们的gbk版本都存在因为字符编码造成的注入。但有的同学说，自己测试了这些cms的宽字符注入，没有效果呢，难道是自己姿势不对？</p>  <p>当然不是。实际上，这一章说的已经不再是宽字符注入了，因为问题并不是出在mysql上，而是出在php中了。</p>  <p>很多cms（真的很多哦，不信大家自己网上找找）会将接收到数据，调用这样一个函数，转换其编码：</p>  <p><b>iconv(</b><b>‘utf-8’, ‘gbk’, $_GET[‘word’]);</b></p>  <p>目的一般是为了避免乱码，特别是在搜索框的位置。</p>  <p>比如我们的phithon内容管理系统v3.0‍‍‍‍‍‍‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image015.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0016.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image015_thumb.jpg" width="694" height="362"></a></p>  <p>‍‍‍‍我们可以看到，它在sql语句执行前，将character_set_client设置成了binary，所以可以避免宽字符注入的问题。但之后其调用了iconv将已经过滤过的参数$id给转换了一下。</p>  <p>那我们来试试此时能不能注入：‍‍‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image016.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0017.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image016_thumb.jpg" width="694" height="106"></a></p>  <p>‍‍‍‍居然报错了。说明可以注入。而我只是输入了一个“錦&amp;#039;”。这是什么原因？</p>  <p>我们来分析一下。“錦”这个字，它的utf-8编码是0xe98ca6，它的gbk编码是0xe55c。‍‍‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image017.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0018.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image017_thumb.jpg" width="194" height="116"></a> <a href="http://img.cker.in/SQL_42B9/clip_image018.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0019.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image018_thumb.jpg" width="228" height="116"></a></p>  <p>‍‍‍‍‍‍有的同学可能就领悟了。\的ascii码正是5c。那么，当我们的錦被iconv从utf-8转换成gbk后，变成了%e5%5c，而后面的’被addslashes变成了%5c%27，这样组合起来就是%e5%5c%5c%27，两个%5c就是\，正好把反斜杠转义了，导致’逃逸出单引号，产生注入。</p>  <p>这正利用了我之前说的，绕过addslashes的两种方式的第一种：将\转义掉。</p>  <p>那么，如果我是用iconv将gbk转换成utf-8呢？‍‍‍‍‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image019.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0020.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image019_thumb.jpg" width="694" height="359"></a></p>  <p>‍‍‍‍我们来试试：‍‍‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image020.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0021.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image020_thumb.jpg" width="504" height="235"></a></p>  <p>‍‍‍‍‍‍果然又成功了。这次直接用宽字符注入的姿势来的，但实际上问题出在php而不是mysql。我们知道一个gbk汉字2字节，utf-8汉字3字节，如果我们把gbk转换成utf-8，则php会每两个字节一转换。所以，如果\’前面的字符是奇数的话，势必会吞掉\，’逃出限制。</p>  <p>那么为什么之前utf-8转换成gbk的时候，没有使用这个姿势？</p>  <p>这跟utf-8的规则有关，UTF-8的编码规则很简单，只有二条：‍‍‍‍‍‍</p>  <p>1）对于单字节的符号，字节的第一位设为0，后面7位为这个符号的unicode码。因此对于英语字母，UTF-8编码和ASCII码是相同的。</p>  <p>2）对于n字节的符号（n&gt;1），第一个字节的前n位都设为1，第n+1位设为0，后面字节的前两位一律设为10。剩下的没有提及的二进制位，全部为这个符号的unicode码。</p>  <p>‍‍‍‍从2我们可以看到，对于多字节的符号，其第2、3、4字节的前两位都是10，也就是说，\（0x0000005c）不会出现在utf-8编码中，所以utf-8转换成gbk时，如果有\则php会报错：‍‍‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image021.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0022.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image021_thumb.jpg" width="694" height="132"></a></p>  <p>‍‍‍‍但因为gbk编码中包含了\，所以仍然可以利用，只是利用方式不同罢了。</p>  <p>总而言之，在我们处理了mysql的宽字符注入以后，也别认为就可以高枕无忧了。调用iconv时千万要小心，避免出现不必要的麻烦。 ‍‍‍‍</p>  <p><b>0</b><b>×06</b><b> </b><b>总结</b><b></b></p>  <p>‍‍‍‍‍‍‍‍在逐渐国际化的今天，推行utf-8编码是大趋势。如果就安全性来说的话，我也觉得使用utf-8编码能够避免很多多字节造成的问题。</p>  <p>不光是gbk，我只是习惯性地把gbk作为一个典型的例子在文中与大家说明。世界上的多字节编码有很多，特别是韩国、日本及一些非英语国家的cms，都可能存在由字符编码造成的安全问题，大家应该有扩展性的思维。</p>  <p>总结一下全文中提到的由字符编码引发的安全问题及其解决方案：‍‍‍‍‍‍‍‍</p>  <p>1.gbk编码造成的宽字符注入问题，解决方法是设置character_set_client=binary。</p>  <p>2.矫正人们对于mysql_real_escape_string的误解，单独调用set name=gbk和mysql_real_escape_string是无法避免宽字符注入问题的。还得调用mysql_set_charset来设置一下字符集。</p>  <p>3.谨慎使用iconv来转换字符串编码，很容易出现问题。只要我们把前端html/js/css所有编码设置成gbk，mysql/php编码设置成gbk，就不会出现乱码问题。不用画蛇添足地去调用iconv转换编码，造成不必要的麻烦。</p>  <p>‍‍‍‍‍‍‍‍‍‍这篇文章是我对于自己白盒审计经验的一点小总结，但自己确实在很多方面存在欠缺，文中所提到的姿势难免存在纰漏和错误，希望有相同爱好的同学能与我指出，共同进步。</p>  <p>这篇文章不像上篇xss的，能够举出很多0day实例来论证宽字符造成的危害。原因有二：</p>  <p>1.宽字符问题确实不如富文本xss那么普遍，gbk编码的cms所占的比例也比较小，怪我才疏学浅，并不能每一章都找到相应的实例。</p>  <p>‍‍2.注入的危害比xss大得多，如果作为0day发出来，影响很坏。但我确实在写文章以及以前的审计过程中找到不少cms存在的编码问题。</p>  <p>‍‍ 所以我用实验的形式，自己写了的php小文件，给大家作为例子，希望不会因为例证的不足，影响大家学习的效果。‍‍</p>  <p>例子php文件和sql文件打包下载：</p>  <p>链接:<a href="http://pan.baidu.com/s/1eQmUArw" target="_blank" rel="external">http://pan.baidu.com/s/1eQmUArw</a> 提取密码:75tu</p>  <p>本文PDF版本：链接: <a href="http://pan.baidu.com/s/1eprLs" target="_blank" rel="external">http://pan.baidu.com/s/1eprLs</a> 密码: yoyw</p>  <p>作者博客：<a href="http://www.leavesongs.com" target="_blank" rel="external">http://www.leavesongs.com</a> FROM XDSEC</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2014-04-17T07:24:02.000Z" itemprop="datePublished">
-          2014-04-17
-      </time>
-    
-    
-    | 
-    <a href='/tag/SQL注入/'>SQL注入</a>
-    
-    
-</span>
-    <h1 class="post-title">浅析白盒审计中的字符编码及SQL注入</h1>
-    <section class="post-content">
-      <p><b>尽管现在呼吁所有的程序都使用unicode编码，所有的网站都使用utf-8编码，来一个统一的国际规范。但仍然有很多，包括国内及国外（特别是非英语国家）的一些cms，仍然使用着自己国家的一套编码，比如gbk，作为自己默认的编码类型。</b>也有一些cms为了考虑老用户，所以出了gbk和utf-8两个版本。</p>  <p>我们就以gbk字符编码为示范，拉开帷幕。gbk是一种多字符编码，具体定义自行百度。但有一个地方尤其要注意：</p>  <p>通常来说，一个gbk编码汉字，占用2个字节。一个utf-8编码的汉字，占用3个字节。在php中，我们可以通过输出</p>  <p>echo strlen(&quot;和&quot;);</p>  <p>来测试。当将页面编码保存为gbk时输出2，utf-8时输出3。</p>  <p>除了gbk以外，所有ANSI编码都是2个字节。ansi只是一个标准，在不用的电脑上它代表的编码可能不相同，比如简体中文系统中ANSI就代表是GBK。</p>  <p>以上是一点关于多字节编码的小知识，只有我们足够了解它的组成及特性以后，才能更好地去分析它身上存在的问题。</p>  <p>说了这么多废话，现在来研究一下在<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>中，字符编码带来的各种问题。</p>  <p><b>0</b><b>×01 MYSQL中的宽字符注入</b><b></b></p>  <p>这是一个老话题了，也被人玩过无数遍。但作为我们这篇文章的序幕，也是基础，是必须要提的。</p>  <p>我们先搭建一个实验环境。暂且称之为phithon内容管理系统v1.0，首先先新建一个数据库，把如下压缩包中的sql文件导入：</p>  <p>测试代码及数据库：<a href="http://pan.baidu.com/s/1eQmUArw" target="_blank" rel="external">http://pan.baidu.com/s/1eQmUArw</a> 提取密码:75tu</p>  <p>之后的phithon内容管理系统会逐步完善，但会一直使用这个数据表。</p>  <p>源码很简单（注意先关闭自己php环境的magic_quotes_gpc）：</p>  <p>&lt;?php</p>  <p>//连接数据库部分，注意使用了gbk编码，把数据库信息填写进去</p>  <p>$conn = mysql_connect(‘localhost’, ‘root’, ‘toor!@#$’) or die(‘bad!’);</p>  <p>mysql_query(&quot;SET NAMES ‘gbk’&quot;);</p>  <p>mysql_select_db(‘test’, $conn) OR emMsg(&quot;连接数据库失败，未找到您填写的数据库&quot;);</p>  <p>//执行sql语句</p>  <p>$id = isset($_GET[‘id’]) ? addslashes($_GET[‘id’]) : 1;</p>  <p>$sql = &quot;SELECT <em> FROM news WHERE tid=’{$id}’&quot;;</em></p>  <p>$result = mysql_query($sql, $conn) or die(mysql_error()); //sql出错会报错，方便观察</p>  <p>?&gt;</p>  <p>&lt;!DOCTYPE html&gt;</p>  <p>&lt;html&gt;</p>  <p>&lt;head&gt;</p>  <p>&lt;meta charset=&quot;gbk&quot; /&gt;</p>  <p>&lt;title&gt;新闻&lt;/title&gt;</p>  <p>&lt;/head&gt;</p>  <p>&lt;body&gt;</p>  <p>&lt;?php</p>  <p>$row = mysql_fetch_array($result, MYSQL_ASSOC);</p>  <p>echo &quot;&lt;h2&gt;{$row[‘title’]}&lt;/h2&gt;&lt;p&gt;{$row[‘content’]}&lt;p&gt;\n&quot;;</p>  <p>mysql_free_result($result);</p>  <p>?&gt;</p>  <p>&lt;/body&gt;</p>  <p>&lt;/html&gt;</p>  <p>SQL语句是SELECT  FROM news WHERE tid=’{$id}’，就是根据文章的id把文章从news表中取出来。</p>  <p>在这个sql语句前面，我们使用了一个addslashes函数，将$id的值转义。这是通常cms中对sql注入进行的操作，只要我们的输入参数在单引号中，就逃逸不出单引号的限制，无法注入，如下图：</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image001.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="001.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image001_thumb.jpg" width="378" height="347"></a></p>  <p>那么怎么逃过addslashes的限制？众所周知addslashes函数产生的效果就是，让’变成\’，让引号变得不再是“单引号”，只是一撇而已。一般绕过方式就是，想办法处理\’前面的\：</p>  <p>1.想办法给\前面再加一个\（或单数个即可），变成\’，这样\被转义了，’逃出了限制</p>  <p>2.想办法把\弄没有。</p><br><a id="more"></a><br><p></p>  <p>我们这里的宽字节注入是利用mysql的一个特性，mysql在使用GBK编码的时候，会认为两个字符是一个汉字（前一个ascii码要大于128，才到汉字的范围）。如果我们输入%df’看会怎样：</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image002.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="003.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image002_thumb.jpg" width="694" height="113"></a></p>  <p>我们可以看到，已经报错了。我们看到报错，说明sql语句出错，看到出错说明可以注入了。</p>  <p>为什么从刚才到现在，只是在’也就是%27前面加了一个%df就报错了？而且从图中可以看到，报错的原因就是多了一个单引号，而单引号前面的反斜杠不见了。</p>  <p>这就是mysql的特性，因为gbk是多字节编码，他认为两个字节代表一个汉字，所以%df和后面的\也就是%5c变成了一个汉字“運”，而’逃逸了出来。</p>  <p>因为两个字节代表一个汉字，所以我们可以试试“%df%df%27”：</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image003.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="004.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image003_thumb.jpg" width="449" height="240"></a></p>  <p>不报错了。因为%df%df是一个汉字，%5c%27不是汉字，仍然是\’。</p>  <p>那么mysql怎么判断一个字符是不是汉字，根据gbk编码，第一个字节ascii码大于128，基本上就可以了。比如我们不用%df，用%a1也可以：</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image004.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="005.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image004_thumb.jpg" width="575" height="137"></a></p>  <p>%a1%5c他可能不是汉字，但一定会被mysql认为是一个宽字符，就能够让后面的%27逃逸了出来。</p>  <p>于是我可以构造一个exp出来，查询管理员账号密码：</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image005.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="006.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image005_thumb.jpg" width="694" height="208"></a></p>  <p><b>0</b><b>×02 GB2312与GBK的不同</b></p>  <p>曾经有一个问题一直困扰我很久。</p>  <p>gb2312和gbk应该都是宽字节家族的一员。但我们来做个小实验。把phithon内容管理系统中set names修改成gb2312:</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image006.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="007.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image006_thumb.jpg" width="678" height="200"></a></p>  <p>结果就是不能注入了：</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image007.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="008.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image007_thumb.jpg" width="395" height="252"></a></p>  <p>有些同学不信的话，也可以把数据库编码也改成gb2312，也是不成功的。</p>  <p>为什么，这归结于gb2312编码的取值范围。它的高位范围是0xA1~0xF7，低位范围是0xA1~0xFE，而\是0x5c，是不在低位范围中的。所以，0x5c根本不是gb2312中的编码，所以自然也是不会被吃掉的。</p>  <p>所以，把这个思路扩展到世界上所有多字节编码，我们可以这样认为：只要低位的范围中含有0x5c的编码，就可以进行宽字符注入。</p>  <p><b>0</b><b>×03 mysql_real_escape_string解决问题？</b></p>  <p>‍‍‍‍‍‍部分cms对宽字节注入有所了解，于是寻求解决方案。在php文档中，大家会发现一个函数，mysql_real_escape_string，文档里说了，考虑到连接的当前字符集。‍‍‍‍‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image008.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="009.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image008_thumb.jpg" width="694" height="277"></a></p>  <p>‍‍于是，有的cms就把addslashes替换成mysql_real_escape_string，来抵御宽字符注入。我们继续做试验，phithon内容管理系统v1.2:，就用mysql_real_escape_string来过滤输入：‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image009.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0010.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image009_thumb.jpg" width="694" height="430"></a></p>  <p>‍‍我们来试试能不能注入：‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image010.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0011.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image010_thumb.jpg" width="694" height="137"></a></p>  <p>‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍一样没压力注入。为什么，明明我用了mysql_real_escape_string，但却仍然不能抵御宽字符注入。</p>  <p>原因就是，你没有指定php连接mysql的字符集。我们需要在执行sql语句之前调用一下mysql_set_charset函数，设置当前连接的字符集为gbk。‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image011.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0012.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image011_thumb.jpg" width="680" height="489"></a></p>  <p>‍‍就可以避免这个问题了：‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image012.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0013.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image012_thumb.jpg" width="337" height="186"></a></p>  <p><b>0</b><b>×04</b><b> </b><b>宽字符注入的修复</b><b></b></p>  <p>‍‍‍‍‍‍‍‍在3中我们说到了一种修复方法，就是先调用mysql_set_charset函数设置连接所使用的字符集为gbk，再调用mysql_real_escape_string来过滤用户输入。</p>  <p>这个方式是可行的，但有部分老的cms，在多处使用addslashes来过滤字符串，我们不可能去一个一个把addslashes都修改成mysql_real_escape_string。我们第二个解决方案就是，将character_set_client设置为binary（二进制）。</p>  <p>只需在所有sql语句前指定一下连接的形式是二进制：‍‍‍‍‍‍‍‍</p>  <p><b>mysql_query(&quot;SET character_set_connection=gbk, character_set_results=gbk,character_set_client=binary&quot;, $conn);</b></p>  <p>‍‍‍‍‍‍‍‍‍‍这几个变量是什么意思？</p>  <p>当我们的mysql接受到客户端的数据后，会认为他的编码是character_set_client，然后会将之将换成character_set_connection的编码，然后进入具体表和字段后，再转换成字段对应的编码。</p>  <p>然后，当查询结果产生后，会从表和字段的编码，转换成character_set_results编码，返回给客户端。</p>  <p>所以，我们将character_set_client设置成binary，就不存在宽字节或多字节的问题了，所有数据以二进制的形式传递，就能有效避免宽字符注入。</p>  <p>比如，我们的phithon内容管理系统v2.0版本更新如下：‍‍‍‍‍‍‍‍‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image013.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0014.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image013_thumb.jpg" width="694" height="342"></a></p>  <p>‍‍‍‍已经不能够注入了：‍‍‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image014.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0015.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image014_thumb.jpg" width="371" height="268"></a></p>  <p>‍‍‍‍‍‍在我审计过的代码中，大部分cms是以这样的方式来避免宽字符注入的。这个方法可以说是有效的，但如果开发者画蛇添足地增加一些东西，会让之前的努力前功尽弃。‍‍‍‍‍‍</p>  <p><b>0</b><b>×05</b><b> </b><b>iconv</b><b>导致的致命后果</b><b></b></p>  <p>‍‍‍‍‍‍‍‍很多cms，不止一个，我就不提名字了，他们的gbk版本都存在因为字符编码造成的注入。但有的同学说，自己测试了这些cms的宽字符注入，没有效果呢，难道是自己姿势不对？</p>  <p>当然不是。实际上，这一章说的已经不再是宽字符注入了，因为问题并不是出在mysql上，而是出在php中了。</p>  <p>很多cms（真的很多哦，不信大家自己网上找找）会将接收到数据，调用这样一个函数，转换其编码：</p>  <p><b>iconv(</b><b>‘utf-8’, ‘gbk’, $_GET[‘word’]);</b></p>  <p>目的一般是为了避免乱码，特别是在搜索框的位置。</p>  <p>比如我们的phithon内容管理系统v3.0‍‍‍‍‍‍‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image015.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0016.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image015_thumb.jpg" width="694" height="362"></a></p>  <p>‍‍‍‍我们可以看到，它在sql语句执行前，将character_set_client设置成了binary，所以可以避免宽字符注入的问题。但之后其调用了iconv将已经过滤过的参数$id给转换了一下。</p>  <p>那我们来试试此时能不能注入：‍‍‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image016.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0017.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image016_thumb.jpg" width="694" height="106"></a></p>  <p>‍‍‍‍居然报错了。说明可以注入。而我只是输入了一个“錦&amp;#039;”。这是什么原因？</p>  <p>我们来分析一下。“錦”这个字，它的utf-8编码是0xe98ca6，它的gbk编码是0xe55c。‍‍‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image017.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0018.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image017_thumb.jpg" width="194" height="116"></a> <a href="http://img.cker.in/SQL_42B9/clip_image018.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0019.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image018_thumb.jpg" width="228" height="116"></a></p>  <p>‍‍‍‍‍‍有的同学可能就领悟了。\的ascii码正是5c。那么，当我们的錦被iconv从utf-8转换成gbk后，变成了%e5%5c，而后面的’被addslashes变成了%5c%27，这样组合起来就是%e5%5c%5c%27，两个%5c就是\，正好把反斜杠转义了，导致’逃逸出单引号，产生注入。</p>  <p>这正利用了我之前说的，绕过addslashes的两种方式的第一种：将\转义掉。</p>  <p>那么，如果我是用iconv将gbk转换成utf-8呢？‍‍‍‍‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image019.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0020.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image019_thumb.jpg" width="694" height="359"></a></p>  <p>‍‍‍‍我们来试试：‍‍‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image020.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0021.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image020_thumb.jpg" width="504" height="235"></a></p>  <p>‍‍‍‍‍‍果然又成功了。这次直接用宽字符注入的姿势来的，但实际上问题出在php而不是mysql。我们知道一个gbk汉字2字节，utf-8汉字3字节，如果我们把gbk转换成utf-8，则php会每两个字节一转换。所以，如果\’前面的字符是奇数的话，势必会吞掉\，’逃出限制。</p>  <p>那么为什么之前utf-8转换成gbk的时候，没有使用这个姿势？</p>  <p>这跟utf-8的规则有关，UTF-8的编码规则很简单，只有二条：‍‍‍‍‍‍</p>  <p>1）对于单字节的符号，字节的第一位设为0，后面7位为这个符号的unicode码。因此对于英语字母，UTF-8编码和ASCII码是相同的。</p>  <p>2）对于n字节的符号（n&gt;1），第一个字节的前n位都设为1，第n+1位设为0，后面字节的前两位一律设为10。剩下的没有提及的二进制位，全部为这个符号的unicode码。</p>  <p>‍‍‍‍从2我们可以看到，对于多字节的符号，其第2、3、4字节的前两位都是10，也就是说，\（0x0000005c）不会出现在utf-8编码中，所以utf-8转换成gbk时，如果有\则php会报错：‍‍‍‍</p>  <p><a href="http://img.cker.in/SQL_42B9/clip_image021.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="0022.jpg" border="0" alt="浅析白盒审计中的字符编码及SQL注入" src="http://img.cker.in/SQL_42B9/clip_image021_thumb.jpg" width="694" height="132"></a></p>  <p>‍‍‍‍但因为gbk编码中包含了\，所以仍然可以利用，只是利用方式不同罢了。</p>  <p>总而言之，在我们处理了mysql的宽字符注入以后，也别认为就可以高枕无忧了。调用iconv时千万要小心，避免出现不必要的麻烦。 ‍‍‍‍</p>  <p><b>0</b><b>×06</b><b> </b><b>总结</b><b></b></p>  <p>‍‍‍‍‍‍‍‍在逐渐国际化的今天，推行utf-8编码是大趋势。如果就安全性来说的话，我也觉得使用utf-8编码能够避免很多多字节造成的问题。</p>  <p>不光是gbk，我只是习惯性地把gbk作为一个典型的例子在文中与大家说明。世界上的多字节编码有很多，特别是韩国、日本及一些非英语国家的cms，都可能存在由字符编码造成的安全问题，大家应该有扩展性的思维。</p>  <p>总结一下全文中提到的由字符编码引发的安全问题及其解决方案：‍‍‍‍‍‍‍‍</p>  <p>1.gbk编码造成的宽字符注入问题，解决方法是设置character_set_client=binary。</p>  <p>2.矫正人们对于mysql_real_escape_string的误解，单独调用set name=gbk和mysql_real_escape_string是无法避免宽字符注入问题的。还得调用mysql_set_charset来设置一下字符集。</p>  <p>3.谨慎使用iconv来转换字符串编码，很容易出现问题。只要我们把前端html/js/css所有编码设置成gbk，mysql/php编码设置成gbk，就不会出现乱码问题。不用画蛇添足地去调用iconv转换编码，造成不必要的麻烦。</p>  <p>‍‍‍‍‍‍‍‍‍‍这篇文章是我对于自己白盒审计经验的一点小总结，但自己确实在很多方面存在欠缺，文中所提到的姿势难免存在纰漏和错误，希望有相同爱好的同学能与我指出，共同进步。</p>  <p>这篇文章不像上篇xss的，能够举出很多0day实例来论证宽字符造成的危害。原因有二：</p>  <p>1.宽字符问题确实不如富文本xss那么普遍，gbk编码的cms所占的比例也比较小，怪我才疏学浅，并不能每一章都找到相应的实例。</p>  <p>‍‍2.注入的危害比xss大得多，如果作为0day发出来，影响很坏。但我确实在写文章以及以前的审计过程中找到不少cms存在的编码问题。</p>  <p>‍‍ 所以我用实验的形式，自己写了的php小文件，给大家作为例子，希望不会因为例证的不足，影响大家学习的效果。‍‍</p>  <p>例子php文件和sql文件打包下载：</p>  <p>链接:<a href="http://pan.baidu.com/s/1eQmUArw" target="_blank" rel="external">http://pan.baidu.com/s/1eQmUArw</a> 提取密码:75tu</p>  <p>本文PDF版本：链接: <a href="http://pan.baidu.com/s/1eprLs" target="_blank" rel="external">http://pan.baidu.com/s/1eprLs</a> 密码: yoyw</p>  <p>作者博客：<a href="http://www.leavesongs.com" target="_blank" rel="external">http://www.leavesongs.com</a> FROM XDSEC</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1078.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1078.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1078.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1078.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/1079.seo/">
-        ← header的安全配置指南
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/1077.seo/">
-        乐视渗透纪实 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/Web安全/">Web安全</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/SQL注入/">SQL注入</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/1079.seo/" title="header的安全配置指南">
+  <strong>Prev:</strong><br/>
+  <span>
+  header的安全配置指南</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/1077.seo/"  title="乐视渗透纪实">
+ <strong>Next:</strong><br/> 
+ <span>乐视渗透纪实
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-浅析白盒审计中的字符编码及SQL注入" data-title="浅析白盒审计中的字符编码及SQL注入" data-url="http://ha.cker.in/1078.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

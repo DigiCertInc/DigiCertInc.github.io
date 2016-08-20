@@ -1,285 +1,274 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Archives: 2011 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Archives: 2011 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Archives: 2011 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="archive-icon">2011</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-12-30T20:50:42.000Z" itemprop="datePublished">
-          2011-12-31
-      </time>
-    
-    
-    | 
-    <a href='/tag/Kismet/'>Kismet</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/256.seo/">无线利器Kismet基本使用 破解无线密码</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><a href="http://www.kismetwireless.net/">Kismet</a>(<a href="http://www.kismetwireless.net">http://www.kismetwireless.net</a> /)是一款针对802.11b无线网络嗅探器，它用来捕捉区域中无线网络的相 关信息。</p>  <p>功能有：支持大多数无线网卡(Linksys, D-Link, Rangelan, Cisco Aironet cards, and Orinoco based cards)，能通过UDP、ARP、DHCP数据包自动实现网络IP阻塞检测，能通过Cisco Discovery协议列出Cisco设备，弱加密数据包记录，和Ethereal、tcpdump兼容的数据包dump文件，绘制探测到的网络图和估计 网络范围。</p>  <p>1、 支持CiscoCDP数据处理证书。</p>  <p>2、 支持WEP(Wired Equivalent Privacy)数据包解码。WEP安全技术源自于名为RC4的RSA数据加密技术，以满足用户更高层次的网络安全需求。</p>  <p>3、 自动探测每一个无线接入点(AP，Access Point)的结构。</p>  <p>4、 自动将数据转换为可视化的图表。</p>  <p>5、 Kisme支持WEP(Wired Equivalent Privacy)加密技术，WEP安全技术源自于名为RC4的RSA数据加密技术，以满足用户更高层次的网络安全需求。</p>  <p>通常情况下Kismet 2.71可以通过500000-1000000个通信数据包(时间在3-6个小时,加入攻击方法,几分钟就行)就能破解WEP的key</p>  <h4>Kisme安装配置实例</h4>  <h6>A. 在Ubuntu9.04&#160; intel5100网卡下安装配置Kismet</h6>  <p>配置Kismet编辑：格式Source=type,interface,name[,channel]    <br />#sudo vim /etc/kismet/kismet.conf     <br />最新的5100的无线网卡的需要设置为</p>  <p>Source= iwl4965, wlan0, intel5100</p>  <p>如果你还想需要在SHELL下使用curses(有图形介面的使用)模式运行的话：    <br />#sudo vim /etc/kismet/kismet_ui.conf     <br />编辑：     <br />gui=curses</p>  <p>启动Kismet    <br />首先必须激活WNIC，然后让WNIC处于混杂(监听)模式：     <br />#sudo ifconfig wlan0 down #关掉网卡,这样才可以设置     <br />#sudo iwconfig wlan0 mode monitor     <br />#ifconfig wlan0 up</p>  <p>最后运行kismet脚本：    <br />#kismet     <br />之后就能成功进入Kismet界面了。</p>  <h6>B. 在Fedora Fedora 2 Atheros网卡下配置</h6>  <p>系统：RedHat Fedora Core 2    <br />WNIC：标准Atheros/802.11G/PCI无线网卡     <br />驱动：madwifi-ng-r1531-20060427     <br />编译器：gcc version 3.3.3 20040412 (Red Hat Linux 3.3.3-7)</p>  <p>安装Kismet    <br />#cd /usr/local/sbin     <br />#wget <a href="http://demonalex.3322.org/download/wireless/kismet-2006-04-R1.tar.gz">http://demonalex.3322.org/download/wireless/kismet-2006-04-R1.tar.gz</a>     <br />#tar -zxvf kismet-2006-04-R1.tar.gz     <br />#cd kismet-2006-04-R1     <br />#./configure –disable-setuid     <br />#make dep     <br />#make &amp;&amp; make install</p>
-      
-      </p>
-      
-      <p>
-          <a href="/256.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+  <div class="archiveslist archive-float clearfix">
+   <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">2016年04月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">2015年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">2015年07月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年06月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年05月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">2014年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">2014年06月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">2014年05月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2014年02月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年01月</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年11月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年10月</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年09月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年08月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">2013年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">2013年06月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">2013年05月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">2013年04月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">2013年03月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2013年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">2013年01月</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">2012年12月</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">2012年11月</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">2012年10月</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">2012年09月</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">2012年08月</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">2012年07月</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">2012年06月</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">2012年05月</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">2012年04月</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">2012年03月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">2012年02月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">2012年01月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">2011年12月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">2011年11月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">2011年10月</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">2011年09月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">2011年08月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">2011年07月</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">2011年06月</a><span class="archive-list-count">7</span></li></ul>
+ </div>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-12-24T06:44:22.000Z" itemprop="datePublished">
-          2011-12-24
-      </time>
-    
-    
-    | 
-    <a href='/tag/搜索引擎/'>搜索引擎</a>,
-    
-    <a href='/tag/Search-Engine/'>Search Engine</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/253.seo/">搜索引擎是分三种的，圣诞特辑</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        普通搜索引擎     文艺搜索引擎     另外。。。。。。。。     祝大家圣诞快乐！
-      
-      </p>
-      
-      <p>
-          <a href="/253.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-12-23T21:28:26.000Z" itemprop="datePublished">
-          2011-12-24
-      </time>
-    
-    
-    | 
-    <a href='/tag/dpkg/'>dpkg</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/251.seo/">用dpkg安装提示以下错误用dpkg安装提示以下错误，怎么解决啊？ dpkg status database area is locked by another process</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        用dpkg安装提示以下错误，怎么解决啊？  dpkg:status database area is locked by another process  数据库被占用   你把程序管理器关了    直接X掉可能还会在后台运行    root    killall apt-worker    再dpkg –i  。。~
-      
-      </p>
-      
-      <p>
-          <a href="/251.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/256.seo/" title="无线利器Kismet基本使用 破解无线密码" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-12-21T21:18:38.000Z" itemprop="datePublished">
-          2011-12-22
-      </time>
+    <h1 itemprop="name">无线利器Kismet基本使用 破解无线密码</h1>
     
-    
-    | 
-    <a href='/tag/backtrack/'>backtrack</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/248.seo/">Script that updates most of Backtrack's tools &ndash; by sickness</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        Currently it updates Backtrack, metasploit, exploit-db, SET, Warvox, Aircrack-ng, Gikismet, Nessus plugins, W3AF and Nikto. It saves a lot of time compared to doing it 1 by 1. The script can also update itself and there 
-      
-      </p>
-      
-      <p>
-          <a href="/248.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2011-12-30T20:50:42.000Z" itemprop="datePublished">2011-12-31</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-12-21T20:29:24.000Z" itemprop="datePublished">
-          2011-12-22
-      </time>
-    
-    
-    | 
-    <a href='/tag/Metasploit/'>Metasploit</a>,
-    
-    <a href='/tag/nmap/'>nmap</a>,
-    
-    <a href='/tag/Nessus/'>Nessus</a>,
-    
-    <a href='/tag/bt/'>bt</a>,
-    
-    <a href='/tag/bt5/'>bt5</a>,
-    
-    <a href='/tag/backtrack/'>backtrack</a>,
-    
-    <a href='/tag/autopwn/'>autopwn</a>,
-    
-    <a href='/tag/溢出/'>溢出</a>,
-    
-    <a href='/tag/dir溢出/'>dir溢出</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/241.seo/">Basic Metasploit framework autopwn attack</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        今天我们来看看溢出一台有漏洞的主机对于新手来说最基础也是最简单的一种方法，需要的工具有：     nmap    Nessus    Metasploit   当然你也可以用直接Backtrack 5的系统，因为以上工具都已集成在此系统中了。  首先Nmap的作用就是扫描目标主机开放的端口和服务，于是db_autopwn命令就针对开放的端口和开启的服务尝试运行溢出代码。而且它的扫描和溢出结果可以导入到更为细腻的审计工具Nessus中。 
-      
-      </p>
-      
-      <p>
-          <a href="/241.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/253.seo/" title="搜索引擎是分三种的，圣诞特辑" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-12-19T02:03:43.000Z" itemprop="datePublished">
-          2011-12-19
-      </time>
+    <h1 itemprop="name">搜索引擎是分三种的，圣诞特辑</h1>
     
-    
-    | 
-    <a href='/tag/Linux/'>Linux</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/200.seo/">bash  ifconfig  command not found的解决</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        su root  bash: ifconfig: command not found  提示命令没找到  [root@3389 ~]# ifconfig    bash: chkconfig: command not found     [root@3389 ~]# echo $PATH     /usr/kerberos/sbin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/home
-      
-      </p>
-      
-      <p>
-          <a href="/200.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2011-12-24T06:44:22.000Z" itemprop="datePublished">2011-12-24</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
+    <a href="/251.seo/" title="用dpkg安装提示以下错误用dpkg安装提示以下错误，怎么解决啊？ dpkg status database area is locked by another process" itemprop="url">
+  
+    <h1 itemprop="name">用dpkg安装提示以下错误用dpkg安装提示以下错误，怎么解决啊？ dpkg status database area is locked by another process</h1>
     
-    <span class="page-number">Page 1 of 14</span>
-    <a class="older-posts" href="/archives/2011/page/2/">Older Posts →</a>
+    <time datetime="2011-12-23T21:28:26.000Z" itemprop="datePublished">2011-12-24</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/248.seo/" title="Script that updates most of Backtrack&#39;s tools &amp;ndash; by sickness" itemprop="url">
+  
+    <h1 itemprop="name">Script that updates most of Backtrack&#39;s tools &amp;ndash; by sickness</h1>
+    
+    <time datetime="2011-12-21T21:18:38.000Z" itemprop="datePublished">2011-12-22</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/241.seo/" title="Basic Metasploit framework autopwn attack" itemprop="url">
+  
+    <h1 itemprop="name">Basic Metasploit framework autopwn attack</h1>
+    
+    <time datetime="2011-12-21T20:29:24.000Z" itemprop="datePublished">2011-12-22</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/200.seo/" title="bash  ifconfig  command not found的解决" itemprop="url">
+  
+    <h1 itemprop="name">bash  ifconfig  command not found的解决</h1>
+    
+    <time datetime="2011-12-19T02:03:43.000Z" itemprop="datePublished">2011-12-19</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix archive-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/archives/2011/page/2/">2</a><a class="page-number" href="/archives/2011/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2011/page/14/">14</a><a class="extend next" rel="next" href="/archives/2011/page/2/">下一页 &raquo;</a>
   </nav>
-</main>
 
-
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

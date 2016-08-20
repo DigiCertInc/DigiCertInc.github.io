@@ -1,64 +1,103 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>攻击JavaWeb应用 2 -CS交互安全 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
+  <meta charset="UTF-8">
+  
+    <title>攻击JavaWeb应用 2 -CS交互安全 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="攻击JavaWeb应用[2]-CS交互安全  http://drops.wooyun.org/tips/164  注:本节意在让大家了解客户端和服务器端的一个交互的过程,我个人不喜欢xss,对xss知之甚少所以只能简要的讲解下。这一节主要包含HttpServletRequest、HttpServletResponse、session、cookie、HttpOnly和xss，文章是年前几天写的本应该是有续集的但年后就没什么时间去接着续写了。由于工作并非安全行业，所以写的并不算专业希望大家能够理解。后面的章节可能会有Java里的SQL注入、Servlet容器相关、Java的框架问题、eclipse代码审计等。  0x00 Request &amp;amp; Response(请求与响应)    请求和响应在Web开发当中没有语言之分不管是ASP、PHP、ASPX还是JAVAEE也好，Web服务的核心应该是一样的。  在我看来Web开发最为核心也是最为基础的东西就是Request和Response！我们的Web应用最终都是面向用户的，而请求和响应完成了客户端和服务器端的交互。   服务器的工作主要是围绕着客户端的请求与响应的。  如下图我们通过Tamper data拦截请求后可以从请求头中清晰的看到发出请求的客户端请求的地址为：localhost。  浏览器为FireFox，操作系统为Win7等信息，这些是客户端的请求行为，也就是Request。    当客户端发送一个Http请求到达服务器端之后，服务器端会接受到客户端提交的请求信息(HttpServletRequest)，然后进行处理并返回处理结(HttpServletResopnse)。  下图演示了服务器接收到客户端发送的请求头里面包含的信息：    页面输出的内容为：  host=localhostuser-agent=Mozilla/5.0 (Windows NT 6.1; rv:18.0) Gecko/20100101 Firefox/18.0 accept=text/html,application/xhtml+xml,application/xml;q=0.9,/;q=0.8 accept-language=zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3 accept-encoding=gzip, deflate connection=keep-alive请求头信息伪造XSS关于伪造问题我是这样理解的：发送Http请求是客户端的主动行为，服务器端通过ServerSocket监听并按照Http协议去解析客户端的请求行为。
 
-  
-  
-  
-
-  
+所以请求头当中的信息可能并不一定遵循标准Http协议。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="攻击JavaWeb应用 2 -CS交互安全 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/1037.seo/" title="攻击JavaWeb应用 2 -CS交互安全" itemprop="url">攻击JavaWeb应用 2 -CS交互安全</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2013-10-21T18:10:58.000Z" itemprop="datePublished">2013-10-22</time>
+    Updated:<time datetime="2016-08-20T11:03:54.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
-
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2013-10-21T18:10:58.000Z" itemprop="datePublished">
-          2013-10-22
-      </time>
-    
-    
-    | 
-    <a href='/tag/xss/'>xss</a>,
-    
-    <a href='/tag/CSRF/'>CSRF</a>
-    
-    
-</span>
-    <h1 class="post-title">攻击JavaWeb应用 2 -CS交互安全</h1>
-    <section class="post-content">
-      <p><a href="http://drops.wooyun.org/tips/164" target="_blank" rel="external">攻击JavaWeb应用[2]-CS交互安全</a></p>  <p><a href="http://drops.wooyun.org/tips/164" target="_blank" rel="external">http://drops.wooyun.org/tips/164</a></p>  <h5>注:本节意在让大家了解客户端和服务器端的一个交互的过程,我个人不喜欢xss,对xss知之甚少所以只能简要的讲解下。这一节主要包含HttpServletRequest、HttpServletResponse、session、cookie、HttpOnly和xss，文章是年前几天写的本应该是有续集的但年后就没什么时间去接着续写了。由于工作并非安全行业，所以写的并不算专业希望大家能够理解。后面的章节可能会有Java里的SQL注入、Servlet容器相关、Java的框架问题、eclipse代码审计等。</h5>  <h5>0x00 Request &amp; Response(请求与响应)</h5>  <hr align="center" width="100%" size="2">  <p>请求和响应在Web开发当中没有语言之分不管是ASP、PHP、ASPX还是JAVAEE也好，Web服务的核心应该是一样的。</p>  <p>在我看来Web开发最为核心也是最为基础的东西就是Request和Response！我们的Web应用最终都是面向用户的，而请求和响应完成了客户端和服务器端的交互。   <br>服务器的工作主要是围绕着客户端的请求与响应的。</p>  <p>如下图我们通过Tamper data拦截请求后可以从请求头中清晰的看到发出请求的客户端请求的地址为：localhost。</p>  <p>浏览器为FireFox，操作系统为Win7等信息，这些是客户端的请求行为，也就是Request。</p>  <p><a href="http://img.cker.in/JavaWeb2CS_8BCE/clip_image001.png" target="_blank" rel="external"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="444" alt="clip_image001" src="http://img.cker.in/JavaWeb2CS_8BCE/clip_image001_thumb.png" width="1142" border="0"></a></p>  <p>当客户端发送一个Http请求到达服务器端之后，服务器端会接受到客户端提交的请求信息(HttpServletRequest)，然后进行处理并返回处理结(HttpServletResopnse)。</p>  <p>下图演示了服务器接收到客户端发送的请求头里面包含的信息：</p>  <p><a href="http://img.cker.in/JavaWeb2CS_8BCE/clip_image002.png" target="_blank" rel="external"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="549" alt="clip_image002" src="http://img.cker.in/JavaWeb2CS_8BCE/clip_image002_thumb.png" width="655" border="0"></a></p>  <p>页面输出的内容为：</p>  <pre><code>host=localhost</code></pre><br><br><pre><code>user-agent=Mozilla/5.0 (Windows NT 6.1; rv:18.0) Gecko/20100101 Firefox/18.0</code><code> </code></pre><br><br><pre><code>accept=text/html,application/xhtml+xml,application/xml;q=0.9,<em>/</em>;q=0.8</code><code> </code></pre><br><br><pre><code>accept-language=zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3</code><code> </code></pre><br><br><pre><code>accept-encoding=gzip, deflate</code><code> </code></pre><br><br><pre><code>connection=keep-alive</code></pre><br><br><h6>请求头信息伪造XSS</h6><br><br><p>关于伪造问题我是这样理解的：发送Http请求是客户端的主动行为，服务器端通过ServerSocket监听并按照Http协议去解析客户端的请求行为。</p>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">注:本节意在让大家了解客户端和服务器端的一个交互的过程,我个人不喜欢xss,对xss知之甚少所以只能简要的讲解下。这一节主要包含HttpServletRequest、HttpServletResponse、session、cookie、HttpOnly和xss，文章是年前几天写的本应该是有续集的但年后就没什么时间去接着续写了。由于工作并非安全行业，所以写的并不算专业希望大家能够理解。后面的章节可能会有Java里的SQL注入、Servlet容器相关、Java的框架问题、eclipse代码审计等。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">0x00 Request & Response(请求与响应)</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">请求头信息伪造XSS</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">Java里面伪造Http请求头</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">0x01 Session</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">3.1.</span> <span class="toc-text">Session 生命周期(从创建到销毁)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">3.2.</span> <span class="toc-text">注：浏览器关闭其实并不会让session失效！因为session是存储在服务器端内存当中的。客户端把浏览器关闭了服务器怎么可能知道？正确的解释或许应该是浏览器关闭后不会去记忆关闭前客户端和服务器端之间的session信息且服务器端没有将sessionId以Cookie的方式写入到客户端缓存当中，重新打开浏览器之后并不会带着关闭之前的sessionId去访问服务器URL，服务器从请求中得不到sessionId自然给人的感觉就是session不存在（自己理解的）。</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">3.3.</span> <span class="toc-text">SessionId是神马？有什么用？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">3.4.</span> <span class="toc-text">如何应对SessionFixation攻击</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">0x02 Cookie</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">0x03 HttpOnly</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">0x04 CSRF (跨站域请求伪造)</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">6.1.</span> <span class="toc-text">CSRF 攻击的对象</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">6.2.</span> <span class="toc-text">Csrf攻击方式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">6.3.</span> <span class="toc-text">防御CSRF：</span></a></li></ol></li></ol>
+		</div>
+		
+		<p><a href="http://drops.wooyun.org/tips/164" target="_blank" rel="external">攻击JavaWeb应用[2]-CS交互安全</a></p>  <p><a href="http://drops.wooyun.org/tips/164" target="_blank" rel="external">http://drops.wooyun.org/tips/164</a></p>  <h5>注:本节意在让大家了解客户端和服务器端的一个交互的过程,我个人不喜欢xss,对xss知之甚少所以只能简要的讲解下。这一节主要包含HttpServletRequest、HttpServletResponse、session、cookie、HttpOnly和xss，文章是年前几天写的本应该是有续集的但年后就没什么时间去接着续写了。由于工作并非安全行业，所以写的并不算专业希望大家能够理解。后面的章节可能会有Java里的SQL注入、Servlet容器相关、Java的框架问题、eclipse代码审计等。</h5>  <h5>0x00 Request &amp; Response(请求与响应)</h5>  <hr align="center" width="100%" size="2">  <p>请求和响应在Web开发当中没有语言之分不管是ASP、PHP、ASPX还是JAVAEE也好，Web服务的核心应该是一样的。</p>  <p>在我看来Web开发最为核心也是最为基础的东西就是Request和Response！我们的Web应用最终都是面向用户的，而请求和响应完成了客户端和服务器端的交互。   <br>服务器的工作主要是围绕着客户端的请求与响应的。</p>  <p>如下图我们通过Tamper data拦截请求后可以从请求头中清晰的看到发出请求的客户端请求的地址为：localhost。</p>  <p>浏览器为FireFox，操作系统为Win7等信息，这些是客户端的请求行为，也就是Request。</p>  <p><a href="http://img.cker.in/JavaWeb2CS_8BCE/clip_image001.png" target="_blank" rel="external"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="444" alt="clip_image001" src="http://img.cker.in/JavaWeb2CS_8BCE/clip_image001_thumb.png" width="1142" border="0"></a></p>  <p>当客户端发送一个Http请求到达服务器端之后，服务器端会接受到客户端提交的请求信息(HttpServletRequest)，然后进行处理并返回处理结(HttpServletResopnse)。</p>  <p>下图演示了服务器接收到客户端发送的请求头里面包含的信息：</p>  <p><a href="http://img.cker.in/JavaWeb2CS_8BCE/clip_image002.png" target="_blank" rel="external"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="549" alt="clip_image002" src="http://img.cker.in/JavaWeb2CS_8BCE/clip_image002_thumb.png" width="655" border="0"></a></p>  <p>页面输出的内容为：</p>  <pre><code>host=localhost</code></pre><br><br><pre><code>user-agent=Mozilla/5.0 (Windows NT 6.1; rv:18.0) Gecko/20100101 Firefox/18.0</code><code> </code></pre><br><br><pre><code>accept=text/html,application/xhtml+xml,application/xml;q=0.9,<em>/</em>;q=0.8</code><code> </code></pre><br><br><pre><code>accept-language=zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3</code><code> </code></pre><br><br><pre><code>accept-encoding=gzip, deflate</code><code> </code></pre><br><br><pre><code>connection=keep-alive</code></pre><br><br><h6>请求头信息伪造XSS</h6><br><br><p>关于伪造问题我是这样理解的：发送Http请求是客户端的主动行为，服务器端通过ServerSocket监听并按照Http协议去解析客户端的请求行为。</p>
 
 <p>所以请求头当中的信息可能并不一定遵循标准Http协议。</p><br><a id="more"></a><br><p></p>
 
@@ -344,94 +383,352 @@
 
 <p>最常见的做法是加token,Java里面典型的做法是用filter：<a href="https://code.google.com/p/csrf-filter/" target="_blank" rel="external">https://code.google.com/p/csrf-filter/</a>(链接由plt提供，源码上面的在：<a href="http://ahack.iteye.com/blog/1900708" target="_blank" rel="external">http://ahack.iteye.com/blog/1900708</a>)</p>
 
-<p>CSRF的介绍drops已有文章，可以参考：<a href="http://drops.wooyun.org/papers/155" target="_blank" rel="external">http://drops.wooyun.org/papers/155</a></p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1037.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1037.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1037.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1037.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
+<p>CSRF的介绍drops已有文章，可以参考：<a href="http://drops.wooyun.org/papers/155" target="_blank" rel="external">http://drops.wooyun.org/papers/155</a></p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/1038.seo/">
-        ← 攻击JavaWeb应用 3 -SQL注入 1
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/1036.seo/">
-        攻击JavaWeb应用 1 -JavaEE 基础 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/Web安全/">Web安全</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/xss/">xss</a><a href="/tag/CSRF/">CSRF</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/1038.seo/" title="攻击JavaWeb应用 3 -SQL注入 1">
+  <strong>Prev:</strong><br/>
+  <span>
+  攻击JavaWeb应用 3 -SQL注入 1</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/1036.seo/"  title="攻击JavaWeb应用 1 -JavaEE 基础">
+ <strong>Next:</strong><br/> 
+ <span>攻击JavaWeb应用 1 -JavaEE 基础
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-攻击JavaWeb应用 2 -CS交互安全" data-title="攻击JavaWeb应用 2 -CS交互安全" data-url="http://ha.cker.in/1037.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

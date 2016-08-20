@@ -1,149 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>自制分布式漏洞扫描工具 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>自制分布式漏洞扫描工具 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="1.前言  在渗透测试和安全扫描工作中，发现越来越多站点部署了应用防护系统或异常流量监控系统，其中包括：WEB应用防火墙（软件WAF、硬件WAF、云WAF）、入侵检测系统、入侵防御系统、访问监控系统等。很多防护系统不仅可实时检测攻击和拦截，并且具备自动阻断功能。当系统检测到某些IP在特定时间段内产生">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="自制分布式漏洞扫描工具 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/1096.seo/" title="自制分布式漏洞扫描工具" itemprop="url">自制分布式漏洞扫描工具</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2014-10-22T00:46:49.000Z" itemprop="datePublished">2014-10-22</time>
+    Updated:<time datetime="2016-08-20T11:03:54.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p><b>1.</b><b>前言</b></p>  <p>在渗透测试和安全扫描工作中，发现越来越多站点部署了应用防护系统或异常流量监控系统，其中包括：WEB应用防火墙（软件WAF、硬件WAF、云WAF）、入侵检测系统、入侵防御系统、访问监控系统等。很多防护系统不仅可实时检测攻击和拦截，并且具备自动阻断功能。当系统检测到某些IP在特定时间段内产生大量攻击行为时会开启阻断功能，阻断该IP在一定时间内的任何访问。</p>  <p>常见应用防护系统和异常流量监控系统的阻断策略主要有以下几种：</p>  <p>- 单IP访问频率</p>  <p>- 单IP+URL访问频率</p>  <p>- 单IP+COOKIE特定时间段内攻击次数</p>  <p>- 单IP造成可疑或攻击行为频率</p>  <p>- 单IP特定时间段内触发HTTP404状态次数</p>  <p>- 识别扫描器暴力扫描行为（扫描器指纹）</p>  <p><b>2.&#160; </b><b>分布式漏洞扫描</b></p>  <p><b>2.1</b><b>分布式漏洞扫描基本思路</b></p>  <p>通过自开发的“代理分发程序”，将扫描器发送的大量测试请求以自轮询的方式分发给成千上万台HTTP代理服务器或webshell http proxy。通过该方法把扫描器的大量测试请求平均负载到多台中间代理服务器上，这样防护系统通过判断访问频率和攻击频率的方式都无法触发阻断策略，可达到自动化扫描的目的。同时，通过在中间加一层BURP的过滤，可将各个扫描器的特殊指纹擦除，防护系统更加难以判断攻击行为。</p>  <p>分布式漏洞扫描的整体框架图如下：</p>  <p><a href="http://img.cker.in/e630dbc0d03f_121A/clip_image0011.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001[1]" border="0" alt="clip_image001[1]" src="http://img.cker.in/e630dbc0d03f_121A/clip_image0011_thumb.jpg" width="694" height="406"></a></p>  <p><b>2.2</b><b>常见扫描器及漏洞检测工具</b></p>  <p>漏洞扫描器根据功能和特点分为多种类型，主要总结为以下几类：</p>  <p><b>#</b><b>全能应用漏洞扫描器</b></p>  <p>- AcunetixWeb Vulnerability Scanner</p>  <p>- IBMAppscan</p>  <p>- HPWebInspect</p>  <p>- Netsparker</p>  <p>- Nussus</p>  <p>- W3af</p>  <p>- <a href="http://ha.cker.in/tag/BurpSuite" target="_blank">BurpSuite</a></p>  <p>- N-Stalker</p>  <p>等</p>  <p><b>#</b><b>特定漏洞工具</b></p>  <p>- Sqlmap</p>  <p>- Havij</p>  <p>- Pangolin</p>  <p>- Safe3</p>  <p>等</p>  <p><b>#</b><b>目录猜解工具</b></p>  <p>- DirBuster</p>  <p>- wwwscan</p>  <p>- wscan</p>  <p>等</p>  <p><b>2.3</b><b>扫描器指纹擦除</b></p>  <p>利用BURP擦除漏洞扫描器指纹</p>  <p>利用BURP的请求修订功能可将数据流中的扫描器指纹信息进行擦除，排除明显的扫描行为特征。</p>  <p>开启Burp，进入“Proxy——&gt;Options”中的“Match and Replace”功能将扫描器指纹信息消除，扫描器指纹信息大多包含Http头部字段、http参数值、COOKIE特殊参数等如下图：</p>  <p><a href="http://img.cker.in/e630dbc0d03f_121A/clip_image002.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/e630dbc0d03f_121A/clip_image002_thumb.jpg" width="694" height="187"></a></p>  <p><a href="http://img.cker.in/e630dbc0d03f_121A/clip_image0021.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002[1]" border="0" alt="clip_image002[1]" src="http://img.cker.in/e630dbc0d03f_121A/clip_image0021_thumb.jpg" width="694" height="187"></a></p>  <p>以下总结部分常见应用漏洞扫描器的指纹：</p>  <p><b>AcunetixWeb Vulnerability Scanner</b><b>指纹特征</b></p>  <p><b>特征一：</b></p>  <p>请求的HTTP头部字段包含以下几种自定义字段名：</p>  <p>Acunetix-Aspect</p>  <p>Acunetix-Aspect-Password</p>  <p>Acunetix-Aspect-Queries</p>  <p><b>特征二：</b></p>  <p>请求的参数值中包含字符串特征：</p>  <p>acunetix_wvs_security_test</p>  <p><b>特征三：</b></p>  <p>请求的URI地址包含字符串特征：</p>  <p>/acunetix-wvs-test-for-some-inexistent-file</p>  <p><b>特征四：</b></p>  <p>请求的COOKIE参数名包含字符串特征：</p>  <p>acunetixCookie</p>  <p><b>HPWebInspect</b><b>指纹特征</b></p>  <p><b>特征一：</b></p>  <p>请求的HTTP头部字段包含以下几种自定义字段名：</p>  <p>X-WIPP</p>  <p>X-RequestManager-Memo</p>  <p>X-Request-Memo</p>  <p>X-Scan-Memo</p>  <p><b>特征二：</b></p>  <p>请求COOKIE参数名包含特征：</p>  <p>CustomCookie</p>  <p><b>Netsparker</b><b>指纹特征</b></p>  <p><b>特征一：</b></p>  <p>请求中的参数值包含字符串：</p>  <p>netsparker</p>  <p><b>2.4HTTP</b><b>代理分发程序</b></p>  <p>HTTP代理分发程序用于将来自漏洞扫描器的大量测试请求和流量平均的引流到多个代理IP地址或者webshell的代理IP，通过将大量的扫描流量分散到大量代理IP上，可规避防护及监控系统的阻断策略，从而顺利实施扫描测试。</p>  <p>抓取大量代理服务器IP地址，并提取出针对目标站点可访问的代理地址形成“有效代理列表”。分发程序从“有效代理列表”中依次提取代理地址，每发送一个测试请求即切换代理IP，并进行轮询分发。</p>  <p><b>3.&#160; </b><b>总结</b></p>  <p>利用大量的开放匿名代理IP可实现很多功能，突破各种基于统计的防护设施.例如：</p>  <p>突破撞库防护；</p>  <p>突破暴力破解防护；</p>  <p>突破地址猜解防护；</p>  <p>突破指纹猜解防护；</p>  <p>等等</p>  <p>引用黑防的一句恒久远永流传的话——在攻与防的对立统一中寻求突破。欢迎交流攻防战术。</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2014-10-22T00:46:49.000Z" itemprop="datePublished">
-          2014-10-22
-      </time>
-    
-    
-    | 
-    <a href='/tag/burpsuite/'>burpsuite</a>
-    
-    
-</span>
-    <h1 class="post-title">自制分布式漏洞扫描工具</h1>
-    <section class="post-content">
-      <p><b>1.</b><b>前言</b></p>  <p>在渗透测试和安全扫描工作中，发现越来越多站点部署了应用防护系统或异常流量监控系统，其中包括：WEB应用防火墙（软件WAF、硬件WAF、云WAF）、入侵检测系统、入侵防御系统、访问监控系统等。很多防护系统不仅可实时检测攻击和拦截，并且具备自动阻断功能。当系统检测到某些IP在特定时间段内产生大量攻击行为时会开启阻断功能，阻断该IP在一定时间内的任何访问。</p>  <p>常见应用防护系统和异常流量监控系统的阻断策略主要有以下几种：</p>  <p>- 单IP访问频率</p>  <p>- 单IP+URL访问频率</p>  <p>- 单IP+COOKIE特定时间段内攻击次数</p>  <p>- 单IP造成可疑或攻击行为频率</p>  <p>- 单IP特定时间段内触发HTTP404状态次数</p>  <p>- 识别扫描器暴力扫描行为（扫描器指纹）</p>  <p><b>2.&#160; </b><b>分布式漏洞扫描</b></p>  <p><b>2.1</b><b>分布式漏洞扫描基本思路</b></p>  <p>通过自开发的“代理分发程序”，将扫描器发送的大量测试请求以自轮询的方式分发给成千上万台HTTP代理服务器或webshell http proxy。通过该方法把扫描器的大量测试请求平均负载到多台中间代理服务器上，这样防护系统通过判断访问频率和攻击频率的方式都无法触发阻断策略，可达到自动化扫描的目的。同时，通过在中间加一层BURP的过滤，可将各个扫描器的特殊指纹擦除，防护系统更加难以判断攻击行为。</p>  <p>分布式漏洞扫描的整体框架图如下：</p>  <p><a href="http://img.cker.in/e630dbc0d03f_121A/clip_image0011.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001[1]" border="0" alt="clip_image001[1]" src="http://img.cker.in/e630dbc0d03f_121A/clip_image0011_thumb.jpg" width="694" height="406"></a></p>  <p><b>2.2</b><b>常见扫描器及漏洞检测工具</b></p>  <p>漏洞扫描器根据功能和特点分为多种类型，主要总结为以下几类：</p>  <p><b>#</b><b>全能应用漏洞扫描器</b></p>  <p>- AcunetixWeb Vulnerability Scanner</p>  <p>- IBMAppscan</p>  <p>- HPWebInspect</p>  <p>- Netsparker</p>  <p>- Nussus</p>  <p>- W3af</p>  <p>- <a href="http://ha.cker.in/tag/BurpSuite" target="_blank">BurpSuite</a></p>  <p>- N-Stalker</p>  <p>等</p>  <p><b>#</b><b>特定漏洞工具</b></p>  <p>- Sqlmap</p>  <p>- Havij</p>  <p>- Pangolin</p>  <p>- Safe3</p>  <p>等</p>  <p><b>#</b><b>目录猜解工具</b></p>  <p>- DirBuster</p>  <p>- wwwscan</p>  <p>- wscan</p>  <p>等</p>  <p><b>2.3</b><b>扫描器指纹擦除</b></p>  <p>利用BURP擦除漏洞扫描器指纹</p>  <p>利用BURP的请求修订功能可将数据流中的扫描器指纹信息进行擦除，排除明显的扫描行为特征。</p>  <p>开启Burp，进入“Proxy——&gt;Options”中的“Match and Replace”功能将扫描器指纹信息消除，扫描器指纹信息大多包含Http头部字段、http参数值、COOKIE特殊参数等如下图：</p>  <p><a href="http://img.cker.in/e630dbc0d03f_121A/clip_image002.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/e630dbc0d03f_121A/clip_image002_thumb.jpg" width="694" height="187"></a></p>  <p><a href="http://img.cker.in/e630dbc0d03f_121A/clip_image0021.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002[1]" border="0" alt="clip_image002[1]" src="http://img.cker.in/e630dbc0d03f_121A/clip_image0021_thumb.jpg" width="694" height="187"></a></p>  <p>以下总结部分常见应用漏洞扫描器的指纹：</p>  <p><b>AcunetixWeb Vulnerability Scanner</b><b>指纹特征</b></p>  <p><b>特征一：</b></p>  <p>请求的HTTP头部字段包含以下几种自定义字段名：</p>  <p>Acunetix-Aspect</p>  <p>Acunetix-Aspect-Password</p>  <p>Acunetix-Aspect-Queries</p>  <p><b>特征二：</b></p>  <p>请求的参数值中包含字符串特征：</p>  <p>acunetix_wvs_security_test</p>  <p><b>特征三：</b></p>  <p>请求的URI地址包含字符串特征：</p>  <p>/acunetix-wvs-test-for-some-inexistent-file</p>  <p><b>特征四：</b></p>  <p>请求的COOKIE参数名包含字符串特征：</p>  <p>acunetixCookie</p>  <p><b>HPWebInspect</b><b>指纹特征</b></p>  <p><b>特征一：</b></p>  <p>请求的HTTP头部字段包含以下几种自定义字段名：</p>  <p>X-WIPP</p>  <p>X-RequestManager-Memo</p>  <p>X-Request-Memo</p>  <p>X-Scan-Memo</p>  <p><b>特征二：</b></p>  <p>请求COOKIE参数名包含特征：</p>  <p>CustomCookie</p>  <p><b>Netsparker</b><b>指纹特征</b></p>  <p><b>特征一：</b></p>  <p>请求中的参数值包含字符串：</p>  <p>netsparker</p>  <p><b>2.4HTTP</b><b>代理分发程序</b></p>  <p>HTTP代理分发程序用于将来自漏洞扫描器的大量测试请求和流量平均的引流到多个代理IP地址或者webshell的代理IP，通过将大量的扫描流量分散到大量代理IP上，可规避防护及监控系统的阻断策略，从而顺利实施扫描测试。</p>  <p>抓取大量代理服务器IP地址，并提取出针对目标站点可访问的代理地址形成“有效代理列表”。分发程序从“有效代理列表”中依次提取代理地址，每发送一个测试请求即切换代理IP，并进行轮询分发。</p>  <p><b>3.&#160; </b><b>总结</b></p>  <p>利用大量的开放匿名代理IP可实现很多功能，突破各种基于统计的防护设施.例如：</p>  <p>突破撞库防护；</p>  <p>突破暴力破解防护；</p>  <p>突破地址猜解防护；</p>  <p>突破指纹猜解防护；</p>  <p>等等</p>  <p>引用黑防的一句恒久远永流传的话——在攻与防的对立统一中寻求突破。欢迎交流攻防战术。</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1096.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1096.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1096.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1096.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/1098.seo/">
-        ← CRLF Injection漏洞的利用与实例分析
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/1095.seo/">
-        解决：对 PInvoke 函数的调用导致堆栈不对称问题 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/Web安全/">Web安全</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/burpsuite/">burpsuite</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/1098.seo/" title="CRLF Injection漏洞的利用与实例分析">
+  <strong>Prev:</strong><br/>
+  <span>
+  CRLF Injection漏洞的利用与实例分析</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/1095.seo/"  title="解决：对 PInvoke 函数的调用导致堆栈不对称问题">
+ <strong>Next:</strong><br/> 
+ <span>解决：对 PInvoke 函数的调用导致堆栈不对称问题
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-自制分布式漏洞扫描工具" data-title="自制分布式漏洞扫描工具" data-url="http://ha.cker.in/1096.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

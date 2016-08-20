@@ -1,273 +1,396 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+    </header>
+    
 
-      
-<main class="content" role="main">
+    <div id="container">
+      <div id="main">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-04-23T06:33:30.000Z" itemprop="datePublished">
-          2012-04-23
-      </time>
-    
-    
-    | 
-    <a href='/tag/记事狗/'>记事狗</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/405.seo/">记事狗设计缺陷导致可以删除网站任意图片</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-         路径处理不当导致注册用户可以删除网站上的任意图片 详细说明： 注册一个用户，登录后点击上传头像，比如地址为： http://www.badguest.cn /jishigou30s/index.php?mod=settings&amp;code=face 在最后面加上&amp;temp_face=././images/noavatar.gif 再访问，然后我的头像那块就会加载这个图片，直接点击下面的“确认”，头像木有修改成功，但是no
-      
-      </p>
-      
-      <p>
-          <a href="/405.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/405.seo/" title="记事狗设计缺陷导致可以删除网站任意图片" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-04-22T13:26:35.000Z" itemprop="datePublished">
-          2012-04-22
-      </time>
+    <h1 itemprop="name">记事狗设计缺陷导致可以删除网站任意图片</h1>
     
+     
+           <p itemprop="description" >路径处理不当导致注册用户可以删除网站上的任意图片 详细说明： 注册一个用户，登录后点击上传头像，比如地址为： http://www.badguest.cn /jishigou30s/index.php?mod=settings&amp;amp;code=face 在最后面加上&amp;amp;t</p>
+        
     
-    | 
-    <a href='/tag/IIS写权限/'>IIS写权限</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/398.seo/">IIS写权限利用续以及写权限漏洞来由解释</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>五年半前写了一篇文章：<u>《再试IIS写权限以及move为asp的问题》</u>，当时还留下一点问题，此文就是用来解决当年遗留的问题的。 <p>很多人也许觉得IIS PUT这玩意不值一提啊…其实不然，身在乙方，给客户做安服的时候总是遇到IIS写权限的问题，一方面WVS7.0已经可以扫描并且使用POC成功写入漏洞目标，另一方面无聊的土耳其或者印度尼西亚黑客总是喜欢利用写权限上传txt或者html到漏洞目标，以示对方的hack技术的强大。 <p>目前大家所见到的IIS写权限利用，其实说白了是菜鸟管理员对IIS的错误配置问题（2个错误配置造成）：<br>1.WEB服务器扩展里设置WebDAV为允许；<br>2.网站权限配置里开启了写入权限。 <p>至于WebDAV，看看百度百科的介绍： <blockquote> <p>WebDAV （Web-based Distributed Authoring and Versioning） 一种基于 HTTP 1.1协议的通信协议.它扩展了HTTP 1.1，在GET、POST、HEAD等几个HTTP标准方法以外添加了一些新的方法，使应用程序可直接对Web Server直接读写，并支持写文件锁定(Locking)及解锁(Unlock)，还可以支持文件的版本控制。</p></blockquote>
-      
-      </p>
-      
-      <p>
-          <a href="/398.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-04-23T06:33:30.000Z" itemprop="datePublished">2012-04-23</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-04-20T09:02:04.000Z" itemprop="datePublished">
-          2012-04-20
-      </time>
-    
-    
-    | 
-    <a href='/tag/YY批量注册器/'>YY批量注册器</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/395.seo/">YY批量注册器 测试版</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        花了一下午的时间，写了个注册YY的程序，发布源码 VS2010开发，运行请确保已安装.net 2.0，部分功能完善中… 先发上来装个比证明我也是个小小程序猿 &nbsp;     yyregister V0.1 C#源码   主程序
-      
-      </p>
-      
-      <p>
-          <a href="/395.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/398.seo/" title="IIS写权限利用续以及写权限漏洞来由解释" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-04-20T08:54:47.000Z" itemprop="datePublished">
-          2012-04-20
-      </time>
+    <h1 itemprop="name">IIS写权限利用续以及写权限漏洞来由解释</h1>
     
-    
-    | 
-    <a href='/tag/VS2010/'>VS2010</a>,
-    
-    <a href='/tag/VS2008/'>VS2008</a>,
-    
-    <a href='/tag/net/'>.net</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/393.seo/">在VS2008和VS2010中写代码，最后以.net 2.0发布，能用.net 3.5的语法</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
+     
+       <p itemprop="description" >五年半前写了一篇文章：《再试IIS写权限以及move为asp的问题》，当时还留下一点问题，此文就是用来解决当年遗留的问题的。 很多人也许觉得IIS PUT这玩意不值一提啊…其实不然，身在乙方，给客户做安服的时候总是遇到IIS写权限的问题，一方面WVS7.0已经可以扫描并且使用PO</p>
       
-        <p><p>前段时间，在vs2010里写了一下winform的代码，后来由于.net framework太大，就已.net framework 2.0发布。奇怪的是，编译的时候只是提醒如 system.linq不存在，而一些.net 3.5的语法 还能用 比如 lambda 表达式，比如说自动属性的写法，很是神奇。下面是我做的实验。 <p>显然，扩展方步不支持，编译就不通过： <p><a href="http://img.cker.in/VS2008VS2010.net2.0.net3.5_C45/clip_image001.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/VS2008VS2010.net2.0.net3.5_C45/clip_image001_thumb.png" width="244" height="179"></a> <p>其他的测试 编译都通过，代码如下：</p>
-      
-      </p>
-      
-      <p>
-          <a href="/393.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    
+    <time datetime="2012-04-22T13:26:35.000Z" itemprop="datePublished">2012-04-22</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-04-18T08:58:13.000Z" itemprop="datePublished">
-          2012-04-18
-      </time>
-    
-    
-    | 
-    <a href='/tag/最土/'>最土</a>,
-    
-    <a href='/tag/团购/'>团购</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/390.seo/">最土团购最新sql注入漏洞利用及修复</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>近期最土团购程序3.0_20111207爆出一个高危漏洞，通过该漏洞利用方法，入侵者可以在10秒内获取最土团购网站的大量用户信息和订单信息等。<br>因为最土是团购类程序，数据库中保存有用户的邮箱和电话，甚至有用户的住址等，对网站用户来说，这些隐私信息一旦被别人获取，会带来很多的麻烦。<br>360安全工程师分析认为，“这是一次比较典型、也是非常经典的数组key变量污染漏洞。‘最土团购’建站程序的代码中，由于函数的过滤不严格，导致了黑客可以通过提交恶意代码，控制程序流程，来绕过登录时的判断，直接进入网站后台。下面附上具体的利用方法：  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.用opera浏览器打开网站的默认后台地址：manage/login.php  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.右键查看源代码。找到以下代码：  <p>&lt;div&gt;<br>&lt;label for=”manage-login”&gt;登录名&lt;/label&gt;<br>&lt;input type=”text” size=”30” name=”username” id=”manage-username” datatype=”require” require=”true” /&gt;<br>&lt;/div&gt;  <p>3.将其中的name=”username” 修改为：name=”username[=0x7c or manager=1#]”,点击浏览器上的应用保存。 </p>
-      
-      </p>
-      
-      <p>
-          <a href="/390.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/395.seo/" title="YY批量注册器 测试版" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-04-14T16:08:56.000Z" itemprop="datePublished">
-          2012-04-15
-      </time>
+    <h1 itemprop="name">YY批量注册器 测试版</h1>
     
+     
+           <p itemprop="description" >花了一下午的时间，写了个注册YY的程序，发布源码 VS2010开发，运行请确保已安装.net 2.0，部分功能完善中… 先发上来装个比证明我也是个小小程序猿 &amp;nbsp;     yyregister V0.1 C#源码   主程序</p>
+        
     
-    | 
-    <a href='/tag/FTP/'>FTP</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/388.seo/">通过注册表读ftp路径</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        这个漏洞貌似鸡肋，但是也有强大的用处。但是懂得怎么利用他，完全靠得自己，我只是给一个小小思路。进入主题！  重要注册表：HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\MSFtpsvc\Parameters\Virtual Roots\ControlSet002这个目录可以是ControlSet001 ControlSet003注明：不是用第三方软件分配出来的ftp用户，一定要是基于ii
-      
-      </p>
-      
-      <p>
-          <a href="/388.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-04-20T09:02:04.000Z" itemprop="datePublished">2012-04-20</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/page/60/">← Newer Posts</a>
-    <span class="page-number">Page 61 of 81</span>
-    <a class="older-posts" href="/page/62/">Older Posts →</a>
+    <a href="/393.seo/" title="在VS2008和VS2010中写代码，最后以.net 2.0发布，能用.net 3.5的语法" itemprop="url">
+  
+    <h1 itemprop="name">在VS2008和VS2010中写代码，最后以.net 2.0发布，能用.net 3.5的语法</h1>
+    
+     
+       <p itemprop="description" >前段时间，在vs2010里写了一下winform的代码，后来由于.net framework太大，就已.net framework 2.0发布。奇怪的是，编译的时候只是提醒如 system.linq不存在，而一些.net 3.5的语法 还能用 比如 lambda 表达式，比如说自</p>
+      
+    
+    <time datetime="2012-04-20T08:54:47.000Z" itemprop="datePublished">2012-04-20</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/390.seo/" title="最土团购最新sql注入漏洞利用及修复" itemprop="url">
+  
+    <h1 itemprop="name">最土团购最新sql注入漏洞利用及修复</h1>
+    
+     
+       <p itemprop="description" >近期最土团购程序3.0_20111207爆出一个高危漏洞，通过该漏洞利用方法，入侵者可以在10秒内获取最土团购网站的大量用户信息和订单信息等。因为最土是团购类程序，数据库中保存有用户的邮箱和电话，甚至有用户的住址等，对网站用户来说，这些隐私信息一旦被别人获取，会带来很多的麻烦。3</p>
+      
+    
+    <time datetime="2012-04-18T08:58:13.000Z" itemprop="datePublished">2012-04-18</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/388.seo/" title="通过注册表读ftp路径" itemprop="url">
+  
+    <h1 itemprop="name">通过注册表读ftp路径</h1>
+    
+     
+           <p itemprop="description" >这个漏洞貌似鸡肋，但是也有强大的用处。但是懂得怎么利用他，完全靠得自己，我只是给一个小小思路。进入主题！  重要注册表：HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\MSFtpsvc\Parameters\Virtual Roo</p>
+        
+    
+    <time datetime="2012-04-14T16:08:56.000Z" itemprop="datePublished">2012-04-15</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/page/60/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/59/">59</a><a class="page-number" href="/page/60/">60</a><span class="page-number current">61</span><a class="page-number" href="/page/62/">62</a><a class="page-number" href="/page/63/">63</a><span class="space">&hellip;</span><a class="page-number" href="/page/81/">81</a><a class="extend next" rel="next" href="/page/62/">下一页 &raquo;</a>
   </nav>
-</main>
 
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
-      
-<footer class="site-footer">
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+  </body>
+ </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

@@ -1,149 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>支付漏洞的三种常见类型 imlonghao@wooyun | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>支付漏洞的三种常见类型 imlonghao@wooyun | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="很久很久以前剑心大叔叫我写过这样一篇文章，当时还没放假，就没去搭理他，嘿嘿。最近，小E又来找我写关于支付漏洞的文章，好吧，写就写了，趁暑假还有一点余额，就写这篇文章和大家来谈谈支付漏洞。(写得不好,大牛勿怪)  ———-  根据乌云上的案例，支付漏洞一般可以分为三类：一是在支付过程中直接发送含有需支付金额的数据包；二是没有对购买数量进行限制；三是程序的异常处理。下面就和大家说说这三种情况。  一：支付过程中直接发送含有需支付金额的数据包(常见)  危害指数：星星星星星  这种案例非常常见，主要针对支付宝等需要第三方支付的案例。开发人员往往会为了方便，直接在支付的关键步骤数据包中直接传递需要支付的金额，这种，只需要开个Fiddler2，甚至是直接通过审查元素就可以修改到需要支付的金额。我们来看一看乌云上的几个案例：  顺丰宝业务逻辑漏洞(WooYun-2011-02272) @空虚浪子心  淘宝网某处存在严重支付漏洞(WooYun-2012-07293) @imlonghao  考试吧支付缺陷(WooYun-2012-07380) @jxs  263通信某处存在严重支付漏洞(WooYun-2012-07528) @imlonghao  这里我就以淘宝网的那个支付漏洞来讲解一下，淘宝网手机充值这个地方的漏洞最为典型。    从这个发送的数据包中，我们可以发现开发人员直接将金额(seriesPrice)和购买短信的数量(seriesNum)一起发送，这是十分危险的操作。黑客可以通过修改seriesPrice和seriesNum的值，来达到1元购买10000条短信甚至是更多的短信数量。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="支付漏洞的三种常见类型 imlonghao@wooyun | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/865.seo/" title="支付漏洞的三种常见类型 imlonghao@wooyun" itemprop="url">支付漏洞的三种常见类型 imlonghao@wooyun</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2012-09-28T01:07:32.000Z" itemprop="datePublished">2012-09-28</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>很久很久以前剑心大叔叫我写过这样一篇文章，当时还没放假，就没去搭理他，嘿嘿。最近，小E又来找我写关于支付漏洞的文章，好吧，写就写了，趁暑假还有一点余额，就写这篇文章和大家来谈谈支付漏洞。(写得不好,大牛勿怪)</p>  <p>———-</p>  <p>根据乌云上的案例，支付漏洞一般可以分为三类：一是在支付过程中直接发送含有需支付金额的数据包；二是没有对购买数量进行限制；三是程序的异常处理。下面就和大家说说这三种情况。</p>  <p>一：支付过程中直接发送含有需支付金额的数据包(常见)</p>  <p>危害指数：星星星星星</p>  <p>这种案例非常常见，主要针对支付宝等需要第三方支付的案例。开发人员往往会为了方便，直接在支付的关键步骤数据包中直接传递需要支付的金额，这种，只需要开个Fiddler2，甚至是直接通过审查元素就可以修改到需要支付的金额。我们来看一看乌云上的几个案例：</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-02272" target="_blank" rel="external">顺丰宝业务逻辑漏洞(WooYun-2011-02272)</a> @空虚浪子心</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-07293" target="_blank" rel="external">淘宝网某处存在严重支付漏洞(WooYun-2012-07293)</a> @imlonghao</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-07380" target="_blank" rel="external">考试吧支付缺陷(WooYun-2012-07380)</a> @jxs</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-07528" target="_blank" rel="external">263通信某处存在严重支付漏洞(WooYun-2012-07528)</a> @imlonghao</p>  <p>这里我就以淘宝网的那个支付漏洞来讲解一下，淘宝网手机充值这个地方的漏洞最为典型。</p>  <p><a href="http://img.cker.in/imlonghaowooyun_F072/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/imlonghaowooyun_F072/clip_image001_thumb.jpg" width="224" height="183"></a></p>  <p>从这个发送的数据包中，我们可以发现开发人员直接将金额(seriesPrice)和购买短信的数量(seriesNum)一起发送，这是十分危险的操作。黑客可以通过修改seriesPrice和seriesNum的值，来达到1元购买10000条短信甚至是更多的短信数量。</p><a id="more"></a><p></p>  <p>从经济利益上来讲，这对厂商来说是一个大的损失，中间差额非常巨大！</p>  <p>不过，厂商非常负责任，当天就确认了漏洞并进行了排查。</p>  <p>修复方案：不直接在数据包中加入需要金额和数量等敏感数值，在数据包中加上随机TOKEN防止数据包内容被篡改(感谢0x334@wooyun提出)</p>  <p>以上面的漏洞为例，这些短信都是以套餐的形式出售的，可以发送套餐的ID，然后由服务器来生产金额和数量，然后直接生成KEY走支付宝。</p>  <p>二：没有对购买数量进行限制(常见)</p>  <p>危害指数：星星星星（按站点类型而异）</p>  <p>这种案例也比较常见，在乌云中也有挺多的案例。产生的原因是开发人员没有对购买的数量进行严格的限制，当购买的数量是一个负数时，总额的算法仍然是&quot;购买数量x单价=总价&quot;，所以这样就会导致有一个负数的需支付金额。若仍然支付成功，则可能导致购买到了一个负数数量的产品，也有可能返还相应的积分/金币到你的账户上。但是，这种情况不可能发生在通过支付宝支付的订单中(虽然我曾经也想过，但是是不行滴….)，因为显然支付宝是不支持一个负数金额的订单，所以这种情况多数发生在一个有站内货币的网站。我们来看一个案例：</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-06589" target="_blank" rel="external">又拍网旗下某站存在严重支付漏洞(WooYun-2012-06589)</a> @imlonghao</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-01712" target="_blank" rel="external">WHM用户管理系统代码逻辑错误导致逃费(WooYun-2011-01712)</a> @softbug</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-011234" target="_blank" rel="external">投注网刷元宝漏洞(WooYun-2012-11234)</a> @imlonghao</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-06708" target="_blank" rel="external">m1905电影网存在严重支付漏洞(WooYun-2012-06708)</a> @imlonghao</p>  <p>这里我们用m1905进行讲解，这里测试的是购买VIP</p>  <p><a href="http://img.cker.in/imlonghaowooyun_F072/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/imlonghaowooyun_F072/clip_image002_thumb.jpg" width="171" height="190"></a></p>  <p>上图是一个修改后的数据包，number原本应该是一个正数，但开发人员并没有严格限制number的范围，所以当我们输入一个负数的情况下，就出现了下面的情况。</p>  <p><a href="http://img.cker.in/imlonghaowooyun_F072/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/imlonghaowooyun_F072/clip_image003_thumb.jpg" width="453" height="403"></a></p>  <p><a href="http://img.cker.in/imlonghaowooyun_F072/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/imlonghaowooyun_F072/clip_image004_thumb.jpg" width="451" height="302"></a></p>  <p><a href="http://img.cker.in/imlonghaowooyun_F072/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/imlonghaowooyun_F072/clip_image005_thumb.jpg" width="520" height="213"></a></p>  <p>由于一个错误的数量，所以就导致了我们的账户上多了30元~~~~</p>  <p>这种的危害比上一个就要小一些了，因为只是站内的货币，具体危害还要按网站的规模大小以及货币的对人民币的比率来区分。如果只是很小的网站，那就没什么意义；但如果是支付宝之类的，嘿嘿，你懂的。</p>  <p>修复方案：严格控制购买数量的大小，不允许数量为负数，控制总支付金额是一个正常的数。同时在数据包中加上随机TOKEN防止数据包内容被篡改(感谢0x334@wooyun提出)</p>  <p>三：程序的异常处理</p>  <p>危害指数：星星星星（按站点类型而异）</p>  <p>程序的异常处理比较少见，不过也是有案例的。程序的异常处理，就是指支付的数据包异常的程序的错误处理。这种异常可以是数据与KEY不符，支付的金额有错误，购买的数量不正确等等。程序的异常处理出现的原因主要是开发人员对出现异常后的处理不当造成的。还是不懂？我们来看几个例子：</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-05316" target="_blank" rel="external">新浪微号存在支付绕过漏洞(WooYun-2012-05316)</a> @imlonghao</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-05353" target="_blank" rel="external">115网盘存在支付绕过(WooYun-2012-05353)</a> @imlonghao</p>  <p>我们以115网盘绕过为例，问题出现在开通VIP的过程中。</p>  <p><a href="http://img.cker.in/imlonghaowooyun_F072/clip_image006.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/imlonghaowooyun_F072/clip_image006_thumb.jpg" width="219" height="146"></a></p>  <p>q是开通的月份，也就是数量。这里我们将其改成了9999999999999999999999999999999999999999999999999999999999999999999999999999999999(总之很多个9啦)，程序的异常处理直接将应支付金额变为了0</p>  <p><a href="http://img.cker.in/imlonghaowooyun_F072/clip_image007.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/imlonghaowooyun_F072/clip_image007_thumb.jpg" width="520" height="196"></a></p>  <p>如上图所示，我们之需要输入一个安全密码，就可以使用0个枫叶来支付这笔订单了~</p>  <p>微号的问题也同属一类，将金额修改，错误，然后直接绕过了支付过程，直接支付成功~</p>  <p>这类问题的出现多数是程序员的大意造成的，没有对异常数据进行很好的处理，导致了问题的产生。</p>  <p>修复方案：根据网站的需要来调整异常处理的方案，发现异常，可以直接报错，拒绝继续运行。同时在数据包中加上随机TOKEN防止数据包内容被篡改(感谢0x334@wooyun提出)</p>  <p>总结</p>  <p>上述给他们介绍的三种支付漏洞常见的类型，我相信在这个互联网发达的时代这仅仅只是支付漏洞的冰山一角，随着科技的日新月异，更多的利用方案也会慢慢浮现出来。</p>  <p>有人说我运气非常好，能撞到那么多的支付漏洞。其实，并不是运气好，而是擅于去发现漏洞。就像上面的淘宝的漏洞一般，那是右下角突然弹了一个说送了我30条免费的短信条数。有多少人会去点X？</p>  <p>“生活中并不是缺少漏洞，只是你缺少了一双擅于发现漏洞的眼睛”</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2012-09-28T01:07:32.000Z" itemprop="datePublished">
-          2012-09-28
-      </time>
-    
-    
-    | 
-    <a href='/tag/支付漏洞/'>支付漏洞</a>
-    
-    
-</span>
-    <h1 class="post-title">支付漏洞的三种常见类型 imlonghao@wooyun</h1>
-    <section class="post-content">
-      <p>很久很久以前剑心大叔叫我写过这样一篇文章，当时还没放假，就没去搭理他，嘿嘿。最近，小E又来找我写关于支付漏洞的文章，好吧，写就写了，趁暑假还有一点余额，就写这篇文章和大家来谈谈支付漏洞。(写得不好,大牛勿怪)</p>  <p>———-</p>  <p>根据乌云上的案例，支付漏洞一般可以分为三类：一是在支付过程中直接发送含有需支付金额的数据包；二是没有对购买数量进行限制；三是程序的异常处理。下面就和大家说说这三种情况。</p>  <p>一：支付过程中直接发送含有需支付金额的数据包(常见)</p>  <p>危害指数：星星星星星</p>  <p>这种案例非常常见，主要针对支付宝等需要第三方支付的案例。开发人员往往会为了方便，直接在支付的关键步骤数据包中直接传递需要支付的金额，这种，只需要开个Fiddler2，甚至是直接通过审查元素就可以修改到需要支付的金额。我们来看一看乌云上的几个案例：</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-02272" target="_blank" rel="external">顺丰宝业务逻辑漏洞(WooYun-2011-02272)</a> @空虚浪子心</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-07293" target="_blank" rel="external">淘宝网某处存在严重支付漏洞(WooYun-2012-07293)</a> @imlonghao</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-07380" target="_blank" rel="external">考试吧支付缺陷(WooYun-2012-07380)</a> @jxs</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-07528" target="_blank" rel="external">263通信某处存在严重支付漏洞(WooYun-2012-07528)</a> @imlonghao</p>  <p>这里我就以淘宝网的那个支付漏洞来讲解一下，淘宝网手机充值这个地方的漏洞最为典型。</p>  <p><a href="http://img.cker.in/imlonghaowooyun_F072/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/imlonghaowooyun_F072/clip_image001_thumb.jpg" width="224" height="183"></a></p>  <p>从这个发送的数据包中，我们可以发现开发人员直接将金额(seriesPrice)和购买短信的数量(seriesNum)一起发送，这是十分危险的操作。黑客可以通过修改seriesPrice和seriesNum的值，来达到1元购买10000条短信甚至是更多的短信数量。</p><a id="more"></a><p></p>  <p>从经济利益上来讲，这对厂商来说是一个大的损失，中间差额非常巨大！</p>  <p>不过，厂商非常负责任，当天就确认了漏洞并进行了排查。</p>  <p>修复方案：不直接在数据包中加入需要金额和数量等敏感数值，在数据包中加上随机TOKEN防止数据包内容被篡改(感谢0x334@wooyun提出)</p>  <p>以上面的漏洞为例，这些短信都是以套餐的形式出售的，可以发送套餐的ID，然后由服务器来生产金额和数量，然后直接生成KEY走支付宝。</p>  <p>二：没有对购买数量进行限制(常见)</p>  <p>危害指数：星星星星（按站点类型而异）</p>  <p>这种案例也比较常见，在乌云中也有挺多的案例。产生的原因是开发人员没有对购买的数量进行严格的限制，当购买的数量是一个负数时，总额的算法仍然是&quot;购买数量x单价=总价&quot;，所以这样就会导致有一个负数的需支付金额。若仍然支付成功，则可能导致购买到了一个负数数量的产品，也有可能返还相应的积分/金币到你的账户上。但是，这种情况不可能发生在通过支付宝支付的订单中(虽然我曾经也想过，但是是不行滴….)，因为显然支付宝是不支持一个负数金额的订单，所以这种情况多数发生在一个有站内货币的网站。我们来看一个案例：</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-06589" target="_blank" rel="external">又拍网旗下某站存在严重支付漏洞(WooYun-2012-06589)</a> @imlonghao</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-01712" target="_blank" rel="external">WHM用户管理系统代码逻辑错误导致逃费(WooYun-2011-01712)</a> @softbug</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-011234" target="_blank" rel="external">投注网刷元宝漏洞(WooYun-2012-11234)</a> @imlonghao</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-06708" target="_blank" rel="external">m1905电影网存在严重支付漏洞(WooYun-2012-06708)</a> @imlonghao</p>  <p>这里我们用m1905进行讲解，这里测试的是购买VIP</p>  <p><a href="http://img.cker.in/imlonghaowooyun_F072/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/imlonghaowooyun_F072/clip_image002_thumb.jpg" width="171" height="190"></a></p>  <p>上图是一个修改后的数据包，number原本应该是一个正数，但开发人员并没有严格限制number的范围，所以当我们输入一个负数的情况下，就出现了下面的情况。</p>  <p><a href="http://img.cker.in/imlonghaowooyun_F072/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/imlonghaowooyun_F072/clip_image003_thumb.jpg" width="453" height="403"></a></p>  <p><a href="http://img.cker.in/imlonghaowooyun_F072/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/imlonghaowooyun_F072/clip_image004_thumb.jpg" width="451" height="302"></a></p>  <p><a href="http://img.cker.in/imlonghaowooyun_F072/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/imlonghaowooyun_F072/clip_image005_thumb.jpg" width="520" height="213"></a></p>  <p>由于一个错误的数量，所以就导致了我们的账户上多了30元~~~~</p>  <p>这种的危害比上一个就要小一些了，因为只是站内的货币，具体危害还要按网站的规模大小以及货币的对人民币的比率来区分。如果只是很小的网站，那就没什么意义；但如果是支付宝之类的，嘿嘿，你懂的。</p>  <p>修复方案：严格控制购买数量的大小，不允许数量为负数，控制总支付金额是一个正常的数。同时在数据包中加上随机TOKEN防止数据包内容被篡改(感谢0x334@wooyun提出)</p>  <p>三：程序的异常处理</p>  <p>危害指数：星星星星（按站点类型而异）</p>  <p>程序的异常处理比较少见，不过也是有案例的。程序的异常处理，就是指支付的数据包异常的程序的错误处理。这种异常可以是数据与KEY不符，支付的金额有错误，购买的数量不正确等等。程序的异常处理出现的原因主要是开发人员对出现异常后的处理不当造成的。还是不懂？我们来看几个例子：</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-05316" target="_blank" rel="external">新浪微号存在支付绕过漏洞(WooYun-2012-05316)</a> @imlonghao</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-05353" target="_blank" rel="external">115网盘存在支付绕过(WooYun-2012-05353)</a> @imlonghao</p>  <p>我们以115网盘绕过为例，问题出现在开通VIP的过程中。</p>  <p><a href="http://img.cker.in/imlonghaowooyun_F072/clip_image006.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/imlonghaowooyun_F072/clip_image006_thumb.jpg" width="219" height="146"></a></p>  <p>q是开通的月份，也就是数量。这里我们将其改成了9999999999999999999999999999999999999999999999999999999999999999999999999999999999(总之很多个9啦)，程序的异常处理直接将应支付金额变为了0</p>  <p><a href="http://img.cker.in/imlonghaowooyun_F072/clip_image007.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/imlonghaowooyun_F072/clip_image007_thumb.jpg" width="520" height="196"></a></p>  <p>如上图所示，我们之需要输入一个安全密码，就可以使用0个枫叶来支付这笔订单了~</p>  <p>微号的问题也同属一类，将金额修改，错误，然后直接绕过了支付过程，直接支付成功~</p>  <p>这类问题的出现多数是程序员的大意造成的，没有对异常数据进行很好的处理，导致了问题的产生。</p>  <p>修复方案：根据网站的需要来调整异常处理的方案，发现异常，可以直接报错，拒绝继续运行。同时在数据包中加上随机TOKEN防止数据包内容被篡改(感谢0x334@wooyun提出)</p>  <p>总结</p>  <p>上述给他们介绍的三种支付漏洞常见的类型，我相信在这个互联网发达的时代这仅仅只是支付漏洞的冰山一角，随着科技的日新月异，更多的利用方案也会慢慢浮现出来。</p>  <p>有人说我运气非常好，能撞到那么多的支付漏洞。其实，并不是运气好，而是擅于去发现漏洞。就像上面的淘宝的漏洞一般，那是右下角突然弹了一个说送了我30条免费的短信条数。有多少人会去点X？</p>  <p>“生活中并不是缺少漏洞，只是你缺少了一双擅于发现漏洞的眼睛”</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/865.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/865.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/865.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/865.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/868.seo/">
-        ← php文件包含漏洞的解决方法
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/862.seo/">
-        检测开发12306的公司：太极计算机股份有限公司 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/Web安全/">Web安全</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/支付漏洞/">支付漏洞</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/868.seo/" title="php文件包含漏洞的解决方法">
+  <strong>Prev:</strong><br/>
+  <span>
+  php文件包含漏洞的解决方法</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/862.seo/"  title="检测开发12306的公司：太极计算机股份有限公司">
+ <strong>Next:</strong><br/> 
+ <span>检测开发12306的公司：太极计算机股份有限公司
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-支付漏洞的三种常见类型 imlonghao@wooyun" data-title="支付漏洞的三种常见类型 imlonghao@wooyun" data-url="http://ha.cker.in/865.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

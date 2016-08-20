@@ -1,278 +1,396 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+    </header>
+    
 
-      
-<main class="content" role="main">
+    <div id="container">
+      <div id="main">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-11-24T12:47:07.000Z" itemprop="datePublished">
-          2012-11-24
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/小米/'>小米</a>,
-    
-    <a href='/tag/密码/'>密码</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/947.seo/">小米科技成功渗透进内部网络</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>By Jannock@wooyun</p>  <p>简要描述：</p>  <p>首先   <br /><a href="http://www.wooyun.org/bugs/wooyun-2010-03608">http://www.wooyun.org/bugs/wooyun-2010-03608</a>    <br />对这位兄弟表示羡慕嫉妒。正好今天有空，再一次对小米科技的网络进行<a href="http://ha.cker.in/tag/渗透测试" target="_blank">渗透测试</a>。    <br />说实话，发表这篇东西时，表示有点害怕，已经不是在想能不能获取手机的问题了。    <br />本次渗透只进行到进入内部网络与某官网服务器。本次<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a>很值得用统一<a href="http://ha.cker.in/tag/密码" target="_blank">密码</a>的人思考。</p>  <p>详细说明：</p>  <p>首先从某分站<a href="http://ha.cker.in/tag/SQL注入" target="_blank">注入</a>点开始    <br /><a href="http://xshare.api.xiaomi.com/xShare?do=list2&amp;choice=sms&amp;category=x%27%20and%201=2%20union%20select%201,2,3,host,user,password,7,8,9,0,1,2,3%20from%20mysql.user%23&amp;orderby=m_hot">http://xshare.api.xiaomi.com/xShare?do=list2&amp;choice=sms&amp;category=x%27%20and%201=2%20union%20select%201,2,3,host,user,password,7,8,9,0,1,2,3%20from%20mysql.user%23&amp;orderby=m_hot</a>    <br />些注入点表示已经通知过官方，但可以是已经弃用的部分网站，所以一直还没处理。于是<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a>就从此处开始。    <br />由于是root ,拿shell <a href="http://xshare.api.xiaomi.com/rso/1.php">http://xshare.api.xiaomi.com/rso/1.php</a></p>  <p><a href="http://img.cker.in/de675513837a_432C/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/de675513837a_432C/clip_image001_thumb.jpg" width="672" height="460" /></a></p>  <p>事实也证明，此服务器没什么用途，和官方<a href="http://ha.cker.in/tag/电商" target="_blank">电商</a>网络跟离差远。不过此处还是存在几个分站网站。    <br />连续数据库    <br />数据库中没什么可以关注的信息，最具重要的数据库是：ucenter ，当然，这个是弃用的数据库，用户数据不是最新，但是可以作为很好的渗透的<a href="http://ha.cker.in/tag/社工库" target="_blank">社工库</a>。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/947.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/947.seo/" title="小米科技成功渗透进内部网络" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-11-24T12:30:54.000Z" itemprop="datePublished">
-          2012-11-24
-      </time>
+    <h1 itemprop="name">小米科技成功渗透进内部网络</h1>
     
-    
-    | 
-    <a href='/tag/提权/'>提权</a>,
-    
-    <a href='/tag/检测/'>检测</a>,
-    
-    <a href='/tag/权限/'>权限</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/946.seo/">友情检测张柏芝官方网站全过程</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
+     
+       <p itemprop="description" >By Jannock@wooyun  简要描述：  首先   http://www.wooyun.org/bugs/wooyun-2010-03608    对这位兄弟表示羡慕嫉妒。正好今天有空，再一次对小米科技的网络进行渗透测试。    说实话，发表这篇东西时，表示有点害怕，已</p>
       
-        <p>声明：原创文章，转载请注明来自哈客部落(<a href="http://www.hake.cc/">www.hake.cc</a>），违者必究！    <br />from: <a href="http://www.hacke.cc/">www.hacke.cc</a>    <br />今天一时兴起,想太阳个明星的官网玩玩    <br />这不,心里一思量就想到了我们的柏芝姐姐从前,有一个美女…. 吖的。跑题了,, 回来    <br />我们继续~~    <br />百度找到张柏芝的官网    <br /><a href="http://img.cker.in/9bfa1a9ff5cd_3F1B/clip_image001.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/9bfa1a9ff5cd_3F1B/clip_image001_thumb.png" width="320" height="92" /></a>    <br /><a href="http://img.cker.in/9bfa1a9ff5cd_3F1B/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/9bfa1a9ff5cd_3F1B/clip_image003_thumb.jpg" width="620" height="243" /></a>    <br />简略的踩点了一下。发现大部分都是html的静态页面,也没办法下手。看这外观又有点像某个cms的样子。    <br />随即想看看googlehack能不能找到后台地址。查出程序版本..好对症下药！    <br /><a href="http://img.cker.in/9bfa1a9ff5cd_3F1B/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/9bfa1a9ff5cd_3F1B/clip_image005_thumb.jpg" width="620" height="386" /></a>    <br />看到了把，懂得人都知道这是目录遍历。同时还发现了网站有用aspx的语言程序。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/946.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    
+    <time datetime="2012-11-24T12:47:07.000Z" itemprop="datePublished">2012-11-24</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-11-24T09:06:39.000Z" itemprop="datePublished">
-          2012-11-24
-      </time>
-    
-    
-    | 
-    <a href='/tag/暴力破解/'>暴力破解</a>,
-    
-    <a href='/tag/burpsuit/'>burpsuit</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/945.seo/">Burpsuit暴力破解某运营商手机邮箱密码 已发乌云</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>一篇教新手使用神器Burpsuit的暴力破解的教程，因为是新手入门所以写的尽量详细易懂，我也是菜鸟同学，希望投稿能通过了和大家一起交流。~~好吧，其实我是来搞基的！</p>  <p>找回密码时会给手机发送六位数字验证码，纯数字大家都懂的 可以暴力破解</p>  <p>于是我就祭出神器Burpsuit试试看，一试果然可以暴力破解，没有加任何限制，破出来验证码拿去改密码进邮箱，对于把重要信息存在邮箱上的用户来说密码已经形同虚设了，一点安全性都没有，所以说危害还是很严重的。</p>  <p>由于是拿自己的手机测试的，所以验证码是24<em>**</em>，我直接用240000-250000的字典跑了下，成功了后又用000000-999999的字典跑，两次测试证明漏洞确实存在。</p>  <p>详细过程：</p>  <p>找回密码页面</p>  <p>来到mail.wo.com.cn找回密码，打开Burpsuit设置好代理并OFF截包</p>  <p><a href="http://img.cker.in/Burpsuit_E96/clip_image002.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Burpsuit_E96/clip_image002_thumb.jpg" width="596" height="490" /></a></p>  <p>输入一个简单的新密码，短信验证码随便填，我这里填123456，提示验证码错误，然后来到神器的history看刚才的POST请求包</p>  <p><a href="http://img.cker.in/Burpsuit_E96/clip_image004.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/Burpsuit_E96/clip_image004_thumb.jpg" width="596" height="614" /></a></p>  <p>嗯，就是这个包，序号是4611</p>  <p>我们选中，然后点send intruder发送到爆破</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/945.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/946.seo/" title="友情检测张柏芝官方网站全过程" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-11-23T05:38:56.000Z" itemprop="datePublished">
-          2012-11-23
-      </time>
+    <h1 itemprop="name">友情检测张柏芝官方网站全过程</h1>
     
-</span>
-      <h2 class="post-title"><a href="/943.seo/">黑客利用漏洞盗取巨款 买张点卡就能送你20万</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
+     
+       <p itemprop="description" >声明：原创文章，转载请注明来自哈客部落(www.hake.cc），违者必究！    from: www.hacke.cc    今天一时兴起,想太阳个明星的官网玩玩    这不,心里一思量就想到了我们的柏芝姐姐从前,有一个美女…. 吖的。跑题了,, 回来    我们继续~~   </p>
       
-             一张网络游戏点卡竟然定价“-20万元”，这意味着你买这张点卡，卖家还要送你20万元。这样的事情不管你信不信，但还是发生了。合肥高新警方日前破获一起特大网络盗窃案：24岁的电脑高手鲍某利用合肥一家网络公司的网络交易平台的系统漏洞，将平台上所售商品的价格定为负值，从而进行盗窃，涉案金额高达109万元。近日，鲍某被批捕。   今年8月，位于合肥市高新区的一家网络公司的财务人员在梳理账目时发现，公司的网络资金室少了109万元。发现钱少
-      
-      </p>
-      
-      <p>
-          <a href="/943.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    
+    <time datetime="2012-11-24T12:30:54.000Z" itemprop="datePublished">2012-11-24</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-11-22T04:46:22.000Z" itemprop="datePublished">
-          2012-11-22
-      </time>
-    
-    
-    | 
-    <a href='/tag/php/'>php</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/942.seo/">服务器变量$_SERVER详解</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        服务器变量$_SERVER 详解：   1、$_SESSION[‘PHP_SELF’] – 获取当前正在执行脚本的文件名   2、$_SERVER[‘SERVER_PROTOCOL’] – 请求页面时通信协议的名称和版本。例如，“HTTP/1.0”。   3、$_SERVER[‘REQUEST_TIME’] – 请求开始时的时间戳。从 PHP 5.1.0 起有效。和time函数效果一样。   4、$_SERVER[‘argv’] – 传
-      
-      </p>
-      
-      <p>
-          <a href="/942.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/945.seo/" title="Burpsuit暴力破解某运营商手机邮箱密码 已发乌云" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-11-21T21:58:30.000Z" itemprop="datePublished">
-          2012-11-22
-      </time>
+    <h1 itemprop="name">Burpsuit暴力破解某运营商手机邮箱密码 已发乌云</h1>
     
-    
-    | 
-    <a href='/tag/提权/'>提权</a>,
-    
-    <a href='/tag/漏洞/'>漏洞</a>,
-    
-    <a href='/tag/输入法漏洞/'>输入法漏洞</a>,
-    
-    <a href='/tag/Windows-8/'>Windows 8</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/941.seo/">经典提权漏洞再现 - Win8的远程桌面配合QQ拼音纯净版可以实现提权</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
+     
+       <p itemprop="description" >一篇教新手使用神器Burpsuit的暴力破解的教程，因为是新手入门所以写的尽量详细易懂，我也是菜鸟同学，希望投稿能通过了和大家一起交流。~~好吧，其实我是来搞基的！  找回密码时会给手机发送六位数字验证码，纯数字大家都懂的 可以暴力破解  于是我就祭出神器Burpsuit试试看，</p>
       
-        <p>没有哪个平台是百分之百安全的，虽然微软<a href="http://ha.cker.in/tag/Windows 8" target="_blank">Windows 8</a>在安全方面进行了很大改进，但是仍然不可避免地出现漏洞。<strong>国内博客</strong><strong><a href="http://www.cnblogs.com/maybreath/archive/2012/11/20/2778875.html">MayBreath</a></strong><strong>就在</strong><strong>Windows 8</strong><strong>上再现了曾经出现过的<a href="http://ha.cker.in/tag/输入法漏洞" target="_blank">输入法漏洞</a>，利用</strong><strong>QQ</strong><strong>拼音实现了<a href="http://ha.cker.in/tag/提权" target="_blank">提权</a>，具体来看一下</strong>：</p>  <p>发现这个漏洞的时候，笔者正在机房上课。正想用3389远程桌面去控制宿舍电脑的时候，因为重做系统忘记自己的IP地址，因此就随手扫描了一下IP段开3389端口的电脑。</p>  <p>没想到就随手扫描到一台Win8的系统，而且这个系统还装了QQ输入法Win8纯净版。</p>  <p>当时我就想起初中时候的那个极品五笔的漏洞，就随手测试了一下，没想到在时隔7、8年后的今天，号称非常安全的Win8系统居然还有如此大的<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>。这边就把<a href="http://ha.cker.in/tag/提权" target="_blank">提权</a>过程理一遍。</p>  <p>首先确认装有这个QQ拼音输入法：</p>  <p><a href="http://img.cker.in/Win8QQ_C37E/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Win8QQ_C37E/clip_image001_thumb.jpg" width="620" height="471" /></a></p>  <p>Ctrl+空格调出托盘，找到这个选项：</p>  <p><a href="http://img.cker.in/Win8QQ_C37E/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Win8QQ_C37E/clip_image002_thumb.jpg" width="620" height="462" /></a></p>  <p>顺利开启IE浏览器：</p>  <p><a href="http://img.cker.in/Win8QQ_C37E/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/Win8QQ_C37E/clip_image003_thumb.jpg" width="620" height="468" /></a></p>  <p>需要说明的是，<strong>IE</strong><strong>浏览器和</strong><strong>Win8</strong><strong>安全性确实是提高了非常多</strong>。随手在地址栏输入D:\ file://d: 这样的命令都无法打开文件夹，本以为只要随便上传一个bat批处理，写上提权用的命令，然后利用IE下载下来打开运行即可，没想到各种提示系统要求验证您的用户密码等，根本无法进行下载，可见<strong>常规方式真的行不通</strong>。</p>  <p>微软还是有在修复这些漏洞，但是经过笔者的诸多尝试，最终发现有一处漏洞尚未填补。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/941.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    
+    <time datetime="2012-11-24T09:06:39.000Z" itemprop="datePublished">2012-11-24</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/page/30/">← Newer Posts</a>
-    <span class="page-number">Page 31 of 81</span>
-    <a class="older-posts" href="/page/32/">Older Posts →</a>
+    <a href="/943.seo/" title="黑客利用漏洞盗取巨款 买张点卡就能送你20万" itemprop="url">
+  
+    <h1 itemprop="name">黑客利用漏洞盗取巨款 买张点卡就能送你20万</h1>
+    
+     
+           <p itemprop="description" >一张网络游戏点卡竟然定价“-20万元”，这意味着你买这张点卡，卖家还要送你20万元。这样的事情不管你信不信，但还是发生了。合肥高新警方日前破获一起特大网络盗窃案：24岁的电脑高手鲍某利用合肥一家网络公司的网络交易平台的系统漏洞，将平台上所售商品的价格定为负值，从而进行盗窃，涉案金</p>
+        
+    
+    <time datetime="2012-11-23T05:38:56.000Z" itemprop="datePublished">2012-11-23</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/942.seo/" title="服务器变量$_SERVER详解" itemprop="url">
+  
+    <h1 itemprop="name">服务器变量$_SERVER详解</h1>
+    
+     
+           <p itemprop="description" >服务器变量$_SERVER 详解：   1、$_SESSION[‘PHP_SELF’] – 获取当前正在执行脚本的文件名   2、$_SERVER[‘SERVER_PROTOCOL’] – 请求页面时通信协议的名称和版本。例如，“HTTP/1.0”。   3、$_SERVER[‘</p>
+        
+    
+    <time datetime="2012-11-22T04:46:22.000Z" itemprop="datePublished">2012-11-22</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/941.seo/" title="经典提权漏洞再现 - Win8的远程桌面配合QQ拼音纯净版可以实现提权" itemprop="url">
+  
+    <h1 itemprop="name">经典提权漏洞再现 - Win8的远程桌面配合QQ拼音纯净版可以实现提权</h1>
+    
+     
+       <p itemprop="description" >没有哪个平台是百分之百安全的，虽然微软Windows 8在安全方面进行了很大改进，但是仍然不可避免地出现漏洞。国内博客MayBreath就在Windows 8上再现了曾经出现过的输入法漏洞，利用QQ拼音实现了提权，具体来看一下：  发现这个漏洞的时候，笔者正在机房上课。正想用33</p>
+      
+    
+    <time datetime="2012-11-21T21:58:30.000Z" itemprop="datePublished">2012-11-22</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/page/30/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="page-number" href="/page/30/">30</a><span class="page-number current">31</span><a class="page-number" href="/page/32/">32</a><a class="page-number" href="/page/33/">33</a><span class="space">&hellip;</span><a class="page-number" href="/page/81/">81</a><a class="extend next" rel="next" href="/page/32/">下一页 &raquo;</a>
   </nav>
-</main>
 
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
-      
-<footer class="site-footer">
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+  </body>
+ </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

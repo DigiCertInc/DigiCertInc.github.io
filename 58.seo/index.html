@@ -1,151 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Linux运维的一些常见问题及解决方法 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Linux运维的一些常见问题及解决方法 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="今晚有空把最近运维中遇到的一些问题及解决方法总结下，写的比较匆忙，可能有些问题和错误，请各位看官指正。——————————————————————————————————————————1.shell脚本死活不执行问题：某天研发某同事找我说帮他看看他写的shell脚本，死活不执行，报错。我看了下，脚">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Linux运维的一些常见问题及解决方法 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/58.seo/" title="Linux运维的一些常见问题及解决方法" itemprop="url">Linux运维的一些常见问题及解决方法</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2011-08-03T22:03:26.000Z" itemprop="datePublished">2011-08-04</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>今晚有空把最近运维中遇到的一些问题及解决方法总结下，写的比较匆忙，可能有些问题和错误，请各位看官指正。<br>——————————————————————————————————————————<br>1.shell脚本死活不执行<br>问题：某天研发某同事找我说帮他看看他写的shell脚本，死活不执行，报错。我看了下，脚本很简单，也没有常规性的错误，报“: bad interpreter: No such file or&nbsp; directory”错。一<br>看这错，我就问他是不是在windows下编写的脚本，然后在上传到linux服务器的……果然。<br>原因：在DOS/Windows里，文本文件的换行符为rn，而在<em>nix系统里则为n，所以DOS/Windows里编辑过的文本文件到了</em>nix里，每一行都多了个^M。<br>解决：1）重新在linux下编写脚本；2）vi :% s/r//g&nbsp; :%&nbsp; s/^M//g （^M输入用Ctrl+v, Ctrl+m）<br>——————————————————————————————————————————<br>2.crontab输出<br>问题：/var/spool/clientmqueue目录占用空间超过100G<br>原因：cron中执行的程序有输出内容，输出内容会以邮件形式发给cron的用户，而sendmail没有启动所以就产生了/var/spool/clientmqueue目录下的那些文件，日积月累可能撑破磁盘。<br>解决：1）直接手动删除：ls |xargs rm -f&nbsp; ；&nbsp; 2）彻底解决：在cron的自动执行语句后加上 &gt;/dev/null 2&gt;&amp;1<br>——————————————————————————————————————————  </p><p>3.telnet很慢<br>问题：某天研发某同事说10.50访问10.52memcached服务异常，让我们检查下看网络/服务/系统是否有异常。检查发现系统正常，服务正常，10.50ping10.52也正常，但10.50telnet10.52很慢。同时发现该机器的namesever是不起作用的。<br>原因：because your PC doesn’t do a reverse DNS&nbsp; lookup on your IP then… when you telnet/ftp into your linux box, it’ll do a dns&nbsp; lookup on you。<br>解决：1)修改/etc/hosts使hostname和ip对应；&nbsp; 2）在/etc/resolv.conf注释掉nameserver或者找一个“活的”nameserver。<br>——————————————————————————————————————————<br>4.Read-only file system<br>问题：同事在mysql里建表建不成功，提示如下：<br>mysql&gt;create table wosontest (colddname1 char(1));<br>ERROR 1005 (HY000): Can’t create table ‘wosontest’ (errno:&nbsp; 30）<br>经检查mysql用户权限以及相关目录权限没问题；用perror 30提示信息为：OS error code&nbsp; 30:&nbsp;&nbsp; Read-only file system<br>可能原因：1）文件系统损坏；2）磁盘又坏道；3）fstab文件配置错误，如分区格式错误错误(将ntfs写成了fat)、配置指令拼写错误等。<br>解决：1）由于是测试机，重启机器后恢复；2）网上说用mount可解决。<br>——————————————————————————————————————————<br>5.文件删了磁盘空间没释放<br>问题：某天发现某台机器df -h已用磁盘空间为90G，而du -sh&nbsp; /<em>显示所有使用空间加起来才30G，囧。<br>原因：可能某人直接用rm删除某个正在写的文件，导致文件删了但磁盘空间没释放的问题<br>解决：<br>1）最简单重启系统或者重启相关服务。<br>2）干掉进程<br>/usr/sbin/lsof|grep deleted<br>ora&nbsp;&nbsp;&nbsp; 25575 data&nbsp;&nbsp; 33u&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; REG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 65,65&nbsp;&nbsp; 4294983680&nbsp; /oradata/DATAPRE/UNDOTBS009.dbf (deleted)<br>从lsof的输出中，我们可以发现pid为25575的进程持有着以文件描述号（fd）为&nbsp; 33打开的文件/oradata/DATAPRE/UNDOTBS009.dbf。在我们找到了这个文件之后可以通过结束进程的方式来释放被占用的空间：echo&nbsp; &gt; /proc/25575/fd/33<br>3）删除正在写的文件一般用 cat /dev/null &gt; file<br>——————————————————————————————————————————<br>6.find文件<br>问题：在tmp目录下有大量包含picture_</em>的临时文件，每天晚上2:30对一天前的文件进行清理。之前在crontab下跑如下脚本，但是发现脚本效率很低，每次执行时负载猛涨，影响到其他服务。<br>#!/bin/sh<br>find /tmp -name “picture_<em>” -mtime +1 -exec rm -f {} ;<br>原因：目录下有大量文件，用find很耗资源。<br>解决：<br>#!/bin/sh<br>cd /tmp<br>time=<code>date -d “2 day ago” “+%b %d”</code><br>ls -l|grep “picture” |grep “$time”|awk ‘{print $NF}’|xargs rm -rf<br>——————————————————————————————————————————  <p>7.获取不了网关mac地址<br>问题：从2.14到3.65（映射地址2.141）网络不通，但是从3端的其他机器到3.65网络OK。<br>原因：<br># arp<br>Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HWtype&nbsp; HWaddress&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Flags&nbsp; Mask&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Iface<br>192.168.3.254&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ether&nbsp;&nbsp; incomplet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bond0<br>表面现象是机器自动获取不了网关MAC地址，网络工程师说是网络设备的问题，具体不清。<br>解决：arp绑定，arp -i bond0 -s 192.168.3.254&nbsp; 00:00:5e:00:01:64<br>——————————————————————————————————————————<br>8.问题：某天研发某同事说网站前端+1环境http无法启动，我上去看了下。报如下错：<br>/etc/init.d/httpd start<br>Starting httpd: [Sat Jan 29 17:49:00 2011] [warn] module&nbsp; antibot_module is already loaded, skipping<br>Use proxy forward as remote ip : true.<br>Antibot exclude pattern : .</p></em>.[(js|css|jpg|gif|png)]<br>Antibot seed check pattern : login<br>(98)Address already in use: make_sock: could not bind to&nbsp; address [::]:7080<br>(98)Address already in use: make_sock: could not bind to&nbsp; address 0.0.0.0:7080<br>no listening sockets available, shutting down<br>Unable to open log&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [FAILED]<br>原因：<br>1）端口被占用：表面看是7080端口被占用，于是netstat -npl|grep&nbsp; 7080看了下发现7080没有占用；<br>2）在配置文件中重复写了端口，如果在以下两个文件同时写了Listen 7080<br>/etc/httpd/conf/http.conf<br>/etc/httpd/conf.d/t.10086.cn.conf<br>解决：注释掉/etc/httpd/conf.d/t.10086.cn.conf的Listen&nbsp; 7080，重启，OK。<br>——————————————————————————————————————————<br>9.too many open file终极解决方案<br>echo “” &gt;&gt; /etc/security/limits.conf<br>echo “<em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp; nproc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 65535″ &gt;&gt;&nbsp; /etc/security/limits.conf<br>echo “</em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hard&nbsp;&nbsp; nproc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 65535″ &gt;&gt;&nbsp; /etc/security/limits.conf<br>echo “<em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp; nofile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 65535″ &gt;&gt;&nbsp; /etc/security/limits.conf<br>echo “</em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hard&nbsp;&nbsp; nofile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 65535″ &gt;&gt;&nbsp; /etc/security/limits.conf<br>echo “” &gt;&gt; /root/.bash_profile<br>echo “ulimit-n&nbsp;&nbsp; 65535″ &gt;&gt; /root/.bash_profile<br>echo “ulimit&nbsp; -u&nbsp;&nbsp; 65535″ &gt;&gt; /root/.bash_profile  </p><p>最后重启机器 或者执行 ulimit -u 655345 &amp;&amp; ulimit -n 65535<br>——————————————————————————————————————————<br>10.ibdata1和mysql-bin<br>问题：2.51磁盘空间报警，经查发现ibdata1和mysql-bin日志占用空间太多（其中ibdata1超过120G，mysql-bin超过80G）<br>原因：ibdata1是存储格式，在INNODB类型数据状态下，ibdata1用来存储文件的数据和索引，而库名的文件夹里的那些表文件只是结构而已。<br>innodb存储引擎有两种表空间的管理方式，分别是：<br>1）共享表空间（可拆分为多个小的表空间文件），这个是我们目前多数数据库使用的方法；<br>2）独立表空间，每一个表有一个独立的表空间（磁盘文件）<br>对于两种管理方式，各有优劣，具体如下：<br>①共享表空间：<br>优点：可以将表空间分成多个文件存放到不同的磁盘上（表空间文件大小不受表大小的限制，一个表可以分布在不同步的文件上）。<br>缺点：所有数据和索引存放在一个文件中，则随着数据的增加，将会有一个很大的文件，虽然可以把一个大文件分成多个小文件，但是多个表及索引在表空间中混合存储，这样如果对于一个表做了大量删除操作后表空间中将有大量空隙。对于共享表空间管理的方式下，一旦表空间被分配，就不能再回缩了。当出现临时建索引或是创建一个临时表的操作表空间扩大后，就是删除相关的表也没办法回缩那部分空间了。<br>②独立表空间：在配置文件（my.cnf）中设置： innodb_file_per_table<br>特点：每个表都有自已独立的表空间；每个表的数据和索引都会存在自已的表空间中。<br>优点：表空间对应的磁盘空间可以被收回（Drop table操作自动回收表空间，如果对于删除大量数据后的表可以通过:alter&nbsp; table tbl_name engine=innodb;回缩不用的空间。<br>缺点：如果单表增加过大，如超过100G，性能也会受到影响。在这种情况下，如果使用共享表空间可以把文件分开，但有同样有一个问题，如果访问的范围过大同样会访问多个文件，一样会比较慢。如果使用独立表空间，可以考虑使用分区表的方法，在一定程度上缓解问题。此外，当启用独立表空间模式时，需要合理调整innodb_open_files参数的设置。<br>解决:<br>1）ibdata1数据太大：只能通过dump，导出建库的sql语句，再重建的方法。<br>2）mysql-bin Log太大：<br>①手动删除：<br>删除某个日志：mysql&gt;PURGE MASTER LOGS TO ‘mysql-bin.010′;<br>删除某天前的日志：mysql&gt;PURGE MASTER LOGS BEFORE ’2010-12-22&nbsp; 13:00:00′;<br>②在/etc/my.cnf里设置只保存N天的bin-log日志<br>expire_logs_days = 30&nbsp; //Binary Log自动删除的天数</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2011-08-03T22:03:26.000Z" itemprop="datePublished">
-          2011-08-04
-      </time>
-    
-    
-    | 
-    <a href='/tag/Linux/'>Linux</a>,
-    
-    <a href='/tag/运维/'>运维</a>
-    
-    
-</span>
-    <h1 class="post-title">Linux运维的一些常见问题及解决方法</h1>
-    <section class="post-content">
-      <p>今晚有空把最近运维中遇到的一些问题及解决方法总结下，写的比较匆忙，可能有些问题和错误，请各位看官指正。<br>——————————————————————————————————————————<br>1.shell脚本死活不执行<br>问题：某天研发某同事找我说帮他看看他写的shell脚本，死活不执行，报错。我看了下，脚本很简单，也没有常规性的错误，报“: bad interpreter: No such file or&nbsp; directory”错。一<br>看这错，我就问他是不是在windows下编写的脚本，然后在上传到linux服务器的……果然。<br>原因：在DOS/Windows里，文本文件的换行符为rn，而在<em>nix系统里则为n，所以DOS/Windows里编辑过的文本文件到了</em>nix里，每一行都多了个^M。<br>解决：1）重新在linux下编写脚本；2）vi :% s/r//g&nbsp; :%&nbsp; s/^M//g （^M输入用Ctrl+v, Ctrl+m）<br>——————————————————————————————————————————<br>2.crontab输出<br>问题：/var/spool/clientmqueue目录占用空间超过100G<br>原因：cron中执行的程序有输出内容，输出内容会以邮件形式发给cron的用户，而sendmail没有启动所以就产生了/var/spool/clientmqueue目录下的那些文件，日积月累可能撑破磁盘。<br>解决：1）直接手动删除：ls |xargs rm -f&nbsp; ；&nbsp; 2）彻底解决：在cron的自动执行语句后加上 &gt;/dev/null 2&gt;&amp;1<br>——————————————————————————————————————————  </p><p>3.telnet很慢<br>问题：某天研发某同事说10.50访问10.52memcached服务异常，让我们检查下看网络/服务/系统是否有异常。检查发现系统正常，服务正常，10.50ping10.52也正常，但10.50telnet10.52很慢。同时发现该机器的namesever是不起作用的。<br>原因：because your PC doesn’t do a reverse DNS&nbsp; lookup on your IP then… when you telnet/ftp into your linux box, it’ll do a dns&nbsp; lookup on you。<br>解决：1)修改/etc/hosts使hostname和ip对应；&nbsp; 2）在/etc/resolv.conf注释掉nameserver或者找一个“活的”nameserver。<br>——————————————————————————————————————————<br>4.Read-only file system<br>问题：同事在mysql里建表建不成功，提示如下：<br>mysql&gt;create table wosontest (colddname1 char(1));<br>ERROR 1005 (HY000): Can’t create table ‘wosontest’ (errno:&nbsp; 30）<br>经检查mysql用户权限以及相关目录权限没问题；用perror 30提示信息为：OS error code&nbsp; 30:&nbsp;&nbsp; Read-only file system<br>可能原因：1）文件系统损坏；2）磁盘又坏道；3）fstab文件配置错误，如分区格式错误错误(将ntfs写成了fat)、配置指令拼写错误等。<br>解决：1）由于是测试机，重启机器后恢复；2）网上说用mount可解决。<br>——————————————————————————————————————————<br>5.文件删了磁盘空间没释放<br>问题：某天发现某台机器df -h已用磁盘空间为90G，而du -sh&nbsp; /<em>显示所有使用空间加起来才30G，囧。<br>原因：可能某人直接用rm删除某个正在写的文件，导致文件删了但磁盘空间没释放的问题<br>解决：<br>1）最简单重启系统或者重启相关服务。<br>2）干掉进程<br>/usr/sbin/lsof|grep deleted<br>ora&nbsp;&nbsp;&nbsp; 25575 data&nbsp;&nbsp; 33u&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; REG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 65,65&nbsp;&nbsp; 4294983680&nbsp; /oradata/DATAPRE/UNDOTBS009.dbf (deleted)<br>从lsof的输出中，我们可以发现pid为25575的进程持有着以文件描述号（fd）为&nbsp; 33打开的文件/oradata/DATAPRE/UNDOTBS009.dbf。在我们找到了这个文件之后可以通过结束进程的方式来释放被占用的空间：echo&nbsp; &gt; /proc/25575/fd/33<br>3）删除正在写的文件一般用 cat /dev/null &gt; file<br>——————————————————————————————————————————<br>6.find文件<br>问题：在tmp目录下有大量包含picture_</em>的临时文件，每天晚上2:30对一天前的文件进行清理。之前在crontab下跑如下脚本，但是发现脚本效率很低，每次执行时负载猛涨，影响到其他服务。<br>#!/bin/sh<br>find /tmp -name “picture_<em>” -mtime +1 -exec rm -f {} ;<br>原因：目录下有大量文件，用find很耗资源。<br>解决：<br>#!/bin/sh<br>cd /tmp<br>time=<code>date -d “2 day ago” “+%b %d”</code><br>ls -l|grep “picture” |grep “$time”|awk ‘{print $NF}’|xargs rm -rf<br>——————————————————————————————————————————  <p>7.获取不了网关mac地址<br>问题：从2.14到3.65（映射地址2.141）网络不通，但是从3端的其他机器到3.65网络OK。<br>原因：<br># arp<br>Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HWtype&nbsp; HWaddress&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Flags&nbsp; Mask&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Iface<br>192.168.3.254&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ether&nbsp;&nbsp; incomplet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bond0<br>表面现象是机器自动获取不了网关MAC地址，网络工程师说是网络设备的问题，具体不清。<br>解决：arp绑定，arp -i bond0 -s 192.168.3.254&nbsp; 00:00:5e:00:01:64<br>——————————————————————————————————————————<br>8.问题：某天研发某同事说网站前端+1环境http无法启动，我上去看了下。报如下错：<br>/etc/init.d/httpd start<br>Starting httpd: [Sat Jan 29 17:49:00 2011] [warn] module&nbsp; antibot_module is already loaded, skipping<br>Use proxy forward as remote ip : true.<br>Antibot exclude pattern : .</p></em>.[(js|css|jpg|gif|png)]<br>Antibot seed check pattern : login<br>(98)Address already in use: make_sock: could not bind to&nbsp; address [::]:7080<br>(98)Address already in use: make_sock: could not bind to&nbsp; address 0.0.0.0:7080<br>no listening sockets available, shutting down<br>Unable to open log&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [FAILED]<br>原因：<br>1）端口被占用：表面看是7080端口被占用，于是netstat -npl|grep&nbsp; 7080看了下发现7080没有占用；<br>2）在配置文件中重复写了端口，如果在以下两个文件同时写了Listen 7080<br>/etc/httpd/conf/http.conf<br>/etc/httpd/conf.d/t.10086.cn.conf<br>解决：注释掉/etc/httpd/conf.d/t.10086.cn.conf的Listen&nbsp; 7080，重启，OK。<br>——————————————————————————————————————————<br>9.too many open file终极解决方案<br>echo “” &gt;&gt; /etc/security/limits.conf<br>echo “<em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp; nproc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 65535″ &gt;&gt;&nbsp; /etc/security/limits.conf<br>echo “</em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hard&nbsp;&nbsp; nproc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 65535″ &gt;&gt;&nbsp; /etc/security/limits.conf<br>echo “<em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; soft&nbsp;&nbsp; nofile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 65535″ &gt;&gt;&nbsp; /etc/security/limits.conf<br>echo “</em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hard&nbsp;&nbsp; nofile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 65535″ &gt;&gt;&nbsp; /etc/security/limits.conf<br>echo “” &gt;&gt; /root/.bash_profile<br>echo “ulimit-n&nbsp;&nbsp; 65535″ &gt;&gt; /root/.bash_profile<br>echo “ulimit&nbsp; -u&nbsp;&nbsp; 65535″ &gt;&gt; /root/.bash_profile  </p><p>最后重启机器 或者执行 ulimit -u 655345 &amp;&amp; ulimit -n 65535<br>——————————————————————————————————————————<br>10.ibdata1和mysql-bin<br>问题：2.51磁盘空间报警，经查发现ibdata1和mysql-bin日志占用空间太多（其中ibdata1超过120G，mysql-bin超过80G）<br>原因：ibdata1是存储格式，在INNODB类型数据状态下，ibdata1用来存储文件的数据和索引，而库名的文件夹里的那些表文件只是结构而已。<br>innodb存储引擎有两种表空间的管理方式，分别是：<br>1）共享表空间（可拆分为多个小的表空间文件），这个是我们目前多数数据库使用的方法；<br>2）独立表空间，每一个表有一个独立的表空间（磁盘文件）<br>对于两种管理方式，各有优劣，具体如下：<br>①共享表空间：<br>优点：可以将表空间分成多个文件存放到不同的磁盘上（表空间文件大小不受表大小的限制，一个表可以分布在不同步的文件上）。<br>缺点：所有数据和索引存放在一个文件中，则随着数据的增加，将会有一个很大的文件，虽然可以把一个大文件分成多个小文件，但是多个表及索引在表空间中混合存储，这样如果对于一个表做了大量删除操作后表空间中将有大量空隙。对于共享表空间管理的方式下，一旦表空间被分配，就不能再回缩了。当出现临时建索引或是创建一个临时表的操作表空间扩大后，就是删除相关的表也没办法回缩那部分空间了。<br>②独立表空间：在配置文件（my.cnf）中设置： innodb_file_per_table<br>特点：每个表都有自已独立的表空间；每个表的数据和索引都会存在自已的表空间中。<br>优点：表空间对应的磁盘空间可以被收回（Drop table操作自动回收表空间，如果对于删除大量数据后的表可以通过:alter&nbsp; table tbl_name engine=innodb;回缩不用的空间。<br>缺点：如果单表增加过大，如超过100G，性能也会受到影响。在这种情况下，如果使用共享表空间可以把文件分开，但有同样有一个问题，如果访问的范围过大同样会访问多个文件，一样会比较慢。如果使用独立表空间，可以考虑使用分区表的方法，在一定程度上缓解问题。此外，当启用独立表空间模式时，需要合理调整innodb_open_files参数的设置。<br>解决:<br>1）ibdata1数据太大：只能通过dump，导出建库的sql语句，再重建的方法。<br>2）mysql-bin Log太大：<br>①手动删除：<br>删除某个日志：mysql&gt;PURGE MASTER LOGS TO ‘mysql-bin.010′;<br>删除某天前的日志：mysql&gt;PURGE MASTER LOGS BEFORE ’2010-12-22&nbsp; 13:00:00′;<br>②在/etc/my.cnf里设置只保存N天的bin-log日志<br>expire_logs_days = 30&nbsp; //Binary Log自动删除的天数</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/58.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/58.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/58.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/58.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/59.seo/">
-        ← 一个暴力破解MSSQL用户密码的asp程序
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/57.seo/">
-        2011最新 杰森&middot;斯坦森《闪电 私法制裁》DVD中英双字 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/Linux笔记/">Linux笔记</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/Linux/">Linux</a><a href="/tag/运维/">运维</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/59.seo/" title="一个暴力破解MSSQL用户密码的asp程序">
+  <strong>Prev:</strong><br/>
+  <span>
+  一个暴力破解MSSQL用户密码的asp程序</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/57.seo/"  title="2011最新 杰森&amp;middot;斯坦森《闪电 私法制裁》DVD中英双字">
+ <strong>Next:</strong><br/> 
+ <span>2011最新 杰森&amp;middot;斯坦森《闪电 私法制裁》DVD中英双字
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-Linux运维的一些常见问题及解决方法" data-title="Linux运维的一些常见问题及解决方法" data-url="http://ha.cker.in/58.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

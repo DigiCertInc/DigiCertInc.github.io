@@ -1,149 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>怎么学免杀,免杀方法：脱壳免杀技术大纲 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>怎么学免杀,免杀方法：脱壳免杀技术大纲 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="1.基础的汇编语言 2.修改工具(不指那些傻瓜式软件).如:   OllyDbg . PEditor. C32ASM . MYCCL复合特征码定位器.UE .OC. 资源编辑器等.还有一些查壳 脱壳软件(如PEID RL脱壳机等) . 以下是常用的几种免杀方法及工具: ||J=7{4wh   一. 要使一个木马免杀，首先要准备一个不加壳的木马，这点非常重要，否则免杀操作就不能进行下去。   二.然后我们要木马的内存免杀，从上面分析可以看出，目前的内存查杀，只有瑞星最强，其它杀毒软件内存查杀现在还不起作用所以我们只针对瑞星的内存查杀，要进行内存特征码的定位和修改，才能内存免杀。   三.对符其它的杀毒软件，比如江民，金山，诺顿,卡巴.我们可以采用下面的方法,或这些方面的组合使用.   1&amp;gt;.入口点加1免杀法.   2&amp;gt;.变化入口地址免杀法   3&amp;gt;.加花指令法免杀法   4&amp;gt;.加壳或加伪装壳免杀法.   5&amp;gt;.打乱壳的头文件免杀法.   6&amp;gt;.修改文件特征码免杀法.   第三部分:免杀技术实例演示部分   一.入口点加1免杀法:   1.用到工具Editor   2.特点:非常简单实用,但有时还会被卡巴查杀.   3.操作要点:用PEditor打开无壳木马程序,把原入口点加1即可.   二.变化入口地址免杀法:   1.用到工具:OllyDbg,PEditor   2.特点:操作也比较容易,而且免杀效果比入口点加1点要佳.   3.操作要点:用OD载入无壳的木马程序,把入口点的前二句移到零区域去执行,然后又跳回到入口点的下面第三句继续执行.最后用PEditor把入口点改成零区域的地址.">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="怎么学免杀,免杀方法：脱壳免杀技术大纲 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/443.seo/" title="怎么学免杀,免杀方法：脱壳免杀技术大纲" itemprop="url">怎么学免杀,免杀方法：脱壳免杀技术大纲</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2012-05-31T06:37:23.000Z" itemprop="datePublished">2012-05-31</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>1.基础的汇编语言 2.修改工具(不指那些傻瓜式软件).如:</p>  <p> OllyDbg . PEditor. C32ASM . MYCCL复合特征码定位器.UE .OC. 资源编辑器等.还有一些查壳 脱壳软件(如PEID RL脱壳机等) . 以下是常用的几种免杀方法及工具: ||J=7{4wh</p>  <p> 一. 要使一个木马免杀，首先要准备一个不加壳的木马，这点非常重要，否则免杀操作就不能进行下去。</p>  <p> 二.然后我们要木马的内存免杀，从上面分析可以看出，目前的内存查杀，只有瑞星最强，其它杀毒软件内存查杀现在还不起作用所以我们只针对瑞星的内存查杀，要进行内存特征码的定位和修改，才能内存免杀。</p>  <p> 三.对符其它的杀毒软件，比如江民，金山，诺顿,卡巴.我们可以采用下面的方法,或这些方面的组合使用.</p>  <p> 1&gt;.入口点加1免杀法.</p>  <p> 2&gt;.变化入口地址免杀法</p>  <p> 3&gt;.加花指令法免杀法</p>  <p> 4&gt;.加壳或加伪装壳免杀法.</p>  <p> 5&gt;.打乱壳的头文件免杀法.</p>  <p> 6&gt;.修改文件特征码免杀法.</p>  <p> 第三部分:免杀技术实例演示部分</p>  <p> 一.入口点加1免杀法:</p>  <p> 1.用到工具Editor</p>  <p> 2.特点:非常简单实用,但有时还会被卡巴查杀.</p>  <p> 3.操作要点:用PEditor打开无壳木马程序,把原入口点加1即可.</p>  <p> 二.变化入口地址免杀法:</p>  <p> 1.用到工具:OllyDbg,PEditor</p>  <p> 2.特点:操作也比较容易,而且免杀效果比入口点加1点要佳.</p>  <p> 3.操作要点:用OD载入无壳的木马程序,把入口点的前二句移到零区域去执行,然后又跳回到入口点的下面第三句继续执行.最后用PEditor把入口点改成零区域的地址.</p><a id="more"></a><p></p>  <p> 三.加花指令法免杀法:</p>  <p> 1.用到工具:OllyDbg,PEditor HOq</p>  <p> 2.特点:免杀通用性非常好,加了花指令后,就基本达到大量杀毒软件的免杀.</p>  <p> 3.操作要点:用OD打开无壳的木马程序,找到零区域,把我们准备好的花指令填进去填好后又跳回到入口点,保存好后,再用PEditor把入口点改成零区域处填入花指令的着地址.</p>  <p> 四.加壳或加伪装壳免杀法:</p>  <p> 1.用到工具:一些冷门壳,或加伪装壳的工具,比如木马彩衣等.</p>  <p> 2.特点:操作简单化,但免杀的时间不长,可能很快被杀,也很难躲过卡巴的追杀.</p>  <p> 3.操作要点:为了达到更好的免杀效果可采用多重加壳,或加了壳后在加伪装壳的免杀效果更佳. </p>  <p>五.打乱壳的头文件或壳中加花免杀法:</p>  <p> 1.用到工具:秘密行动 ,UPX加壳工具.</p>  <p> 2.特点:操作也是傻瓜化,免杀效果也正当不错,特别对卡巴的免杀效果非常好.</p>  <p> 3.操作要点:首先一定要把没加过壳的木马程序用UPX加层壳,然后用秘密行动这款工具中的SCramble功能进行把UPX壳的头文件打乱,从而达到免杀效果.</p>  <p> 六.修改文件特征码免杀法:</p>  <p> 1.用到工具:特征码定位器,OllyDbg</p>  <p> 2.特点:操作较复杂,要定位修改一系列过程,而且只针对每种杀毒软件的免杀,要达到多种杀毒软件的免杀,必需修改各种杀毒软件的特征码.但免杀效果好.</p>  <p> 3.操作要点:对某种杀毒软件的特征码的定位到修改一系列慢长过程.</p>  <p> 第四部分:快速定位与修改瑞星内存特征码</p>  <p> 一. 瑞星内存特征码特点:由于技术原因,目前瑞星的内存特征码在90%以上把字符串作为病毒特征码,这样对我们的定位和修改带来了方便.</p>  <p> 二定位与修改要点:1&gt;.首先用特征码定位器大致定位出瑞星内存特征码位置</p>  <p> 2&gt;.然后用UE打开,找到这个大致位置,看看,哪些方面对应的是字符串,用0替换后再用内存查杀进行查杀.直到找到内存特征码后,只要把字符串的大小写互换就能达到内存免杀效果.</p>  <p> 第五部分:木马免杀综合方案</p>  <p> 修改内存特征码—&gt;</p>  <p> 1&gt;入口点加1免杀法—&gt; 1&gt;加压缩壳—&gt;1&gt;再加壳或多重加壳</p>  <p> 2&gt;变化入口地址免杀法 2&gt;加成僻壳 2&gt;加壳的伪装.</p>  <p> 3&gt;加花指令法免杀法 3&gt;打乱壳的头文件</p>  <p> 4&gt;修改文件特征码免杀法</p>  <p> 注:这个方案可以任意组合各种不同的免杀方案.并达到各种不同的免杀效果.</p>  <p> 第六部分:免杀方案实例演示部分</p>  <p> 1.完全免杀方案一:</p>  <p> 内存特征码修改 + 加UPX壳 + 秘密行动工具打乱UPX壳的头文件.</p>  <p> 2.完全免杀方案二:</p>  <p> 内存特征码修改 + 加压缩壳 + 加壳的伪装</p>  <p> 3.完全免杀方案三:</p>  <p> 内存特征码修改 + 修改各种杀毒软件的文件特征码 + 加压缩壳 ,</p>  <p> 4.完全免杀方案四:</p>  <p> 内存特征码修改 + 加花指令 + 加压壳</p>  <p> 5.完全变态免杀方案五:</p>  <p> 内存特征码修改 + 加花指令 + 入口点加1 + 加压缩壳UPX + 打乱壳的头文件</p>  <p> 还有其它免杀方案可根据第五部分任意组合.</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2012-05-31T06:37:23.000Z" itemprop="datePublished">
-          2012-05-31
-      </time>
-    
-    
-    | 
-    <a href='/tag/免杀/'>免杀</a>
-    
-    
-</span>
-    <h1 class="post-title">怎么学免杀,免杀方法：脱壳免杀技术大纲</h1>
-    <section class="post-content">
-      <p>1.基础的汇编语言 2.修改工具(不指那些傻瓜式软件).如:</p>  <p> OllyDbg . PEditor. C32ASM . MYCCL复合特征码定位器.UE .OC. 资源编辑器等.还有一些查壳 脱壳软件(如PEID RL脱壳机等) . 以下是常用的几种免杀方法及工具: ||J=7{4wh</p>  <p> 一. 要使一个木马免杀，首先要准备一个不加壳的木马，这点非常重要，否则免杀操作就不能进行下去。</p>  <p> 二.然后我们要木马的内存免杀，从上面分析可以看出，目前的内存查杀，只有瑞星最强，其它杀毒软件内存查杀现在还不起作用所以我们只针对瑞星的内存查杀，要进行内存特征码的定位和修改，才能内存免杀。</p>  <p> 三.对符其它的杀毒软件，比如江民，金山，诺顿,卡巴.我们可以采用下面的方法,或这些方面的组合使用.</p>  <p> 1&gt;.入口点加1免杀法.</p>  <p> 2&gt;.变化入口地址免杀法</p>  <p> 3&gt;.加花指令法免杀法</p>  <p> 4&gt;.加壳或加伪装壳免杀法.</p>  <p> 5&gt;.打乱壳的头文件免杀法.</p>  <p> 6&gt;.修改文件特征码免杀法.</p>  <p> 第三部分:免杀技术实例演示部分</p>  <p> 一.入口点加1免杀法:</p>  <p> 1.用到工具Editor</p>  <p> 2.特点:非常简单实用,但有时还会被卡巴查杀.</p>  <p> 3.操作要点:用PEditor打开无壳木马程序,把原入口点加1即可.</p>  <p> 二.变化入口地址免杀法:</p>  <p> 1.用到工具:OllyDbg,PEditor</p>  <p> 2.特点:操作也比较容易,而且免杀效果比入口点加1点要佳.</p>  <p> 3.操作要点:用OD载入无壳的木马程序,把入口点的前二句移到零区域去执行,然后又跳回到入口点的下面第三句继续执行.最后用PEditor把入口点改成零区域的地址.</p><a id="more"></a><p></p>  <p> 三.加花指令法免杀法:</p>  <p> 1.用到工具:OllyDbg,PEditor HOq</p>  <p> 2.特点:免杀通用性非常好,加了花指令后,就基本达到大量杀毒软件的免杀.</p>  <p> 3.操作要点:用OD打开无壳的木马程序,找到零区域,把我们准备好的花指令填进去填好后又跳回到入口点,保存好后,再用PEditor把入口点改成零区域处填入花指令的着地址.</p>  <p> 四.加壳或加伪装壳免杀法:</p>  <p> 1.用到工具:一些冷门壳,或加伪装壳的工具,比如木马彩衣等.</p>  <p> 2.特点:操作简单化,但免杀的时间不长,可能很快被杀,也很难躲过卡巴的追杀.</p>  <p> 3.操作要点:为了达到更好的免杀效果可采用多重加壳,或加了壳后在加伪装壳的免杀效果更佳. </p>  <p>五.打乱壳的头文件或壳中加花免杀法:</p>  <p> 1.用到工具:秘密行动 ,UPX加壳工具.</p>  <p> 2.特点:操作也是傻瓜化,免杀效果也正当不错,特别对卡巴的免杀效果非常好.</p>  <p> 3.操作要点:首先一定要把没加过壳的木马程序用UPX加层壳,然后用秘密行动这款工具中的SCramble功能进行把UPX壳的头文件打乱,从而达到免杀效果.</p>  <p> 六.修改文件特征码免杀法:</p>  <p> 1.用到工具:特征码定位器,OllyDbg</p>  <p> 2.特点:操作较复杂,要定位修改一系列过程,而且只针对每种杀毒软件的免杀,要达到多种杀毒软件的免杀,必需修改各种杀毒软件的特征码.但免杀效果好.</p>  <p> 3.操作要点:对某种杀毒软件的特征码的定位到修改一系列慢长过程.</p>  <p> 第四部分:快速定位与修改瑞星内存特征码</p>  <p> 一. 瑞星内存特征码特点:由于技术原因,目前瑞星的内存特征码在90%以上把字符串作为病毒特征码,这样对我们的定位和修改带来了方便.</p>  <p> 二定位与修改要点:1&gt;.首先用特征码定位器大致定位出瑞星内存特征码位置</p>  <p> 2&gt;.然后用UE打开,找到这个大致位置,看看,哪些方面对应的是字符串,用0替换后再用内存查杀进行查杀.直到找到内存特征码后,只要把字符串的大小写互换就能达到内存免杀效果.</p>  <p> 第五部分:木马免杀综合方案</p>  <p> 修改内存特征码—&gt;</p>  <p> 1&gt;入口点加1免杀法—&gt; 1&gt;加压缩壳—&gt;1&gt;再加壳或多重加壳</p>  <p> 2&gt;变化入口地址免杀法 2&gt;加成僻壳 2&gt;加壳的伪装.</p>  <p> 3&gt;加花指令法免杀法 3&gt;打乱壳的头文件</p>  <p> 4&gt;修改文件特征码免杀法</p>  <p> 注:这个方案可以任意组合各种不同的免杀方案.并达到各种不同的免杀效果.</p>  <p> 第六部分:免杀方案实例演示部分</p>  <p> 1.完全免杀方案一:</p>  <p> 内存特征码修改 + 加UPX壳 + 秘密行动工具打乱UPX壳的头文件.</p>  <p> 2.完全免杀方案二:</p>  <p> 内存特征码修改 + 加压缩壳 + 加壳的伪装</p>  <p> 3.完全免杀方案三:</p>  <p> 内存特征码修改 + 修改各种杀毒软件的文件特征码 + 加压缩壳 ,</p>  <p> 4.完全免杀方案四:</p>  <p> 内存特征码修改 + 加花指令 + 加压壳</p>  <p> 5.完全变态免杀方案五:</p>  <p> 内存特征码修改 + 加花指令 + 入口点加1 + 加压缩壳UPX + 打乱壳的头文件</p>  <p> 还有其它免杀方案可根据第五部分任意组合.</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/443.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/443.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/443.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/443.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/445.seo/">
-        ← 第三方loader简单分析
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/440.seo/">
-        在IPhone IPad上建立反弹后门 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/黑客技巧/">黑客技巧</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/免杀/">免杀</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/445.seo/" title="第三方loader简单分析">
+  <strong>Prev:</strong><br/>
+  <span>
+  第三方loader简单分析</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/440.seo/"  title="在IPhone IPad上建立反弹后门">
+ <strong>Next:</strong><br/> 
+ <span>在IPhone IPad上建立反弹后门
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-怎么学免杀,免杀方法：脱壳免杀技术大纲" data-title="怎么学免杀,免杀方法：脱壳免杀技术大纲" data-url="http://ha.cker.in/443.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

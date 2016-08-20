@@ -1,280 +1,396 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+    </header>
+    
 
-      
-<main class="content" role="main">
+    <div id="container">
+      <div id="main">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T09:54:04.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/入侵/'>入侵</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/490.seo/">回忆对某企业内网的一次渗透</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>回忆对某企业内网的一次渗透做了好多次企业内网渗透的项目,这里还是写下把.</p>  <p>先是谈合同 谈预算 谈价格 这些不多介绍</p>  <p>然后签订保密协议这个也不多说了,最后才是评估以及加固..</p>  <p>进入正题</p>  <p>图片上重要信息或涉密信息均涂掉了,有些突变未上传..</p>  <p>————————————————————————-</p>  <p>首先要踩点,收集信息,这是第一步也是蛮重要的一步个人觉得.</p>  <p>目标信息:</p>  <p>主域名:www.xxxx.com </p>  <p>子域名;OA.xxxx.com</p>  <p>无服务器版本 win2003</p>  <p>脚本语言:ASPX</p>  <p>知道这个以后就开始搞了</p>  <p>然后开始找入住,翻遍全站没发现,找注入大家都会不解释,你懂的.</p>  <p>然后扫目录..</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/befcd4dc8bb9_1A90/clip_image001.gif" width="533" height="447" /></p>  <p>一个一个的翻,找到了洞洞..</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/befcd4dc8bb9_1A90/clip_image003.png" width="508" height="361" /></p>
-      
-      </p>
-      
-      <p>
-          <a href="/490.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/490.seo/" title="回忆对某企业内网的一次渗透" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T09:48:04.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
+    <h1 itemprop="name">回忆对某企业内网的一次渗透</h1>
     
+     
+       <p itemprop="description" >回忆对某企业内网的一次渗透做了好多次企业内网渗透的项目,这里还是写下把.  先是谈合同 谈预算 谈价格 这些不多介绍  然后签订保密协议这个也不多说了,最后才是评估以及加固..  进入正题  图片上重要信息或涉密信息均涂掉了,有些突变未上传..  ————————————————</p>
+      
     
-    | 
-    <a href='/tag/入侵/'>入侵</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/486.seo/">入侵某网游服务器小记</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>没什么技术性,只是想说明现状&#160; </p>  <p>现在想弄钱的入侵者，似乎热衷于入侵网络游戏服务器，盗出游戏服务器程序或是数据库。国内的网络游戏企业，都应该招受过此损失，有暴露出来的，有没暴露出来的。但游戏企业对安全问题理解都十分片面，狭隘!&#160; </p>  <p> 当然，不只是网络游戏企业。近一两年来，入侵者乐此不疲，各种商业数据的偷盗在国内几乎快形成一种&quot;圈内产业&quot;。不论是技术性还是行事组织性都与早年不可同日而语。需求与供应在这里似乎有着完美结合。再看看各地公安网监部门，媒体似乎每天都有报道关于某地公安抓获某黑客的事件。但却似乎没有一起真正成熟的案件。抓到的都是小鱼，大鱼都在偷着乐。原因有没发现没报案的，也有网监部门的技术问题。还有就是官僚主义，公安部门发布所谓的“战果”也乐此不疲。&#160; </p>  <p> 话不说远了，转入正题。&#160; </p>  <p> 一个好友在国内某网络游戏企业工作，让我帮忙测试他们游戏服务器群的安全性。加上我这段时间闲得无聊，也就答应了。&#160; </p>  <p> 我先下载了游戏客户端程序，得到到了几个游戏服务器的地址。&#160; <br /> 游戏帐号在WEB网站上也可以注册，看来游戏中央数据库的调用WEB网站也可以。&#160; <br /> 先仔细的检查了一下WEB网站，大部分是PHP+MYSQL的。代码写得还不错，几乎找不到什么突破口。再看看MYSQL，禁止远程连接。查看了其他游戏服务器，都是LINUX系统，都只是开了OPENSSH和游戏服务器程序端口。只有WEB网站多个80，而又没什么可利用的地方。&#160; </p>  <p> 看上去安全做得不错，但这是种幻象！&#160; </p>  <p> 随后仔细分析了下游戏客户端程序，我打开SnifferPro以便记录下客户端程序和服务器的所有通信。发现客户端程序有个自动更新功能，我Sniff到是通过FTP去下载更新文件的。但我扫描所有游戏服务器时没发现这个FTP端口啊（8888）。仔细看了一下，原来这个端口连接延时十分长。所以扫描器没发现这个端口。&#160; </p>  <p> 意外的从更新过程中，竟然Sniff到一个固定的更新程序的FTP帐户。检查了FTP服务器是ProFTPd，我没直接用这个帐户去溢出ProFtpd。因为这台服务器开了SSH，我直接拿帐户去登陆SSH，获得一个权限极低的shell。&#160; </p>  <p>就像一块布，一但撕开一丁点口子，只要稍一加力，整块布都会随之撕开!&#160; </p>  <p>在系统中寻觅了半天，终于寻找到一个有权限去写的tmp目录。查看了内核版本，用kernel do_brk()的问题溢出提升权限获得了rootshell，没去装rkt，因为只是帮忙测试.&#160; </p>
-      
-      </p>
-      
-      <p>
-          <a href="/486.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-06-12T09:54:04.000Z" itemprop="datePublished">2012-06-12</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T09:46:14.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/内网渗透/'>内网渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/483.seo/">win内网渗透实例</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>作者：赤龙<br>最近在整理资料时发现一些渗透笔记，于是翻开看看，原来有一个老外的内部网还没有拿下。当时已经给内网的一台机器种植了木马，反正闲着没事就拿它来练练手吧。打开远程居然肉鸡还在，废话就不多说了，下面开始吧。<br>首先来看看已经控制的这台电脑在内网中充当什么角色，并收集一些常规的信息。执行ipconfig /all (如图1)</p>
-<p><img style="display: inline; border: 0px;" title="clip_image001" src="http://img.cker.in/win_18C1/clip_image001.png" alt="clip_image001" width="752" height="754" border="0" /><br>从这里我们可以看出，此计算机名为abimaq6，ip地址是172.16.16.139。子网掩码为255.255.240.0、网关172.16.16.1、DNS服务器分别是172.16.16.2和172.16.16.3。还有一个重要的就是这台机器处于域管理模式中，所在域为abimaq.local。<br>既然是域结构，再来获取一下域用户列表，执行net user /domain命令(如图2)。该命令可显示所有的域用户名单。看来域用户还真多。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/483.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/486.seo/" title="入侵某网游服务器小记" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T09:37:14.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
+    <h1 itemprop="name">入侵某网游服务器小记</h1>
     
-    
-    | 
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/大黑阔/'>大黑阔</a>,
-    
-    <a href='/tag/黑站/'>黑站</a>,
-    
-    <a href='/tag/日站/'>日站</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/481.seo/">历时5个月拿下PR7网站思路</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
+     
+       <p itemprop="description" >没什么技术性,只是想说明现状&amp;#160;   现在想弄钱的入侵者，似乎热衷于入侵网络游戏服务器，盗出游戏服务器程序或是数据库。国内的网络游戏企业，都应该招受过此损失，有暴露出来的，有没暴露出来的。但游戏企业对安全问题理解都十分片面，狭隘!&amp;#160;    当然，不只是网络游戏企</p>
       
-        <p>历时5个月拿下PR7网站思路</p>  <p>作者：xxbing </p>  <p>在腾讯2009年安全技术峰会上我曾经提出一个观点：墨菲定律：如果它能够被黑阔攻破，它就将被攻破。对于一个黑阔来说，他要黑一个企业，仅仅是时间上的问题，总之是成本上的问题，比如有个盗号集团在支持他，他说我给你一年时间你把这个企业黑了，搞定了就给你多少钱。一年时间我相信只要他有这个毅力，基本上在座的公司逃不过这一劫。</p>  <p>这个观点看似有点哗众取宠，但它确实是一个不争的事实。XXB同学就上演了5个月日掉PR7网站的LIVE秀。</p>  <p>我总结下教训：</p>  <p>UDEV补丁没打，估计其他几个内核补丁肯定也没打</p>  <p><a name="tpc">2</a>、主机安全需要有基线，PHP安全模式得打开    <br />3、被安装了ssh后门却蒙在鼓里    <br />这三点看似简单，但却知难行易；建立完善的主机入侵防御体系，技术对抗很重要，但技术对抗只是一个小问题。引用caoz的一段话：    <br />1.技术是为了解决问题，而不是制造问题。    <br />2.把握目标去应用技术，而不是为了技术去虚构目标。（包子注：技术狂人一般喜欢这么做，为了追求自己的满足感，成就感，虚构目标，虚构需求）    <br />3.用户需求（通常是潜在需求）决定技术和产品方向，技术反过来刺激需求的显现和增长。    <br />4.技术仍然非常重要，非常有价值，但是前提是，它要用到正确的方向上。    <br />【文中网址都已和谐！该站点网址用<a href="http://www.xxbing.com/">ha.cker.in</a>代替】    <br />美女同学要看言情小说，<a href="http://www.xxbing.com/">ha.cker.in</a> 的言情小说要收钱，于是就帮她找找“空子”！    <br />在<a href="http://tool.chinaz.com/">http://tool.chinaz.com/</a>查了一下<a href="http://www.xxbing.com/">ha.cker.in</a>信息，日IP访问量快达到40W了。很牛逼呀。全站采用php构架。nignx服务器。好了，废话结束。进入正题。    <br />首先我注册了一个账号，然后我登陆作者平台，申请成为作者需要提交自己的原创作品。于是我上baidu搜索了一本很多年前的小说，提交了几章，等待审核。    <br />几天后，成功的申请成为作者。经过1-2个小时的手工测试，成功的在管理作品处寻到一个注射点。    <br />类似： book.php?bookid=123    <br />我提交 book.php?bookid=123 and 1=1 [正常]    <br />book.php?bookid=124-1 [正常]    <br />book.php?bookid=123 and 1=2 [错误]提示权限不足。    <br />book.php?bookid=124 [错误]提示权限不足。    <br />可以判断这里是注射点了，为什么会提示权限不足，应该是每个bookid代表一本图书，有其他字段控制着作者信息，防止非法编辑他人作品。    <br />用order判断出有53个字段。    <br />book.php?bookid=123 and 1=2 union select 1,2,3,……,52,53# 提示：[错误]提示权限不足。    <br />绝对是其中某个位置的数字不正确，导致系统判断我编辑了其他人的图书。于是我把注射点丢到pangolin里面暴力跑字段。成功的跑出53个字段名出来。（一个字符一个字符的暴力猜解。跑了很久）    <br />然后提交： book.php?bookid=123 and 1=2 union select 字段名1,字段名1,字段名3,……,字段名52,字段名53# 成功显示正常页面。    <br />接着我把字段名1、字段名2等等，一个个替换成数字，这个过程中一直显示正常页面。终于到了字段名13的时候，出错了，提示权限不足。那就可以跑了。    <br />book.php?bookid=123 and 1=2 union select 1,2,3,…,字段名13,…,52,53# 正常页面，页面上出现我定义的数字。    <br />接下来就丢到WSI 5.1里面跑数据。很可惜，数据库里面只有一些作品内容，也有编辑用户表，所有编辑账号密码都有，但是找不到后台。    <br />于是我开始寻找绝对路径，也找了N久，后来被我在上传图片处找到。上传一张图片，系统会自动生成该图片的缩略图，我上传一个文本图片，处理的时候出错了。爆出了绝对路径。    <br />[/opt/data/www/xxx.cn/common/include/upfile.php]    <br />用load_file能读出来。顺藤摸瓜，成功读到Mysql账号密码。    <br />mysql账号： Myuser    <br />密码： (Myuser.pass)</p>
-      
-      </p>
-      
-      <p>
-          <a href="/481.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    
+    <time datetime="2012-06-12T09:48:04.000Z" itemprop="datePublished">2012-06-12</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T09:35:13.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/入侵/'>入侵</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/478.seo/">社工+渗透某IDC服务器</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>作者：hu1s4</p>  <p>最近准备做个教育资源站，就打算在网上买个空间，ok百度下吧看看哪个好点</p>  <p>最后准备去这个站注册www.xxxxx.com</p>  <p>西部万维，西部IDC行业领跑，以最值得信赖的信誉为您提供服务器托管、服务器租用、域名注册、服务器租用、VPS、独立IP虚拟主机等服务</p>  <p>淘宝—网银—支付宝—支付成功！！</p>  <p>嘻嘻 邮箱收信了、</p>  <p>嘿嘿…空间到手了，进入FTP传个大马，因为我购买的是全能型空间，所以直接上传asp php asp.net jsp四类大马</p>  <p>查看，哎，权限bt啊，</p>  <p>（如果权限不bt，难道想被万人骑啊 hoho~~~）</p>  <p>试试看.net马吧</p>  <p>貌似权限比ASP的要大 可跳转</p>  <p>在C:\Program Files 发现了360还有星外的主机管理系统</p>  <p>一、提权之旅</p>  <p>在网上看了很多的星外提权文章，大概可以分为：</p>  <p>星外sa注册表位置在这里可以翻到sa的密码 不过需要破解</p>  <p>HKEY_LOCAL_MACHINE\SYSTEM\LIWEIWENSOFT\INSTALLFREEADMIN\11</p>  <p>C:\Documents and Settings\All Users\Application Data\Microsoft\Media Index\ 星外可写目录</p>  <p>还有一些就不列举了经过测试没有一个可行 ……峰回路转</p>  <p>正我郁闷的时候看到了Global.asa，激动的打开一看既然是sa用户</p>  <p>呵呵提权没问题了吧，不过却：</p>  <p>SQL Server 阻止了对组件 ‘xp_cmdshell’ 的过程’sys.xp_cmdshell’ 的访问</p>  <p>组件删除了，没关系我们恢复</p>  <p>dbcc addextendedproc (&quot;sp_oacreate&quot;,&quot;odsole70.dll&quot;)&#160; <br />dbcc addextendedproc (&quot;xp_cmdshell&quot;,&quot;xplog70.dll&quot;)</p>  <p>恢复好了，执行下命令在创建用户加入管理，，OK搞定</p>  <p>远程连接的时候悲剧了既然限制了管理用户组的权限。哎</p>  <p>继续想其他办法，在网上看了一篇文章</p>  <p>知道星外的ftp是自带的，我们可以通过IIS配置来读取用户密码</p>  <p>打开aspx的IIS间谍功能，既然没有禁止，教大家一个禁止aspx查看IIS配置的方法</p>  <p>找到C:\WINDOWS\system32\activeds.tlb这个文件，取消users权限即可，别人就不能查看你的IIS了</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/IDC_15DB/clip_image001.png" width="558" height="233" /></p>  <p>大家看到上面的比较了红色的FREE….</p>  <p>Freehostrunat这个用户是安装星外时建立的后面的密码并不是什么加密方式其实就是明文密码</p>  <p>我们可以直接远程登陆,在内网的话就转发</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/IDC_15DB/clip_image002.png" width="513" height="375" /></p>  <p>好了，成功拿下服务器…. 继续渗透….</p>
-      
-      </p>
-      
-      <p>
-          <a href="/478.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/483.seo/" title="win内网渗透实例" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T09:27:34.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
+    <h1 itemprop="name">win内网渗透实例</h1>
     
+     
+       <p itemprop="description" >作者：赤龙最近在整理资料时发现一些渗透笔记，于是翻开看看，原来有一个老外的内部网还没有拿下。当时已经给内网的一台机器种植了木马，反正闲着没事就拿它来练练手吧。打开远程居然肉鸡还在，废话就不多说了，下面开始吧。首先来看看已经控制的这台电脑在内网中充当什么角色，并收集一些常规的信息。</p>
+      
     
-    | 
-    <a href='/tag/内网渗透/'>内网渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/473.seo/">渗透某大型内网入侵过程</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        本文阐述：文章从网站入侵到内网渗透提权，作者给大家带来了一篇精彩的内网渗透文章。读后此文你能清晰的认识到内网入侵的细节技术。   由于平时比较忙，用了很久的VPN肉鸡飞掉了，近来正好有时间于是打开google搜索upfile.asp开始找肉鸡，来了台湾某XX站，，为了不必要的麻烦，我隐藏了敏感内容。直接到传asp提示错误，那么直接传了gif以后，查看上传路径发现自己重命名了，如果没有重命名的话在IIS6下百分之90以上可以拿shell了
-      
-      </p>
-      
-      <p>
-          <a href="/473.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-06-12T09:46:14.000Z" itemprop="datePublished">2012-06-12</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/page/56/">← Newer Posts</a>
-    <span class="page-number">Page 57 of 81</span>
-    <a class="older-posts" href="/page/58/">Older Posts →</a>
+    <a href="/481.seo/" title="历时5个月拿下PR7网站思路" itemprop="url">
+  
+    <h1 itemprop="name">历时5个月拿下PR7网站思路</h1>
+    
+     
+       <p itemprop="description" >历时5个月拿下PR7网站思路  作者：xxbing   在腾讯2009年安全技术峰会上我曾经提出一个观点：墨菲定律：如果它能够被黑阔攻破，它就将被攻破。对于一个黑阔来说，他要黑一个企业，仅仅是时间上的问题，总之是成本上的问题，比如有个盗号集团在支持他，他说我给你一年时间你把这个企</p>
+      
+    
+    <time datetime="2012-06-12T09:37:14.000Z" itemprop="datePublished">2012-06-12</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/478.seo/" title="社工+渗透某IDC服务器" itemprop="url">
+  
+    <h1 itemprop="name">社工+渗透某IDC服务器</h1>
+    
+     
+       <p itemprop="description" >作者：hu1s4  最近准备做个教育资源站，就打算在网上买个空间，ok百度下吧看看哪个好点  最后准备去这个站注册www.xxxxx.com  西部万维，西部IDC行业领跑，以最值得信赖的信誉为您提供服务器托管、服务器租用、域名注册、服务器租用、VPS、独立IP虚拟主机等服务  </p>
+      
+    
+    <time datetime="2012-06-12T09:35:13.000Z" itemprop="datePublished">2012-06-12</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/473.seo/" title="渗透某大型内网入侵过程" itemprop="url">
+  
+    <h1 itemprop="name">渗透某大型内网入侵过程</h1>
+    
+     
+           <p itemprop="description" >本文阐述：文章从网站入侵到内网渗透提权，作者给大家带来了一篇精彩的内网渗透文章。读后此文你能清晰的认识到内网入侵的细节技术。   由于平时比较忙，用了很久的VPN肉鸡飞掉了，近来正好有时间于是打开google搜索upfile.asp开始找肉鸡，来了台湾某XX站，，为了不必要的麻烦</p>
+        
+    
+    <time datetime="2012-06-12T09:27:34.000Z" itemprop="datePublished">2012-06-12</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/page/56/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/55/">55</a><a class="page-number" href="/page/56/">56</a><span class="page-number current">57</span><a class="page-number" href="/page/58/">58</a><a class="page-number" href="/page/59/">59</a><span class="space">&hellip;</span><a class="page-number" href="/page/81/">81</a><a class="extend next" rel="next" href="/page/58/">下一页 &raquo;</a>
   </nav>
-</main>
 
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
-      
-<footer class="site-footer">
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+  </body>
+ </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

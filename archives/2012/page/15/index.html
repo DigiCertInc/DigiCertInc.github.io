@@ -1,279 +1,274 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Archives: 2012 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Archives: 2012 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Archives: 2012 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="archive-icon">2012</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-09-03T08:59:18.000Z" itemprop="datePublished">
-          2012-09-03
-      </time>
-    
-    
-    | 
-    <a href='/tag/漏洞/'>漏洞</a>,
-    
-    <a href='/tag/注入/'>注入</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/797.seo/">从分析代码学习挖掘漏洞人民网实例</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><a href="http://bbs.blackbap.org/forum.php?mod=viewthread&amp;tid=2537&amp;fromuid=4372">http://bbs.blackbap.org/forum.php?mod=viewthread&amp;tid=2537</a></p>  <p>作者注：   <br />近日看到论坛上有人发了个“全能大牛”的文章，颇有感慨。其实所谓的“全能”，是来自对基础知识的扎实根基。本文虽谈不上“全能”，也并非什么大做，仅为证明只要根基扎实，你也可以“全能”渗透。    <br />本文特意选用人民网(people.com.cn)中的某一服务器上Web站点作为讲解实例，详细讲述如何根据一个小漏洞逐步分析，扩大范围完成进一步渗透的。    <br />本文仅供研究和学习，不得用于非法用途，否则后果自负。    <br />出于隐私保护的目的，文章所有截图和url经过处理。    <br />本文版权所有，转载请注明出处：Silic Group Hacker Army [BlackBap.Org]    <br />作者：YoCo Smart    <br />来自：Silic Group    <br />站点：<a href="http://blackbap.org/">Http://blackbap.org</a>    <br />相信很多人已经厌倦了这个网络里弥漫的注入，弱口令，万能密码。那么有没有遇到过注入找不到后台，数据库为root或者sa账户却无法写入webshell，得到了后台却拿不到webshell，拿到了webshell却无法提权？？？？？    <br />本文所阐述的例子是：    <br />一台Linux服务器是用了Apache 2.2.10架设了php的网站，数据库为MySQL，网站使用了root账户，但是网站没有后台，也没有phpMyAdmin，服务器中存在一个注入点。因为gpc为on，所以无法写入webshell，但是可以读取服务器上一些已知路径的文件。    <br />那么我们就通过本文来讲一下，如何通过这个注入点，进行下一步渗透的。    <br />我们先来简单描述一下注入点(如果不懂php+MySQL的注入，请参见《<a href="http://bbs.blackbap.org/thread-2433-1-1.html">各色SQL注入文章汇总</a>》)    <br />注入点：</p>  <p><em>.people.com.cn/vote.php?id=3</p>  <p>这个注入点根据存在的文件名就知道，应该是一个投票页面，因为union只有一个字段，所以直接</p>  <p></em>.people.com.cn/vote.php?id=3+union+select+load_file(0x2f6574632f706173737764)+from+mysql.user</p>  <p>就能读到文件了。根据错误回显，得到网站路径为/usr/www。因为gpc设置on，所以</p>  <p>union select 一句话的hex into outfile ‘/usr/www/可写目录/webshell.php’</p>  <p>这样是得不到webshell的，查到MySQL.user中设置的host为%，但是这台服务器对外网实际并未开放3306端口，也无法外联。   <br />那么思路是什么呢？    <br />我们来试着读取网站文件的源码来查找一些其他的漏洞。    <br /></p>
-      
-      </p>
-      
-      <p>
-          <a href="/797.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+  <div class="archiveslist archive-float clearfix">
+   <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">2016年04月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">2015年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">2015年07月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年06月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年05月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">2014年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">2014年06月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">2014年05月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2014年02月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年01月</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年11月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年10月</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年09月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年08月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">2013年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">2013年06月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">2013年05月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">2013年04月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">2013年03月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2013年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">2013年01月</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">2012年12月</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">2012年11月</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">2012年10月</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">2012年09月</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">2012年08月</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">2012年07月</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">2012年06月</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">2012年05月</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">2012年04月</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">2012年03月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">2012年02月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">2012年01月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">2011年12月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">2011年11月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">2011年10月</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">2011年09月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">2011年08月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">2011年07月</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">2011年06月</a><span class="archive-list-count">7</span></li></ul>
+ </div>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-08-31T03:18:49.000Z" itemprop="datePublished">
-          2012-08-31
-      </time>
-    
-    
-    | 
-    <a href='/tag/Metasploit/'>Metasploit</a>,
-    
-    <a href='/tag/0day/'>0day</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/794.seo/">Metasploit利用CVE-2012-4681 java 0day入侵Windows</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><p>作者：Secer</p>  <p>博客：<a href="http://Ha.cker.in" target="_blank">http://Ha.cker.in</a></p>  <p>Q Q：278641414</p>  <p>新手教程，仅为交流和进步，大牛勿喷。</p>  <p>最近java爆<a href="http://ha.cker.in/tag/0day" target="_blank">0day</a>了，很多新手童鞋不知道怎么利用，下面把我自己的研究成果抛砖引玉给大家，见笑了。</p>  <p>0x01 肉鸡环境安装</p>  <p>Java的<a href="http://ha.cker.in/tag/0day" target="_blank">0day</a>，首先当然要在XP测试机里面安装Jre环境，Jre下载地址在这<a href="http://jdk7.java.net/download.html">http://jdk7.java.net/download.html</a>或者<a href="http://www.xdowns.com/soft/6/56/2011/Soft_75169.html">http://www.xdowns.com/soft/6/56/2011/Soft_75169.html</a></p>  <p>我下的是Java Runtime Environment (JRE) 7.0 Update 6 windows-i586.exe如图1：</p>  <p><a href="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image001.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image001_thumb.png" width="576" height="51" /></a></p>  <p>图1</p>  <p>安装直接下一步即可，如图2：</p>  <p><a href="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image002.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image002_thumb.png" width="531" height="420" /></a></p>  <p>图2</p>  <p>安装完成后运行java –version命令看是否可以显示版本，如果显示了即表示安装成功！同时下图看到XP测试机IP为192.168.1.107，如图3：</p>  <p><a href="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image004.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image004_thumb.jpg" width="596" height="321" /></a></p>  <p>图3</p>  <p>同时运行Backtrack 5 虚拟机，Backtrack的IP为192.168.1.106，和测试机在同一局域网，运行<a href="http://ha.cker.in/tag/Metasploit" target="_blank">Metasploit</a>如图4：</p>  <p><a href="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image006.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image006_thumb.jpg" width="596" height="373" /></a></p>  <p>图4</p>  <p>0x02 给<a href="http://ha.cker.in/tag/Metasploit" target="_blank">Metasploit</a>添加模块</p>  <p>我的bt5里的<a href="http://ha.cker.in/tag/Metasploit" target="_blank">Metasploit</a>没有更新，默认当然是没有Java <a href="http://ha.cker.in/tag/0day" target="_blank">0day</a>利用模块的，图5中可以看到684个Exploits：</p>  <p><a href="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image008.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image008_thumb.jpg" width="596" height="216" /></a></p>  <p>图5</p>  <p>下面我们来给<a href="http://ha.cker.in/tag/Metasploit" target="_blank">Metasploit</a>添加利用java漏洞必要的模块，可以到<a href="http://dev.metasploit.com/redmine/projects/framework/repository/revisions/52ca1083c22de7022baf7dca8a1756909f803341">这里</a>下载查看相关模块，如图6：</p>  <p><a href="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image009.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image009" border="0" alt="clip_image009" src="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image009_thumb.png" width="256" height="340" /></a></p>  <p>图6</p>  <p>下载Exploit.class、Exploit.java、java_jre17_exec.rb三个文件分别放到/opt/framework3/msf3目录下如图6所示对应的目录中，添加好了之后运行reload_all重新加载各模块，看到Metasploit里多了一个Exploit现在是685如图8：</p>
-      
-      </p>
-      
-      <p>
-          <a href="/794.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-08-31T02:22:26.000Z" itemprop="datePublished">
-          2012-08-31
-      </time>
-    
-    
-    | 
-    <a href='/tag/提权/'>提权</a>,
-    
-    <a href='/tag/入侵/'>入侵</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/791.seo/">轮奸某黑客学校网站</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>摘自<a href="http://gov.com.im" target="_blank">流亡青年</a></p>  <p>写之前抱怨一下：Fuck,不知道被哪位大牛种马了，刚写好的文档，还有相关文件都没了，囸！</p>  <p>本来没准备搞他，但是前天帮1朋友搞他们学校网络中心时想起来<a href="http://gov.com.im/art_design/2011/1127/CmdH4ck.html">CmdH4ck</a>大黑阔在这个学校（CmdH4ck：吐司黑阔，曾一起参加过比赛，获得第一，RMB3K），于是便顺手检测下主站。    <br />打开主站，<a href="http://wwwxxx.edu.cn">http://wwwxxx.edu.cn</a>    <br />点开一个链接，asp的，加一个’试试，跳出了这个：</p>  <p><a href="http://gov.com.im/uploads/allimg/111127/102Q2G28-0.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/87797fec8afa_10233/clip_image001.png" width="465" height="143" /> </a></p>  <p>还好挂了个VPN，语言这么嚣张，难道是CmdH4ck修补的？   <br />先看看其他分站，主站一般都很安全，突然想起来Gucci那mjj的上次检测我学校时（主站他没拿下，拿的都是有注入和弱口令的一些学院网站），尼玛，他在每个目录都放一个他的Gucci.asp，我删的累死了，然后就去把他学校给xxoo了，不过我囸的是主站，没有恶意，挂了一个txt友情提醒。</p>  <p>走题了，继续，看到<a href="http://A.xxx.edu.cn，感觉页面有点熟悉，随手加了个admin,后台出来了：">http://A.xxx.edu.cn，感觉页面有点熟悉，随手加了个admin,后台出来了：</a></p>  <p><a href="http://gov.com.im/uploads/allimg/111127/102Q2N13-1.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/87797fec8afa_10233/clip_image002.png" width="532" height="174" /></a></p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Powereasy 2006.   <br />注册一个用户abc.asp，上传图片马，    <br />地址：<a href="http://xxx/user/Upload.asp?dialogtype=UserBlogPic&amp;size=5">http://xxx/user/Upload.asp?dialogtype=UserBlogPic&amp;size=5</a>    <br />抓包获得shell地址    <br />原理大家都懂，不解释了。</p>  <p>菜刀成功连接：</p>  <p><a href="http://gov.com.im/uploads/allimg/111127/102Q2K49-2.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/87797fec8afa_10233/clip_image003.png" width="551" height="277" /></a></p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; RP爆发了，这么老的洞竟然没补。。。</p>  <p>上大马，发现不支持aspx和php，不过还好组件在，可执行目录也多。端口扫了下，常见端口一个没开。服务器是一机多IP，从ipconfig的结果来看，主站www也在服务器上，不过当前的shell下还没权限跨目录到主站www目录下。只好提权了，传exp，被杀了，tasklist看到杀软竟然是趋势，感慨一句，CmdH4ck学校真有钱。。。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/791.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/797.seo/" title="从分析代码学习挖掘漏洞人民网实例" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-08-31T00:26:36.000Z" itemprop="datePublished">
-          2012-08-31
-      </time>
+    <h1 itemprop="name">从分析代码学习挖掘漏洞人民网实例</h1>
     
-    
-    | 
-    <a href='/tag/RedHat/'>RedHat</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/788.seo/">redhat安装chrome</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        最近在学习linux，安装的是redhat，自带的firefox，由于不习惯firefox，想安装一个chrome，在网上找的安装方法，记录一下方便以后查找   1.创建一个文件/etc/yum.repos.d/google.repo   2.如果是32位的   [google-chrome]name=google-chrome - 32-bitbaseurl=http://dl.google.com/linux/chrome/rpm/
-      
-      </p>
-      
-      <p>
-          <a href="/788.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-09-03T08:59:18.000Z" itemprop="datePublished">2012-09-03</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-08-30T22:11:19.000Z" itemprop="datePublished">
-          2012-08-31
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透测试/'>渗透测试</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/782.seo/">对某非主流外贸网站的渗透测试</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>首先粗略的看了下网站的整体结构、</p>  <p><a href="http://yezi.us/wp-content/uploads/2012/06/%E5%9B%BE%E7%89%8711.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/62a0b800d9f9_C76C/clip_image001.png" width="320" height="191" /></a></p>  <p>发现不是那种5分钟就能叼下的垃圾企业站。</p>  <p>旁站看了下都是同一个程序做的</p>  <p><a href="http://yezi.us/wp-content/uploads/2012/06/%E5%9B%BE%E7%89%872.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/62a0b800d9f9_C76C/clip_image002.png" width="320" height="112" /></a></p>  <p>C 段我就懒的看了，因为像这种站所在机房你能ARP到数据的几率比中国足球队进世界杯还难。</p>  <p>话又说回来了。去年做外贸的时候公司用的貌似就是这套程序，当时只是粗略的看了下这套程序，没看出啥严重的漏洞。</p>  <p>最近公司无事，找以前同事拿来这套程序源码看了下。</p>  <p>发现如下安全问题：</p>  <p>New.asp 中</p>  <div class="codearea linewrap">   <pre class="alt"><span style="color: #333333">&lt;!–#include file=&quot;top.asp&quot;–&gt;</span></pre><br><br>  <pre><span style="color: #333333">&lt;%</span></pre><br><br>  <pre class="alt"><span style="color: #333333">page=clng(request(&quot;page&quot;))</span></pre><br><br>  <pre><span style="color: #333333">Set rs=Server.CreateObject(&quot;ADODB.RecordSet&quot;)</span></pre><br><br>  <pre class="alt"><span style="color: #333333">sql=&quot;select * from member_news where type=’&quot;&amp;request(&quot;type&quot;)&amp;&quot;’ order by order0 desc&quot;</span></pre><br><br>  <pre><span style="color: #333333">rs.Open sql,conn,1,1</span></pre><br><br>  <pre class="alt"><span style="color: #333333">if rs.eof and rs.bof then</span></pre><br><br>  <pre><span style="color: #333333">  response.Write(&quot;No news!&quot;)</span></pre><br><br>  <pre class="alt"><span style="color: #333333">else</span></pre><br><br>  <pre><span style="color: #333333">%&gt;</span></pre><br><br>  <pre class="alt"><span style="color: #333333"></span></pre><br></div><br><style type="text/css"><br><br>.codearea{ color:black;  background-color:white;  line-height:18px;  border:1px solid #4f81bd;  margin:0;  width:auto !important;  width:100%;  overflow:auto;  text-align:left;  font-size:12px;  font-family: “Courier New”,”Consolas”,”Fixedsys”,”BitStream Vera Sans Mono”, courier,monospace,serif}<br>.codearea pre{ color:black; line-height:18px;  padding:0 0 0 12px !important; margin:0em;  background-color:#fff !important}<br>.linewrap pre{white-space:pre-wrap;  white-space:-moz-pre-wrap;  white-space:-pre-wrap;  white-space:-o-pre-wrap;  word-wrap:break-word;  word-break:normal}<br>.codearea pre.alt{ background-color:#f7f7ff !important}<br>.codearea .lnum{color:#4f81bd;line-height:18px}</style>
-      
-      </p>
-      
-      <p>
-          <a href="/782.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/794.seo/" title="Metasploit利用CVE-2012-4681 java 0day入侵Windows" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-08-30T22:01:40.000Z" itemprop="datePublished">
-          2012-08-31
-      </time>
+    <h1 itemprop="name">Metasploit利用CVE-2012-4681 java 0day入侵Windows</h1>
     
-    
-    | 
-    <a href='/tag/C段/'>C段</a>,
-    
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/社工/'>社工</a>,
-    
-    <a href='/tag/嗅探/'>嗅探</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/779.seo/">友谊的 招呼 -对母校的亲密检测</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>我记得在校的时候某校的领导以及老师来到我们学校参观，虽然我见到对方学校的领导我会非常有礼貌的打招呼，一次回到家里的时候，出于友谊，决定为此国家重点级的学校进行友情的“招呼”！</p>  <p>国家级重点级，相对震精的学校，最近我在看《黑客与画家》，里面第一篇的内容是“为什么书呆子不受欢迎”，有段作者是说公立的学校的老师就像监狱里的狱卒，除了防止你打架做坏事之外，都不会管你！我就得说得非常好！作为国家级重点级的学校，这也是更加的！好了，不说题外话了，这篇文章是以前“招呼”的了！所以现在写下来，给大家参考下，虽然不是很好，但是各位也不要喷我吧！</p>  <p>我重申一次，我确实是个贱人</p>  <p>0x00</p>  <p>作为国家级的重点学校，我听说他的服务器是ZF给的，买了200W左右，当然我也参观过，虽然外表看不出来，我想那个网管老师也不会吹牛B吧，就是这样才出于好奇心，才弄得！</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/df99b5f14772_C386/clip_image002_thumb.jpg" width="574" height="286" /></a></p>  <p>为了防止被万人骑，所以部分过滤了！</p>  <p>手握神器，开始动工！这次的“招呼”任务我会在win下进行，当然如果需要的情况下，我会使用win+linux交互渗透！</p>  <p>0x01</p>  <p>踩点。</p>  <p>作为一个国家级的重点学校，我相信安全也是非常好的！起码也是服务器独立域名，内网等吧！收集下信息，我会采用某社工神器这个软件我非常喜欢</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/df99b5f14772_C386/clip_image004_thumb.jpg" width="573" height="358" /></a></p>  <p>说下他的用途吧，适用大型<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a>适用</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image006.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/df99b5f14772_C386/clip_image006_thumb.jpg" width="128" height="478" /></a></p>  <p>有各种信息的收集，不懂E文的朋友，可能会比较亏哦！这个工具其实已经融入了bt5系列了，呵呵，说下现在收集到的情况吧。Win03+iis6.0+内网+C段一个站，无CDN，asp+php+aspx，<a href="http://ha.cker.in/tag/C段" target="_blank">C段</a>的站是asp+aspx+win03+iis6.0+内网！招聘站一个，三台服务器的管理都是同一人，说下怎么收集的吧！首先google语法。Site:url inurl:asp|php|aspx|jsp。还有根据报错等清楚是iis，我就比较懒，火狐插件直接获得</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image008.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/df99b5f14772_C386/clip_image008_thumb.jpg" width="445" height="275" /></a></p>  <p>对两台服务器进行了扫描端口与分析工作，在win下，我会选择用superscan，如果在linux下我会选择更为精准的nmap！superscan比较简单，因为在gui，直接填入IP和所需的端口就行了，如果在linux下的nmap格式就是：namp –v –a ip</p>  <p>得到的端口有：</p>  <p>21 ftp</p>  <p>80 www</p>  <p>面对以上者两个端口，可以参考的攻击思路如下：</p>  <p>21—爆破模式，或者社工，嗅探等。</p>  <p>80—iis写权限，以及脚本渗透。</p>  <p>有些人问，不是有php和aspx吗？！应该会扫描到1433和3306的啊！很简单，以为他不允许对外访问，或者内网，他就扫描不出了啊。</p>  <p>扫描了整站目录以及文件，有二级目录上的站。暂时没发现主站的后台，另一个分站是教师系统，我见过那些老师是在上面进行公告浏览以及发布什么规定的地方。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/779.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-08-31T03:18:49.000Z" itemprop="datePublished">2012-08-31</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/archives/2012/page/14/">← Newer Posts</a>
-    <span class="page-number">Page 15 of 40</span>
-    <a class="older-posts" href="/archives/2012/page/16/">Older Posts →</a>
+    <a href="/791.seo/" title="轮奸某黑客学校网站" itemprop="url">
+  
+    <h1 itemprop="name">轮奸某黑客学校网站</h1>
+    
+    <time datetime="2012-08-31T02:22:26.000Z" itemprop="datePublished">2012-08-31</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/788.seo/" title="redhat安装chrome" itemprop="url">
+  
+    <h1 itemprop="name">redhat安装chrome</h1>
+    
+    <time datetime="2012-08-31T00:26:36.000Z" itemprop="datePublished">2012-08-31</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/782.seo/" title="对某非主流外贸网站的渗透测试" itemprop="url">
+  
+    <h1 itemprop="name">对某非主流外贸网站的渗透测试</h1>
+    
+    <time datetime="2012-08-30T22:11:19.000Z" itemprop="datePublished">2012-08-31</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/779.seo/" title="友谊的 招呼 -对母校的亲密检测" itemprop="url">
+  
+    <h1 itemprop="name">友谊的 招呼 -对母校的亲密检测</h1>
+    
+    <time datetime="2012-08-30T22:01:40.000Z" itemprop="datePublished">2012-08-31</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix archive-nav">
+    <a class="extend prev" rel="prev" href="/archives/2012/page/14/">&laquo; 上一页</a><a class="page-number" href="/archives/2012/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2012/page/13/">13</a><a class="page-number" href="/archives/2012/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/archives/2012/page/16/">16</a><a class="page-number" href="/archives/2012/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2012/page/40/">40</a><a class="extend next" rel="next" href="/archives/2012/page/16/">下一页 &raquo;</a>
   </nav>
-</main>
 
-
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

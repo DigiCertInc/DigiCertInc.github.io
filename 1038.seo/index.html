@@ -1,62 +1,145 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>攻击JavaWeb应用 3 -SQL注入 1 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
+  <meta charset="UTF-8">
+  
+    <title>攻击JavaWeb应用 3 -SQL注入 1 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="攻击JavaWeb应用[3]-SQL注入[1]  http://drops.wooyun.org/tips/236  注:本节重点在于让大家熟悉各种SQL注入在JAVA当中的表现，本想带点ORM框架实例，但是与其几乎无意，最近在学习MongoDb，挺有意思的，后面有机会给大家补充相关。  0x00 JDBC和ORM    JDBC:  JDBC（Java Data Base Connectivity,java数据库连接）是一种用于执行SQL语句的Java API，可以为多种关系数据库提供统一访问。  JPA:  JPA全称Java Persistence API. JPA通过JDK 5.0注解或XML描述对象－关系表的映射关系，并将运行期的实体对象持久化到数据库中。是一个ORM规范。Hibernate是JPA的具体实现。但是Hibernate出现的时间早于JPA（因为Hibernate作者很狂，sun看不惯就叫他去制定JPA标准去了哈哈）。  ORM:  对象关系映射（ORM）目前有Hibernate、OpenJPA、TopLink、EclipseJPA等实现。  JDO:  JDO(Java Data Object )是Java对象持久化的新的规范，也是一个用于存取某种数据仓库中的对象的标准化API。没有听说过JDO没有关系，很多人应该知道PDO,ADO吧？概念一样。  关系:  JPA可以依靠JDBC对JDO进行对象持久化，而ORM只是JPA当中的一个规范，我们常见的Hibernate、Mybatis和TopLink什么的都是ORM的具体实现。  概念性的东西知道就行了，能记住最好。很多东西可能真的是会用，但是要是让你去定义或者去解释的时候发现会有些困难。  重点了解JDBC是个什么东西，知道Hibernate和Mybatis是ORM的具体的实现就够了。  Object:  在Java当中Object类（java.lang.object）是所有Java类的祖先。每个类都使用 Object 作为超类。所有对象（包括数组）都实现这个类的方法。所以在认识Java之前应该有一个对象的概念。  关系型数据库和非关系型数据库：  数据库是按照数据结构来组织、存储和管理数据的仓库。  关系型数据库，是建立在关系模型基础上的数据库。关系模型就是指二维表格模型,因而一个关系型数据库就是由二维表及其之间的联系组成的一个数据组织。当前主流的关系型数据库有Oracle、DB2、Microsoft SQL Server、Microsoft Access、MySQL等。  NoSQL，指的是非关系型的数据库。随着互联网web2.0网站的兴起，传统的关系数据库在应付web2.0网站，特别是超大规模和高并发的SNS类型的web2.0纯动态网站已经显得力不从心，暴露了很多难以克服的问题，而非关系型的数据库则由于其本身的特点得到了非常迅速的发展。  1、High performance - 对数据库高并发读写的需求。2、Huge Storage - 对海量数据的高效率存储和访问的需求。3、High Scalability &amp;amp;&amp;amp; High Availability- 对数据库的高可扩展性和高可用性的需求。常见的非关系型数据库:Membase、MongoDB、Hypertable、Apache Cassandra、CouchDB等。
 
-  
-  
-  
+常见的NoSQL数据库端口：
 
-  
+MongoDB:27017、28017、27080
+
+CouchDB:5984
+
+Hbase:9000
+
+Cassandra:9160
+
+Neo4j:7474
+
+Riak:8098
+
+在引入这么多的概念之后我们今天的故事也就要开始了,概念性的东西后面慢慢来。引入这些东西不只仅仅是为了讲一个SQL注入，后面很多地方可能都会用到。
+
+传统的JDBC大于要经过这么些步骤完成一次查询操作，java和数据库的交互操作:
+
+准备JDBC 驱动
+
+加载驱动
+
+获取连接
+
+预编译SQL
+
+执行SQL
+
+处理结果集
+
+依次释放连接
+
+sun只是在JDBC当中定义了具体的接口，而JDBC接口的具体的实现是由数据库提供厂商去写具体的实现的，比如说Connection对象，不同的数据库的实现方式是不同的。
+
+使用传统的JDBC的项目已经越来越少了，曾经的model1和model2已经被MVC给代替了。如果用传统的JDBC写项目你不得不去管理你的数据连接、事物等。而用ORM框架一般程序员只用关心执行SQL和处理结果集就行了。比如Spring的JdbcTemplate、Hibernate的HibernateTemplate提供了一套对dao操作的模版，对JDBC进行了轻量级封装。开发人员只需配置好数据源和事物一般仅需要提供一个SQL、处理SQL执行后的结果就行了，其他的事情都交给框架去完成了。
+
+
+
+0x01 经典的JDBC的Sql注入
+
+
+
+Sql注入产生的直接原因是拼凑SQL，绝大多数程序员在做开发的时候并不会去关注SQL最终是怎么去运行的，更不会去关注SQL执行的安全性。因为时间紧，任务重完成业务需求就行了，谁还有时间去管你什么SQL注入什么？还不如喝喝茶，看看妹子。正是有了这种懒惰的程序员SQL注入一直没有消失，而这当中不乏一些大型厂商。有的人可能心中有防御Sql注入意识，但是在面对复杂业务的时候可能还是存在侥幸心理，最近还是被神奇路人甲给脱裤了。为了处理未知的SQL注入攻击，一些大厂商开始采用SQL防注入甚至是使用某些厂商的WAF。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="攻击JavaWeb应用 3 -SQL注入 1 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/1038.seo/" title="攻击JavaWeb应用 3 -SQL注入 1" itemprop="url">攻击JavaWeb应用 3 -SQL注入 1</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2013-10-21T19:25:39.000Z" itemprop="datePublished">2013-10-22</time>
+    Updated:<time datetime="2016-08-20T11:03:54.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
-
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2013-10-21T19:25:39.000Z" itemprop="datePublished">
-          2013-10-22
-      </time>
-    
-    
-    | 
-    <a href='/tag/360/'>360</a>
-    
-    
-</span>
-    <h1 class="post-title">攻击JavaWeb应用 3 -SQL注入 1</h1>
-    <section class="post-content">
-      <p><a href="http://drops.wooyun.org/tips/236" target="_blank" rel="external">攻击JavaWeb应用[3]-SQL注入[1]</a></p>  <p><a href="http://drops.wooyun.org/tips/236" target="_blank" rel="external">http://drops.wooyun.org/tips/236</a></p>  <h5>注:本节重点在于让大家熟悉各种SQL注入在JAVA当中的表现，本想带点ORM框架实例，但是与其几乎无意，最近在学习MongoDb，挺有意思的，后面有机会给大家补充相关。</h5>  <h5>0x00 JDBC和ORM</h5>  <hr align="center" width="100%" size="2">  <h6>JDBC:</h6>  <p>JDBC（Java Data Base Connectivity,java数据库连接）是一种用于执行SQL语句的Java API，可以为多种关系数据库提供统一访问。</p>  <h6>JPA:</h6>  <p>JPA全称Java Persistence API. JPA通过JDK 5.0注解或XML描述对象－关系表的映射关系，并将运行期的实体对象持久化到数据库中。是一个ORM规范。Hibernate是JPA的具体实现。但是Hibernate出现的时间早于JPA（因为Hibernate作者很狂，sun看不惯就叫他去制定JPA标准去了哈哈）。</p>  <h6>ORM:</h6>  <p>对象关系映射（ORM）目前有Hibernate、OpenJPA、TopLink、EclipseJPA等实现。</p>  <h6>JDO:</h6>  <p>JDO(Java Data Object )是Java对象持久化的新的规范，也是一个用于存取某种数据仓库中的对象的标准化API。没有听说过JDO没有关系，很多人应该知道PDO,ADO吧？概念一样。</p>  <h6>关系:</h6>  <p>JPA可以依靠JDBC对JDO进行对象持久化，而ORM只是JPA当中的一个规范，我们常见的Hibernate、Mybatis和TopLink什么的都是ORM的具体实现。</p>  <p>概念性的东西知道就行了，能记住最好。很多东西可能真的是会用，但是要是让你去定义或者去解释的时候发现会有些困难。</p>  <p>重点了解JDBC是个什么东西，知道Hibernate和Mybatis是ORM的具体的实现就够了。</p>  <h6>Object:</h6>  <p>在Java当中Object类（java.lang.object）是所有Java类的祖先。每个类都使用 Object 作为超类。所有对象（包括数组）都实现这个类的方法。所以在认识Java之前应该有一个对象的概念。</p>  <h6>关系型数据库和非关系型数据库：</h6>  <p>数据库是按照数据结构来组织、存储和管理数据的仓库。</p>  <p>关系型数据库，是建立在关系模型基础上的数据库。关系模型就是指二维表格模型,因而一个关系型数据库就是由二维表及其之间的联系组成的一个数据组织。当前主流的关系型数据库有Oracle、DB2、Microsoft SQL Server、Microsoft Access、MySQL等。</p>  <p>NoSQL，指的是非关系型的数据库。随着互联网web2.0网站的兴起，传统的关系数据库在应付web2.0网站，特别是超大规模和高并发的SNS类型的web2.0纯动态网站已经显得力不从心，暴露了很多难以克服的问题，而非关系型的数据库则由于其本身的特点得到了非常迅速的发展。</p>  <pre><code>1、High performance - 对数据库高并发读写的需求。</code></pre><br><br><pre><code>2、Huge Storage - 对海量数据的高效率存储和访问的需求。</code></pre><br><br><pre><code>3、High Scalability &amp;&amp; High Availability- 对数据库的高可扩展性和高可用性的需求。</code></pre><br><br><p>常见的非关系型数据库:Membase、MongoDB、Hypertable、Apache Cassandra、CouchDB等。</p>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">注:本节重点在于让大家熟悉各种SQL注入在JAVA当中的表现，本想带点ORM框架实例，但是与其几乎无意，最近在学习MongoDb，挺有意思的，后面有机会给大家补充相关。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">0x00 JDBC和ORM</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">JDBC:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">JPA:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.</span> <span class="toc-text">ORM:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.4.</span> <span class="toc-text">JDO:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.5.</span> <span class="toc-text">关系:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.6.</span> <span class="toc-text">Object:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.7.</span> <span class="toc-text">关系型数据库和非关系型数据库：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">0x01 经典的JDBC的Sql注入</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">3.1.</span> <span class="toc-text">JDBCSqlInjectionTest.java类：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">3.2.</span> <span class="toc-text">小结论：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">0x02 PreparedStatement实现防注入</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">4.1.</span> <span class="toc-text">Web中绕过SQL防注入：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">4.2.</span> <span class="toc-text">Web当中最容易出现SQL注入的地方：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">4.3.</span> <span class="toc-text">关于注入页面报错：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">4.4.</span> <span class="toc-text">Spring中如何安全的拼SQL(JDBC同理)：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">0x03 转战Web平台</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">5.1.</span> <span class="toc-text">Mysql查询和注入技巧：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">5.2.</span> <span class="toc-text">CONCAT：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">5.3.</span> <span class="toc-text">GROUP_CONCAT</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">5.4.</span> <span class="toc-text">注入点友情备份:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">5.5.</span> <span class="toc-text">注入点root权限提权：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">5.6.</span> <span class="toc-text">1、写启动项：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">5.7.</span> <span class="toc-text">2、失败的注入点UDF提权尝试：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">5.8.</span> <span class="toc-text">MOF和sethc提权：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">5.9.</span> <span class="toc-text">Mysql小结：</span></a></li></ol></li></ol>
+		</div>
+		
+		<p><a href="http://drops.wooyun.org/tips/236" target="_blank" rel="external">攻击JavaWeb应用[3]-SQL注入[1]</a></p>  <p><a href="http://drops.wooyun.org/tips/236" target="_blank" rel="external">http://drops.wooyun.org/tips/236</a></p>  <h5>注:本节重点在于让大家熟悉各种SQL注入在JAVA当中的表现，本想带点ORM框架实例，但是与其几乎无意，最近在学习MongoDb，挺有意思的，后面有机会给大家补充相关。</h5>  <h5>0x00 JDBC和ORM</h5>  <hr align="center" width="100%" size="2">  <h6>JDBC:</h6>  <p>JDBC（Java Data Base Connectivity,java数据库连接）是一种用于执行SQL语句的Java API，可以为多种关系数据库提供统一访问。</p>  <h6>JPA:</h6>  <p>JPA全称Java Persistence API. JPA通过JDK 5.0注解或XML描述对象－关系表的映射关系，并将运行期的实体对象持久化到数据库中。是一个ORM规范。Hibernate是JPA的具体实现。但是Hibernate出现的时间早于JPA（因为Hibernate作者很狂，sun看不惯就叫他去制定JPA标准去了哈哈）。</p>  <h6>ORM:</h6>  <p>对象关系映射（ORM）目前有Hibernate、OpenJPA、TopLink、EclipseJPA等实现。</p>  <h6>JDO:</h6>  <p>JDO(Java Data Object )是Java对象持久化的新的规范，也是一个用于存取某种数据仓库中的对象的标准化API。没有听说过JDO没有关系，很多人应该知道PDO,ADO吧？概念一样。</p>  <h6>关系:</h6>  <p>JPA可以依靠JDBC对JDO进行对象持久化，而ORM只是JPA当中的一个规范，我们常见的Hibernate、Mybatis和TopLink什么的都是ORM的具体实现。</p>  <p>概念性的东西知道就行了，能记住最好。很多东西可能真的是会用，但是要是让你去定义或者去解释的时候发现会有些困难。</p>  <p>重点了解JDBC是个什么东西，知道Hibernate和Mybatis是ORM的具体的实现就够了。</p>  <h6>Object:</h6>  <p>在Java当中Object类（java.lang.object）是所有Java类的祖先。每个类都使用 Object 作为超类。所有对象（包括数组）都实现这个类的方法。所以在认识Java之前应该有一个对象的概念。</p>  <h6>关系型数据库和非关系型数据库：</h6>  <p>数据库是按照数据结构来组织、存储和管理数据的仓库。</p>  <p>关系型数据库，是建立在关系模型基础上的数据库。关系模型就是指二维表格模型,因而一个关系型数据库就是由二维表及其之间的联系组成的一个数据组织。当前主流的关系型数据库有Oracle、DB2、Microsoft SQL Server、Microsoft Access、MySQL等。</p>  <p>NoSQL，指的是非关系型的数据库。随着互联网web2.0网站的兴起，传统的关系数据库在应付web2.0网站，特别是超大规模和高并发的SNS类型的web2.0纯动态网站已经显得力不从心，暴露了很多难以克服的问题，而非关系型的数据库则由于其本身的特点得到了非常迅速的发展。</p>  <pre><code>1、High performance - 对数据库高并发读写的需求。</code></pre><br><br><pre><code>2、Huge Storage - 对海量数据的高效率存储和访问的需求。</code></pre><br><br><pre><code>3、High Scalability &amp;&amp; High Availability- 对数据库的高可扩展性和高可用性的需求。</code></pre><br><br><p>常见的非关系型数据库:Membase、MongoDB、Hypertable、Apache Cassandra、CouchDB等。</p>
 
 <p>常见的NoSQL数据库端口：</p>
 
@@ -630,94 +713,352 @@
 
 <h6>Mysql小结：</h6>
 
-<p>我想讲的应该是一种方法而不是SQL怎么去写，学会了方法自然就会自己去拓展，当然了最好不要向上面udf那么二。有了上面的demo相信大家都会知道怎么去修改满足自己的需求了。学的不只是方法而是思路切记！</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1038.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1038.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1038.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1038.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
+<p>我想讲的应该是一种方法而不是SQL怎么去写，学会了方法自然就会自己去拓展，当然了最好不要向上面udf那么二。有了上面的demo相信大家都会知道怎么去修改满足自己的需求了。学的不只是方法而是思路切记！</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/1039.seo/">
-        ← 攻击JavaWeb应用 4 -SQL注入 2
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/1037.seo/">
-        攻击JavaWeb应用 2 -CS交互安全 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/Web安全/">Web安全</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/360/">360</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/1039.seo/" title="攻击JavaWeb应用 4 -SQL注入 2">
+  <strong>Prev:</strong><br/>
+  <span>
+  攻击JavaWeb应用 4 -SQL注入 2</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/1037.seo/"  title="攻击JavaWeb应用 2 -CS交互安全">
+ <strong>Next:</strong><br/> 
+ <span>攻击JavaWeb应用 2 -CS交互安全
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-攻击JavaWeb应用 3 -SQL注入 1" data-title="攻击JavaWeb应用 3 -SQL注入 1" data-url="http://ha.cker.in/1038.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

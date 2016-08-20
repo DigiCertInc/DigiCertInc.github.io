@@ -1,290 +1,274 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Archives: 2015 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Archives: 2015 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Archives: 2015 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="archive-icon">2015</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2015-10-21T02:13:20.000Z" itemprop="datePublished">
-          2015-10-21
-      </time>
-    
-    
-    | 
-    <a href='/tag/xss/'>xss</a>,
-    
-    <a href='/tag/SQL注入/'>SQL注入</a>,
-    
-    <a href='/tag/移动APP漏洞/'>移动APP漏洞</a>,
-    
-    <a href='/tag/OWASP/'>OWASP</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1132.seo/">通过IOS Android App获取APP后端数据</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>本文原创作者：bt0sea</p>  <p><a href="http://image.3001.net/images/20151020/14453344712097.jpg!small"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="创意手机app汇总.jpg" border="0" alt="clip_image001" src="http://img.cker.in/IOSAndroidAppAPP_1001C/clip_image001.jpg" width="694" height="464" /></a></p>  <p><b>0</b><b>×00、业务需求</b></p>  <p><b>移动应用产业以爆炸性的速度呈指数增长，但移动应用的安全问题落后于应用的发展速度。由于黑客事件变得越来越公开，对企业的影响比以往任何时候都更大。黑客渗透获取用户敏感数据后，出于商业目的销售，或者公开。所以，在移动APP端对企业数据的保护尤为重要。</b></p>  <p>P2P网站、金融等相关的网站、APP保存着用户的身份信息（真实姓名、身份证号、手机号、征信证明、银行流水等）。目前趋势是<a href="http://ha.cker.in/tag/移动APP漏洞" target="_blank">移动APP漏洞</a>层出不穷，今天的移动安全相当于十年前web服务器安全的级别。基本上可以得出这样的结论：根据权威机构评估，平均每一个移动APP应用大约有3.5个安全漏洞，Apk 就是open source code代名词。</p>  <p>但是，单纯研究Mobile APP安全性问题，无法利用高危，获得服务器端的数据。所以，在分析移动APP漏洞的同时，要重点分析连接移动APP的RESTful API Web service。为什么要提RESTful API Web service呢？普通web架构+JSON不就成了么？经过分析大部分有价值数据的网站都是使用RESTful API Web service。这是热需求。</p>  <p>咱们先看看哪些大咖用这种设计架构，github/fackbook等。不了解RESTful API Web Service的同学请参考：</p>  <p><a href="http://www.ruanyifeng.com/blog/2014/05/restful_api.html">http://www.ruanyifeng.com/blog/2014/05/restful_api.html</a></p>  <p><b>0</b><b>×01、研究手段</b></p>  <p><b>一、破解思路：</b></p>  <p>其实重点突破RESTful API Web Service 还是通过iOS/Android App。由于很多高大上的网站为了安全性，把Web网站和移动APP隔离，发现使用http(s)://api(OpenApi).xxx.com/login/v1?phone=13811110000&amp;sgin=022BEC9EE1B935B50D1193A07A3AD7B2。都是通过移动APP抓到的包。所以，我们先看看移动端安全风险主要有哪些，我们如何下手，其实<a href="http://ha.cker.in/tag/OWASP" target="_blank">OWASP</a> Mobile Top 10 Risks给我们指引了方向：</p>  <p>M1: 不安全的服务器端访问控制</p>  <p>M2: 不安全的数据存储</p>  <p>M3: 传输层保护不足</p>  <p>M4: 非预期的数据泄露</p>  <p>M5: 脆弱的认证和授权</p>  <p>M6: 已知的弱加密算法</p>  <p>M7: 客户端注入</p>  <p>M8: 通过不被信任的输入改变安全设定</p>  <p>M9: 会话处理不当</p>  <p>M10: 缺乏二进制保护</p>  <p>虽然说官网总结的很好，但是对于服务器端渗透从字面上只有M1。但是个人觉得需要配合APP破解才能达到最佳效果。那么，具体应该怎么操作呢？</p>  <p><b>M1</b><b>：不安全的服务器端访问控制</b></p>  <p>(1)通过android移动APP程序攻击服务器端业务逻辑。</p>  <p>(2)验证服务器端对输入校验。</p>  <p>(3)通用 <a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a> <a href="http://ha.cker.in/tag/xss" target="_blank">XSS</a>跨站脚本，不安全的认证检查。</p>  <p>(4)通过代理方式操纵伪造数据提交。</p>  <p>当然要配合M2相关内容。</p>  <p><b>M2</b><b>：不安全的数据存储</b></p>  <p>(1)敏感信息：用户名、密码、加密key、信用卡信息、session识别码、token等。</p>  <p>(2)个人信息：手机号、家庭住址、电子邮件、位置信息等。</p>  <p>(3)还有一些可能包含敏感信息的文件存储：SQLite databases 、Log Files 、XML Data Stores or Manifest Files 、Binary data stores 、SD Card、Cloud</p>  <p><b>二、具体攻击方法</b></p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1132.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+  <div class="archiveslist archive-float clearfix">
+   <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">2016年04月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">2015年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">2015年07月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年06月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年05月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">2014年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">2014年06月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">2014年05月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2014年02月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年01月</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年11月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年10月</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年09月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年08月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">2013年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">2013年06月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">2013年05月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">2013年04月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">2013年03月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2013年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">2013年01月</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">2012年12月</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">2012年11月</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">2012年10月</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">2012年09月</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">2012年08月</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">2012年07月</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">2012年06月</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">2012年05月</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">2012年04月</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">2012年03月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">2012年02月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">2012年01月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">2011年12月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">2011年11月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">2011年10月</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">2011年09月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">2011年08月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">2011年07月</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">2011年06月</a><span class="archive-list-count">7</span></li></ul>
+ </div>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2015-09-18T00:48:16.000Z" itemprop="datePublished">
-          2015-09-18
-      </time>
-    
-    
-    | 
-    <a href='/tag/Redis/'>Redis</a>,
-    
-    <a href='/tag/shell/'>shell</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1131.seo/">Redis未授权访问漏洞获取shell，及写shell报错解决办法</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>某日遇上<a href="http://ha.cker.in/tag/Redis" target="_blank">Redis</a>未授权访问,刚好有PHPINFO知道了路径，就可以直接写<a href="http://ha.cker.in/tag/shell" target="_blank">shell</a>啦！</p>  <p>看下面的图，是不是很顺利？？</p>  <p><a href="http://img.cker.in/Redisshellshell_EBD4/image.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/Redisshellshell_EBD4/image_thumb.png" width="577" height="213" /></a> </p>  <p>结果……发现写入成功，访问报错，PHP代码解析有问题了？</p>  <p><a href="http://img.cker.in/Redisshellshell_EBD4/image_3.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/Redisshellshell_EBD4/image_thumb_3.png" width="574" height="123" /></a> </p>  <p>我们写入txt文件，下载后查看什么原因</p>  <p><a href="http://img.cker.in/Redisshellshell_EBD4/image_4.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/Redisshellshell_EBD4/image_thumb_4.png" width="577" height="294" /></a> </p>  <p>多了个问号字符出现在代码标签处开始处，所以下面的php代码直接执行不了了！</p>  <p><a href="http://img.cker.in/Redisshellshell_EBD4/clip_image002.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Redisshellshell_EBD4/clip_image002_thumb.jpg" width="580" height="260" /></a></p>  <p>重新写马，闭合也不行，访问还是报错</p>  <p><a href="http://img.cker.in/Redisshellshell_EBD4/image_5.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/Redisshellshell_EBD4/image_thumb_5.png" width="538" height="119" /></a> </p>  <p>查下资料找到解决方法，先把原来的数据备份，然后清空，这个前面的<em>&lt;??</em>字符就不会影响到我们写马了!</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1131.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2015-09-17T23:35:01.000Z" itemprop="datePublished">
-          2015-09-18
-      </time>
-    
-    
-    | 
-    <a href='/tag/Mongodb/'>Mongodb</a>,
-    
-    <a href='/tag/leanote/'>leanote</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1130.seo/">团队笔记共享程序Leanote安装及配置</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        测试日志  win7+leanote+mongodb+nginx+php  1、安装数据库Mongodb  下载地址https://fastdl.mongodb.org/win32/mongodb-win32-x86_64-2008plus-ssl-3.0.5-signed.msi  &#160;  Mongodb安装服务    D:\MongoDB&gt;mongod –install –logpath=d:\MongoDB\logs
-      
-      </p>
-      
-      <p>
-          <a href="/1130.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1132.seo/" title="通过IOS Android App获取APP后端数据" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2015-07-30T07:28:32.000Z" itemprop="datePublished">
-          2015-07-30
-      </time>
+    <h1 itemprop="name">通过IOS Android App获取APP后端数据</h1>
     
-    
-    | 
-    <a href='/tag/Sublime/'>Sublime</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1126.seo/">Mac下Sublime Text 2 3总是以新窗口打开文件的解决办法</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        Windows/Linux下的Sublime总是默认的以标签页的形式打开关联的文件，但是在Mac下使用Sublime打开文件，总是使用新窗口。    不用多久，就有了一堆Sublime的窗口，找东西很麻烦。    解决办法如下：    sublime text 2.x：   具体设置：Preferences -&gt; Settings – Default -&gt; 搜索open_files_in_new_window，将其true 
-      
-      </p>
-      
-      <p>
-          <a href="/1126.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2015-10-21T02:13:20.000Z" itemprop="datePublished">2015-10-21</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2015-07-20T18:44:52.000Z" itemprop="datePublished">
-          2015-07-21
-      </time>
-    
-    
-    | 
-    <a href='/tag/cobaltstrike/'>cobaltstrike</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1125.seo/">Cobaltstrike发送钓鱼邮件</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        转载有毒By Secer@http://ha.cker.in  Cobaltstrike有发送传播Email的功能，借助此客户端我们可以方便的发送钓鱼邮件到目标群。  我们需要Cobaltstrike环境，一个smtp邮箱帐号，邮件模版。  首先，登录上Cobaltstrike客户端，菜单栏Attack下Spear Phish工具打开    界面如下：    Targets处导入目标群邮箱地址列表，如：   Mr.SB   Mr.Dsb
-      
-      </p>
-      
-      <p>
-          <a href="/1125.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1131.seo/" title="Redis未授权访问漏洞获取shell，及写shell报错解决办法" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2015-06-11T22:14:19.000Z" itemprop="datePublished">
-          2015-06-12
-      </time>
+    <h1 itemprop="name">Redis未授权访问漏洞获取shell，及写shell报错解决办法</h1>
     
-</span>
-      <h2 class="post-title"><a href="/1115.seo/">转 多种针对某亚洲金融机构的恶意软件分析</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>source：<a href="http://www.cyphort.com/multiple-malwares-used-to-target-an-asian-financial-institution/">http://www.cyphort.com/multiple-malwares-used-to-target-an-asian-financial-institution/</a></p>  <h3>0x00 前言</h3>  <hr align="center" size="0" width="100%" noshade="noshade" />  <p>近来, Cyphort Labs已收到多种针对于亚洲某金融机构的恶意软件,由于某进行中的研究,我们将匿名该公司.</p>  <p>来源已经表明,攻击的起始入口为其中一名雇员打开了某收到的鱼叉式钓鱼邮件,攻击涉及到了多种后门和用于窃取信息的木马。一些恶意软件具有反沙盒属性且含有对抗heuristic signatures（一般被反病毒公司使用）的保护.多种恶意软件样本也展示了某种一般性的主题,例如:将自身安装到<code>%ProgramFiles%</code>或<code>%UserProfile%</code>文件夹（取决于用户是否有admin特权）中.此外,多数的恶意软件样本是用<code>Borland Delphi</code>编译的,它们带有已加密的字符串和API字符串（被混淆或被分为多个字符串）作为保护以对抗heuristic signatures技术.除了某个样本外,其它样本都没被加壳。</p>  <p>以文件的创建日期为根据,它的出现早于2015年2月,并已持续了三个多月</p>  <p><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001[5]" border="0" alt="clip_image001[5]" src="http://img.cker.in/a7cd34ff4b09_C78D/clip_image0015.png" width="277" height="240" /></p>  <p>在该攻击中使用的样本概要</p>  <p>技术分析</p>  <p><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002[4]" border="0" alt="clip_image002[4]" src="http://img.cker.in/a7cd34ff4b09_C78D/clip_image0024.jpg" width="1212" height="1172" /></p>  <p><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image003[4]" border="0" alt="clip_image003[4]" src="http://img.cker.in/a7cd34ff4b09_C78D/clip_image0034.jpg" width="1240" height="242" /></p>  <h3>0x01 技术分析</h3>  <hr align="center" size="0" width="100%" noshade="noshade" />  <h4>GoogleUpdate.exe</h4>  <p>今天,流行的恶意软件中，文件的文件结构通常并不像我们看到的那样.为什么？因为在今天,多数AV产品部署了基于启发式的检测技术（检测加壳样本和某些具有非常规文件结构的样本）.该恶意软件没被加壳且区段类似于某正常文件.</p>  <p>被加密的字符串只在被使用前解密.恶意软件通常将其API字符串分为多个字符串.这也为了躲避heuristic signatures（检测字符串和可疑APIs）.</p>  <p><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004[4]" border="0" alt="clip_image004[4]" src="http://img.cker.in/a7cd34ff4b09_C78D/clip_image0044.png" width="341" height="145" /></p>  <p>如果用户有admin特权，则它将其自身副本移动到%Pr0gramFiles%文件夹中.如果不是则不移动 如果具有admin特权:</p>  <pre>%ProgramFilesDir%\Windows NT\Accessories\nt\GoogleUpdate.exe</pre><br><br><p>如果不具有admin特权:</p>
+    <time datetime="2015-09-18T00:48:16.000Z" itemprop="datePublished">2015-09-18</time>
+  </a>
+</section>
 
-<pre>%UserProfile%\Applications\GoogleUpdate.exe</pre>
-
-<p>它作为某种服务（带有”SENSS”服务名）安装自身.</p>
-
-<p><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image005[4]" border="0" alt="clip_image005[4]" src="http://img.cker.in/a7cd34ff4b09_C78D/clip_image0054.png" width="654" height="142" /></p>
-
-<p>在检查（它是否成功作为某种服务在运行）之后,检查父进程是否为explorer.exe或iexplore.exe.该dll被加密（通过XOR 0x89作为密钥）</p>
-
-<p><em><b>反沙盒</b></em></p>
-
-<p>检测Sleep加速功能</p>
-
-<p>为了挫败沙盒,该恶意软件凭借sleeps或loops拖延恶意软件的执行,因为他知道某沙盒系统将会在限制的短时间内执行恶意软件.</p>
-
-<p>通过对比,一旦位于你的系统内，恶意软件将有大量时间来实现它的恶意意图。为了挫败该保护，沙盒系统部署了加速功能， 即如果他们检测到某样本使用某种延迟技术，它将加速该样本的执行.例如，如果它检测到该样本sleeps一分钟那么该系统将其改为sleeps 1秒。不幸的是, 对该恶意软件来说，这种技术已经不起作用了.该恶意软件可通过发布某个sleep以检测到sleep的加速，之后在得到消逝时间的同时检查消逝的时间是否比sleep的时间短</p>
-
-<p><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image006[4]" border="0" alt="clip_image006[4]" src="http://img.cker.in/a7cd34ff4b09_C78D/clip_image0064.png" width="581" height="256" /></p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1115.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
+    <a href="/1130.seo/" title="团队笔记共享程序Leanote安装及配置" itemprop="url">
+  
+    <h1 itemprop="name">团队笔记共享程序Leanote安装及配置</h1>
     
-    <span class="page-number">Page 1 of 3</span>
-    <a class="older-posts" href="/archives/2015/page/2/">Older Posts →</a>
+    <time datetime="2015-09-17T23:35:01.000Z" itemprop="datePublished">2015-09-18</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/1126.seo/" title="Mac下Sublime Text 2 3总是以新窗口打开文件的解决办法" itemprop="url">
+  
+    <h1 itemprop="name">Mac下Sublime Text 2 3总是以新窗口打开文件的解决办法</h1>
+    
+    <time datetime="2015-07-30T07:28:32.000Z" itemprop="datePublished">2015-07-30</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/1125.seo/" title="Cobaltstrike发送钓鱼邮件" itemprop="url">
+  
+    <h1 itemprop="name">Cobaltstrike发送钓鱼邮件</h1>
+    
+    <time datetime="2015-07-20T18:44:52.000Z" itemprop="datePublished">2015-07-21</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/1115.seo/" title="转 多种针对某亚洲金融机构的恶意软件分析" itemprop="url">
+  
+    <h1 itemprop="name">转 多种针对某亚洲金融机构的恶意软件分析</h1>
+    
+    <time datetime="2015-06-11T22:14:19.000Z" itemprop="datePublished">2015-06-12</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix archive-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/archives/2015/page/2/">2</a><a class="page-number" href="/archives/2015/page/3/">3</a><a class="extend next" rel="next" href="/archives/2015/page/2/">下一页 &raquo;</a>
   </nav>
-</main>
 
-
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

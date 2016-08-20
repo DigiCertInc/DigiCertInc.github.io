@@ -1,149 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>浅析加盐散列 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>浅析加盐散列 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="浅析加盐散列   作者:young    0x00 简介    本文介绍了存储用户密码的方式及其相关内容（破解、安全性分析、应用实践），介绍了加盐散列这种安全的存储用户密码的方式。    这是一个简单的选题，个人水平有限，经验较浅。    本文可总结为：使用8Byte随机salt+hash保存密码更为安全有效。若你对这方面已较了解，请飞过。如有好的建议，欢迎交流讨论。    0x01 前话背景    事情是这样，你搞到了某站的库。一般可以是扔CMD5之类网站直接拿密码了。让我把这个地方无聊的描述一次。    某站用md5将你的密码hash后并存储，验证密码时，将你输入的密码进行hash并和数据库中存储的hash值对比。像下面这样。    数据库中存储md5(pw)    验证时取出md5(pw)，比对md5(pw) == md5(input_pw)    为什么使用hash存储呢，考虑使用明文存储的话，存储密码的数据库被他人得到后，那个人也就获得了所有用户密码。使用hash存储后，他人只能得到密码的hash值。若想得到密码原文，只能尝试对可能的值依次进行hash运算并比对。    后来有了彩虹表，简单的说彩虹表采用预计算(pre computed)、空间-时间折中，这样想找到hash值对应的密码时只需要查找彩虹表即可。在很短的时间内即可获得hash对应密码（几秒至几分钟），单纯的hash存储密码就变得不安全了。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="浅析加盐散列 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/127.seo/" title="浅析加盐散列" itemprop="url">浅析加盐散列</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2011-10-17T06:50:58.000Z" itemprop="datePublished">2011-10-17</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>浅析加盐散列   <br>作者:young    <br>0x00 简介    <br>本文介绍了存储用户密码的方式及其相关内容（破解、安全性分析、应用实践），介绍了加盐散列这种安全的存储用户密码的方式。    <br>这是一个简单的选题，个人水平有限，经验较浅。    <br>本文可总结为：使用8Byte随机salt+hash保存密码更为安全有效。若你对这方面已较了解，请飞过。如有好的建议，欢迎交流讨论。    <br>0x01 前话背景    <br>事情是这样，你搞到了某站的库。一般可以是扔CMD5之类网站直接拿密码了。让我把这个地方无聊的描述一次。    <br>某站用md5将你的密码hash后并存储，验证密码时，将你输入的密码进行hash并和数据库中存储的hash值对比。像下面这样。    <br>数据库中存储md5(pw)    <br>验证时取出md5(pw)，比对md5(pw) == md5(input_pw)    <br>为什么使用hash存储呢，考虑使用明文存储的话，存储密码的数据库被他人得到后，那个人也就获得了所有用户密码。使用hash存储后，他人只能得到密码的hash值。若想得到密码原文，只能尝试对可能的值依次进行hash运算并比对。    <br>后来有了彩虹表，简单的说彩虹表采用预计算(pre computed)、空间-时间折中，这样想找到hash值对应的密码时只需要查找彩虹表即可。在很短的时间内即可获得hash对应密码（几秒至几分钟），单纯的hash存储密码就变得不安全了。</p><a id="more"></a><p>   <br>单纯的hash会对相同的密码产生相同的hash值，也是个不安全点。    <br>题外说说彩虹表。魔鬼隐藏在细节里，彩虹表并不是一个简单的玩意。它不是单纯的按pw 对应hash这样存储，这样太耗空间了。彩虹表大致是这样，算出pw对应hash，构成一条链，有一个reduce函数进行回射，丢弃中间值，查找时在多条链上按规则查找。难点是reduce函数、链的实现。这些影响彩虹表查找的准确率、大小、查找耗时，还有一些特例需要处理。推荐对彩虹表原理有兴趣的朋友参考文末参考资料（1、wiki彩虹表介绍，2、彩虹表原理论文） 。彩虹表类似原理第一次在1980M.E. Hellman,的论文《A Cryptanalytic Time - Memory Trade-Off》被提及，2003年被参考资料2中的论文详细论述。    <br>举个实际的例子，准确率上，d033e22ae348aeb5660fc2140aec35850c4da997，这个sha1 hash在cmd5上解出来为admin，修改最后一位7改为1，查出来依旧是admin。Cmd5官方写着准确率为93%，国外一些免费的彩虹表准确率基本在99%以上。相同彩虹表实现下，准确率越高，彩虹表占用空间也就越大。    <br>对于每种可能的hash算法，彩虹表均需要计算，也就有了不同密码空间、不同存储密码方式对应的彩虹表。    <br>这时各种抗彩虹表的方法出现了，依次说明如下    <br>截断，类似MD5，hex编码后得到十六进制字符串长32位，只存储其中一部分。    <br>多次hash，md5得到的hash再md5一次。    <br>多种算法联合，先md5，得到散列，在对散列进行sha1    <br>使用一个固定盐，把盐附在密码后面得到散列并存储    <br>其他变种，如md5后进行一次变换。    <br>上述方法实质并未改变，短期内可能没有对应的彩虹表，对应彩虹表出现后，上述方法均可用彩虹表破解。这些方法降低了hash算法抗碰撞性，例如，方法1中hash位数缩短，碰撞可能性提高（即密码本身是123，但输入321也可能通过验证）。    <br>有人会说我们使用一个谁也不知道的方法保护用户密码即可，这对开源、有大量用户的应用是不现实的，你也难以保证谁也不知道就一直是谁也不知道。本文讨论的一个前提是攻击者除不知道原始密码外知道其他所有。你如果能保证你的应用是绝对安全的，存储用户密码的数据库也绝对不会外泄，那你使用明文存储也是一样的安全。    <br>0x02 加盐散列(salted hash)    <br>对应的解决方案中较好的是加盐+hash，盐是随机的。    <br>OpenLDAP存储密码的方式就是这样。国内的话Discuz也是类似的方法。举OpenLDAP的例子说：    <br>使用ssha，4Byte盐，sha1做hash，base64存储    <br>加密时:    <br>先生成一个4Byte的随机salt，将salt附在要加密的密码pw后面，对pw+salt进行sha1得到摘要digest，base64编码digest+salt得到secret并存储。用式子表示就是    <br>digest = sha1(pw+salt)    <br>base64_encode(sha1(pw+salt)+salt)    <br>验证时:    <br>base64解码secret，取出salt、digest，对输入的密码input_pw进行sha1(input_pw+salt)，得到结果与digest比对。    <br>用式子表示就是    <br>digest,salt = base64_decode(secret)    <br>sha1(input_pw+salt) ?= digest    <br>题外，我没搞懂为啥要用hex编码后存储，base64编码后存储空间大约是hex编码的一半    <br>比较可能是一般的散列库都自带hexdigest()这个方法，若用base64需要用到其他库。    <br>考虑这种方式，若要采用彩虹表攻击，则需要生成的彩虹表大小为 不加盐彩虹表大小<em>2（盐的位数次方）。实际来说RainbowCrack Project网站上sha1 1-8 混合大小写数字的彩虹表是160GB，对于4byte盐。彩虹表攻击所需的彩虹表大小为：160 </em> 2的32次方。空间上就是不可接受的，计算生成这些彩虹表的时间同样不可接受。    <br>这个方式还有个好处就是对于相同密码，将会得到不同的hash值    <br>没有弱点么？弱点在于salt，首先是盐太短，早期有很多位数很短的salt，这时生成彩虹表的代价是可接受的。多长的salt是安全的，4Byte并不足够，当我看到OpenLDAP官网给出的示例是4Byte盐时，我在写一个工具来破解弱盐，后来我放弃了，因为发现OpenLDAP的实例上salt是8Byte的。    <br>4Byte的弱盐？这是另一个弱点，盐是可打印字符。实际是这样的，ascii表中可打印字符一共是95个，一般彩虹表中会收录的字符为小写+大写+数字共62个，那么对于一个4Byte salt生成的sha1的hash值，若salt全为可打印字符，我们直接查表，查表后得出的值减去salt就可以得到原始密码，举例来说，4Byte salt sha1的一个hash值为d033e22ae348aeb5660fc2140aec35850c4da997，查表得到admin，取出salt，就可以得到密码为a。问题是这个概率有多大，若有足够优良的彩虹表针对1-10位所有可打印字符，假设这个密码长度不超过6，那么可查表概率为(95/256)的四次方，大概是百分之一多一点。实际中可查表概率远低于此，一是没有这样全的彩虹表，二是加盐后长度增加，很轻易就超过了彩虹表支持的最大密码长度。    <br>弱盐的另一个实际例子是django    <br>Django（版本1.3）的盐是随机生成的5Byte，这5Byte由0-f这几个字符构成。盐较短，全是可打印字符，没有标点之类。较容易查到表，考虑一个实际的破解：    <br>在数据库中的密码是：    <br>sha1$31649$ce15e069aeb0cbdc16ad413044c0ab1cc0987aae    <br>Salt = 31649,digest=ce15e069aeb0cbdc16ad413044c0ab1cc0987aae    <br>放MD5Decrypter网站上查，得到digest对应的字符串3164999，减去盐。得知密码是99。    <br>虽然上面举得两个弱盐的例子中对应密码本身也是弱口令，但以足够展示弱盐的风险。    <br>由于上述原因，推荐salt 采用 8Byte以上随机盐，即大于64位的随机bit串。    <br>Salt hash是不抗暴力破解的。后面会提到。    <br>0x03 其他补充    <br>一些有设计缺陷的密码保存方法不在本文讨论之中，对于那些可针对他的弱点进行破解，例如windows之前干的。    <br>可以使用hash后再加密的方法，并把加密用密钥保存到另一个地方，这样攻击者除了拿到库还必须拿到密钥才能进行破解。    <br>对于所有hash也包括salt+hash，如果能写数据库，你可以用一个已知原始密码的hash替换掉数据库中的对应值。这样你就能通过验证了，但你无法得知真正的原始密码。    <br>0x04 安全，看法与实践    <br>迁移需要一定成本。对于现有用户，由于你不知道他的原始密码，不能直接修改成新的方式，而只能让他通过验证后重新设置密码，并按新的方式保存密码。这对已有大量用户的应用来说较麻烦。    <br>你应当尽力保护数据库不被攻击者获取，也就不用担心攻击者通过数据库破解密码。采用一定密码策略（密码复杂度要求、密码有效期等）    <br>我们的建议是对于已有应用，只要不是采用明文保存、有缺陷的保存方式、有大量现有彩虹表的。就可以继续使用，否则应提供一个程序，当用户下次登录时提示重设密码，并按新的安全方式保存密码。    <br>对于新应用，使用安全的方式保存密码。    <br>这里我说的安全的方式当然是指上文中所说的使用8Byte随机盐+hash。具体实现可参考文末参考资料[9]。    <br>0x05 暴力的艺术    <br>在采用salt hash后，密码破解的问题退回到了原始的逐个尝试。顺着这一话题我们继续。    <br>退回到逐个尝试后，我们破解密码的策略变成了两个。    <br>一是缩小密码空间，尝试可能的密码，不尝试不大可能的密码。    <br>二是提高计算能力，单位时间内尝试更多密码。    <br>先说缩小密码空间。    <br>举下词典生成策略。如不允许连续多位的符号、组合各种可能、变换各种可能（字母大小写转换，@a这类类似字符替换）。应当多尝试可能的密码，不去尝试不太可能的密码。多了解各类词典生成策略。    <br>说个特别点的词典生成策略。    <br>对于由字母组成的密码，考虑马尔科夫链，也就是只尝试可发音字符。这有一定效果的，管理员有时会用工具生成可发音字符串作为初始密码（随机生成的其他密码常被员工记在小纸条上到处放），用户有些也倾向于用可发音字符串作为密码。    <br>其次，计算能力上。    <br>我们现在的计算能力如何，一个简单的测试如下：    <br>sha1在我的测试中100w次sha1计算耗时3秒。即每秒30W次sha1计算。    <br>测试环境如下：    <br>Cpu:xeon 5504&#160; <em> 12%(我在虚拟机中，这个虚拟机有实体机xeon5504 最大百分之12的配额)    <br>RAM：4G    <br>程序使用python编写。    <br>同样的测试环境我试了下Cain的sha1计算，每秒钟250W次。    <br>这意味着一台普通的机器跑出一个1-8位的纯数字ssha只需要1分钟左右。跑出一个1-8位混合大小写数字的ssha需要两年多。    <br>对于大的密码空间，增加计算能力主要有设计专用硬件破解（昂贵）、采用GPU辅助、使用分布式。这方面我木有实际经验，参考诸多内容后大概估计如下    <br>使用同CPU等价显卡GPU辅助运算，运算能力可提高10倍左右    <br>分布式取决于你客户端的数量。简单估算为 单台计算能力 </em> 客户端数量。    <br>那么是否有一种抗爆破的密码存储方式？客观的说，攻击者知道验证方式、被各种hash后的密码，他知道的跟你知道的一样多，你可以使用一个强壮的密码，或者就是，增加一次尝试所需的时间。    <br>使用sha512代替sha1，sha512需要的运算时间大概是sha1的1.5倍。    <br>考虑设计一个耗时可控制的变换算法作为密码保存的hash。    <br>Hash当初设计时是为了快的得出一段位串的摘要，不过对于密码存储，或许我们需要一种 慢hash。用以对抗暴力破解。    <br>0x06    <br>破解SSHA，破解工具与框架现在我需要破解ssha，google一下，有一个ssha_carck可以使用，那么如果不是ssha是smd或者其他加盐的hash呢。    <br>你有一个好的字典生成器，不过他生成的字典实在太大了，但你使用那个破解器又只能载入字典或自己生成很简单的字典。    <br>你想使用GPU、分布式等协助破解，但现有的支持GPU、分布式破解的工具并不支持爆破你那段密码，例如ssha。    <br>是的，我寻找了一段时间。诸如Elcomsoft Password Recovery、Passware Kit这类商业的支持GPU、分布式的并不支持破解特定的被保护的密码，也不提供插件机制。    <br>如果你自己写一个，那么你至少要写一个字典生成器、破解器，如果需要GPU、分布式，那你还得学会更多，理想情况是你只需要写出破解部分即可，应该有这样的框架。    <br>开源的durandal，ncrack应该是个选择，我没有具体尝试。Durandal支持GPU与分布式、有一个字典生成器，ncrack跟nmap似乎有一定联系，他的目标就是成为一个破解工具框架。    <br>0x07 资料参考    <br>[1]wiki的rainbowtable介绍&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <a href="http://en.wikipedia.org/wiki/Rainbow_tables" target="_blank" rel="external">http://en.wikipedia.org/wiki/Rainbow_tables</a>    <br>[2]Making a Faster Cryptanalytic Time-Memory Trade-Off&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Oechslin, Philippe&#160; 彩虹表就是基于这篇论文的。这篇论文发表在Crypto 2003 ，作者本人的其他论文<a href="http://lasecwww.epfl.ch/philippe.shtml" target="_blank" rel="external">http://lasecwww.epfl.ch/philippe.shtml</a>    <br>[3]Cracking_Salted_Hashes.pdf&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <a href="http://www.exploit-db.com/download_pdf/14710/" target="_blank" rel="external">www.exploit-db.com/download_pdf/14710/</a> 是一个组织的一次集会的paper    <br>[4]Durandal <a href="http://durandal-project.org/" target="_blank" rel="external">http://durandal-project.org/</a> 上面提及的一个开源的破解工具。支持GPU、分布式    <br>[5]Ncarck <a href="http://nmap.org/ncrack/" target="_blank" rel="external">http://nmap.org/ncrack/</a>&#160; 一个开源的破解框架    <br>[6]<a href="http://www.project-rainbowcrack.com/" target="_blank" rel="external">http://www.project-rainbowcrack.com/</a> 彩虹表的项目，可下载彩虹表    <br>[7]cmd5&#160; <a href="http://www.cmd5.com/" target="_blank" rel="external">http://www.cmd5.com/</a>&#160; 国内一个破解常见hash，salt hash之类的站    <br>[8]基于用户身份鉴别的密码存储方式&#160;&#160;&#160;&#160;&#160;&#160;&#160; 张俨娜1．周珂2&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 电脑知识与技术（学术交流） 2007,2(10)&#160;&#160;&#160;&#160;&#160;&#160;&#160; 国内的一篇介绍密码存储方式的文章    <br>[9]<a href="http://www.openldap.org/faq/data/cache/347.html&#160;&amp;#160" target="_blank" rel="external">http://www.openldap.org/faq/data/cache/347.html&#160;&amp;#160</a>; OpenLDAP FAQ上关于ssha的介绍</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2011-10-17T06:50:58.000Z" itemprop="datePublished">
-          2011-10-17
-      </time>
-    
-    
-    | 
-    <a href='/tag/Crack/'>Crack</a>
-    
-    
-</span>
-    <h1 class="post-title">浅析加盐散列</h1>
-    <section class="post-content">
-      <p>浅析加盐散列   <br>作者:young    <br>0x00 简介    <br>本文介绍了存储用户密码的方式及其相关内容（破解、安全性分析、应用实践），介绍了加盐散列这种安全的存储用户密码的方式。    <br>这是一个简单的选题，个人水平有限，经验较浅。    <br>本文可总结为：使用8Byte随机salt+hash保存密码更为安全有效。若你对这方面已较了解，请飞过。如有好的建议，欢迎交流讨论。    <br>0x01 前话背景    <br>事情是这样，你搞到了某站的库。一般可以是扔CMD5之类网站直接拿密码了。让我把这个地方无聊的描述一次。    <br>某站用md5将你的密码hash后并存储，验证密码时，将你输入的密码进行hash并和数据库中存储的hash值对比。像下面这样。    <br>数据库中存储md5(pw)    <br>验证时取出md5(pw)，比对md5(pw) == md5(input_pw)    <br>为什么使用hash存储呢，考虑使用明文存储的话，存储密码的数据库被他人得到后，那个人也就获得了所有用户密码。使用hash存储后，他人只能得到密码的hash值。若想得到密码原文，只能尝试对可能的值依次进行hash运算并比对。    <br>后来有了彩虹表，简单的说彩虹表采用预计算(pre computed)、空间-时间折中，这样想找到hash值对应的密码时只需要查找彩虹表即可。在很短的时间内即可获得hash对应密码（几秒至几分钟），单纯的hash存储密码就变得不安全了。</p><a id="more"></a><p>   <br>单纯的hash会对相同的密码产生相同的hash值，也是个不安全点。    <br>题外说说彩虹表。魔鬼隐藏在细节里，彩虹表并不是一个简单的玩意。它不是单纯的按pw 对应hash这样存储，这样太耗空间了。彩虹表大致是这样，算出pw对应hash，构成一条链，有一个reduce函数进行回射，丢弃中间值，查找时在多条链上按规则查找。难点是reduce函数、链的实现。这些影响彩虹表查找的准确率、大小、查找耗时，还有一些特例需要处理。推荐对彩虹表原理有兴趣的朋友参考文末参考资料（1、wiki彩虹表介绍，2、彩虹表原理论文） 。彩虹表类似原理第一次在1980M.E. Hellman,的论文《A Cryptanalytic Time - Memory Trade-Off》被提及，2003年被参考资料2中的论文详细论述。    <br>举个实际的例子，准确率上，d033e22ae348aeb5660fc2140aec35850c4da997，这个sha1 hash在cmd5上解出来为admin，修改最后一位7改为1，查出来依旧是admin。Cmd5官方写着准确率为93%，国外一些免费的彩虹表准确率基本在99%以上。相同彩虹表实现下，准确率越高，彩虹表占用空间也就越大。    <br>对于每种可能的hash算法，彩虹表均需要计算，也就有了不同密码空间、不同存储密码方式对应的彩虹表。    <br>这时各种抗彩虹表的方法出现了，依次说明如下    <br>截断，类似MD5，hex编码后得到十六进制字符串长32位，只存储其中一部分。    <br>多次hash，md5得到的hash再md5一次。    <br>多种算法联合，先md5，得到散列，在对散列进行sha1    <br>使用一个固定盐，把盐附在密码后面得到散列并存储    <br>其他变种，如md5后进行一次变换。    <br>上述方法实质并未改变，短期内可能没有对应的彩虹表，对应彩虹表出现后，上述方法均可用彩虹表破解。这些方法降低了hash算法抗碰撞性，例如，方法1中hash位数缩短，碰撞可能性提高（即密码本身是123，但输入321也可能通过验证）。    <br>有人会说我们使用一个谁也不知道的方法保护用户密码即可，这对开源、有大量用户的应用是不现实的，你也难以保证谁也不知道就一直是谁也不知道。本文讨论的一个前提是攻击者除不知道原始密码外知道其他所有。你如果能保证你的应用是绝对安全的，存储用户密码的数据库也绝对不会外泄，那你使用明文存储也是一样的安全。    <br>0x02 加盐散列(salted hash)    <br>对应的解决方案中较好的是加盐+hash，盐是随机的。    <br>OpenLDAP存储密码的方式就是这样。国内的话Discuz也是类似的方法。举OpenLDAP的例子说：    <br>使用ssha，4Byte盐，sha1做hash，base64存储    <br>加密时:    <br>先生成一个4Byte的随机salt，将salt附在要加密的密码pw后面，对pw+salt进行sha1得到摘要digest，base64编码digest+salt得到secret并存储。用式子表示就是    <br>digest = sha1(pw+salt)    <br>base64_encode(sha1(pw+salt)+salt)    <br>验证时:    <br>base64解码secret，取出salt、digest，对输入的密码input_pw进行sha1(input_pw+salt)，得到结果与digest比对。    <br>用式子表示就是    <br>digest,salt = base64_decode(secret)    <br>sha1(input_pw+salt) ?= digest    <br>题外，我没搞懂为啥要用hex编码后存储，base64编码后存储空间大约是hex编码的一半    <br>比较可能是一般的散列库都自带hexdigest()这个方法，若用base64需要用到其他库。    <br>考虑这种方式，若要采用彩虹表攻击，则需要生成的彩虹表大小为 不加盐彩虹表大小<em>2（盐的位数次方）。实际来说RainbowCrack Project网站上sha1 1-8 混合大小写数字的彩虹表是160GB，对于4byte盐。彩虹表攻击所需的彩虹表大小为：160 </em> 2的32次方。空间上就是不可接受的，计算生成这些彩虹表的时间同样不可接受。    <br>这个方式还有个好处就是对于相同密码，将会得到不同的hash值    <br>没有弱点么？弱点在于salt，首先是盐太短，早期有很多位数很短的salt，这时生成彩虹表的代价是可接受的。多长的salt是安全的，4Byte并不足够，当我看到OpenLDAP官网给出的示例是4Byte盐时，我在写一个工具来破解弱盐，后来我放弃了，因为发现OpenLDAP的实例上salt是8Byte的。    <br>4Byte的弱盐？这是另一个弱点，盐是可打印字符。实际是这样的，ascii表中可打印字符一共是95个，一般彩虹表中会收录的字符为小写+大写+数字共62个，那么对于一个4Byte salt生成的sha1的hash值，若salt全为可打印字符，我们直接查表，查表后得出的值减去salt就可以得到原始密码，举例来说，4Byte salt sha1的一个hash值为d033e22ae348aeb5660fc2140aec35850c4da997，查表得到admin，取出salt，就可以得到密码为a。问题是这个概率有多大，若有足够优良的彩虹表针对1-10位所有可打印字符，假设这个密码长度不超过6，那么可查表概率为(95/256)的四次方，大概是百分之一多一点。实际中可查表概率远低于此，一是没有这样全的彩虹表，二是加盐后长度增加，很轻易就超过了彩虹表支持的最大密码长度。    <br>弱盐的另一个实际例子是django    <br>Django（版本1.3）的盐是随机生成的5Byte，这5Byte由0-f这几个字符构成。盐较短，全是可打印字符，没有标点之类。较容易查到表，考虑一个实际的破解：    <br>在数据库中的密码是：    <br>sha1$31649$ce15e069aeb0cbdc16ad413044c0ab1cc0987aae    <br>Salt = 31649,digest=ce15e069aeb0cbdc16ad413044c0ab1cc0987aae    <br>放MD5Decrypter网站上查，得到digest对应的字符串3164999，减去盐。得知密码是99。    <br>虽然上面举得两个弱盐的例子中对应密码本身也是弱口令，但以足够展示弱盐的风险。    <br>由于上述原因，推荐salt 采用 8Byte以上随机盐，即大于64位的随机bit串。    <br>Salt hash是不抗暴力破解的。后面会提到。    <br>0x03 其他补充    <br>一些有设计缺陷的密码保存方法不在本文讨论之中，对于那些可针对他的弱点进行破解，例如windows之前干的。    <br>可以使用hash后再加密的方法，并把加密用密钥保存到另一个地方，这样攻击者除了拿到库还必须拿到密钥才能进行破解。    <br>对于所有hash也包括salt+hash，如果能写数据库，你可以用一个已知原始密码的hash替换掉数据库中的对应值。这样你就能通过验证了，但你无法得知真正的原始密码。    <br>0x04 安全，看法与实践    <br>迁移需要一定成本。对于现有用户，由于你不知道他的原始密码，不能直接修改成新的方式，而只能让他通过验证后重新设置密码，并按新的方式保存密码。这对已有大量用户的应用来说较麻烦。    <br>你应当尽力保护数据库不被攻击者获取，也就不用担心攻击者通过数据库破解密码。采用一定密码策略（密码复杂度要求、密码有效期等）    <br>我们的建议是对于已有应用，只要不是采用明文保存、有缺陷的保存方式、有大量现有彩虹表的。就可以继续使用，否则应提供一个程序，当用户下次登录时提示重设密码，并按新的安全方式保存密码。    <br>对于新应用，使用安全的方式保存密码。    <br>这里我说的安全的方式当然是指上文中所说的使用8Byte随机盐+hash。具体实现可参考文末参考资料[9]。    <br>0x05 暴力的艺术    <br>在采用salt hash后，密码破解的问题退回到了原始的逐个尝试。顺着这一话题我们继续。    <br>退回到逐个尝试后，我们破解密码的策略变成了两个。    <br>一是缩小密码空间，尝试可能的密码，不尝试不大可能的密码。    <br>二是提高计算能力，单位时间内尝试更多密码。    <br>先说缩小密码空间。    <br>举下词典生成策略。如不允许连续多位的符号、组合各种可能、变换各种可能（字母大小写转换，@a这类类似字符替换）。应当多尝试可能的密码，不去尝试不太可能的密码。多了解各类词典生成策略。    <br>说个特别点的词典生成策略。    <br>对于由字母组成的密码，考虑马尔科夫链，也就是只尝试可发音字符。这有一定效果的，管理员有时会用工具生成可发音字符串作为初始密码（随机生成的其他密码常被员工记在小纸条上到处放），用户有些也倾向于用可发音字符串作为密码。    <br>其次，计算能力上。    <br>我们现在的计算能力如何，一个简单的测试如下：    <br>sha1在我的测试中100w次sha1计算耗时3秒。即每秒30W次sha1计算。    <br>测试环境如下：    <br>Cpu:xeon 5504&#160; <em> 12%(我在虚拟机中，这个虚拟机有实体机xeon5504 最大百分之12的配额)    <br>RAM：4G    <br>程序使用python编写。    <br>同样的测试环境我试了下Cain的sha1计算，每秒钟250W次。    <br>这意味着一台普通的机器跑出一个1-8位的纯数字ssha只需要1分钟左右。跑出一个1-8位混合大小写数字的ssha需要两年多。    <br>对于大的密码空间，增加计算能力主要有设计专用硬件破解（昂贵）、采用GPU辅助、使用分布式。这方面我木有实际经验，参考诸多内容后大概估计如下    <br>使用同CPU等价显卡GPU辅助运算，运算能力可提高10倍左右    <br>分布式取决于你客户端的数量。简单估算为 单台计算能力 </em> 客户端数量。    <br>那么是否有一种抗爆破的密码存储方式？客观的说，攻击者知道验证方式、被各种hash后的密码，他知道的跟你知道的一样多，你可以使用一个强壮的密码，或者就是，增加一次尝试所需的时间。    <br>使用sha512代替sha1，sha512需要的运算时间大概是sha1的1.5倍。    <br>考虑设计一个耗时可控制的变换算法作为密码保存的hash。    <br>Hash当初设计时是为了快的得出一段位串的摘要，不过对于密码存储，或许我们需要一种 慢hash。用以对抗暴力破解。    <br>0x06    <br>破解SSHA，破解工具与框架现在我需要破解ssha，google一下，有一个ssha_carck可以使用，那么如果不是ssha是smd或者其他加盐的hash呢。    <br>你有一个好的字典生成器，不过他生成的字典实在太大了，但你使用那个破解器又只能载入字典或自己生成很简单的字典。    <br>你想使用GPU、分布式等协助破解，但现有的支持GPU、分布式破解的工具并不支持爆破你那段密码，例如ssha。    <br>是的，我寻找了一段时间。诸如Elcomsoft Password Recovery、Passware Kit这类商业的支持GPU、分布式的并不支持破解特定的被保护的密码，也不提供插件机制。    <br>如果你自己写一个，那么你至少要写一个字典生成器、破解器，如果需要GPU、分布式，那你还得学会更多，理想情况是你只需要写出破解部分即可，应该有这样的框架。    <br>开源的durandal，ncrack应该是个选择，我没有具体尝试。Durandal支持GPU与分布式、有一个字典生成器，ncrack跟nmap似乎有一定联系，他的目标就是成为一个破解工具框架。    <br>0x07 资料参考    <br>[1]wiki的rainbowtable介绍&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <a href="http://en.wikipedia.org/wiki/Rainbow_tables" target="_blank" rel="external">http://en.wikipedia.org/wiki/Rainbow_tables</a>    <br>[2]Making a Faster Cryptanalytic Time-Memory Trade-Off&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Oechslin, Philippe&#160; 彩虹表就是基于这篇论文的。这篇论文发表在Crypto 2003 ，作者本人的其他论文<a href="http://lasecwww.epfl.ch/philippe.shtml" target="_blank" rel="external">http://lasecwww.epfl.ch/philippe.shtml</a>    <br>[3]Cracking_Salted_Hashes.pdf&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <a href="http://www.exploit-db.com/download_pdf/14710/" target="_blank" rel="external">www.exploit-db.com/download_pdf/14710/</a> 是一个组织的一次集会的paper    <br>[4]Durandal <a href="http://durandal-project.org/" target="_blank" rel="external">http://durandal-project.org/</a> 上面提及的一个开源的破解工具。支持GPU、分布式    <br>[5]Ncarck <a href="http://nmap.org/ncrack/" target="_blank" rel="external">http://nmap.org/ncrack/</a>&#160; 一个开源的破解框架    <br>[6]<a href="http://www.project-rainbowcrack.com/" target="_blank" rel="external">http://www.project-rainbowcrack.com/</a> 彩虹表的项目，可下载彩虹表    <br>[7]cmd5&#160; <a href="http://www.cmd5.com/" target="_blank" rel="external">http://www.cmd5.com/</a>&#160; 国内一个破解常见hash，salt hash之类的站    <br>[8]基于用户身份鉴别的密码存储方式&#160;&#160;&#160;&#160;&#160;&#160;&#160; 张俨娜1．周珂2&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 电脑知识与技术（学术交流） 2007,2(10)&#160;&#160;&#160;&#160;&#160;&#160;&#160; 国内的一篇介绍密码存储方式的文章    <br>[9]<a href="http://www.openldap.org/faq/data/cache/347.html&#160;&amp;#160" target="_blank" rel="external">http://www.openldap.org/faq/data/cache/347.html&#160;&amp;#160</a>; OpenLDAP FAQ上关于ssha的介绍</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/127.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/127.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/127.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/127.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/128.seo/">
-        ← 修改SQLServer2005默认端口
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/126.seo/">
-        织梦后台登录页面去广告 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/Web安全/">Web安全</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/Crack/">Crack</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/128.seo/" title="修改SQLServer2005默认端口">
+  <strong>Prev:</strong><br/>
+  <span>
+  修改SQLServer2005默认端口</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/126.seo/"  title="织梦后台登录页面去广告">
+ <strong>Next:</strong><br/> 
+ <span>织梦后台登录页面去广告
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-浅析加盐散列" data-title="浅析加盐散列" data-url="http://ha.cker.in/127.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

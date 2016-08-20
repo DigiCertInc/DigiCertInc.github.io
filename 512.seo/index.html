@@ -1,153 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>ASP中FSO的神奇功能 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>ASP中FSO的神奇功能 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="在ASP中，FSO的意思是File System Object，即文件系统对象。    我们将要操纵的计算机文件系统，在这里是指位于web服务器之上。所以，确认你对此拥有合适的权限。理想情况下，你可以在自己的机器上建立一个web服务器，这样就能方便地进行测试。如果运行于Windows平台，请试一试微软公司的免费个人Web服务器PWS。    FSO 模型对象    Drive Object：驱动器对象 供存取磁盘或者网络驱动器     FileSystemObject Object：文件系统对象 供存取计算机的文件系统      Folder Object：文件夹对象 供存取文件夹的所有属性      TextStream Object：文本流对象 供存取文件内容    你可以使用上面的对象做计算机上的任何事情，也包括破坏活动 ;-( 所以，请小心使用FSO。在web环境中，存储信息是非常重要的，比如用户信息，日志文件，等等。FSO提供了一个强大且简单的方法高效率地保存数据。在这篇文章里面，着重讨论FileSystemObject和TextStream对象。    FSO由微软公司提供支持，对于非Windows系统，大概不能再使用ASP。    怎么样使用FSO？    为了使用FSO来执行所有的工作，首先要创建对象，代码就象下面这样：   ＜ % Set fso = Server.CreateObject(&amp;quot;Scripting.FileSystemObject&amp;quot;) % ＞">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="ASP中FSO的神奇功能 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/512.seo/" title="ASP中FSO的神奇功能" itemprop="url">ASP中FSO的神奇功能</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2012-06-13T08:54:05.000Z" itemprop="datePublished">2012-06-13</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>在ASP中，FSO的意思是File System Object，即文件系统对象。 </p>  <p> 我们将要操纵的计算机文件系统，在这里是指位于web服务器之上。所以，确认你对此拥有合适的权限。理想情况下，你可以在自己的机器上建立一个web服务器，这样就能方便地进行测试。如果运行于Windows平台，请试一试微软公司的免费个人Web服务器PWS。 </p>  <p> FSO 模型对象 </p>  <p> Drive Object：驱动器对象 供存取磁盘或者网络驱动器    <br> FileSystemObject Object：文件系统对象 供存取计算机的文件系统     <br> Folder Object：文件夹对象 供存取文件夹的所有属性     <br> TextStream Object：文本流对象 供存取文件内容 </p>  <p> 你可以使用上面的对象做计算机上的任何事情，也包括破坏活动 ;-( 所以，请小心使用FSO。在web环境中，存储信息是非常重要的，比如用户信息，日志文件，等等。FSO提供了一个强大且简单的方法高效率地保存数据。在这篇文章里面，着重讨论FileSystemObject和TextStream对象。 </p>  <p> FSO由微软公司提供支持，对于非Windows系统，大概不能再使用ASP。 </p>  <p> 怎么样使用FSO？ </p>  <p> 为了使用FSO来执行所有的工作，首先要创建对象，代码就象下面这样： </p>  <p>＜ % Set fso = Server.CreateObject(&quot;Scripting.FileSystemObject&quot;) % ＞ </p><a id="more"></a><p> 这样就建立了FSO并且赋予变量fso，接着就可以使用熟悉的object.method语法来执行文件系统的操作〔查看Visual Basic文档，获取更多的关于对象和对象向导编程的知识〕。在这里，我们可以使用fso.method 或者 fso.property，这些将在下面的例子中看到。 </p>  <p> FSO模型位于由微软提供的脚本运行时间DLL文件中，它是scrrun.dll。你可以在任何应用程序中引用这个DLL文件，比如MS Access，Word。 就是说，并非仅仅限制在ASP中应用它。 </p>  <p> 这里有一个简要的FSO方法列表： </p>  <p>FSO方法&#160;&#160; <br>CopyFile 拷贝一个或者多个文件到新路径&#160; <br>CreateTextFile 创建文件并且返回一个TextStream对象&#160; <br>DeleteFile 删除一个文件&#160; <br>OpenTextFile 打开文件并且返回TextStream对象，以便读取或者追加 </p>  <p> 如果想了解完整的FSO方法与属性，请查阅微软MSDN。下面来看几个例子。 </p>  <p> 假设你想创建一个简单的留言簿，你可以建立一个数据库，在其中存储用户的信息。然而，如果并不需要数据库的强大功能，使用FSO来存储信息将节省你的时间和金钱。并且，一些ISP也许限制了web上的数据库应用。 </p>  <p> 假设你在一个表单中收集了一些用户信息，这里是一个简单表单HTML代码： </p>  <p>＜ html＞    <br>＜ body＞ </p>  <p>＜ form action=&quot;formhandler.asp&quot; method=&quot;post&quot;＞    <br>＜ input type=&quot;text&quot; size=&quot;10&quot; name=&quot;username&quot;＞     <br>＜ input type=&quot;text&quot; size=&quot;10&quot; name=&quot;homepage&quot;＞     <br>＜ input type=&quot;text&quot; size=&quot;10&quot; name=&quot;Email&quot;＞     <br>＜ /form＞     <br>＜ /body＞     <br>＜ /html＞&#160; </p>  <p> 再看看formhandler.asp中处理表单的代码： </p>  <p>＜ %    <br>‘ Get form info     <br>strName = Request.Form(&quot;username&quot;)     <br>strHomePage = Request.Form(&quot;homepage&quot;)     <br>strEmail = Request.Form(&quot;Email&quot;) </p>  <p>‘ create the fso object    <br>Set fso = Server.CreateObject(&quot;Scripting.FileSystemObject&quot;) </p>  <p> 迄今为止，还没有新鲜的东西，无非是获取表单域的值并且赋值到变量。下面出现了有趣的部分 － 写文件： </p>  <p>path = &quot;c: emp est.txt&quot;    <br>ForReading = 1, ForWriting = 2, ForAppending = 3 </p>  <p>‘ open the file    <br>set file = fso.opentextfile(path, ForAppending, TRUE) </p>  <p>‘ write the info to the file    <br>file.write(strName) &amp; vbcrlf     <br>file.write(strHomePage) &amp; vbcrlf     <br>file.write(strEmail) &amp; vbcrlf </p>  <p>‘ close and clean up    <br>file.close     <br>set file = nothing     <br>set fso = nothing&#160; <br>回想一下，OpenTextFile方法返回一个TextStream对象，它是FSO模型中的另外一个对象。TextStream对象揭示了操作文件内容的方法，比如写、读一行、跳过一行。VB常量vbcrlf产生一个换行符。 </p>  <p> 在OpentextFile的命令参数中定义了TRUE，这就告诉了系统，如果文件不存在，就创建它。如果文件不存在，并且没有定义TRUE参数，就会出错。 </p>  <p> 现在转到目录c: emp，打开test.txt，你可以看到如下的信息： </p>  <p>User’s name    <br>User’s home page     <br>User’s email&#160; </p>  <p> 当然，这些单词可以被输入在表单中的任何内容所替换。 </p>  <p> 现在已经有了一些用户信息保存在文件中，就像一个简单的数据库。假设有一个用户想了解所有的访问者，就要从登记的信息中分离出相关部分，因为没有象数据库一样拥有结构化的列。 </p>  <p> 我们知道，在所创建的文件中，第1行是用户名，第2行是他们的主页，第3行是他们的电子邮件地址。随后登记的用户也是按照这样的结构存储他们的信息，所以每3行将包含一个用户的登记信息。知道了这些，就可以编写下面的代码来显示信息： </p>  <p>＜ %    <br>‘ create the fso object     <br>set fso = Server.Createobject(&quot;Scripting.FileSystemObject&quot;)     <br>path = &quot;c: emp est.txt&quot; </p>  <p>‘ open the file    <br>set file = fso.opentextfile(path, 1) ＜ – For     <br>reading&#160; </p>  <p> 接着，分析每一行，并且格式化数据： </p>  <p>do until file.AtEndOfStream    <br>Response.write(&quot;Name: &quot; &amp; file.ReadLine &amp; &quot; &quot;)     <br>Response.write(&quot;Home Page: &quot; &amp; file.ReadLine &amp; &quot; &quot;)     <br>Response.write(&quot;Email: &quot; &amp; file.ReadLine &amp; &quot;＜ p＞&quot;)     <br>loop </p>  <p>‘ close and clean up    <br>file.close     <br>set file = nothing     <br>set fso = nothing     <br>%＞&#160; </p>  <p> 这里仅仅做了一个非常简单的输出，但是你可以根据情况包含表格或者DHTML表单信息。 </p>  <p> 如果已经正确地建立并写入了文件，上面的小小循环将合适地列出数据库中的每一个人的信息。ReadLine方法读取1行内容，直到遇到换行符，随后的ReadLine调用将读取下一行。AtEndOfStream是TextStream对象的属性，它告诉我们何时遇到文件的尾部。 </p>  <p> 假设由于某种原因，我们没有正确地形成文件，如果一个用户只有2行信息而不是3行，那么就会产生一些错误。我们这里的循环取回文件中的下3行信息，如果没有3行多的信息，就将出现如下的错误信息： </p>  <p>Server object error ‘ASP 0177 : 800a003e’&#160; <br> 所以，一定要添加一些错误处理代码，以防文件中插入了多余的行或者少了必要的行信息。 </p>  <p> 上面讨论了基本知识，然后说说权限许可的问题。FSO以创建它的用户帐户权限运行，换言之，如果有人从Internet上访问你的页面，那么这个internet帐户就创建FSO。如果以administrator的身份登录计算机，并且登录页面，那么administrator帐户就创建了FSO。这是非常重要的，因为一定的帐户拥有一定的权限，并且FSO需要一些权限从而能完整的执行功能。 </p>  <p> internet帐户（IUSER_MachineName，MachineName是服务器的名字）一般只拥有读权限，这意味着用户将不能写入留言簿文件。然而，有几个选择可以绕过这个问题。 </p>  <p> 首先，也是很困难的，是要求用户在填写留言簿前登录到服务器。然而，留言簿的要点是从匿名用户处收集信息，如果要求用户登录，就必须要知道他们是谁。因此，跳过这个选择，看下一个。 </p>  <p> 第2个方法是创建一个目录或者文件，IUSER<em>MachineName用户对此有写权限。这样做可能开放了一些潜在的安全漏洞，因为任何知道正确目录并具备一定web技巧的人就能在服务器上填充内容。这是一个很严重的禁忌。所以你必须确认在隐藏的场所保存了这些可写目录的信息，并且尽可能地将这些目录设置在web目录结构以外（比如在Windows下，这是一个不在inetpub目录下的一个目录）。 </em></p>  <p> 你也许想：好，现在我知道如何写入文件了。但能做到更多一些吗？下面来试一试为web站点建立一个搜索功能。 </p>  <p> 建立搜索引擎的关键是递归。主要地，编写一段代码搜索目录下的文件，然后对所有的目录循环执行同样的代码。因为不能确定总共有多少个子目录，所以必须一遍又一遍地执行搜索代码，直到结束。递归调用非常好！ </p>  <p> 下面来创建搜索页面。假设已经建立了一个HTML表单，用户在其中输入一个搜索字符串。 </p>  <p>Dim objFolder    <br>Dim strSearchText     <br>Dim objFSO </p>  <p>strSearchText = Request.Form(&quot;SearchText&quot;) ＜ – The search string    <br>‘ create the FSO and Folder objects     <br>Set fso = Server.CreateObject(&quot;Scripting.FileSystemObject&quot;)     <br>Set objFolder = objFSO.GetFolder(Server.MapPath(&quot;/&quot;)) </p>  <p>Search objFolder&#160; </p>  <p> 上面的代码简单地初始化变量，Search函数执行搜索功能，描述如下： </p>  <p>Function Search(objFolder) </p>  <p>Dim objSubFolder </p>  <p>‘loop through every file in the current    <br>folder </p>  <p>For Each objFile in objFolder.Files    <br> Set objTextStream = objFSO.OpenTextFile(objFile.Path,1) ＜ – For Reading </p>  <p> ‘read the file’s contents into a    <br> variable </p>  <p> strFileContents = objTextStream.ReadAll </p>  <p> ‘if the search string is in the file, then    <br> write a link </p>  <p> ‘ to the file </p>  <p> If InStr(1, strFileContents, strSearchText, 1) then </p>  <p> Response.Write &quot;＜ A HREF=&quot;&quot;/&quot; &amp; objFile.Name &amp;  </p>  <p> &quot;&quot;&quot;＞&quot; &amp; objFile.Name &amp; &quot;＜ /A＞＜ BR＞&quot;    <br> bolFileFound = True     <br> End If     <br> objTextStream.Close     <br>Next </p>  <p>‘Here’s the recursion part - for each    <br>‘ subfolder in this directory, run the Search function again </p>  <p>For Each objSubFolder in objFolder.SubFolders    <br> Search objSubFolder     <br>Next </p>  <p>End Function&#160; <br>为了能打开文件，FSO需要实际的文件路径，而不是web路径。比如，是c:inetpubwwwroot empindex.html, 而不是www.enfused.com/temp/index.html 或者 /temp/index.html。 为了将后者转换为前者，使用Server.MapPath(&quot;filename&quot;), filename表示web路径名。 </p>  <p> 上面的代码将在你指定的初始目录下的文件夹的每一个子目录中执行，在这里，初始目录是指web根目录“/”。然后就简单地打开目录下的每一个文件，看看其中是否包含指定的字符串，如果找到字符串就显示那个文件的链接。 </p>  <p> 注意，随着文件和子目录数量的增加，搜索花费的时间也将增加。如果需要繁重的搜索工作，建议你采取其他的方法，比如微软公司的索引服务器Index Server。 </p>  <p> 到此，你对FSO可能已经有了很好的体会。让我们再深入研究一步，来解决更复杂的难题。 </p>  <p> 首先，你可能希望对文件改名。为了跟踪所有的文档，你将要重新命名它们以便唯一，这样就可以被系统容易地区别。很不幸，FSO不允许简单的文件改名操作，所以我们不得不修改一下。 </p>  <p>＜ %    <br>‘ create the fso object     <br>set fso = Server.Createobject(&quot;Scripting.FileSystemObject&quot;)     <br>path = &quot;c: emp est.txt&quot;     <br>strDate = Replace(Date(), &quot;/&quot;, &quot;&quot;)     <br>strDir = &quot;c:inetpubwwwrootarticles&quot; &amp; strDate     <br>strNewFileName = Hour(Now) &amp; &quot;<em>&quot; &amp; Minute(Now) &amp; &quot;</em>&quot; &amp;     <br>second(Now) &amp; &quot;.html&quot; </p>  <p>‘ open the old file    <br>set file = fso.opentextfile(path, 1) ＜ – For reading     <br>strText = file.readall     <br>set file = nothing </p>  <p>‘ check for and/or create folder    <br>if not fso.folderexists(Server.MapPath(strDir)) then     <br>set f = fso.CreateFolder(Server.MapPath(strDir))     <br>else     <br>set f = fso.GetFolder(Server.MapPath(strDir))     <br>end if </p>  <p>‘ create and write new file    <br>set file = fso.Createtextfile(f.path &amp; &quot;&quot; &amp; strNewFileName)     <br>file.write(strText)     <br>set f = nothing     <br>file.close     <br>set file = nothing </p>  <p>‘ delete the old file    <br>fso.DeleteFile(path &amp; &quot;&quot; &amp; rst(&quot;FileName&quot;) &amp; i)     <br>‘ clean up     <br>set fso = nothing     <br>%＞&#160; </p>  <p> FSO能力的不足在这里却成了优势，我们可以一次执行2步。首先，打开文件并读入文件的内容。假设这里要创建一个唯一的文件夹和一个唯一的文件来存储文章。然而，因为文件夹的路径每天都将改变，所以必须首先检查是否文件夹已经存在，如果不存在，就创建它。这在if not fso.folderexists代码段完成。然后，取得那个路径，创建一个新的文件。新文件建立完成后，删除掉旧文件，这通过fso.DeleteFile来完成。 </p>  <p> 这2步就是：对文件改名，然后移动到一个更合适的目录下。注意，在这里还可以对文件进行更多地操作，比如在写入新文件前进行一下内容的编辑。 </p>  <p> FSO确实存在一些弱点 － 比如，它很难处理二进制文件，这包括Word文档、许多图形格式的文件和其他一些文件。然而你仍然可以用其他的方式操作这些文件 － 移动它们、删除它们，等等。你不能做的就是对它们进行打开或者写操作。 </p>  <p> 另外一个限制是对于文件长度的问题。当立刻读写一些内容时，所有的信息都存储在内存中 － 内容越多，消耗的内存就越大。这将使每个工作都变得慢起来。所以，如果需要操作非常大的文件，或者大量的小文件时，考虑将文件分割成小块，并且经常的清除内存。将应用程序融入进COM对象组件，也能大大地提高程序的速度。 </p>  <p> 同样，你也不能使用FSO来管理权限以及文件、文件夹的属性，执行安全加密的一个很好方法就是将前面提到的留言簿文件设置为只读，在需要时再设置为可写，然后再修改回来。这个方法经常在CGI和Perl使用，但是很不幸，还没有令人满意的方法来用FSO实现。 </p>  <p> 还能用FSO做什么？ </p>  <p> 在FSO中还有许多很棒的功能，但许多人没有意识到。这些功能常常是在你感到做某些事情很难后才发现的，这时你经常要感叹到：要是我早知道这个方法就好了！ </p>  <p> 下面列举一下这些不常用但是却非常酷的功能： </p>  <p> 很少被了解的FSO功能 </p>  <p> GetSpecialFolder Method 返回特定的Windows文件夹的路径: Windows安装目录；Windows系统目录；Windows临时目录 FSO.GetSpecialFolder([0, 1, or 2]) GetTempName Method 返回一个随机产生的文件或者目录名字，用于需要存储临时数据时GetAbsolutePathName Method 返回文件夹的绝对路径(类似于Server.MapPath)。 </p>  <p> 比如，FSO.GetAbsolutePathName(&quot;region&quot;) 将返回类似于下面的结果：&quot;c:mydocsmyfolder egion&quot;    <br>GetExtensionName Method 返回路径中最后部分的扩展名(比如：FSO.GetExtensionName(&quot;c:docs est.txt&quot;) 将返回txt) GetBaseName and GetParentFolder Methods 返回路径中最后部分的父文件夹     <br>(比如：FSO.GetParentFolder (&quot;c:docsmydocs&quot;) 将返回’docs’) Drives Property 返回所有本地可用驱动器的集合，用于建立资源浏览器样的用户接口。 </p>  <p> 使用上面的功能时，最好建立好出错处理的代码。因为如果需要的参数不存在，将会产生麻烦的信息。 </p>  <p> 总结 </p>  <p> 如我们所见，FSO非常有用，这里介绍的仅仅是冰山一角。你可以使用FSO建立功能强大的应用程序，简单地完成许多任务。 </p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2012-06-13T08:54:05.000Z" itemprop="datePublished">
-          2012-06-13
-      </time>
-    
-    
-    | 
-    <a href='/tag/ASP/'>ASP</a>,
-    
-    <a href='/tag/FSO/'>FSO</a>,
-    
-    <a href='/tag/ASP中FSO的神奇功能/'>ASP中FSO的神奇功能</a>
-    
-    
-</span>
-    <h1 class="post-title">ASP中FSO的神奇功能</h1>
-    <section class="post-content">
-      <p>在ASP中，FSO的意思是File System Object，即文件系统对象。 </p>  <p> 我们将要操纵的计算机文件系统，在这里是指位于web服务器之上。所以，确认你对此拥有合适的权限。理想情况下，你可以在自己的机器上建立一个web服务器，这样就能方便地进行测试。如果运行于Windows平台，请试一试微软公司的免费个人Web服务器PWS。 </p>  <p> FSO 模型对象 </p>  <p> Drive Object：驱动器对象 供存取磁盘或者网络驱动器    <br> FileSystemObject Object：文件系统对象 供存取计算机的文件系统     <br> Folder Object：文件夹对象 供存取文件夹的所有属性     <br> TextStream Object：文本流对象 供存取文件内容 </p>  <p> 你可以使用上面的对象做计算机上的任何事情，也包括破坏活动 ;-( 所以，请小心使用FSO。在web环境中，存储信息是非常重要的，比如用户信息，日志文件，等等。FSO提供了一个强大且简单的方法高效率地保存数据。在这篇文章里面，着重讨论FileSystemObject和TextStream对象。 </p>  <p> FSO由微软公司提供支持，对于非Windows系统，大概不能再使用ASP。 </p>  <p> 怎么样使用FSO？ </p>  <p> 为了使用FSO来执行所有的工作，首先要创建对象，代码就象下面这样： </p>  <p>＜ % Set fso = Server.CreateObject(&quot;Scripting.FileSystemObject&quot;) % ＞ </p><a id="more"></a><p> 这样就建立了FSO并且赋予变量fso，接着就可以使用熟悉的object.method语法来执行文件系统的操作〔查看Visual Basic文档，获取更多的关于对象和对象向导编程的知识〕。在这里，我们可以使用fso.method 或者 fso.property，这些将在下面的例子中看到。 </p>  <p> FSO模型位于由微软提供的脚本运行时间DLL文件中，它是scrrun.dll。你可以在任何应用程序中引用这个DLL文件，比如MS Access，Word。 就是说，并非仅仅限制在ASP中应用它。 </p>  <p> 这里有一个简要的FSO方法列表： </p>  <p>FSO方法&#160;&#160; <br>CopyFile 拷贝一个或者多个文件到新路径&#160; <br>CreateTextFile 创建文件并且返回一个TextStream对象&#160; <br>DeleteFile 删除一个文件&#160; <br>OpenTextFile 打开文件并且返回TextStream对象，以便读取或者追加 </p>  <p> 如果想了解完整的FSO方法与属性，请查阅微软MSDN。下面来看几个例子。 </p>  <p> 假设你想创建一个简单的留言簿，你可以建立一个数据库，在其中存储用户的信息。然而，如果并不需要数据库的强大功能，使用FSO来存储信息将节省你的时间和金钱。并且，一些ISP也许限制了web上的数据库应用。 </p>  <p> 假设你在一个表单中收集了一些用户信息，这里是一个简单表单HTML代码： </p>  <p>＜ html＞    <br>＜ body＞ </p>  <p>＜ form action=&quot;formhandler.asp&quot; method=&quot;post&quot;＞    <br>＜ input type=&quot;text&quot; size=&quot;10&quot; name=&quot;username&quot;＞     <br>＜ input type=&quot;text&quot; size=&quot;10&quot; name=&quot;homepage&quot;＞     <br>＜ input type=&quot;text&quot; size=&quot;10&quot; name=&quot;Email&quot;＞     <br>＜ /form＞     <br>＜ /body＞     <br>＜ /html＞&#160; </p>  <p> 再看看formhandler.asp中处理表单的代码： </p>  <p>＜ %    <br>‘ Get form info     <br>strName = Request.Form(&quot;username&quot;)     <br>strHomePage = Request.Form(&quot;homepage&quot;)     <br>strEmail = Request.Form(&quot;Email&quot;) </p>  <p>‘ create the fso object    <br>Set fso = Server.CreateObject(&quot;Scripting.FileSystemObject&quot;) </p>  <p> 迄今为止，还没有新鲜的东西，无非是获取表单域的值并且赋值到变量。下面出现了有趣的部分 － 写文件： </p>  <p>path = &quot;c: emp est.txt&quot;    <br>ForReading = 1, ForWriting = 2, ForAppending = 3 </p>  <p>‘ open the file    <br>set file = fso.opentextfile(path, ForAppending, TRUE) </p>  <p>‘ write the info to the file    <br>file.write(strName) &amp; vbcrlf     <br>file.write(strHomePage) &amp; vbcrlf     <br>file.write(strEmail) &amp; vbcrlf </p>  <p>‘ close and clean up    <br>file.close     <br>set file = nothing     <br>set fso = nothing&#160; <br>回想一下，OpenTextFile方法返回一个TextStream对象，它是FSO模型中的另外一个对象。TextStream对象揭示了操作文件内容的方法，比如写、读一行、跳过一行。VB常量vbcrlf产生一个换行符。 </p>  <p> 在OpentextFile的命令参数中定义了TRUE，这就告诉了系统，如果文件不存在，就创建它。如果文件不存在，并且没有定义TRUE参数，就会出错。 </p>  <p> 现在转到目录c: emp，打开test.txt，你可以看到如下的信息： </p>  <p>User’s name    <br>User’s home page     <br>User’s email&#160; </p>  <p> 当然，这些单词可以被输入在表单中的任何内容所替换。 </p>  <p> 现在已经有了一些用户信息保存在文件中，就像一个简单的数据库。假设有一个用户想了解所有的访问者，就要从登记的信息中分离出相关部分，因为没有象数据库一样拥有结构化的列。 </p>  <p> 我们知道，在所创建的文件中，第1行是用户名，第2行是他们的主页，第3行是他们的电子邮件地址。随后登记的用户也是按照这样的结构存储他们的信息，所以每3行将包含一个用户的登记信息。知道了这些，就可以编写下面的代码来显示信息： </p>  <p>＜ %    <br>‘ create the fso object     <br>set fso = Server.Createobject(&quot;Scripting.FileSystemObject&quot;)     <br>path = &quot;c: emp est.txt&quot; </p>  <p>‘ open the file    <br>set file = fso.opentextfile(path, 1) ＜ – For     <br>reading&#160; </p>  <p> 接着，分析每一行，并且格式化数据： </p>  <p>do until file.AtEndOfStream    <br>Response.write(&quot;Name: &quot; &amp; file.ReadLine &amp; &quot; &quot;)     <br>Response.write(&quot;Home Page: &quot; &amp; file.ReadLine &amp; &quot; &quot;)     <br>Response.write(&quot;Email: &quot; &amp; file.ReadLine &amp; &quot;＜ p＞&quot;)     <br>loop </p>  <p>‘ close and clean up    <br>file.close     <br>set file = nothing     <br>set fso = nothing     <br>%＞&#160; </p>  <p> 这里仅仅做了一个非常简单的输出，但是你可以根据情况包含表格或者DHTML表单信息。 </p>  <p> 如果已经正确地建立并写入了文件，上面的小小循环将合适地列出数据库中的每一个人的信息。ReadLine方法读取1行内容，直到遇到换行符，随后的ReadLine调用将读取下一行。AtEndOfStream是TextStream对象的属性，它告诉我们何时遇到文件的尾部。 </p>  <p> 假设由于某种原因，我们没有正确地形成文件，如果一个用户只有2行信息而不是3行，那么就会产生一些错误。我们这里的循环取回文件中的下3行信息，如果没有3行多的信息，就将出现如下的错误信息： </p>  <p>Server object error ‘ASP 0177 : 800a003e’&#160; <br> 所以，一定要添加一些错误处理代码，以防文件中插入了多余的行或者少了必要的行信息。 </p>  <p> 上面讨论了基本知识，然后说说权限许可的问题。FSO以创建它的用户帐户权限运行，换言之，如果有人从Internet上访问你的页面，那么这个internet帐户就创建FSO。如果以administrator的身份登录计算机，并且登录页面，那么administrator帐户就创建了FSO。这是非常重要的，因为一定的帐户拥有一定的权限，并且FSO需要一些权限从而能完整的执行功能。 </p>  <p> internet帐户（IUSER_MachineName，MachineName是服务器的名字）一般只拥有读权限，这意味着用户将不能写入留言簿文件。然而，有几个选择可以绕过这个问题。 </p>  <p> 首先，也是很困难的，是要求用户在填写留言簿前登录到服务器。然而，留言簿的要点是从匿名用户处收集信息，如果要求用户登录，就必须要知道他们是谁。因此，跳过这个选择，看下一个。 </p>  <p> 第2个方法是创建一个目录或者文件，IUSER<em>MachineName用户对此有写权限。这样做可能开放了一些潜在的安全漏洞，因为任何知道正确目录并具备一定web技巧的人就能在服务器上填充内容。这是一个很严重的禁忌。所以你必须确认在隐藏的场所保存了这些可写目录的信息，并且尽可能地将这些目录设置在web目录结构以外（比如在Windows下，这是一个不在inetpub目录下的一个目录）。 </em></p>  <p> 你也许想：好，现在我知道如何写入文件了。但能做到更多一些吗？下面来试一试为web站点建立一个搜索功能。 </p>  <p> 建立搜索引擎的关键是递归。主要地，编写一段代码搜索目录下的文件，然后对所有的目录循环执行同样的代码。因为不能确定总共有多少个子目录，所以必须一遍又一遍地执行搜索代码，直到结束。递归调用非常好！ </p>  <p> 下面来创建搜索页面。假设已经建立了一个HTML表单，用户在其中输入一个搜索字符串。 </p>  <p>Dim objFolder    <br>Dim strSearchText     <br>Dim objFSO </p>  <p>strSearchText = Request.Form(&quot;SearchText&quot;) ＜ – The search string    <br>‘ create the FSO and Folder objects     <br>Set fso = Server.CreateObject(&quot;Scripting.FileSystemObject&quot;)     <br>Set objFolder = objFSO.GetFolder(Server.MapPath(&quot;/&quot;)) </p>  <p>Search objFolder&#160; </p>  <p> 上面的代码简单地初始化变量，Search函数执行搜索功能，描述如下： </p>  <p>Function Search(objFolder) </p>  <p>Dim objSubFolder </p>  <p>‘loop through every file in the current    <br>folder </p>  <p>For Each objFile in objFolder.Files    <br> Set objTextStream = objFSO.OpenTextFile(objFile.Path,1) ＜ – For Reading </p>  <p> ‘read the file’s contents into a    <br> variable </p>  <p> strFileContents = objTextStream.ReadAll </p>  <p> ‘if the search string is in the file, then    <br> write a link </p>  <p> ‘ to the file </p>  <p> If InStr(1, strFileContents, strSearchText, 1) then </p>  <p> Response.Write &quot;＜ A HREF=&quot;&quot;/&quot; &amp; objFile.Name &amp;  </p>  <p> &quot;&quot;&quot;＞&quot; &amp; objFile.Name &amp; &quot;＜ /A＞＜ BR＞&quot;    <br> bolFileFound = True     <br> End If     <br> objTextStream.Close     <br>Next </p>  <p>‘Here’s the recursion part - for each    <br>‘ subfolder in this directory, run the Search function again </p>  <p>For Each objSubFolder in objFolder.SubFolders    <br> Search objSubFolder     <br>Next </p>  <p>End Function&#160; <br>为了能打开文件，FSO需要实际的文件路径，而不是web路径。比如，是c:inetpubwwwroot empindex.html, 而不是www.enfused.com/temp/index.html 或者 /temp/index.html。 为了将后者转换为前者，使用Server.MapPath(&quot;filename&quot;), filename表示web路径名。 </p>  <p> 上面的代码将在你指定的初始目录下的文件夹的每一个子目录中执行，在这里，初始目录是指web根目录“/”。然后就简单地打开目录下的每一个文件，看看其中是否包含指定的字符串，如果找到字符串就显示那个文件的链接。 </p>  <p> 注意，随着文件和子目录数量的增加，搜索花费的时间也将增加。如果需要繁重的搜索工作，建议你采取其他的方法，比如微软公司的索引服务器Index Server。 </p>  <p> 到此，你对FSO可能已经有了很好的体会。让我们再深入研究一步，来解决更复杂的难题。 </p>  <p> 首先，你可能希望对文件改名。为了跟踪所有的文档，你将要重新命名它们以便唯一，这样就可以被系统容易地区别。很不幸，FSO不允许简单的文件改名操作，所以我们不得不修改一下。 </p>  <p>＜ %    <br>‘ create the fso object     <br>set fso = Server.Createobject(&quot;Scripting.FileSystemObject&quot;)     <br>path = &quot;c: emp est.txt&quot;     <br>strDate = Replace(Date(), &quot;/&quot;, &quot;&quot;)     <br>strDir = &quot;c:inetpubwwwrootarticles&quot; &amp; strDate     <br>strNewFileName = Hour(Now) &amp; &quot;<em>&quot; &amp; Minute(Now) &amp; &quot;</em>&quot; &amp;     <br>second(Now) &amp; &quot;.html&quot; </p>  <p>‘ open the old file    <br>set file = fso.opentextfile(path, 1) ＜ – For reading     <br>strText = file.readall     <br>set file = nothing </p>  <p>‘ check for and/or create folder    <br>if not fso.folderexists(Server.MapPath(strDir)) then     <br>set f = fso.CreateFolder(Server.MapPath(strDir))     <br>else     <br>set f = fso.GetFolder(Server.MapPath(strDir))     <br>end if </p>  <p>‘ create and write new file    <br>set file = fso.Createtextfile(f.path &amp; &quot;&quot; &amp; strNewFileName)     <br>file.write(strText)     <br>set f = nothing     <br>file.close     <br>set file = nothing </p>  <p>‘ delete the old file    <br>fso.DeleteFile(path &amp; &quot;&quot; &amp; rst(&quot;FileName&quot;) &amp; i)     <br>‘ clean up     <br>set fso = nothing     <br>%＞&#160; </p>  <p> FSO能力的不足在这里却成了优势，我们可以一次执行2步。首先，打开文件并读入文件的内容。假设这里要创建一个唯一的文件夹和一个唯一的文件来存储文章。然而，因为文件夹的路径每天都将改变，所以必须首先检查是否文件夹已经存在，如果不存在，就创建它。这在if not fso.folderexists代码段完成。然后，取得那个路径，创建一个新的文件。新文件建立完成后，删除掉旧文件，这通过fso.DeleteFile来完成。 </p>  <p> 这2步就是：对文件改名，然后移动到一个更合适的目录下。注意，在这里还可以对文件进行更多地操作，比如在写入新文件前进行一下内容的编辑。 </p>  <p> FSO确实存在一些弱点 － 比如，它很难处理二进制文件，这包括Word文档、许多图形格式的文件和其他一些文件。然而你仍然可以用其他的方式操作这些文件 － 移动它们、删除它们，等等。你不能做的就是对它们进行打开或者写操作。 </p>  <p> 另外一个限制是对于文件长度的问题。当立刻读写一些内容时，所有的信息都存储在内存中 － 内容越多，消耗的内存就越大。这将使每个工作都变得慢起来。所以，如果需要操作非常大的文件，或者大量的小文件时，考虑将文件分割成小块，并且经常的清除内存。将应用程序融入进COM对象组件，也能大大地提高程序的速度。 </p>  <p> 同样，你也不能使用FSO来管理权限以及文件、文件夹的属性，执行安全加密的一个很好方法就是将前面提到的留言簿文件设置为只读，在需要时再设置为可写，然后再修改回来。这个方法经常在CGI和Perl使用，但是很不幸，还没有令人满意的方法来用FSO实现。 </p>  <p> 还能用FSO做什么？ </p>  <p> 在FSO中还有许多很棒的功能，但许多人没有意识到。这些功能常常是在你感到做某些事情很难后才发现的，这时你经常要感叹到：要是我早知道这个方法就好了！ </p>  <p> 下面列举一下这些不常用但是却非常酷的功能： </p>  <p> 很少被了解的FSO功能 </p>  <p> GetSpecialFolder Method 返回特定的Windows文件夹的路径: Windows安装目录；Windows系统目录；Windows临时目录 FSO.GetSpecialFolder([0, 1, or 2]) GetTempName Method 返回一个随机产生的文件或者目录名字，用于需要存储临时数据时GetAbsolutePathName Method 返回文件夹的绝对路径(类似于Server.MapPath)。 </p>  <p> 比如，FSO.GetAbsolutePathName(&quot;region&quot;) 将返回类似于下面的结果：&quot;c:mydocsmyfolder egion&quot;    <br>GetExtensionName Method 返回路径中最后部分的扩展名(比如：FSO.GetExtensionName(&quot;c:docs est.txt&quot;) 将返回txt) GetBaseName and GetParentFolder Methods 返回路径中最后部分的父文件夹     <br>(比如：FSO.GetParentFolder (&quot;c:docsmydocs&quot;) 将返回’docs’) Drives Property 返回所有本地可用驱动器的集合，用于建立资源浏览器样的用户接口。 </p>  <p> 使用上面的功能时，最好建立好出错处理的代码。因为如果需要的参数不存在，将会产生麻烦的信息。 </p>  <p> 总结 </p>  <p> 如我们所见，FSO非常有用，这里介绍的仅仅是冰山一角。你可以使用FSO建立功能强大的应用程序，简单地完成许多任务。 </p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/512.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/512.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/512.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/512.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/514.seo/">
-        ← Group By一个不常用的用法
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/510.seo/">
-        两个变形的一句话php马 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/代码学习/">代码学习</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/ASP/">ASP</a><a href="/tag/FSO/">FSO</a><a href="/tag/ASP中FSO的神奇功能/">ASP中FSO的神奇功能</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/514.seo/" title="Group By一个不常用的用法">
+  <strong>Prev:</strong><br/>
+  <span>
+  Group By一个不常用的用法</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/510.seo/"  title="两个变形的一句话php马">
+ <strong>Next:</strong><br/> 
+ <span>两个变形的一句话php马
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-ASP中FSO的神奇功能" data-title="ASP中FSO的神奇功能" data-url="http://ha.cker.in/512.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

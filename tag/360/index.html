@@ -1,166 +1,216 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Tag: 360 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Tag: 360 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Tag: 360 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="tag-icon">360</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-10-21T19:25:39.000Z" itemprop="datePublished">
-          2013-10-22
-      </time>
-    
-    
-    | 
-    <a href='/tag/360/'>360</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1038.seo/">攻击JavaWeb应用 3 -SQL注入 1</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><a href="http://drops.wooyun.org/tips/236">攻击JavaWeb应用[3]-SQL注入[1]</a></p>  <p><a href="http://drops.wooyun.org/tips/236">http://drops.wooyun.org/tips/236</a></p>  <h5>注:本节重点在于让大家熟悉各种SQL注入在JAVA当中的表现，本想带点ORM框架实例，但是与其几乎无意，最近在学习MongoDb，挺有意思的，后面有机会给大家补充相关。</h5>  <h5>0x00 JDBC和ORM</h5>  <hr align="center" width="100%" size="2" />  <h6>JDBC:</h6>  <p>JDBC（Java Data Base Connectivity,java数据库连接）是一种用于执行SQL语句的Java API，可以为多种关系数据库提供统一访问。</p>  <h6>JPA:</h6>  <p>JPA全称Java Persistence API. JPA通过JDK 5.0注解或XML描述对象－关系表的映射关系，并将运行期的实体对象持久化到数据库中。是一个ORM规范。Hibernate是JPA的具体实现。但是Hibernate出现的时间早于JPA（因为Hibernate作者很狂，sun看不惯就叫他去制定JPA标准去了哈哈）。</p>  <h6>ORM:</h6>  <p>对象关系映射（ORM）目前有Hibernate、OpenJPA、TopLink、EclipseJPA等实现。</p>  <h6>JDO:</h6>  <p>JDO(Java Data Object )是Java对象持久化的新的规范，也是一个用于存取某种数据仓库中的对象的标准化API。没有听说过JDO没有关系，很多人应该知道PDO,ADO吧？概念一样。</p>  <h6>关系:</h6>  <p>JPA可以依靠JDBC对JDO进行对象持久化，而ORM只是JPA当中的一个规范，我们常见的Hibernate、Mybatis和TopLink什么的都是ORM的具体实现。</p>  <p>概念性的东西知道就行了，能记住最好。很多东西可能真的是会用，但是要是让你去定义或者去解释的时候发现会有些困难。</p>  <p>重点了解JDBC是个什么东西，知道Hibernate和Mybatis是ORM的具体的实现就够了。</p>  <h6>Object:</h6>  <p>在Java当中Object类（java.lang.object）是所有Java类的祖先。每个类都使用 Object 作为超类。所有对象（包括数组）都实现这个类的方法。所以在认识Java之前应该有一个对象的概念。</p>  <h6>关系型数据库和非关系型数据库：</h6>  <p>数据库是按照数据结构来组织、存储和管理数据的仓库。</p>  <p>关系型数据库，是建立在关系模型基础上的数据库。关系模型就是指二维表格模型,因而一个关系型数据库就是由二维表及其之间的联系组成的一个数据组织。当前主流的关系型数据库有Oracle、DB2、Microsoft SQL Server、Microsoft Access、MySQL等。</p>  <p>NoSQL，指的是非关系型的数据库。随着互联网web2.0网站的兴起，传统的关系数据库在应付web2.0网站，特别是超大规模和高并发的SNS类型的web2.0纯动态网站已经显得力不从心，暴露了很多难以克服的问题，而非关系型的数据库则由于其本身的特点得到了非常迅速的发展。</p>  <pre><code>1、High performance - 对数据库高并发读写的需求。</code></pre><br><br><pre><code>2、Huge Storage - 对海量数据的高效率存储和访问的需求。</code></pre><br><br><pre><code>3、High Scalability &amp;&amp; High Availability- 对数据库的高可扩展性和高可用性的需求。</code></pre><br><br><p>常见的非关系型数据库:Membase、MongoDB、Hypertable、Apache Cassandra、CouchDB等。</p>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
 
-<p>常见的NoSQL数据库端口：</p>
-
-<pre><code>MongoDB:27017、28017、27080</code></pre>
-
-<pre><code>CouchDB:5984</code></pre>
-
-<pre><code>Hbase:9000</code></pre>
-
-<pre><code>Cassandra:9160</code></pre>
-
-<pre><code>Neo4j:7474</code></pre>
-
-<pre><code>Riak:8098</code></pre>
-
-<p>在引入这么多的概念之后我们今天的故事也就要开始了,概念性的东西后面慢慢来。引入这些东西不只仅仅是为了讲一个SQL注入，后面很多地方可能都会用到。</p>
-
-<p>传统的JDBC大于要经过这么些步骤完成一次查询操作，java和数据库的交互操作:</p>
-
-<pre><code>准备JDBC 驱动</code></pre>
-
-<pre><code>加载驱动</code></pre>
-
-<pre><code>获取连接</code></pre>
-
-<pre><code>预编译SQL</code></pre>
-
-<pre><code>执行SQL</code></pre>
-
-<pre><code>处理结果集</code></pre>
-
-<pre><code>依次释放连接</code></pre>
-
-<p>sun只是在JDBC当中定义了具体的接口，而JDBC接口的具体的实现是由数据库提供厂商去写具体的实现的，比如说Connection对象，不同的数据库的实现方式是不同的。</p>
-
-<p>使用传统的JDBC的项目已经越来越少了，曾经的model1和model2已经被MVC给代替了。如果用传统的JDBC写项目你不得不去管理你的数据连接、事物等。而用ORM框架一般程序员只用关心执行SQL和处理结果集就行了。比如Spring的JdbcTemplate、Hibernate的HibernateTemplate提供了一套对dao操作的模版，对JDBC进行了轻量级封装。开发人员只需配置好数据源和事物一般仅需要提供一个SQL、处理SQL执行后的结果就行了，其他的事情都交给框架去完成了。</p>
-
-<p><a href="http://img.cker.in/JavaWeb3SQL1_8BCD/clip_image001.png"><img title="clip_image001" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="594" alt="clip_image001" src="http://img.cker.in/JavaWeb3SQL1_8BCD/clip_image001_thumb.png" width="1375" border="0" /></a></p>
-
-<h5>0x01 经典的JDBC的Sql注入</h5>
-
-<hr align="center" width="100%" size="2" />
-
-<p>Sql注入产生的直接原因是拼凑SQL，绝大多数程序员在做开发的时候并不会去关注SQL最终是怎么去运行的，更不会去关注SQL执行的安全性。因为时间紧，任务重完成业务需求就行了，谁还有时间去管你什么SQL注入什么？还不如喝喝茶，看看妹子。正是有了这种懒惰的程序员SQL注入一直没有消失，而这当中不乏一些大型厂商。有的人可能心中有防御Sql注入意识，但是在面对复杂业务的时候可能还是存在侥幸心理，最近还是被神奇路人甲给脱裤了。为了处理未知的SQL注入攻击，一些大厂商开始采用SQL防注入甚至是使用某些厂商的WAF。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1038.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
-    
-    <span class="page-number">Page 1 of 1</span>
-    
-  </nav>
-</main>
-
-
-      
-<footer class="site-footer">
+    <a href="/1038.seo/" title="攻击JavaWeb应用 3 -SQL注入 1" itemprop="url">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+    <h1 itemprop="name">攻击JavaWeb应用 3 -SQL注入 1</h1>
+    
+    <time datetime="2013-10-21T19:25:39.000Z" itemprop="datePublished">2013-10-22</time>
+  </a>
+</section>
+
+
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

@@ -1,276 +1,396 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+    </header>
+    
 
-      
-<main class="content" role="main">
+    <div id="container">
+      <div id="main">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2014-10-07T12:18:27.000Z" itemprop="datePublished">
-          2014-10-07
-      </time>
-    
-</span>
-      <h2 class="post-title"><a href="/1095.seo/">解决：对 PInvoke 函数的调用导致堆栈不对称问题</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        在使用托管代码调用非托管代码时，发生“对PInvoke函数“UseTwiHikVisionDllTest!UseTwiHikVisionDllTest.TwiHikVision::GetFirstPic”的调用导致堆栈不对称。原因可能是托管的PInvoke 签名与非托管的目标签名不匹配。请检查 PInvoke 签名的调用约定和参数与非托管的目标签名是否匹配。”  解决方法：  添加属性: CallingConvention=Callin
-      
-      </p>
-      
-      <p>
-          <a href="/1095.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1095.seo/" title="解决：对 PInvoke 函数的调用导致堆栈不对称问题" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2014-08-31T16:30:53.000Z" itemprop="datePublished">
-          2014-09-01
-      </time>
+    <h1 itemprop="name">解决：对 PInvoke 函数的调用导致堆栈不对称问题</h1>
     
+     
+           <p itemprop="description" >在使用托管代码调用非托管代码时，发生“对PInvoke函数“UseTwiHikVisionDllTest!UseTwiHikVisionDllTest.TwiHikVision::GetFirstPic”的调用导致堆栈不对称。原因可能是托管的PInvoke 签名与非托管的目标签名</p>
+        
     
-    | 
-    <a href='/tag/iOS-Hacking-Course/'>iOS Hacking Course</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1094.seo/">iOS Hacking Course</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        http://hackingdemystified.com/ios-course/
-      
-      </p>
-      
-      <p>
-          <a href="/1094.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2014-10-07T12:18:27.000Z" itemprop="datePublished">2014-10-07</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2014-08-30T03:39:42.000Z" itemprop="datePublished">
-          2014-08-30
-      </time>
-    
-    
-    | 
-    <a href='/tag/SQLmap/'>SQLmap</a>,
-    
-    <a href='/tag/Tor/'>Tor</a>,
-    
-    <a href='/tag/wpscan/'>wpscan</a>,
-    
-    <a href='/tag/joomscan/'>joomscan</a>,
-    
-    <a href='/tag/WhatWeb/'>WhatWeb</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1093.seo/">我是如何黑掉英国间谍软件公司Gamma的</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>本文翻译自黑客自己公布的入侵指南。详细的介绍了从信息收集，到发现目标站点，以及进行源码审计，绕过waf注入，尝试提权服务器的整个过程。</p>  <p><b>0</b><b>×00 开篇</b></p>  <p>我写这篇文章不是为了吹嘘自己有多牛逼，使用了多高深的技术去搞定Gamma。我只是想揭开黑客技术神秘的面纱，告诉人们黑客技术很普通，你也可以利用黑客技术去反抗这个世界上那些见不得人的事。如果你没有任何编程或者hacking的经验，那些下面的文章可能会看起来像天书一样。没有关系，文章最后的参考资料会帮助你慢慢开始。相信我，一旦你有了一些基础之后就会发现hacking这事比信息自由法案的申请简单多了。（filing a FOIA request)。</p>  <p><b>0</b><b>×01保护自己</b></p>  <p>入侵是非法的，所以需要一些基本的措施来保护自己。</p>  <p>1,使用Truecrypt 7.1a制作一个隐藏的加密分区</p>  <p>2,在这个加密分区上安装Whonix系统</p>  <p>3,(可选的)尽管使用Whonix系统，所有的流量都会经过<a href="http://ha.cker.in/tag/Tor" target="_blank">Tor</a>，已经很足够了。但是最好还是不要用自己名字或者地址申请的网络接入点。使用cantenna，aircrack和reaver可以方便的破解无线，接入网络。</p>  <p>只要你遵守一些常识，比如永远不要在Whonix系统之后做hacking相关的事，也不要在Whonix系统中做一些自己日常使用的操作，跟其他黑客聊天的时候不要透漏自己真实生活的信息，也不要跟身边的朋友吹嘘自己非法入侵的经历。那么你就可以基本不用担心被追踪的问题了。</p>  <p>注意：我并不推荐直接通过Tor进行hacking。对于浏览器来说使用Tor是很方便的。但是对于nmap，sqlmap，nikto之类的黑客工具，需要发送成千上万的请求，通过Tor使用就会非常慢。更不用说有时候你需要一个公网IP来接受反弹shell了。我推荐使用黑来的服务器或者使用比特比购买的VPS来进行hacking。然后你跟服务器或者VPS的连接使用Tor。这样就只有很少的命令行的流量通过Tor。速度会快很多。</p>  <p><b>0</b><b>×02 收集目标信息</b></p>  <p>一般我会不断使用fierce，whois和反向whois查询来找到一个组织所有相关的域名和ip。拿Blackwater为例。我们知道他的主页是academi.com。使用fierce.py -dns academi.com查询它的子域名：</p>  <p>67.238.84.228&#160;&#160; email.academi.com </p>  <p>67.238.84.242&#160;&#160; extranet.academi.com </p>  <p>67.238.84.240&#160;&#160; mail.academi.com </p>  <p>67.238.84.230&#160;&#160; secure.academi.com </p>  <p>67.238.84.227&#160;&#160; vault.academi.com </p>  <p>54.243.51.249&#160;&#160; www.academi.com</p>  <p>然后通过whois查询找到www.academi.com托管在亚马逊云上。其他域名的ip也在下面的段内。</p>  <p>NetRange:&#160;&#160;&#160;&#160;&#160;&#160; 67.238.84.224 - 67.238.84.255 </p>  <p>CIDR:&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 67.238.84.224/27 </p>  <p>CustName:&#160;&#160;&#160;&#160;&#160;&#160; Blackwater USA </p>  <p>Address:&#160;&#160;&#160;&#160;&#160;&#160;&#160; 850 Puddin Ridge Rd</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1093.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1094.seo/" title="iOS Hacking Course" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2014-08-22T11:33:06.000Z" itemprop="datePublished">
-          2014-08-22
-      </time>
+    <h1 itemprop="name">iOS Hacking Course</h1>
     
+     
+           <p itemprop="description" >http://hackingdemystified.com/ios-course/</p>
+        
     
-    | 
-    <a href='/tag/Kali/'>Kali</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1092.seo/">Kali忘记root密码</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        对于一些版本的OS（如redhat、centos）来说，编辑grub，在后面加上“single”即可进入单用户模式。  但是对于debian、ubuntu、kali来说，这种方式是无效的，因为kali进入单用户模式也需要您输入root用户的密码。下面介绍一个在任何版本linux的grub上均能够使用的方法：   1、在Grub的引导装载程式菜单上，选择您要进入的条目，键入 “e” 来进入编辑模式。   2、在第二行（类似于kernel 
-      
-      </p>
-      
-      <p>
-          <a href="/1092.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2014-08-31T16:30:53.000Z" itemprop="datePublished">2014-09-01</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2014-08-19T20:42:02.000Z" itemprop="datePublished">
-          2014-08-20
-      </time>
-    
-    
-    | 
-    <a href='/tag/Kali/'>Kali</a>,
-    
-    <a href='/tag/OpenVAS/'>OpenVAS</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1091.seo/">Kali Linux系列教程之OpenVas安装</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>本文转载，<a href="http://www.xuanhun521.com/Blog/2014/8/19/kali-linux%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8Bopenvas%E5%AE%89%E8%A3%85">http://www.xuanhun521.com/Blog/2014/8/19/kali-linux%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8Bopenvas%E5%AE%89%E8%A3%85</a></p>  <p>文 /玄魂</p>  <p>目录</p>  <p>Kali Linux系列教程之OpenVas安装</p>  <p>前言</p>  <p>1、服务器层组件</p>  <p>2、客户层组件</p>  <p>安装过程</p>  <p>Initial setup</p>  <p>初始管理员密码</p>  <p>从浏览器访问后台</p>  <p>更新数据</p>  <p>管理用户</p>  <p>扫描器配置信息查看</p>  <p>修复安装错误</p>  <p>创建证书</p>  <p>更新 NVT</p>  <p>客户端证书错误</p>  <p><a name="_Toc396212481"></a>前言</p>  <p><a href="http://ha.cker.in/tag/OpenVAS" target="_blank">OpenVAS</a>是一款开放式的漏洞评估工具，主要用来检测目标网络或主机的安全性。与安全焦点的X-Scan工具类似，<a href="http://ha.cker.in/tag/OpenVAS" target="_blank">OpenVAS</a>系统也采用了Nessus较早版本的一些开放插件。<a href="http://ha.cker.in/tag/OpenVAS" target="_blank">OpenVAS</a>能够基于C/S(客户端/服务器),B/S(浏览器/服务器)架构进行工作，管理员通过浏览器或者专用客户端程序来下达扫描任务，服务器端负载授权，执行扫描操作并提供扫描结果。</p>  <p>一套完整的OpenVAS系统包括服务器端，客户端的多个组件。</p>  <p><a name="_Toc396212482"></a>1、 服务器层组件</p>  <p>openvas-scanner(扫描器):负责调用各种漏洞检测插件，完成实际的扫描操作。</p>  <p>openvas-manager(管理器):负责分配扫描任务，并根据扫描结果生产评估报告。</p>  <p>openvas-administrator(管理者):负责管理配置信息，用户授权等相关工作。</p>  <p><a name="_Toc396212483"></a>2、客户层组件</p>  <p>openvas-cli(命令行接口):负责提供从命令行访问OpenVAS服务层程序。</p>  <p>greenbone-security-assistant(安装助手):负责提供访问OpenVAS服务层的web接口，便于通过浏览器来执行扫描任务，是使用最简便的客户层组件。</p>  <p>Greenbone-Desktop-Suite(桌面套件):负责提供访问OpenVAS服务层的图形程序界面，主要允许在Windows客户机中。</p>  <p>除了上述各工作组件以外，还有一个核心环节，那就是漏洞测试插件更新。OpenVAS系统的插件来源有两个途径，一、官方提供的NVT免费插件，二、Greenbone Sec公司提供的商业插件。</p>  <p>本文主要介绍如何在<a href="http://ha.cker.in/tag/kali" target="_blank">kali</a> Linux下对openvas 的初始安装。</p>  <p><a name="_Toc396212484"></a>安装过程</p>  <p>从kali 的应用菜单中找到openvas。</p>  <p><a href="http://img.cker.in/KaliLinuxOpenVas_B185/clip_image001.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/KaliLinuxOpenVas_B185/clip_image001_thumb.jpg" width="558" height="267" /></a></p>  <p>为确保过程顺利，我们先执行openvas-stop。如果已经启动服务，会出现下面的界面：</p>  <p><a href="http://img.cker.in/KaliLinuxOpenVas_B185/clip_image002.png" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/KaliLinuxOpenVas_B185/clip_image002_thumb.png" width="487" height="200" /></a></p>  <p><a name="_Toc396212485"></a>Initial setup</p>  <p>如下图，找到openvas-initial-setup，打开进行初始安装过程。</p>  <p><a href="http://img.cker.in/KaliLinuxOpenVas_B185/clip_image003.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/KaliLinuxOpenVas_B185/clip_image003_thumb.jpg" width="557" height="285" /></a></p>  <p>开始安装。</p>  <p>如果出现需要合并NVT的选项，选择y。</p>  <p><a href="http://img.cker.in/KaliLinuxOpenVas_B185/clip_image004.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/KaliLinuxOpenVas_B185/clip_image004_thumb.jpg" width="557" height="312" /></a></p>  <p>接下来可能会连接到网络下载NVT资源，可能需要等待一段时间。</p>  <p><a href="http://img.cker.in/KaliLinuxOpenVas_B185/clip_image005.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/KaliLinuxOpenVas_B185/clip_image005_thumb.jpg" width="558" height="52" /></a></p>  <p>如果网络环境不好可能会报错，但是不影响继续安装，安装之后我们可以继续更新NVT。</p>  <p><a href="http://img.cker.in/KaliLinuxOpenVas_B185/clip_image006.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/KaliLinuxOpenVas_B185/clip_image006_thumb.jpg" width="557" height="122" /></a></p>  <p><a name="_Toc396212486"></a>初始管理员密码</p>  <p>安装过程的最后，会提示输入管理员密码，默认的管理员是admin。</p>  <p><a href="http://img.cker.in/KaliLinuxOpenVas_B185/clip_image007.png" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/KaliLinuxOpenVas_B185/clip_image007_thumb.png" width="505" height="129" /></a></p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1091.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1093.seo/" title="我是如何黑掉英国间谍软件公司Gamma的" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2014-07-31T14:43:24.000Z" itemprop="datePublished">
-          2014-07-31
-      </time>
+    <h1 itemprop="name">我是如何黑掉英国间谍软件公司Gamma的</h1>
     
-    
-    | 
-    <a href='/tag/meterpreter/'>meterpreter</a>,
-    
-    <a href='/tag/Metasploit/'>Metasploit</a>,
-    
-    <a href='/tag/内网渗透/'>内网渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1090.seo/">渗透中国钢铁商城</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
+     
+       <p itemprop="description" >本文翻译自黑客自己公布的入侵指南。详细的介绍了从信息收集，到发现目标站点，以及进行源码审计，绕过waf注入，尝试提权服务器的整个过程。  0×00 开篇  我写这篇文章不是为了吹嘘自己有多牛逼，使用了多高深的技术去搞定Gamma。我只是想揭开黑客技术神秘的面纱，告诉人们黑客技术很</p>
       
-        <p>中国钢铁商城 在线交易平台 jboss更新不及时，导致任意文件上传    <br />漏洞页面:     <br /><a href="http://www.steel-mall.com//invoker/JMXInvokerServlet">http://www.steel-mall.com//invoker/JMXInvokerServlet</a> jboss漏洞     <br />直接利用exp(下载地址: <a href="http://buchedan.org/download/jboss-exploit.zip)获得webshell，此过程略。">http://buchedan.org/download/jboss-exploit.zip)获得webshell，此过程略。</a>     <br />可以参考:&#160; <a href="http://www.wooyun.org/bugs/wooyun-2013-031621">WooYun: 中国电信某站点JBOSS任意文件上传漏洞</a>     <br />对于web系统来说，最重要的不是服务器，而是数据库，因此找到数据库配置文件，获得数据库用户名和密码:     <br /><u>     <br /></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image001.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image001_thumb.jpg" width="522" height="267" /></a><u>      <br /></u>    <br />Oracle数据库。连接数据库     <br /><u>     <br /></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image002.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image002_thumb.jpg" width="539" height="256" /></a><u>      <br /></u>    <br />直接就是dba权限的，又是一台服务器。     <br />查一下所有表中，有PASS开头的表     <br /><u>     <br /></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image003.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image003_thumb.jpg" width="569" height="313" /></a><u>      <br /></u>    <br /><u>     <br /></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image004.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image004_thumb.jpg" width="565" height="232" /></a><u>      <br /></u>    <br />这个名字好像很熟悉。不知道是不是重名，出于好奇，想看看信息。     <br /><u>     <br /></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image005.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image005_thumb.jpg" width="516" height="286" /></a><u>      <br /></u>    <br />可以破解，使用用户名登录系统。     <br /><u>     <br /></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image006.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image006_thumb.jpg" width="543" height="457" /></a><u>      <br /></u>    <br />前面就不看了，就看一下钱好了     <br /><u>     <br /></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image007.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image007_thumb.jpg" width="383" height="208" /></a></p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1090.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    
+    <time datetime="2014-08-30T03:39:42.000Z" itemprop="datePublished">2014-08-30</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/page/6/">← Newer Posts</a>
-    <span class="page-number">Page 7 of 81</span>
-    <a class="older-posts" href="/page/8/">Older Posts →</a>
+    <a href="/1092.seo/" title="Kali忘记root密码" itemprop="url">
+  
+    <h1 itemprop="name">Kali忘记root密码</h1>
+    
+     
+           <p itemprop="description" >对于一些版本的OS（如redhat、centos）来说，编辑grub，在后面加上“single”即可进入单用户模式。  但是对于debian、ubuntu、kali来说，这种方式是无效的，因为kali进入单用户模式也需要您输入root用户的密码。下面介绍一个在任何版本linux的</p>
+        
+    
+    <time datetime="2014-08-22T11:33:06.000Z" itemprop="datePublished">2014-08-22</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/1091.seo/" title="Kali Linux系列教程之OpenVas安装" itemprop="url">
+  
+    <h1 itemprop="name">Kali Linux系列教程之OpenVas安装</h1>
+    
+     
+       <p itemprop="description" >本文转载，http://www.xuanhun521.com/Blog/2014/8/19/kali-linux%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B%E4%B9%8Bopenvas%E5%AE%89%E8%A3%85  文 /玄魂  目录  K</p>
+      
+    
+    <time datetime="2014-08-19T20:42:02.000Z" itemprop="datePublished">2014-08-20</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/1090.seo/" title="渗透中国钢铁商城" itemprop="url">
+  
+    <h1 itemprop="name">渗透中国钢铁商城</h1>
+    
+     
+       <p itemprop="description" >中国钢铁商城 在线交易平台 jboss更新不及时，导致任意文件上传    漏洞页面:     http://www.steel-mall.com//invoker/JMXInvokerServlet jboss漏洞     直接利用exp(下载地址: http://bucheda</p>
+      
+    
+    <time datetime="2014-07-31T14:43:24.000Z" itemprop="datePublished">2014-07-31</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/page/6/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/81/">81</a><a class="extend next" rel="next" href="/page/8/">下一页 &raquo;</a>
   </nav>
-</main>
 
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
-      
-<footer class="site-footer">
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+  </body>
+ </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

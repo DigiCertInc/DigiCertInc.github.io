@@ -1,188 +1,236 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Tag: idc | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Tag: idc | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Tag: idc | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="tag-icon">idc</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-10-28T20:34:02.000Z" itemprop="datePublished">
-          2012-10-29
-      </time>
-    
-    
-    | 
-    <a href='/tag/burpsuite/'>burpsuite</a>,
-    
-    <a href='/tag/idc/'>idc</a>,
-    
-    <a href='/tag/支付漏洞/'>支付漏洞</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/912.seo/">burpsuite之免费购买虚拟空间之沦陷IDC服务商</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>by:245661320@90sec.org</p>  <p>本人文笔不好，其实这次渗透过程也很艰难曲折的，只是个人文笔问题表达的不太生动，大家见谅！！</p>  <p>今天给大家讲解下burpsuite应用，这个东西我在咱们这里看用着比较少，今天我就来给大家来讲解下。</p>  <p>前两天我在淘宝上找了个空间，但我又不想花钱，怎么办呢？结果有了下文。</p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/burpsuiteIDC_B045/clip_image002_thumb.jpg" width="620" height="357" /></a></p>  <p>于是我就在他那个网站注册了个会员，然后左看看右看看做一些测试比较繁琐我就不一一讲述了。</p>  <p>然后我点金那个详细，看见有购买空间，我就用burpsuite截取下他的数据包看看可不可以改包进行突破！</p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/burpsuiteIDC_B045/clip_image003_thumb.jpg" width="349" height="127" /></a></p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/burpsuiteIDC_B045/clip_image004_thumb.jpg" width="242" height="200" /></a></p>  <p>先声明，我这个号里没有钱一分钱也没有</p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/burpsuiteIDC_B045/clip_image005_thumb.jpg" width="400" height="63" /></a></p>  <p>后我就开始截取封包，该数据，把购买几年那里改为-1我们在发送数据包也就是我们125元买-1年的空间但是他要是没有做错误处理的话肯定会出</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/912.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-08-09T18:13:46.000Z" itemprop="datePublished">
-          2012-08-10
-      </time>
-    
-    
-    | 
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/idc/'>idc</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/747.seo/">对IDC的一次检测</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>群里兄弟抛来一个站点，说要弄C段的另一个站点。看看，该IDC站点有数据备份后台，弱口令进入。   <br /><a href="http://img.cker.in/IDC_8FAD/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/IDC_8FAD/clip_image002_thumb.jpg" width="620" height="452" /></a>    <br />一、拿个shell    <br />php站点，mysql数据库，可以sql备份、导入、导出、执行SQL，没有上传，root权限。    <br />但是找不到站点的绝对路径，群里兄弟就找找周围的站点，希望能得到某个站点的绝对路径，    <br />不久就爆出一个php的站点，准备mysql导出shell，但网站有注入检测系统，导入不成功，原因有：    <br />（1）路径不对；    <br />（2）root被降权，没有权限写；    <br />（3）被检测到恶意代码；    <br />前几天碰到过这种情况，改了</p>  <p>1. Select ‘&lt;?php @eval($_POST[cmd])?&gt;; ‘ into/**/outfile……../b.php’，OK</p>  <p>复制代码</p>  <p>连接成功。得到一个旁站的php shell。   <br />测试了结果：    <br />(1)执行命令不行；    <br />(2)只能在本站转；    <br />什么也干不了。    <br />二、再拿php、asp&#160; shell    <br />后来有人把mysql的root密码破了，登陆phpmyadmin，直接进行数据库操作。用mysql客户端登陆没有登陆上。    <br />上php大马，udf提权也失败了，原因不明。旁站的php shell权限很小，想到能利用的真不多。    <br />又有人得到一个asp旁站的shell，上去看了，除了数据库组件、fso、mai组件外，其他都不能用，难怪不能执行cmd。    <br />陆续又得到几个旁站的shell，都市php和asp的，能利用的少。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/747.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/912.seo/" title="burpsuite之免费购买虚拟空间之沦陷IDC服务商" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-10-20T19:42:35.000Z" itemprop="datePublished">
-          2011-10-21
-      </time>
+    <h1 itemprop="name">burpsuite之免费购买虚拟空间之沦陷IDC服务商</h1>
     
-    
-    | 
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/idc/'>idc</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/137.seo/">idc机房被入侵后分析修复报告</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>12号是一台服务器，37，今天中午到了之后发现同网段的40 、41 、35&#160; 也被黑了，黑客通过1433（SQLServer）、139（Netbios）、135（IPC）、445（SMB）、1521（Oracle）、8080（Tomcat）弱口令和漏洞的扫描</p>  <p><a href="http://img.cker.in/idc_A134/wps_clip_image321.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="wps_clip_image-321" border="0" alt="wps_clip_image-321" src="http://img.cker.in/idc_A134/wps_clip_image321_thumb.png" width="214" height="198" /></a></p>  <p>还有个1433批量抓鸡的工具：阴影1433Vip解封版.rar</p>  <p><a href="http://img.cker.in/idc_A134/image.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/idc_A134/image_thumb.png" width="244" height="137" /></a> </p>
-      
-      </p>
-      
-      <p>
-          <a href="/137.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-10-28T20:34:02.000Z" itemprop="datePublished">2012-10-29</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
+    <a href="/747.seo/" title="对IDC的一次检测" itemprop="url">
+  
+    <h1 itemprop="name">对IDC的一次检测</h1>
     
-    <span class="page-number">Page 1 of 1</span>
+    <time datetime="2012-08-09T18:13:46.000Z" itemprop="datePublished">2012-08-10</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/137.seo/" title="idc机房被入侵后分析修复报告" itemprop="url">
+  
+    <h1 itemprop="name">idc机房被入侵后分析修复报告</h1>
     
-  </nav>
-</main>
+    <time datetime="2011-10-20T19:42:35.000Z" itemprop="datePublished">2011-10-21</time>
+  </a>
+</section>
 
 
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

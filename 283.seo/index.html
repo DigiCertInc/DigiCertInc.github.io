@@ -1,144 +1,441 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>浅谈Ddos攻击攻击与防御 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>浅谈Ddos攻击攻击与防御 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="- 记一次对抗DDos攻击的经验  浅谈Ddos攻击攻击与防御  EMail: jianxin#80sec.com   Site: http://www.80sec.com    Date: 2011-2-10    From: http://www.80sec.com/ddos-attack-defend.html  [ 目录 ]   一 背景    二 应急响应    三 常见ddos攻击及防御    四 根源及反击    五 总结  一 背景  在前几天，我们运营的某网站遭受了一次ddos攻击，我们的网站是一个公益性质的网站，为各个厂商和白帽子之间搭建一个平台以传递安全问题等信息，我们并不清楚因为什么原因会遭遇这种无耻的攻击。因为我们本身并不从事这种类型的攻击，这种攻击技术一般也是比较粗糙的，所以讨论得比较少，但是既然发生了这样的攻击我们觉得分享攻击发生后我们在这个过程中学到得东西，以及针对这种攻击我们的想法才能让这次攻击产生真正的价值，而并不是这样的攻击仅仅浪费大家的时间而已。   另外，我们发现大型的企业都有遭受攻击的案例，但是大家遭受攻击之后的应对措施及学到的经验却分享都比较少，这导致各家都是自行的摸索经验，依然停留在一家企业对抗整个互联网的攻击的局面，而对于攻击者却是此次攻击针对你，下次攻击却是针对他了，而且攻击之后无论是技术还是资源都没有任何的损耗，这也是导致这种攻击频繁并且肆无忌惮的原因。    我们来尝试做一些改变：）">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="浅谈Ddos攻击攻击与防御 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/283.seo/" title="浅谈Ddos攻击攻击与防御" itemprop="url">浅谈Ddos攻击攻击与防御</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2012-02-29T04:28:06.000Z" itemprop="datePublished">2012-02-29</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p> - 记一次对抗DDos攻击的经验</p>  <p>浅谈Ddos攻击攻击与防御</p>  <p>EMail: jianxin#80sec.com   <br>Site: <a href="http://www.80sec.com" target="_blank" rel="external">http://www.80sec.com</a>    <br>Date: 2011-2-10    <br>From: <a href="http://www.80sec.com/ddos-attack-defend.html" target="_blank" rel="external">http://www.80sec.com/ddos-attack-defend.html</a></p>  <p>[ 目录 ]   <br>一 背景    <br>二 应急响应    <br>三 常见ddos攻击及防御    <br>四 根源及反击    <br>五 总结</p>  <p>一 背景</p>  <p>在前几天，我们运营的某网站遭受了一次ddos攻击，我们的网站是一个公益性质的网站，为各个厂商和白帽子之间搭建一个平台以传递安全问题等信息，我们并不清楚因为什么原因会遭遇这种无耻的攻击。因为我们本身并不从事这种类型的攻击，这种攻击技术一般也是比较粗糙的，所以讨论得比较少，但是既然发生了这样的攻击我们觉得分享攻击发生后我们在这个过程中学到得东西，以及针对这种攻击我们的想法才能让这次攻击产生真正的价值，而并不是这样的攻击仅仅浪费大家的时间而已。   <br>另外，我们发现大型的企业都有遭受攻击的案例，但是大家遭受攻击之后的应对措施及学到的经验却分享都比较少，这导致各家都是自行的摸索经验，依然停留在一家企业对抗整个互联网的攻击的局面，而对于攻击者却是此次攻击针对你，下次攻击却是针对他了，而且攻击之后无论是技术还是资源都没有任何的损耗，这也是导致这种攻击频繁并且肆无忌惮的原因。    <br>我们来尝试做一些改变：）</p><a id="more"></a><p></p>  <p>二 应急响应</p>  <p>在攻击发生后，第一个现象是我们的网站上不去了，但是依然可以访问到管理界面，我们登陆上去简单执行了命令：</p>  <p>netstat -antp</p>  <p>我们看到有大量的链接存在着，并且都是ESTABLISHED状态，正常状态下我们的网站访问量没有这么高，如果有这么高我们相信中国的信息安全就有希望了，对于这样的情况其实处理就比较简单，这是一次四层的攻击，也就是所有ip都是真实的，由于目前为止只是消耗了webserver的网络连接资源，所以我们只需要简单的将这些ip在网络层封禁就可以，很简单，用下面的命令即可：</p>  <p>for i in <code>netstat -an | grep -i ‘:80 ‘|grep ‘EST’ | awk ‘{print $5}’ | cut -d : -f 1 | sort | uniq -c | awk ‘{if($1 &amp;gt; 50) {print $2}}’</code>   <br>echo $i    <br>echo $i &gt;&gt; /tmp/banip    <br>/sbin/iptables -A INPUT -p tcp -j DROP -s $i    <br>done</p>  <p>然后作为计划任务一分钟执行一次即可，很快，iptables的封禁列表就充斥了大量的封禁ip，我们简单的统计了下连接数最大的一些ip发现都来自韩国。为了保证系统的性能，我们调大了系统的可接受的连接数以及对Nginx进行了每个连接能够进行的请求速率，系统于是恢复了正常的运行。   <br>正常状态一直持续到第二天，但是到中午之后我们发现访问又出现了问题，网络很慢，使用ping发现大概出现了70%左右的丢包，在艰难的登陆到系统上之后，发现系统已经很少有TCP的正常连接，为了查明原因，我们对系统进行了抓包：</p>  <p>tcpdump -w tmp.pcap port not 22   <br>tcpdump -r tmp.pcap -nnA</p>  <p>我们发现攻击已经从应用层的攻击调整到了网络层的攻击，大量的目标端口是80的udp和icmp包以极快的速度充满了网络，一个包大小大概在1k左右，这次占据的资源纯粹是带宽资源了，即使在系统上做限制也解决不了这个问题，不过也没有关系，对于网络层的问题我们可以在网络层上做限制，我们只需要在网络上把到达我们ip的非TCP的所有包如UDP和ICMP等协议都禁止掉即可，但是我们没有自己的服务器也缺乏对网络设备的控制权，目前是由工信部CERT提供支持的，由于临时无法协调进行相应的操作，后果如大家看到，我们的服务很慢，基本上停止了服务，在一段时间之后攻击者停止了攻击，服务才进行了恢复，很憋屈是么？但是同时我们得到了很多热心朋友的帮助，得到了更好的网络和服务器资源，在网络资源方面的能力得到了很大的提升，缓解了这方面的问题，这里对他们表示感谢。</p>  <p>三 常见ddos攻击及防御</p>  <p>继续秉承80sec的”Know it then hack it”，这里简单谈一下ddos攻击和防御方面的问题。ddos的全称是分布式拒绝服务攻击，既然是拒绝服务一定是因为某些原因而停止服务的，其中最重要的也是最常用的原因就是利用服务端方面资源的有限性，这种服务端的资源范围很广，可以简单的梳理一个请求正常完成的过程：</p>  <p>1 用户在客户端浏览器输入请求的地址   <br>2 浏览器解析该请求，包括分析其中的dns以明确需要到达的远程服务器地址    <br>3 明确地址后浏览器和服务器的服务尝试建立连接，尝试建立连接的数据包通过本地网络，中间路由最终艰苦到达目标网络再到达目标服务器    <br>4 网络连接建立完成之后浏览器根据请求建立不同的数据包并且将数据包发送到服务器某个端口    <br>5 端口映射到进程，进程接受到数据包之后进行内部的解析    <br>6 请求服务器内部的各种不同的资源，包括后端的API以及一些数据库或者文件等    <br>7 在逻辑处理完成之后数据包按照之前建立的通道返回到用户浏览器，浏览器完成解析，请求完成。</p>  <p>上面各个点都可以被用来进行ddos攻击，包括：</p>  <p>1 某些著名的客户端劫持病毒，还记得访问百度跳搜狗的事情么？：）   <br>2 某个大型互联网公司发生的dns劫持事件，或者直接大量的dns请求直接攻击dns服务器，这里可以使用一些专业的第三方dns服务来缓解这个问题，如Dnspod    <br>3 利用建立网络连接需要的网络资源攻击服务器带宽使得正常数据包无法到达如udp的洪水攻击，消耗前端设备的cpu资源以使得数据包不能有效转发如icmp和一些碎片包的洪水攻击，消耗服务器方建立正常连接需要的资源如syn flood或者就是占用大量的连接使得正常的连接无法发起，譬如这次的TCP flood    <br>4 利用webserver的一些特点进行攻击，相比nginx来说，apache处理一个请求的过程就比较笨重。    <br>5 利用应用程序内部的一些特性攻击程序内部的资源如mysql，后端消耗资源大的接口等等，这也就是传统意义上的CC攻击。</p>  <p>这里涉及到攻防的概念，但是实际上如果了解对方的攻击点和攻击手法，防御会变成简单的一个拼资源的过程，不要用你最弱的地方去抗人家最强的地方，应该从最合适的地方入手把问题解决掉，譬如在路由器等设备上解决应用层攻击就不是一个好的办法，同理，在应用层尝试解决网络层的问题也是不可能的，简单来说，目标是只让正常的数据和请求进入到我们的服务，一个完善的防御体系应该考虑如下几个层面：</p>  <p>1 作为用户请求的入口，必须有良好的dns防御   <br>2 与你的价值相匹配的带宽资源，并且在核心节点上布置好应用层的防御策略，只允许你的正常应用的网络数据包能够进入，譬如封杀除了80以外的所有数据包    <br>3 有支持你的服务价值的机器集群来抵抗应用层的压力，有必要的话需要将一个http请求继续分解，将连接建立的过程压力分解到其他的集群里，这里似乎已经有一般的硬件防火墙能做这个事情，甚至将正常的http请求解析过程都进行分解，保证到达后端的是正常的请求，剔除掉畸形的请求，将正常的请求的请求频度等行为进行记录和监控，一旦发生异常就在这里进行应用层的封杀</p>  <p>每个公司都有自己对自己价值的评估从而决定安全投入上的大小，每一次攻击也会涉及到利益的存在，正如防御因为种种原因譬如投入上的不足和实施过程中的不完美，有着天生的弱点一样，攻击也是有着天生的弱点的，因为每一次攻击涉及到不同的环节，每个环节都可能由不同水平的人完成，他所拥有的资源，他使用的工具和技术都不会是完美的，所以才有可能进行防御，另外，我相信进行DDOS攻击的人是一个固定的行业，会有一些固定的人群，对于其中使用的技术，工具，资源和利益链都是比较固定的，与之相对的是各个企业却缺乏相应的沟通，以个人企业对抗一个产业自然是比较困难，而如果每一个企业都能将自己遭受攻击时的经验分享出来，包括僵尸网络的大小及IP分布，攻击工具的特征，甚至有能力的可以去分析背后的利益点及操作者，那么每一次攻击都能让大家的整体防御能力上升，让攻击者的攻击能力有损失，我们很愿意来做这个事情。</p>  <p>四 根源及反击</p>  <p>我困惑的是一点，攻击我们并不能得到实际的好处为什么还是有人来攻击，而且听说其他公司都有被攻击的情况，我觉得有一点原因就是攻击我们的确得不到什么好处，但是实际上攻击者也并不损失什么，无论是资源上还是法律风险上，他不会因为一次攻击而损失太多，而相比之下，服务提供者损失的东西却太多了，这从经济学角度来讲就是不平衡的，我们处于弱势。   <br>一般而言，的确对于作恶者是没有什么惩罚措施，但是这次，我们觉得我们是可以做一些事情的，我们尝试挖掘背后的攻击者，甚至清除这个僵尸网络。    <br>首先这次攻击起源于应用层的攻击，所以所有的ip都是真实的，经过与CERT沟通，也发现这些ip都是韩国的，并且控制端不在国内，因为期间没有与国内有过通讯，即使在后面换成了udp+icmp的flood，但是依然是那些韩国的ip，这很有意思，正常情况下udp+icmp的数据包是可以伪造的，但是这里居然没有伪造，这在后面大概被我们证实了原因。    <br>这些ip是真实存在的ip，而且这些ip肯定在攻击完我们之后一定依然跟攻击者保持着联系，而一般的联系方式因为需要控制的方便都是dns域名，既然如此，如果我们能挖掘到这个dns域名我们就可能间接的挖掘出真正幕后黑手在哪里。首先，我们迅速的找出了这次攻击ip中开放了80端口的机器，因为我们对80端口上的安全问题比较自信，应该很快可以获知这些ip背后的细节（80sec名称由来），我们发现大部分是一些路由器和一些web的vpn设备，我们猜测这次攻击的主要是韩国的个人用户，而个人用户的机器操作系统一般是windows所以在较高版本上发送数据包方面可能有着比较大的限制，这也解释了为什么即使是udp+icmp的攻击我们看到的大都是真实ip。发现这些路由设备之后我们尝试深入得更多，很快用一些弱口令譬如admin/admin登陆进去，果然全世界的网民都一样，admin/admin是天生的入口。    <br>登陆进去一些路由之后我们发现这些路由器里面存在一个功能是设置自己的dns，这意味着这下面的所有dns请求都可以被定向到我们自己设置的dns服务器，这对于我们去了解内部网络的细节会很有用，于是我们建立了一个自己的dns服务器，并且开启了dns请求的日志功能以记录所有请求的细节。我们大约控制了20台路由器的dns指向，并且都成功重定向到我们自己的服务器。    <br>剩下的就是简单的数据分析，在这之前我们可以对僵尸网络的控制域名做如下的猜测：</p>  <p>1 这个dns应该为了灵活的控制域名的缓存时间TTL一般不会特别长   <br>2 这个dns应该是定期的被请求，所以会在dns请求里有较大的出现比例    <br>3 这个dns应该是为了控制而存在的，所以域名不应该在搜索引擎以及其他地方获得较高的访问指数，这与2中的规则配合起来会比较好确定，是一个天生的矛盾。    <br>4 这个dns应该在各个路由下面都会被请求</p>  <p>这些通过简单的统计就很容易得出答案，我们发现了一些3322的通用恶意软件域名但是发现它并不是我们需要的，因为只有少数机器去访问到，经过一些时间之后最后我们发现一个域名访问量与naver（韩国的一个门户）的访问量持平，workgroup001.snow<strong><strong>.net，看起来似乎对自己的僵尸网络管理很好嘛，大概有18台机器访问过这个域名，这个域名的主机托管在新加坡，生存时间TTL在1800也就是半小时，这个域名在所有的搜索引擎中都不存在记录，是一个韩国人在godady一年前才注册的，同时我们访问这个域名指向主机的3389，简单的通过5下shift就判断出它上面存在着一个典型的windows后门，似乎我们找到它了，不是么？经过后续的观察，一段时间后这个域名指向到了127.0.0.1，我们确信了我们的答案,workgroup001.snow</strong></strong>.net，看起来似乎对自己的僵尸网络管理很好嘛：）   <br>这是一次典型的ddos攻击，攻击之后我们获得了参与攻击的主机列表和控制端的域名及ip，相信中国和韩国的cert对于清理这次的攻击源很有兴趣，我们是有一些损失，但是攻击者也有损失了（大概包括一个僵尸网络及一个控制端域名，甚至可能包括一次内部的法律调查），我们不再是不平等的了，不是么？</p>  <p>五 总结</p>  <p>正如一个朋友所讲的，所有的防御是不完美的正如攻击是不完美的一样，好的防御者在提升自己的防御能力趋于完美的同时也要善于寻找攻击者的不完美，寻找一次攻击中的漏洞，不要对攻击心生恐惧，对于Ddos攻击而言，发起一次攻击一样是存在漏洞的，如果我们都能够擅长利用其中的漏洞并且抓住后面的攻击者那么相信以后的ddos攻击案例将会减少很多，在针对目标发起攻击之前攻击者也会做更多的权衡，损失，利益和法律。</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2012-02-29T04:28:06.000Z" itemprop="datePublished">
-          2012-02-29
-      </time>
-    
-</span>
-    <h1 class="post-title">浅谈Ddos攻击攻击与防御</h1>
-    <section class="post-content">
-      <p> - 记一次对抗DDos攻击的经验</p>  <p>浅谈Ddos攻击攻击与防御</p>  <p>EMail: jianxin#80sec.com   <br>Site: <a href="http://www.80sec.com" target="_blank" rel="external">http://www.80sec.com</a>    <br>Date: 2011-2-10    <br>From: <a href="http://www.80sec.com/ddos-attack-defend.html" target="_blank" rel="external">http://www.80sec.com/ddos-attack-defend.html</a></p>  <p>[ 目录 ]   <br>一 背景    <br>二 应急响应    <br>三 常见ddos攻击及防御    <br>四 根源及反击    <br>五 总结</p>  <p>一 背景</p>  <p>在前几天，我们运营的某网站遭受了一次ddos攻击，我们的网站是一个公益性质的网站，为各个厂商和白帽子之间搭建一个平台以传递安全问题等信息，我们并不清楚因为什么原因会遭遇这种无耻的攻击。因为我们本身并不从事这种类型的攻击，这种攻击技术一般也是比较粗糙的，所以讨论得比较少，但是既然发生了这样的攻击我们觉得分享攻击发生后我们在这个过程中学到得东西，以及针对这种攻击我们的想法才能让这次攻击产生真正的价值，而并不是这样的攻击仅仅浪费大家的时间而已。   <br>另外，我们发现大型的企业都有遭受攻击的案例，但是大家遭受攻击之后的应对措施及学到的经验却分享都比较少，这导致各家都是自行的摸索经验，依然停留在一家企业对抗整个互联网的攻击的局面，而对于攻击者却是此次攻击针对你，下次攻击却是针对他了，而且攻击之后无论是技术还是资源都没有任何的损耗，这也是导致这种攻击频繁并且肆无忌惮的原因。    <br>我们来尝试做一些改变：）</p><a id="more"></a><p></p>  <p>二 应急响应</p>  <p>在攻击发生后，第一个现象是我们的网站上不去了，但是依然可以访问到管理界面，我们登陆上去简单执行了命令：</p>  <p>netstat -antp</p>  <p>我们看到有大量的链接存在着，并且都是ESTABLISHED状态，正常状态下我们的网站访问量没有这么高，如果有这么高我们相信中国的信息安全就有希望了，对于这样的情况其实处理就比较简单，这是一次四层的攻击，也就是所有ip都是真实的，由于目前为止只是消耗了webserver的网络连接资源，所以我们只需要简单的将这些ip在网络层封禁就可以，很简单，用下面的命令即可：</p>  <p>for i in <code>netstat -an | grep -i ‘:80 ‘|grep ‘EST’ | awk ‘{print $5}’ | cut -d : -f 1 | sort | uniq -c | awk ‘{if($1 &amp;gt; 50) {print $2}}’</code>   <br>echo $i    <br>echo $i &gt;&gt; /tmp/banip    <br>/sbin/iptables -A INPUT -p tcp -j DROP -s $i    <br>done</p>  <p>然后作为计划任务一分钟执行一次即可，很快，iptables的封禁列表就充斥了大量的封禁ip，我们简单的统计了下连接数最大的一些ip发现都来自韩国。为了保证系统的性能，我们调大了系统的可接受的连接数以及对Nginx进行了每个连接能够进行的请求速率，系统于是恢复了正常的运行。   <br>正常状态一直持续到第二天，但是到中午之后我们发现访问又出现了问题，网络很慢，使用ping发现大概出现了70%左右的丢包，在艰难的登陆到系统上之后，发现系统已经很少有TCP的正常连接，为了查明原因，我们对系统进行了抓包：</p>  <p>tcpdump -w tmp.pcap port not 22   <br>tcpdump -r tmp.pcap -nnA</p>  <p>我们发现攻击已经从应用层的攻击调整到了网络层的攻击，大量的目标端口是80的udp和icmp包以极快的速度充满了网络，一个包大小大概在1k左右，这次占据的资源纯粹是带宽资源了，即使在系统上做限制也解决不了这个问题，不过也没有关系，对于网络层的问题我们可以在网络层上做限制，我们只需要在网络上把到达我们ip的非TCP的所有包如UDP和ICMP等协议都禁止掉即可，但是我们没有自己的服务器也缺乏对网络设备的控制权，目前是由工信部CERT提供支持的，由于临时无法协调进行相应的操作，后果如大家看到，我们的服务很慢，基本上停止了服务，在一段时间之后攻击者停止了攻击，服务才进行了恢复，很憋屈是么？但是同时我们得到了很多热心朋友的帮助，得到了更好的网络和服务器资源，在网络资源方面的能力得到了很大的提升，缓解了这方面的问题，这里对他们表示感谢。</p>  <p>三 常见ddos攻击及防御</p>  <p>继续秉承80sec的”Know it then hack it”，这里简单谈一下ddos攻击和防御方面的问题。ddos的全称是分布式拒绝服务攻击，既然是拒绝服务一定是因为某些原因而停止服务的，其中最重要的也是最常用的原因就是利用服务端方面资源的有限性，这种服务端的资源范围很广，可以简单的梳理一个请求正常完成的过程：</p>  <p>1 用户在客户端浏览器输入请求的地址   <br>2 浏览器解析该请求，包括分析其中的dns以明确需要到达的远程服务器地址    <br>3 明确地址后浏览器和服务器的服务尝试建立连接，尝试建立连接的数据包通过本地网络，中间路由最终艰苦到达目标网络再到达目标服务器    <br>4 网络连接建立完成之后浏览器根据请求建立不同的数据包并且将数据包发送到服务器某个端口    <br>5 端口映射到进程，进程接受到数据包之后进行内部的解析    <br>6 请求服务器内部的各种不同的资源，包括后端的API以及一些数据库或者文件等    <br>7 在逻辑处理完成之后数据包按照之前建立的通道返回到用户浏览器，浏览器完成解析，请求完成。</p>  <p>上面各个点都可以被用来进行ddos攻击，包括：</p>  <p>1 某些著名的客户端劫持病毒，还记得访问百度跳搜狗的事情么？：）   <br>2 某个大型互联网公司发生的dns劫持事件，或者直接大量的dns请求直接攻击dns服务器，这里可以使用一些专业的第三方dns服务来缓解这个问题，如Dnspod    <br>3 利用建立网络连接需要的网络资源攻击服务器带宽使得正常数据包无法到达如udp的洪水攻击，消耗前端设备的cpu资源以使得数据包不能有效转发如icmp和一些碎片包的洪水攻击，消耗服务器方建立正常连接需要的资源如syn flood或者就是占用大量的连接使得正常的连接无法发起，譬如这次的TCP flood    <br>4 利用webserver的一些特点进行攻击，相比nginx来说，apache处理一个请求的过程就比较笨重。    <br>5 利用应用程序内部的一些特性攻击程序内部的资源如mysql，后端消耗资源大的接口等等，这也就是传统意义上的CC攻击。</p>  <p>这里涉及到攻防的概念，但是实际上如果了解对方的攻击点和攻击手法，防御会变成简单的一个拼资源的过程，不要用你最弱的地方去抗人家最强的地方，应该从最合适的地方入手把问题解决掉，譬如在路由器等设备上解决应用层攻击就不是一个好的办法，同理，在应用层尝试解决网络层的问题也是不可能的，简单来说，目标是只让正常的数据和请求进入到我们的服务，一个完善的防御体系应该考虑如下几个层面：</p>  <p>1 作为用户请求的入口，必须有良好的dns防御   <br>2 与你的价值相匹配的带宽资源，并且在核心节点上布置好应用层的防御策略，只允许你的正常应用的网络数据包能够进入，譬如封杀除了80以外的所有数据包    <br>3 有支持你的服务价值的机器集群来抵抗应用层的压力，有必要的话需要将一个http请求继续分解，将连接建立的过程压力分解到其他的集群里，这里似乎已经有一般的硬件防火墙能做这个事情，甚至将正常的http请求解析过程都进行分解，保证到达后端的是正常的请求，剔除掉畸形的请求，将正常的请求的请求频度等行为进行记录和监控，一旦发生异常就在这里进行应用层的封杀</p>  <p>每个公司都有自己对自己价值的评估从而决定安全投入上的大小，每一次攻击也会涉及到利益的存在，正如防御因为种种原因譬如投入上的不足和实施过程中的不完美，有着天生的弱点一样，攻击也是有着天生的弱点的，因为每一次攻击涉及到不同的环节，每个环节都可能由不同水平的人完成，他所拥有的资源，他使用的工具和技术都不会是完美的，所以才有可能进行防御，另外，我相信进行DDOS攻击的人是一个固定的行业，会有一些固定的人群，对于其中使用的技术，工具，资源和利益链都是比较固定的，与之相对的是各个企业却缺乏相应的沟通，以个人企业对抗一个产业自然是比较困难，而如果每一个企业都能将自己遭受攻击时的经验分享出来，包括僵尸网络的大小及IP分布，攻击工具的特征，甚至有能力的可以去分析背后的利益点及操作者，那么每一次攻击都能让大家的整体防御能力上升，让攻击者的攻击能力有损失，我们很愿意来做这个事情。</p>  <p>四 根源及反击</p>  <p>我困惑的是一点，攻击我们并不能得到实际的好处为什么还是有人来攻击，而且听说其他公司都有被攻击的情况，我觉得有一点原因就是攻击我们的确得不到什么好处，但是实际上攻击者也并不损失什么，无论是资源上还是法律风险上，他不会因为一次攻击而损失太多，而相比之下，服务提供者损失的东西却太多了，这从经济学角度来讲就是不平衡的，我们处于弱势。   <br>一般而言，的确对于作恶者是没有什么惩罚措施，但是这次，我们觉得我们是可以做一些事情的，我们尝试挖掘背后的攻击者，甚至清除这个僵尸网络。    <br>首先这次攻击起源于应用层的攻击，所以所有的ip都是真实的，经过与CERT沟通，也发现这些ip都是韩国的，并且控制端不在国内，因为期间没有与国内有过通讯，即使在后面换成了udp+icmp的flood，但是依然是那些韩国的ip，这很有意思，正常情况下udp+icmp的数据包是可以伪造的，但是这里居然没有伪造，这在后面大概被我们证实了原因。    <br>这些ip是真实存在的ip，而且这些ip肯定在攻击完我们之后一定依然跟攻击者保持着联系，而一般的联系方式因为需要控制的方便都是dns域名，既然如此，如果我们能挖掘到这个dns域名我们就可能间接的挖掘出真正幕后黑手在哪里。首先，我们迅速的找出了这次攻击ip中开放了80端口的机器，因为我们对80端口上的安全问题比较自信，应该很快可以获知这些ip背后的细节（80sec名称由来），我们发现大部分是一些路由器和一些web的vpn设备，我们猜测这次攻击的主要是韩国的个人用户，而个人用户的机器操作系统一般是windows所以在较高版本上发送数据包方面可能有着比较大的限制，这也解释了为什么即使是udp+icmp的攻击我们看到的大都是真实ip。发现这些路由设备之后我们尝试深入得更多，很快用一些弱口令譬如admin/admin登陆进去，果然全世界的网民都一样，admin/admin是天生的入口。    <br>登陆进去一些路由之后我们发现这些路由器里面存在一个功能是设置自己的dns，这意味着这下面的所有dns请求都可以被定向到我们自己设置的dns服务器，这对于我们去了解内部网络的细节会很有用，于是我们建立了一个自己的dns服务器，并且开启了dns请求的日志功能以记录所有请求的细节。我们大约控制了20台路由器的dns指向，并且都成功重定向到我们自己的服务器。    <br>剩下的就是简单的数据分析，在这之前我们可以对僵尸网络的控制域名做如下的猜测：</p>  <p>1 这个dns应该为了灵活的控制域名的缓存时间TTL一般不会特别长   <br>2 这个dns应该是定期的被请求，所以会在dns请求里有较大的出现比例    <br>3 这个dns应该是为了控制而存在的，所以域名不应该在搜索引擎以及其他地方获得较高的访问指数，这与2中的规则配合起来会比较好确定，是一个天生的矛盾。    <br>4 这个dns应该在各个路由下面都会被请求</p>  <p>这些通过简单的统计就很容易得出答案，我们发现了一些3322的通用恶意软件域名但是发现它并不是我们需要的，因为只有少数机器去访问到，经过一些时间之后最后我们发现一个域名访问量与naver（韩国的一个门户）的访问量持平，workgroup001.snow<strong><strong>.net，看起来似乎对自己的僵尸网络管理很好嘛，大概有18台机器访问过这个域名，这个域名的主机托管在新加坡，生存时间TTL在1800也就是半小时，这个域名在所有的搜索引擎中都不存在记录，是一个韩国人在godady一年前才注册的，同时我们访问这个域名指向主机的3389，简单的通过5下shift就判断出它上面存在着一个典型的windows后门，似乎我们找到它了，不是么？经过后续的观察，一段时间后这个域名指向到了127.0.0.1，我们确信了我们的答案,workgroup001.snow</strong></strong>.net，看起来似乎对自己的僵尸网络管理很好嘛：）   <br>这是一次典型的ddos攻击，攻击之后我们获得了参与攻击的主机列表和控制端的域名及ip，相信中国和韩国的cert对于清理这次的攻击源很有兴趣，我们是有一些损失，但是攻击者也有损失了（大概包括一个僵尸网络及一个控制端域名，甚至可能包括一次内部的法律调查），我们不再是不平等的了，不是么？</p>  <p>五 总结</p>  <p>正如一个朋友所讲的，所有的防御是不完美的正如攻击是不完美的一样，好的防御者在提升自己的防御能力趋于完美的同时也要善于寻找攻击者的不完美，寻找一次攻击中的漏洞，不要对攻击心生恐惧，对于Ddos攻击而言，发起一次攻击一样是存在漏洞的，如果我们都能够擅长利用其中的漏洞并且抓住后面的攻击者那么相信以后的ddos攻击案例将会减少很多，在针对目标发起攻击之前攻击者也会做更多的权衡，损失，利益和法律。</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/283.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/283.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/283.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/283.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/289.seo/">
-        ← 实战Nginx与PHP（FastCGI）的安装、配置与优化
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/273.seo/">
-        新手必看：为什么我们选择开源 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/黑客技巧/">黑客技巧</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/289.seo/" title="实战Nginx与PHP（FastCGI）的安装、配置与优化">
+  <strong>Prev:</strong><br/>
+  <span>
+  实战Nginx与PHP（FastCGI）的安装、配置与优化</span>
+</a>
+</div>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/273.seo/"  title="新手必看：为什么我们选择开源">
+ <strong>Next:</strong><br/> 
+ <span>新手必看：为什么我们选择开源
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-浅谈Ddos攻击攻击与防御" data-title="浅谈Ddos攻击攻击与防御" data-url="http://ha.cker.in/283.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

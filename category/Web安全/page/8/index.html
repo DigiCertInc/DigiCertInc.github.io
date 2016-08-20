@@ -1,275 +1,270 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Category: Web安全 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Category: Web安全 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Category: Web安全 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="category-icon">Web安全</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-11-12T20:00:51.000Z" itemprop="datePublished">
-          2012-11-13
-      </time>
-    
-    
-    | 
-    <a href='/tag/DedeCMS/'>DedeCMS</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/933.seo/">dedecms最新注入</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        6月份dedecms修补的漏洞是一个原理    plus/guestbook.inc.php   require(dirname(FILE).’/../../include/common.inc.php’);require_once(DEDEINC.&quot;/filter.inc.php&quot;); plus/guestbook.inc.php 
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
 
-require_once(dirname(__FILE__).'/guestbo
-      
-      </p>
-      
-      <p>
-          <a href="/933.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-11-12T18:28:19.000Z" itemprop="datePublished">
-          2012-11-13
-      </time>
-    
-    
-    | 
-    <a href='/tag/记事狗/'>记事狗</a>,
-    
-    <a href='/tag/微博/'>微博</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/932.seo/">记事狗微博 注入</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        记事狗微博 注入  /modules/ajax/topic.mod.php  function Pic_ajax(){//echo 11;//echo base64_encode(serialize(array(‘a’=&gt;’0\’#’)));$options = array();$TopicListLogic = Load::logic(‘topic_list’, 1);$per_page_num = $this-&gt;Post
-      
-      </p>
-      
-      <p>
-          <a href="/932.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/933.seo/" title="dedecms最新注入" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-11-10T02:37:58.000Z" itemprop="datePublished">
-          2012-11-10
-      </time>
+    <h1 itemprop="name">dedecms最新注入</h1>
     
-    
-    | 
-    <a href='/tag/注入漏洞/'>注入漏洞</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/930.seo/">对最近dedecms注入的分析</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>那天<a href="http://www.wooyun.org/bugs/wooyun-2012-014076" target="_blank">乌云</a>上发了dedecms feed.back&#160; typeid的<a href="http://ha.cker.in/tag/注入漏洞" target="_blank">注入漏洞</a>，下午就被忽略然后修复了。作者没公布利用方法，然后第二天就有了这篇文章….     <br />该漏洞是cyg07在乌云提交的， 漏洞文件: plus\feedback.php。     <br />存在问题的代码:</p>  <p>…   <br />if($comtype == ‘comments’)    <br />&#160; {    <br />&#160; $arctitle = addslashes($title);    <br />&#160; if($msg!=’’)    <br />&#160; {//$typeid变量未做初始化    <br />&#160;&#160;&#160; $inquery = &quot;INSERT INTO <code>#@__feedback</code>(<code>aid</code>,<code>typeid</code>,<code>username</code>,<code>arctitle</code>,<code>ip</code>,<code>ischeck</code>,<code>dtime</code>, <code>mid</code>,<code>bad</code>,<code>good</code>,<code>ftype</code>,<code>face</code>,<code>msg</code>)    <br />&#160;&#160;&#160;&#160;&#160;&#160; VALUES (‘$aid’,’$typeid’,’$username’,’$arctitle’,’$ip’,’$ischeck’,’$dtime’, ‘{$cfg_ml-&gt;M_ID}’,’0’,’0’,’$feedbacktype’,’$face’,’$msg’); &quot;;    <br />&#160;&#160;&#160;&#160;&#160; echo $inquery;//调试，输出查询语句    <br />&#160;&#160;&#160; $rs = $dsql-&gt;ExecuteNoneQuery($inquery);    <br />&#160;&#160;&#160; if(!$rs)    <br />&#160;&#160;&#160; {    <br />&#160;&#160;&#160;&#160;&#160; ShowMsg(‘ 发表评论错误! ‘, ‘-1’);    <br />&#160;&#160;&#160;&#160;&#160; //echo $dsql-&gt;GetError();    <br />&#160;&#160;&#160;&#160;&#160; exit();    <br />&#160;&#160;&#160; }    <br />&#160; }    <br />&#160; }    <br />&#160; //引用回复    <br />&#160; elseif ($comtype == ‘reply’)    <br />&#160; {    <br />&#160; $row = $dsql-&gt;GetOne(&quot;SELECT <em> FROM <code>#@__feedback</code> WHERE id =’$fid’&quot;);    <br />&#160; $arctitle = $row[‘arctitle’];    <br />&#160; $aid =$row[‘aid’];    <br />&#160; $msg = $quotemsg.$msg;    <br />&#160; $msg = HtmlReplace($msg, 2);    <br />&#160; $inquery = &quot;INSERT INTO <code>#@__feedback</code>(<code>aid</code>,<code>typeid</code>,<code>username</code>,<code>arctitle</code>,<code>ip</code>,<code>ischeck</code>,<code>dtime</code>,<code>mid</code>,<code>bad</code>,<code>good</code>,<code>ftype</code>,<code>face</code>,<code>msg</code>)    <br />&#160;&#160;&#160;&#160;&#160; VALUES (‘$aid’,’$typeid’,’$username’,’$arctitle’,’$ip’,’$ischeck’,’$dtime’,’{$cfg_ml-&gt;M_ID}’,’0’,’0’,’$feedbacktype’,’$face’,’$msg’)&quot;;    <br />&#160; $dsql-&gt;ExecuteNoneQuery($inquery);    <br />}</p>  <p><a href="http://img.cker.in/dedecms_1057A/BS8JVDS2DT8HF1F38D2NQ.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="$BS8JVDS2DT8HF1F38[D2NQ" border="0" alt="$BS8JVDS2DT8HF1F38[D2NQ" src="http://img.cker.in/dedecms_1057A/BS8JVDS2DT8HF1F38D2NQ_thumb.jpg" width="1198" height="236" /></a></p>  <p>&#160;</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/930.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-11-12T20:00:51.000Z" itemprop="datePublished">2012-11-13</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-11-06T22:14:19.000Z" itemprop="datePublished">
-          2012-11-07
-      </time>
-    
-    
-    | 
-    <a href='/tag/漏洞/'>漏洞</a>,
-    
-    <a href='/tag/代码审计/'>代码审计</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/928.seo/">Metinfo 代码审计</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>文:&#160; 西毒</p>  <p>欢迎大家到<a href="https://forum.90sec.org/&amp;#160">https://forum.90sec.org/&amp;#160</a>; &amp;&amp; <a href="http://www.linux520.com/bbs/">http://www.linux520.com/bbs/</a></p>  <p>0x01 前沿</p>  <p>&#160;&#160; MetInfo企业网站管理系统：采用PHP+Mysql架构，全站内置了SEO搜索引擎优化机制，支持用户自定义界面语言(全球各种语言)，拥有企业网站常用的模块功能（企业简介模块、新闻模块、产品模块、下载模块、图片模块、招聘模块、在线留言、反馈系统、在线交流、友情链接、网站地图、会员与权限管理）。强大灵活的后台管理功能、静态页面生成功能、个性化模块添加功能、不同栏目自定义FLASH样式功能等可为企业打造出大气漂亮且具有营销力的精品网站。</p>  <p>这套程序之前爆出来一个远程执行代码的<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>之后，就没什么人去挖掘了。整套程序还是很多人用的，下图是查出来的结果</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Metinfo_C76E/clip_image001_thumb.jpg" width="502" height="184" /></a></p>  <p>整个对这套cms审计花了我几天的时间，下面一一道来。</p>  <p>0x02 注入一</p>  <p>此次代码审计是官网最新版</p>  <p>在message/access.php中13行</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Metinfo_C76E/clip_image002_thumb.jpg" width="578" height="245" /></a></p>  <p>大家应该看到了，这个$id是没过滤的，这里的$id是怎么来的呢？请看include/common.inc.php中</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/Metinfo_C76E/clip_image003_thumb.jpg" width="578" height="207" /></a></p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/928.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/932.seo/" title="记事狗微博 注入" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-10-28T22:03:14.000Z" itemprop="datePublished">
-          2012-10-29
-      </time>
+    <h1 itemprop="name">记事狗微博 注入</h1>
     
-    
-    | 
-    <a href='/tag/漏洞/'>漏洞</a>,
-    
-    <a href='/tag/代码执行/'>代码执行</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/914.seo/">akcms代码执行漏洞</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>by <a href="http://www.moonhack.org/daimashenji/468.html">MoonHack</a></p>  <p>上周挖出的akcms的后台模版getshell感觉没什么新意，然后又仔细看了看代码，发现了一个比较有“前途”的洞，<a href="http://ha.cker.in/tag/代码执行" target="_blank">代码执行</a>漏洞，而且出问题函数是作者提供给建站用户进行二次开发时使用的，也就是说这个问题放大的程度也会要大些。</p>  <p>0×01、原理分析</p>  <p>漏洞问题主要存在于include\common.func.php文件中的ak_if函数，先看下代码</p>  <p><a href="http://img.cker.in/akcms_C569/clip_image001.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/akcms_C569/clip_image001_thumb.png" width="600" height="246" /></a></p>  <p>eval函数参数中的变量$variable未作任何的处理变插入到了函数中。ak_if这个函数的主要用途是，提供给建站用户一个简单的逻辑判断功能的接口。对比一下4.1版本中的这段代码</p>  <p><a href="http://img.cker.in/akcms_C569/clip_image002.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/akcms_C569/clip_image002_thumb.png" width="546" height="160" /></a></p>  <p>可以发现，相差了eval函数调用的语句。在4.1.4之前的版本中，这个函数并没有调用eval函数，但是在4.1.4中，作者为了增加ak_if对复杂逻辑的判断，添加了这条语句。</p>  <p>这导致了，如果用户对于$variable变量可控，将会执行任意php代码。</p>  <p>0×02、漏洞验证</p>  <p>为了重现漏洞，我下载了作者基于akcms2.4.2的blog系统，在\cache\templates\%%7D^7D3^7D3A5C77%%comments.htm.php模板中调用了这个函数</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/914.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-11-12T18:28:19.000Z" itemprop="datePublished">2012-11-13</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-09-28T01:59:48.000Z" itemprop="datePublished">
-          2012-09-28
-      </time>
-    
-    
-    | 
-    <a href='/tag/包含漏洞/'>包含漏洞</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/868.seo/">php文件包含漏洞的解决方法</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        现在程序代码写的越来越千奇百怪，就一种文件包含的代码就能写出2种：require include   先说require 如果出错则终止输出，include 如果出错则继续执行。    如果一个网站的管理用户写在auth.php里，且auth.php被恶意删除了，如果用require则没有漏洞。    如果用include则产生漏洞，这是为什么?因为Include在遇到错误时会继续执行，这样用户密码就为空，就进入了后台。    再如果 
-      
-      </p>
-      
-      <p>
-          <a href="/868.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/930.seo/" title="对最近dedecms注入的分析" itemprop="url">
   
-  <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/category/Web安全/page/7/">← Newer Posts</a>
-    <span class="page-number">Page 8 of 15</span>
-    <a class="older-posts" href="/category/Web安全/page/9/">Older Posts →</a>
+    <h1 itemprop="name">对最近dedecms注入的分析</h1>
+    
+    <time datetime="2012-11-10T02:37:58.000Z" itemprop="datePublished">2012-11-10</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/928.seo/" title="Metinfo 代码审计" itemprop="url">
+  
+    <h1 itemprop="name">Metinfo 代码审计</h1>
+    
+    <time datetime="2012-11-06T22:14:19.000Z" itemprop="datePublished">2012-11-07</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/914.seo/" title="akcms代码执行漏洞" itemprop="url">
+  
+    <h1 itemprop="name">akcms代码执行漏洞</h1>
+    
+    <time datetime="2012-10-28T22:03:14.000Z" itemprop="datePublished">2012-10-29</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/868.seo/" title="php文件包含漏洞的解决方法" itemprop="url">
+  
+    <h1 itemprop="name">php文件包含漏洞的解决方法</h1>
+    
+    <time datetime="2012-09-28T01:59:48.000Z" itemprop="datePublished">2012-09-28</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix archive-nav">
+    <a class="extend prev" rel="prev" href="/category/Web安全/page/7/">&laquo; 上一页</a><a class="page-number" href="/category/Web安全/">1</a><span class="space">&hellip;</span><a class="page-number" href="/category/Web安全/page/6/">6</a><a class="page-number" href="/category/Web安全/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/category/Web安全/page/9/">9</a><a class="page-number" href="/category/Web安全/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/category/Web安全/page/15/">15</a><a class="extend next" rel="next" href="/category/Web安全/page/9/">下一页 &raquo;</a>
   </nav>
-</main>
 
-
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

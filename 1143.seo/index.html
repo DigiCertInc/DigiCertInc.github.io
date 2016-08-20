@@ -1,150 +1,447 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Debian Jessie搭建Mattermost | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Debian Jessie搭建Mattermost | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="Websocket聊天,不支持xmpp  &amp;#160;  Install Debian Jessie (x64)  1. Set up 3 machines with Debian Jessie with 2GB of RAM or more. The servers will be used fo">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Debian Jessie搭建Mattermost | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/1143.seo/" title="Debian Jessie搭建Mattermost" itemprop="url">Debian Jessie搭建Mattermost</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2016-07-20T09:51:05.000Z" itemprop="datePublished">2016-07-20</time>
+    Updated:<time datetime="2016-08-20T11:03:54.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
-
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2016-07-20T09:51:05.000Z" itemprop="datePublished">
-          2016-07-20
-      </time>
-    
-    
-    | 
-    <a href='/tag/Mattermost/'>Mattermost</a>
-    
-    
-</span>
-    <h1 class="post-title">Debian Jessie搭建Mattermost</h1>
-    <section class="post-content">
-      <p></p><h4>Websocket聊天,不支持xmpp</h4>  <p>&#160;</p>  <h4>Install Debian Jessie (x64)</h4>  <br>1. Set up 3 machines with Debian Jessie with 2GB of RAM or more. The servers will be used for the Load Balancer, Mattermost (this must be x64 to use pre-built binaries), and Database.  <br>2. This can also be set up all on a single server for small teams:• I have a Mattermost instance running on a single Debian Jessie server with 1GB of ram and 30 GB SSD  <br>• This has been working in production for ~20 users without issue.  <br>• The only difference in the below instructions for this method is to do everything on the same server  <br>• Make sure the system is up to date with the most recent security patches.• sudo apt-get update  <br>• sudo apt-get upgrade  <h4>Set up Database Server</h4>  <br>1. For the purposes of this guide we will assume this server has an IP address of 10.10.10.1  <br>2. Install PostgreSQL 9.3+ (or MySQL 5.6+)• sudo apt-get install postgresql postgresql-contrib  <br>• PostgreSQL created a user account called postgres. You will need to log into that account with:• sudo -i -u postgres  <br>• You can get a PostgreSQL prompt by typing:• psql  <br>• Create the Mattermost database by typing:• postgres=# CREATE DATABASE mattermost;  <br>• Create the Mattermost user by typing:• postgres=# CREATE USER mmuser WITH PASSWORD ‘mmuser_password’;  <br>• Grant the user access to the Mattermost database by typing:• postgres=# GRANT ALL PRIVILEGES ON DATABASE mattermost to mmuser;  <br>• You can exit out of PostgreSQL by typing:• postgre=# \q  <br>• You can exit the postgres account by typing:• exit  <br>• Allow Postgres to listen on all assigned IP Addresses• sudo vi /etc/postgresql/9.3/main/postgresql.conf  <br>• Uncomment ‘listen_addresses’ and change ‘localhost’ to ‘<em>’  <br>• Alter pg_hba.conf to allow the mattermost server to talk to the postgres database• sudo vi /etc/postgresql/9.3/main/pg_hba.conf  <br>• Add the following line to the ‘IPv4 local connections’  <br>• host all all 10.10.10.2/32 md5  <br>• Reload Postgres database• sudo /etc/init.d/postgresql reload  <br>• Attempt to connect with the new created user to verify everything looks good• psql –host=10.10.10.1 –dbname=mattermost –username=mmuser –password  <br>• mattermost=&gt; \q  <h4>Set up <a href="http://ha.cker.in/tag/Mattermost" target="_blank">Mattermost</a> Server</h4>  <p>   <br>1. For the purposes of this guide we will assume this server has an IP address of 10.10.10.1    <br>2. Download the latest Mattermost Server by typing:    <br>• wget <a href="https://github.com/mattermost/platform/releases/download/vX.X.X/mattermost.tar.gz" target="_blank" rel="external">https://github.com/mattermost/platform/releases/download/vX.X.X/mattermost.tar.gz</a>    <br>• Where vX.X.X is the latest Mattermost release version. For example, v2.0.0    <br>• Install Mattermost under /opt    <br>• Unzip the Mattermost Server by typing:    <br>• tar -xvzf mattermost.tar.gz    <br>• sudo mv mattermost /opt    <br>• Create the storage directory for files. We assume you will have attached a large drive for storage of images and files. For this setup we will assume the directory is located at /opt/mattermost/data.    <br>• Create the directory by typing:    <br>• sudo mkdir -p /opt/mattermost/data    <br>• Create a system user and group called mattermost that will run this service    <br>• sudo useradd -r mattermost -U    <br>• Set the mattermost account as the directory owner by typing:    <br>• sudo chown -R mattermost:mattermost /opt/mattermost    <br>• sudo chmod -R g+w /opt/mattermost    <br>• Add yourself to the mattermost group to ensure you can edit these files:    <br>• sudo usermod -aG mattermost USERNAME    <br>• Configure Mattermost Server by editing the config.json file at /opt/mattermost/config    <br>• cd /opt/mattermost/config    <br>• Edit the file by typing:    <br>• vi config.json    <br>• replace DriverName&quot;: &quot;mysql&quot; with DriverName&quot;: &quot;postgres&quot;    <br>• replace &quot;DataSource&quot;: &quot;mmuser:mostest@tcp(dockerhost:3306)/mattermost_test?charset=utf8mb4,utf8&quot;with &quot;DataSource&quot;: &quot;postgres://mmuser:mmuser_password@10.10.10.1:5432/mattermost?sslmode=disable&amp;connect_timeout=10&quot;• Assuming a default IP address of 10.10.10.1    <br>• Optionally you may continue to edit configuration settings in config.json or use the System Console described in a later section to finish the configuration.    <br>• Test the Mattermost Server    <br>• cd /opt/mattermost/bin    <br>• Run the Mattermost Server by typing:    <br>• ./platform    <br>• You should see a console log like Server is listening on :8065 letting you know the service is running.    <br>• Stop the server for now by typing ctrl-c    <br>• Setup Mattermost to use the systemd init daemon which handles supervision of the Mattermost process    <br>• sudo touch /etc/init.d/mattermost    <br>• sudo vi /etc/init.d/mattermost    <br>• Copy the following lines into /etc/init.d/<a href="http://ha.cker.in/tag/Mattermost" target="_blank">mattermost</a></p>  <blockquote>   <p>     <br>#! /bin/sh      <br>### BEGIN INIT INFO      <br># Provides: mattermost      <br># Required-Start: $network $syslog      <br># Required-Stop: $network $syslog      <br># Default-Start: 2 3 4 5      <br># Default-Stop: 0 1 6      <br># Short-Description: Mattermost Group Chat      <br># Description: Mattermost: An open-source Slack      <br>### END INIT INFO      <br>PATH=/sbin:/usr/sbin:/bin:/usr/bin      <br>DESC=&quot;Mattermost&quot;      <br>NAME=mattermost      <br>MATTERMOST_ROOT=/opt/mattermost      <br>MATTERMOST_GROUP=mattermost      <br>MATTERMOST_USER=mattermost      <br>DAEMON=&quot;$MATTERMOST_ROOT/bin/platform&quot;      <br>PIDFILE=/var/run/$NAME.pid      <br>SCRIPTNAME=/etc/init.d/$NAME      <br>. /lib/lsb/init-functions      <br>do_start() {      <br># Return      <br># 0 if daemon has been started      <br># 1 if daemon was already running      <br># 2 if daemon could not be started      <br>start-stop-daemon –start –quiet \      <br>–chuid $MATTERMOST_USER:$MATTERMOST_GROUP –chdir $MATTERMOST_ROOT –background \      <br>–pidfile $PIDFILE –exec $DAEMON <strong>–test</strong> &gt; /dev/null \      <br>|| return 1      <br>start-stop-daemon –start –quiet \      <br>–chuid $MATTERMOST_USER:$MATTERMOST_GROUP –chdir $MATTERMOST_ROOT –background \      <br>–make-pidfile –pidfile $PIDFILE –exec $DAEMON \      <br>|| return 2      <br>}      <br>#      <br># Function that stops the daemon/service      <br>#      <br>do_stop() {      <br># Return      <br># 0 if daemon has been stopped      <br># 1 if daemon was already stopped      <br># 2 if daemon could not be stopped      <br># other if a failure occurred      <br>start-stop-daemon –stop –quiet –retry=TERM/30/KILL/5 \      <br>–pidfile $PIDFILE –exec $DAEMON      <br>RETVAL=&quot;$?&quot;      <br>[ &quot;$RETVAL&quot; = 2 ] &amp;&amp; return 2      <br># Wait for children to finish too if this is a daemon that forks      <br># and if the daemon is only ever run from this initscript.      <br># If the above conditions are not satisfied then add some other code      <br># that waits for the process to drop all resources that could be      <br># needed by services started subsequently. A last resort is to      <br># sleep for some time.      <br>start-stop-daemon –stop –quiet –oknodo –retry=0/30/KILL/5 \      <br>–exec $DAEMON      <br>[ &quot;$?&quot; = 2 ] &amp;&amp; return 2      <br># Many daemons don’t delete their pidfiles when they exit.      <br>rm -f $PIDFILE      <br>return &quot;$RETVAL&quot;      <br>}      <br>case &quot;$1&quot; in      <br>start)      <br>[ &quot;$VERBOSE&quot; != no ] &amp;&amp; log_daemon_msg &quot;Starting $DESC&quot; &quot;$NAME&quot;      <br>do_start      <br>case &quot;$?&quot; in      <br>0|1) [ &quot;$VERBOSE&quot; != no ] &amp;&amp; log_end_msg 0 ;;      <br>2) [ &quot;$VERBOSE&quot; != no ] &amp;&amp; log_end_msg 1 ;;      <br>esac      <br>;;      <br>stop)      <br>[ &quot;$VERBOSE&quot; != no ] &amp;&amp; log_daemon_msg &quot;Stopping $DESC&quot; &quot;$NAME&quot;      <br>do_stop      <br>case &quot;$?&quot; in      <br>0|1) [ &quot;$VERBOSE&quot; != no ] &amp;&amp; log_end_msg 0 ;;      <br>2) [ &quot;$VERBOSE&quot; != no ] &amp;&amp; log_end_msg 1 ;;      <br>esac      <br>;;      <br>status)      <br>status_of_proc &quot;$DAEMON&quot; &quot;$NAME&quot; &amp;&amp; exit 0 || exit $?      <br>;;      <br>restart|force-reload)      <br>#      <br># If the &quot;reload&quot; option is implemented then remove the      <br># ‘force-reload’ alias      <br>#      <br>log_daemon_msg &quot;Restarting $DESC&quot; &quot;$NAME&quot;      <br>do_stop      <br>case &quot;$?&quot; in      <br>0|1)      <br>do_start      <br>case &quot;$?&quot; in      <br>0) log_end_msg 0 ;;      <br>1) log_end_msg 1 ;; # Old process is still running      <br></p></blockquote></em>) log_end_msg 1 ;; # Failed to start      <br>esac      <br>;;      <br><em>)      <br># Failed to stop      <br>log_end_msg 1      <br>;;      <br>esac      <br>;;      <br></em>)      <br>echo &quot;Usage: $SCRIPTNAME {start|stop|status|restart|force-reload}&quot; &gt;&amp;2      <br>exit 3      <br>;;      <br>esac      <br>exit 0<p></p>   <p>   <br>• Make sure that /etc/init.d/mattermost is executable    <br>• sudo chmod +x /etc/init.d/mattermost    <br>• On reboot, systemd will generate a unit file from the headers in this init script and install it in/run/systemd/generator.late/    <br>Note: This setup can also be done using a systemd unit, usable for non-Debian systems, such as Arch Linux. The unit file is as follows:    <br><em># cat /etc/systemd/system/mattermost.service</em></p>  <p>   <br>[Unit]    <br>Description<strong>=</strong>Mattermost    <br>After<strong>=</strong>network<strong>.</strong>target    <br>[Service]    <br>User<strong>=</strong>mattermost    <br>ExecStart<strong>=/</strong>home<strong>/</strong>mattermost<strong>/</strong>mattermost<strong>/</strong>bin<strong>/</strong>platform    <br>WorkingDirectory<strong>=/</strong>home<strong>/</strong>mattermost<strong>/</strong>mattermost    <br>Restart<strong>=</strong>always    <br>RestartSec<strong>=</strong>30    <br>[Install]    <br>WantedBy<strong>=</strong>multi<strong>-</strong>user<strong>.</strong>target    <br></p> <em></em>  <p><em># systemctl start mattermost</em>    <br><em># systemctl enable mattermost</em></p>  <h4>Set up Nginx Server</h4>  <p>   <br>1. For the purposes of this guide we will assume this server has an IP address of 10.10.10.3    <br>2. We use Nginx for proxying request to the Mattermost Server. The main benefits are:    <br>• SSL termination    <br>• http to https redirect    <br>• Port mapping :80 to :8065    <br>• Standard request logs    <br>• Install Nginx on Debian with    <br>• sudo apt-get install nginx    <br>• Verify Nginx is running    <br>• curl <a href="http://10.10.10.3" target="_blank" rel="external">http://10.10.10.3</a>    <br>• You should see a Welcome to nginx! page    <br>• You can manage Nginx with the following commands    <br>• sudo service nginx stop    <br>• sudo service nginx start    <br>• sudo service nginx restart    <br>• Map a FQDN (fully qualified domain name) like mattermost.example.com to point to the Nginx server.    <br>• Configure Nginx to proxy connections from the internet to the Mattermost Server    <br>• Create a configuration for Mattermost    <br>• sudo touch /etc/nginx/sites-available/mattermost    <br>• Below is a sample configuration with the minimum settings required to configure Mattermost</p>  <blockquote>   <p>     <br>server {      <br>server_name mattermost.example.com;      <br>location / {      <br>client_max_body_size 50M;      <br>proxy_set_header Upgrade $http_upgrade;      <br>proxy_set_header Connection &quot;upgrade&quot;;      <br>proxy_set_header Host $http_host;      <br>proxy_set_header X-Real-IP $remote_addr;      <br>proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;      <br>proxy_set_header X-Forwarded-Proto $scheme;      <br>proxy_set_header X-Frame-Options SAMEORIGIN;      <br>proxy_pass <a href="http://10.10.10.2:8065" target="_blank" rel="external">http://10.10.10.2:8065</a>;      <br>}      <br>}</p> </blockquote>  <p>   <br>• Remove the existing file with    <br>• sudo rm /etc/nginx/sites-enabled/default    <br>• Link the mattermost config by typing:    <br>• sudo ln -s /etc/nginx/sites-available/mattermost /etc/nginx/sites-enabled/mattermost    <br>• Restart Nginx by typing:    <br>• sudo service nginx restart    <br>• Verify you can see Mattermost thru the proxy by typing:    <br>• curl <a href="http://localhost" target="_blank" rel="external">http://localhost</a>    <br>• You should see a page titles Mattermost - Signup</p>  <h4>Set up Nginx with SSL (Recommended)</h4>  <p>   <br>1. You can use a free and an open certificate security like let’s encrypt, this is how to proceed    <br>• sudo apt-get install git    <br>• git clone <a href="https://github.com/letsencrypt/letsencrypt" target="_blank" rel="external">https://github.com/letsencrypt/letsencrypt</a>    <br>• cd letsencrypt    <br>• Be sure that the port 80 is not use by stopping nginx    <br>• sudo service nginx stop    <br>• netstat -na | grep ‘:80.*LISTEN’    <br>• ./letsencrypt-auto certonly –standalone    <br>• This command will download packages and run the instance, after that you will have to give your domain name    <br>• You can find your certificate in /etc/letsencrypt/live    <br>• Modify the file at /etc/nginx/sites-available/mattermost and add the following lines:</p>  <blockquote>   <p>     <br>server {      <br>listen 80;      <br>server_name mattermost.example.com;      <br>return 301 <a href="https://$server_name$request_uri" target="_blank" rel="external">https://$server_name$request_uri</a>;      <br>}      <br>server {      <br>listen 443 ssl;      <br>server_name mattermost.example.com;      <br>ssl on;      <br>ssl_certificate /etc/letsencrypt/live/yourdomainname/fullchain.pem;      <br>ssl_certificate_key /etc/letsencrypt/live/yourdomainname/privkey.pem;      <br>ssl_session_timeout 5m;      <br>ssl_protocols TLSv1 TLSv1.1 TLSv1.2;      <br>ssl_ciphers ‘EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH’;      <br>ssl_prefer_server_ciphers on;      <br>ssl_session_cache shared:SSL:10m;      <br>location / {      <br>gzip off;      <br>proxy_set_header X-Forwarded-Ssl on;      <br>client_max_body_size 50M;      <br>proxy_set_header Upgrade $http_upgrade;      <br>proxy_set_header Connection &quot;upgrade&quot;;      <br>proxy_set_header Host $http_host;      <br>proxy_set_header X-Real-IP $remote_addr;      <br>proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;      <br>proxy_set_header X-Forwarded-Proto $scheme;      <br>proxy_set_header X-Frame-Options SAMEORIGIN;      <br>proxy_pass <a href="http://10.10.10.2:8065" target="_blank" rel="external">http://10.10.10.2:8065</a>;      <br>}      <br>}</p> </blockquote>  <p>   <br>• Be sure to restart nginx    <br>• sudo service nginx start    <br>• Add the following line to cron so the cert will renew every month    <br>• crontab -e    <br>• @monthly /home/YOURUSERNAME/letsencrypt/letsencrypt-auto certonly –reinstall -d yourdomainname&amp;&amp; sudo service nginx reload</p>  <h4>Finish Mattermost Server setup</h4>  <p>   <br>1. Navigate to <a href="https://mattermost.example.com/" target="_blank" rel="external">https://mattermost.example.com</a> and create a team and user.    <br>2. The first user in the system is automatically granted the system_admin role, which gives you access to the System Console.    <br>3. From the town-square channel click the dropdown and choose the System Console option    <br>4. Update Email Settings. We recommend using an email sending service. The example below assumes AmazonSES.• Set Send Email Notifications to true    <br>• Set Require Email Verification to true    <br>• Set Feedback Name to No-Reply    <br>• Set Feedback Email to mattermost@example.com    <br>• Set SMTP Username to AFIADTOVDKDLGERR    <br>• Set SMTP Password to DFKJoiweklsjdflkjOIGHLSDFJewiskdjf    <br>• Set SMTP Server to email-smtp.us-east-1.amazonaws.com    <br>• Set SMTP Port to 465    <br>• Set Connection Security to TLS    <br>• Save the Settings    <br>• Update File Settings• Change Local Directory Location from ./data/ to /mattermost/data    <br>• Update Log Settings.• Set Log to The Console to false    <br>• Update Rate Limit Settings.• Set Vary By Remote Address to false    <br>• Set Vary By HTTP Header to X-Real-IP    <br>• Feel free to modify other settings.    <br>• Restart the Mattermost Service by typing:• sudo restart mattermost</p>  <p><a href="http://docs.mattermost.com/install/prod-debian.html" target="_blank" rel="external">http://docs.mattermost.com/install/prod-debian.html</a></p><p></p>
-
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1143.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1143.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1143.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1143.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/1144.seo/">
-        ← Debian 8.3 Mate搭建渗透测试环境
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/1142.seo/">
-        C# IPv6的Socket编程 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">Websocket聊天,不支持xmpp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">Install Debian Jessie (x64)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">Set up Database Server</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">Set up Mattermost Server</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">Set up Nginx Server</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">Set up Nginx with SSL (Recommended)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text">Finish Mattermost Server setup</span></a></li></ol>
+		</div>
+		
+		<p></p><h4>Websocket聊天,不支持xmpp</h4>  <p>&#160;</p>  <h4>Install Debian Jessie (x64)</h4>  <br>1. Set up 3 machines with Debian Jessie with 2GB of RAM or more. The servers will be used for the Load Balancer, Mattermost (this must be x64 to use pre-built binaries), and Database.  <br>2. This can also be set up all on a single server for small teams:• I have a Mattermost instance running on a single Debian Jessie server with 1GB of ram and 30 GB SSD  <br>• This has been working in production for ~20 users without issue.  <br>• The only difference in the below instructions for this method is to do everything on the same server  <br>• Make sure the system is up to date with the most recent security patches.• sudo apt-get update  <br>• sudo apt-get upgrade  <h4>Set up Database Server</h4>  <br>1. For the purposes of this guide we will assume this server has an IP address of 10.10.10.1  <br>2. Install PostgreSQL 9.3+ (or MySQL 5.6+)• sudo apt-get install postgresql postgresql-contrib  <br>• PostgreSQL created a user account called postgres. You will need to log into that account with:• sudo -i -u postgres  <br>• You can get a PostgreSQL prompt by typing:• psql  <br>• Create the Mattermost database by typing:• postgres=# CREATE DATABASE mattermost;  <br>• Create the Mattermost user by typing:• postgres=# CREATE USER mmuser WITH PASSWORD ‘mmuser_password’;  <br>• Grant the user access to the Mattermost database by typing:• postgres=# GRANT ALL PRIVILEGES ON DATABASE mattermost to mmuser;  <br>• You can exit out of PostgreSQL by typing:• postgre=# \q  <br>• You can exit the postgres account by typing:• exit  <br>• Allow Postgres to listen on all assigned IP Addresses• sudo vi /etc/postgresql/9.3/main/postgresql.conf  <br>• Uncomment ‘listen_addresses’ and change ‘localhost’ to ‘<em>’  <br>• Alter pg_hba.conf to allow the mattermost server to talk to the postgres database• sudo vi /etc/postgresql/9.3/main/pg_hba.conf  <br>• Add the following line to the ‘IPv4 local connections’  <br>• host all all 10.10.10.2/32 md5  <br>• Reload Postgres database• sudo /etc/init.d/postgresql reload  <br>• Attempt to connect with the new created user to verify everything looks good• psql –host=10.10.10.1 –dbname=mattermost –username=mmuser –password  <br>• mattermost=&gt; \q  <h4>Set up <a href="http://ha.cker.in/tag/Mattermost" target="_blank">Mattermost</a> Server</h4>  <p>   <br>1. For the purposes of this guide we will assume this server has an IP address of 10.10.10.1    <br>2. Download the latest Mattermost Server by typing:    <br>• wget <a href="https://github.com/mattermost/platform/releases/download/vX.X.X/mattermost.tar.gz" target="_blank" rel="external">https://github.com/mattermost/platform/releases/download/vX.X.X/mattermost.tar.gz</a>    <br>• Where vX.X.X is the latest Mattermost release version. For example, v2.0.0    <br>• Install Mattermost under /opt    <br>• Unzip the Mattermost Server by typing:    <br>• tar -xvzf mattermost.tar.gz    <br>• sudo mv mattermost /opt    <br>• Create the storage directory for files. We assume you will have attached a large drive for storage of images and files. For this setup we will assume the directory is located at /opt/mattermost/data.    <br>• Create the directory by typing:    <br>• sudo mkdir -p /opt/mattermost/data    <br>• Create a system user and group called mattermost that will run this service    <br>• sudo useradd -r mattermost -U    <br>• Set the mattermost account as the directory owner by typing:    <br>• sudo chown -R mattermost:mattermost /opt/mattermost    <br>• sudo chmod -R g+w /opt/mattermost    <br>• Add yourself to the mattermost group to ensure you can edit these files:    <br>• sudo usermod -aG mattermost USERNAME    <br>• Configure Mattermost Server by editing the config.json file at /opt/mattermost/config    <br>• cd /opt/mattermost/config    <br>• Edit the file by typing:    <br>• vi config.json    <br>• replace DriverName&quot;: &quot;mysql&quot; with DriverName&quot;: &quot;postgres&quot;    <br>• replace &quot;DataSource&quot;: &quot;mmuser:mostest@tcp(dockerhost:3306)/mattermost_test?charset=utf8mb4,utf8&quot;with &quot;DataSource&quot;: &quot;postgres://mmuser:mmuser_password@10.10.10.1:5432/mattermost?sslmode=disable&amp;connect_timeout=10&quot;• Assuming a default IP address of 10.10.10.1    <br>• Optionally you may continue to edit configuration settings in config.json or use the System Console described in a later section to finish the configuration.    <br>• Test the Mattermost Server    <br>• cd /opt/mattermost/bin    <br>• Run the Mattermost Server by typing:    <br>• ./platform    <br>• You should see a console log like Server is listening on :8065 letting you know the service is running.    <br>• Stop the server for now by typing ctrl-c    <br>• Setup Mattermost to use the systemd init daemon which handles supervision of the Mattermost process    <br>• sudo touch /etc/init.d/mattermost    <br>• sudo vi /etc/init.d/mattermost    <br>• Copy the following lines into /etc/init.d/<a href="http://ha.cker.in/tag/Mattermost" target="_blank">mattermost</a></p>  <blockquote>   <p>     <br>#! /bin/sh      <br>### BEGIN INIT INFO      <br># Provides: mattermost      <br># Required-Start: $network $syslog      <br># Required-Stop: $network $syslog      <br># Default-Start: 2 3 4 5      <br># Default-Stop: 0 1 6      <br># Short-Description: Mattermost Group Chat      <br># Description: Mattermost: An open-source Slack      <br>### END INIT INFO      <br>PATH=/sbin:/usr/sbin:/bin:/usr/bin      <br>DESC=&quot;Mattermost&quot;      <br>NAME=mattermost      <br>MATTERMOST_ROOT=/opt/mattermost      <br>MATTERMOST_GROUP=mattermost      <br>MATTERMOST_USER=mattermost      <br>DAEMON=&quot;$MATTERMOST_ROOT/bin/platform&quot;      <br>PIDFILE=/var/run/$NAME.pid      <br>SCRIPTNAME=/etc/init.d/$NAME      <br>. /lib/lsb/init-functions      <br>do_start() {      <br># Return      <br># 0 if daemon has been started      <br># 1 if daemon was already running      <br># 2 if daemon could not be started      <br>start-stop-daemon –start –quiet \      <br>–chuid $MATTERMOST_USER:$MATTERMOST_GROUP –chdir $MATTERMOST_ROOT –background \      <br>–pidfile $PIDFILE –exec $DAEMON <strong>–test</strong> &gt; /dev/null \      <br>|| return 1      <br>start-stop-daemon –start –quiet \      <br>–chuid $MATTERMOST_USER:$MATTERMOST_GROUP –chdir $MATTERMOST_ROOT –background \      <br>–make-pidfile –pidfile $PIDFILE –exec $DAEMON \      <br>|| return 2      <br>}      <br>#      <br># Function that stops the daemon/service      <br>#      <br>do_stop() {      <br># Return      <br># 0 if daemon has been stopped      <br># 1 if daemon was already stopped      <br># 2 if daemon could not be stopped      <br># other if a failure occurred      <br>start-stop-daemon –stop –quiet –retry=TERM/30/KILL/5 \      <br>–pidfile $PIDFILE –exec $DAEMON      <br>RETVAL=&quot;$?&quot;      <br>[ &quot;$RETVAL&quot; = 2 ] &amp;&amp; return 2      <br># Wait for children to finish too if this is a daemon that forks      <br># and if the daemon is only ever run from this initscript.      <br># If the above conditions are not satisfied then add some other code      <br># that waits for the process to drop all resources that could be      <br># needed by services started subsequently. A last resort is to      <br># sleep for some time.      <br>start-stop-daemon –stop –quiet –oknodo –retry=0/30/KILL/5 \      <br>–exec $DAEMON      <br>[ &quot;$?&quot; = 2 ] &amp;&amp; return 2      <br># Many daemons don’t delete their pidfiles when they exit.      <br>rm -f $PIDFILE      <br>return &quot;$RETVAL&quot;      <br>}      <br>case &quot;$1&quot; in      <br>start)      <br>[ &quot;$VERBOSE&quot; != no ] &amp;&amp; log_daemon_msg &quot;Starting $DESC&quot; &quot;$NAME&quot;      <br>do_start      <br>case &quot;$?&quot; in      <br>0|1) [ &quot;$VERBOSE&quot; != no ] &amp;&amp; log_end_msg 0 ;;      <br>2) [ &quot;$VERBOSE&quot; != no ] &amp;&amp; log_end_msg 1 ;;      <br>esac      <br>;;      <br>stop)      <br>[ &quot;$VERBOSE&quot; != no ] &amp;&amp; log_daemon_msg &quot;Stopping $DESC&quot; &quot;$NAME&quot;      <br>do_stop      <br>case &quot;$?&quot; in      <br>0|1) [ &quot;$VERBOSE&quot; != no ] &amp;&amp; log_end_msg 0 ;;      <br>2) [ &quot;$VERBOSE&quot; != no ] &amp;&amp; log_end_msg 1 ;;      <br>esac      <br>;;      <br>status)      <br>status_of_proc &quot;$DAEMON&quot; &quot;$NAME&quot; &amp;&amp; exit 0 || exit $?      <br>;;      <br>restart|force-reload)      <br>#      <br># If the &quot;reload&quot; option is implemented then remove the      <br># ‘force-reload’ alias      <br>#      <br>log_daemon_msg &quot;Restarting $DESC&quot; &quot;$NAME&quot;      <br>do_stop      <br>case &quot;$?&quot; in      <br>0|1)      <br>do_start      <br>case &quot;$?&quot; in      <br>0) log_end_msg 0 ;;      <br>1) log_end_msg 1 ;; # Old process is still running      <br></p></blockquote></em>) log_end_msg 1 ;; # Failed to start      <br>esac      <br>;;      <br><em>)      <br># Failed to stop      <br>log_end_msg 1      <br>;;      <br>esac      <br>;;      <br></em>)      <br>echo &quot;Usage: $SCRIPTNAME {start|stop|status|restart|force-reload}&quot; &gt;&amp;2      <br>exit 3      <br>;;      <br>esac      <br>exit 0<p></p>   <p>   <br>• Make sure that /etc/init.d/mattermost is executable    <br>• sudo chmod +x /etc/init.d/mattermost    <br>• On reboot, systemd will generate a unit file from the headers in this init script and install it in/run/systemd/generator.late/    <br>Note: This setup can also be done using a systemd unit, usable for non-Debian systems, such as Arch Linux. The unit file is as follows:    <br><em># cat /etc/systemd/system/mattermost.service</em></p>  <p>   <br>[Unit]    <br>Description<strong>=</strong>Mattermost    <br>After<strong>=</strong>network<strong>.</strong>target    <br>[Service]    <br>User<strong>=</strong>mattermost    <br>ExecStart<strong>=/</strong>home<strong>/</strong>mattermost<strong>/</strong>mattermost<strong>/</strong>bin<strong>/</strong>platform    <br>WorkingDirectory<strong>=/</strong>home<strong>/</strong>mattermost<strong>/</strong>mattermost    <br>Restart<strong>=</strong>always    <br>RestartSec<strong>=</strong>30    <br>[Install]    <br>WantedBy<strong>=</strong>multi<strong>-</strong>user<strong>.</strong>target    <br></p> <em></em>  <p><em># systemctl start mattermost</em>    <br><em># systemctl enable mattermost</em></p>  <h4>Set up Nginx Server</h4>  <p>   <br>1. For the purposes of this guide we will assume this server has an IP address of 10.10.10.3    <br>2. We use Nginx for proxying request to the Mattermost Server. The main benefits are:    <br>• SSL termination    <br>• http to https redirect    <br>• Port mapping :80 to :8065    <br>• Standard request logs    <br>• Install Nginx on Debian with    <br>• sudo apt-get install nginx    <br>• Verify Nginx is running    <br>• curl <a href="http://10.10.10.3" target="_blank" rel="external">http://10.10.10.3</a>    <br>• You should see a Welcome to nginx! page    <br>• You can manage Nginx with the following commands    <br>• sudo service nginx stop    <br>• sudo service nginx start    <br>• sudo service nginx restart    <br>• Map a FQDN (fully qualified domain name) like mattermost.example.com to point to the Nginx server.    <br>• Configure Nginx to proxy connections from the internet to the Mattermost Server    <br>• Create a configuration for Mattermost    <br>• sudo touch /etc/nginx/sites-available/mattermost    <br>• Below is a sample configuration with the minimum settings required to configure Mattermost</p>  <blockquote>   <p>     <br>server {      <br>server_name mattermost.example.com;      <br>location / {      <br>client_max_body_size 50M;      <br>proxy_set_header Upgrade $http_upgrade;      <br>proxy_set_header Connection &quot;upgrade&quot;;      <br>proxy_set_header Host $http_host;      <br>proxy_set_header X-Real-IP $remote_addr;      <br>proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;      <br>proxy_set_header X-Forwarded-Proto $scheme;      <br>proxy_set_header X-Frame-Options SAMEORIGIN;      <br>proxy_pass <a href="http://10.10.10.2:8065" target="_blank" rel="external">http://10.10.10.2:8065</a>;      <br>}      <br>}</p> </blockquote>  <p>   <br>• Remove the existing file with    <br>• sudo rm /etc/nginx/sites-enabled/default    <br>• Link the mattermost config by typing:    <br>• sudo ln -s /etc/nginx/sites-available/mattermost /etc/nginx/sites-enabled/mattermost    <br>• Restart Nginx by typing:    <br>• sudo service nginx restart    <br>• Verify you can see Mattermost thru the proxy by typing:    <br>• curl <a href="http://localhost" target="_blank" rel="external">http://localhost</a>    <br>• You should see a page titles Mattermost - Signup</p>  <h4>Set up Nginx with SSL (Recommended)</h4>  <p>   <br>1. You can use a free and an open certificate security like let’s encrypt, this is how to proceed    <br>• sudo apt-get install git    <br>• git clone <a href="https://github.com/letsencrypt/letsencrypt" target="_blank" rel="external">https://github.com/letsencrypt/letsencrypt</a>    <br>• cd letsencrypt    <br>• Be sure that the port 80 is not use by stopping nginx    <br>• sudo service nginx stop    <br>• netstat -na | grep ‘:80.*LISTEN’    <br>• ./letsencrypt-auto certonly –standalone    <br>• This command will download packages and run the instance, after that you will have to give your domain name    <br>• You can find your certificate in /etc/letsencrypt/live    <br>• Modify the file at /etc/nginx/sites-available/mattermost and add the following lines:</p>  <blockquote>   <p>     <br>server {      <br>listen 80;      <br>server_name mattermost.example.com;      <br>return 301 <a href="https://$server_name$request_uri" target="_blank" rel="external">https://$server_name$request_uri</a>;      <br>}      <br>server {      <br>listen 443 ssl;      <br>server_name mattermost.example.com;      <br>ssl on;      <br>ssl_certificate /etc/letsencrypt/live/yourdomainname/fullchain.pem;      <br>ssl_certificate_key /etc/letsencrypt/live/yourdomainname/privkey.pem;      <br>ssl_session_timeout 5m;      <br>ssl_protocols TLSv1 TLSv1.1 TLSv1.2;      <br>ssl_ciphers ‘EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH’;      <br>ssl_prefer_server_ciphers on;      <br>ssl_session_cache shared:SSL:10m;      <br>location / {      <br>gzip off;      <br>proxy_set_header X-Forwarded-Ssl on;      <br>client_max_body_size 50M;      <br>proxy_set_header Upgrade $http_upgrade;      <br>proxy_set_header Connection &quot;upgrade&quot;;      <br>proxy_set_header Host $http_host;      <br>proxy_set_header X-Real-IP $remote_addr;      <br>proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;      <br>proxy_set_header X-Forwarded-Proto $scheme;      <br>proxy_set_header X-Frame-Options SAMEORIGIN;      <br>proxy_pass <a href="http://10.10.10.2:8065" target="_blank" rel="external">http://10.10.10.2:8065</a>;      <br>}      <br>}</p> </blockquote>  <p>   <br>• Be sure to restart nginx    <br>• sudo service nginx start    <br>• Add the following line to cron so the cert will renew every month    <br>• crontab -e    <br>• @monthly /home/YOURUSERNAME/letsencrypt/letsencrypt-auto certonly –reinstall -d yourdomainname&amp;&amp; sudo service nginx reload</p>  <h4>Finish Mattermost Server setup</h4>  <p>   <br>1. Navigate to <a href="https://mattermost.example.com/" target="_blank" rel="external">https://mattermost.example.com</a> and create a team and user.    <br>2. The first user in the system is automatically granted the system_admin role, which gives you access to the System Console.    <br>3. From the town-square channel click the dropdown and choose the System Console option    <br>4. Update Email Settings. We recommend using an email sending service. The example below assumes AmazonSES.• Set Send Email Notifications to true    <br>• Set Require Email Verification to true    <br>• Set Feedback Name to No-Reply    <br>• Set Feedback Email to mattermost@example.com    <br>• Set SMTP Username to AFIADTOVDKDLGERR    <br>• Set SMTP Password to DFKJoiweklsjdflkjOIGHLSDFJewiskdjf    <br>• Set SMTP Server to email-smtp.us-east-1.amazonaws.com    <br>• Set SMTP Port to 465    <br>• Set Connection Security to TLS    <br>• Save the Settings    <br>• Update File Settings• Change Local Directory Location from ./data/ to /mattermost/data    <br>• Update Log Settings.• Set Log to The Console to false    <br>• Update Rate Limit Settings.• Set Vary By Remote Address to false    <br>• Set Vary By HTTP Header to X-Real-IP    <br>• Feel free to modify other settings.    <br>• Restart the Mattermost Service by typing:• sudo restart mattermost</p>  <p><a href="http://docs.mattermost.com/install/prod-debian.html" target="_blank" rel="external">http://docs.mattermost.com/install/prod-debian.html</a></p><p></p>
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/精品软件/">精品软件</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/Mattermost/">Mattermost</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/1144.seo/" title="Debian 8.3 Mate搭建渗透测试环境">
+  <strong>Prev:</strong><br/>
+  <span>
+  Debian 8.3 Mate搭建渗透测试环境</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/1142.seo/"  title="C# IPv6的Socket编程">
+ <strong>Next:</strong><br/> 
+ <span>C# IPv6的Socket编程
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-Debian Jessie搭建Mattermost" data-title="Debian Jessie搭建Mattermost" data-url="http://ha.cker.in/1143.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

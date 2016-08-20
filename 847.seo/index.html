@@ -1,151 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>DNS域传送泄露漏洞详解 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>DNS域传送泄露漏洞详解 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="区域传送操作指的是一台后备服务器使用来自主服务器的数据刷新自己的zone数据库。这为运行中的DNS服务提供了一定的冗余度，其目的是为了防止主域名服务器因意外故障变得不可用时影响到全局。一般来说，DNS区域传送操作只在网络里真的有后备域名DNS服务器时才有必要执行，但许多DNS服务器却被错误地配置成只要有人发出请求，就会向对方提供一个zone数据库的拷贝。如果所提供的信息只是与连到因特网上且具备有效主机名的系统相关，那么这种错误配置不一定是坏事，尽管这使得攻击者发现潜在目标要容易得多。真正的问题发生在一个单位没有使用公用/私用DNS机制来分割外部公用DNS信息和内部私用DNS信息的时候，此时内部主机名和IP地址都暴露给了攻击者。把内部IP地址信息提供给因特网上不受信任的用户，就像是把一个单位的内部网络完整蓝图或导航图奉送给了别人。   系统管理员来说，允许不受信任的因特网用户执行DNS区域传送（zone transfer）操作是后果最为严重的错误配置之一。   Nslookup显示可用来诊断域名系统(DNS) 基础结构的信息。只有在已安装TCP/IP 协议的情况下才可以使用Nslookup 命令行工具。   语法    nslookup [-SubCommand …] [{ComputerToFind| [-Server]}]    参数    -SubCommand …    将一个或多个nslookup 子命令指定为命令行选项。    ComputerToFind    如果未指定其它服务器，就使用当前默认DNS 名称服务器查阅ComputerToFind 的信息。要查找不在当前DNS 域的计算机，请在名称上附加句点。    -Server    指定将该服务器作为DNS 名称服务器使用。如果省略了-Server，将使用默认的DNS 名称服务器。    {help|?}    显示nslookup 子命令的简短总结。    注释    如果ComputerToFind 是IP 地址，并且查询类型为A 或PTR 资源记录类型，则返回计算机的名称。如果ComputerToFind 是一个名称，并且没有跟踪期，则向该名称添加默认DNS 域名。此行为取决于下面set 子命令的状态：domain、srchlist、defname 和search。    如果键入连字符(-) 代替ComputerToFind，命令提示符更改为nslookup 交互式模式。    命令行长度必须少于256 个字符。    Nslookup 有两种模式：交互式和非交互式。    如果仅需要查找一块数据，请使用非交互式模式。对于第一个参数，键入要查找的计算机的名称或IP 地址。对于第二个参数，键入DNS 名称服务器的名称或IP 地址。如果省略第二个参数，nslookup 使用默认DNS 名称服务器。    如果需要查找多块数据，可以使用交互式模式。为第一个参数键入连字符(-)，为第二个参数键入DNS 名称服务器的名称或IP 地址。或者，省略两个参数，则nslookup 使用默认DNS 名称服务器。下面是一些有关在交互式模式下工作的提示：    要随时中断交互式命令，请按CTRL+C。    要退出，请键入exit。    要将内置命令当作计算机名，请在该命令前面放置转义字符()。    将无法识别的命令解释为计算机名。    如果查找请求失败，nslookup 将打印错误消息。下表列出可能的错误消息。    错误消息 说明    Timed out 重试一定时间和一定次数之后，服务器没有响应请求。可以通过set timeout 子命令设置超时期。而利用set retry 子命令设置重试次数。    No response from server 服务器上没有运行DNS 名称服务器。    No records 尽管计算机名有效，但是DNS 名称服务器没有计算机当前查询类型的资源记录。查询类型使用set querytype 命令指定。    Nonexistent domain 计算机或DNS 域名不存在。    Connection refused    or    Network is unreachable    无法与DNS 名称服务器或指针服务器建立连接。该错误通常发生在ls 和finger 请求中。    Server failure DNS 名称服务器发现在其数据库中内部不一致而无法返回有效应答。    Refused DNS 名称服务器拒绝为请求服务。    Format error DNS 名称服务器发现请求数据包的格式不正确。可能表明nslookup 中存在错误。    nslookup –qt=类型 目标域名     注意qt必须小写。     类型可以是一下字符，不区分大小写：     A 地址记录(Ipv4)     AAAA 地址记录（Ipv6）     AFSDB Andrew文件系统数据库服务器记录（不懂）     ATMA ATM地址记录（不是自动提款机）     CNAME 别名记录     HINFO 硬件配置记录，包括CPU、操作系统信息     ISDN 域名对应的ISDN号码     MB 存放指定邮箱的服务器     MG 邮件组记录     MINFO 邮件组和邮箱的信息记录     MR 改名的邮箱记录     MX 邮件服务器记录     NS 名字服务器记录     PTR 反向记录（从IP地址解释域名）     RP 负责人记录     RT 路由穿透记录（不懂）     SRV TCP服务器信息记录（将有大用处）     TXT 域名对应的文本信息     X25 域名对应的X.25地址记录     范例    每个命令行选项均由连字符(-) 后紧跟命令名组成，有时是等号(=) 后跟一个数值。例如，要将默认的查询类型更改为主机（计算机）信息，并将初始超时更改为10 秒，请键入：    nslookup -querytype=hinfo -timeout=10    Nslookup.exe 可以在两种模式下运行：交互式和非交互式。当需要返回单块数据时，请使用非交互式模式。非交互模式的语法如下：    nslookup [-option] [hostname] [server]    要在交互模式下启动Nslookup.exe，只需在命令提示符下输入nslookup：    C:\&amp;gt; nslookup    Default Server: nameserver1.domain.com    Address: 10.0.0.1    &amp;gt;    在命令提示符下输入help 或? 将生成可用的命令列表。在命令提示符下输入的任何内容，如果它不是有效命令，则假设它是主机名，尝试使用默认服务器来解析它。要中断交互命令，请按CTRL+C。要退出交互模式并返回到命令提示符下，并在命令提示符下输入exit。    以下是帮助输出，其中包含选项的完整列表：    Commands: (identifiers are shown in uppercase, [] means optional)    NAME - print info about the host/domain NAME using default    server www.2cto.com    NAME1 NAME2 - as above, but use NAME2 as server    help or ? - print info on common commands    set OPTION - set an option    all - print options, current server and host    [no]debug - print debugging information    [no]d2 - print exhaustive debugging information    [no]defname - append domain name to each query    [no]recurse - ask for recursive answer to query    [no]search - use domain search list    [no]vc - always use a virtual circuit    domain=NAME - set default domain name to NAME    srchlist=N1[/N2/…/N6] - set domain to N1 and search list to N1, N2,    and so on    root=NAME - set root server to NAME    retry=X - set number of retries to X    timeout=X - set initial time-out interval to X seconds    type=X - set query type (for example, A, ANY, CNAME, MX,    NS, PTR, SOA, SRV)    querytype=X - same as type    class=X - set query class (for example, IN (Internet), ANY)    [no]msxfr - use MS fast zone transfer    ixfrver=X - current version to use in IXFR transfer request    server NAME - set default server to NAME, using current default server    lserver NAME - set default server to NAME, using initial server    finger [USER] - finger the optional NAME at the current default host    root - set current default server to the root    ls [opt] DOMAIN [&amp;gt; FILE] - list addresses in DOMAIN (optional: output to    FILE)    -a - list canonical names and aliases    -d - list all records    -t TYPE - list records of the given type (for example, A, CNAME,    MX, NS, PTR, and so on)    view FILE - sort an ‘ls’ output file and view it with pg    exit - exit the program    通过在命令提示符下运行set 命令，可以在Nslookup.exe 中设置许多不同的选项。要得到这些选项的完整列表，只需输入set all。请参见以上内容，在set 命令下，得到可用选项的打印输出。    查找不同的数据类型    要在域名空间中查找不同的数据类型，请在命令提示符下使用set type 或set q[uerytype] 命令。例如，要查询邮件交换器数据，请输入：    C:\&amp;gt; nslookup    Default Server: ns1.domain.com    Address: 10.0.0.1    &amp;gt; set q=mx    &amp;gt; mailhost    Server: ns1.domain.com    Address: 10.0.0.1    mailhost.domain.com MX preference = 0, mail exchanger =    mailhost.domain.com    mailhost.domain.com internet address = 10.0.0.5    &amp;gt;    第一次查询是查找远程名称，答案是权威的，但随后的查询是非权威的。第一次查询远程主机时，本地DNS 服务器与作为该域权威的DNS 服务器取得联系。然后，本地DNS 服务器缓存该信息，以便从本地服务器缓存中非权威地回答随后的查询。    直接从另一个名称服务器中进行查询    要直接查询另一个名称服务器，请使用server 或lserver 命令切换到该名称服务器。lserver 命令使用本地服务器得到要切换的服务器地址，而server 命令使用当前默认服务器得到该地址。    例如：    C:\&amp;gt; nslookup    Default Server: nameserver1.domain.com    Address: 10.0.0.1    &amp;gt; server 10.0.0.2    Default Server: nameserver2.domain.com    Address: 10.0.0.2    &amp;gt;  &amp;#160;">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="DNS域传送泄露漏洞详解 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/847.seo/" title="DNS域传送泄露漏洞详解" itemprop="url">DNS域传送泄露漏洞详解</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2012-09-24T21:38:33.000Z" itemprop="datePublished">2012-09-25</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>区域传送操作指的是一台后备服务器使用来自主服务器的数据刷新自己的zone数据库。这为运行中的DNS服务提供了一定的冗余度，其目的是为了防止主域名服务器因意外故障变得不可用时影响到全局。一般来说，DNS区域传送操作只在网络里真的有后备域名DNS服务器时才有必要执行，但许多DNS服务器却被错误地配置成只要有人发出请求，就会向对方提供一个zone数据库的拷贝。如果所提供的信息只是与连到因特网上且具备有效主机名的系统相关，那么这种错误配置不一定是坏事，尽管这使得攻击者发现潜在目标要容易得多。真正的问题发生在一个单位没有使用公用/私用DNS机制来分割外部公用DNS信息和内部私用DNS信息的时候，此时内部主机名和IP地址都暴露给了攻击者。把内部IP地址信息提供给因特网上不受信任的用户，就像是把一个单位的内部网络完整蓝图或导航图奉送给了别人。   <br>系统管理员来说，允许不受信任的因特网用户执行DNS区域传送（zone transfer）操作是后果最为严重的错误配置之一。 </p>  <p>Nslookup显示可用来诊断域名系统(DNS) 基础结构的信息。只有在已安装TCP/IP 协议的情况下才可以使用Nslookup 命令行工具。   <br>语法    <br>nslookup [-SubCommand …] [{ComputerToFind| [-Server]}]    <br>参数    <br>-SubCommand …    <br>将一个或多个nslookup 子命令指定为命令行选项。    <br>ComputerToFind    <br>如果未指定其它服务器，就使用当前默认DNS 名称服务器查阅ComputerToFind 的信息。要查找不在当前DNS 域的计算机，请在名称上附加句点。    <br>-Server    <br>指定将该服务器作为DNS 名称服务器使用。如果省略了-Server，将使用默认的DNS 名称服务器。    <br>{help|?}    <br>显示nslookup 子命令的简短总结。    <br>注释    <br>如果ComputerToFind 是IP 地址，并且查询类型为A 或PTR 资源记录类型，则返回计算机的名称。如果ComputerToFind 是一个名称，并且没有跟踪期，则向该名称添加默认DNS 域名。此行为取决于下面set 子命令的状态：domain、srchlist、defname 和search。    <br>如果键入连字符(-) 代替ComputerToFind，命令提示符更改为nslookup 交互式模式。    <br>命令行长度必须少于256 个字符。    <br>Nslookup 有两种模式：交互式和非交互式。    <br>如果仅需要查找一块数据，请使用非交互式模式。对于第一个参数，键入要查找的计算机的名称或IP 地址。对于第二个参数，键入DNS 名称服务器的名称或IP 地址。如果省略第二个参数，nslookup 使用默认DNS 名称服务器。    <br>如果需要查找多块数据，可以使用交互式模式。为第一个参数键入连字符(-)，为第二个参数键入DNS 名称服务器的名称或IP 地址。或者，省略两个参数，则nslookup 使用默认DNS 名称服务器。下面是一些有关在交互式模式下工作的提示：    <br>要随时中断交互式命令，请按CTRL+C。    <br>要退出，请键入exit。    <br>要将内置命令当作计算机名，请在该命令前面放置转义字符()。    <br>将无法识别的命令解释为计算机名。    <br>如果查找请求失败，nslookup 将打印错误消息。下表列出可能的错误消息。    <br>错误消息 说明    <br>Timed out 重试一定时间和一定次数之后，服务器没有响应请求。可以通过set timeout 子命令设置超时期。而利用set retry 子命令设置重试次数。    <br>No response from server 服务器上没有运行DNS 名称服务器。    <br>No records 尽管计算机名有效，但是DNS 名称服务器没有计算机当前查询类型的资源记录。查询类型使用set querytype 命令指定。    <br>Nonexistent domain 计算机或DNS 域名不存在。    <br>Connection refused    <br>or    <br>Network is unreachable    <br>无法与DNS 名称服务器或指针服务器建立连接。该错误通常发生在ls 和finger 请求中。    <br>Server failure DNS 名称服务器发现在其数据库中内部不一致而无法返回有效应答。    <br>Refused DNS 名称服务器拒绝为请求服务。    <br>Format error DNS 名称服务器发现请求数据包的格式不正确。可能表明nslookup 中存在错误。    <br>nslookup –qt=类型 目标域名    <br> 注意qt必须小写。    <br> 类型可以是一下字符，不区分大小写：    <br> A 地址记录(Ipv4)    <br> AAAA 地址记录（Ipv6）    <br> AFSDB Andrew文件系统数据库服务器记录（不懂）    <br> ATMA ATM地址记录（不是自动提款机）    <br> CNAME 别名记录    <br> HINFO 硬件配置记录，包括CPU、操作系统信息    <br> ISDN 域名对应的ISDN号码    <br> MB 存放指定邮箱的服务器    <br> MG 邮件组记录    <br> MINFO 邮件组和邮箱的信息记录    <br> MR 改名的邮箱记录    <br> MX 邮件服务器记录    <br> NS 名字服务器记录    <br> PTR 反向记录（从IP地址解释域名）    <br> RP 负责人记录    <br> RT 路由穿透记录（不懂）    <br> SRV TCP服务器信息记录（将有大用处）    <br> TXT 域名对应的文本信息    <br> X25 域名对应的X.25地址记录</p>  <p>   <br>范例    <br>每个命令行选项均由连字符(-) 后紧跟命令名组成，有时是等号(=) 后跟一个数值。例如，要将默认的查询类型更改为主机（计算机）信息，并将初始超时更改为10 秒，请键入：    <br>nslookup -querytype=hinfo -timeout=10    <br>Nslookup.exe 可以在两种模式下运行：交互式和非交互式。当需要返回单块数据时，请使用非交互式模式。非交互模式的语法如下：    <br>nslookup [-option] [hostname] [server]    <br>要在交互模式下启动Nslookup.exe，只需在命令提示符下输入nslookup：    <br>C:\&gt; nslookup    <br>Default Server: nameserver1.domain.com    <br>Address: 10.0.0.1    <br>&gt;    <br>在命令提示符下输入help 或? 将生成可用的命令列表。在命令提示符下输入的任何内容，如果它不是有效命令，则假设它是主机名，尝试使用默认服务器来解析它。要中断交互命令，请按CTRL+C。要退出交互模式并返回到命令提示符下，并在命令提示符下输入exit。    <br>以下是帮助输出，其中包含选项的完整列表：    <br>Commands: (identifiers are shown in uppercase, [] means optional)    <br>NAME - print info about the host/domain NAME using default    <br>server www.2cto.com    <br>NAME1 NAME2 - as above, but use NAME2 as server    <br>help or ? - print info on common commands    <br>set OPTION - set an option    <br>all - print options, current server and host    <br>[no]debug - print debugging information    <br>[no]d2 - print exhaustive debugging information    <br>[no]defname - append domain name to each query    <br>[no]recurse - ask for recursive answer to query    <br>[no]search - use domain search list    <br>[no]vc - always use a virtual circuit    <br>domain=NAME - set default domain name to NAME    <br>srchlist=N1[/N2/…/N6] - set domain to N1 and search list to N1, N2,    <br>and so on    <br>root=NAME - set root server to NAME    <br>retry=X - set number of retries to X    <br>timeout=X - set initial time-out interval to X seconds    <br>type=X - set query type (for example, A, ANY, CNAME, MX,    <br>NS, PTR, SOA, SRV)    <br>querytype=X - same as type    <br>class=X - set query class (for example, IN (Internet), ANY)    <br>[no]msxfr - use MS fast zone transfer    <br>ixfrver=X - current version to use in IXFR transfer request    <br>server NAME - set default server to NAME, using current default server    <br>lserver NAME - set default server to NAME, using initial server    <br>finger [USER] - finger the optional NAME at the current default host    <br>root - set current default server to the root    <br>ls [opt] DOMAIN [&gt; FILE] - list addresses in DOMAIN (optional: output to    <br>FILE)    <br>-a - list canonical names and aliases    <br>-d - list all records    <br>-t TYPE - list records of the given type (for example, A, CNAME,    <br>MX, NS, PTR, and so on)    <br>view FILE - sort an ‘ls’ output file and view it with pg    <br>exit - exit the program    <br>通过在命令提示符下运行set 命令，可以在Nslookup.exe 中设置许多不同的选项。要得到这些选项的完整列表，只需输入set all。请参见以上内容，在set 命令下，得到可用选项的打印输出。    <br>查找不同的数据类型    <br>要在域名空间中查找不同的数据类型，请在命令提示符下使用set type 或set q[uerytype] 命令。例如，要查询邮件交换器数据，请输入：    <br>C:\&gt; nslookup    <br>Default Server: ns1.domain.com    <br>Address: 10.0.0.1    <br>&gt; set q=mx    <br>&gt; mailhost    <br>Server: ns1.domain.com    <br>Address: 10.0.0.1    <br>mailhost.domain.com MX preference = 0, mail exchanger =    <br>mailhost.domain.com    <br>mailhost.domain.com internet address = 10.0.0.5    <br>&gt;    <br>第一次查询是查找远程名称，答案是权威的，但随后的查询是非权威的。第一次查询远程主机时，本地DNS 服务器与作为该域权威的DNS 服务器取得联系。然后，本地DNS 服务器缓存该信息，以便从本地服务器缓存中非权威地回答随后的查询。    <br>直接从另一个名称服务器中进行查询    <br>要直接查询另一个名称服务器，请使用server 或lserver 命令切换到该名称服务器。lserver 命令使用本地服务器得到要切换的服务器地址，而server 命令使用当前默认服务器得到该地址。    <br>例如：    <br>C:\&gt; nslookup    <br>Default Server: nameserver1.domain.com    <br>Address: 10.0.0.1    <br>&gt; server 10.0.0.2    <br>Default Server: nameserver2.domain.com    <br>Address: 10.0.0.2    <br>&gt;</p>  <p>&#160;</p><a id="more"></a><p>   <br>使用Nslookup.exe 转移整个区域    <br>使用ls 命令，Nslookup 可以用于转移整个区域。查看远程域中的所有主机，这是有用的。ls 命令的语法如下：    <br>ls [- a | d | t type] domain [&gt; filename]    <br>不带参数使用ls 命令将返回所有地址和名称服务器数据的列表。-a 参数将返回别名和正式名称，-d 将返回所有数据，而-t 将按类型进行筛选。    <br>例如：    <br>&gt;ls domain.com    <br>[nameserver1.domain.com]    <br>nameserver1.domain.com. NS server = ns1.domain.com    <br>nameserver2.domain.com NS server = ns2.domain.com    <br>nameserver1 A 10.0.0.1    <br>nameserver2 A 10.0.0.2    <br>&gt;    <br>在DNS 服务器中可以按块转移区域，以便只有授权的地址和网络才可以执行此操作。如果设置了区域安全，将返回以下错误消息：    <br><strong><em> Can’t list domain example.com .: Query refused    <br>Nslookup.exe 的疑难解答    <br>默认服务器超时    <br>当启动Nslookup.exe 工具时，以下错误可能出现：    <br></em></strong> Can’t find server name for address w.x.y.z : Timed out    <br>备注：w.x.y.z 是在“DNS 服务搜索顺序”列表中列出的第一个DNS 服务器。    <br><strong><em> Can’t find server name for address 127.0.0.1: Timed out    <br>第一个错误指出不能连接DNS 服务器，或者该计算机上的服务没有运行。要解决此问题，启动该服务器上的DNS 服务，或检查可能存在的连接问题。    <br>第二个错误指出在“DNS 服务搜索顺序”列表中还没有定义服务器。要解决此问题，请将有效DNS 服务器的IP 地址添加到此列表中。    <br>启动Nslookup.exe 时找不到服务器名    <br>启动Nslookup.exe 工具时，可能出现以下错误：    <br></em></strong> Can’t find server name for address w.x.y.z: Non-existent domain    <br>当没有名称服务器IP 地址的PTR 记录时，会出现此错误。当Nslookup.exe 启动时，它执行反向搜索，以得到默认服务器的名称。如果没有PTR 数据，则返回此错误消息。要解决此问题，请确保反向搜索区域存在，并包含名称服务器的PTR 记录。    <br>Nslookup 在子域上无法执行    <br>当在子域上执行查询或进行区域转移时，Nslookup 可能返回以下错误：    <br><strong><em> ns.domain.com can’t find child.domain.com.: Non-existent domain    <br></em></strong> Can’t list domain child.domain.com.: Non-existent domain    <br>在DNS Manager 中，可以在主区域下添加一个新域，这样就创建了一个子域。用这种方法创建子域并不为该域创建一个单独的db 文件，这样在该域进行查询或在该域进行区域转移时将会产生以上错误。在父域上进行区域转移时将同时列出父域数据和子域数据。要解决此问题，请在DNS 服务器上为该子域创建一个新主域。    <br>/<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em>**</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>/    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 常用的一些option/command    <br>1. set all    <br>可以得知目前nslookup 的一些default 设定值    <br>tung@traveler:~&gt; nslookup    <br>Default Server:&#160; sun4.ee.ncku.edu.tw    <br>Address:&#160; 140.116.72.14    <br>&gt; set all    <br>Default Server:&#160; sun4.ee.ncku.edu.tw    <br>Address:&#160; 140.116.72.14    <br>Set options:    <br>&#160; nodebug&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; defname&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; search&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; recurse    <br>&#160; nod2&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; novc&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; noignoretc&#160;&#160;&#160;&#160;&#160; port=53    <br>&#160; querytype=A&#160;&#160;&#160;&#160; class=IN&#160;&#160;&#160;&#160;&#160;&#160;&#160; timeout=5&#160;&#160;&#160;&#160;&#160;&#160; retry=4    <br>&#160; root=a.root-servers.net.    <br>&#160; domain=ee.ncku.edu.tw    <br>&#160; srchlist=ee.ncku.edu.tw    <br>2. server dns_server_ip    <br>表示将内定的local DNS 换成另一部server    <br>Ex: server 140.116.2.6    <br>3. set type=any    <br>表示在查询某个domain name 时, 将和这个domain name 的一些相关资料一并显示出来    <br>&gt; set type=any    <br>&gt; www.yohoo.com    <br>Server:&#160; sun4.ee.ncku.edu.tw    <br>Address:&#160; 140.116.72.14    <br>Non-authoritative answer:    <br>www.yohoo.com&#160;&#160; canonical name = yohoo.com    <br>Authoritative answers can be found from:    <br>yohoo.com&#160;&#160;&#160;&#160;&#160;&#160; nameserver = ns1.netgateway.net    <br>yohoo.com&#160;&#160;&#160;&#160;&#160;&#160; nameserver = ns2.netgateway.net    <br>ns1.netgateway.net&#160;&#160;&#160;&#160;&#160; internet address = 216.116.98.7    <br>ns2.netgateway.net&#160;&#160;&#160;&#160;&#160; internet address = 216.116.98.8    <br>在上面的这个例子, 我们除了知道www.yohoo.com 的IP 外, 我们还得知了yohoo.com 是由哪部name server 在负责的. 因此如果想要知道www.yohoo.com 真正在yohoo.com 上的记录是如何, 而不要有local DNS cache 中传回的资料, 我们可以配合使用server 这个command 将default local DNS 改为负责yohoo.com 的DNS, 然后再查询一次    <br>&gt; server 216.116.98.7    <br>Default Server:&#160; ns1.netgateway.net    <br>Address:&#160; 216.116.98.7    <br>&gt; www.yohoo.com    <br>Server:&#160; ns1.netgateway.net    <br>Address:&#160; 216.116.98.7    <br>Name:&#160;&#160;&#160; yohoo.com    <br>Address:&#160; 216.116.98.143    <br>Aliases:&#160; www.yohoo.com    <br>ls    <br>4. set type=ptr    <br>本来要由IP 反查domain name时, 在直接打IP 就行了, 但如果已经下了type=any 的话, 要由IP 反查时就没那幺方便了, 此时IP 4 个数字要倒着写, 最后还要加上in-addr.arpa. 以查140.116.72.219 为例, 要输入的就是219.72.116.140.in-addr.arpa    <br>tung@traveler:~&gt; nslookup    <br>Default Server:&#160; sun4.ee.ncku.edu.tw    <br>Address:&#160; 140.116.72.14    <br>&gt; 140.116.72.219    <br>Server:&#160; sun4.ee.ncku.edu.tw    <br>Address:&#160; 140.116.72.14    <br>Name:&#160;&#160;&#160; garfield.ee.ncku.edu.tw    <br>Address:&#160; 140.116.72.219    <br>&gt; set type=any    <br>&gt; 140.116.72.219    <br>Server:&#160; sun4.ee.ncku.edu.tw    <br>Address:&#160; 140.116.72.14    <br><em>*</em> sun4.ee.ncku.edu.tw can’t find 140.116.72.219: Non-existent host/domain    <br>&gt; 219.72.116.140.in-addr.arpa    <br>Server:&#160; sun4.ee.ncku.edu.tw    <br>Address:&#160; 140.116.72.14    <br>219.72.116.140.in-addr.arpa&#160;&#160;&#160;&#160; name = garfield.ee.ncku.edu.tw    <br>72.116.140.IN-ADDR.ARPA nameserver = sun4.ee.ncku.edu.tw    <br>sun4.ee.ncku.edu.tw&#160;&#160;&#160;&#160; internet address = 140.116.72.14    <br>另外一个办法就是先下set type=ptr 或set type=a 命令, 脱离type=any 模式, 再进行IP 反查domain name 的command    <br>&gt; set typr=ptr    <br>&gt; 140.116.72.219    <br>Server:&#160; sun4.ee.ncku.edu.tw    <br>Address:&#160; 140.116.72.14    <br>219.72.116.140.in-addr.arpa&#160;&#160;&#160;&#160; name = garfield.ee.ncku.edu.tw    <br>72.116.140.IN-ADDR.ARPA nameserver = sun4.ee.ncku.edu.tw    <br>sun4.ee.ncku.edu.tw&#160;&#160;&#160;&#160; internet address = 140.116.72.14    <br>5. ls domain    <br>这个命令是要求name server 将其负责的zone 内容show 出来, 这个动作相当于name server 的整份记录从server 端传回给nslookup 这个程序, 这种传回整个zone 的动作叫作zone transfer    <br>&gt; set type=any    <br>&gt; ee.ncku.edu.tw    <br>Server:&#160; cs.ncku.edu.tw    <br>Address:&#160; 140.116.2.6    <br>ee.ncku.edu.tw&#160; nameserver = sun4.ee.ncku.edu.tw    <br>ee.ncku.edu.tw&#160; preference = 1, mail exchanger = eembox.ee.ncku.edu.tw    <br>ee.ncku.edu.tw&#160; internet address = 140.116.72.15    <br>ee.ncku.edu.tw    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; origin = sun4.ee.ncku.edu.tw    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; mail addr = root.sun4.ee.ncku.edu.tw    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; serial = 1999033001    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; refresh = 3600 (1H)    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; retry&#160;&#160; = 900 (15M)    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; expire&#160; = 3600000 (5w6d16h)    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; minimum ttl = 3600 (1H)    <br>ee.ncku.edu.tw&#160; nameserver = sun4.ee.ncku.edu.tw    <br>sun4.ee.ncku.edu.tw&#160;&#160;&#160;&#160; internet address = 140.116.72.14    <br>eembox.ee.ncku.edu.tw&#160;&#160; internet address = 140.116.72.15    <br>&gt; ls ee.ncku.edu.tw    <br>Default Server:&#160; cs.ncku.edu.tw    <br>Address:&#160; 140.116.2.6    <br>&gt; [sun4.ee.ncku.edu.tw]    <br>$ORIGIN ee.ncku.edu.tw.    <br>@&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.15    <br>hdlib4&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.4    <br>ds114&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.114    <br>hdlib5&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.5    <br>ds115&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.115    <br>yokoyama1&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.227.217    <br>hdlib6&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.6    <br>ds116&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.116    <br>yokoyama2&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.227.218    <br>ds117&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.117    <br>ds120&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.120    <br>ds118&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.118    <br>ds121&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.121    <br>ds119&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.119    <br>ds122&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.122    <br>ds123&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.123    <br>intelab01&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.227.39    <br>下面查看几个用于进行区域传送的方法以及从中能获取的信息类型。尽管执行区域传送有多个不同的工具，我们还是只打算讨论其中几种。    <br>使用大多数UNIX和Windows上通常提供的nslookup客户程序是执行区域传送的一个简单办法。我们可以以交互模式使用nslookup：    <br>[bash]$ nslookup    <br>Default Server: ns1.example.net    <br>Address: 10.10.20.2    <br>&gt; 216.182.1.1    <br>Server: ns1.example.net    <br>Address: 10.10.20.2    <br>Name: gate.tellurian.net    <br>Address: 216.182.1.1    <br>&gt; set type=any    <br>&gt; ls -d Tellurian.net. &gt;\&gt; /tmp/zone_out    <br>我们先以交互模式运行nslookup程序。在启动之后，nslookup程序将回显它当前使用的名字服务器，它通常是本单位的本地DNS服务器或者某ISP提供的DNS服务器。因为这个例子里的本地DNS服务器（10.10.20.2）本身无法对目标域里的主机名和IP地址做出权威的解析——我们想要查找的DNS记录没有被全部收录在这台DNS服务器里，所以还需要以手动方式告诉nslookup去查询哪一个DNS服务器。具体到上面的例子，我们使用Tellurian Networks的主DNS服务器（216.182.1.1），这是在早些时候执行域名whois查询时找到该信息的。    <br>接下来，我们把记录类型设置为“any”，这允许你取得任何可能的DNS记录（使用man nslookup命令查看），从而构成一个完整的清单。    <br>最后，我们使用“ls”选项列出所有与目标域名有关的记录，其中“-d”开关用于列出该域名的所有记录。我们在域名后面添了一个点号“.”以强调这是一个完全限定域名，不过大多数情况下不添加也行。另外，我们把输出内容重定向到文件/tmp/zone_out里去，以便稍后对它操作。    <br>完成区域传送后，查看输出文件，找一找是否存在有助于确认特定系统的让人感兴趣的信息。因为Tellurian Network网站不允许进行区域传送操作，我们这里只能给出一个示例性的输出结果：    <br>[bash]$ more zone_out    <br>acct18&#160;&#160; 1D IN A 192.168.230.3    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN HINFO &quot;Gateway2000&quot; &quot;WinWKGRPS&quot;    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN MX 0 tellurianadmin-smtp    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN RP bsmith.rci bsmith.who    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN TXT &quot;Location:Telephone Room&quot;    <br>ce&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN CNAME aesop    <br>au&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN A 192.168.230.4    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN HINFO &quot;Aspect&quot; &quot;MS-DOS&quot;    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN MX 0 andromeda    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN RP jcoy.erebus jcoy.who    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN TXT &quot;Location: Library&quot;    <br>acct21&#160;&#160; 1D IN A 192.168.230.5    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN HINFO &quot;Gateway2000&quot; &quot;WinWKGRPS&quot;    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN MX 0 tellurianadmin-smtp    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN RP bsmith.rci bsmith.who    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN TXT &quot;Location:Accounting&quot;    <br>我们不打算详细解释每个记录，但将指出若干种重要的类型。在上面的输出清单里，列在右边的每个主机系统名栏都对应一个“A”类型记录，它指出了该系统的IP地址。另外，每台主机都对应一个HINFO记录，标识其平台或所运行的操作系统类型（参见RFC-952）。HINFO记录并非必需，反倒给攻击者提供了不少信息。既然我们已把区域传送的结果保存到一个输出文件中，接着就能很容易地利用grep、sed或awk等UNIX程序或者Perl语言脚本来处理这些结果。    <br>假定我们是SunOS或Solaris专家，可以通过编程找出其HINFO记录带有Sparc、Sun或Solaris等词的IP地址。    <br>[bash]$ grep -i solaris zone_out |wc –l    <br>&#160;&#160;&#160; 388    <br>可以看到，我们有388个引用“Solaris”一词的潜在记录。毫无疑问，我们有大量的目标。    <br>寻找测试系统也是攻击者们偏爱的选择之一。原因很简单：测试系统通常不怎么启动众多的安全特性，口令字往往易于猜到，而且管理员也一般不关心谁登录进来。这确实是个“无照营业者”的完美之家。我们可以如下所示搜索测试系统：    <br>[bash]$ grep -i test /tmp/zone_out |wc-l    <br>&#160;&#160;&#160; 96    <br>可以看出，该区域文件中约有96个含有“test”一词的项。这应该等同于相当数量的实际测试系统。以上只是一些简单的例子。大多数入侵者会分割区域数据以瞄准具有已知脆弱点的特定系统类型。    <br>这里有两点需要注意。首先，前面谈及的方法一次只查询一个名字服务器。这意味着不得不对目标域名的所有权威名字服务器执行完全相同的任务。另外，我们只是查询了Tellurian.net域。如果存在子域，我们又不得不给每个子域（例如greenhouse.Tellurian.net）执行同样类型的查询。其次，你可能会收到一个消息，声称你不能罗列域名数据或者查询被拒绝。这通常表示目标域名服务器已被配置成不允许未经授权的用户执行区域传送。这么一来你不能再从该服务器执行区域传送，不过要是存在多个DNS服务器，你仍有可能找到一个允许区域传送的服务器。    <br>介绍完手动进行DNS查询的方法之后，我们再向大家介绍几个可以自动完成这一查询的工具。这类工具有很多，host、Sam Spade、axfr和dig是其中比较常见的。 </p>  <p>DNS的设计被发现可攻击的漏洞，攻击者可透过伪装DNS主要服务器的方式，引导使用者进入恶意网页，以钓鱼方式取得信息，或者植入恶意程序。   <br>日前IOActive的安全研究员Dan Kaminsky揭露了一个DNS安全漏洞，由于这是基于DNS本身的设计而造成的安全漏洞，Kaminsky日前在自己的部落格上这样写着：「现在放出的修补程序虽然有办法让攻击难度提高个几千倍，但是还是无法根本的解决这个问题。」    <br> 恶意攻击者将有办法透过这个漏洞来假冒DNS主要服务器（DNS Master Server），将使用者导向恶意攻击者假冒的网页。由于使用者端输入的网址是正确的，所以使用者会在毫无警觉性的状况下误入恶意网站，因而泄漏出各种个人数据，或是直接在假冒的网页被植入木马或是其它恶意程序。    <br> DNS网域劫持，可以影响所有网站    <br> 由于这个漏洞最主要的问题是发生在DNS本身的设计上，这也使得所有的网站都有可能受到此一漏洞的影响。DNS全名是（Domain Name Service），是负责网址转译的机制，将网址转译为计算机可以识别的数字地址。举例来说，使用者如果在浏览器上输入一串「www.xxx.com」的网址，透过DNS转译，会成为像「192.168.255.255」这样的IP地址，让服务器和终端计算机可以识别，把使用者的流量导到正确的网站。    <br> 一般来说，整个DNS运作的流程是这样的，DNS服务器存有网域名称比对的数据，当使用者要浏览某个网站时，计算机会发出一个UDP协议的请求到本地端的缓存DNS服务器（一般是电信商的缓存DNS服务器），等候缓存DNS服务器比对这个请求，如果缓存DNS服务器里面存有该网站地址的记录，就会把正确的网站IP地址转送给终端计算机，引导使用者连上正确的网站。若缓存DNS服务器没有此一地址，它会再进一步查询上一层的根目录DNS服务器或主要DNS服务器，找寻正确的地址，然后响应给使用者，引导进入正确的网站。缓存DNS服务器会将查询过的地址暂存下来，加快使用者连网时比对DNS的速度。    <br> 由于UDP协议在设计上，不像TCP协议一般，包含有响应方与来源方的信息，在这样的状况下，DNS机制为了比对是由哪一台服务器发出查询的请求、哪一台服务器发出响应，会利用连接端口和一个称为TXID的16位识别码，作为联机辨识的依据，如此一来，即便2台DNS服务器使用相同的对外连接端口，也能透过TXID辨识出是由哪一台DNS服务器发出查询的请求。    <br> 由此可知，TXID的识别对于DNS机制来说，非常重要，可以说是DNS服务器在查询时辨识其它服务器响应的主要依据，而此次被发现的漏洞，正是TXID这种设计本身的不足所造成。因为TXID本身只有16位的长度，恶意攻击者只要假造UDP封包的来源，欺骗使用者的暂存DNS服务器，就可以把该暂存DNS服务器下的所有使用者（数千，甚至是数万台终端计算机）流量，转至任何他想转到的网页。    <br> 要欺骗暂存DNS服务器，恶意攻击者只需要做到2件事。一是设法让暂存服务器发出对外查询的请求；其二则是取得回应DNS服务器的TXID。第一点可以透过很多方式做到，第二点则就是本次发现漏洞的重点</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2012-09-24T21:38:33.000Z" itemprop="datePublished">
-          2012-09-25
-      </time>
-    
-    
-    | 
-    <a href='/tag/漏洞/'>漏洞</a>,
-    
-    <a href='/tag/DNS域传送/'>DNS域传送</a>
-    
-    
-</span>
-    <h1 class="post-title">DNS域传送泄露漏洞详解</h1>
-    <section class="post-content">
-      <p>区域传送操作指的是一台后备服务器使用来自主服务器的数据刷新自己的zone数据库。这为运行中的DNS服务提供了一定的冗余度，其目的是为了防止主域名服务器因意外故障变得不可用时影响到全局。一般来说，DNS区域传送操作只在网络里真的有后备域名DNS服务器时才有必要执行，但许多DNS服务器却被错误地配置成只要有人发出请求，就会向对方提供一个zone数据库的拷贝。如果所提供的信息只是与连到因特网上且具备有效主机名的系统相关，那么这种错误配置不一定是坏事，尽管这使得攻击者发现潜在目标要容易得多。真正的问题发生在一个单位没有使用公用/私用DNS机制来分割外部公用DNS信息和内部私用DNS信息的时候，此时内部主机名和IP地址都暴露给了攻击者。把内部IP地址信息提供给因特网上不受信任的用户，就像是把一个单位的内部网络完整蓝图或导航图奉送给了别人。   <br>系统管理员来说，允许不受信任的因特网用户执行DNS区域传送（zone transfer）操作是后果最为严重的错误配置之一。 </p>  <p>Nslookup显示可用来诊断域名系统(DNS) 基础结构的信息。只有在已安装TCP/IP 协议的情况下才可以使用Nslookup 命令行工具。   <br>语法    <br>nslookup [-SubCommand …] [{ComputerToFind| [-Server]}]    <br>参数    <br>-SubCommand …    <br>将一个或多个nslookup 子命令指定为命令行选项。    <br>ComputerToFind    <br>如果未指定其它服务器，就使用当前默认DNS 名称服务器查阅ComputerToFind 的信息。要查找不在当前DNS 域的计算机，请在名称上附加句点。    <br>-Server    <br>指定将该服务器作为DNS 名称服务器使用。如果省略了-Server，将使用默认的DNS 名称服务器。    <br>{help|?}    <br>显示nslookup 子命令的简短总结。    <br>注释    <br>如果ComputerToFind 是IP 地址，并且查询类型为A 或PTR 资源记录类型，则返回计算机的名称。如果ComputerToFind 是一个名称，并且没有跟踪期，则向该名称添加默认DNS 域名。此行为取决于下面set 子命令的状态：domain、srchlist、defname 和search。    <br>如果键入连字符(-) 代替ComputerToFind，命令提示符更改为nslookup 交互式模式。    <br>命令行长度必须少于256 个字符。    <br>Nslookup 有两种模式：交互式和非交互式。    <br>如果仅需要查找一块数据，请使用非交互式模式。对于第一个参数，键入要查找的计算机的名称或IP 地址。对于第二个参数，键入DNS 名称服务器的名称或IP 地址。如果省略第二个参数，nslookup 使用默认DNS 名称服务器。    <br>如果需要查找多块数据，可以使用交互式模式。为第一个参数键入连字符(-)，为第二个参数键入DNS 名称服务器的名称或IP 地址。或者，省略两个参数，则nslookup 使用默认DNS 名称服务器。下面是一些有关在交互式模式下工作的提示：    <br>要随时中断交互式命令，请按CTRL+C。    <br>要退出，请键入exit。    <br>要将内置命令当作计算机名，请在该命令前面放置转义字符()。    <br>将无法识别的命令解释为计算机名。    <br>如果查找请求失败，nslookup 将打印错误消息。下表列出可能的错误消息。    <br>错误消息 说明    <br>Timed out 重试一定时间和一定次数之后，服务器没有响应请求。可以通过set timeout 子命令设置超时期。而利用set retry 子命令设置重试次数。    <br>No response from server 服务器上没有运行DNS 名称服务器。    <br>No records 尽管计算机名有效，但是DNS 名称服务器没有计算机当前查询类型的资源记录。查询类型使用set querytype 命令指定。    <br>Nonexistent domain 计算机或DNS 域名不存在。    <br>Connection refused    <br>or    <br>Network is unreachable    <br>无法与DNS 名称服务器或指针服务器建立连接。该错误通常发生在ls 和finger 请求中。    <br>Server failure DNS 名称服务器发现在其数据库中内部不一致而无法返回有效应答。    <br>Refused DNS 名称服务器拒绝为请求服务。    <br>Format error DNS 名称服务器发现请求数据包的格式不正确。可能表明nslookup 中存在错误。    <br>nslookup –qt=类型 目标域名    <br> 注意qt必须小写。    <br> 类型可以是一下字符，不区分大小写：    <br> A 地址记录(Ipv4)    <br> AAAA 地址记录（Ipv6）    <br> AFSDB Andrew文件系统数据库服务器记录（不懂）    <br> ATMA ATM地址记录（不是自动提款机）    <br> CNAME 别名记录    <br> HINFO 硬件配置记录，包括CPU、操作系统信息    <br> ISDN 域名对应的ISDN号码    <br> MB 存放指定邮箱的服务器    <br> MG 邮件组记录    <br> MINFO 邮件组和邮箱的信息记录    <br> MR 改名的邮箱记录    <br> MX 邮件服务器记录    <br> NS 名字服务器记录    <br> PTR 反向记录（从IP地址解释域名）    <br> RP 负责人记录    <br> RT 路由穿透记录（不懂）    <br> SRV TCP服务器信息记录（将有大用处）    <br> TXT 域名对应的文本信息    <br> X25 域名对应的X.25地址记录</p>  <p>   <br>范例    <br>每个命令行选项均由连字符(-) 后紧跟命令名组成，有时是等号(=) 后跟一个数值。例如，要将默认的查询类型更改为主机（计算机）信息，并将初始超时更改为10 秒，请键入：    <br>nslookup -querytype=hinfo -timeout=10    <br>Nslookup.exe 可以在两种模式下运行：交互式和非交互式。当需要返回单块数据时，请使用非交互式模式。非交互模式的语法如下：    <br>nslookup [-option] [hostname] [server]    <br>要在交互模式下启动Nslookup.exe，只需在命令提示符下输入nslookup：    <br>C:\&gt; nslookup    <br>Default Server: nameserver1.domain.com    <br>Address: 10.0.0.1    <br>&gt;    <br>在命令提示符下输入help 或? 将生成可用的命令列表。在命令提示符下输入的任何内容，如果它不是有效命令，则假设它是主机名，尝试使用默认服务器来解析它。要中断交互命令，请按CTRL+C。要退出交互模式并返回到命令提示符下，并在命令提示符下输入exit。    <br>以下是帮助输出，其中包含选项的完整列表：    <br>Commands: (identifiers are shown in uppercase, [] means optional)    <br>NAME - print info about the host/domain NAME using default    <br>server www.2cto.com    <br>NAME1 NAME2 - as above, but use NAME2 as server    <br>help or ? - print info on common commands    <br>set OPTION - set an option    <br>all - print options, current server and host    <br>[no]debug - print debugging information    <br>[no]d2 - print exhaustive debugging information    <br>[no]defname - append domain name to each query    <br>[no]recurse - ask for recursive answer to query    <br>[no]search - use domain search list    <br>[no]vc - always use a virtual circuit    <br>domain=NAME - set default domain name to NAME    <br>srchlist=N1[/N2/…/N6] - set domain to N1 and search list to N1, N2,    <br>and so on    <br>root=NAME - set root server to NAME    <br>retry=X - set number of retries to X    <br>timeout=X - set initial time-out interval to X seconds    <br>type=X - set query type (for example, A, ANY, CNAME, MX,    <br>NS, PTR, SOA, SRV)    <br>querytype=X - same as type    <br>class=X - set query class (for example, IN (Internet), ANY)    <br>[no]msxfr - use MS fast zone transfer    <br>ixfrver=X - current version to use in IXFR transfer request    <br>server NAME - set default server to NAME, using current default server    <br>lserver NAME - set default server to NAME, using initial server    <br>finger [USER] - finger the optional NAME at the current default host    <br>root - set current default server to the root    <br>ls [opt] DOMAIN [&gt; FILE] - list addresses in DOMAIN (optional: output to    <br>FILE)    <br>-a - list canonical names and aliases    <br>-d - list all records    <br>-t TYPE - list records of the given type (for example, A, CNAME,    <br>MX, NS, PTR, and so on)    <br>view FILE - sort an ‘ls’ output file and view it with pg    <br>exit - exit the program    <br>通过在命令提示符下运行set 命令，可以在Nslookup.exe 中设置许多不同的选项。要得到这些选项的完整列表，只需输入set all。请参见以上内容，在set 命令下，得到可用选项的打印输出。    <br>查找不同的数据类型    <br>要在域名空间中查找不同的数据类型，请在命令提示符下使用set type 或set q[uerytype] 命令。例如，要查询邮件交换器数据，请输入：    <br>C:\&gt; nslookup    <br>Default Server: ns1.domain.com    <br>Address: 10.0.0.1    <br>&gt; set q=mx    <br>&gt; mailhost    <br>Server: ns1.domain.com    <br>Address: 10.0.0.1    <br>mailhost.domain.com MX preference = 0, mail exchanger =    <br>mailhost.domain.com    <br>mailhost.domain.com internet address = 10.0.0.5    <br>&gt;    <br>第一次查询是查找远程名称，答案是权威的，但随后的查询是非权威的。第一次查询远程主机时，本地DNS 服务器与作为该域权威的DNS 服务器取得联系。然后，本地DNS 服务器缓存该信息，以便从本地服务器缓存中非权威地回答随后的查询。    <br>直接从另一个名称服务器中进行查询    <br>要直接查询另一个名称服务器，请使用server 或lserver 命令切换到该名称服务器。lserver 命令使用本地服务器得到要切换的服务器地址，而server 命令使用当前默认服务器得到该地址。    <br>例如：    <br>C:\&gt; nslookup    <br>Default Server: nameserver1.domain.com    <br>Address: 10.0.0.1    <br>&gt; server 10.0.0.2    <br>Default Server: nameserver2.domain.com    <br>Address: 10.0.0.2    <br>&gt;</p>  <p>&#160;</p><a id="more"></a><p>   <br>使用Nslookup.exe 转移整个区域    <br>使用ls 命令，Nslookup 可以用于转移整个区域。查看远程域中的所有主机，这是有用的。ls 命令的语法如下：    <br>ls [- a | d | t type] domain [&gt; filename]    <br>不带参数使用ls 命令将返回所有地址和名称服务器数据的列表。-a 参数将返回别名和正式名称，-d 将返回所有数据，而-t 将按类型进行筛选。    <br>例如：    <br>&gt;ls domain.com    <br>[nameserver1.domain.com]    <br>nameserver1.domain.com. NS server = ns1.domain.com    <br>nameserver2.domain.com NS server = ns2.domain.com    <br>nameserver1 A 10.0.0.1    <br>nameserver2 A 10.0.0.2    <br>&gt;    <br>在DNS 服务器中可以按块转移区域，以便只有授权的地址和网络才可以执行此操作。如果设置了区域安全，将返回以下错误消息：    <br><strong><em> Can’t list domain example.com .: Query refused    <br>Nslookup.exe 的疑难解答    <br>默认服务器超时    <br>当启动Nslookup.exe 工具时，以下错误可能出现：    <br></em></strong> Can’t find server name for address w.x.y.z : Timed out    <br>备注：w.x.y.z 是在“DNS 服务搜索顺序”列表中列出的第一个DNS 服务器。    <br><strong><em> Can’t find server name for address 127.0.0.1: Timed out    <br>第一个错误指出不能连接DNS 服务器，或者该计算机上的服务没有运行。要解决此问题，启动该服务器上的DNS 服务，或检查可能存在的连接问题。    <br>第二个错误指出在“DNS 服务搜索顺序”列表中还没有定义服务器。要解决此问题，请将有效DNS 服务器的IP 地址添加到此列表中。    <br>启动Nslookup.exe 时找不到服务器名    <br>启动Nslookup.exe 工具时，可能出现以下错误：    <br></em></strong> Can’t find server name for address w.x.y.z: Non-existent domain    <br>当没有名称服务器IP 地址的PTR 记录时，会出现此错误。当Nslookup.exe 启动时，它执行反向搜索，以得到默认服务器的名称。如果没有PTR 数据，则返回此错误消息。要解决此问题，请确保反向搜索区域存在，并包含名称服务器的PTR 记录。    <br>Nslookup 在子域上无法执行    <br>当在子域上执行查询或进行区域转移时，Nslookup 可能返回以下错误：    <br><strong><em> ns.domain.com can’t find child.domain.com.: Non-existent domain    <br></em></strong> Can’t list domain child.domain.com.: Non-existent domain    <br>在DNS Manager 中，可以在主区域下添加一个新域，这样就创建了一个子域。用这种方法创建子域并不为该域创建一个单独的db 文件，这样在该域进行查询或在该域进行区域转移时将会产生以上错误。在父域上进行区域转移时将同时列出父域数据和子域数据。要解决此问题，请在DNS 服务器上为该子域创建一个新主域。    <br>/<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em>**</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>/    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 常用的一些option/command    <br>1. set all    <br>可以得知目前nslookup 的一些default 设定值    <br>tung@traveler:~&gt; nslookup    <br>Default Server:&#160; sun4.ee.ncku.edu.tw    <br>Address:&#160; 140.116.72.14    <br>&gt; set all    <br>Default Server:&#160; sun4.ee.ncku.edu.tw    <br>Address:&#160; 140.116.72.14    <br>Set options:    <br>&#160; nodebug&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; defname&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; search&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; recurse    <br>&#160; nod2&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; novc&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; noignoretc&#160;&#160;&#160;&#160;&#160; port=53    <br>&#160; querytype=A&#160;&#160;&#160;&#160; class=IN&#160;&#160;&#160;&#160;&#160;&#160;&#160; timeout=5&#160;&#160;&#160;&#160;&#160;&#160; retry=4    <br>&#160; root=a.root-servers.net.    <br>&#160; domain=ee.ncku.edu.tw    <br>&#160; srchlist=ee.ncku.edu.tw    <br>2. server dns_server_ip    <br>表示将内定的local DNS 换成另一部server    <br>Ex: server 140.116.2.6    <br>3. set type=any    <br>表示在查询某个domain name 时, 将和这个domain name 的一些相关资料一并显示出来    <br>&gt; set type=any    <br>&gt; www.yohoo.com    <br>Server:&#160; sun4.ee.ncku.edu.tw    <br>Address:&#160; 140.116.72.14    <br>Non-authoritative answer:    <br>www.yohoo.com&#160;&#160; canonical name = yohoo.com    <br>Authoritative answers can be found from:    <br>yohoo.com&#160;&#160;&#160;&#160;&#160;&#160; nameserver = ns1.netgateway.net    <br>yohoo.com&#160;&#160;&#160;&#160;&#160;&#160; nameserver = ns2.netgateway.net    <br>ns1.netgateway.net&#160;&#160;&#160;&#160;&#160; internet address = 216.116.98.7    <br>ns2.netgateway.net&#160;&#160;&#160;&#160;&#160; internet address = 216.116.98.8    <br>在上面的这个例子, 我们除了知道www.yohoo.com 的IP 外, 我们还得知了yohoo.com 是由哪部name server 在负责的. 因此如果想要知道www.yohoo.com 真正在yohoo.com 上的记录是如何, 而不要有local DNS cache 中传回的资料, 我们可以配合使用server 这个command 将default local DNS 改为负责yohoo.com 的DNS, 然后再查询一次    <br>&gt; server 216.116.98.7    <br>Default Server:&#160; ns1.netgateway.net    <br>Address:&#160; 216.116.98.7    <br>&gt; www.yohoo.com    <br>Server:&#160; ns1.netgateway.net    <br>Address:&#160; 216.116.98.7    <br>Name:&#160;&#160;&#160; yohoo.com    <br>Address:&#160; 216.116.98.143    <br>Aliases:&#160; www.yohoo.com    <br>ls    <br>4. set type=ptr    <br>本来要由IP 反查domain name时, 在直接打IP 就行了, 但如果已经下了type=any 的话, 要由IP 反查时就没那幺方便了, 此时IP 4 个数字要倒着写, 最后还要加上in-addr.arpa. 以查140.116.72.219 为例, 要输入的就是219.72.116.140.in-addr.arpa    <br>tung@traveler:~&gt; nslookup    <br>Default Server:&#160; sun4.ee.ncku.edu.tw    <br>Address:&#160; 140.116.72.14    <br>&gt; 140.116.72.219    <br>Server:&#160; sun4.ee.ncku.edu.tw    <br>Address:&#160; 140.116.72.14    <br>Name:&#160;&#160;&#160; garfield.ee.ncku.edu.tw    <br>Address:&#160; 140.116.72.219    <br>&gt; set type=any    <br>&gt; 140.116.72.219    <br>Server:&#160; sun4.ee.ncku.edu.tw    <br>Address:&#160; 140.116.72.14    <br><em>*</em> sun4.ee.ncku.edu.tw can’t find 140.116.72.219: Non-existent host/domain    <br>&gt; 219.72.116.140.in-addr.arpa    <br>Server:&#160; sun4.ee.ncku.edu.tw    <br>Address:&#160; 140.116.72.14    <br>219.72.116.140.in-addr.arpa&#160;&#160;&#160;&#160; name = garfield.ee.ncku.edu.tw    <br>72.116.140.IN-ADDR.ARPA nameserver = sun4.ee.ncku.edu.tw    <br>sun4.ee.ncku.edu.tw&#160;&#160;&#160;&#160; internet address = 140.116.72.14    <br>另外一个办法就是先下set type=ptr 或set type=a 命令, 脱离type=any 模式, 再进行IP 反查domain name 的command    <br>&gt; set typr=ptr    <br>&gt; 140.116.72.219    <br>Server:&#160; sun4.ee.ncku.edu.tw    <br>Address:&#160; 140.116.72.14    <br>219.72.116.140.in-addr.arpa&#160;&#160;&#160;&#160; name = garfield.ee.ncku.edu.tw    <br>72.116.140.IN-ADDR.ARPA nameserver = sun4.ee.ncku.edu.tw    <br>sun4.ee.ncku.edu.tw&#160;&#160;&#160;&#160; internet address = 140.116.72.14    <br>5. ls domain    <br>这个命令是要求name server 将其负责的zone 内容show 出来, 这个动作相当于name server 的整份记录从server 端传回给nslookup 这个程序, 这种传回整个zone 的动作叫作zone transfer    <br>&gt; set type=any    <br>&gt; ee.ncku.edu.tw    <br>Server:&#160; cs.ncku.edu.tw    <br>Address:&#160; 140.116.2.6    <br>ee.ncku.edu.tw&#160; nameserver = sun4.ee.ncku.edu.tw    <br>ee.ncku.edu.tw&#160; preference = 1, mail exchanger = eembox.ee.ncku.edu.tw    <br>ee.ncku.edu.tw&#160; internet address = 140.116.72.15    <br>ee.ncku.edu.tw    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; origin = sun4.ee.ncku.edu.tw    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; mail addr = root.sun4.ee.ncku.edu.tw    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; serial = 1999033001    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; refresh = 3600 (1H)    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; retry&#160;&#160; = 900 (15M)    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; expire&#160; = 3600000 (5w6d16h)    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; minimum ttl = 3600 (1H)    <br>ee.ncku.edu.tw&#160; nameserver = sun4.ee.ncku.edu.tw    <br>sun4.ee.ncku.edu.tw&#160;&#160;&#160;&#160; internet address = 140.116.72.14    <br>eembox.ee.ncku.edu.tw&#160;&#160; internet address = 140.116.72.15    <br>&gt; ls ee.ncku.edu.tw    <br>Default Server:&#160; cs.ncku.edu.tw    <br>Address:&#160; 140.116.2.6    <br>&gt; [sun4.ee.ncku.edu.tw]    <br>$ORIGIN ee.ncku.edu.tw.    <br>@&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.15    <br>hdlib4&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.4    <br>ds114&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.114    <br>hdlib5&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.5    <br>ds115&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.115    <br>yokoyama1&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.227.217    <br>hdlib6&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.6    <br>ds116&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.116    <br>yokoyama2&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.227.218    <br>ds117&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.117    <br>ds120&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.120    <br>ds118&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.118    <br>ds121&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.121    <br>ds119&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.119    <br>ds122&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.122    <br>ds123&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.72.123    <br>intelab01&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1H IN A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 140.116.227.39    <br>下面查看几个用于进行区域传送的方法以及从中能获取的信息类型。尽管执行区域传送有多个不同的工具，我们还是只打算讨论其中几种。    <br>使用大多数UNIX和Windows上通常提供的nslookup客户程序是执行区域传送的一个简单办法。我们可以以交互模式使用nslookup：    <br>[bash]$ nslookup    <br>Default Server: ns1.example.net    <br>Address: 10.10.20.2    <br>&gt; 216.182.1.1    <br>Server: ns1.example.net    <br>Address: 10.10.20.2    <br>Name: gate.tellurian.net    <br>Address: 216.182.1.1    <br>&gt; set type=any    <br>&gt; ls -d Tellurian.net. &gt;\&gt; /tmp/zone_out    <br>我们先以交互模式运行nslookup程序。在启动之后，nslookup程序将回显它当前使用的名字服务器，它通常是本单位的本地DNS服务器或者某ISP提供的DNS服务器。因为这个例子里的本地DNS服务器（10.10.20.2）本身无法对目标域里的主机名和IP地址做出权威的解析——我们想要查找的DNS记录没有被全部收录在这台DNS服务器里，所以还需要以手动方式告诉nslookup去查询哪一个DNS服务器。具体到上面的例子，我们使用Tellurian Networks的主DNS服务器（216.182.1.1），这是在早些时候执行域名whois查询时找到该信息的。    <br>接下来，我们把记录类型设置为“any”，这允许你取得任何可能的DNS记录（使用man nslookup命令查看），从而构成一个完整的清单。    <br>最后，我们使用“ls”选项列出所有与目标域名有关的记录，其中“-d”开关用于列出该域名的所有记录。我们在域名后面添了一个点号“.”以强调这是一个完全限定域名，不过大多数情况下不添加也行。另外，我们把输出内容重定向到文件/tmp/zone_out里去，以便稍后对它操作。    <br>完成区域传送后，查看输出文件，找一找是否存在有助于确认特定系统的让人感兴趣的信息。因为Tellurian Network网站不允许进行区域传送操作，我们这里只能给出一个示例性的输出结果：    <br>[bash]$ more zone_out    <br>acct18&#160;&#160; 1D IN A 192.168.230.3    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN HINFO &quot;Gateway2000&quot; &quot;WinWKGRPS&quot;    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN MX 0 tellurianadmin-smtp    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN RP bsmith.rci bsmith.who    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN TXT &quot;Location:Telephone Room&quot;    <br>ce&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN CNAME aesop    <br>au&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN A 192.168.230.4    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN HINFO &quot;Aspect&quot; &quot;MS-DOS&quot;    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN MX 0 andromeda    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN RP jcoy.erebus jcoy.who    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN TXT &quot;Location: Library&quot;    <br>acct21&#160;&#160; 1D IN A 192.168.230.5    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN HINFO &quot;Gateway2000&quot; &quot;WinWKGRPS&quot;    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN MX 0 tellurianadmin-smtp    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN RP bsmith.rci bsmith.who    <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1D IN TXT &quot;Location:Accounting&quot;    <br>我们不打算详细解释每个记录，但将指出若干种重要的类型。在上面的输出清单里，列在右边的每个主机系统名栏都对应一个“A”类型记录，它指出了该系统的IP地址。另外，每台主机都对应一个HINFO记录，标识其平台或所运行的操作系统类型（参见RFC-952）。HINFO记录并非必需，反倒给攻击者提供了不少信息。既然我们已把区域传送的结果保存到一个输出文件中，接着就能很容易地利用grep、sed或awk等UNIX程序或者Perl语言脚本来处理这些结果。    <br>假定我们是SunOS或Solaris专家，可以通过编程找出其HINFO记录带有Sparc、Sun或Solaris等词的IP地址。    <br>[bash]$ grep -i solaris zone_out |wc –l    <br>&#160;&#160;&#160; 388    <br>可以看到，我们有388个引用“Solaris”一词的潜在记录。毫无疑问，我们有大量的目标。    <br>寻找测试系统也是攻击者们偏爱的选择之一。原因很简单：测试系统通常不怎么启动众多的安全特性，口令字往往易于猜到，而且管理员也一般不关心谁登录进来。这确实是个“无照营业者”的完美之家。我们可以如下所示搜索测试系统：    <br>[bash]$ grep -i test /tmp/zone_out |wc-l    <br>&#160;&#160;&#160; 96    <br>可以看出，该区域文件中约有96个含有“test”一词的项。这应该等同于相当数量的实际测试系统。以上只是一些简单的例子。大多数入侵者会分割区域数据以瞄准具有已知脆弱点的特定系统类型。    <br>这里有两点需要注意。首先，前面谈及的方法一次只查询一个名字服务器。这意味着不得不对目标域名的所有权威名字服务器执行完全相同的任务。另外，我们只是查询了Tellurian.net域。如果存在子域，我们又不得不给每个子域（例如greenhouse.Tellurian.net）执行同样类型的查询。其次，你可能会收到一个消息，声称你不能罗列域名数据或者查询被拒绝。这通常表示目标域名服务器已被配置成不允许未经授权的用户执行区域传送。这么一来你不能再从该服务器执行区域传送，不过要是存在多个DNS服务器，你仍有可能找到一个允许区域传送的服务器。    <br>介绍完手动进行DNS查询的方法之后，我们再向大家介绍几个可以自动完成这一查询的工具。这类工具有很多，host、Sam Spade、axfr和dig是其中比较常见的。 </p>  <p>DNS的设计被发现可攻击的漏洞，攻击者可透过伪装DNS主要服务器的方式，引导使用者进入恶意网页，以钓鱼方式取得信息，或者植入恶意程序。   <br>日前IOActive的安全研究员Dan Kaminsky揭露了一个DNS安全漏洞，由于这是基于DNS本身的设计而造成的安全漏洞，Kaminsky日前在自己的部落格上这样写着：「现在放出的修补程序虽然有办法让攻击难度提高个几千倍，但是还是无法根本的解决这个问题。」    <br> 恶意攻击者将有办法透过这个漏洞来假冒DNS主要服务器（DNS Master Server），将使用者导向恶意攻击者假冒的网页。由于使用者端输入的网址是正确的，所以使用者会在毫无警觉性的状况下误入恶意网站，因而泄漏出各种个人数据，或是直接在假冒的网页被植入木马或是其它恶意程序。    <br> DNS网域劫持，可以影响所有网站    <br> 由于这个漏洞最主要的问题是发生在DNS本身的设计上，这也使得所有的网站都有可能受到此一漏洞的影响。DNS全名是（Domain Name Service），是负责网址转译的机制，将网址转译为计算机可以识别的数字地址。举例来说，使用者如果在浏览器上输入一串「www.xxx.com」的网址，透过DNS转译，会成为像「192.168.255.255」这样的IP地址，让服务器和终端计算机可以识别，把使用者的流量导到正确的网站。    <br> 一般来说，整个DNS运作的流程是这样的，DNS服务器存有网域名称比对的数据，当使用者要浏览某个网站时，计算机会发出一个UDP协议的请求到本地端的缓存DNS服务器（一般是电信商的缓存DNS服务器），等候缓存DNS服务器比对这个请求，如果缓存DNS服务器里面存有该网站地址的记录，就会把正确的网站IP地址转送给终端计算机，引导使用者连上正确的网站。若缓存DNS服务器没有此一地址，它会再进一步查询上一层的根目录DNS服务器或主要DNS服务器，找寻正确的地址，然后响应给使用者，引导进入正确的网站。缓存DNS服务器会将查询过的地址暂存下来，加快使用者连网时比对DNS的速度。    <br> 由于UDP协议在设计上，不像TCP协议一般，包含有响应方与来源方的信息，在这样的状况下，DNS机制为了比对是由哪一台服务器发出查询的请求、哪一台服务器发出响应，会利用连接端口和一个称为TXID的16位识别码，作为联机辨识的依据，如此一来，即便2台DNS服务器使用相同的对外连接端口，也能透过TXID辨识出是由哪一台DNS服务器发出查询的请求。    <br> 由此可知，TXID的识别对于DNS机制来说，非常重要，可以说是DNS服务器在查询时辨识其它服务器响应的主要依据，而此次被发现的漏洞，正是TXID这种设计本身的不足所造成。因为TXID本身只有16位的长度，恶意攻击者只要假造UDP封包的来源，欺骗使用者的暂存DNS服务器，就可以把该暂存DNS服务器下的所有使用者（数千，甚至是数万台终端计算机）流量，转至任何他想转到的网页。    <br> 要欺骗暂存DNS服务器，恶意攻击者只需要做到2件事。一是设法让暂存服务器发出对外查询的请求；其二则是取得回应DNS服务器的TXID。第一点可以透过很多方式做到，第二点则就是本次发现漏洞的重点</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/847.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/847.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/847.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/847.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/849.seo/">
-        ← 爱拍DNS域传送漏洞
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/844.seo/">
-        Warning  scandir() has been disabled for security reasons in的解决方法 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/黑客技巧/">黑客技巧</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/漏洞/">漏洞</a><a href="/tag/DNS域传送/">DNS域传送</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/849.seo/" title="爱拍DNS域传送漏洞">
+  <strong>Prev:</strong><br/>
+  <span>
+  爱拍DNS域传送漏洞</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/844.seo/"  title="Warning  scandir() has been disabled for security reasons in的解决方法">
+ <strong>Next:</strong><br/> 
+ <span>Warning  scandir() has been disabled for security reasons in的解决方法
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-DNS域传送泄露漏洞详解" data-title="DNS域传送泄露漏洞详解" data-url="http://ha.cker.in/847.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

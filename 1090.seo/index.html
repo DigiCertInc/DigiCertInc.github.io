@@ -1,153 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>渗透中国钢铁商城 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>渗透中国钢铁商城 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="中国钢铁商城 在线交易平台 jboss更新不及时，导致任意文件上传    漏洞页面:     http://www.steel-mall.com//invoker/JMXInvokerServlet jboss漏洞     直接利用exp(下载地址: http://buchedan.org/download/jboss-exploit.zip)获得webshell，此过程略。     可以参考:&amp;#160; WooYun: 中国电信某站点JBOSS任意文件上传漏洞     对于web系统来说，最重要的不是服务器，而是数据库，因此找到数据库配置文件，获得数据库用户名和密码:                    Oracle数据库。连接数据库                    直接就是dba权限的，又是一台服务器。     查一下所有表中，有PASS开头的表                                   这个名字好像很熟悉。不知道是不是重名，出于好奇，想看看信息。                    可以破解，使用用户名登录系统。                    前面就不看了，就看一下钱好了">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="渗透中国钢铁商城 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/1090.seo/" title="渗透中国钢铁商城" itemprop="url">渗透中国钢铁商城</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2014-07-31T14:43:24.000Z" itemprop="datePublished">2014-07-31</time>
+    Updated:<time datetime="2016-08-20T11:03:54.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>中国钢铁商城 在线交易平台 jboss更新不及时，导致任意文件上传    <br>漏洞页面:     <br><a href="http://www.steel-mall.com//invoker/JMXInvokerServlet" target="_blank" rel="external">http://www.steel-mall.com//invoker/JMXInvokerServlet</a> jboss漏洞     <br>直接利用exp(下载地址: <a href="http://buchedan.org/download/jboss-exploit.zip)获得webshell，此过程略。" target="_blank" rel="external">http://buchedan.org/download/jboss-exploit.zip)获得webshell，此过程略。</a>     <br>可以参考:&#160; <a href="http://www.wooyun.org/bugs/wooyun-2013-031621" target="_blank" rel="external">WooYun: 中国电信某站点JBOSS任意文件上传漏洞</a>     <br>对于web系统来说，最重要的不是服务器，而是数据库，因此找到数据库配置文件，获得数据库用户名和密码:     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image001.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image001_thumb.jpg" width="522" height="267"></a><u>      <br></u>    <br>Oracle数据库。连接数据库     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image002.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image002_thumb.jpg" width="539" height="256"></a><u>      <br></u>    <br>直接就是dba权限的，又是一台服务器。     <br>查一下所有表中，有PASS开头的表     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image003.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image003_thumb.jpg" width="569" height="313"></a><u>      <br></u>    <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image004.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image004_thumb.jpg" width="565" height="232"></a><u>      <br></u>    <br>这个名字好像很熟悉。不知道是不是重名，出于好奇，想看看信息。     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image005.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image005_thumb.jpg" width="516" height="286"></a><u>      <br></u>    <br>可以破解，使用用户名登录系统。     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image006.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image006_thumb.jpg" width="543" height="457"></a><u>      <br></u>    <br>前面就不看了，就看一下钱好了     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image007.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image007_thumb.jpg" width="383" height="208"></a></p><br><a id="more"></a><br><p>钢铁好多money，当年入错行，否则我也卖钢铁    <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image008.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image008_thumb.jpg" width="534" height="224"></a><u>      <br></u>    <br>近4w条记录。数据不算多，不继续看了。     <br>这个站点可以在线交易，个人感觉信息，还是很重要的。从注册页面     <br><a href="http://124.160.106.43/memberReg.do" target="_blank" rel="external">http://124.160.106.43/memberReg.do</a>     <br>可以看出:     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image009.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image009_thumb.jpg" width="489" height="412"></a><u>      <br></u>    <br>注册时，需要输入一些重要信息，如:     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image010.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image010_thumb.jpg" width="493" height="339"></a><u>      <br></u>    <br>对应银行信息     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image011.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image011_thumb.jpg" width="434" height="322"></a><u>      <br></u>    <br>主要为了突出信息的重要性。求通过。     <br>站点基本上，就这样了，总是感觉不够通过的，因此继续研究一下内网渗透。     <br>进行一下信息采集。     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image012.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image012_thumb.jpg" width="496" height="464"></a><u>      <br></u>    <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image013.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image013_thumb.jpg" width="499" height="382"></a><u>      <br></u>    <br>内网ip，管理员权限，那么是否可以渗透内网的所有机器呢。     <br>如果进行内网测试，一般就要上内网扫描器了，但是很多扫描器都是图形界面的，因此就需要登录到服务器。而本服务器是内网ip，就需要转发出来，才能登录，这样就导致很麻烦，而且网速什么的，受到很大限制，不太稳定。     <br>在一种进行内网测试，那就是在命令行下的，这就非 <a href="http://ha.cker.in/tag/metasploit" target="_blank">metasploit</a> 莫属了，因为它继承了世界大牛的精华，小弟刚刚开始学习，还在入门级别徘徊，但是也愿意与大家分享一些简单的使用方法。     <br><a href="http://ha.cker.in/tag/metasploit" target="_blank">Metasploit</a> 必须要建立一条网络连接，才能发挥它的作用，此时我已经获得webshell。因此，就需要建立一个payload连接上即可。但是由于目标服务器是内网ip，我的msf也是内网ip，怎样建立连接，就需要找一个公网ip进行转发，这个其实很容易，如果没有做过的，请参考以前的一点学习记录：<a href="http://www.buchedan.org/post/11.html" target="_blank" rel="external">http://www.buchedan.org/post/11.html</a>     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image014.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image014_thumb.jpg" width="513" height="449"></a><u>      <br></u>    <br>获得<a href="http://ha.cker.in/tag/meterpreter" target="_blank">meterpreter</a>     <br>由于已经是管理员权限了，因此，直接hashdump，可以用户的hash值     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image015.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image015_thumb.jpg" width="531" height="115"></a><u>      <br></u>    <br>接下来，为了扩大战果，就需要继续进行<a href="http://ha.cker.in/tag/内网渗透" target="_blank">内网渗透</a>了。但由于目标是内网，就需要添加路由，这个也是msf最强大的地方，方便制作跳板。     <br>首先获得目标站点ip     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image016.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image016_thumb.jpg" width="597" height="476"></a><u>      <br></u>    <br>说明添加好了。     <br>首先判断一下，获得的密码是否通用。     <br>将meterpreter后台运行(background)     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image017.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image017_thumb.jpg" width="542" height="392"></a><u>      <br></u>    <br>调用smb_login进行hash传递。     <br>但是并非每次测试都那么顺利，发现获得的密码，只适合本机器     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image018.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image018_thumb.jpg" width="542" height="429"></a><u>      <br></u>    <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image019.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image019_thumb.jpg" width="527" height="353"></a><u>      <br></u>    <br>这个网段有这几个ip.     <br>先来看一下数据库的机器，因为已经是dba权限了。是内网的，先做一下映射     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image020.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image020_thumb.jpg" width="574" height="426"></a><u>      <br></u>    <br>可见，映射成功了，而且是dba权限。通过创建java源等操作，最终可以执行命令，参考:<a href="http://www.buchedan.org/post/13.html" target="_blank" rel="external">http://www.buchedan.org/post/13.html</a>     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image021.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image021_thumb.jpg" width="563" height="228"></a><u>      <br></u>    <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image022.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image022_thumb.jpg" width="569" height="177"></a><u>      <br></u>    <br>原来不是每个机器都是Guanliyuan是用户名。莫非可以搞到域管理？     <br>很蛋疼，先添加一个管理员。     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image023.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image023_thumb.jpg" width="575" height="186"></a><u>      <br></u>    <br>这样就获得了数据库机器的管理员权限。怎样连接呢，在回到meter中，让其后台运行，使用psexec模块，设置如下:     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image024.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image024_thumb.jpg" width="561" height="326"></a><u>      <br></u>    <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image025.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image025_thumb.jpg" width="566" height="333"></a><u>      <br></u>    <br>发现这两个机器就是无法连接的。这些有些蛋疼。     <br>漏洞证明：     <br>没有办法，只能登陆上服务器看看:     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image026.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image026_thumb.jpg" width="581" height="317"></a><u>      <br></u>    <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image027.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image027_thumb.jpg" width="496" height="427"></a><u>      <br></u>    <br>原来上面有vnc 而且记录里面连接的目标ip是9.110.1.207:5901 在看一下数据库机器，也开启了5901 因此可以猜测，与数据库端口一样，9.110.1.207:5901是数据库机器的5901的映射，因此查询获得数据库机器的vnc密码:     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image028_3.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image028_thumb_3.jpg" width="563" height="195"></a><u>      <br></u>    <br>密码：     <br>F0E43164F6C2E3739460781D0FC7CFF3 破解:123456789     <br>登陆后发现系统已经注销，因此     <br>使用刚才创建的用户名和密码登陆     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image029.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image029_thumb.jpg" width="563" height="419"></a><u>      <br></u>    <br>登录成功     <br>太卡了就不继续了。     <br>当然本次测试不算成功，还有很多机器没有渗透进去，由于时间关系，就到这里了，同时也可以看出，一次成功的测试，真的是很不容易，如果运气好，可能几分钟，运气不好可能几天几年。。。。</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2014-07-31T14:43:24.000Z" itemprop="datePublished">
-          2014-07-31
-      </time>
-    
-    
-    | 
-    <a href='/tag/meterpreter/'>meterpreter</a>,
-    
-    <a href='/tag/Metasploit/'>Metasploit</a>,
-    
-    <a href='/tag/内网渗透/'>内网渗透</a>
-    
-    
-</span>
-    <h1 class="post-title">渗透中国钢铁商城</h1>
-    <section class="post-content">
-      <p>中国钢铁商城 在线交易平台 jboss更新不及时，导致任意文件上传    <br>漏洞页面:     <br><a href="http://www.steel-mall.com//invoker/JMXInvokerServlet" target="_blank" rel="external">http://www.steel-mall.com//invoker/JMXInvokerServlet</a> jboss漏洞     <br>直接利用exp(下载地址: <a href="http://buchedan.org/download/jboss-exploit.zip)获得webshell，此过程略。" target="_blank" rel="external">http://buchedan.org/download/jboss-exploit.zip)获得webshell，此过程略。</a>     <br>可以参考:&#160; <a href="http://www.wooyun.org/bugs/wooyun-2013-031621" target="_blank" rel="external">WooYun: 中国电信某站点JBOSS任意文件上传漏洞</a>     <br>对于web系统来说，最重要的不是服务器，而是数据库，因此找到数据库配置文件，获得数据库用户名和密码:     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image001.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image001_thumb.jpg" width="522" height="267"></a><u>      <br></u>    <br>Oracle数据库。连接数据库     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image002.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image002_thumb.jpg" width="539" height="256"></a><u>      <br></u>    <br>直接就是dba权限的，又是一台服务器。     <br>查一下所有表中，有PASS开头的表     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image003.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image003_thumb.jpg" width="569" height="313"></a><u>      <br></u>    <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image004.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image004_thumb.jpg" width="565" height="232"></a><u>      <br></u>    <br>这个名字好像很熟悉。不知道是不是重名，出于好奇，想看看信息。     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image005.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image005_thumb.jpg" width="516" height="286"></a><u>      <br></u>    <br>可以破解，使用用户名登录系统。     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image006.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image006_thumb.jpg" width="543" height="457"></a><u>      <br></u>    <br>前面就不看了，就看一下钱好了     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image007.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image007_thumb.jpg" width="383" height="208"></a></p><br><a id="more"></a><br><p>钢铁好多money，当年入错行，否则我也卖钢铁    <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image008.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image008_thumb.jpg" width="534" height="224"></a><u>      <br></u>    <br>近4w条记录。数据不算多，不继续看了。     <br>这个站点可以在线交易，个人感觉信息，还是很重要的。从注册页面     <br><a href="http://124.160.106.43/memberReg.do" target="_blank" rel="external">http://124.160.106.43/memberReg.do</a>     <br>可以看出:     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image009.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image009_thumb.jpg" width="489" height="412"></a><u>      <br></u>    <br>注册时，需要输入一些重要信息，如:     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image010.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image010_thumb.jpg" width="493" height="339"></a><u>      <br></u>    <br>对应银行信息     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image011.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image011_thumb.jpg" width="434" height="322"></a><u>      <br></u>    <br>主要为了突出信息的重要性。求通过。     <br>站点基本上，就这样了，总是感觉不够通过的，因此继续研究一下内网渗透。     <br>进行一下信息采集。     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image012.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image012_thumb.jpg" width="496" height="464"></a><u>      <br></u>    <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image013.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image013_thumb.jpg" width="499" height="382"></a><u>      <br></u>    <br>内网ip，管理员权限，那么是否可以渗透内网的所有机器呢。     <br>如果进行内网测试，一般就要上内网扫描器了，但是很多扫描器都是图形界面的，因此就需要登录到服务器。而本服务器是内网ip，就需要转发出来，才能登录，这样就导致很麻烦，而且网速什么的，受到很大限制，不太稳定。     <br>在一种进行内网测试，那就是在命令行下的，这就非 <a href="http://ha.cker.in/tag/metasploit" target="_blank">metasploit</a> 莫属了，因为它继承了世界大牛的精华，小弟刚刚开始学习，还在入门级别徘徊，但是也愿意与大家分享一些简单的使用方法。     <br><a href="http://ha.cker.in/tag/metasploit" target="_blank">Metasploit</a> 必须要建立一条网络连接，才能发挥它的作用，此时我已经获得webshell。因此，就需要建立一个payload连接上即可。但是由于目标服务器是内网ip，我的msf也是内网ip，怎样建立连接，就需要找一个公网ip进行转发，这个其实很容易，如果没有做过的，请参考以前的一点学习记录：<a href="http://www.buchedan.org/post/11.html" target="_blank" rel="external">http://www.buchedan.org/post/11.html</a>     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image014.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image014_thumb.jpg" width="513" height="449"></a><u>      <br></u>    <br>获得<a href="http://ha.cker.in/tag/meterpreter" target="_blank">meterpreter</a>     <br>由于已经是管理员权限了，因此，直接hashdump，可以用户的hash值     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image015.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image015_thumb.jpg" width="531" height="115"></a><u>      <br></u>    <br>接下来，为了扩大战果，就需要继续进行<a href="http://ha.cker.in/tag/内网渗透" target="_blank">内网渗透</a>了。但由于目标是内网，就需要添加路由，这个也是msf最强大的地方，方便制作跳板。     <br>首先获得目标站点ip     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image016.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image016_thumb.jpg" width="597" height="476"></a><u>      <br></u>    <br>说明添加好了。     <br>首先判断一下，获得的密码是否通用。     <br>将meterpreter后台运行(background)     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image017.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image017_thumb.jpg" width="542" height="392"></a><u>      <br></u>    <br>调用smb_login进行hash传递。     <br>但是并非每次测试都那么顺利，发现获得的密码，只适合本机器     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image018.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image018_thumb.jpg" width="542" height="429"></a><u>      <br></u>    <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image019.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image019_thumb.jpg" width="527" height="353"></a><u>      <br></u>    <br>这个网段有这几个ip.     <br>先来看一下数据库的机器，因为已经是dba权限了。是内网的，先做一下映射     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image020.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image020_thumb.jpg" width="574" height="426"></a><u>      <br></u>    <br>可见，映射成功了，而且是dba权限。通过创建java源等操作，最终可以执行命令，参考:<a href="http://www.buchedan.org/post/13.html" target="_blank" rel="external">http://www.buchedan.org/post/13.html</a>     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image021.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image021_thumb.jpg" width="563" height="228"></a><u>      <br></u>    <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image022.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image022_thumb.jpg" width="569" height="177"></a><u>      <br></u>    <br>原来不是每个机器都是Guanliyuan是用户名。莫非可以搞到域管理？     <br>很蛋疼，先添加一个管理员。     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image023.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image023_thumb.jpg" width="575" height="186"></a><u>      <br></u>    <br>这样就获得了数据库机器的管理员权限。怎样连接呢，在回到meter中，让其后台运行，使用psexec模块，设置如下:     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image024.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image024_thumb.jpg" width="561" height="326"></a><u>      <br></u>    <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image025.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image025_thumb.jpg" width="566" height="333"></a><u>      <br></u>    <br>发现这两个机器就是无法连接的。这些有些蛋疼。     <br>漏洞证明：     <br>没有办法，只能登陆上服务器看看:     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image026.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image026_thumb.jpg" width="581" height="317"></a><u>      <br></u>    <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image027.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image027_thumb.jpg" width="496" height="427"></a><u>      <br></u>    <br>原来上面有vnc 而且记录里面连接的目标ip是9.110.1.207:5901 在看一下数据库机器，也开启了5901 因此可以猜测，与数据库端口一样，9.110.1.207:5901是数据库机器的5901的映射，因此查询获得数据库机器的vnc密码:     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image028_3.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image028_thumb_3.jpg" width="563" height="195"></a><u>      <br></u>    <br>密码：     <br>F0E43164F6C2E3739460781D0FC7CFF3 破解:123456789     <br>登陆后发现系统已经注销，因此     <br>使用刚才创建的用户名和密码登陆     <br><u>     <br></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image029.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image029_thumb.jpg" width="563" height="419"></a><u>      <br></u>    <br>登录成功     <br>太卡了就不继续了。     <br>当然本次测试不算成功，还有很多机器没有渗透进去，由于时间关系，就到这里了，同时也可以看出，一次成功的测试，真的是很不容易，如果运气好，可能几分钟，运气不好可能几天几年。。。。</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1090.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1090.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1090.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1090.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/1091.seo/">
-        ← Kali Linux系列教程之OpenVas安装
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/1089.seo/">
-        全方位绕过安全狗 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/渗透测试/">渗透测试</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/Metasploit/">Metasploit</a><a href="/tag/meterpreter/">meterpreter</a><a href="/tag/内网渗透/">内网渗透</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/1091.seo/" title="Kali Linux系列教程之OpenVas安装">
+  <strong>Prev:</strong><br/>
+  <span>
+  Kali Linux系列教程之OpenVas安装</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/1089.seo/"  title="全方位绕过安全狗">
+ <strong>Next:</strong><br/> 
+ <span>全方位绕过安全狗
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-渗透中国钢铁商城" data-title="渗透中国钢铁商城" data-url="http://ha.cker.in/1090.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

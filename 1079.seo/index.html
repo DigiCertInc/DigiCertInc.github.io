@@ -1,149 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>header的安全配置指南 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>header的安全配置指南 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="0x00 背景    在统计了Alexa top 100万网站的header安全分析之后（2012年11月 - 2013年3月 - 2013年11月），我们发现其实如何正确的设置一个header并不是一件容易的事情。尽管有数不胜数的网站会使用大量有关安全方面的header，但并没有一个像样的平台能够为开发者们提供必要的信息，以辨别那些常见的错误设置。或者说，即使这些安全方面的header设置正确了，也没有一个平台能够为开发者提供一个系统的测试方法，用来测试正确与否。这些header如果设置错误了不仅会产生安全的假象，甚至会对网站的安全产生威胁。veracode认为安全性header是网络防护中非常重要的一环，并且他希望让开发者们能够简捷、正确地设置站点。如果您对某一header或设置有任何疑问，我们有极好的资源能够追踪到浏览器支持情况。  0x01 细节    1. X-XSS-Protection  目的  这个header主要是用来防止浏览器中的反射性xss。现在，只有IE，chrome和safari（webkit）支持这个header。  正确的设置  0 – 关闭对浏览器的xss防护  1 – 开启xss防护  1; mode=block – 开启xss防护并通知浏览器阻止而不是过滤用户注入的脚本。  1; report=http://site.com/report – 这个只有chrome和webkit内核的浏览器支持，这种模式告诉浏览器当发现疑似xss攻击的时候就将这部分数据post到指定地址。  通常不正确的设置  0; mode=block; – 记住当配置为0的时候，即使加了mode=block选项也是没有效果的。需要指出的是，chrome在发现这种错误的配置后还是会开启xss防护。  1 mode=block; – 数字和选项之间必须是用分号分割，逗号和空格都是错误的。但是这种错误配置情况下，IE和chrome还是默认会清洗xss攻击，但是不会阻拦。  如何检测  如果过滤器检测或阻拦了一个反射性xss以后,IE会弹出一个对话框。当设置为1时，chrome会隐藏对反射性xss的输出。如果是设置为 1; mode=block ,那么chrome会直接将user-agent置为一个空值:, URL&amp;#160; 这种形式。  参考文献  Post from Microsoft on the X-XSS-Protection Header   Chromium X-XSS-Protection Header Parsing Source    Discussion of report format in WebKit bugzilla">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="header的安全配置指南 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/1079.seo/" title="header的安全配置指南" itemprop="url">header的安全配置指南</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2014-04-24T23:13:14.000Z" itemprop="datePublished">2014-04-25</time>
+    Updated:<time datetime="2016-08-20T11:03:54.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">1. X-XSS-Protection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">2. X-Content-Type-Options</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">3. X-Frame-Options</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">4. Strict-Transport-Security</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">5. Public-Key-Pins (起草中)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">6. Access-Control-Allow-Origin</span></a></li></ol>
+		</div>
+		
+		<p>0x00 背景</p>  <hr align="left" size="5" width="100%" noshade="noshade">  <p>在统计了Alexa top 100万网站的header安全分析之后（2012年11月 - 2013年3月 - 2013年11月），我们发现其实如何正确的设置一个header并不是一件容易的事情。尽管有数不胜数的网站会使用大量有关安全方面的header，但并没有一个像样的平台能够为开发者们提供必要的信息，以辨别那些常见的错误设置。或者说，即使这些安全方面的header设置正确了，也没有一个平台能够为开发者提供一个系统的测试方法，用来测试正确与否。这些header如果设置错误了不仅会产生安全的假象，甚至会对网站的安全产生威胁。veracode认为安全性header是网络防护中非常重要的一环，并且他希望让开发者们能够简捷、正确地设置站点。如果您对某一header或设置有任何疑问，我们有极好的资源能够追踪到浏览器支持情况。</p>  <p>0x01 细节</p>  <hr align="left" size="5" width="100%" noshade="noshade">  <h3>1. X-XSS-Protection</h3>  <p><b>目的</b></p>  <p>这个header主要是用来防止浏览器中的反射性<a href="http://ha.cker.in/tag/xss" target="_blank">xss</a>。现在，只有IE，chrome和safari（webkit）支持这个header。</p>  <p><b>正确的设置</b></p>  <p>0 – 关闭对浏览器的<a href="http://ha.cker.in/tag/xss" target="_blank">xss</a>防护</p>  <p>1 – 开启xss防护</p>  <p>1; mode=block – 开启xss防护并通知浏览器阻止而不是过滤用户注入的脚本。</p>  <p>1; report=<a href="http://site.com/report" target="_blank" rel="external">http://site.com/report</a> – 这个只有chrome和webkit内核的浏览器支持，这种模式告诉浏览器当发现疑似xss攻击的时候就将这部分数据post到指定地址。</p>  <p><b>通常不正确的设置</b></p>  <p>0; mode=block; – 记住当配置为0的时候，即使加了mode=block选项也是没有效果的。需要指出的是，chrome在发现这种错误的配置后还是会开启xss防护。</p>  <p>1 mode=block; – 数字和选项之间必须是用分号分割，逗号和空格都是错误的。但是这种错误配置情况下，IE和chrome还是默认会清洗xss攻击，但是不会阻拦。</p>  <p><b>如何检测</b></p>  <p>如果过滤器检测或阻拦了一个反射性xss以后,IE会弹出一个对话框。当设置为1时，chrome会隐藏对反射性xss的输出。如果是设置为 1; mode=block ,那么chrome会直接将user-agent置为一个空值:, URL&#160; 这种形式。</p>  <p><b>参考文献</b></p>  <p>Post from Microsoft on the X-XSS-Protection Header   <br>Chromium X-XSS-Protection Header Parsing Source    <br>Discussion of report format in WebKit bugzilla</p><br><a id="more"></a><br><p></p>  <h3>2. X-Content-Type-Options</h3>  <p><b>目的</b></p>  <p>这个header主要用来防止在IE9、chrome和safari中的MIME类型混淆攻击。firefox目前对此还存在争议。通常浏览器可以通过嗅探内容本身的方法来决定它是什么类型，而不是看响应中的content-type值。通过设置 X-Content-Type-Options：如果content-type和期望的类型匹配，则不需要嗅探，只能从外部加载确定类型的资源。举个例子，如果加载了一个样式表，那么资源的MIME类型只能是text/css，对于IE中的脚本资源，以下的内容类型是有效的：</p>  <p>application/ecmascript&#160; </p>  <p>application/javascript&#160; </p>  <p>application/x-javascript&#160; </p>  <p>text/ecmascript&#160; </p>  <p>text/javascript&#160; </p>  <p>text/jscript&#160; </p>  <p>text/x-javascript&#160; </p>  <p>text/vbs&#160; </p>  <p>text/vbscript&#160; </p>  <p>对于chrome，则支持下面的MIME 类型：</p>  <p>text/javascript&#160; </p>  <p>text/ecmascript&#160; </p>  <p>application/javascript&#160; </p>  <p>application/ecmascript&#160; </p>  <p>application/x-javascript&#160; </p>  <p>text/javascript1.1&#160; </p>  <p>text/javascript1.2&#160; </p>  <p>text/javascript1.3&#160; </p>  <p>text/jscript&#160; </p>  <p>text/live script</p>  <p><b>正确的设置</b></p>  <p>nosniff – 这个是唯一正确的设置，必须这样。</p>  <p>通常不正确的设置</p>  <p>‘nosniff’ – 引号是不允许的</p>  <p>: nosniff – 冒号也是错误的</p>  <p><b>如何检测</b></p>  <p>在IE和chrome中打开开发者工具，在控制台中观察配置了nosniff和没有配置nosniff的输出有啥区别。</p>  <p><b>参考文献</b></p>  <p>Microsoft Post on Reducing MIME type security risks   <br>Chromium Source for parsing nosniff from response    <br>Chromium Source list of JS MIME types    <br>MIME Sniffing Living Standard</p>  <h3>3. X-Frame-Options</h3>  <p><b>目的</b></p>  <p>这个header主要用来配置哪些网站可以通过frame来加载资源。它主要是用来防止UI redressing 补偿样式攻击。IE8和firefox 18以后的版本都开始支持ALLOW-FROM。chrome和safari都不支持ALLOW-FROM，但是WebKit已经在研究这个了。</p>  <p><b>正确的设置</b></p>  <p>DENY – 禁止所有的资源（本地或远程）试图通过frame来加载其他也支持X-Frame-Options 的资源。</p>  <p>SAMEORIGIN – 只允许遵守同源策略的资源（和站点同源）通过frame加载那些受保护的资源。</p>  <p>ALLOW-FROM <a href="http://www.example.com" target="_blank" rel="external">http://www.example.com</a> – 允许指定的资源（必须带上协议http或者https）通过frame来加载受保护的资源。这个配置只在IE和firefox下面有效。其他浏览器则默认允许任何源的资源（在X-Frame-Options没设置的情况下）。</p>  <p><b>通常不正确的设置</b></p>  <p>ALLOW FROM <a href="http://example.com" target="_blank" rel="external">http://example.com</a> – ALLOW和FROM 之间只能通过连字符来连接，空格是错误的。</p>  <p>ALLOW-FROM example.com – ALLOW-FROM选项后面必须跟上一个URI而且要有明确的协议（http或者https）</p>  <p><b>如何检测</b></p>  <p>可以通过访问test cases 来查看各种各样的选项和浏览器对这些frame中的资源的响应。</p>  <p><b>参考文献</b></p>  <p>X-Frame-Options RFC   <br>Combating ClickJacking With X-Frame-Options</p>  <h3>4. Strict-Transport-Security</h3>  <p><b>目的</b></p>  <p>Strict Transport Security (STS) 是用来配置浏览器和服务器之间安全的通信。它主要是用来防止中间人攻击，因为它强制所有的通信都走TLS。目前IE还不支持 STS头。需要注意的是，在普通的http请求中配置STS是没有作用的，因为攻击者很容易就能更改这些值。为了防止这样的现象发生，很多浏览器内置了一个配置了STS的站点list。   <br><b>正确的设置</b>    <br>注意下面的值必须在https中才有效，如果是在http中配置会没有效果。</p>  <p>max-age=31536000 – 告诉浏览器将域名缓存到STS list里面，时间是一年。</p>  <p>max-age=31536000; includeSubDomains – 告诉浏览器将域名缓存到STS list里面并且包含所有的子域名，时间是一年。</p>  <p>max-age=0 – 告诉浏览器移除在STS缓存里的域名，或者不保存此域名。</p>  <p><b>通常不正确的设置</b></p>  <p>直接将includeSubDomains设置为 <a href="https://www.example.com" target="_blank" rel="external">https://www.example.com</a> ，但是用户依然可以通过 <a href="http://example.com" target="_blank" rel="external">http://example.com</a> 来访问此站点。如果example.com 并没有跳转到 <a href="https://example.com" target="_blank" rel="external">https://example.com</a> 并设置 STS header，那么访问 <a href="http://www.example.com" target="_blank" rel="external">http://www.example.com</a> 就会直接被浏览器重定向到 <a href="https://www.example.com" target="_blank" rel="external">https://www.example.com</a> 。</p>  <p>max-age=60 – 这个只设置域名保存时间为60秒。这个时间太短了，可能并不能很好的保护用户，可以尝试先通过http来访问站点，这样可以缩短传输时间。</p>  <p>max-age=31536000 includeSubDomains – max-age 和 includeSubDomains 直接必须用分号分割。这种情况下，即使max-age的值设置的没有问题，chrome也不会将此站点保存到STS缓存中。</p>  <p>max-age=31536000, includeSubDomains – 同上面情况一样。</p>  <p>max-age=0 – 尽管这样在技术上是没有问题的，但是很多站点可能在处理起来会出差错，因为0可能意味着永远不过期。</p>  <p><b>如何检测</b></p>  <p>判断一个主机是否在你的STS缓存中，chrome可以通过访问chrome://net-internals/#hsts，首先，通过域名请求选项来确认此域名是否在你的STS缓存中。然后，通过https访问这个网站，尝试再次请求返回的STS头，来决定是否添加正确。</p>  <p><b>参考文献</b></p>  <p>Strict Transport Security RFC6797   <br>Wikipedia page on Strict Transport Security (with examples)</p>  <h3>5. Public-Key-Pins (起草中)</h3>  <p><b>目的</b></p>  <p>有关这个header的详细描述还在起草中，但是它已经有了很清晰的安全作用，所以我还是把它放在了这个list里面。Public-Key-Pins (PKP)的目的主要是允许网站经营者提供一个哈希过的公共密钥存储在用户的浏览器缓存里。跟Strict-Transport-Security功能相似的是，它能保护用户免遭中间人攻击。这个header可能包含多层的哈希运算，比如pin-sha256=base64(sha256(SPKI))，具体是先将 X.509 证书下的Subject Public Key Info (SPKI) 做sha256哈希运算，然后再做base64编码。然而，这些规定有可能更改，例如有人指出，在引号中封装哈希是无效的，而且在33版本的chrome中也不会保存pkp的哈希到缓存中。</p>  <p>这个header和 STS的作用很像，因为它规定了最大子域名的数量。此外，pkp还提供了一个Public-Key-Pins-Report-Only 头用来报告异常，但是不会强制阻塞证书信息。当然，这些chrome都是不支持的。</p>  <p><b>正确的设置</b></p>  <p>max-age=3000; pin-sha256=”d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM=”; – 规定此站点有3000秒的时间来对x.509证书项目中的公共密钥信息（引号里面的内容）做sha256哈希运算再做base64编码。</p>  <p>max-age=3000; pin-sha256=”d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM=”; report-uri=”<a href="http://example.com/pkp-report”" target="_blank" rel="external">http://example.com/pkp-report”</a> – 同上面一样，区别是可以报告异常。</p>  <p><b>通常不正确的设置</b></p>  <p>max-age=3000; pin-sha256=d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM=; – Not encapsulating the hash value in quotes leads to Chrome 33 not adding the keys to the PKP cache. This mistake was observed in all but one of the four sites that returned this or the report-only header response.没有添加引号，这样的话chrome不会将这个key添加到PKP缓存中。我们的调查中发现有四分之一的网站存在此问题。</p>  <p><b>如何检测</b></p>  <p>如果站点成功的将pkp哈希存入了客户端缓存，那么使用和Strict-Transport-Security （STS）相同的方法查看pubkey_hashes 信息就可以了。</p>  <p><b>参考文献</b></p>  <p>Public-Key-Pins draft specification   <br>Chrome issue tracking the implementation of Public-Key-Pins    <br>Chromium source code for processing Public-Key-Pins header</p>  <h3>6. Access-Control-Allow-Origin</h3>  <p><b>目的</b></p>  <p>Access-Control-Allow-Origin是从Cross Origin Resource Sharing (CORS)中分离出来的。这个header是决定哪些网站可以访问资源，通过定义一个通配符来决定是单一的网站还是所有网站可以访问我们的资源。需要注意的是，如果定义了通配符，那么 Access-Control-Allow-Credentials选项就无效了，而且user-agent的cookies不会在请求里发送。</p>  <p><b>正确的设置</b></p>  <p><em> – 通配符允许任何远程资源来访问含有Access-Control-Allow-Origin 的内容。</em></p>  <p><a href="http://www.example.com" target="_blank" rel="external">http://www.example.com</a> – 只允许特定站点才能访问(<a href="http://[host" target="_blank" rel="external">http://[host</a>], 或者 <a href="https://[host" target="_blank" rel="external">https://[host</a>]) </p>  <p><b>通常不正确的设置</b></p>  <p><a href="http://example.com" target="_blank" rel="external">http://example.com</a>, <a href="http://web2.example.com" target="_blank" rel="external">http://web2.example.com</a> – 多个站点是不支持的，只能配置一个站点。</p>  <p>.example.com – 只允许单一的站点</p>  <p><a href="http://*.example.com" target="_blank" rel="external">http://*.example.com</a> – 同上面一样</p>  <p><b>如何检测</b></p>  <p>很容易就能确定这个header是否被设置的正确，因为如果设置错误的话，CORS请求就会接收不到数据。</p>  <p><b>参考文献</b></p>  <p>W3C CORS specification   <br>Content-Security-Policy 1.0</p>  <p><b>目的</b></p>  <p>csp是一些指令的集合，可以用来限制页面加载各种各样的资源。目前，IE浏览器只支持CSP的一部分，而且仅支持X-Content-Security-Policy header。 相比较而言，Chrome和Firefox则支持CSP的1.0版本，csp的1.1版本则还在开发中。通过恰当的配置csp，可以防止站点遭受很多类型的攻击，譬如xss和UI补偿等相关问题。</p>  <p>csp总共有10种配置形式，每一种都可以用来限制站点何时加载和加载何种类型的资源。他们分别是：</p>  <p>default-src：这种形式默认设置为 script-src, object-src, style-src, img-src, media-src, frame-src, font-src和connect-src.如果上述设置一个都没有的话，user-agent就会被用来作为default-src的值。</p>  <p>script-src：这种形式也有两个附加的设置。</p>  <p>1、unsafe-inline：允许资源执行脚本。举个例子，on事件的值会被编码到html代码中，或者脚本元素的text的内容会被混入到受保护的资源中。</p>  <p>2、unsafe-eval：允许资源动态的执行函数，比如eval，setTimeout, setInterval, new等函数。</p>  <p>object-src – 决定从哪里加载和执行插件。   <br>style-src – 决定从哪里加载css和样式标记。    <br>img-src – 决定从哪里加载图片。    <br>media-src – 决定从哪里加载视频和音频资源。    <br>frame-src – 决定哪里的frames 可以被嵌入。    <br>font-src – 决定从哪里加载字体。    <br>connect-src – 限制在 XMLHttpRequest, WebSocket 和 EventSource 中可以使用哪些类型的资源。    <br>sandbox – 这是一个可选形式，它决定了沙盒的策略，如何将内容嵌入到沙盒中以保证安全。</p>  <p>当这个策略被特定的url违反了，我们也可以用报告地址直接发送报告。这样做有利于debug和当攻击发生时通知我们。</p>  <p>此外， 我们可以定义Content-Security-Policy-Report-Only 的 header不强制遵守csp，但是会发送潜在的威胁到一个报告地址。它遵守和csp一样的语法和规则。</p>  <p><b>正确的设置</b></p>  <p>View cspplayground.com compliant examples&#160; </p>  <p>通常不正确的设置：</p>  <p>View cspplayground.com violation examples&#160; </p>  <p><b>如何检测</b></p>  <p>在chrome和firefox中打开开发者工具或者firebug，在控制台查看是否有潜在的威胁。</p>  <p><b>参考文献</b></p>  <p>Content Security Policy 1.0 Specification   <br>Content Security Policy 1.1 Working Draft Specification    <br>cspplayground.com’s excellent collection of resources for CSP    <br>Sublime Text 2 Plugin for validating HTML/JS while you code your site</p>  <p>关于Alexa排名top 100万网站的安全header的研究。</p>  <p>from:</p>  <p><a href="https://blog.veracode.com/2014/03/guidelines-for-setting-security-headers/" target="_blank" rel="external">https://blog.veracode.com/2014/03/guidelines-for-setting-security-headers/</a></p>  <p><a href="http://drops.wooyun.org/tips/1166" target="_blank" rel="external">http://drops.wooyun.org/tips/1166</a></p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2014-04-24T23:13:14.000Z" itemprop="datePublished">
-          2014-04-25
-      </time>
-    
-    
-    | 
-    <a href='/tag/xss/'>xss</a>
-    
-    
-</span>
-    <h1 class="post-title">header的安全配置指南</h1>
-    <section class="post-content">
-      <p>0x00 背景</p>  <hr align="left" size="5" width="100%" noshade="noshade">  <p>在统计了Alexa top 100万网站的header安全分析之后（2012年11月 - 2013年3月 - 2013年11月），我们发现其实如何正确的设置一个header并不是一件容易的事情。尽管有数不胜数的网站会使用大量有关安全方面的header，但并没有一个像样的平台能够为开发者们提供必要的信息，以辨别那些常见的错误设置。或者说，即使这些安全方面的header设置正确了，也没有一个平台能够为开发者提供一个系统的测试方法，用来测试正确与否。这些header如果设置错误了不仅会产生安全的假象，甚至会对网站的安全产生威胁。veracode认为安全性header是网络防护中非常重要的一环，并且他希望让开发者们能够简捷、正确地设置站点。如果您对某一header或设置有任何疑问，我们有极好的资源能够追踪到浏览器支持情况。</p>  <p>0x01 细节</p>  <hr align="left" size="5" width="100%" noshade="noshade">  <h3>1. X-XSS-Protection</h3>  <p><b>目的</b></p>  <p>这个header主要是用来防止浏览器中的反射性<a href="http://ha.cker.in/tag/xss" target="_blank">xss</a>。现在，只有IE，chrome和safari（webkit）支持这个header。</p>  <p><b>正确的设置</b></p>  <p>0 – 关闭对浏览器的<a href="http://ha.cker.in/tag/xss" target="_blank">xss</a>防护</p>  <p>1 – 开启xss防护</p>  <p>1; mode=block – 开启xss防护并通知浏览器阻止而不是过滤用户注入的脚本。</p>  <p>1; report=<a href="http://site.com/report" target="_blank" rel="external">http://site.com/report</a> – 这个只有chrome和webkit内核的浏览器支持，这种模式告诉浏览器当发现疑似xss攻击的时候就将这部分数据post到指定地址。</p>  <p><b>通常不正确的设置</b></p>  <p>0; mode=block; – 记住当配置为0的时候，即使加了mode=block选项也是没有效果的。需要指出的是，chrome在发现这种错误的配置后还是会开启xss防护。</p>  <p>1 mode=block; – 数字和选项之间必须是用分号分割，逗号和空格都是错误的。但是这种错误配置情况下，IE和chrome还是默认会清洗xss攻击，但是不会阻拦。</p>  <p><b>如何检测</b></p>  <p>如果过滤器检测或阻拦了一个反射性xss以后,IE会弹出一个对话框。当设置为1时，chrome会隐藏对反射性xss的输出。如果是设置为 1; mode=block ,那么chrome会直接将user-agent置为一个空值:, URL&#160; 这种形式。</p>  <p><b>参考文献</b></p>  <p>Post from Microsoft on the X-XSS-Protection Header   <br>Chromium X-XSS-Protection Header Parsing Source    <br>Discussion of report format in WebKit bugzilla</p><br><a id="more"></a><br><p></p>  <h3>2. X-Content-Type-Options</h3>  <p><b>目的</b></p>  <p>这个header主要用来防止在IE9、chrome和safari中的MIME类型混淆攻击。firefox目前对此还存在争议。通常浏览器可以通过嗅探内容本身的方法来决定它是什么类型，而不是看响应中的content-type值。通过设置 X-Content-Type-Options：如果content-type和期望的类型匹配，则不需要嗅探，只能从外部加载确定类型的资源。举个例子，如果加载了一个样式表，那么资源的MIME类型只能是text/css，对于IE中的脚本资源，以下的内容类型是有效的：</p>  <p>application/ecmascript&#160; </p>  <p>application/javascript&#160; </p>  <p>application/x-javascript&#160; </p>  <p>text/ecmascript&#160; </p>  <p>text/javascript&#160; </p>  <p>text/jscript&#160; </p>  <p>text/x-javascript&#160; </p>  <p>text/vbs&#160; </p>  <p>text/vbscript&#160; </p>  <p>对于chrome，则支持下面的MIME 类型：</p>  <p>text/javascript&#160; </p>  <p>text/ecmascript&#160; </p>  <p>application/javascript&#160; </p>  <p>application/ecmascript&#160; </p>  <p>application/x-javascript&#160; </p>  <p>text/javascript1.1&#160; </p>  <p>text/javascript1.2&#160; </p>  <p>text/javascript1.3&#160; </p>  <p>text/jscript&#160; </p>  <p>text/live script</p>  <p><b>正确的设置</b></p>  <p>nosniff – 这个是唯一正确的设置，必须这样。</p>  <p>通常不正确的设置</p>  <p>‘nosniff’ – 引号是不允许的</p>  <p>: nosniff – 冒号也是错误的</p>  <p><b>如何检测</b></p>  <p>在IE和chrome中打开开发者工具，在控制台中观察配置了nosniff和没有配置nosniff的输出有啥区别。</p>  <p><b>参考文献</b></p>  <p>Microsoft Post on Reducing MIME type security risks   <br>Chromium Source for parsing nosniff from response    <br>Chromium Source list of JS MIME types    <br>MIME Sniffing Living Standard</p>  <h3>3. X-Frame-Options</h3>  <p><b>目的</b></p>  <p>这个header主要用来配置哪些网站可以通过frame来加载资源。它主要是用来防止UI redressing 补偿样式攻击。IE8和firefox 18以后的版本都开始支持ALLOW-FROM。chrome和safari都不支持ALLOW-FROM，但是WebKit已经在研究这个了。</p>  <p><b>正确的设置</b></p>  <p>DENY – 禁止所有的资源（本地或远程）试图通过frame来加载其他也支持X-Frame-Options 的资源。</p>  <p>SAMEORIGIN – 只允许遵守同源策略的资源（和站点同源）通过frame加载那些受保护的资源。</p>  <p>ALLOW-FROM <a href="http://www.example.com" target="_blank" rel="external">http://www.example.com</a> – 允许指定的资源（必须带上协议http或者https）通过frame来加载受保护的资源。这个配置只在IE和firefox下面有效。其他浏览器则默认允许任何源的资源（在X-Frame-Options没设置的情况下）。</p>  <p><b>通常不正确的设置</b></p>  <p>ALLOW FROM <a href="http://example.com" target="_blank" rel="external">http://example.com</a> – ALLOW和FROM 之间只能通过连字符来连接，空格是错误的。</p>  <p>ALLOW-FROM example.com – ALLOW-FROM选项后面必须跟上一个URI而且要有明确的协议（http或者https）</p>  <p><b>如何检测</b></p>  <p>可以通过访问test cases 来查看各种各样的选项和浏览器对这些frame中的资源的响应。</p>  <p><b>参考文献</b></p>  <p>X-Frame-Options RFC   <br>Combating ClickJacking With X-Frame-Options</p>  <h3>4. Strict-Transport-Security</h3>  <p><b>目的</b></p>  <p>Strict Transport Security (STS) 是用来配置浏览器和服务器之间安全的通信。它主要是用来防止中间人攻击，因为它强制所有的通信都走TLS。目前IE还不支持 STS头。需要注意的是，在普通的http请求中配置STS是没有作用的，因为攻击者很容易就能更改这些值。为了防止这样的现象发生，很多浏览器内置了一个配置了STS的站点list。   <br><b>正确的设置</b>    <br>注意下面的值必须在https中才有效，如果是在http中配置会没有效果。</p>  <p>max-age=31536000 – 告诉浏览器将域名缓存到STS list里面，时间是一年。</p>  <p>max-age=31536000; includeSubDomains – 告诉浏览器将域名缓存到STS list里面并且包含所有的子域名，时间是一年。</p>  <p>max-age=0 – 告诉浏览器移除在STS缓存里的域名，或者不保存此域名。</p>  <p><b>通常不正确的设置</b></p>  <p>直接将includeSubDomains设置为 <a href="https://www.example.com" target="_blank" rel="external">https://www.example.com</a> ，但是用户依然可以通过 <a href="http://example.com" target="_blank" rel="external">http://example.com</a> 来访问此站点。如果example.com 并没有跳转到 <a href="https://example.com" target="_blank" rel="external">https://example.com</a> 并设置 STS header，那么访问 <a href="http://www.example.com" target="_blank" rel="external">http://www.example.com</a> 就会直接被浏览器重定向到 <a href="https://www.example.com" target="_blank" rel="external">https://www.example.com</a> 。</p>  <p>max-age=60 – 这个只设置域名保存时间为60秒。这个时间太短了，可能并不能很好的保护用户，可以尝试先通过http来访问站点，这样可以缩短传输时间。</p>  <p>max-age=31536000 includeSubDomains – max-age 和 includeSubDomains 直接必须用分号分割。这种情况下，即使max-age的值设置的没有问题，chrome也不会将此站点保存到STS缓存中。</p>  <p>max-age=31536000, includeSubDomains – 同上面情况一样。</p>  <p>max-age=0 – 尽管这样在技术上是没有问题的，但是很多站点可能在处理起来会出差错，因为0可能意味着永远不过期。</p>  <p><b>如何检测</b></p>  <p>判断一个主机是否在你的STS缓存中，chrome可以通过访问chrome://net-internals/#hsts，首先，通过域名请求选项来确认此域名是否在你的STS缓存中。然后，通过https访问这个网站，尝试再次请求返回的STS头，来决定是否添加正确。</p>  <p><b>参考文献</b></p>  <p>Strict Transport Security RFC6797   <br>Wikipedia page on Strict Transport Security (with examples)</p>  <h3>5. Public-Key-Pins (起草中)</h3>  <p><b>目的</b></p>  <p>有关这个header的详细描述还在起草中，但是它已经有了很清晰的安全作用，所以我还是把它放在了这个list里面。Public-Key-Pins (PKP)的目的主要是允许网站经营者提供一个哈希过的公共密钥存储在用户的浏览器缓存里。跟Strict-Transport-Security功能相似的是，它能保护用户免遭中间人攻击。这个header可能包含多层的哈希运算，比如pin-sha256=base64(sha256(SPKI))，具体是先将 X.509 证书下的Subject Public Key Info (SPKI) 做sha256哈希运算，然后再做base64编码。然而，这些规定有可能更改，例如有人指出，在引号中封装哈希是无效的，而且在33版本的chrome中也不会保存pkp的哈希到缓存中。</p>  <p>这个header和 STS的作用很像，因为它规定了最大子域名的数量。此外，pkp还提供了一个Public-Key-Pins-Report-Only 头用来报告异常，但是不会强制阻塞证书信息。当然，这些chrome都是不支持的。</p>  <p><b>正确的设置</b></p>  <p>max-age=3000; pin-sha256=”d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM=”; – 规定此站点有3000秒的时间来对x.509证书项目中的公共密钥信息（引号里面的内容）做sha256哈希运算再做base64编码。</p>  <p>max-age=3000; pin-sha256=”d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM=”; report-uri=”<a href="http://example.com/pkp-report”" target="_blank" rel="external">http://example.com/pkp-report”</a> – 同上面一样，区别是可以报告异常。</p>  <p><b>通常不正确的设置</b></p>  <p>max-age=3000; pin-sha256=d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM=; – Not encapsulating the hash value in quotes leads to Chrome 33 not adding the keys to the PKP cache. This mistake was observed in all but one of the four sites that returned this or the report-only header response.没有添加引号，这样的话chrome不会将这个key添加到PKP缓存中。我们的调查中发现有四分之一的网站存在此问题。</p>  <p><b>如何检测</b></p>  <p>如果站点成功的将pkp哈希存入了客户端缓存，那么使用和Strict-Transport-Security （STS）相同的方法查看pubkey_hashes 信息就可以了。</p>  <p><b>参考文献</b></p>  <p>Public-Key-Pins draft specification   <br>Chrome issue tracking the implementation of Public-Key-Pins    <br>Chromium source code for processing Public-Key-Pins header</p>  <h3>6. Access-Control-Allow-Origin</h3>  <p><b>目的</b></p>  <p>Access-Control-Allow-Origin是从Cross Origin Resource Sharing (CORS)中分离出来的。这个header是决定哪些网站可以访问资源，通过定义一个通配符来决定是单一的网站还是所有网站可以访问我们的资源。需要注意的是，如果定义了通配符，那么 Access-Control-Allow-Credentials选项就无效了，而且user-agent的cookies不会在请求里发送。</p>  <p><b>正确的设置</b></p>  <p><em> – 通配符允许任何远程资源来访问含有Access-Control-Allow-Origin 的内容。</em></p>  <p><a href="http://www.example.com" target="_blank" rel="external">http://www.example.com</a> – 只允许特定站点才能访问(<a href="http://[host" target="_blank" rel="external">http://[host</a>], 或者 <a href="https://[host" target="_blank" rel="external">https://[host</a>]) </p>  <p><b>通常不正确的设置</b></p>  <p><a href="http://example.com" target="_blank" rel="external">http://example.com</a>, <a href="http://web2.example.com" target="_blank" rel="external">http://web2.example.com</a> – 多个站点是不支持的，只能配置一个站点。</p>  <p>.example.com – 只允许单一的站点</p>  <p><a href="http://*.example.com" target="_blank" rel="external">http://*.example.com</a> – 同上面一样</p>  <p><b>如何检测</b></p>  <p>很容易就能确定这个header是否被设置的正确，因为如果设置错误的话，CORS请求就会接收不到数据。</p>  <p><b>参考文献</b></p>  <p>W3C CORS specification   <br>Content-Security-Policy 1.0</p>  <p><b>目的</b></p>  <p>csp是一些指令的集合，可以用来限制页面加载各种各样的资源。目前，IE浏览器只支持CSP的一部分，而且仅支持X-Content-Security-Policy header。 相比较而言，Chrome和Firefox则支持CSP的1.0版本，csp的1.1版本则还在开发中。通过恰当的配置csp，可以防止站点遭受很多类型的攻击，譬如xss和UI补偿等相关问题。</p>  <p>csp总共有10种配置形式，每一种都可以用来限制站点何时加载和加载何种类型的资源。他们分别是：</p>  <p>default-src：这种形式默认设置为 script-src, object-src, style-src, img-src, media-src, frame-src, font-src和connect-src.如果上述设置一个都没有的话，user-agent就会被用来作为default-src的值。</p>  <p>script-src：这种形式也有两个附加的设置。</p>  <p>1、unsafe-inline：允许资源执行脚本。举个例子，on事件的值会被编码到html代码中，或者脚本元素的text的内容会被混入到受保护的资源中。</p>  <p>2、unsafe-eval：允许资源动态的执行函数，比如eval，setTimeout, setInterval, new等函数。</p>  <p>object-src – 决定从哪里加载和执行插件。   <br>style-src – 决定从哪里加载css和样式标记。    <br>img-src – 决定从哪里加载图片。    <br>media-src – 决定从哪里加载视频和音频资源。    <br>frame-src – 决定哪里的frames 可以被嵌入。    <br>font-src – 决定从哪里加载字体。    <br>connect-src – 限制在 XMLHttpRequest, WebSocket 和 EventSource 中可以使用哪些类型的资源。    <br>sandbox – 这是一个可选形式，它决定了沙盒的策略，如何将内容嵌入到沙盒中以保证安全。</p>  <p>当这个策略被特定的url违反了，我们也可以用报告地址直接发送报告。这样做有利于debug和当攻击发生时通知我们。</p>  <p>此外， 我们可以定义Content-Security-Policy-Report-Only 的 header不强制遵守csp，但是会发送潜在的威胁到一个报告地址。它遵守和csp一样的语法和规则。</p>  <p><b>正确的设置</b></p>  <p>View cspplayground.com compliant examples&#160; </p>  <p>通常不正确的设置：</p>  <p>View cspplayground.com violation examples&#160; </p>  <p><b>如何检测</b></p>  <p>在chrome和firefox中打开开发者工具或者firebug，在控制台查看是否有潜在的威胁。</p>  <p><b>参考文献</b></p>  <p>Content Security Policy 1.0 Specification   <br>Content Security Policy 1.1 Working Draft Specification    <br>cspplayground.com’s excellent collection of resources for CSP    <br>Sublime Text 2 Plugin for validating HTML/JS while you code your site</p>  <p>关于Alexa排名top 100万网站的安全header的研究。</p>  <p>from:</p>  <p><a href="https://blog.veracode.com/2014/03/guidelines-for-setting-security-headers/" target="_blank" rel="external">https://blog.veracode.com/2014/03/guidelines-for-setting-security-headers/</a></p>  <p><a href="http://drops.wooyun.org/tips/1166" target="_blank" rel="external">http://drops.wooyun.org/tips/1166</a></p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1079.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1079.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1079.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1079.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/1080.seo/">
-        ← Flash CSRF
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/1078.seo/">
-        浅析白盒审计中的字符编码及SQL注入 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/Web安全/">Web安全</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/xss/">xss</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/1080.seo/" title="Flash CSRF">
+  <strong>Prev:</strong><br/>
+  <span>
+  Flash CSRF</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/1078.seo/"  title="浅析白盒审计中的字符编码及SQL注入">
+ <strong>Next:</strong><br/> 
+ <span>浅析白盒审计中的字符编码及SQL注入
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-header的安全配置指南" data-title="header的安全配置指南" data-url="http://ha.cker.in/1079.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

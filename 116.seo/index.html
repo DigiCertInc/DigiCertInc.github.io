@@ -1,149 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>FTP 命令大全 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>FTP 命令大全 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="在cmd中键入ftp，此时打开ftp.exe，输入 “?” 可以看到命令列表   ftp&amp;gt; ?    命令可能是缩写的。&amp;#160; 命令为:    !&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; delete&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; literal&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; prompt&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; send    ?&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; debug&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; ls&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; put&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; status    append&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; dir&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; mdelete&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; pwd&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; trace    ascii&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; disconnect&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; mdir&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; quit&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; type    bell&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; get&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; mget&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; quote&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; user    binary&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; glob&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; mkdir&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; recv&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; verbose    bye&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; hash&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; mls&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; remotehelp    cd&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; help&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; mput&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; rename    close&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; lcd&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; open&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; rmdir    使用open命令连接到主机。 例如：    ftp&amp;gt; open 3389.eu    连接到 3389.eu。    220 Microsoft FTP Service    用户(3389.eu:(none)):">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="FTP 命令大全 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/116.seo/" title="FTP 命令大全" itemprop="url">FTP 命令大全</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2011-10-08T21:23:00.000Z" itemprop="datePublished">2011-10-09</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>在cmd中键入ftp，此时打开ftp.exe，输入 “?” 可以看到命令列表   <br>ftp&gt; ?    <br>命令可能是缩写的。&#160; 命令为:    <br>!&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; delete&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; literal&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; prompt&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; send    <br>?&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; debug&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; ls&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; put&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; status    <br>append&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; dir&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; mdelete&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pwd&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; trace    <br>ascii&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; disconnect&#160;&#160;&#160;&#160;&#160; mdir&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; quit&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; type    <br>bell&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; get&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; mget&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; quote&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; user    <br>binary&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; glob&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; mkdir&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; recv&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; verbose    <br>bye&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; hash&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; mls&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; remotehelp    <br>cd&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; help&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; mput&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; rename    <br>close&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; lcd&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; open&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; rmdir    <br>使用open命令连接到主机。 例如：    <br>ftp&gt; open 3389.eu    <br>连接到 3389.eu。    <br>220 Microsoft FTP Service    <br>用户(3389.eu:(none)):</p><a id="more"></a><p>FTP命令是Internet用户使用最频繁的命令之一，不论是在DOS还是UNIX操作系统下使用FTP，都会遇到大量的FTP内部命令。 熟悉并灵活应用FTP的内部命令，可以大大方便使用者，并收到事半功倍之效。   <br>FTP的命令行格式为： ftp -v -d -i -n -g [主机名] ，其中    <br>-v 显示远程服务器的所有响应信息；    <br>-n 限制ftp的自动登录，即不使用；    <br>.n etrc文件；    <br>-d 使用调试方式；    <br>-g 取消全局文件名。    <br>ftp使用的内部命令如下(中括号表示可选项):    <br>1.![cmd[args}：在本地机中执行交互shell，exit回到ftp环境，如：!ls<em>.zip.    <br>2.$Content$nbsp;macro-ame[args]：执行宏定义macro-name.    <br>3.account[password]：提供登录远程系统成功后访问系统资源所需的补充口令。    <br>4.append local-file[remote-file]：将本地文件追加到远程系统主机，若未指定远程系统文件名，则使用本地文件名。    <br>5.ascii：使用ascii类型传输方式。    <br>6.bell：每个命令执行完毕后计算机响铃一次。    <br>7.bin：使用二进制文件传输方式。    <br>8.bye：退出ftp会话过程。    <br>9.case：在使用mget时，将远程主机文件名中的大写转为小写字母。    <br>10.cd remote-dir：进入远程主机目录。    <br>11.cdup：进入远程主机目录的父目录。    <br>12.chmod mode file-name：将远程主机文件file-name的存取方式设置为mode，如： chmod 777 a.out 。    <br>13.close：中断与远程服务器的ftp会话(与open对应)。    <br>14.cr：使用asscii方式传输文件时，将回车换行转换为回行。    <br>15.delete remote-file：删除远程主机文件。    <br>16.debug[debug-value]：设置调试方式， 显示发送至远程主机的每条命令，如： deb up 3，若设为0，表示取消debug。    <br>17.dir[remote-dir][local-file]：显示远程主机目录，并将结果存入本地文件local-file。    <br>18.disconnection：同close。    <br>19.form format：将文件传输方式设置为format，缺省为file方式。    <br>20.get remote-file[local-file]： 将远程主机的文件remote-file传至本地硬盘的local-file。    <br>21.glob：设置mdelete，mget，mput的文件名扩展，缺省时不扩展文件名，同命令行的-g参数。    <br>22.hash：每传输1024字节，显示一个hash符号(#)。    <br>23.help[cmd]：显示ftp内部命令cmd的帮助信息，如：help get。    <br>24.idle[seconds]：将远程服务器的休眠计时器设为[seconds]秒。    <br>25.image：设置二进制传输方式(同binary)。    <br>26.lcd[dir]：将本地工作目录切换至dir。    <br>27.ls[remote-dir][local-file]：显示远程目录remote-dir， 并存入本地文件local-file。    <br>28.macdef macro-name：定义一个宏，遇到macdef下的空行时，宏定义结束。    <br>29.mdelete[remote-file]：删除远程主机文件。    <br>30.mdir remote-files local-file：与dir类似，但可指定多个远程文件，如： mdir </em>.o.<em>.zipoutfile 。    <br>31.mget remote-files：传输多个远程文件。    <br>32.mkdir dir-name：在远程主机中建一目录。    <br>33.mls remote-file local-file：同nlist，但可指定多个文件名。    <br>34.mode[modename]：将文件传输方式设置为modename， 缺省为stream方式    <br>35.modtime file-name：显示远程主机文件的最后修改时间。    <br>36.mput local-file：将多个文件传输至远程主机。    <br>37.newer file-name： 如果远程机中file-name的修改时间比本地硬盘同名文件的时间更近，则重传该文件。    <br>38.nlist[remote-dir][local-file]：显示远程主机目录的文件清单，并存入本地硬盘的local-file。    <br>39.nmap[inpattern outpattern]：设置文件名映\</em>机制， 使得文件传输时，文件中的某些字符相互转换，如：nmap $1.$2.$3[$1，$2].[$2，$3]，则传输文件a1.a2.a3时，文件名变为a1，a2。该命令特别适用于远程主机为非UNIX机的情况。    <br>40.ntrans[inchars[outchars}：设置文件名字符的翻译机制，如ntrans1R，则文件名LLL将变为RRR。    <br>41.open host[port]：建立指定ftp服务器连接，可指定连接端口。    <br>42.passive：进入被动传输方式。    <br>43.prompt：设置多个文件传输时的交互提示。    <br>44.proxy ftp-cmd：在次要控制连接中，执行一条ftp命令， 该命令允许连接两个ftp服务器，以在两个服务器间传输文件。第一条ftp命令必须为open，以首先建立两个服务器间的连接。    <br>45.put local-file[remote-file]：将本地文件local-file传送至远程主机    <br>46.pwd：显示远程主机的当前工作目录。    <br>47.quit：同bye，退出ftp会话。    <br>48.quote arg1，arg2…：将参数逐字发至远程ftp服务器，如：quote syst.    <br>49.recv remote-file[local-file]：同get。    <br>50.reget remote-file[local-file]：类似于get，但若local-file存在，则从上次传输中断处续传。    <br>51.rhelp[cmd-name]：请求获得远程主机的帮助。    <br>52.rstatus[file-name]：若未指定文件名，则显示远程主机的状态，否则显示文件状态。    <br>53.rename[from][to]：更改远程主机文件名。    <br>54.reset：清除回答队列。    <br>55.restart marker：从指定的标志marker处，重新开始get或put，如：restart 130。    <br>56.rmdir dir-name：删除远程主机目录。    <br>57.runique：设置文件名唯一性存储，若文件存在，则在原文件后加后缀..1，.2等。    <br>58.send local-file[remote-file]：同put。    <br>59.sendport：设置PORT命令的使用。    <br>60.site arg1，arg2…：将参数作为SITE命令逐字发送至远程ftp主机。    <br>61.size file-name：显示远程主机文件大小，如：site idle 7200。    <br>62.status：显示当前ftp状态。    <br>63.struct[struct-name]：将文件传输结构设置为struct-name， 缺省时使用stream结构。    <br>64.sunique：将远程主机文件名存储设置为唯一(与runique对应)。    <br>65.system：显示远程主机的操作系统类型。    <br>66.tenex：将文件传输类型设置为TENEX机的所需的类型。    <br>67.tick：设置传输时的字节计数器。    <br>68.trace：设置包跟踪。    <br>69.type[type-name]：设置文件传输类型为type-name，缺省为ascii，如：    <br>type binary，设置二进制传输方式。    <br>70.umask[newmask]：将远程服务器的缺省umask设置为newmask，如：umask3。    <br>71.user user-name[password][account]：向远程主机表明自己的身份，需要口令时，必须输入口令，如：user anonymous my@email。    <br>72.verbose：同命令行的-v参数，即设置详尽报告方式，ftp服务器的所有响应都将显示给用户，缺省为on.    <br>73.?[cmd]：同help</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2011-10-08T21:23:00.000Z" itemprop="datePublished">
-          2011-10-09
-      </time>
-    
-    
-    | 
-    <a href='/tag/命令/'>命令</a>
-    
-    
-</span>
-    <h1 class="post-title">FTP 命令大全</h1>
-    <section class="post-content">
-      <p>在cmd中键入ftp，此时打开ftp.exe，输入 “?” 可以看到命令列表   <br>ftp&gt; ?    <br>命令可能是缩写的。&#160; 命令为:    <br>!&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; delete&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; literal&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; prompt&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; send    <br>?&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; debug&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; ls&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; put&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; status    <br>append&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; dir&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; mdelete&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pwd&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; trace    <br>ascii&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; disconnect&#160;&#160;&#160;&#160;&#160; mdir&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; quit&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; type    <br>bell&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; get&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; mget&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; quote&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; user    <br>binary&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; glob&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; mkdir&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; recv&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; verbose    <br>bye&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; hash&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; mls&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; remotehelp    <br>cd&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; help&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; mput&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; rename    <br>close&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; lcd&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; open&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; rmdir    <br>使用open命令连接到主机。 例如：    <br>ftp&gt; open 3389.eu    <br>连接到 3389.eu。    <br>220 Microsoft FTP Service    <br>用户(3389.eu:(none)):</p><a id="more"></a><p>FTP命令是Internet用户使用最频繁的命令之一，不论是在DOS还是UNIX操作系统下使用FTP，都会遇到大量的FTP内部命令。 熟悉并灵活应用FTP的内部命令，可以大大方便使用者，并收到事半功倍之效。   <br>FTP的命令行格式为： ftp -v -d -i -n -g [主机名] ，其中    <br>-v 显示远程服务器的所有响应信息；    <br>-n 限制ftp的自动登录，即不使用；    <br>.n etrc文件；    <br>-d 使用调试方式；    <br>-g 取消全局文件名。    <br>ftp使用的内部命令如下(中括号表示可选项):    <br>1.![cmd[args}：在本地机中执行交互shell，exit回到ftp环境，如：!ls<em>.zip.    <br>2.$Content$nbsp;macro-ame[args]：执行宏定义macro-name.    <br>3.account[password]：提供登录远程系统成功后访问系统资源所需的补充口令。    <br>4.append local-file[remote-file]：将本地文件追加到远程系统主机，若未指定远程系统文件名，则使用本地文件名。    <br>5.ascii：使用ascii类型传输方式。    <br>6.bell：每个命令执行完毕后计算机响铃一次。    <br>7.bin：使用二进制文件传输方式。    <br>8.bye：退出ftp会话过程。    <br>9.case：在使用mget时，将远程主机文件名中的大写转为小写字母。    <br>10.cd remote-dir：进入远程主机目录。    <br>11.cdup：进入远程主机目录的父目录。    <br>12.chmod mode file-name：将远程主机文件file-name的存取方式设置为mode，如： chmod 777 a.out 。    <br>13.close：中断与远程服务器的ftp会话(与open对应)。    <br>14.cr：使用asscii方式传输文件时，将回车换行转换为回行。    <br>15.delete remote-file：删除远程主机文件。    <br>16.debug[debug-value]：设置调试方式， 显示发送至远程主机的每条命令，如： deb up 3，若设为0，表示取消debug。    <br>17.dir[remote-dir][local-file]：显示远程主机目录，并将结果存入本地文件local-file。    <br>18.disconnection：同close。    <br>19.form format：将文件传输方式设置为format，缺省为file方式。    <br>20.get remote-file[local-file]： 将远程主机的文件remote-file传至本地硬盘的local-file。    <br>21.glob：设置mdelete，mget，mput的文件名扩展，缺省时不扩展文件名，同命令行的-g参数。    <br>22.hash：每传输1024字节，显示一个hash符号(#)。    <br>23.help[cmd]：显示ftp内部命令cmd的帮助信息，如：help get。    <br>24.idle[seconds]：将远程服务器的休眠计时器设为[seconds]秒。    <br>25.image：设置二进制传输方式(同binary)。    <br>26.lcd[dir]：将本地工作目录切换至dir。    <br>27.ls[remote-dir][local-file]：显示远程目录remote-dir， 并存入本地文件local-file。    <br>28.macdef macro-name：定义一个宏，遇到macdef下的空行时，宏定义结束。    <br>29.mdelete[remote-file]：删除远程主机文件。    <br>30.mdir remote-files local-file：与dir类似，但可指定多个远程文件，如： mdir </em>.o.<em>.zipoutfile 。    <br>31.mget remote-files：传输多个远程文件。    <br>32.mkdir dir-name：在远程主机中建一目录。    <br>33.mls remote-file local-file：同nlist，但可指定多个文件名。    <br>34.mode[modename]：将文件传输方式设置为modename， 缺省为stream方式    <br>35.modtime file-name：显示远程主机文件的最后修改时间。    <br>36.mput local-file：将多个文件传输至远程主机。    <br>37.newer file-name： 如果远程机中file-name的修改时间比本地硬盘同名文件的时间更近，则重传该文件。    <br>38.nlist[remote-dir][local-file]：显示远程主机目录的文件清单，并存入本地硬盘的local-file。    <br>39.nmap[inpattern outpattern]：设置文件名映\</em>机制， 使得文件传输时，文件中的某些字符相互转换，如：nmap $1.$2.$3[$1，$2].[$2，$3]，则传输文件a1.a2.a3时，文件名变为a1，a2。该命令特别适用于远程主机为非UNIX机的情况。    <br>40.ntrans[inchars[outchars}：设置文件名字符的翻译机制，如ntrans1R，则文件名LLL将变为RRR。    <br>41.open host[port]：建立指定ftp服务器连接，可指定连接端口。    <br>42.passive：进入被动传输方式。    <br>43.prompt：设置多个文件传输时的交互提示。    <br>44.proxy ftp-cmd：在次要控制连接中，执行一条ftp命令， 该命令允许连接两个ftp服务器，以在两个服务器间传输文件。第一条ftp命令必须为open，以首先建立两个服务器间的连接。    <br>45.put local-file[remote-file]：将本地文件local-file传送至远程主机    <br>46.pwd：显示远程主机的当前工作目录。    <br>47.quit：同bye，退出ftp会话。    <br>48.quote arg1，arg2…：将参数逐字发至远程ftp服务器，如：quote syst.    <br>49.recv remote-file[local-file]：同get。    <br>50.reget remote-file[local-file]：类似于get，但若local-file存在，则从上次传输中断处续传。    <br>51.rhelp[cmd-name]：请求获得远程主机的帮助。    <br>52.rstatus[file-name]：若未指定文件名，则显示远程主机的状态，否则显示文件状态。    <br>53.rename[from][to]：更改远程主机文件名。    <br>54.reset：清除回答队列。    <br>55.restart marker：从指定的标志marker处，重新开始get或put，如：restart 130。    <br>56.rmdir dir-name：删除远程主机目录。    <br>57.runique：设置文件名唯一性存储，若文件存在，则在原文件后加后缀..1，.2等。    <br>58.send local-file[remote-file]：同put。    <br>59.sendport：设置PORT命令的使用。    <br>60.site arg1，arg2…：将参数作为SITE命令逐字发送至远程ftp主机。    <br>61.size file-name：显示远程主机文件大小，如：site idle 7200。    <br>62.status：显示当前ftp状态。    <br>63.struct[struct-name]：将文件传输结构设置为struct-name， 缺省时使用stream结构。    <br>64.sunique：将远程主机文件名存储设置为唯一(与runique对应)。    <br>65.system：显示远程主机的操作系统类型。    <br>66.tenex：将文件传输类型设置为TENEX机的所需的类型。    <br>67.tick：设置传输时的字节计数器。    <br>68.trace：设置包跟踪。    <br>69.type[type-name]：设置文件传输类型为type-name，缺省为ascii，如：    <br>type binary，设置二进制传输方式。    <br>70.umask[newmask]：将远程服务器的缺省umask设置为newmask，如：umask3。    <br>71.user user-name[password][account]：向远程主机表明自己的身份，需要口令时，必须输入口令，如：user anonymous my@email。    <br>72.verbose：同命令行的-v参数，即设置详尽报告方式，ftp服务器的所有响应都将显示给用户，缺省为on.    <br>73.?[cmd]：同help</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/116.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/116.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/116.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/116.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/117.seo/">
-        ← 安装MeeGo双系统
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/92.seo/">
-        根据日志逆向分析攻击者入侵思路及查找0day →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/Linux笔记/">Linux笔记</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/命令/">命令</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/117.seo/" title="安装MeeGo双系统">
+  <strong>Prev:</strong><br/>
+  <span>
+  安装MeeGo双系统</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/92.seo/"  title="根据日志逆向分析攻击者入侵思路及查找0day">
+ <strong>Next:</strong><br/> 
+ <span>根据日志逆向分析攻击者入侵思路及查找0day
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-FTP 命令大全" data-title="FTP 命令大全" data-url="http://ha.cker.in/116.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

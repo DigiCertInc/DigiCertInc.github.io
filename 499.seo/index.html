@@ -1,149 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>渗透某知名游戏代理商内网全程 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>渗透某知名游戏代理商内网全程 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="平常入侵只是写个手记给自己看，这篇烂文也是改自我上次和朋友入侵游戏代理商时的手记，这也是我第一次写入侵类的文章，仅为大家提供一条思路，希望大家喜欢。   一、起因    这天刚一上Q，经常说自己是黑客的“神X月”（他不让我说他网名）就叫我和他一起搞一个游戏官方站，原因是他的一个朋友要他帮忙盗这个游戏的号，神X月没办法，就只好去搞官方拿数据库了。听了他的话我爆汗了1分钟，然后就和他开始了渗透。    二、郁闷的开始    大家都知道，游戏官方站几乎是没有漏洞的。神X月给了我这个游戏的官方网址e.**o.com，是个二级域名，网站是asp.net页面，如图1所示。        一级域名是一个游戏代理商，如图2所示。        手工检测了一下，没有明显的注入漏洞，再用了几个工具扫都扫不出注入点，注入这条路断了～～郁闷中…..    忽然，想到了asp.net可能有爆路径的漏洞，不管怎样，获得多一点信息总是好的，于是马上测试了一下，无功而返，然后再用几个比较老的asp.net漏洞检测工具对其进行了检测，照样是无功而返。继续郁闷…..问了下神X月的进展如何，他说没一点进展，唉，看来是没搞了～～    三、成功初现    在我准备放弃的时候，突然看到上传玩家照片的功能，如图3所示。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="渗透某知名游戏代理商内网全程 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/499.seo/" title="渗透某知名游戏代理商内网全程" itemprop="url">渗透某知名游戏代理商内网全程</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2012-06-12T10:07:55.000Z" itemprop="datePublished">2012-06-12</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>平常入侵只是写个手记给自己看，这篇烂文也是改自我上次和朋友入侵游戏代理商时的手记，这也是我第一次写入侵类的文章，仅为大家提供一条思路，希望大家喜欢。   <br>一、起因    <br>这天刚一上Q，经常说自己是黑客的“神X月”（他不让我说他网名）就叫我和他一起搞一个游戏官方站，原因是他的一个朋友要他帮忙盗这个游戏的号，神X月没办法，就只好去搞官方拿数据库了。听了他的话我爆汗了1分钟，然后就和他开始了渗透。    <br>二、郁闷的开始    <br>大家都知道，游戏官方站几乎是没有漏洞的。神X月给了我这个游戏的官方网址<em>e.<em>**</em></em>o.com，是个二级域名，网站是asp.net页面，如图1所示。    <br><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/3538ffbe3561_1DD5/clip_image001.jpg" width="579" height="245">    <br>一级域名是一个游戏代理商，如图2所示。    <br><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/3538ffbe3561_1DD5/clip_image002.jpg" width="579" height="157">    <br>手工检测了一下，没有明显的注入漏洞，再用了几个工具扫都扫不出注入点，注入这条路断了～～郁闷中…..    <br>忽然，想到了asp.net可能有爆路径的漏洞，不管怎样，获得多一点信息总是好的，于是马上测试了一下，无功而返，然后再用几个比较老的asp.net漏洞检测工具对其进行了检测，照样是无功而返。继续郁闷…..问了下神X月的进展如何，他说没一点进展，唉，看来是没搞了～～    <br>三、成功初现    <br>在我准备放弃的时候，突然看到上传玩家照片的功能，如图3所示。</p><a id="more"></a><p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/3538ffbe3561_1DD5/clip_image003.jpg" width="172" height="77"></p>  <p>感觉这可能就是成功的转折点，但这时候我的信心已经减了一大半，我不抱希望地打开了链接，看来不需要身份验证，直接传了个之前写的超浓缩diy小马，返回上传不成功，把文件名改为ji.gif.asa，同样是上传不成功，看来这个程序并不是从左边来判断文件类型的，我终于放弃了。把上传点丢给神X月，并和他说我不搞了，过了5分钟，他说传了文件上去，但就是不能执行，还有就是服务器不支持asp。   <br>怎么他能传任意文件我就不能呢？问了他之后终于知道是gif文件头欺骗，自己真笨，这都没想到！于是传了asp.net版的diy小马上去，发现的确执行不了，换了一句话和lake2的木马也执行不了，如图4所示。    <br><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/3538ffbe3561_1DD5/clip_image005.jpg" width="545" height="258">    <br>后来想起自己最近汉化修改的一个asp.net木马，这个木马功能很强大，体积也才34K左右，加上gif文件头然后上传，显示上传成功，如图5、6所示。    <br><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/3538ffbe3561_1DD5/clip_image006.jpg" width="379" height="376">    <br><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/3538ffbe3561_1DD5/clip_image007.jpg" width="404" height="452">    <br>打开一看，页面马上跳回到了主页，不解中…..把网址丢给了神X月，他给我回了句“你真牛”，晕，这B平常老是说自己是黑客是牛人，怎么今天赞起我来了？一问之下才知道那B居然能打开这个webshell。为啥他就能打开呢？原来上传的webshell并不是在这个游戏官方的服务器里，而是在另一台服务器e<strong><strong>.*</strong></strong>o.com，而webshell的这台服务器的IIS设置了全局验证，所以要注册一个用户并登录后才能浏览到webshell。    <br>四、荆棘丛丛的提权    <br>进入webshell后发现webshell的权限比较大，能全盘浏览，cmd也能执行，但是不能加用户，应该是user权限。刚好我有点肚子疼，就叫神X月先搞，回来的时候他已经把webshell换了个比较隐蔽的目录。一般拿到webshell后的提权思路是找第三方软件，然后利用他们的漏洞来提权。所以我和神X月就开始找第三方软件，很高兴地发现了serv-u，版本为6.3，使用lake2的asp.net版su提权程序提权不成功，我以为是改了密码，于是打开servudaemon.ini文件找到su管理员的密码Hash后便开始用“su纯数字密码破解器”进行暴力破解，大约过了半个多小时，还是没有破出来，我无奈地放弃了这条路，再在Program Files翻了翻，发现这台服务器没有安装防火墙和杀毒软件，然后我用superscan扫了下webshell服务器的端口，发现只开了80和1433，原来serv-u没有启动，所以就算破了密码也没用。这时候对我的打击真的很大，因为之前做的居然都是无用功。    <br>整理了一下思路，想到走MSSQL这条路可能会有突破，马上对整个硬盘进行了搜查，在找遍了所有web.config文件后，我一共找到了6个数据库库的密码，其中还有一个库是SA的权限，数据库信息如下：    <br>10.10.0.42    <br>database=SystemFramework    <br>uid=newapp    <br>pwd=Oc7102242app    <br>10.10.0.52    <br>database=T_PassPort    <br>uid=passportweb    <br>pwd=Oc7102252web    <br>10.10.0.53    <br>database=Billing_Log    <br>uid=newapp    <br>pwd=Oc7102253app    <br>10.10.0.82    <br>database=eshop    <br>uid=newshop    <br>pwd=Oc7102282shop    <br>10.10.0.94    <br>UID=sa    <br>PWD=140121    <br>database=master;    <br>10.10.0.95    <br>database=WebSite    <br>uid=newapp    <br>pwd=Oc7102295app    <br>我在webshell中用CMD执行了“ipconfig”命令，查看得到的IP为10.10.0.94，原来webshell服务器的MSSQL数据库权限就是SA。大家仔细看下数据库的信息，很容易就发现其规律：数据库的用户名为该数据库的性质，数据库的密码为Oc71022+IP最后的段+该数据库性质。    <br>我用webshell中的数据库连接功能连接了10.10.0.94服务器，如图7所示。    <br><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/3538ffbe3561_1DD5/clip_image008.jpg" width="546" height="579">    <br>发现xp_cmdshell被删了，还有N多有用的扩展被删了，本来还想用sandbox来执行命令，但是失败又一次无情地打击了我，再次郁闷ing…..如图8、9所示。    <br><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image010" border="0" alt="clip_image010" src="http://img.cker.in/3538ffbe3561_1DD5/clip_image010.jpg" width="545" height="89">    <br><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image012" border="0" alt="clip_image012" src="http://img.cker.in/3538ffbe3561_1DD5/clip_image012.jpg" width="545" height="56">    <br>忽然我想，数据库会不会是mssql2005呢？记得bin写的最新asp.net木马支持MSSQL2005的XP_CMDSHELL恢复，马上从网上下了个传到服务器上，连接好后执行恢复xp_cmdshell功能，居然成功了！！直接上传一个免杀的上兴服务端，用xp_cmdshell命令执行上兴的服务端，服务器成功上线了！！    <br>五、在内网中穿梭    <br>现在拿下了一台服务器，不考虑嗅探，准备考虑用社工来走走捷径，经过一轮的检测发现10.10.0.95为游戏代理商的主站，10.10.0.52为目标游戏的网站，我本机ping了一下10.10.0.95，返回几个time out，应该是装了防火墙。在上兴的远程控制功能中我用终端登录器直接连接10.10.0.95，居然能直接连接上去，我试着用帐号newapp和密码Oc7102295app登录，居然登录成功了！！这使我信心大增。我ping了一下目标游戏的网站<em>e.<em>**</em></em>o.com，没有提示time out，看来没有安装防火墙，直接本机加了个sock5代理，直接终端连接到<em>e.<em>**</em></em>o.com，成功连接（也许有人会问为什么不在10.10.0.94中连接10.10.0.52，还要多此一举去ping <em>e.<em>**</em></em>o.com看它有没装防火墙，这是因为10.10.0.94太慢了～！！我实在受不了！），然后用帐号passportweb密码Oc7102252web成功登陆到<em>e.<em>**</em></em>o.com，如图10所示。    <br><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image013" border="0" alt="clip_image013" src="http://img.cker.in/3538ffbe3561_1DD5/clip_image013.jpg" width="457" height="301">    <br>六、结语    <br>最后经过近5小时的全盘查找，还是没有找到<em>e.<em>**</em></em>o.com的游戏数据库密码，我也就没进行下去了。后来听神X月说他找到了目标游戏数据库密码，等了2个多小时才连上那库，而且又搞了几台内网机。    <br>现在这个游戏代理商的漏洞已经补了，而且e<strong><strong>.*</strong></strong>o.com也做了权限设置，存放上传文件的文件夹不能执行任何脚本，估计也比较难搞了。</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2012-06-12T10:07:55.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/内网渗透/'>内网渗透</a>
-    
-    
-</span>
-    <h1 class="post-title">渗透某知名游戏代理商内网全程</h1>
-    <section class="post-content">
-      <p>平常入侵只是写个手记给自己看，这篇烂文也是改自我上次和朋友入侵游戏代理商时的手记，这也是我第一次写入侵类的文章，仅为大家提供一条思路，希望大家喜欢。   <br>一、起因    <br>这天刚一上Q，经常说自己是黑客的“神X月”（他不让我说他网名）就叫我和他一起搞一个游戏官方站，原因是他的一个朋友要他帮忙盗这个游戏的号，神X月没办法，就只好去搞官方拿数据库了。听了他的话我爆汗了1分钟，然后就和他开始了渗透。    <br>二、郁闷的开始    <br>大家都知道，游戏官方站几乎是没有漏洞的。神X月给了我这个游戏的官方网址<em>e.<em>**</em></em>o.com，是个二级域名，网站是asp.net页面，如图1所示。    <br><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/3538ffbe3561_1DD5/clip_image001.jpg" width="579" height="245">    <br>一级域名是一个游戏代理商，如图2所示。    <br><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/3538ffbe3561_1DD5/clip_image002.jpg" width="579" height="157">    <br>手工检测了一下，没有明显的注入漏洞，再用了几个工具扫都扫不出注入点，注入这条路断了～～郁闷中…..    <br>忽然，想到了asp.net可能有爆路径的漏洞，不管怎样，获得多一点信息总是好的，于是马上测试了一下，无功而返，然后再用几个比较老的asp.net漏洞检测工具对其进行了检测，照样是无功而返。继续郁闷…..问了下神X月的进展如何，他说没一点进展，唉，看来是没搞了～～    <br>三、成功初现    <br>在我准备放弃的时候，突然看到上传玩家照片的功能，如图3所示。</p><a id="more"></a><p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/3538ffbe3561_1DD5/clip_image003.jpg" width="172" height="77"></p>  <p>感觉这可能就是成功的转折点，但这时候我的信心已经减了一大半，我不抱希望地打开了链接，看来不需要身份验证，直接传了个之前写的超浓缩diy小马，返回上传不成功，把文件名改为ji.gif.asa，同样是上传不成功，看来这个程序并不是从左边来判断文件类型的，我终于放弃了。把上传点丢给神X月，并和他说我不搞了，过了5分钟，他说传了文件上去，但就是不能执行，还有就是服务器不支持asp。   <br>怎么他能传任意文件我就不能呢？问了他之后终于知道是gif文件头欺骗，自己真笨，这都没想到！于是传了asp.net版的diy小马上去，发现的确执行不了，换了一句话和lake2的木马也执行不了，如图4所示。    <br><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/3538ffbe3561_1DD5/clip_image005.jpg" width="545" height="258">    <br>后来想起自己最近汉化修改的一个asp.net木马，这个木马功能很强大，体积也才34K左右，加上gif文件头然后上传，显示上传成功，如图5、6所示。    <br><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/3538ffbe3561_1DD5/clip_image006.jpg" width="379" height="376">    <br><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/3538ffbe3561_1DD5/clip_image007.jpg" width="404" height="452">    <br>打开一看，页面马上跳回到了主页，不解中…..把网址丢给了神X月，他给我回了句“你真牛”，晕，这B平常老是说自己是黑客是牛人，怎么今天赞起我来了？一问之下才知道那B居然能打开这个webshell。为啥他就能打开呢？原来上传的webshell并不是在这个游戏官方的服务器里，而是在另一台服务器e<strong><strong>.*</strong></strong>o.com，而webshell的这台服务器的IIS设置了全局验证，所以要注册一个用户并登录后才能浏览到webshell。    <br>四、荆棘丛丛的提权    <br>进入webshell后发现webshell的权限比较大，能全盘浏览，cmd也能执行，但是不能加用户，应该是user权限。刚好我有点肚子疼，就叫神X月先搞，回来的时候他已经把webshell换了个比较隐蔽的目录。一般拿到webshell后的提权思路是找第三方软件，然后利用他们的漏洞来提权。所以我和神X月就开始找第三方软件，很高兴地发现了serv-u，版本为6.3，使用lake2的asp.net版su提权程序提权不成功，我以为是改了密码，于是打开servudaemon.ini文件找到su管理员的密码Hash后便开始用“su纯数字密码破解器”进行暴力破解，大约过了半个多小时，还是没有破出来，我无奈地放弃了这条路，再在Program Files翻了翻，发现这台服务器没有安装防火墙和杀毒软件，然后我用superscan扫了下webshell服务器的端口，发现只开了80和1433，原来serv-u没有启动，所以就算破了密码也没用。这时候对我的打击真的很大，因为之前做的居然都是无用功。    <br>整理了一下思路，想到走MSSQL这条路可能会有突破，马上对整个硬盘进行了搜查，在找遍了所有web.config文件后，我一共找到了6个数据库库的密码，其中还有一个库是SA的权限，数据库信息如下：    <br>10.10.0.42    <br>database=SystemFramework    <br>uid=newapp    <br>pwd=Oc7102242app    <br>10.10.0.52    <br>database=T_PassPort    <br>uid=passportweb    <br>pwd=Oc7102252web    <br>10.10.0.53    <br>database=Billing_Log    <br>uid=newapp    <br>pwd=Oc7102253app    <br>10.10.0.82    <br>database=eshop    <br>uid=newshop    <br>pwd=Oc7102282shop    <br>10.10.0.94    <br>UID=sa    <br>PWD=140121    <br>database=master;    <br>10.10.0.95    <br>database=WebSite    <br>uid=newapp    <br>pwd=Oc7102295app    <br>我在webshell中用CMD执行了“ipconfig”命令，查看得到的IP为10.10.0.94，原来webshell服务器的MSSQL数据库权限就是SA。大家仔细看下数据库的信息，很容易就发现其规律：数据库的用户名为该数据库的性质，数据库的密码为Oc71022+IP最后的段+该数据库性质。    <br>我用webshell中的数据库连接功能连接了10.10.0.94服务器，如图7所示。    <br><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/3538ffbe3561_1DD5/clip_image008.jpg" width="546" height="579">    <br>发现xp_cmdshell被删了，还有N多有用的扩展被删了，本来还想用sandbox来执行命令，但是失败又一次无情地打击了我，再次郁闷ing…..如图8、9所示。    <br><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image010" border="0" alt="clip_image010" src="http://img.cker.in/3538ffbe3561_1DD5/clip_image010.jpg" width="545" height="89">    <br><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image012" border="0" alt="clip_image012" src="http://img.cker.in/3538ffbe3561_1DD5/clip_image012.jpg" width="545" height="56">    <br>忽然我想，数据库会不会是mssql2005呢？记得bin写的最新asp.net木马支持MSSQL2005的XP_CMDSHELL恢复，马上从网上下了个传到服务器上，连接好后执行恢复xp_cmdshell功能，居然成功了！！直接上传一个免杀的上兴服务端，用xp_cmdshell命令执行上兴的服务端，服务器成功上线了！！    <br>五、在内网中穿梭    <br>现在拿下了一台服务器，不考虑嗅探，准备考虑用社工来走走捷径，经过一轮的检测发现10.10.0.95为游戏代理商的主站，10.10.0.52为目标游戏的网站，我本机ping了一下10.10.0.95，返回几个time out，应该是装了防火墙。在上兴的远程控制功能中我用终端登录器直接连接10.10.0.95，居然能直接连接上去，我试着用帐号newapp和密码Oc7102295app登录，居然登录成功了！！这使我信心大增。我ping了一下目标游戏的网站<em>e.<em>**</em></em>o.com，没有提示time out，看来没有安装防火墙，直接本机加了个sock5代理，直接终端连接到<em>e.<em>**</em></em>o.com，成功连接（也许有人会问为什么不在10.10.0.94中连接10.10.0.52，还要多此一举去ping <em>e.<em>**</em></em>o.com看它有没装防火墙，这是因为10.10.0.94太慢了～！！我实在受不了！），然后用帐号passportweb密码Oc7102252web成功登陆到<em>e.<em>**</em></em>o.com，如图10所示。    <br><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image013" border="0" alt="clip_image013" src="http://img.cker.in/3538ffbe3561_1DD5/clip_image013.jpg" width="457" height="301">    <br>六、结语    <br>最后经过近5小时的全盘查找，还是没有找到<em>e.<em>**</em></em>o.com的游戏数据库密码，我也就没进行下去了。后来听神X月说他找到了目标游戏数据库密码，等了2个多小时才连上那库，而且又搞了几台内网机。    <br>现在这个游戏代理商的漏洞已经补了，而且e<strong><strong>.*</strong></strong>o.com也做了权限设置，存放上传文件的文件夹不能执行任何脚本，估计也比较难搞了。</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/499.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/499.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/499.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/499.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/502.seo/">
-        ← 政府的数十万设备为什么连小黑客都挡不住
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/495.seo/">
-        渗透某高校内网服务器 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/渗透测试/">渗透测试</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/内网渗透/">内网渗透</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/502.seo/" title="政府的数十万设备为什么连小黑客都挡不住">
+  <strong>Prev:</strong><br/>
+  <span>
+  政府的数十万设备为什么连小黑客都挡不住</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/495.seo/"  title="渗透某高校内网服务器">
+ <strong>Next:</strong><br/> 
+ <span>渗透某高校内网服务器
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-渗透某知名游戏代理商内网全程" data-title="渗透某知名游戏代理商内网全程" data-url="http://ha.cker.in/499.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

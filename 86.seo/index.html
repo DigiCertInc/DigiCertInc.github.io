@@ -1,144 +1,441 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Windows和Linux下禁止被ping | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Windows和Linux下禁止被ping | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="LINUX下禁止ping命令的使用  以root进入Linux系统，然后编辑文件icmp_echo_ignore_all  vi /proc/sys/net/ipv4/icmp_echo_ignore_all  将其值改为1后为禁止PING  将其值改为0后为解除禁止PING  直接修改会提示错误:  WARNING: The file has been changed since reading it!!!  Do you really want to write to it (y/n)?y  &amp;quot;icmp_echo_ignore_all&amp;quot; E667: Fsync failed  Hit ENTER or type command to continue  这是因为proc/sys/net/ipv4/icmp_echo_ignore_all  这个不是真实的文件  如果想修改他的数值可以echo 0 或1到这个文件  （即echo 0 &amp;gt; /proc/sys/net/ipv4/icmp_echo_ignore_all ）。要是想永久更改可以加一行  net.ipv4.icmp_echo_ignore_all=1  到配置文件/etc/sysctl.conf里面">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Windows和Linux下禁止被ping | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/86.seo/" title="Windows和Linux下禁止被ping" itemprop="url">Windows和Linux下禁止被ping</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2011-10-08T00:05:58.000Z" itemprop="datePublished">2011-10-08</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>LINUX下禁止ping命令的使用</p>  <p>以root进入Linux系统，然后编辑文件icmp_echo_ignore_all</p>  <p>vi /proc/sys/net/ipv4/icmp_echo_ignore_all</p>  <p>将其值改为1后为禁止PING</p>  <p>将其值改为0后为解除禁止PING</p>  <p>直接修改会提示错误:</p>  <p>WARNING: The file has been changed since reading it!!!</p>  <p>Do you really want to write to it (y/n)?y</p>  <p>&quot;icmp_echo_ignore_all&quot; E667: Fsync failed</p>  <p>Hit ENTER or type command to continue</p>  <p>这是因为proc/sys/net/ipv4/icmp_echo_ignore_all</p>  <p>这个不是真实的文件</p>  <p>如果想修改他的数值可以echo 0 或1到这个文件</p>  <p>（即echo 0 &gt; /proc/sys/net/ipv4/icmp_echo_ignore_all ）。要是想永久更改可以加一行</p>  <p>net.ipv4.icmp_echo_ignore_all=1</p>  <p>到配置文件/etc/sysctl.conf里面</p><a id="more"></a><p>如何禁止PING我的WINDOWS服务器</p>  <p>在黑客入侵寻找对象时，大多都使用Ping命令来检测主机，如果Ping不通，水平差的“黑客”大多就会知难而退。事实上，完全可以造成一种假相，即使我们在线，但对方Ping时也不能相通，这样就能躲避很多攻击。</p>  <p>第一步:添加独立管理单元</p>  <p>开始-运行，输入:mmc，启动打开“控制台”窗口。再点选“控制台”菜单下的“添加/删除管理单元”,快捷键Ctrl+M（图1），单击“添加”按钮，在弹出的窗口中选择“IP安全策略管理”项，单击“添加”按钮（图2）。在打开窗口中选择管理对象为“本地计算机”，单击“完成”按钮（图3），同时关闭“添加/删除管理单元”窗口，返回主控台。</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb.png" width="244" height="110"></a> 图1</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_3.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_3.png" width="244" height="195"></a> 图2</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_4.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_4.png" width="244" height="220"></a> 图3</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_5.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_5.png" width="244" height="181"></a> </p>  <p>第二步:创建IP安全策略</p>  <p>右击刚刚添加的“IP安全策略，在本地机器”，选择“创建IP安全策略”，单击“下一步”，然后输入一个策略描述，如“no Ping”（图5）。单击“下一步”，选中“激活默认响应规则”复选项，单击“下一步”。开始设置身份验证方式，选中“此字符串用来保护密钥交换(预共享密钥)”选项，然后随便输入一些字符(下面还会用到这些字符)（图6）。单击“下一步”，就会提示已完成IP安全策略，确认选中了“编辑属性”复选框，单击“完成”按钮，会打开其属性对话框。 </p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_6.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_6.png" width="244" height="187"></a> 图5</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_7.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_7.png" width="244" height="187"></a> 图6</p>  <p>&#160;</p>  <p>第三步:配置安全策略</p>  <p>单击“添加”按钮，</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_8.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_8.png" width="231" height="244"></a> </p>  <p>并在打开安全规则向导中单击“下一步”进行隧道终结设置，在这里选择“此规则不指定隧道”。</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_9.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_9.png" width="244" height="183"></a> </p>  <p>单击“下一步”，并选择“所有网络连接”以保证所有的计算机都Ping不通。单击“下一步”，设置身份验证方式，与上面一样选择第三个选项“此字符串用来保护密钥交换(预共享密钥)”并填入与刚才相同的内容。</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_10.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_10.png" width="244" height="119"></a>&#160;</p>  <p>单击“下一步”，在打开窗口中单击“添加”按钮，打开“IP筛选器列表”窗口。（图七）单击“添加”，</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_11.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_11.png" width="244" height="95"></a> </p>  <p>单击“下一步”，设置源地址为“我的IP地址”，<a href="http://img.cker.in/WindowsLinuxping_DF26/image_12.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_12.png" width="244" height="170"></a> </p>  <p>单击“下一步”，设置目标地址为“任何IP地址”，<a href="http://img.cker.in/WindowsLinuxping_DF26/image_13.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_13.png" width="244" height="103"></a> </p>  <p>单击“下一步”，选择协议为ICMP，现在就可依次单击“完成”和“关闭”按钮返回。</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_14.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_14.png" width="244" height="170"></a> </p>  <p>此时，可以在IP筛选器列表中看到刚刚创建的筛选器，将其选中之后单击“下一步”，</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_15.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_15.png" width="244" height="183"></a> </p>  <p>选择筛选器操作为“要求安全设置”选项，</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_16.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_16.png" width="244" height="101"></a> </p>  <p>然后依次点击“完成”、“关闭”按钮，保存相关的设置返回管理控制台。</p>  <p>第四步:指派安全策略</p>  <p>最后只需在“控制台根节点”中右击配置好的“禁止Ping”策略，选择“指派”命令使配置生效。</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_17.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_17.png" width="244" height="135"></a> </p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_18.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_18.png" width="244" height="65"></a> </p>  <p>经过上面的设置，当其他计算机再Ping该计算机时，就不再相通了。但如果自己Ping本地计算机，仍可相通。此法对于Windows 2000/XP均有效。</p>  <p>效果：</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_19.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_19.png" width="234" height="244"></a> </p>  <p>如何才能防止被别人ping</p>  <p>一、用高级设置法预防Ping</p>  <p>默认情况下，所有Internet控制消息协议(ICMP)选项均被禁用。如果启用ICMP选项，您的网络将在Internet 中是可视的，因而易于受到攻击。</p>  <p>如果要启用ICMP，必须以管理员或Administrators 组成员身份登录计算机，右击“网上邻居”，在弹出的快捷菜单中选择“属性”即打开了“网络连接”，选定已启用Internet连接防火墙的连接，打开其属性窗口，并切换到“高级”选项页，点击下方的“设置”，这样就出现了“高级设置”对话窗口，在“ICMP”选项卡上，勾选希望您的计算机响应的请求信息类型，旁边的复选框即表启用此类型请求，如要禁用请清除相应请求信息类型即可。</p>  <p>二、用网络防火墙阻隔Ping</p>  <p>使用防火墙来阻隔Ping是最简单有效的方法，现在基本上所有的防火墙在默认情况下都启用了ICMP过滤的功能。在此，以金山网镖2003和天网防火墙2.50版为蓝本来说明。</p>  <p>对于使用金山网镖2003的网友，请用鼠标右击系统托盘中的金山网镖2003图标，在弹出的快捷菜单中选择“实用工具”中的“自定义IP规则编辑器”，在出现的窗口中选中“防御ICMP类型攻击”规则，消除“允许别人用ping命令探测本机”规则，保存应用后就发挥效应。</p>  <p>如果您用的是天网防火墙，在其主界面点击“自定义IP规则”，然后不勾选“防止别人用ping命令探测”规则，勾选“防御ICMP攻击”规则，然后点击“保存/应用”使IP规则生效。</p>  <p>三、启用IP安全策略防Ping</p>  <p>IP安全机制（IP Security）即IPSec 策略，用来配置IPSec 安全服务。这些策略可为多数现有网络中的多数通信类型提供各种级别的保护。您可配置IPSec 策略以满足计算机、应用程序、组织单位、域、站点或全局企业的安全需要。可使用Windows XP 中提供的“IP 安全策略”管理单元来为Active Directory 中的计算机（对于域成员）或本地计算机（对于不属于域的计算机）定义IPSec 策略。</p>  <p>在此以WINDOWS XP为例，通过“控制面板”—“管理工具”来打开“本地安全策略”，选择IP安全策略，在这里，我们可以定义自己的IP安全策略。一个IP安全过滤器由两个部分组成：过滤策略和过滤操作。要新建IP安全过滤器，必须新建自己的过滤策略和过滤操作，右击窗口左侧的“IP安全策略，在本地机器”，在弹出的快捷菜单中选择“创建IP安全策略”，单击“下一步”，然后输入策略名称和策略描述。单击“下一步”，选中“激活默认响应规则”复选项，单击“下一步”。开始设置响应规则身份验证方式，选中“此字符串用来保护密钥交换(预共享密钥)”选项，然后随便输入一些字符（后面还会用到这些字符的），单击“下一步”，就会提示已完成IP安全策略，确认选中了“编辑属性”复选框，单击“完成”按钮，会打开其属性对话框。</p>  <p>接下来就要进行此新建安全策略的配置。在“Goodbye Ping 属性”对话窗口的“规则”选项页中单击“添加”按钮，并在打开安全规则向导中单击“下一步”进行隧道终结设置，在这里选择“此规则不指定隧道”。单击“下一步”，并选择“所有网络连接”以保证所有的计算机都Ping不通。单击“下一步”，设置身份验证方式，与上面一样选择第三个选项“此字符串用来保护密钥交换（预共享密钥）”并填入与刚才上面相同的内容。单击“下一步”即打开“IP筛选器列表”窗口，在“IP筛选器列表”中选择“新IP筛选器列表”，单击右侧的“编辑”，在出现的窗口中点击“添加”，单击“下一步”，设置“源地址”为“我的IP地址”，单击“下一步”，设置“目标地址”为“任何IP地址”，单击“下一步”，选择协议类型为ICMP，单击“完成”后再点“确定”返回如图9的窗口，单击“下一步”，选择筛选器操作为“要求安全”选项，然后依次点击“下一步”、“完成”、“确定”、“关闭”按钮保存相关的设置返回管理控制台。</p>  <p>最后在“本地安全设置”中右击配置好的“Goodbye Ping”策略，在弹出的快捷菜单中选择“指派”命令使配置生效。</p>  <p>经过上面的设置，?.渌 扑慊 貾ing该计算机时，就不再Ping通了。但如果自己Ping本地计算机，仍可Ping通。在Windows 2000中操作基本相同。</p>  <p>四、修改TTL值防Ping</p>  <p>许多入侵者喜欢用TTL值来判断操作系统，他们首先会Ping一下你的机子，如看到TTL值为128就认为你的系统为Windows NT/2000，如果TTL值为32则认为目标主机操作系统为Windows 95/98，如果为TTL值为255/64就认为是UNIX/Linux操作系统。既然入侵者相信TTL值所反应出来的结果，那么我们不妨修改TTL值来欺骗入侵者，达到保护系统的目的。方法如下：</p>  <p>打开Windows自带的“记事本”程序，编写如下所示的批处理命令：</p>  <p>@echo REGEDIT4&gt;&gt;ChangeTTL.reg</p>  <p>@echo.&gt;&gt;ChangeTTL.reg</p>  <p>@echo [HKEY_LOCAL_MACHINESystemCurrentControlSetServicesTcpipParameters]&gt;&gt;ChangeTTL.reg</p>  <p>@echo DefaultTTL=dword:000000ff&gt;&gt;ChangeTTL.reg</p>  <p>@REGEDIT /S /C ChangeTTL.reg</p>  <p>另存为以.bat为扩展名的批处理文件，点击这个文件，你的操作系统的缺省TTL值就会被修改为ff，即十进制的255，即把你的操作系统人为地改为UNIX系统了！</p>  <p>DefaultTTL=dword:000000ff是用来设置系统缺省TTL值的，如果你想将自己的操作系统的TTL值改为其它操作系统的ICMP回显应答值，请改变DefaultTTL的键值，要注意它的键值为16进制。</p>  <p>如何禁止别人ping自己的主机（2000自带）</p>  <p>我的电脑-控制面板-管理工具-本地安全策略-ip安全策略</p>  <p>这是2000给我们的配置ip管理的工具，我这里只说一下如何禁止别人ping我的主机。</p>  <p>共有四个步骤：</p>  <p>1。建立禁ping 规则</p>  <p>2。建立禁止/允许规则</p>  <p>3。把这两个规则联系在一起</p>  <p>4。指派</p>  <p>详细：</p>  <p>1。右击ip安全策略-管理ip筛选器表和筛选器操作-ip筛选器列表-添加：名称：ping;描述：ping;(勾选“使用添加向导”),—添加-下一步：指定源/目的ip ,协议类型(icmp),下一步直至完成，关闭此对话框。</p>  <p>2。管理ip筛选器表和筛选器操作-管理筛选器操作-添加(勾选“使用添加向导”)-下一步：名称：refuse;描述:refuse–下一步：阻止-下一步直至完成。</p>  <p>3。右击ip安全策略-创建ip安全策略-下一步：名称：禁止ping；–下一步：取消激活默认响应规则-下一步：选中选中“编辑属性“-完成。然后再“禁止ping属性“上-添加(勾选“使用添加向导”)-下一步直至“身份验证方法”；选第三项，输入共享字串-下一步：在ip筛选器列表里选“ping–下一步：选“refuse-下一步到完成。</p>  <p>这是你在“本地安全设置“右侧会看到“禁止ping“这条规则，但是现在他还没有起作用。</p>  <p>4。右击“禁止ping“–指派。</p>  <p>这回一条禁止别人ping自己的机器的ip策略完成了。</p>  <p>赶快找个机器试试，自己的机器不行。会提示：请求超时（timeout).</p>  <p>以上只是一条小得的ip过滤。你可以自己制作其他的ip策略</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2011-10-08T00:05:58.000Z" itemprop="datePublished">
-          2011-10-08
-      </time>
-    
-</span>
-    <h1 class="post-title">Windows和Linux下禁止被ping</h1>
-    <section class="post-content">
-      <p>LINUX下禁止ping命令的使用</p>  <p>以root进入Linux系统，然后编辑文件icmp_echo_ignore_all</p>  <p>vi /proc/sys/net/ipv4/icmp_echo_ignore_all</p>  <p>将其值改为1后为禁止PING</p>  <p>将其值改为0后为解除禁止PING</p>  <p>直接修改会提示错误:</p>  <p>WARNING: The file has been changed since reading it!!!</p>  <p>Do you really want to write to it (y/n)?y</p>  <p>&quot;icmp_echo_ignore_all&quot; E667: Fsync failed</p>  <p>Hit ENTER or type command to continue</p>  <p>这是因为proc/sys/net/ipv4/icmp_echo_ignore_all</p>  <p>这个不是真实的文件</p>  <p>如果想修改他的数值可以echo 0 或1到这个文件</p>  <p>（即echo 0 &gt; /proc/sys/net/ipv4/icmp_echo_ignore_all ）。要是想永久更改可以加一行</p>  <p>net.ipv4.icmp_echo_ignore_all=1</p>  <p>到配置文件/etc/sysctl.conf里面</p><a id="more"></a><p>如何禁止PING我的WINDOWS服务器</p>  <p>在黑客入侵寻找对象时，大多都使用Ping命令来检测主机，如果Ping不通，水平差的“黑客”大多就会知难而退。事实上，完全可以造成一种假相，即使我们在线，但对方Ping时也不能相通，这样就能躲避很多攻击。</p>  <p>第一步:添加独立管理单元</p>  <p>开始-运行，输入:mmc，启动打开“控制台”窗口。再点选“控制台”菜单下的“添加/删除管理单元”,快捷键Ctrl+M（图1），单击“添加”按钮，在弹出的窗口中选择“IP安全策略管理”项，单击“添加”按钮（图2）。在打开窗口中选择管理对象为“本地计算机”，单击“完成”按钮（图3），同时关闭“添加/删除管理单元”窗口，返回主控台。</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb.png" width="244" height="110"></a> 图1</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_3.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_3.png" width="244" height="195"></a> 图2</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_4.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_4.png" width="244" height="220"></a> 图3</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_5.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_5.png" width="244" height="181"></a> </p>  <p>第二步:创建IP安全策略</p>  <p>右击刚刚添加的“IP安全策略，在本地机器”，选择“创建IP安全策略”，单击“下一步”，然后输入一个策略描述，如“no Ping”（图5）。单击“下一步”，选中“激活默认响应规则”复选项，单击“下一步”。开始设置身份验证方式，选中“此字符串用来保护密钥交换(预共享密钥)”选项，然后随便输入一些字符(下面还会用到这些字符)（图6）。单击“下一步”，就会提示已完成IP安全策略，确认选中了“编辑属性”复选框，单击“完成”按钮，会打开其属性对话框。 </p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_6.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_6.png" width="244" height="187"></a> 图5</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_7.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_7.png" width="244" height="187"></a> 图6</p>  <p>&#160;</p>  <p>第三步:配置安全策略</p>  <p>单击“添加”按钮，</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_8.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_8.png" width="231" height="244"></a> </p>  <p>并在打开安全规则向导中单击“下一步”进行隧道终结设置，在这里选择“此规则不指定隧道”。</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_9.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_9.png" width="244" height="183"></a> </p>  <p>单击“下一步”，并选择“所有网络连接”以保证所有的计算机都Ping不通。单击“下一步”，设置身份验证方式，与上面一样选择第三个选项“此字符串用来保护密钥交换(预共享密钥)”并填入与刚才相同的内容。</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_10.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_10.png" width="244" height="119"></a>&#160;</p>  <p>单击“下一步”，在打开窗口中单击“添加”按钮，打开“IP筛选器列表”窗口。（图七）单击“添加”，</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_11.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_11.png" width="244" height="95"></a> </p>  <p>单击“下一步”，设置源地址为“我的IP地址”，<a href="http://img.cker.in/WindowsLinuxping_DF26/image_12.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_12.png" width="244" height="170"></a> </p>  <p>单击“下一步”，设置目标地址为“任何IP地址”，<a href="http://img.cker.in/WindowsLinuxping_DF26/image_13.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_13.png" width="244" height="103"></a> </p>  <p>单击“下一步”，选择协议为ICMP，现在就可依次单击“完成”和“关闭”按钮返回。</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_14.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_14.png" width="244" height="170"></a> </p>  <p>此时，可以在IP筛选器列表中看到刚刚创建的筛选器，将其选中之后单击“下一步”，</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_15.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_15.png" width="244" height="183"></a> </p>  <p>选择筛选器操作为“要求安全设置”选项，</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_16.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_16.png" width="244" height="101"></a> </p>  <p>然后依次点击“完成”、“关闭”按钮，保存相关的设置返回管理控制台。</p>  <p>第四步:指派安全策略</p>  <p>最后只需在“控制台根节点”中右击配置好的“禁止Ping”策略，选择“指派”命令使配置生效。</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_17.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_17.png" width="244" height="135"></a> </p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_18.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_18.png" width="244" height="65"></a> </p>  <p>经过上面的设置，当其他计算机再Ping该计算机时，就不再相通了。但如果自己Ping本地计算机，仍可相通。此法对于Windows 2000/XP均有效。</p>  <p>效果：</p>  <p><a href="http://img.cker.in/WindowsLinuxping_DF26/image_19.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/WindowsLinuxping_DF26/image_thumb_19.png" width="234" height="244"></a> </p>  <p>如何才能防止被别人ping</p>  <p>一、用高级设置法预防Ping</p>  <p>默认情况下，所有Internet控制消息协议(ICMP)选项均被禁用。如果启用ICMP选项，您的网络将在Internet 中是可视的，因而易于受到攻击。</p>  <p>如果要启用ICMP，必须以管理员或Administrators 组成员身份登录计算机，右击“网上邻居”，在弹出的快捷菜单中选择“属性”即打开了“网络连接”，选定已启用Internet连接防火墙的连接，打开其属性窗口，并切换到“高级”选项页，点击下方的“设置”，这样就出现了“高级设置”对话窗口，在“ICMP”选项卡上，勾选希望您的计算机响应的请求信息类型，旁边的复选框即表启用此类型请求，如要禁用请清除相应请求信息类型即可。</p>  <p>二、用网络防火墙阻隔Ping</p>  <p>使用防火墙来阻隔Ping是最简单有效的方法，现在基本上所有的防火墙在默认情况下都启用了ICMP过滤的功能。在此，以金山网镖2003和天网防火墙2.50版为蓝本来说明。</p>  <p>对于使用金山网镖2003的网友，请用鼠标右击系统托盘中的金山网镖2003图标，在弹出的快捷菜单中选择“实用工具”中的“自定义IP规则编辑器”，在出现的窗口中选中“防御ICMP类型攻击”规则，消除“允许别人用ping命令探测本机”规则，保存应用后就发挥效应。</p>  <p>如果您用的是天网防火墙，在其主界面点击“自定义IP规则”，然后不勾选“防止别人用ping命令探测”规则，勾选“防御ICMP攻击”规则，然后点击“保存/应用”使IP规则生效。</p>  <p>三、启用IP安全策略防Ping</p>  <p>IP安全机制（IP Security）即IPSec 策略，用来配置IPSec 安全服务。这些策略可为多数现有网络中的多数通信类型提供各种级别的保护。您可配置IPSec 策略以满足计算机、应用程序、组织单位、域、站点或全局企业的安全需要。可使用Windows XP 中提供的“IP 安全策略”管理单元来为Active Directory 中的计算机（对于域成员）或本地计算机（对于不属于域的计算机）定义IPSec 策略。</p>  <p>在此以WINDOWS XP为例，通过“控制面板”—“管理工具”来打开“本地安全策略”，选择IP安全策略，在这里，我们可以定义自己的IP安全策略。一个IP安全过滤器由两个部分组成：过滤策略和过滤操作。要新建IP安全过滤器，必须新建自己的过滤策略和过滤操作，右击窗口左侧的“IP安全策略，在本地机器”，在弹出的快捷菜单中选择“创建IP安全策略”，单击“下一步”，然后输入策略名称和策略描述。单击“下一步”，选中“激活默认响应规则”复选项，单击“下一步”。开始设置响应规则身份验证方式，选中“此字符串用来保护密钥交换(预共享密钥)”选项，然后随便输入一些字符（后面还会用到这些字符的），单击“下一步”，就会提示已完成IP安全策略，确认选中了“编辑属性”复选框，单击“完成”按钮，会打开其属性对话框。</p>  <p>接下来就要进行此新建安全策略的配置。在“Goodbye Ping 属性”对话窗口的“规则”选项页中单击“添加”按钮，并在打开安全规则向导中单击“下一步”进行隧道终结设置，在这里选择“此规则不指定隧道”。单击“下一步”，并选择“所有网络连接”以保证所有的计算机都Ping不通。单击“下一步”，设置身份验证方式，与上面一样选择第三个选项“此字符串用来保护密钥交换（预共享密钥）”并填入与刚才上面相同的内容。单击“下一步”即打开“IP筛选器列表”窗口，在“IP筛选器列表”中选择“新IP筛选器列表”，单击右侧的“编辑”，在出现的窗口中点击“添加”，单击“下一步”，设置“源地址”为“我的IP地址”，单击“下一步”，设置“目标地址”为“任何IP地址”，单击“下一步”，选择协议类型为ICMP，单击“完成”后再点“确定”返回如图9的窗口，单击“下一步”，选择筛选器操作为“要求安全”选项，然后依次点击“下一步”、“完成”、“确定”、“关闭”按钮保存相关的设置返回管理控制台。</p>  <p>最后在“本地安全设置”中右击配置好的“Goodbye Ping”策略，在弹出的快捷菜单中选择“指派”命令使配置生效。</p>  <p>经过上面的设置，?.渌 扑慊 貾ing该计算机时，就不再Ping通了。但如果自己Ping本地计算机，仍可Ping通。在Windows 2000中操作基本相同。</p>  <p>四、修改TTL值防Ping</p>  <p>许多入侵者喜欢用TTL值来判断操作系统，他们首先会Ping一下你的机子，如看到TTL值为128就认为你的系统为Windows NT/2000，如果TTL值为32则认为目标主机操作系统为Windows 95/98，如果为TTL值为255/64就认为是UNIX/Linux操作系统。既然入侵者相信TTL值所反应出来的结果，那么我们不妨修改TTL值来欺骗入侵者，达到保护系统的目的。方法如下：</p>  <p>打开Windows自带的“记事本”程序，编写如下所示的批处理命令：</p>  <p>@echo REGEDIT4&gt;&gt;ChangeTTL.reg</p>  <p>@echo.&gt;&gt;ChangeTTL.reg</p>  <p>@echo [HKEY_LOCAL_MACHINESystemCurrentControlSetServicesTcpipParameters]&gt;&gt;ChangeTTL.reg</p>  <p>@echo DefaultTTL=dword:000000ff&gt;&gt;ChangeTTL.reg</p>  <p>@REGEDIT /S /C ChangeTTL.reg</p>  <p>另存为以.bat为扩展名的批处理文件，点击这个文件，你的操作系统的缺省TTL值就会被修改为ff，即十进制的255，即把你的操作系统人为地改为UNIX系统了！</p>  <p>DefaultTTL=dword:000000ff是用来设置系统缺省TTL值的，如果你想将自己的操作系统的TTL值改为其它操作系统的ICMP回显应答值，请改变DefaultTTL的键值，要注意它的键值为16进制。</p>  <p>如何禁止别人ping自己的主机（2000自带）</p>  <p>我的电脑-控制面板-管理工具-本地安全策略-ip安全策略</p>  <p>这是2000给我们的配置ip管理的工具，我这里只说一下如何禁止别人ping我的主机。</p>  <p>共有四个步骤：</p>  <p>1。建立禁ping 规则</p>  <p>2。建立禁止/允许规则</p>  <p>3。把这两个规则联系在一起</p>  <p>4。指派</p>  <p>详细：</p>  <p>1。右击ip安全策略-管理ip筛选器表和筛选器操作-ip筛选器列表-添加：名称：ping;描述：ping;(勾选“使用添加向导”),—添加-下一步：指定源/目的ip ,协议类型(icmp),下一步直至完成，关闭此对话框。</p>  <p>2。管理ip筛选器表和筛选器操作-管理筛选器操作-添加(勾选“使用添加向导”)-下一步：名称：refuse;描述:refuse–下一步：阻止-下一步直至完成。</p>  <p>3。右击ip安全策略-创建ip安全策略-下一步：名称：禁止ping；–下一步：取消激活默认响应规则-下一步：选中选中“编辑属性“-完成。然后再“禁止ping属性“上-添加(勾选“使用添加向导”)-下一步直至“身份验证方法”；选第三项，输入共享字串-下一步：在ip筛选器列表里选“ping–下一步：选“refuse-下一步到完成。</p>  <p>这是你在“本地安全设置“右侧会看到“禁止ping“这条规则，但是现在他还没有起作用。</p>  <p>4。右击“禁止ping“–指派。</p>  <p>这回一条禁止别人ping自己的机器的ip策略完成了。</p>  <p>赶快找个机器试试，自己的机器不行。会提示：请求超时（timeout).</p>  <p>以上只是一条小得的ip过滤。你可以自己制作其他的ip策略</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/86.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/86.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/86.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/86.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/92.seo/">
-        ← 根据日志逆向分析攻击者入侵思路及查找0day
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/85.seo/">
-        转 关于 摸奶学英语 的可行性分析研究调查报告 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/絮叨碎语/">絮叨碎语</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/92.seo/" title="根据日志逆向分析攻击者入侵思路及查找0day">
+  <strong>Prev:</strong><br/>
+  <span>
+  根据日志逆向分析攻击者入侵思路及查找0day</span>
+</a>
+</div>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/85.seo/"  title="转 关于 摸奶学英语 的可行性分析研究调查报告">
+ <strong>Next:</strong><br/> 
+ <span>转 关于 摸奶学英语 的可行性分析研究调查报告
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-Windows和Linux下禁止被ping" data-title="Windows和Linux下禁止被ping" data-url="http://ha.cker.in/86.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

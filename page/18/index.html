@@ -1,260 +1,396 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+    </header>
+    
 
-      
-<main class="content" role="main">
+    <div id="container">
+      <div id="main">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-09-05T23:43:58.000Z" itemprop="datePublished">
-          2013-09-06
-      </time>
-    
-    
-    | 
-    <a href='/tag/Mongodb/'>Mongodb</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1028.seo/">Python调用MongoDB使用心得</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><p>本文是一个Python 使用<a href="http://Ha.Cker.In/tag/MongoDB" target="_blank">MongoDB</a>的简单教程，将使用pymongo对MongoDB进行的各种操作进行了简单的汇总，NoSQLFan进行了简单整理，使用Python的同学可以看一看。</p> <p>&nbsp;</p> <p>下载相应平台的版本，解压即可。为方便使用，将bin路径添加到系统path环境变量里。其中mongod是服务器，mongo是客户shell，然后创建数据文件目录：在c盘下创建data文件夹，里面创建db文件夹。</p> <p>基本使用：</p> <p><a href="http://img.cker.in/PythonMongoDB_DD32/1VL89KYXK12ZECOYV.jpg"><img title="`1(V)L89KY[XK[12ZECOY%V" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="159" alt="`1(V)L89KY[XK[12ZECOY%V" src="http://img.cker.in/PythonMongoDB_DD32/1VL89KYXK12ZECOYV_thumb.jpg" width="507" border="0"></a></p> <p>安装对应语言的Driver，Python 安装 pymongo</p><pre>$ easy_install pymongo</pre></p>
-<p><p>使用方法总结，摘自官方教程</p></p>
-<p><p>创建连接</p><pre>&gt;&gt;&gt; import pymongo<br>&gt;&gt;&gt; connection=pymongo.Connection(‘localhost’,27017)</pre></p>
-<p><p>切换数据库</p><pre>&gt;&gt;&gt; db = connection.test_database</pre></p>
-<p><p>获取collection</p><pre>&gt;&gt;&gt; collection = db.test_collection</pre></p>
-<p><p>db和collection都是延时创建的，在添加Document时才真正创建</p></p>
-<p><p>文档添加，_id自动创建</p><pre>&gt;&gt;&gt; import datetime<br>&gt;&gt;&gt; post = {“author”: “Mike”,<br>…         “text”: “My first blog post!”,<br>…         “tags”: [“mongodb”, “python”, “pymongo”],<br>…         “date”: datetime.datetime.utcnow()}<br>&gt;&gt;&gt; posts = db.posts<br>&gt;&gt;&gt; posts.insert(post)<br>ObjectId(‘…’)</pre><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1028.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1028.seo/" title="Python调用MongoDB使用心得" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-09-05T05:23:38.000Z" itemprop="datePublished">
-          2013-09-05
-      </time>
+    <h1 itemprop="name">Python调用MongoDB使用心得</h1>
     
-</span>
-      <h2 class="post-title"><a href="/1027.seo/">从爆破shell到内网渗透(有亮点)</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
+     
+       <p itemprop="description" >本文是一个Python 使用MongoDB的简单教程，将使用pymongo对MongoDB进行的各种操作进行了简单的汇总，NoSQLFan进行了简单整理，使用Python的同学可以看一看。 &amp;nbsp; 下载相应平台的版本，解压即可。为方便使用，将bin路径添加到系统path环境</p>
       
-        <p>最近比较忙，<a href="http://Ha.Cker.In/tag/渗透" target="_blank">渗透</a>经验少，手里一时也没有什么有含量的文章。下面是近期的一次渗透经历，先发在这，管理能给过不。</p>  <p>群里发了个一句话，<a href="http://www.xxx.cn/UploadFiles/201342155011266.asa">http://www.xxx.cn/UploadFiles/201342155011266.asa</a></p>  <p>让爆破一下。</p>  <p><a href="http://img.cker.in/shell_12C39/clip_image001.png"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="244" alt="clip_image001" src="http://img.cker.in/shell_12C39/clip_image001_thumb.png" width="563" border="0" /></a></p>  <p>看来是个图片插马，通过台上传的。</p>  <p>爆破一句话，BurpSuite搞定</p>  <p><a href="http://img.cker.in/shell_12C39/clip_image003.jpg"><img title="clip_image003" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="530" alt="clip_image003" src="http://img.cker.in/shell_12C39/clip_image003_thumb.jpg" width="620" border="0" /></a></p>  <p>密码居然是‘x’。。。</p>  <p>下午有课，晚上接着搞，既然有了shell，试试提权什么的。</p>  <p>上传大马，发现上传不了，基本上目录都不可写了，UploadFiles目录也是，看来可能管理员加固了(后来提权之后发现果然该用户对该目录权限只有读取了)。命令也执行不了。</p>  <p>到C:\Program Files\MySQL下载User表user.MYD，打开得到root的HASH</p>  <p>localhost</p>  <p>root<em>6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9</p>  <p>cmd5查了下123456，但是通过菜刀连接失败，好像3306端口没开(后来发现其实开了，估计被墙了)</p>  <p>是星外站，还有很多站点。一个个找找。找到个aspx站点，查看web.config，居然是sa，密码也是sa，通过菜刀连接，成功，可以执行命令。</p>  <p>EXEC master..xp_cmdshell ‘net userxxxxxx xxxxxx123123 /add’</p>  <p>EXEC master..xp_cmdshell ‘net localgroupadministrators xxxxxx /add’</p>  <p>3389登录成功。有360安全卫士和Symantec，添加用户居然没有拦截，人品好的原因？</p>  <p>既然是星外的站，读取下freehost密码吧，用它登录更保险一些。拿出星外杀器，读到密码。</p>  <p>C:\Documents and Settings\lnwjcomcn\桌面&gt;exehack.exe-i</p>  <p>FreeHost ID：724</p>  <p>C:\Documents and Settings\lnwjcomcn\桌面&gt;exehack.exe-u 724</p>  <p>UserName:freehostrunat</p>  <p>Password:c8a810ab197a1321ee4b37fcaa3ccd29!7</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1027.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    
+    <time datetime="2013-09-05T23:43:58.000Z" itemprop="datePublished">2013-09-06</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-09-05T05:17:52.000Z" itemprop="datePublished">
-          2013-09-05
-      </time>
-    
-</span>
-      <h2 class="post-title"><a href="/1026.seo/">Base 64 Encoding 编码</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-         Base 64 Encoding有什么用？举个简单的例子，你使用SMTP协议 （Simple Mail Transfer Protocol 简单邮件传输协议）来发送邮件。因为这个协议是基于文本的协议，所以如果邮件中包含一幅图片，我们知道图片的存储格式是二进制数据（binary data），而非文本格式，我们必须将二进制的数据编码成文本格式，这时候Base 64 Encoding就派上用场了。   （一）编码原理  Base 64 En
-      
-      </p>
-      
-      <p>
-          <a href="/1026.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1027.seo/" title="从爆破shell到内网渗透(有亮点)" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-09-05T05:16:12.000Z" itemprop="datePublished">
-          2013-09-05
-      </time>
+    <h1 itemprop="name">从爆破shell到内网渗透(有亮点)</h1>
     
+     
+       <p itemprop="description" >最近比较忙，渗透经验少，手里一时也没有什么有含量的文章。下面是近期的一次渗透经历，先发在这，管理能给过不。  群里发了个一句话，http://www.xxx.cn/UploadFiles/201342155011266.asa  让爆破一下。    看来是个图片插马，通过台上传的</p>
+      
     
-    | 
-    <a href='/tag/反向代理/'>反向代理</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1025.seo/">本地快速搭建反向代理平台，实现sebug等高危漏洞验证</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        0x1,&#160; 惊闻某反向代理平台邀请码一码难求，苦比等了一晚上邀请码无果，大牛们都忙着脱裤，做为一名穷吊丝，只能靠自己的双手解决生理需要了     0x2 工具:破电脑一台，shell一个,反向代理程序1套(或者直接用apahce或者nginx),纸巾若干张，    注:反向代理程序 用@vip推荐的7ghost ，或者php-dynamic-mirror     0x3 本地搭建好代理程序 ,(本例采用7ghost为例),内网
-      
-      </p>
-      
-      <p>
-          <a href="/1025.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2013-09-05T05:23:38.000Z" itemprop="datePublished">2013-09-05</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-09-05T05:01:08.000Z" itemprop="datePublished">
-          2013-09-05
-      </time>
-    
-</span>
-      <h2 class="post-title"><a href="/1024.seo/">给大家看看我使用的前无古人，后无来者的反调试方法</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        转自看雪，仅供娱乐  前言：本反调试方法不同于以往的反调试方法。   &#160;&#160;&#160; 以往的反调试均以摧残调试人员的意志为基本点，目前比较强大的 VMP 与 TMD 之类的也是运用这种方法，这种方法的弊端就是对于意志坚强、好奇心强或者抖 M（就是你给他一巴掌他还发自内心感觉到爽的这一种人）来说，是无效的。目前均能有破解 VMP，TMD 的牛○人士，也证明了这种反调试的瓶颈。本文介绍的反调试方法均是以前其他人没有使用
-      
-      </p>
-      
-      <p>
-          <a href="/1024.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1026.seo/" title="Base 64 Encoding 编码" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-08-23T00:48:46.000Z" itemprop="datePublished">
-          2013-08-23
-      </time>
+    <h1 itemprop="name">Base 64 Encoding 编码</h1>
     
+     
+           <p itemprop="description" >Base 64 Encoding有什么用？举个简单的例子，你使用SMTP协议 （Simple Mail Transfer Protocol 简单邮件传输协议）来发送邮件。因为这个协议是基于文本的协议，所以如果邮件中包含一幅图片，我们知道图片的存储格式是二进制数据（binary d</p>
+        
     
-    | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/御剑/'>御剑</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1023.seo/">渗透德国某华人社区</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>作者：Webrobot</p>  <p>目标站：forum.AAAA.de</p>  <p>1.查看服务器信息</p>  <p><a href="http://img.cker.in/09245a4046aa_EB68/clip_image002.jpg"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="393" alt="clip_image002" src="http://img.cker.in/09245a4046aa_EB68/clip_image002_thumb.jpg" width="574" border="0" /></a></p>  <p>2.<a href="http://Ha.Cker.In/tag/御剑" target="_blank">御剑</a>查询旁站</p>  <p><a href="http://img.cker.in/09245a4046aa_EB68/clip_image004.jpg"><img title="clip_image004" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="233" alt="clip_image004" src="http://img.cker.in/09245a4046aa_EB68/clip_image004_thumb.jpg" width="573" border="0" /></a></p>  <p>3.轩辕剑看CMS,</p>  <p><a href="http://img.cker.in/09245a4046aa_EB68/clip_image005.jpg"><img title="clip_image005" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="178" alt="clip_image005" src="http://img.cker.in/09245a4046aa_EB68/clip_image005_thumb.jpg" width="442" border="0" /></a></p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1023.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2013-09-05T05:17:52.000Z" itemprop="datePublished">2013-09-05</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/page/17/">← Newer Posts</a>
-    <span class="page-number">Page 18 of 81</span>
-    <a class="older-posts" href="/page/19/">Older Posts →</a>
+    <a href="/1025.seo/" title="本地快速搭建反向代理平台，实现sebug等高危漏洞验证" itemprop="url">
+  
+    <h1 itemprop="name">本地快速搭建反向代理平台，实现sebug等高危漏洞验证</h1>
+    
+     
+           <p itemprop="description" >0x1,&amp;#160; 惊闻某反向代理平台邀请码一码难求，苦比等了一晚上邀请码无果，大牛们都忙着脱裤，做为一名穷吊丝，只能靠自己的双手解决生理需要了     0x2 工具:破电脑一台，shell一个,反向代理程序1套(或者直接用apahce或者nginx),纸巾若干张，    注:</p>
+        
+    
+    <time datetime="2013-09-05T05:16:12.000Z" itemprop="datePublished">2013-09-05</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/1024.seo/" title="给大家看看我使用的前无古人，后无来者的反调试方法" itemprop="url">
+  
+    <h1 itemprop="name">给大家看看我使用的前无古人，后无来者的反调试方法</h1>
+    
+     
+           <p itemprop="description" >转自看雪，仅供娱乐  前言：本反调试方法不同于以往的反调试方法。   &amp;#160;&amp;#160;&amp;#160; 以往的反调试均以摧残调试人员的意志为基本点，目前比较强大的 VMP 与 TMD 之类的也是运用这种方法，这种方法的弊端就是对于意志坚强、好奇心强或者抖 M（就是你给他一巴掌</p>
+        
+    
+    <time datetime="2013-09-05T05:01:08.000Z" itemprop="datePublished">2013-09-05</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/1023.seo/" title="渗透德国某华人社区" itemprop="url">
+  
+    <h1 itemprop="name">渗透德国某华人社区</h1>
+    
+     
+       <p itemprop="description" >作者：Webrobot  目标站：forum.AAAA.de  1.查看服务器信息    2.御剑查询旁站    3.轩辕剑看CMS,</p>
+      
+    
+    <time datetime="2013-08-23T00:48:46.000Z" itemprop="datePublished">2013-08-23</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/page/17/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/81/">81</a><a class="extend next" rel="next" href="/page/19/">下一页 &raquo;</a>
   </nav>
-</main>
 
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
-      
-<footer class="site-footer">
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+  </body>
+ </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

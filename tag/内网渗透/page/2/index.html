@@ -1,214 +1,250 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Tag: 内网渗透 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Tag: 内网渗透 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Tag: 内网渗透 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="tag-icon">内网渗透</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T10:03:10.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/内网渗透/'>内网渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/495.seo/">渗透某高校内网服务器</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>前言：今天没事搜索资料的时候来到了这个网站，出于个人信息安全爱好就对他做一番检测!   <br /> 今天我们渗透的对象是www.TEST.com IP: 218.6.x.193在IP138上查询信息如下：    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/74ae0491df9c_1CBF/clip_image002.jpg" width="355" height="224" />    <br /> 经过我的简单踩点，发现新闻中心 教学研究 招生就业等主要内容都无法打开，提示数据库连接出错。具体是什么原因我也不清楚，可能是管理的错误操作，也可以是黑客大牛进去做的破坏。仅只有一个板块可以打开<a href="http://218.6.X.193:800/scr2006/">http://218.6.X.193:800/scr2006/</a> ，留给我们发挥的余地很小!分析连接WEB端口是800，很有可能是内网映射出来的。暂只做个估计。我们先检测下这个天空网络教室看有可以利用的没，在我的记忆中是有脚本上传漏洞的漏洞文件是 HTMLEDITOR/GETFILE.ASP 这个文件参数过滤不严格，我们可以上传ASA CER HTR等脚本木马。我们提交路径显示“对不起，访问被拒绝”管理可能修补了，我们再提交HTMLEDITOR/GETFILE1.ASP很多管理在打补丁的时候喜欢备份一个文件，害怕有时候出错。我们提交看下 无法找到。找到默认的管理后台尝试社工管理员密码。失败。现在SQL注射也是很火的。Root/ShowImage.asp 天空的这个文件好像也爆过啦注射漏洞，我们提交个 ’号提示“请不好提交非法字符”，郁闷加了防注射代码。尝试使用COOKIES注射失败。看来漏洞修改得很好。习惯性的在那个文件名字后面加个1也就是Root/ShowImage1.asp，发现文件存在，看来是管理修补的时候，备份的忘记删除了。哈哈。这也是我的个人的小技巧。我们知道天空很多程序很多都是使用MSSQL数据库的.然后我们带上参数提交，继续加个’号。马上出现经典的错误，提交AND USER&gt;0 判断连接数据库用户.    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/74ae0491df9c_1CBF/clip_image004.jpg" width="405" height="253" />    <br /> 权限不小啊!继续提交;exec master.dbo.xp_cmdshell ‘net user’–，提示我们下载文件。看来是执行成功了。XP_CMDSHELL是没有删除的。手工搞着累，马上拿出大牛ZWELL写的注射器注射，这个<a href="http://soft.77169.com/">软件</a>很好用，特别是命令执行的功能，很强大。输入VER查看系统版本，显示Microsoft Windows [版本 5.2.3790] 2003的服务器，通过读注册表的键值 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\Wds\rdpwd\Tds\tcp] 端口是3389 NETSTAT -AN查看ZH终端也是开放了的，不过他是内网。不能直接连接，用啊D写了一个有下载功能的VBS脚本在C盘。尝试下载我们的LCX端口转发工具。注射器执行的效果不是很理想，半天没反应。这条路不太好走，尝试使用注射工具的上环功能上传也很慢，卡死了几次。于是我们转换思路。那我们就拿一个WEBSHELL再说吧!用啊D列目录，最终目标锁定在D:\Easiware\SkyClass2006\Asp\Root这个目录，SA权限无所不能，用啊D写了一个一句话木马的服务端在该目录下，用客户端连接成功得到一个WBESHELL。后门用的我哥职业色狼的.如图2    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/74ae0491df9c_1CBF/clip_image006.jpg" width="406" height="315" />    <br /> 简单查看服务器信息，装有SU6.4 MSSQL 瑞星杀毒软件 360安全卫士 FSO WS组件可以使用，C-F盘全部可以浏览访问。渗透中发现，使用注射器执行命令效果很不理想。于是我就翻阅数据库的连接文件找连接MSSQL数据库的账号密码。通过仔细查找D:\Easiware\SkyClass2006\Asp\Global.asa这个文件是连接文件。结果发现用户不是SA。如图：    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/74ae0491df9c_1CBF/clip_image008.jpg" width="418" height="224" />    <br /> 虽然不是SA，但是他一样是管理的权限。一样可以EXEC COMMAN!打开查询分析器输入数据库相关连接信息，提示无法连接。马上在命令提示符中：TELNET 218.6.X.193 1433 提示无法打开，看来1433并没有映射到外网。那我们就在WEBSHELL上本地连接吧!马上上传一个asp版sql在线管理后门,这个后门很好用。我简单的说下用法吧，先输入密码登陆，再点击重新设置数据源。在这里我们输入数据库的名称和账号密码，数据库服务器就保持(local)不变，因为我们就是本地连接他的。输入完后我们点击提交，如果数据库名密码账号等信息正确就会出现设置成功的字样。    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image010" border="0" alt="clip_image010" src="http://img.cker.in/74ae0491df9c_1CBF/clip_image010.jpg" width="404" height="266" /></p>
-      
-      </p>
-      
-      <p>
-          <a href="/495.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T09:46:14.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/内网渗透/'>内网渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/483.seo/">win内网渗透实例</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>作者：赤龙<br>最近在整理资料时发现一些渗透笔记，于是翻开看看，原来有一个老外的内部网还没有拿下。当时已经给内网的一台机器种植了木马，反正闲着没事就拿它来练练手吧。打开远程居然肉鸡还在，废话就不多说了，下面开始吧。<br>首先来看看已经控制的这台电脑在内网中充当什么角色，并收集一些常规的信息。执行ipconfig /all (如图1)</p>
-<p><img style="display: inline; border: 0px;" title="clip_image001" src="http://img.cker.in/win_18C1/clip_image001.png" alt="clip_image001" width="752" height="754" border="0" /><br>从这里我们可以看出，此计算机名为abimaq6，ip地址是172.16.16.139。子网掩码为255.255.240.0、网关172.16.16.1、DNS服务器分别是172.16.16.2和172.16.16.3。还有一个重要的就是这台机器处于域管理模式中，所在域为abimaq.local。<br>既然是域结构，再来获取一下域用户列表，执行net user /domain命令(如图2)。该命令可显示所有的域用户名单。看来域用户还真多。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/483.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/495.seo/" title="渗透某高校内网服务器" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T09:27:34.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
+    <h1 itemprop="name">渗透某高校内网服务器</h1>
     
-    
-    | 
-    <a href='/tag/内网渗透/'>内网渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/473.seo/">渗透某大型内网入侵过程</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        本文阐述：文章从网站入侵到内网渗透提权，作者给大家带来了一篇精彩的内网渗透文章。读后此文你能清晰的认识到内网入侵的细节技术。   由于平时比较忙，用了很久的VPN肉鸡飞掉了，近来正好有时间于是打开google搜索upfile.asp开始找肉鸡，来了台湾某XX站，，为了不必要的麻烦，我隐藏了敏感内容。直接到传asp提示错误，那么直接传了gif以后，查看上传路径发现自己重命名了，如果没有重命名的话在IIS6下百分之90以上可以拿shell了
-      
-      </p>
-      
-      <p>
-          <a href="/473.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-06-12T10:03:10.000Z" itemprop="datePublished">2012-06-12</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T09:11:30.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/内网渗透/'>内网渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/465.seo/">浅析企业内网渗透</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        2010年起，Google、SONY、RSA等诸多大型企业遭受APT渗透攻击，对机密资料的保护和内部控制越来越受到人们的重视。本文以攻击者的角度，分析企业内网安全的入侵突破点，希望能给大家带来启发，更好的做好内网防控。一个企业，可以是不同行业，他们所包含的机密数据，隐蔽数据，功能控制，和对整个旗下的可信任域都是极为重要的安全方向。对于初具规模的企业来说，内部沟通需要邮件，即时沟通需要im软件，需要有域控，需要有核心交换机，有几个指定内外
-      
-      </p>
-      
-      <p>
-          <a href="/465.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/483.seo/" title="win内网渗透实例" itemprop="url">
   
-  <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/tag/内网渗透/">← Newer Posts</a>
-    <span class="page-number">Page 2 of 2</span>
+    <h1 itemprop="name">win内网渗透实例</h1>
     
+    <time datetime="2012-06-12T09:46:14.000Z" itemprop="datePublished">2012-06-12</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/473.seo/" title="渗透某大型内网入侵过程" itemprop="url">
+  
+    <h1 itemprop="name">渗透某大型内网入侵过程</h1>
+    
+    <time datetime="2012-06-12T09:27:34.000Z" itemprop="datePublished">2012-06-12</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/465.seo/" title="浅析企业内网渗透" itemprop="url">
+  
+    <h1 itemprop="name">浅析企业内网渗透</h1>
+    
+    <time datetime="2012-06-12T09:11:30.000Z" itemprop="datePublished">2012-06-12</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix archive-nav">
+    <a class="extend prev" rel="prev" href="/tag/内网渗透/">&laquo; 上一页</a><a class="page-number" href="/tag/内网渗透/">1</a><span class="page-number current">2</span>
   </nav>
-</main>
 
-
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

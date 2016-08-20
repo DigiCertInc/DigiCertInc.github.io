@@ -1,149 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>编程实现遍历ACL访问控制列表检查进程访问权限 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>编程实现遍历ACL访问控制列表检查进程访问权限 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="Author:Pnig0s[FreeBuf]  阅读本文的朋友需要对Windows访问控制模型有初步的了解，了解Token(访问令牌)，ACL(访问控制列表)，DACL(选择访问控制列表)，ACE(访问控制列表项)等与访问控制模型相关的名词含义及之间的关系，当然我也会在文中简要科普一下ACM。  写这篇文章的目的主要是最近在写一个Win下本地提权的东西，涉及到了对ACL的操作，以前对ACL总是避而远之，Windows访问控制模型比较头疼，一个API会牵出一大把要用的API。毕竟涉及到用户访问的安全，肯定不能让编程人员随意更改这些机制，复杂一些也可以理解，可是能参考的资料很少，MSDN上关于一些访问控制相关API的使用和结构体的描述也含糊不清也没有什么代码实例。这篇文章也是在查阅国外了一些文献加上自己研究测试后完成的，发出来希望对涉及这方面编程的朋友有帮助。  —&amp;gt;&amp;gt;熟悉Windows访问控制机制的可以跳过本段：  因为是科普我这里简单介绍下Windows访问控制模型(ACM)，别嫌我啰嗦，懂得直接Pass往下看。ACM中最重要的两部分是访问令牌(Access Token)和安全描述符表(Security Descriptor)。访问令牌存在于访问主体中，安全描述符表存在于访问客体中。比如我去米国，我就是访问主体，米国就是访问客体，我持有的签证就是访问令牌。系统中访问主体是进程客体是一切系统对象。访问令牌中有当前用户的唯一标识SID，组唯一标识SID以及一些权限标志(Privilege)。安全描述符表(SD)存在于Windows系统中的任何对象中(文件，注册表，互斥量，信号量等等)。SD中包含对象所有者的SID，组SID以及两个非常重要的数据结构选择访问控制列表(DACL)和系统访问控制列表(SACL)，其中SACL涉及系统日志用的很少可以先无视。DACL中包含一个个ACE访问控制入口也是权限访问判断的核心，当一个进程访问某一对象的时候，对象会将进程的Token与自身的ACE依次比对，直到被允许或被拒绝，前面的ACE优于后面的ACE。整体的一个权限检查过程如下图：  —&amp;gt;&amp;gt;">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="编程实现遍历ACL访问控制列表检查进程访问权限 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/625.seo/" title="编程实现遍历ACL访问控制列表检查进程访问权限" itemprop="url">编程实现遍历ACL访问控制列表检查进程访问权限</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2012-07-02T10:15:59.000Z" itemprop="datePublished">2012-07-02</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p><b>Author:Pnig0s[FreeBuf]</b></p>  <p>阅读本文的朋友需要对Windows访问控制模型有初步的了解，了解Token(访问令牌)，<a href="http://ha.cker.in/tag/ACL" target="_blank">ACL</a>(访问控制列表)，DACL(选择访问控制列表)，ACE(访问控制列表项)等与访问控制模型相关的名词含义及之间的关系，当然我也会在文中简要科普一下ACM。</p>  <p>写这篇文章的目的主要是最近在写一个Win下本地提权的东西，涉及到了对ACL的操作，以前对ACL总是避而远之，Windows访问控制模型比较头疼，一个API会牵出一大把要用的API。毕竟涉及到用户访问的安全，肯定不能让编程人员随意更改这些机制，复杂一些也可以理解，可是能参考的资料很少，MSDN上关于一些访问控制相关API的使用和结构体的描述也含糊不清也没有什么代码实例。这篇文章也是在查阅国外了一些文献加上自己研究测试后完成的，发出来希望对涉及这方面编程的朋友有帮助。</p>  <p><b>—&gt;&gt;</b><b>熟悉</b><b>Windows</b><b>访问控制机制的可以跳过本段：</b></p>  <p>因为是科普我这里简单介绍下Windows访问控制模型(ACM)，别嫌我啰嗦，懂得直接Pass往下看。ACM中最重要的两部分是访问令牌(Access Token)和安全描述符表(Security Descriptor)。访问令牌存在于访问主体中，安全描述符表存在于访问客体中。比如我去米国，我就是访问主体，米国就是访问客体，我持有的签证就是访问令牌。系统中访问主体是进程客体是一切系统对象。访问令牌中有当前用户的唯一标识SID，组唯一标识SID以及一些权限标志(Privilege)。安全描述符表(SD)存在于Windows系统中的任何对象中(文件，注册表，互斥量，信号量等等)。SD中包含对象所有者的SID，组SID以及两个非常重要的数据结构选择访问控制列表(DACL)和系统访问控制列表(SACL)，其中SACL涉及系统日志用的很少可以先无视。DACL中包含一个个ACE访问控制入口也是权限访问判断的核心，当一个进程访问某一对象的时候，对象会将进程的Token与自身的ACE依次比对，直到被允许或被拒绝，前面的ACE优于后面的ACE。整体的一个权限检查过程如下图：</p>  <p><b>—&gt;&gt;</b></p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/ACL_1E70/clip_image001.jpg" width="389" height="264"></p><a id="more"></a><p></p>  <p>上面简单介绍了本文要用到的也是Windows访问控制模型核心部分的一些知识，下面来介绍下如何编程实现遍历ACL来进行访问权限的检查。本文主要针对文件对象进行介绍，其他类型的对象大同小异。要用到的两个主要API为GetFileSecurity()和AccessCheck()。GetFileSecurity能够获取指定文件的安全描述符表，而AccessCheck可以指定要检查的权限，该函数能够将获得的安全描述符表与当前进程的Token进行检查来判断进程对该文件对象是否允许相应的权限。不过这两个API并不那么容易用，因为其中要涉及到安全描述符表和访问令牌的获取，因此又牵扯出一大把API也涉及一些访问控制的知识。下面依次介绍要使用到的API然后给出整体的代码。GetFileSecurity的函数原型如下：</p>  <p>BOOL WINAPI GetFileSecurity(</p>  <p><strong>in LPCTSTR lpFileName,</strong></p>  <p>in SECURITY_INFORMATION RequestedInformation,</p>  <p><strong>out_opt PSECURITY_DESCRIPTOR pSecurityDescriptor,</strong></p>  <p>in DWORD nLength,</p>  <p><strong>out LPDWORD lpnLengthNeeded</strong></p>  <p>);</p>  <p>lpFileName指定了要获取SD的文件。首先要定义一个PSECURITY_DESCRIPTOR的安全描述符表指针，因为描述符表大小未知，所以要调用两次GetFileSecurity()第一次将nLength置0，函数会返回实际大小，然后第二次用获取的大小去接收完整的SD，代码如下：</p>  <p>文件开始部分定义的内存分配释放函数常量:</p>  <p>#define AllocMem(x) (HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,x))</p>  <p>#define FreeMem(x) (HeapFree(GetProcessHeap(),HEAP_ZERO_MEMORY,x))</p>  <p>…….</p>  <p>BOOL bRs = FALSE;</p>  <p>DWORD dwSizeNeeded = 0;</p>  <p>PSECURITY_DESCRIPTOR psd = NULL;</p>  <p>SECURITY_INFORMATION si = OWNER_SECURITY_INFORMATION</p>  <p>| GROUP_SECURITY_INFORMATION|DACL_SECURITY_INFORMATION;</p>  <p>bRs = GetFileSecurity(lpFileName,si,psd,0,&amp;dwSizeNeeded);</p>  <p>//第一次调用获得SD实际大小</p>  <p>if(!bRs)</p>  <p>{</p>  <p>if(GetLastError() == ERROR_INSUFFICIENT_BUFFER)</p>  <p>{</p>  <p>psd = (PSECURITY_DESCRIPTOR)AllocMem(dwSizeNeeded);</p>  <p>//根据获取到的大小对psd分配内存</p>  <p>}else</p>  <p>{</p>  <p>printf(&quot;\n[-]Get SD failed:%d&quot;,GetLastError());</p>  <p>return bRs;</p>  <p>}</p>  <p>}</p>  <p>if(!GetFileSecurity(lpFileName,si,psd,dwSizeNeeded,&amp;dwSizeNeeded))</p>  <p>{</p>  <p>printf(&quot;\n[-]Get SD failed:%d&quot;,GetLastError());</p>  <p>return bRs;</p>  <p>}</p>  <p>至此针对指定文件对象的安全描述符表已经得到，下一步需要提取出访问进程的访问令牌(Token)。首先调用OpenProcessToken()获得本进程的Token，参数比较简单参考MSDN吧。<b>然后有个比较重要的内容：</b>我们需要模拟获得的令牌，因为OpenProcessToken获得的是进程的初始Token，不能直接用于访问权限的判断，我们要调用DuplicateToken()以当前用户的身份模拟一个同样的Token出来，具体使用待会儿看代码吧。<b>下面到了会让人比较困惑的地方</b>：就是GENERIC_MAPPING这个结构体，这个开始看MSDN一直一头雾水，没理解到底怎么使用，MSDN上也没有代码实例。鼓捣了一上午最后发现其实很简单。比如我们使用CreateFile()创建一个文件的时候可以指定一些权限访问的标志如GENERIC_WRITE，GENERIC_READ等等。但是这些权限标志都是通用的标志，还可以用这些标志来创建或打开其他类型的对象。在表示文件对象的时候，这些通用标志所包含的实际文件对象特有的权限标志列表如下：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/ACL_1E70/clip_image002.jpg" width="340" height="321"></p>  <p>比如当我们想使用AccessCheck()检查当前进程对某文件是否有某种权限的时候，我们必须要调用MapGenericMask()把GENERIC_READ,GENERIC_WRITE,GENERIC_EXECUTE等等这类通用权限控制标志映射成该类型的对象特有的权限控制标志，对于文件就是FILE_GENERIC_READ等。而这个函数中就用到了GENERIC_MAPPING这个结构体。</p>  <p>最后就是调用AccessCheck()，参数还是比较复杂的，我这里简单介绍下，函数原型如下：</p>  <p>BOOL WINAPI AccessCheck(</p>  <p>in PSECURITY_DESCRIPTOR pSecurityDescriptor,</p>  <p><strong>in HANDLE ClientToken,</strong></p>  <p>in DWORD DesiredAccess,</p>  <p><strong>in PGENERIC_MAPPING GenericMapping,</strong></p>  <p>out_opt PPRIVILEGE_SET PrivilegeSet,</p>  <p><strong>in_out LPDWORD PrivilegeSetLength,</strong></p>  <p>out LPDWORD GrantedAccess,</p>  <p>__out LPBOOL AccessStatus</p>  <p>);</p>  <p>pSecurityDescriptor是安全描述符表的指针没啥说的，ClientToken是模拟之后的令牌句柄。DesiredAccess是通用的权限控制标志。GenericMapping就是用MapGenericMask()映射后的针对特定对象的权限控制标志。 PrivilegeSet是我们之前提到过的访问令牌中的Privilege，用来检查一些系统操作的权限，比如开关机，修改系统时间等等，一般情况下初始化为0。PrivilegeSetLength是跟着之前PrivilegeSet的，这里既然不去检查权限也置为0。最后GrantedAccess和AccessStatus比较有用，AccessStatus会返回指定的权限是否被允许访问该对象，允许则为TRUE，否则为FALSE。如果AccessStatus为TRUE，该函数会把当前的ACE中的所有允许的权限操作标志赋给GrantedAccess。</p>  <p>下面给出获取令牌到检查权限部分的代码：</p>  <p>HANDLE hToken;</p>  <p>if(!OpenProcessToken(GetCurrentProcess(),TOKEN_ALL_ACCESS,&amp;hToken))</p>  <p>{</p>  <p>return bRs;</p>  <p>}</p>  <p>HANDLE hImpersonatedToken = NULL;</p>  <p>if(DuplicateToken(hToken,</p>  <p>SecurityImpersonation,&amp;hImpersonatedToken))</p>  <p>//模拟令牌</p>  <p>{</p>  <p>DWORD dwGenericAccessMask = GENERIC_READ|GENERIC_WRITE;</p>  <p>GENERIC_MAPPING genMap ;</p>  <p>PRIVILEGE_SET privileges = {0};</p>  <p>DWORD grantAccess = 0;</p>  <p>DWORD privLength = sizeof(privileges);</p>  <p>BOOL bGrantAccess = FALSE;</p>  <p>//将通用权限控制标志和特定类型对象权限控制标志挂钩</p>  <p>genMap.GenericRead = FILE_GENERIC_READ;</p>  <p>genMap.GenericWrite = FILE_GENERIC_WRITE;</p>  <p>genMap.GenericExecute = FILE_GENERIC_EXECUTE;</p>  <p>genMap.GenericAll = FILE_ALL_ACCESS;</p>  <p>MapGenericMask(&amp;dwGenericAccessMask,&amp;genMap);</p>  <p>//映射通用权限控制标志</p>  <p>if(AccessCheck(psd,hImpersonatedToken,</p>  <p>dwGenericAccessMask,</p>  <p>&amp;genMap,&amp;privileges,&amp;privLength,&amp;grantAccess,&amp;bGrantAccess))</p>  <p>{</p>  <p>bRs = bGrantAccess;</p>  <p>return bRs;</p>  <p>}else</p>  <p>{</p>  <p>printf(&quot;\n[-]Access check failed:%d&quot;,GetLastError());</p>  <p>return bRs;</p>  <p>}</p>  <p>}</p>  <p>最后上个图吧：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/ACL_1E70/clip_image003.jpg" width="650" height="389"></p>  <p>文章到此结束了，拙作一篇，侧重于C+API编程实现对访问控制列表的遍历和权限的判断。希望能让以后进行相关编程的同学图个方便。</p>  <p>End。</p>  <p>转自FreeBuf.com貌似很高端</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2012-07-02T10:15:59.000Z" itemprop="datePublished">
-          2012-07-02
-      </time>
-    
-    
-    | 
-    <a href='/tag/ACL/'>ACL</a>
-    
-    
-</span>
-    <h1 class="post-title">编程实现遍历ACL访问控制列表检查进程访问权限</h1>
-    <section class="post-content">
-      <p><b>Author:Pnig0s[FreeBuf]</b></p>  <p>阅读本文的朋友需要对Windows访问控制模型有初步的了解，了解Token(访问令牌)，<a href="http://ha.cker.in/tag/ACL" target="_blank">ACL</a>(访问控制列表)，DACL(选择访问控制列表)，ACE(访问控制列表项)等与访问控制模型相关的名词含义及之间的关系，当然我也会在文中简要科普一下ACM。</p>  <p>写这篇文章的目的主要是最近在写一个Win下本地提权的东西，涉及到了对ACL的操作，以前对ACL总是避而远之，Windows访问控制模型比较头疼，一个API会牵出一大把要用的API。毕竟涉及到用户访问的安全，肯定不能让编程人员随意更改这些机制，复杂一些也可以理解，可是能参考的资料很少，MSDN上关于一些访问控制相关API的使用和结构体的描述也含糊不清也没有什么代码实例。这篇文章也是在查阅国外了一些文献加上自己研究测试后完成的，发出来希望对涉及这方面编程的朋友有帮助。</p>  <p><b>—&gt;&gt;</b><b>熟悉</b><b>Windows</b><b>访问控制机制的可以跳过本段：</b></p>  <p>因为是科普我这里简单介绍下Windows访问控制模型(ACM)，别嫌我啰嗦，懂得直接Pass往下看。ACM中最重要的两部分是访问令牌(Access Token)和安全描述符表(Security Descriptor)。访问令牌存在于访问主体中，安全描述符表存在于访问客体中。比如我去米国，我就是访问主体，米国就是访问客体，我持有的签证就是访问令牌。系统中访问主体是进程客体是一切系统对象。访问令牌中有当前用户的唯一标识SID，组唯一标识SID以及一些权限标志(Privilege)。安全描述符表(SD)存在于Windows系统中的任何对象中(文件，注册表，互斥量，信号量等等)。SD中包含对象所有者的SID，组SID以及两个非常重要的数据结构选择访问控制列表(DACL)和系统访问控制列表(SACL)，其中SACL涉及系统日志用的很少可以先无视。DACL中包含一个个ACE访问控制入口也是权限访问判断的核心，当一个进程访问某一对象的时候，对象会将进程的Token与自身的ACE依次比对，直到被允许或被拒绝，前面的ACE优于后面的ACE。整体的一个权限检查过程如下图：</p>  <p><b>—&gt;&gt;</b></p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/ACL_1E70/clip_image001.jpg" width="389" height="264"></p><a id="more"></a><p></p>  <p>上面简单介绍了本文要用到的也是Windows访问控制模型核心部分的一些知识，下面来介绍下如何编程实现遍历ACL来进行访问权限的检查。本文主要针对文件对象进行介绍，其他类型的对象大同小异。要用到的两个主要API为GetFileSecurity()和AccessCheck()。GetFileSecurity能够获取指定文件的安全描述符表，而AccessCheck可以指定要检查的权限，该函数能够将获得的安全描述符表与当前进程的Token进行检查来判断进程对该文件对象是否允许相应的权限。不过这两个API并不那么容易用，因为其中要涉及到安全描述符表和访问令牌的获取，因此又牵扯出一大把API也涉及一些访问控制的知识。下面依次介绍要使用到的API然后给出整体的代码。GetFileSecurity的函数原型如下：</p>  <p>BOOL WINAPI GetFileSecurity(</p>  <p><strong>in LPCTSTR lpFileName,</strong></p>  <p>in SECURITY_INFORMATION RequestedInformation,</p>  <p><strong>out_opt PSECURITY_DESCRIPTOR pSecurityDescriptor,</strong></p>  <p>in DWORD nLength,</p>  <p><strong>out LPDWORD lpnLengthNeeded</strong></p>  <p>);</p>  <p>lpFileName指定了要获取SD的文件。首先要定义一个PSECURITY_DESCRIPTOR的安全描述符表指针，因为描述符表大小未知，所以要调用两次GetFileSecurity()第一次将nLength置0，函数会返回实际大小，然后第二次用获取的大小去接收完整的SD，代码如下：</p>  <p>文件开始部分定义的内存分配释放函数常量:</p>  <p>#define AllocMem(x) (HeapAlloc(GetProcessHeap(),HEAP_ZERO_MEMORY,x))</p>  <p>#define FreeMem(x) (HeapFree(GetProcessHeap(),HEAP_ZERO_MEMORY,x))</p>  <p>…….</p>  <p>BOOL bRs = FALSE;</p>  <p>DWORD dwSizeNeeded = 0;</p>  <p>PSECURITY_DESCRIPTOR psd = NULL;</p>  <p>SECURITY_INFORMATION si = OWNER_SECURITY_INFORMATION</p>  <p>| GROUP_SECURITY_INFORMATION|DACL_SECURITY_INFORMATION;</p>  <p>bRs = GetFileSecurity(lpFileName,si,psd,0,&amp;dwSizeNeeded);</p>  <p>//第一次调用获得SD实际大小</p>  <p>if(!bRs)</p>  <p>{</p>  <p>if(GetLastError() == ERROR_INSUFFICIENT_BUFFER)</p>  <p>{</p>  <p>psd = (PSECURITY_DESCRIPTOR)AllocMem(dwSizeNeeded);</p>  <p>//根据获取到的大小对psd分配内存</p>  <p>}else</p>  <p>{</p>  <p>printf(&quot;\n[-]Get SD failed:%d&quot;,GetLastError());</p>  <p>return bRs;</p>  <p>}</p>  <p>}</p>  <p>if(!GetFileSecurity(lpFileName,si,psd,dwSizeNeeded,&amp;dwSizeNeeded))</p>  <p>{</p>  <p>printf(&quot;\n[-]Get SD failed:%d&quot;,GetLastError());</p>  <p>return bRs;</p>  <p>}</p>  <p>至此针对指定文件对象的安全描述符表已经得到，下一步需要提取出访问进程的访问令牌(Token)。首先调用OpenProcessToken()获得本进程的Token，参数比较简单参考MSDN吧。<b>然后有个比较重要的内容：</b>我们需要模拟获得的令牌，因为OpenProcessToken获得的是进程的初始Token，不能直接用于访问权限的判断，我们要调用DuplicateToken()以当前用户的身份模拟一个同样的Token出来，具体使用待会儿看代码吧。<b>下面到了会让人比较困惑的地方</b>：就是GENERIC_MAPPING这个结构体，这个开始看MSDN一直一头雾水，没理解到底怎么使用，MSDN上也没有代码实例。鼓捣了一上午最后发现其实很简单。比如我们使用CreateFile()创建一个文件的时候可以指定一些权限访问的标志如GENERIC_WRITE，GENERIC_READ等等。但是这些权限标志都是通用的标志，还可以用这些标志来创建或打开其他类型的对象。在表示文件对象的时候，这些通用标志所包含的实际文件对象特有的权限标志列表如下：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/ACL_1E70/clip_image002.jpg" width="340" height="321"></p>  <p>比如当我们想使用AccessCheck()检查当前进程对某文件是否有某种权限的时候，我们必须要调用MapGenericMask()把GENERIC_READ,GENERIC_WRITE,GENERIC_EXECUTE等等这类通用权限控制标志映射成该类型的对象特有的权限控制标志，对于文件就是FILE_GENERIC_READ等。而这个函数中就用到了GENERIC_MAPPING这个结构体。</p>  <p>最后就是调用AccessCheck()，参数还是比较复杂的，我这里简单介绍下，函数原型如下：</p>  <p>BOOL WINAPI AccessCheck(</p>  <p>in PSECURITY_DESCRIPTOR pSecurityDescriptor,</p>  <p><strong>in HANDLE ClientToken,</strong></p>  <p>in DWORD DesiredAccess,</p>  <p><strong>in PGENERIC_MAPPING GenericMapping,</strong></p>  <p>out_opt PPRIVILEGE_SET PrivilegeSet,</p>  <p><strong>in_out LPDWORD PrivilegeSetLength,</strong></p>  <p>out LPDWORD GrantedAccess,</p>  <p>__out LPBOOL AccessStatus</p>  <p>);</p>  <p>pSecurityDescriptor是安全描述符表的指针没啥说的，ClientToken是模拟之后的令牌句柄。DesiredAccess是通用的权限控制标志。GenericMapping就是用MapGenericMask()映射后的针对特定对象的权限控制标志。 PrivilegeSet是我们之前提到过的访问令牌中的Privilege，用来检查一些系统操作的权限，比如开关机，修改系统时间等等，一般情况下初始化为0。PrivilegeSetLength是跟着之前PrivilegeSet的，这里既然不去检查权限也置为0。最后GrantedAccess和AccessStatus比较有用，AccessStatus会返回指定的权限是否被允许访问该对象，允许则为TRUE，否则为FALSE。如果AccessStatus为TRUE，该函数会把当前的ACE中的所有允许的权限操作标志赋给GrantedAccess。</p>  <p>下面给出获取令牌到检查权限部分的代码：</p>  <p>HANDLE hToken;</p>  <p>if(!OpenProcessToken(GetCurrentProcess(),TOKEN_ALL_ACCESS,&amp;hToken))</p>  <p>{</p>  <p>return bRs;</p>  <p>}</p>  <p>HANDLE hImpersonatedToken = NULL;</p>  <p>if(DuplicateToken(hToken,</p>  <p>SecurityImpersonation,&amp;hImpersonatedToken))</p>  <p>//模拟令牌</p>  <p>{</p>  <p>DWORD dwGenericAccessMask = GENERIC_READ|GENERIC_WRITE;</p>  <p>GENERIC_MAPPING genMap ;</p>  <p>PRIVILEGE_SET privileges = {0};</p>  <p>DWORD grantAccess = 0;</p>  <p>DWORD privLength = sizeof(privileges);</p>  <p>BOOL bGrantAccess = FALSE;</p>  <p>//将通用权限控制标志和特定类型对象权限控制标志挂钩</p>  <p>genMap.GenericRead = FILE_GENERIC_READ;</p>  <p>genMap.GenericWrite = FILE_GENERIC_WRITE;</p>  <p>genMap.GenericExecute = FILE_GENERIC_EXECUTE;</p>  <p>genMap.GenericAll = FILE_ALL_ACCESS;</p>  <p>MapGenericMask(&amp;dwGenericAccessMask,&amp;genMap);</p>  <p>//映射通用权限控制标志</p>  <p>if(AccessCheck(psd,hImpersonatedToken,</p>  <p>dwGenericAccessMask,</p>  <p>&amp;genMap,&amp;privileges,&amp;privLength,&amp;grantAccess,&amp;bGrantAccess))</p>  <p>{</p>  <p>bRs = bGrantAccess;</p>  <p>return bRs;</p>  <p>}else</p>  <p>{</p>  <p>printf(&quot;\n[-]Access check failed:%d&quot;,GetLastError());</p>  <p>return bRs;</p>  <p>}</p>  <p>}</p>  <p>最后上个图吧：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/ACL_1E70/clip_image003.jpg" width="650" height="389"></p>  <p>文章到此结束了，拙作一篇，侧重于C+API编程实现对访问控制列表的遍历和权限的判断。希望能让以后进行相关编程的同学图个方便。</p>  <p>End。</p>  <p>转自FreeBuf.com貌似很高端</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/625.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/625.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/625.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/625.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/631.seo/">
-        ← burpsuite pro v1.4.07破解版下载
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/622.seo/">
-        利用SSH来包含执行命令 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/代码学习/">代码学习</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/ACL/">ACL</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/631.seo/" title="burpsuite pro v1.4.07破解版下载">
+  <strong>Prev:</strong><br/>
+  <span>
+  burpsuite pro v1.4.07破解版下载</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/622.seo/"  title="利用SSH来包含执行命令">
+ <strong>Next:</strong><br/> 
+ <span>利用SSH来包含执行命令
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-编程实现遍历ACL访问控制列表检查进程访问权限" data-title="编程实现遍历ACL访问控制列表检查进程访问权限" data-url="http://ha.cker.in/625.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

@@ -1,162 +1,447 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>CentOS 6.2   RedHat EL 5.4 yum安装配置lnmp服务器(Nginx+PHP+MySQL) | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>CentOS 6.2   RedHat EL 5.4 yum安装配置lnmp服务器(Nginx+PHP+MySQL) | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="准备篇： 1、配置防火墙，开启80端口、3306端口&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;  vi /etc/sysconfig/iptables&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; -A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT（允许80端口通过防火墙）&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; -A INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT（允许3306端口通过防火墙）特别提示：很多网友把这两条规则添加到防火墙配置的最后一行，导致防火墙启动失败，正确的应该是添加到默认的22端口这条规则的下面添加好之后防火墙规则如下所示：########################################################## Firewall configuration written by system-config-firewall# Manual customization of this file is not recommended.filter:INPUT ACCEPT [0:0]:FORWARD ACCEPT [0:0]:OUTPUT ACCEPT [0:0]-A INPUT -m state –state ESTABLISHED,RELATED -j ACCEPT-A INPUT -p icmp -j ACCEPT-A INPUT -i lo -j ACCEPT-A INPUT -m state –state NEW -m tcp -p tcp –dport 22 -j ACCEPT-A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT-A INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT-A INPUT -j REJECT –reject-with icmp-host-prohibited-A FORWARD -j REJECT –reject-with icmp-host-prohibitedCOMMIT######################################################### /etc/init.d/iptables restart&amp;nbsp; #最后重启防火墙使配置生效">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="CentOS 6.2   RedHat EL 5.4 yum安装配置lnmp服务器(Nginx+PHP+MySQL) | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/369.seo/" title="CentOS 6.2   RedHat EL 5.4 yum安装配置lnmp服务器(Nginx+PHP+MySQL)" itemprop="url">CentOS 6.2   RedHat EL 5.4 yum安装配置lnmp服务器(Nginx+PHP+MySQL)</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2012-04-10T12:50:29.000Z" itemprop="datePublished">2012-04-10</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
-
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2012-04-10T12:50:29.000Z" itemprop="datePublished">
-          2012-04-10
-      </time>
-    
-    
-    | 
-    <a href='/tag/Mysql/'>Mysql</a>,
-    
-    <a href='/tag/CentOS/'>CentOS</a>,
-    
-    <a href='/tag/Nginx/'>Nginx</a>,
-    
-    <a href='/tag/php/'>php</a>,
-    
-    <a href='/tag/LNMP/'>LNMP</a>,
-    
-    <a href='/tag/Php-fpm/'>Php-fpm</a>,
-    
-    <a href='/tag/RedHat/'>RedHat</a>
-    
-    
-</span>
-    <h1 class="post-title">CentOS 6.2   RedHat EL 5.4 yum安装配置lnmp服务器(Nginx+PHP+MySQL)</h1>
-    <section class="post-content">
-      <p></p><p><a href="http://img.cker.in/CentOS6.2RedHatEL5.4yumlnmpNginxPHPMySQL_43ED/image.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/CentOS6.2RedHatEL5.4yumlnmpNginxPHPMySQL_43ED/image_thumb.png" width="244" height="159"></a> </p> <p><strong>准备篇：</strong> </p><p><strong>1</strong><strong>、配置防火墙，开启80端口、3306端口</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong> vi /etc/sysconfig/iptables<br></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT（允许80端口通过防火墙）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -A INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT（允许3306端口通过防火墙）<br><strong>特别提示：很多网友把这两条规则添加到防火墙配置的最后一行，导致防火墙启动失败，正确的应该是添加到默认的22端口这条规则的下面</strong><br>添加好之后防火墙规则如下所示：<br>#########################################################<br># Firewall configuration written by system-config-firewall<br># Manual customization of this file is not recommended.<br><em>filter<br>:INPUT ACCEPT [0:0]<br>:FORWARD ACCEPT [0:0]<br>:OUTPUT ACCEPT [0:0]<br>-A INPUT -m state –state ESTABLISHED,RELATED -j ACCEPT<br>-A INPUT -p icmp -j ACCEPT<br>-A INPUT -i lo -j ACCEPT<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 22 -j ACCEPT<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT<br>-A INPUT -j REJECT –reject-with icmp-host-prohibited<br>-A FORWARD -j REJECT –reject-with icmp-host-prohibited<br>COMMIT<br>######################################################### <p><strong>/etc/init.d/iptables restart</strong>&nbsp; #最后重启防火墙使配置生效</p><a id="more"></a><p> </p><p><strong>2</strong><strong>、关闭SELINUX</strong><br>&nbsp;&nbsp;&nbsp; <strong>&nbsp;&nbsp; vi /etc/selinux/config<br></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>#SELINUX=enforcing</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #注释掉<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong> #SELINUXTYPE=targeted</strong>&nbsp;&nbsp;&nbsp; #注释掉<br>&nbsp;&nbsp;&nbsp;&nbsp; <strong>&nbsp; SELINUX=disabled</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #增加<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>:x</strong>&nbsp; 保存，关闭<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>shutdown -r now</strong>&nbsp;&nbsp; #重启系统 </p><p><strong>3</strong><strong>、配置CentOS 6.2 第三方yum源（</strong><strong>CentOS</strong><strong>默认的标准源里没有nginx软件包</strong><strong>）</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong> yum install wget</strong>&nbsp;&nbsp;&nbsp; #安装下载工具wget<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>wget </strong><a href="http://www.atomicorp.com/installers/atomic" target="_blank" rel="external"><strong>http://www.atomicorp.com/installers/atomic</strong></a>&nbsp; #下载atomic yum源<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong> sh ./atomic</strong>&nbsp;&nbsp; #安装<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>yum check-update</strong>&nbsp; #更新yum软件包<br>######################################################<br><strong>安装篇：</strong> </p><p><strong>一、安装nginx</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>yum install nginx</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #安装nginx，根据提示，输入Y安装即可成功安装<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>service nginx start</strong>&nbsp;&nbsp;&nbsp; #启动<br><strong>chkconfig&nbsp; nginx on</strong>&nbsp;&nbsp;&nbsp; #设为开机启动<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>/etc/init.d/nginx&nbsp; restart</strong>&nbsp; #重启<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong> rm -rf /usr/share/nginx/html/</strong></p></em>&nbsp; #删除ngin默认测试页 </p><p><strong>二、安装MySQL</strong><br>1、安装mysql </p><p>&nbsp;<strong>yum install mysql mysql-server</strong>&nbsp;&nbsp; #询问是否要安装，输入Y即可自动安装,直到安装完成<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong> /etc/init.d/mysqld start</strong>&nbsp;&nbsp; #启动MySQL<br><strong>chkconfig mysqld on</strong>&nbsp;&nbsp; #设为开机启动<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>cp /usr/share/mysql/my-medium.cnf&nbsp;&nbsp; /etc/my.cnf</strong>&nbsp; #拷贝配置文件（注意：如果/etc目录下面默认有一个my.cnf，直接覆盖即可）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>shutdown -r now</strong>&nbsp; #重启系统 </p><p>2、为root账户设置密码<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>mysql_secure_installation</strong><br>回车，根据提示输入Y<br>输入2次密码，回车<br>根据提示一路输入Y<br>最后出现：Thanks for using MySQL!<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MySql密码设置完成，重新启动 MySQL：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>/etc/init.d/mysqld stop</strong>&nbsp;&nbsp; #停止<br>&nbsp;&nbsp;&nbsp;&nbsp; <strong> /etc/init.d/mysqld start</strong>&nbsp; #启动<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>service mysqld restart </strong>&nbsp;&nbsp; #重启 </p><p><strong>三、安装PHP</strong><br>1、安装PHP<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>yum install php</strong>&nbsp;&nbsp; #根据提示输入Y直到安装完成<br>2、安装PHP组件，使PHP支持 MySQL、PHP支持FastCGI模式<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>yum install php-mysql php-gd libjpeg* php-imap php-ldap php-odbc php-pear php-xml php-xmlrpc php-mbstring php-mcrypt php-bcmath php-mhash libmcrypt libmcrypt-devel php-fpm</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #根据提示输入Y回车<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>/etc/init.d/mysqld restart</strong>&nbsp; #重启MySql<br>&nbsp;&nbsp;&nbsp;&nbsp; <strong> /etc/init.d/nginx&nbsp; restart</strong>&nbsp; #重启nginx<br><strong>/etc/rc.d/init.d/php-fpm&nbsp; start</strong>&nbsp; #启动php-fpm<br><strong>chkconfig php-fpm on</strong>&nbsp; #设置开机启动<br>############################################<br><strong>配置篇</strong> </p><p><strong>一、配置nginx支持php</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>cp /etc/nginx/nginx.conf&nbsp; /etc/nginx/nginx.conf.bak</strong>&nbsp;&nbsp;&nbsp; #备份原有配置文件<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>vi /etc/nginx/nginx.conf</strong>&nbsp; #编辑<br><strong>user&nbsp;&nbsp; nginx&nbsp; nginx;</strong>&nbsp; #修改nginx运行账号为：nginx组的nginx用户<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>:wq!</strong>&nbsp;&nbsp;&nbsp; #保存退出 </p><p><strong>cp /etc/nginx/conf.d/default.conf&nbsp; /etc/nginx/conf.d/default.conf.bak</strong>&nbsp;&nbsp; #备份原有配置文件<br><strong>vi /etc/nginx/conf.d/default.conf</strong>&nbsp;&nbsp; #编辑 </p><p>index&nbsp; index.php index.html index.htm;&nbsp;&nbsp; #增加index.php </p><p># pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000<br>&nbsp; #<br>&nbsp; location ~ .php$ {<br>&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; html;<br>&nbsp;&nbsp;&nbsp; fastcgi_pass&nbsp;&nbsp; 127.0.0.1:9000;<br>&nbsp;&nbsp;&nbsp; fastcgi_index&nbsp; index.php;<br>&nbsp;&nbsp;&nbsp; fastcgi_param&nbsp; SCRIPT_FILENAME&nbsp;&nbsp; $document_root$fastcgi_script_name;<br>&nbsp;&nbsp;&nbsp; include&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fastcgi_params;<br>&nbsp; }<br>&nbsp;&nbsp;&nbsp;&nbsp; #取消FastCGI server部分location的注释,并要注意fastcgi_param行的参数,改为$document_root$fastcgi_script_name,或者使用绝对路径 </p><p><strong>二、配置php</strong> </p><p><strong>vi&nbsp; /etc/php.ini</strong>&nbsp;&nbsp; #编辑 </p><p>&nbsp; date.timezone = PRC&nbsp;&nbsp;&nbsp;&nbsp; #在946行 把前面的分号去掉，改为date.timezone = PRC </p><p>&nbsp; disable_functions = passthru,exec,system,chroot,scandir,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_alter,ini_restore,dl,openlog,syslog,readlink,symlink,popepassthru,stream_socket_server,escapeshellcmd,dll,popen,disk_free_space,checkdnsrrgetservbyname,getservbyport,disk_total_space,posix_ctermid,posix_get_last_error,posix_getcwd, posix_getegid,posix_geteuid,posix_getgid, posix_getgrgid,posix_getgrnam,posix_getgroups,posix_getlogin,posix_getpgid,posix_getpgrp,posix_getpid, posix_getppid,posix_getpwnam,posix_getpwuid, posix_getrlimit, posix_getsid,posix_getuid,posix_isatty, posix_kill,posix_mkfifo,posix_setegid,posix_seteuid,posix_setgid, posix_setpgid,posix_setsid,posix_setuid,posix_strerror,posix_times,posix_ttyname,posix_uname<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #在386行 列出PHP可以禁用的函数，如果某些程序需要用到这个函数，可以删除，取消禁用。<br>&nbsp; expose_php = Off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #在432行 禁止显示php版本的信息<br>&nbsp; magic_quotes_gpc = On&nbsp;&nbsp; #在745行 打开magic_quotes_gpc来防止SQL注入<br>&nbsp; open_basedir = .:/tmp/&nbsp; #在380行，设置表示允许访问当前目录(即PHP脚本文件所在之目录)和/tmp/目录,可以防止php木马跨站，如果改了之后安装程序有问题，可注销此行，或者直接写上程序目录路径/var/www/html/www.osyunwei.com/:/tmp/<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :wq!&nbsp; #保存退出 </p><p><strong>三、配置php-fpm</strong> </p><p><strong> cp /etc/php-fpm.d/www.conf&nbsp;&nbsp; /etc/php-fpm.d/www.conf.bak</strong>&nbsp;&nbsp; #备份原有配置文件<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>vi /etc/php-fpm.d/www.conf</strong>&nbsp;&nbsp; #编辑<br>user = nginx&nbsp;&nbsp; #修改用户为nginx<br>group = nginx&nbsp;&nbsp; #修改组为nginx </p><p><strong> /etc/init.d/mysqld restart</strong>&nbsp; #重启MySql<br><strong>/etc/init.d/nginx&nbsp; restart</strong>&nbsp; #重启nginx<br><strong>/etc/rc.d/init.d/php-fpm&nbsp; restart</strong>&nbsp; #重启php-fpm<br><strong>###########################################</strong> </p><p><strong>测试篇<br>cd&nbsp; /usr/share/nginx/html/</strong>&nbsp;&nbsp; #进入nginx默认网站根目录<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong> vi&nbsp; index.php</strong>&nbsp;&nbsp; #新建index.php文件 <blockquote> <p>&lt;?php<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; phpinfo();<br> ?&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>:wq!</strong> #保存</p></blockquote> </p><p><strong>chown nginx.nginx /usr/share/nginx/html/ -R</strong>&nbsp; #设置目录所有者 </p><p><strong>chmod 700&nbsp; /usr/share/nginx/html/ -R</strong>&nbsp;&nbsp; #设置目录权限 </p><p>在客户端浏览器输入服务器IP地址，可以看到相关的配置信息！ </p><p><strong>###########################################</strong> </p><p><strong>备注</strong> </p><p>nginx默认站点目录是：<strong>/usr/share/nginx/html/</strong> </p><p>权限设置：<strong>chown nginx.nginx /usr/share/nginx/html/ -R</strong> </p><p>MySQL数据库目录是：/var/lib/mysql </p><p>权限设置：<strong>chown mysql.mysql -R&nbsp; /var/lib/mysql</strong> </p><p>此教程目前（2012.04.11）安装Nginx+PHP+MySQL版本如下： </p><p><a href="http://img.cker.in/CentOS6.2RedHatEL5.4yumlnmpNginxPHPMySQL_43ED/clip_image002.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/CentOS6.2RedHatEL5.4yumlnmpNginxPHPMySQL_43ED/clip_image002_thumb.jpg" width="244" height="86"></a> </p><p><a href="http://img.cker.in/CentOS6.2RedHatEL5.4yumlnmpNginxPHPMySQL_43ED/clip_image004.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/CentOS6.2RedHatEL5.4yumlnmpNginxPHPMySQL_43ED/clip_image004_thumb.jpg" width="244" height="136"></a> </p><p>IE下访问如图 </p><p><a href="http://img.cker.in/CentOS6.2RedHatEL5.4yumlnmpNginxPHPMySQL_43ED/clip_image006.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/CentOS6.2RedHatEL5.4yumlnmpNginxPHPMySQL_43ED/clip_image006_thumb.jpg" width="244" height="169"></a></p>
-
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/369.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/369.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/369.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/369.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/372.seo/">
-        ← linux下的压力测试工具之siege
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/367.seo/">
-        聚商宝2.0暴库及cookies欺骗缺陷及修复 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p></p><p><a href="http://img.cker.in/CentOS6.2RedHatEL5.4yumlnmpNginxPHPMySQL_43ED/image.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/CentOS6.2RedHatEL5.4yumlnmpNginxPHPMySQL_43ED/image_thumb.png" width="244" height="159"></a> </p> <p><strong>准备篇：</strong> </p><p><strong>1</strong><strong>、配置防火墙，开启80端口、3306端口</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong> vi /etc/sysconfig/iptables<br></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT（允许80端口通过防火墙）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -A INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT（允许3306端口通过防火墙）<br><strong>特别提示：很多网友把这两条规则添加到防火墙配置的最后一行，导致防火墙启动失败，正确的应该是添加到默认的22端口这条规则的下面</strong><br>添加好之后防火墙规则如下所示：<br>#########################################################<br># Firewall configuration written by system-config-firewall<br># Manual customization of this file is not recommended.<br><em>filter<br>:INPUT ACCEPT [0:0]<br>:FORWARD ACCEPT [0:0]<br>:OUTPUT ACCEPT [0:0]<br>-A INPUT -m state –state ESTABLISHED,RELATED -j ACCEPT<br>-A INPUT -p icmp -j ACCEPT<br>-A INPUT -i lo -j ACCEPT<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 22 -j ACCEPT<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT<br>-A INPUT -j REJECT –reject-with icmp-host-prohibited<br>-A FORWARD -j REJECT –reject-with icmp-host-prohibited<br>COMMIT<br>######################################################### <p><strong>/etc/init.d/iptables restart</strong>&nbsp; #最后重启防火墙使配置生效</p><a id="more"></a><p> </p><p><strong>2</strong><strong>、关闭SELINUX</strong><br>&nbsp;&nbsp;&nbsp; <strong>&nbsp;&nbsp; vi /etc/selinux/config<br></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>#SELINUX=enforcing</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #注释掉<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong> #SELINUXTYPE=targeted</strong>&nbsp;&nbsp;&nbsp; #注释掉<br>&nbsp;&nbsp;&nbsp;&nbsp; <strong>&nbsp; SELINUX=disabled</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #增加<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>:x</strong>&nbsp; 保存，关闭<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>shutdown -r now</strong>&nbsp;&nbsp; #重启系统 </p><p><strong>3</strong><strong>、配置CentOS 6.2 第三方yum源（</strong><strong>CentOS</strong><strong>默认的标准源里没有nginx软件包</strong><strong>）</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong> yum install wget</strong>&nbsp;&nbsp;&nbsp; #安装下载工具wget<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>wget </strong><a href="http://www.atomicorp.com/installers/atomic" target="_blank" rel="external"><strong>http://www.atomicorp.com/installers/atomic</strong></a>&nbsp; #下载atomic yum源<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong> sh ./atomic</strong>&nbsp;&nbsp; #安装<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>yum check-update</strong>&nbsp; #更新yum软件包<br>######################################################<br><strong>安装篇：</strong> </p><p><strong>一、安装nginx</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>yum install nginx</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #安装nginx，根据提示，输入Y安装即可成功安装<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>service nginx start</strong>&nbsp;&nbsp;&nbsp; #启动<br><strong>chkconfig&nbsp; nginx on</strong>&nbsp;&nbsp;&nbsp; #设为开机启动<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>/etc/init.d/nginx&nbsp; restart</strong>&nbsp; #重启<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong> rm -rf /usr/share/nginx/html/</strong></p></em>&nbsp; #删除ngin默认测试页 </p><p><strong>二、安装MySQL</strong><br>1、安装mysql </p><p>&nbsp;<strong>yum install mysql mysql-server</strong>&nbsp;&nbsp; #询问是否要安装，输入Y即可自动安装,直到安装完成<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong> /etc/init.d/mysqld start</strong>&nbsp;&nbsp; #启动MySQL<br><strong>chkconfig mysqld on</strong>&nbsp;&nbsp; #设为开机启动<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>cp /usr/share/mysql/my-medium.cnf&nbsp;&nbsp; /etc/my.cnf</strong>&nbsp; #拷贝配置文件（注意：如果/etc目录下面默认有一个my.cnf，直接覆盖即可）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>shutdown -r now</strong>&nbsp; #重启系统 </p><p>2、为root账户设置密码<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>mysql_secure_installation</strong><br>回车，根据提示输入Y<br>输入2次密码，回车<br>根据提示一路输入Y<br>最后出现：Thanks for using MySQL!<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MySql密码设置完成，重新启动 MySQL：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>/etc/init.d/mysqld stop</strong>&nbsp;&nbsp; #停止<br>&nbsp;&nbsp;&nbsp;&nbsp; <strong> /etc/init.d/mysqld start</strong>&nbsp; #启动<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>service mysqld restart </strong>&nbsp;&nbsp; #重启 </p><p><strong>三、安装PHP</strong><br>1、安装PHP<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>yum install php</strong>&nbsp;&nbsp; #根据提示输入Y直到安装完成<br>2、安装PHP组件，使PHP支持 MySQL、PHP支持FastCGI模式<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>yum install php-mysql php-gd libjpeg* php-imap php-ldap php-odbc php-pear php-xml php-xmlrpc php-mbstring php-mcrypt php-bcmath php-mhash libmcrypt libmcrypt-devel php-fpm</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #根据提示输入Y回车<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>/etc/init.d/mysqld restart</strong>&nbsp; #重启MySql<br>&nbsp;&nbsp;&nbsp;&nbsp; <strong> /etc/init.d/nginx&nbsp; restart</strong>&nbsp; #重启nginx<br><strong>/etc/rc.d/init.d/php-fpm&nbsp; start</strong>&nbsp; #启动php-fpm<br><strong>chkconfig php-fpm on</strong>&nbsp; #设置开机启动<br>############################################<br><strong>配置篇</strong> </p><p><strong>一、配置nginx支持php</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>cp /etc/nginx/nginx.conf&nbsp; /etc/nginx/nginx.conf.bak</strong>&nbsp;&nbsp;&nbsp; #备份原有配置文件<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>vi /etc/nginx/nginx.conf</strong>&nbsp; #编辑<br><strong>user&nbsp;&nbsp; nginx&nbsp; nginx;</strong>&nbsp; #修改nginx运行账号为：nginx组的nginx用户<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>:wq!</strong>&nbsp;&nbsp;&nbsp; #保存退出 </p><p><strong>cp /etc/nginx/conf.d/default.conf&nbsp; /etc/nginx/conf.d/default.conf.bak</strong>&nbsp;&nbsp; #备份原有配置文件<br><strong>vi /etc/nginx/conf.d/default.conf</strong>&nbsp;&nbsp; #编辑 </p><p>index&nbsp; index.php index.html index.htm;&nbsp;&nbsp; #增加index.php </p><p># pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000<br>&nbsp; #<br>&nbsp; location ~ .php$ {<br>&nbsp;&nbsp;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; html;<br>&nbsp;&nbsp;&nbsp; fastcgi_pass&nbsp;&nbsp; 127.0.0.1:9000;<br>&nbsp;&nbsp;&nbsp; fastcgi_index&nbsp; index.php;<br>&nbsp;&nbsp;&nbsp; fastcgi_param&nbsp; SCRIPT_FILENAME&nbsp;&nbsp; $document_root$fastcgi_script_name;<br>&nbsp;&nbsp;&nbsp; include&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fastcgi_params;<br>&nbsp; }<br>&nbsp;&nbsp;&nbsp;&nbsp; #取消FastCGI server部分location的注释,并要注意fastcgi_param行的参数,改为$document_root$fastcgi_script_name,或者使用绝对路径 </p><p><strong>二、配置php</strong> </p><p><strong>vi&nbsp; /etc/php.ini</strong>&nbsp;&nbsp; #编辑 </p><p>&nbsp; date.timezone = PRC&nbsp;&nbsp;&nbsp;&nbsp; #在946行 把前面的分号去掉，改为date.timezone = PRC </p><p>&nbsp; disable_functions = passthru,exec,system,chroot,scandir,chgrp,chown,shell_exec,proc_open,proc_get_status,ini_alter,ini_alter,ini_restore,dl,openlog,syslog,readlink,symlink,popepassthru,stream_socket_server,escapeshellcmd,dll,popen,disk_free_space,checkdnsrrgetservbyname,getservbyport,disk_total_space,posix_ctermid,posix_get_last_error,posix_getcwd, posix_getegid,posix_geteuid,posix_getgid, posix_getgrgid,posix_getgrnam,posix_getgroups,posix_getlogin,posix_getpgid,posix_getpgrp,posix_getpid, posix_getppid,posix_getpwnam,posix_getpwuid, posix_getrlimit, posix_getsid,posix_getuid,posix_isatty, posix_kill,posix_mkfifo,posix_setegid,posix_seteuid,posix_setgid, posix_setpgid,posix_setsid,posix_setuid,posix_strerror,posix_times,posix_ttyname,posix_uname<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #在386行 列出PHP可以禁用的函数，如果某些程序需要用到这个函数，可以删除，取消禁用。<br>&nbsp; expose_php = Off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #在432行 禁止显示php版本的信息<br>&nbsp; magic_quotes_gpc = On&nbsp;&nbsp; #在745行 打开magic_quotes_gpc来防止SQL注入<br>&nbsp; open_basedir = .:/tmp/&nbsp; #在380行，设置表示允许访问当前目录(即PHP脚本文件所在之目录)和/tmp/目录,可以防止php木马跨站，如果改了之后安装程序有问题，可注销此行，或者直接写上程序目录路径/var/www/html/www.osyunwei.com/:/tmp/<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :wq!&nbsp; #保存退出 </p><p><strong>三、配置php-fpm</strong> </p><p><strong> cp /etc/php-fpm.d/www.conf&nbsp;&nbsp; /etc/php-fpm.d/www.conf.bak</strong>&nbsp;&nbsp; #备份原有配置文件<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>vi /etc/php-fpm.d/www.conf</strong>&nbsp;&nbsp; #编辑<br>user = nginx&nbsp;&nbsp; #修改用户为nginx<br>group = nginx&nbsp;&nbsp; #修改组为nginx </p><p><strong> /etc/init.d/mysqld restart</strong>&nbsp; #重启MySql<br><strong>/etc/init.d/nginx&nbsp; restart</strong>&nbsp; #重启nginx<br><strong>/etc/rc.d/init.d/php-fpm&nbsp; restart</strong>&nbsp; #重启php-fpm<br><strong>###########################################</strong> </p><p><strong>测试篇<br>cd&nbsp; /usr/share/nginx/html/</strong>&nbsp;&nbsp; #进入nginx默认网站根目录<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong> vi&nbsp; index.php</strong>&nbsp;&nbsp; #新建index.php文件 <blockquote> <p>&lt;?php<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; phpinfo();<br> ?&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>:wq!</strong> #保存</p></blockquote> </p><p><strong>chown nginx.nginx /usr/share/nginx/html/ -R</strong>&nbsp; #设置目录所有者 </p><p><strong>chmod 700&nbsp; /usr/share/nginx/html/ -R</strong>&nbsp;&nbsp; #设置目录权限 </p><p>在客户端浏览器输入服务器IP地址，可以看到相关的配置信息！ </p><p><strong>###########################################</strong> </p><p><strong>备注</strong> </p><p>nginx默认站点目录是：<strong>/usr/share/nginx/html/</strong> </p><p>权限设置：<strong>chown nginx.nginx /usr/share/nginx/html/ -R</strong> </p><p>MySQL数据库目录是：/var/lib/mysql </p><p>权限设置：<strong>chown mysql.mysql -R&nbsp; /var/lib/mysql</strong> </p><p>此教程目前（2012.04.11）安装Nginx+PHP+MySQL版本如下： </p><p><a href="http://img.cker.in/CentOS6.2RedHatEL5.4yumlnmpNginxPHPMySQL_43ED/clip_image002.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/CentOS6.2RedHatEL5.4yumlnmpNginxPHPMySQL_43ED/clip_image002_thumb.jpg" width="244" height="86"></a> </p><p><a href="http://img.cker.in/CentOS6.2RedHatEL5.4yumlnmpNginxPHPMySQL_43ED/clip_image004.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/CentOS6.2RedHatEL5.4yumlnmpNginxPHPMySQL_43ED/clip_image004_thumb.jpg" width="244" height="136"></a> </p><p>IE下访问如图 </p><p><a href="http://img.cker.in/CentOS6.2RedHatEL5.4yumlnmpNginxPHPMySQL_43ED/clip_image006.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/CentOS6.2RedHatEL5.4yumlnmpNginxPHPMySQL_43ED/clip_image006_thumb.jpg" width="244" height="169"></a></p>
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/原创文章/">原创文章</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/Mysql/">Mysql</a><a href="/tag/CentOS/">CentOS</a><a href="/tag/Nginx/">Nginx</a><a href="/tag/php/">php</a><a href="/tag/LNMP/">LNMP</a><a href="/tag/Php-fpm/">Php-fpm</a><a href="/tag/RedHat/">RedHat</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/372.seo/" title="linux下的压力测试工具之siege">
+  <strong>Prev:</strong><br/>
+  <span>
+  linux下的压力测试工具之siege</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/367.seo/"  title="聚商宝2.0暴库及cookies欺骗缺陷及修复">
+ <strong>Next:</strong><br/> 
+ <span>聚商宝2.0暴库及cookies欺骗缺陷及修复
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-CentOS 6.2   RedHat EL 5.4 yum安装配置lnmp服务器(Nginx+PHP+MySQL)" data-title="CentOS 6.2   RedHat EL 5.4 yum安装配置lnmp服务器(Nginx+PHP+MySQL)" data-url="http://ha.cker.in/369.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

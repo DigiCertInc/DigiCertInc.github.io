@@ -1,144 +1,441 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>转 代码审查：大家都应该做的事情 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>转 代码审查：大家都应该做的事情 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="正如我在上一篇博客中提到的（现在可以明确地告诉大家），我已经离开Google了。虽然我已经收到了很多不错的offer，但是还没有决定去哪里。在这段时间里从技术角度上说我不受雇于任何人，虽然也许这会让我和（前）同事或者老板关系有点紧张，但我觉得应该写一些关于技术上的有趣的事情。 正如我在上一篇博客中提">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="转 代码审查：大家都应该做的事情 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/55.seo/" title="转 代码审查：大家都应该做的事情" itemprop="url">转 代码审查：大家都应该做的事情</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2011-08-01T23:14:40.000Z" itemprop="datePublished">2011-08-02</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>正如我在上一篇博客中提到的（现在可以明确地告诉大家），我已经离开Google了。虽然我已经收到了很多不错的offer，但是还没有决定去哪里。在这段时间里从技术角度上说我不受雇于任何人，虽然也许这会让我和（前）同事或者老板关系有点紧张，但我觉得应该写一些关于技术上的有趣的事情。 </p><p>正如我在上一篇博客中提到的（现在可以明确地告诉大家），我已经离开Google了。虽然我已经收到了很多不错的offer，但是还没有决定去哪里。在这段时间里从技术角度上说我不受雇于任何人，虽然也许这会让我和（前）同事或者老板关系有点紧张，但我觉得应该写一些关于技术上的有趣的事情。 </p><p>　　Google确实是一家很酷的公司。不论是在公司内部或是外部，Google都做了很多让人赞叹的的事情。这里我想介绍一些不涉及商业机密，但鲜为外人所知的事情。 </p><p>　　Google的代码之所以优秀原因其实很简单：<strong>他们非常重视代码审查</strong>。代码审查并不是Google独有的，它被公认为是一个很好的（提高代码质量的）手段，很多人已经在日常开发中采用代码审查。但我还没有看到哪一家大公司（像Google这样）应用得如此广泛。在 Google，任何的产品或者项目代码在检入（代码仓库）之前都需要进行有效的审查。 </p><p>　　每个人都要参与代码审查，而且这里我指的不是非正式的审查：<strong>它是软件开发环节中非常重要而且通用的规则</strong>。不仅是产品代码，所有的代码都需要进行审查。审查代码不需要投入很多的精力，但是（与不做审查相比）产生的效果却是天壤之别。 </p><p>　　关于代码审查（code review），Jonathan Danylko 的看法是“代码要经常检查（包括自查和其他同事检查）。不要把别人的检查，看成是对代码风格的苛求。应该把它们看作是有建设性的批评。对个人来说，经常检查你的代码并且自问，“我怎样才能写得更好呢？” 这会加速你的成长，让你成为一个更优秀的程序员。” </p><p><strong>你能从代码审查中收获什么？</strong> </p><p>　　事实显而易见，有另外一个人检查即将提交的代码，能够帮助找到bug。这是代码审查众所周知且经常被提及的好处。但依据我的经验，这是最没有价值的一个好处。人们确实可以在代码审查中找到bug。然而坦率地说，在代码审查中找到的bug绝大多数都是一些代码作者花上几分钟就能找到的小bug。那些真正需要花时间才能找到的bug在代码审查中是检查不到的。 </p><p><strong>代码审查最大的好处在于它是一种社交的途径。</strong>如果你编程的时候就知道会有同事检查你的代码，那么你的程序会有所不同。你写的代码会更加整洁，有着较好的注释，结构也组织的不错——因为你知道会有人来检查你的代码，而且你很在意他们的意见。如果没有代码审查，你知道代码会在最后才会审查。因为不是马上就要检查，所以对你而言并不紧迫，因而你不会想着先自检一遍。 </p><p><strong>代码审查还有一个更大的好处，就是可以分享知识。</strong>在很多的开发团队中，每个人都会负责并且专注于一个核心模块。除非别的同事负责的模块出现问题导致自己的代码不能运行，否则他们是不会去关注别人的工作。这样产生的结果是，每一个模块的代码只有一个人比较熟悉。假如事不凑巧，那位程序员正好休假或者离开了公司，那么没有人了解那些代码了。如果有代码审查的环节，那么至少会有两个人熟悉代码——代码的作者和审阅者。审阅者虽然没有作者对代码那么了解——但是他同样熟悉代码的设计和结构，这些信息是无价之宝。 </p><p>　　当然，没有什么事情是那么简单的。以我的的经验看来，要做好代码审查需要一段时间练习。我注意到经验不足的审阅者通常会落入一些代码审查的陷阱，这些陷阱往往会造成很多的麻烦，给那些希望尝试代码审查的人们留下了坏印象，成为了他们采纳代码审查的一个主要障碍。 </p><p>　　代码审查最重要规则是对即将提交的代码中查找问题——<strong>你需要做的就是确认代码是正确的</strong>。而通常会犯的一个错误，也是刚刚接触代码审查的新手容易犯的一个错误，即审阅者会判断这段代码是否按照自己思路来实现。 </p><p>　　当有一个问题需要解决时，通常会有几十种的办法。当选定一个解决方法时，会有百万种代码实现。因此，作为一个审阅者，你的工作不是确保代码是按照你的方式来编写的——因为这是不可能的事情。审阅者的工作是确保原作者编写的代码是正确的。如果你没有遵守这个规则，你可能会到处碰壁，审查结束时你的心情很糟糕，对你来说肯定不是一件好事情。 </p><p>　　问题在于这是不自觉就会犯的一个错误。假定你是一个程序员，当你在看一个问题的时候，你会得到一个自己的解决方案——并且你认为你看到的就是这个问题（应该采用的）解决办法。如果想要成为一名好的审查者，你需要知道这是不对的。 </p><p><strong>第二个误区就是人们感觉一定要说点什么（才算是做了代码审查）</strong>。代码的作者花了很多的时间和精力来编写代码——你难道不应该说点什么吗？ </p><p>　　答案是：你不应该。 </p><p>　　如果只是说“哦，这看起来这不错！”，这永远没错。反之，如果你不断地去查找一些“问题”并加以指责，那么我肯定你的信誉会荡然无存。如果你不断地去制造一些事情来说些什么，那么代码的作者会认为，当你的言论只是为了避免冷场。从此，你的意见不会受到重视。 </p><p><strong>第三个误区就是速度。</strong>你不应该匆忙完成一次代码审查——但是也不要拖延。你的同事在那里等着你的审查结果。如果你和同事不愿意抽出时间来做代码审查或者一直拖延，大家会对这次的审查感到厌烦，也会认为以后的代码审查也只会带来麻烦。看起来好像代码审查会打断你的工作，其实不必如此。你不必要在别人要求你审查的时候马上丢掉手头上的事情。但是在几个小时之内，当你工作中间休息的时候——喝杯茶，去一下洗手间或者聊聊天，散散步。当你再回来工作的时候，你可以开始并完成这个代码审查。如果你这么做了，没有人会站在你身边一直等着你给出审查结果。</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2011-08-01T23:14:40.000Z" itemprop="datePublished">
-          2011-08-02
-      </time>
-    
-</span>
-    <h1 class="post-title">转 代码审查：大家都应该做的事情</h1>
-    <section class="post-content">
-      <p>正如我在上一篇博客中提到的（现在可以明确地告诉大家），我已经离开Google了。虽然我已经收到了很多不错的offer，但是还没有决定去哪里。在这段时间里从技术角度上说我不受雇于任何人，虽然也许这会让我和（前）同事或者老板关系有点紧张，但我觉得应该写一些关于技术上的有趣的事情。 </p><p>正如我在上一篇博客中提到的（现在可以明确地告诉大家），我已经离开Google了。虽然我已经收到了很多不错的offer，但是还没有决定去哪里。在这段时间里从技术角度上说我不受雇于任何人，虽然也许这会让我和（前）同事或者老板关系有点紧张，但我觉得应该写一些关于技术上的有趣的事情。 </p><p>　　Google确实是一家很酷的公司。不论是在公司内部或是外部，Google都做了很多让人赞叹的的事情。这里我想介绍一些不涉及商业机密，但鲜为外人所知的事情。 </p><p>　　Google的代码之所以优秀原因其实很简单：<strong>他们非常重视代码审查</strong>。代码审查并不是Google独有的，它被公认为是一个很好的（提高代码质量的）手段，很多人已经在日常开发中采用代码审查。但我还没有看到哪一家大公司（像Google这样）应用得如此广泛。在 Google，任何的产品或者项目代码在检入（代码仓库）之前都需要进行有效的审查。 </p><p>　　每个人都要参与代码审查，而且这里我指的不是非正式的审查：<strong>它是软件开发环节中非常重要而且通用的规则</strong>。不仅是产品代码，所有的代码都需要进行审查。审查代码不需要投入很多的精力，但是（与不做审查相比）产生的效果却是天壤之别。 </p><p>　　关于代码审查（code review），Jonathan Danylko 的看法是“代码要经常检查（包括自查和其他同事检查）。不要把别人的检查，看成是对代码风格的苛求。应该把它们看作是有建设性的批评。对个人来说，经常检查你的代码并且自问，“我怎样才能写得更好呢？” 这会加速你的成长，让你成为一个更优秀的程序员。” </p><p><strong>你能从代码审查中收获什么？</strong> </p><p>　　事实显而易见，有另外一个人检查即将提交的代码，能够帮助找到bug。这是代码审查众所周知且经常被提及的好处。但依据我的经验，这是最没有价值的一个好处。人们确实可以在代码审查中找到bug。然而坦率地说，在代码审查中找到的bug绝大多数都是一些代码作者花上几分钟就能找到的小bug。那些真正需要花时间才能找到的bug在代码审查中是检查不到的。 </p><p><strong>代码审查最大的好处在于它是一种社交的途径。</strong>如果你编程的时候就知道会有同事检查你的代码，那么你的程序会有所不同。你写的代码会更加整洁，有着较好的注释，结构也组织的不错——因为你知道会有人来检查你的代码，而且你很在意他们的意见。如果没有代码审查，你知道代码会在最后才会审查。因为不是马上就要检查，所以对你而言并不紧迫，因而你不会想着先自检一遍。 </p><p><strong>代码审查还有一个更大的好处，就是可以分享知识。</strong>在很多的开发团队中，每个人都会负责并且专注于一个核心模块。除非别的同事负责的模块出现问题导致自己的代码不能运行，否则他们是不会去关注别人的工作。这样产生的结果是，每一个模块的代码只有一个人比较熟悉。假如事不凑巧，那位程序员正好休假或者离开了公司，那么没有人了解那些代码了。如果有代码审查的环节，那么至少会有两个人熟悉代码——代码的作者和审阅者。审阅者虽然没有作者对代码那么了解——但是他同样熟悉代码的设计和结构，这些信息是无价之宝。 </p><p>　　当然，没有什么事情是那么简单的。以我的的经验看来，要做好代码审查需要一段时间练习。我注意到经验不足的审阅者通常会落入一些代码审查的陷阱，这些陷阱往往会造成很多的麻烦，给那些希望尝试代码审查的人们留下了坏印象，成为了他们采纳代码审查的一个主要障碍。 </p><p>　　代码审查最重要规则是对即将提交的代码中查找问题——<strong>你需要做的就是确认代码是正确的</strong>。而通常会犯的一个错误，也是刚刚接触代码审查的新手容易犯的一个错误，即审阅者会判断这段代码是否按照自己思路来实现。 </p><p>　　当有一个问题需要解决时，通常会有几十种的办法。当选定一个解决方法时，会有百万种代码实现。因此，作为一个审阅者，你的工作不是确保代码是按照你的方式来编写的——因为这是不可能的事情。审阅者的工作是确保原作者编写的代码是正确的。如果你没有遵守这个规则，你可能会到处碰壁，审查结束时你的心情很糟糕，对你来说肯定不是一件好事情。 </p><p>　　问题在于这是不自觉就会犯的一个错误。假定你是一个程序员，当你在看一个问题的时候，你会得到一个自己的解决方案——并且你认为你看到的就是这个问题（应该采用的）解决办法。如果想要成为一名好的审查者，你需要知道这是不对的。 </p><p><strong>第二个误区就是人们感觉一定要说点什么（才算是做了代码审查）</strong>。代码的作者花了很多的时间和精力来编写代码——你难道不应该说点什么吗？ </p><p>　　答案是：你不应该。 </p><p>　　如果只是说“哦，这看起来这不错！”，这永远没错。反之，如果你不断地去查找一些“问题”并加以指责，那么我肯定你的信誉会荡然无存。如果你不断地去制造一些事情来说些什么，那么代码的作者会认为，当你的言论只是为了避免冷场。从此，你的意见不会受到重视。 </p><p><strong>第三个误区就是速度。</strong>你不应该匆忙完成一次代码审查——但是也不要拖延。你的同事在那里等着你的审查结果。如果你和同事不愿意抽出时间来做代码审查或者一直拖延，大家会对这次的审查感到厌烦，也会认为以后的代码审查也只会带来麻烦。看起来好像代码审查会打断你的工作，其实不必如此。你不必要在别人要求你审查的时候马上丢掉手头上的事情。但是在几个小时之内，当你工作中间休息的时候——喝杯茶，去一下洗手间或者聊聊天，散散步。当你再回来工作的时候，你可以开始并完成这个代码审查。如果你这么做了，没有人会站在你身边一直等着你给出审查结果。</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/55.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/55.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/55.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/55.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/56.seo/">
-        ← Linux系统中如何实现远程控制
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/54.seo/">
-        病毒分析在线沙盘 & 恶意行为分析工具SysAnalyzer →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/渗透测试/">渗透测试</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/56.seo/" title="Linux系统中如何实现远程控制">
+  <strong>Prev:</strong><br/>
+  <span>
+  Linux系统中如何实现远程控制</span>
+</a>
+</div>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/54.seo/"  title="病毒分析在线沙盘 &amp; 恶意行为分析工具SysAnalyzer">
+ <strong>Next:</strong><br/> 
+ <span>病毒分析在线沙盘 &amp; 恶意行为分析工具SysAnalyzer
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-转 代码审查：大家都应该做的事情" data-title="转 代码审查：大家都应该做的事情" data-url="http://ha.cker.in/55.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

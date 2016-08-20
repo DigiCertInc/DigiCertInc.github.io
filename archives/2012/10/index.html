@@ -1,281 +1,274 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Archives: 2012/10 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Archives: 2012/10 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Archives: 2012/10 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="archive-icon">2012/10</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-10-30T21:41:03.000Z" itemprop="datePublished">
-          2012-10-31
-      </time>
-    
-    
-    | 
-    <a href='/tag/SecureRDP/'>SecureRDP</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/916.seo/">调戏突破SecureRDP对远程桌面连接的限制</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>缘起自某群某孩纸遇到的一案例！</p>  <p>连接远程桌面的时候服务器出现如下提示：</p>  <p>You are not allowed to access to this Terminal Server. Please contact your administrator for more information. Secured by SecureRDP.</p>  <p>仔细一看不是远程管理组的问题，而是<a href="http://ha.cker.in/tag/SecureRDP" target="_blank">SecureRDP</a>这个软件搞的鬼，网上一搜，    <br />好家伙，这个软件的功能如下：</p>  <p><a href="http://ha.cker.in/tag/SecureRDP" target="_blank">secureRDP</a>是一款用户登录服务器管理软件。防止非法用户试图暴力破解用户密码；可以过滤IP/MAC地址、计算机名等。具体有以下功能：     <br />1.连接限制 允许按照登陆时间，IP地址，主机名，MAC地址，Client版本等信息作连接</p>  <p><a href="http://pkav.net/wp-content/uploads/2012/10/1.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/SecureRDP_BF77/clip_image002.jpg" width="660" height="506" /></a></p>  <p>看来是对客户端的连接做了限制了，现在流行的D盾和安全狗都有这样的功能！   <br />着实第一次见这个软件，好奇心也来了，也想顺便帮这位童鞋一把，下了软件    <br />虚拟机装好，配置好限制ip，一看软件目录，依然只有这几个文件，那么他的配置要么    <br />是写入其他目录了，要么写到注册表里面啦！</p>  <p><a href="http://pkav.net/wp-content/uploads/2012/10/2.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/SecureRDP_BF77/clip_image003.png" width="389" height="542" /></a></p>  <p>想想之前调试的某狗。Od打开，加载软件   <br />Aspack壳无视之，运行起软件，直接下好注册表API断点RegOpenKeyExA，直接保存配置    <br />断点断下了，注册表的路径显示出来了    <br />HKEY_LOCAL_MACHINE\Software\Terminalsoft\WTSFilter</p>  <p><a href="http://img.cker.in/SecureRDP_BF77/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/SecureRDP_BF77/clip_image005_thumb.jpg" width="660" height="439" /></a></p>  <p>跑到注册表里面一看，果然是这个   <br />邪恶的直接把WTSFilter项给删除了</p>  <p><a href="http://img.cker.in/SecureRDP_BF77/clip_image007.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/SecureRDP_BF77/clip_image007_thumb.jpg" width="660" height="522" /></a></p>  <p><a href="http://img.cker.in/SecureRDP_BF77/clip_image009.jpg" target="_blank"></a></p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/916.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+  <div class="archiveslist archive-float clearfix">
+   <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">2016年04月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">2015年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">2015年07月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年06月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年05月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">2014年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">2014年06月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">2014年05月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2014年02月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年01月</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年11月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年10月</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年09月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年08月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">2013年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">2013年06月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">2013年05月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">2013年04月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">2013年03月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2013年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">2013年01月</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">2012年12月</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">2012年11月</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">2012年10月</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">2012年09月</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">2012年08月</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">2012年07月</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">2012年06月</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">2012年05月</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">2012年04月</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">2012年03月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">2012年02月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">2012年01月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">2011年12月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">2011年11月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">2011年10月</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">2011年09月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">2011年08月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">2011年07月</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">2011年06月</a><span class="archive-list-count">7</span></li></ul>
+ </div>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-10-29T02:47:46.000Z" itemprop="datePublished">
-          2012-10-29
-      </time>
-    
-    
-    | 
-    <a href='/tag/提权/'>提权</a>,
-    
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/0day/'>0day</a>,
-    
-    <a href='/tag/破解/'>破解</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/915.seo/">发几篇以前录制的视频教程</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        发几篇以前做的视频教程，比较没技术含量，都是以前无聊的时候录制的  放着也是放着 不如拿出来或许有需要的人可以看下 不要拍我就好…。。     一键破解无线路由WEP密码.rar      记一次提权拿服务器.rar      检测浙江互联星空[游戏分站].rar      入侵私服站拿服务器教程.rar      入侵北大青鸟拿服务器.rar      Fckeditor后台编辑器0day.rar      建站之星0day漏洞演示.
-      
-      </p>
-      
-      <p>
-          <a href="/915.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-10-28T22:03:14.000Z" itemprop="datePublished">
-          2012-10-29
-      </time>
-    
-    
-    | 
-    <a href='/tag/漏洞/'>漏洞</a>,
-    
-    <a href='/tag/代码执行/'>代码执行</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/914.seo/">akcms代码执行漏洞</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>by <a href="http://www.moonhack.org/daimashenji/468.html">MoonHack</a></p>  <p>上周挖出的akcms的后台模版getshell感觉没什么新意，然后又仔细看了看代码，发现了一个比较有“前途”的洞，<a href="http://ha.cker.in/tag/代码执行" target="_blank">代码执行</a>漏洞，而且出问题函数是作者提供给建站用户进行二次开发时使用的，也就是说这个问题放大的程度也会要大些。</p>  <p>0×01、原理分析</p>  <p>漏洞问题主要存在于include\common.func.php文件中的ak_if函数，先看下代码</p>  <p><a href="http://img.cker.in/akcms_C569/clip_image001.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/akcms_C569/clip_image001_thumb.png" width="600" height="246" /></a></p>  <p>eval函数参数中的变量$variable未作任何的处理变插入到了函数中。ak_if这个函数的主要用途是，提供给建站用户一个简单的逻辑判断功能的接口。对比一下4.1版本中的这段代码</p>  <p><a href="http://img.cker.in/akcms_C569/clip_image002.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/akcms_C569/clip_image002_thumb.png" width="546" height="160" /></a></p>  <p>可以发现，相差了eval函数调用的语句。在4.1.4之前的版本中，这个函数并没有调用eval函数，但是在4.1.4中，作者为了增加ak_if对复杂逻辑的判断，添加了这条语句。</p>  <p>这导致了，如果用户对于$variable变量可控，将会执行任意php代码。</p>  <p>0×02、漏洞验证</p>  <p>为了重现漏洞，我下载了作者基于akcms2.4.2的blog系统，在\cache\templates\%%7D^7D3^7D3A5C77%%comments.htm.php模板中调用了这个函数</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/914.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/916.seo/" title="调戏突破SecureRDP对远程桌面连接的限制" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-10-28T20:46:06.000Z" itemprop="datePublished">
-          2012-10-29
-      </time>
+    <h1 itemprop="name">调戏突破SecureRDP对远程桌面连接的限制</h1>
     
-    
-    | 
-    <a href='/tag/Webshell/'>Webshell</a>,
-    
-    <a href='/tag/突破安全狗/'>突破安全狗</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/913.seo/">MACCMS PHP版突破安全狗后台拿webshell</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>昨天碰上的，记录一下过程，没什么含量，类似的文章肯定有，如有雷同肯定巧合（语文不太好，大家将就着看）：   <br />条件：    <br />1、电影站是maccms php版本的。    <br />2、服务器安装了<a href="http://ha.cker.in/tag/突破安全狗" target="_blank">安全狗</a>。    <br />3、有后台帐号密码。    <br />当然了首先第一步百度一下，有没有相关文章。发现了先前有大牛发了一个上传的漏洞测试失败，估计是官方已修复。    <br />进后台，发现可以编辑模板，如下图：    <br /><a href="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image001_thumb.jpg" width="967" height="655" /></a>    <br />路径是：    <br /><a href="http://0855.tv/admin/admin_templates.php?action=edit&amp;file=../template/default/html/art.html">http://0855.tv/admin/admin_templates.php?action=edit&amp;file=../template/default/html/art.html</a>    <br />然后IE里构造一下：    <br /><a href="http://0855.tv/admin/admin_templates.php?action=edit&amp;file=index.php">http://0855.tv/admin/admin_templates.php?action=edit&amp;file=index.php</a>    <br />得到：    <br /><a href="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image002_thumb.jpg" width="743" height="590" /></a>    <br />这个可比那个 ShopEx后台历遍目录 猛多了，不但可以看到内容，还可以编辑。    <br />这样的话，基本上就可以拿<a href="http://ha.cker.in/tag/webshell" target="_blank">webshell</a>了。含量不高。为了不破坏程序，我打算在admin/version.php    <br />这个文件中写入后门。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/913.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-10-30T21:41:03.000Z" itemprop="datePublished">2012-10-31</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-10-28T20:34:02.000Z" itemprop="datePublished">
-          2012-10-29
-      </time>
-    
-    
-    | 
-    <a href='/tag/burpsuite/'>burpsuite</a>,
-    
-    <a href='/tag/idc/'>idc</a>,
-    
-    <a href='/tag/支付漏洞/'>支付漏洞</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/912.seo/">burpsuite之免费购买虚拟空间之沦陷IDC服务商</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>by:245661320@90sec.org</p>  <p>本人文笔不好，其实这次渗透过程也很艰难曲折的，只是个人文笔问题表达的不太生动，大家见谅！！</p>  <p>今天给大家讲解下burpsuite应用，这个东西我在咱们这里看用着比较少，今天我就来给大家来讲解下。</p>  <p>前两天我在淘宝上找了个空间，但我又不想花钱，怎么办呢？结果有了下文。</p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/burpsuiteIDC_B045/clip_image002_thumb.jpg" width="620" height="357" /></a></p>  <p>于是我就在他那个网站注册了个会员，然后左看看右看看做一些测试比较繁琐我就不一一讲述了。</p>  <p>然后我点金那个详细，看见有购买空间，我就用burpsuite截取下他的数据包看看可不可以改包进行突破！</p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/burpsuiteIDC_B045/clip_image003_thumb.jpg" width="349" height="127" /></a></p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/burpsuiteIDC_B045/clip_image004_thumb.jpg" width="242" height="200" /></a></p>  <p>先声明，我这个号里没有钱一分钱也没有</p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/burpsuiteIDC_B045/clip_image005_thumb.jpg" width="400" height="63" /></a></p>  <p>后我就开始截取封包，该数据，把购买几年那里改为-1我们在发送数据包也就是我们125元买-1年的空间但是他要是没有做错误处理的话肯定会出</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/912.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/915.seo/" title="发几篇以前录制的视频教程" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-10-26T05:05:16.000Z" itemprop="datePublished">
-          2012-10-26
-      </time>
+    <h1 itemprop="name">发几篇以前录制的视频教程</h1>
     
-    
-    | 
-    <a href='/tag/百度分站被黑/'>百度分站被黑</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/911.seo/">百度分站被黑</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        2012.10.26。百度分站被黑！半个小时内传遍了。。各种装逼挂主页     Shell    哎哟，主页要被改烂了……  
-      
-      </p>
-      
-      <p>
-          <a href="/911.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-10-29T02:47:46.000Z" itemprop="datePublished">2012-10-29</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
+    <a href="/914.seo/" title="akcms代码执行漏洞" itemprop="url">
+  
+    <h1 itemprop="name">akcms代码执行漏洞</h1>
     
-    <span class="page-number">Page 1 of 3</span>
-    <a class="older-posts" href="/archives/2012/10/page/2/">Older Posts →</a>
+    <time datetime="2012-10-28T22:03:14.000Z" itemprop="datePublished">2012-10-29</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/913.seo/" title="MACCMS PHP版突破安全狗后台拿webshell" itemprop="url">
+  
+    <h1 itemprop="name">MACCMS PHP版突破安全狗后台拿webshell</h1>
+    
+    <time datetime="2012-10-28T20:46:06.000Z" itemprop="datePublished">2012-10-29</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/912.seo/" title="burpsuite之免费购买虚拟空间之沦陷IDC服务商" itemprop="url">
+  
+    <h1 itemprop="name">burpsuite之免费购买虚拟空间之沦陷IDC服务商</h1>
+    
+    <time datetime="2012-10-28T20:34:02.000Z" itemprop="datePublished">2012-10-29</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/911.seo/" title="百度分站被黑" itemprop="url">
+  
+    <h1 itemprop="name">百度分站被黑</h1>
+    
+    <time datetime="2012-10-26T05:05:16.000Z" itemprop="datePublished">2012-10-26</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix archive-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/archives/2012/10/page/2/">2</a><a class="page-number" href="/archives/2012/10/page/3/">3</a><a class="extend next" rel="next" href="/archives/2012/10/page/2/">下一页 &raquo;</a>
   </nav>
-</main>
 
-
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

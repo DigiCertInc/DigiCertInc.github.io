@@ -1,149 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>记一次内网渗透检测 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>记一次内网渗透检测 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="朋友扔过来的一个公司，域名是aaainc.com，什么信息也没有。Google搜了下，只有主域名上面有个网站，还是托管在其他地方的，用的是开源的cms，没什么漏洞。      0x01 信息收集    先看看这公司是不是有自己的对外办公网络吧，Nslookup看了下mx记录，发现是mx.aaainc.com,mx0.aaainc.com，也就是说这是他们自己的邮件服务器，而不是用的腾讯，微软或者谷歌之类的企业邮箱。看来有点希望，因为一般这种情况下邮件服务器所在的ip地址段就是目标公司真实的ip地址段。将mx.aaainc.com解析出来的ip地址拿去http://bgp.he.net上whois查询，果然得到了公司的IP地址段：     &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; network:Network-Name:aaa–Inc-12-34-56-78     &amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; network:IP-Network:12.34.56.78/26     有ip地址段就好办一点了，先看看具体的对外服务情况，用nmap扫描了下这个ip地址段，结果用有几个开放80、443端口，没有其他的信息。依次去访问那几个ip，得到一个email登陆口，是微软的outlook web access，两个cisco的vpn登陆口，还有一个是sharepoint的二级域名intranet，访问时会弹出来基础认证的密码框，提示信息里面有显示aaainc.ad，看来里面有个域，这里面肯定是公司的内网无疑了。     没什么多的可用的信息，web也就一个主站，估计去爆二级域名也不会有什么新的web出现。无聊又去公司的主站上看了看，想找找看有没有新发现。看到了有雇员介绍的页面，有相关的员工介绍和email地址，于是收集下来，看看能不能社工到密码。       0x02 爆破outlook    拿这些邮箱去百度、谷歌都搜了下，排除大部分搜索不到信息的，最后剩几个，找到了网上常用的用户名。在本地搭好的库里面查询，找到了一些密码，有两个人设置的密码比较有规律，于是利用查到的信息组合了下做成一个字典，然后准备去email登陆口那里跑一下。    爆破owa的话metasploit里面有一个owa_login模块，是专门用来进行outlook登陆爆破的，而且支持outlook2003 2007 和2010，目标的是2007。于是打开kali，开启metasploit准备爆破。     这里插句话，kali的metasploit是开机启动的，但是postgresql不是开机启动的，这就导致运行msfconsole时会出现连不上数据库的情况。而postgresql又特别蛋疼，必须要在metasploit前启动才行，所以每次启动metasploit时都要先停掉metasploit，然后启动postgresql，再重新启动metasploit才行。具体命令如下：  service metasploit stop  service postgresql start  service metasploit start  Metasploit里面search owa就可以找到owa_login这个模块，这个模块除了常用的参数外，还有个ACTION是不在show options里面的，可以用show actions查看         Owa爆破的结果证明了我的人品还是不错的，我成功的拿到了一个账号密码，可以登录email，也应该可以登录vpn。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="记一次内网渗透检测 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/1071.seo/" title="记一次内网渗透检测" itemprop="url">记一次内网渗透检测</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2014-01-31T04:55:55.000Z" itemprop="datePublished">2014-01-31</time>
+    Updated:<time datetime="2016-08-20T11:03:54.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">0x01 信息收集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">0x02 爆破outlook</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">0x03 曲折的vpn</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">0x04 内网渗透</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">0x05 参考</span></a></li></ol>
+		</div>
+		
+		<p>朋友扔过来的一个公司，域名是aaainc.com，什么信息也没有。Google搜了下，只有主域名上面有个网站，还是托管在其他地方的，用的是开源的cms，没什么漏洞。    <br></p>  <h3>0x01 信息收集</h3>  <br>  <p>先看看这公司是不是有自己的对外办公网络吧，Nslookup看了下mx记录，发现是mx.aaainc.com,mx0.aaainc.com，也就是说这是他们自己的邮件服务器，而不是用的腾讯，微软或者谷歌之类的企业邮箱。看来有点希望，因为一般这种情况下邮件服务器所在的ip地址段就是目标公司真实的ip地址段。将mx.aaainc.com解析出来的ip地址拿去<a href="http://bgp.he.net/" target="_blank" rel="external">http://bgp.he.net</a>上whois查询，果然得到了公司的IP地址段：     <br>&#160;&#160;&#160;&#160;&#160; network:Network-Name:aaa–Inc-12-34-56-78     <br>&#160;&#160;&#160;&#160;&#160; network:IP-Network:12.34.56.78/26     <br>有ip地址段就好办一点了，先看看具体的对外服务情况，用nmap扫描了下这个ip地址段，结果用有几个开放80、443端口，没有其他的信息。依次去访问那几个ip，得到一个email登陆口，是微软的outlook web access，两个cisco的vpn登陆口，还有一个是sharepoint的二级域名intranet，访问时会弹出来基础认证的密码框，提示信息里面有显示aaainc.ad，看来里面有个域，这里面肯定是公司的内网无疑了。     <br>没什么多的可用的信息，web也就一个主站，估计去爆二级域名也不会有什么新的web出现。无聊又去公司的主站上看了看，想找找看有没有新发现。看到了有雇员介绍的页面，有相关的员工介绍和email地址，于是收集下来，看看能不能社工到密码。     <br></p>  <h3>0x02 爆破outlook</h3>  <br>  <p>拿这些邮箱去百度、谷歌都搜了下，排除大部分搜索不到信息的，最后剩几个，找到了网上常用的用户名。在本地搭好的库里面查询，找到了一些密码，有两个人设置的密码比较有规律，于是利用查到的信息组合了下做成一个字典，然后准备去email登陆口那里跑一下。    <br>爆破owa的话metasploit里面有一个owa_login模块，是专门用来进行outlook登陆爆破的，而且支持outlook2003 2007 和2010，目标的是2007。于是打开kali，开启metasploit准备爆破。     <br>这里插句话，kali的metasploit是开机启动的，但是postgresql不是开机启动的，这就导致运行msfconsole时会出现连不上数据库的情况。而postgresql又特别蛋疼，必须要在metasploit前启动才行，所以每次启动metasploit时都要先停掉metasploit，然后启动postgresql，再重新启动<a href="http://ha.cker.in/tag/metasploit" target="_blank">metasploit</a>才行。具体命令如下：</p>  <p>service metasploit stop</p>  <p>service postgresql start</p>  <p>service metasploit start</p>  <p>Metasploit里面search owa就可以找到owa_login这个模块，这个模块除了常用的参数外，还有个ACTION是不在show options里面的，可以用show actions查看    <br><a href="http://img.cker.in/5584158a8b56_12460/clip_image0014.png" rel="external" target="_blank"><img title="clip_image001[4]" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="263" alt="clip_image001[4]" src="http://img.cker.in/5584158a8b56_12460/clip_image0014_thumb.png" width="598" border="0"></a>     <br>Owa爆破的结果证明了我的人品还是不错的，我成功的拿到了一个账号密码，可以登录email，也应该可以登录vpn。 </p><br><a id="more"></a><br><p>&#160;</p>  <h3>0x03 曲折的vpn</h3>  <br>  <p>拿去尝试之前的两个vpn登陆口，那两个登陆口是cisco的vpn，需要安装anyconnect的客户端，装好后发现有一个能登录成功，另一个不能登录。登陆成功后，我用ipconfig /all看了下，有一个的搜索域，是aaainc.ad与之前sharepoint登录口提示信息相符，看来是进入到了域内网络，分配到了内网的ip地址，没有网关，有一个dns服务器。但是随后我发现这个vpn很奇怪，我ping那个dns服务器ping不通，ping 这个域的名字xxxinc.ad也是不通，我甚至都ping不通分配给我自己的那个ip地址，显示一般故障。去群里问了一堆大牛，说是以前有人遇到过，扫53端口或者445之类的其他端口试试看，但是我试了下扫描，开着wireshark，结果显示居然没有任何网络数据包通过那个vpn。看来这个vpn是完全不能访问到内网的任何东西。    <br>没办法，去登录email看看能不能翻到东西，登录进去后搜索vpn，密码等关键字，没有找到相关的信息，到处翻了下也没有一丝丝有用的玩意儿。想起来之前还有个sharepoint的站，用这个账号密码试了下那个站，可以登录进去，里面是一堆业务处理、工作任务、公司介绍什么的东西，翻了很久，找到IT部门相关的介绍也没有关于vpn登录的信息。     <br>随后看到一个新进员工培训的东西，是几个视频，其中有一个是IT部门做的，觉得这里面有可能有介绍vpn的使用，就拖着看了下，果然在视频中有讲到vpn的登录。原来vpn的登录地址并不是我之前扫描到那个那个地址，而是一个域名是sslvpn.aaainc.com的地址，看来之前那个登陆口有可能是废弃了的老登陆口。赶紧用cisco客户端连接这个地址，成功连接上，这次终于可以成功的访问内部网络了。     <br><a href="http://img.cker.in/5584158a8b56_12460/clip_image0024.png" rel="external" target="_blank"><img title="clip_image002[4]" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="292" alt="clip_image002[4]" src="http://img.cker.in/5584158a8b56_12460/clip_image0024_thumb.png" width="411" border="0"></a>     <br></p>  <h3>0x04 内网渗透</h3>  <br>  <p>登陆vpn后查看route details看到内部的ip地址段：    <br><a href="http://img.cker.in/5584158a8b56_12460/clip_image0034.png" rel="external" target="_blank"><img title="clip_image003[4]" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="350" alt="clip_image003[4]" src="http://img.cker.in/5584158a8b56_12460/clip_image0034_thumb.png" width="507" border="0"></a>     <br>这时候我才刚刚进入到内部网络，一个小职员的账号没有任何权限。还是先收集域内的信息吧。     <br>先net use \aaainc.ad password /user:aaainc.ad\username，这条命令是对域名进行net use连接认证，这样一来就相当于我当前这个cmd是一台用username登陆过的域内主机，可以直接访问域内其他资源了。     <br>Net view \aaainc.ad看下域控制器的共享情况，有NETLOGON和SYSVOL，     <br><a href="http://img.cker.in/5584158a8b56_12460/clip_image0044.png" rel="external" target="_blank"><img title="clip_image004[4]" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="202" alt="clip_image004[4]" src="http://img.cker.in/5584158a8b56_12460/clip_image0044_thumb.png" width="459" border="0"></a>     <br>NETLOGON里面是域内的登录脚本之类的，这里可是个好东西，默认普通用户权限就可以访问，运气好管理员会在登录脚本里面写账号密码的。用命令xcopy \aaainc.ad\netlogon&#160; netlogon&#160; /i&#160; /e&#160; /c全部拷贝回来，等会慢慢分析。     <br>SYSVOL文件夹里面则是组策略分发时的一些东西，默认也是可以直接访问的，根据Exploiting Windows 2008 Group Policy Preferences(也就是一般说的GPP，详细见文末参考），在Groups.xml, Services\Services.xml，ScheduledTasks\ScheduledTasks.xml ，Printers\Printers.xml，Drives\Drives.xml，DataSources\DataSources.xml这些文件里面有可能会有本地的账号密码。当然这些文件也不是一定有的，第一个发现这个漏洞的老外是从groups.xml里面找到了本地的账号密码，但groups.xml这个文件只有域管理员通过分发域组策略对计算机添加本地账户或者更改本地账户的密码时才会出现。我之前也并没有用这种方法成功过，这次也权当是例行公事，毕竟你不去尝试就什么都不会得到，你尝试了就有可能会有收获，对吧？     <br>先执行dir \aaainc.ad\SYSVOL /s /a &gt; sysvol.txt，然后findstr /i “groups.xml” sysvol.txt，居然真的有groups.xml这个文件，赶紧copy回本地，从groups.xml的内容来看，这是添加了一个本地管理员账号。     <br><a href="http://img.cker.in/5584158a8b56_12460/clip_image0064.jpg" rel="external" target="_blank"><img title="clip_image006[4]" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="111" alt="clip_image006[4]" src="http://img.cker.in/5584158a8b56_12460/clip_image0064_thumb.jpg" width="604" border="0"></a>     <br>注意看我框起来的地方：cpassword=GkLX/gJ8uTIBqAPeb+4dMhOPgPQJEaRJYC1921X     <br>拿这一串去解密（解密脚本见文末的参考),得到一个密码。我是用powershell那个脚本解密的，Powershell运行脚本时需要先用管理员权限运行powershell，执行set-executionPolicy bypass，因为默认是不允许运行ps脚本的。     <br><a href="http://img.cker.in/5584158a8b56_12460/clip_image0084.jpg" rel="external" target="_blank"><img title="clip_image008[4]" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="150" alt="clip_image008[4]" src="http://img.cker.in/5584158a8b56_12460/clip_image0084_thumb.jpg" width="604" border="0"></a>     <br>把之前从vpn客户端得到的内网ip地址段计算成ip地址文件，一行一个ip地址，先写个bat测试这些ip地址的存活性，把存活的ip分离出来，得到200多个存活的ip地址。然后写一个bat用刚才获得的本地账号批量进行net use登录测试，如果能登录成功，那么自动copy抓密码的程序过去抓取明文密码，然后顺便把注册表也导出来（导注册表是为了获取本地账户的hash以及导出mscache）。等了大半个小时bat跑完了，然后成功登录了25台服务器，抓到了不少账号密码。     <br><a href="http://img.cker.in/5584158a8b56_12460/clip_image0094.png" rel="external" target="_blank"><img title="clip_image009[4]" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="409" alt="clip_image009[4]" src="http://img.cker.in/5584158a8b56_12460/clip_image0094_thumb.png" width="565" border="0"></a>     <br>利用新搞到的域内账户密码和wmi.vbs获取一个域内权限的cmdshell，把域内的信息域管理员组，域内计算机信息列表，域内用户列表什么的都弄回来一份。然后去抓到的明文密码里面比对，成功的捉到了一只域管理员，有了域管理员后面就不用多说了，大家都懂。     <br></p>  <h3>0x05 参考</h3>  <p>   <br><a href="http://rewtdance.blogspot.ca/2012/06/exploiting-windows-2008-group-policy.html" target="_blank" rel="external">http://rewtdance.blogspot.ca/2012/06/exploiting-windows-2008-group-policy.html</a>     <br><a href="http://carnal0wnage.attackresearch.com/2012/10/group-policy-preferences-and-getting.html" target="_blank" rel="external">http://carnal0wnage.attackresearch.com/2012/10/group-policy-preferences-and-getting.html</a>     <br>我用的解密脚本是从这里改的，第一个链接里面有个ruby版本的     <br><a href="https://github.com/mattifestation/PowerSploit/blob/master/Exfiltration/Get-GPPPassword.ps1#L33" target="_blank" rel="external">https://github.com/mattifestation/PowerSploit/blob/master/Exfiltration/Get-GPPPassword.ps1#L33</a><b></b></p>  <p><b>Twi1ight</b> <a href="https://www.t00ls.net/thread-24638-1-1.html" target="_blank" rel="external">https://www.t00ls.net/thread-24638-1-1.html</a></p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2014-01-31T04:55:55.000Z" itemprop="datePublished">
-          2014-01-31
-      </time>
-    
-    
-    | 
-    <a href='/tag/Metasploit/'>Metasploit</a>
-    
-    
-</span>
-    <h1 class="post-title">记一次内网渗透检测</h1>
-    <section class="post-content">
-      <p>朋友扔过来的一个公司，域名是aaainc.com，什么信息也没有。Google搜了下，只有主域名上面有个网站，还是托管在其他地方的，用的是开源的cms，没什么漏洞。    <br></p>  <h3>0x01 信息收集</h3>  <br>  <p>先看看这公司是不是有自己的对外办公网络吧，Nslookup看了下mx记录，发现是mx.aaainc.com,mx0.aaainc.com，也就是说这是他们自己的邮件服务器，而不是用的腾讯，微软或者谷歌之类的企业邮箱。看来有点希望，因为一般这种情况下邮件服务器所在的ip地址段就是目标公司真实的ip地址段。将mx.aaainc.com解析出来的ip地址拿去<a href="http://bgp.he.net/" target="_blank" rel="external">http://bgp.he.net</a>上whois查询，果然得到了公司的IP地址段：     <br>&#160;&#160;&#160;&#160;&#160; network:Network-Name:aaa–Inc-12-34-56-78     <br>&#160;&#160;&#160;&#160;&#160; network:IP-Network:12.34.56.78/26     <br>有ip地址段就好办一点了，先看看具体的对外服务情况，用nmap扫描了下这个ip地址段，结果用有几个开放80、443端口，没有其他的信息。依次去访问那几个ip，得到一个email登陆口，是微软的outlook web access，两个cisco的vpn登陆口，还有一个是sharepoint的二级域名intranet，访问时会弹出来基础认证的密码框，提示信息里面有显示aaainc.ad，看来里面有个域，这里面肯定是公司的内网无疑了。     <br>没什么多的可用的信息，web也就一个主站，估计去爆二级域名也不会有什么新的web出现。无聊又去公司的主站上看了看，想找找看有没有新发现。看到了有雇员介绍的页面，有相关的员工介绍和email地址，于是收集下来，看看能不能社工到密码。     <br></p>  <h3>0x02 爆破outlook</h3>  <br>  <p>拿这些邮箱去百度、谷歌都搜了下，排除大部分搜索不到信息的，最后剩几个，找到了网上常用的用户名。在本地搭好的库里面查询，找到了一些密码，有两个人设置的密码比较有规律，于是利用查到的信息组合了下做成一个字典，然后准备去email登陆口那里跑一下。    <br>爆破owa的话metasploit里面有一个owa_login模块，是专门用来进行outlook登陆爆破的，而且支持outlook2003 2007 和2010，目标的是2007。于是打开kali，开启metasploit准备爆破。     <br>这里插句话，kali的metasploit是开机启动的，但是postgresql不是开机启动的，这就导致运行msfconsole时会出现连不上数据库的情况。而postgresql又特别蛋疼，必须要在metasploit前启动才行，所以每次启动metasploit时都要先停掉metasploit，然后启动postgresql，再重新启动<a href="http://ha.cker.in/tag/metasploit" target="_blank">metasploit</a>才行。具体命令如下：</p>  <p>service metasploit stop</p>  <p>service postgresql start</p>  <p>service metasploit start</p>  <p>Metasploit里面search owa就可以找到owa_login这个模块，这个模块除了常用的参数外，还有个ACTION是不在show options里面的，可以用show actions查看    <br><a href="http://img.cker.in/5584158a8b56_12460/clip_image0014.png" rel="external" target="_blank"><img title="clip_image001[4]" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="263" alt="clip_image001[4]" src="http://img.cker.in/5584158a8b56_12460/clip_image0014_thumb.png" width="598" border="0"></a>     <br>Owa爆破的结果证明了我的人品还是不错的，我成功的拿到了一个账号密码，可以登录email，也应该可以登录vpn。 </p><br><a id="more"></a><br><p>&#160;</p>  <h3>0x03 曲折的vpn</h3>  <br>  <p>拿去尝试之前的两个vpn登陆口，那两个登陆口是cisco的vpn，需要安装anyconnect的客户端，装好后发现有一个能登录成功，另一个不能登录。登陆成功后，我用ipconfig /all看了下，有一个的搜索域，是aaainc.ad与之前sharepoint登录口提示信息相符，看来是进入到了域内网络，分配到了内网的ip地址，没有网关，有一个dns服务器。但是随后我发现这个vpn很奇怪，我ping那个dns服务器ping不通，ping 这个域的名字xxxinc.ad也是不通，我甚至都ping不通分配给我自己的那个ip地址，显示一般故障。去群里问了一堆大牛，说是以前有人遇到过，扫53端口或者445之类的其他端口试试看，但是我试了下扫描，开着wireshark，结果显示居然没有任何网络数据包通过那个vpn。看来这个vpn是完全不能访问到内网的任何东西。    <br>没办法，去登录email看看能不能翻到东西，登录进去后搜索vpn，密码等关键字，没有找到相关的信息，到处翻了下也没有一丝丝有用的玩意儿。想起来之前还有个sharepoint的站，用这个账号密码试了下那个站，可以登录进去，里面是一堆业务处理、工作任务、公司介绍什么的东西，翻了很久，找到IT部门相关的介绍也没有关于vpn登录的信息。     <br>随后看到一个新进员工培训的东西，是几个视频，其中有一个是IT部门做的，觉得这里面有可能有介绍vpn的使用，就拖着看了下，果然在视频中有讲到vpn的登录。原来vpn的登录地址并不是我之前扫描到那个那个地址，而是一个域名是sslvpn.aaainc.com的地址，看来之前那个登陆口有可能是废弃了的老登陆口。赶紧用cisco客户端连接这个地址，成功连接上，这次终于可以成功的访问内部网络了。     <br><a href="http://img.cker.in/5584158a8b56_12460/clip_image0024.png" rel="external" target="_blank"><img title="clip_image002[4]" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="292" alt="clip_image002[4]" src="http://img.cker.in/5584158a8b56_12460/clip_image0024_thumb.png" width="411" border="0"></a>     <br></p>  <h3>0x04 内网渗透</h3>  <br>  <p>登陆vpn后查看route details看到内部的ip地址段：    <br><a href="http://img.cker.in/5584158a8b56_12460/clip_image0034.png" rel="external" target="_blank"><img title="clip_image003[4]" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="350" alt="clip_image003[4]" src="http://img.cker.in/5584158a8b56_12460/clip_image0034_thumb.png" width="507" border="0"></a>     <br>这时候我才刚刚进入到内部网络，一个小职员的账号没有任何权限。还是先收集域内的信息吧。     <br>先net use \aaainc.ad password /user:aaainc.ad\username，这条命令是对域名进行net use连接认证，这样一来就相当于我当前这个cmd是一台用username登陆过的域内主机，可以直接访问域内其他资源了。     <br>Net view \aaainc.ad看下域控制器的共享情况，有NETLOGON和SYSVOL，     <br><a href="http://img.cker.in/5584158a8b56_12460/clip_image0044.png" rel="external" target="_blank"><img title="clip_image004[4]" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="202" alt="clip_image004[4]" src="http://img.cker.in/5584158a8b56_12460/clip_image0044_thumb.png" width="459" border="0"></a>     <br>NETLOGON里面是域内的登录脚本之类的，这里可是个好东西，默认普通用户权限就可以访问，运气好管理员会在登录脚本里面写账号密码的。用命令xcopy \aaainc.ad\netlogon&#160; netlogon&#160; /i&#160; /e&#160; /c全部拷贝回来，等会慢慢分析。     <br>SYSVOL文件夹里面则是组策略分发时的一些东西，默认也是可以直接访问的，根据Exploiting Windows 2008 Group Policy Preferences(也就是一般说的GPP，详细见文末参考），在Groups.xml, Services\Services.xml，ScheduledTasks\ScheduledTasks.xml ，Printers\Printers.xml，Drives\Drives.xml，DataSources\DataSources.xml这些文件里面有可能会有本地的账号密码。当然这些文件也不是一定有的，第一个发现这个漏洞的老外是从groups.xml里面找到了本地的账号密码，但groups.xml这个文件只有域管理员通过分发域组策略对计算机添加本地账户或者更改本地账户的密码时才会出现。我之前也并没有用这种方法成功过，这次也权当是例行公事，毕竟你不去尝试就什么都不会得到，你尝试了就有可能会有收获，对吧？     <br>先执行dir \aaainc.ad\SYSVOL /s /a &gt; sysvol.txt，然后findstr /i “groups.xml” sysvol.txt，居然真的有groups.xml这个文件，赶紧copy回本地，从groups.xml的内容来看，这是添加了一个本地管理员账号。     <br><a href="http://img.cker.in/5584158a8b56_12460/clip_image0064.jpg" rel="external" target="_blank"><img title="clip_image006[4]" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="111" alt="clip_image006[4]" src="http://img.cker.in/5584158a8b56_12460/clip_image0064_thumb.jpg" width="604" border="0"></a>     <br>注意看我框起来的地方：cpassword=GkLX/gJ8uTIBqAPeb+4dMhOPgPQJEaRJYC1921X     <br>拿这一串去解密（解密脚本见文末的参考),得到一个密码。我是用powershell那个脚本解密的，Powershell运行脚本时需要先用管理员权限运行powershell，执行set-executionPolicy bypass，因为默认是不允许运行ps脚本的。     <br><a href="http://img.cker.in/5584158a8b56_12460/clip_image0084.jpg" rel="external" target="_blank"><img title="clip_image008[4]" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="150" alt="clip_image008[4]" src="http://img.cker.in/5584158a8b56_12460/clip_image0084_thumb.jpg" width="604" border="0"></a>     <br>把之前从vpn客户端得到的内网ip地址段计算成ip地址文件，一行一个ip地址，先写个bat测试这些ip地址的存活性，把存活的ip分离出来，得到200多个存活的ip地址。然后写一个bat用刚才获得的本地账号批量进行net use登录测试，如果能登录成功，那么自动copy抓密码的程序过去抓取明文密码，然后顺便把注册表也导出来（导注册表是为了获取本地账户的hash以及导出mscache）。等了大半个小时bat跑完了，然后成功登录了25台服务器，抓到了不少账号密码。     <br><a href="http://img.cker.in/5584158a8b56_12460/clip_image0094.png" rel="external" target="_blank"><img title="clip_image009[4]" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="409" alt="clip_image009[4]" src="http://img.cker.in/5584158a8b56_12460/clip_image0094_thumb.png" width="565" border="0"></a>     <br>利用新搞到的域内账户密码和wmi.vbs获取一个域内权限的cmdshell，把域内的信息域管理员组，域内计算机信息列表，域内用户列表什么的都弄回来一份。然后去抓到的明文密码里面比对，成功的捉到了一只域管理员，有了域管理员后面就不用多说了，大家都懂。     <br></p>  <h3>0x05 参考</h3>  <p>   <br><a href="http://rewtdance.blogspot.ca/2012/06/exploiting-windows-2008-group-policy.html" target="_blank" rel="external">http://rewtdance.blogspot.ca/2012/06/exploiting-windows-2008-group-policy.html</a>     <br><a href="http://carnal0wnage.attackresearch.com/2012/10/group-policy-preferences-and-getting.html" target="_blank" rel="external">http://carnal0wnage.attackresearch.com/2012/10/group-policy-preferences-and-getting.html</a>     <br>我用的解密脚本是从这里改的，第一个链接里面有个ruby版本的     <br><a href="https://github.com/mattifestation/PowerSploit/blob/master/Exfiltration/Get-GPPPassword.ps1#L33" target="_blank" rel="external">https://github.com/mattifestation/PowerSploit/blob/master/Exfiltration/Get-GPPPassword.ps1#L33</a><b></b></p>  <p><b>Twi1ight</b> <a href="https://www.t00ls.net/thread-24638-1-1.html" target="_blank" rel="external">https://www.t00ls.net/thread-24638-1-1.html</a></p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1071.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1071.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1071.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1071.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/1072.seo/">
-        ← Cracking WPA2 with Hashcat
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/1070.seo/">
-        误删chrome书签，恢复方法 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/渗透测试/">渗透测试</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/Metasploit/">Metasploit</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/1072.seo/" title="Cracking WPA2 with Hashcat">
+  <strong>Prev:</strong><br/>
+  <span>
+  Cracking WPA2 with Hashcat</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/1070.seo/"  title="误删chrome书签，恢复方法">
+ <strong>Next:</strong><br/> 
+ <span>误删chrome书签，恢复方法
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-记一次内网渗透检测" data-title="记一次内网渗透检测" data-url="http://ha.cker.in/1071.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

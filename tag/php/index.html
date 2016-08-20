@@ -1,335 +1,266 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Tag: php | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Tag: php | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Tag: php | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="tag-icon">php</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-11-22T04:46:22.000Z" itemprop="datePublished">
-          2012-11-22
-      </time>
-    
-    
-    | 
-    <a href='/tag/php/'>php</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/942.seo/">服务器变量$_SERVER详解</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        服务器变量$_SERVER 详解：   1、$_SESSION[‘PHP_SELF’] – 获取当前正在执行脚本的文件名   2、$_SERVER[‘SERVER_PROTOCOL’] – 请求页面时通信协议的名称和版本。例如，“HTTP/1.0”。   3、$_SERVER[‘REQUEST_TIME’] – 请求开始时的时间戳。从 PHP 5.1.0 起有效。和time函数效果一样。   4、$_SERVER[‘argv’] – 传
-      
-      </p>
-      
-      <p>
-          <a href="/942.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-11-01T06:24:53.000Z" itemprop="datePublished">
-          2012-11-01
-      </time>
-    
-    
-    | 
-    <a href='/tag/php/'>php</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/920.seo/">PHP提高编程效率的方法</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>用单引号代替双引号来包含字符串，这样做会更快一些。因为PHP会在双引号包围的字符串中搜寻变量，单引号则不会，注意：只有echo能这么做，它是一种可以把多个字符串当作参数的“函数”（译注：PHP手册中说echo是语言结构，不是真正的函数，故把函数加上了双引号）。   <br />1、如果能将类的方法定义成static，就尽量定义成static，它的速度会提升将近4倍。    <br />2、$row[’id’] 的速度是$row[id]的7倍。    <br />3、echo 比 print 快，并且使用echo的多重参数（译注：指用逗号而不是句点）代替字符串连接，比如echo $str1,$str2。    <br />4、在执行for循环之前确定最大循环数，不要每循环一次都计算最大值，最好运用foreach代替。    <br />5、注销那些不用的变量尤其是大数组，以便释放内存。    <br />6、尽量避免使用<strong>get，</strong>set，__autoload。    <br />7、require_once()代价昂贵。    <br />8、include文件时尽量使用绝对路径，因为它避免了PHP去include_path里查找文件的速度，解析操作系统路径所需的时间会更少。    <br />9、如果你想知道脚本开始执行（译注：即服务器端收到客户端请求）的时刻，使用$_SERVER[‘REQUEST_TIME’]要好于time()。    <br />10、函数代替正则表达式完成相同功能。    <br /></p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/920.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/942.seo/" title="服务器变量$_SERVER详解" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-09-20T23:35:56.000Z" itemprop="datePublished">
-          2012-09-21
-      </time>
+    <h1 itemprop="name">服务器变量$_SERVER详解</h1>
     
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/php/'>php</a>,
-    
-    <a href='/tag/手工注入/'>手工注入</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/836.seo/">和我一起进行php渗透</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>作者:Maxil   <br />已经发表在黑客手册2008年第三期</p>  <p>最近一直比较关注<a href="http://ha.cker.in/tag/PHP" target="_blank">PHP</a>注射的东西.学习好几天了.也应该实战一下了.目标<a href="http://app.xxxx.com">http://app.xxxx.com</a> .一个市场调查的门户.找注射点嘛,还是要用我们可爱的搜索引擎.为什么可爱呢?一会就知道了.Go Go Go !!!!!</p>  <p>在google中搜索php?id= site:xxx.com.意思就是说搜索XXX网站中以php?id=的URL.嘿.还真让我找到一个. <a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> .打开吓我一条，它页面本身就存在错误直接出来了绝对路径.   <br /><a href="http://img.cker.in/php_DA62/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/php_DA62/clip_image001_thumb.jpg" width="1086" height="498" /></a></p>  <p>/data01/www/cati/article_literature.php 呵呵,人品爆发了..通过路径可以得知是台Linux主机.判断下是否可以进行注射.and 1=1返回正常,and 1=2返回错误..OK存在注射.然后我们判断数据库,不出意外应该是mysql.传说中的LMAP.环境(L=Linux M=Mysql A=Apache P=Php)   <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11/*">http://app.xxx.com/cati/article_literature.php?id=11/*</a> 在后面加上/<em>,返回正常则是Mysql.因为/</em>是Mysql的注释标记.</p>  <p><a href="http://img.cker.in/php_DA62/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/php_DA62/clip_image002_thumb.jpg" width="1086" height="498" /></a></p>  <p>返回正常,确定是Mysql的数据库.现在我们来检测下Mysql的版本.4.0以上支持union联合查询.一般都回是4.0已经.为什么.因为Mysql是开源的数据库不收费傻子才不更新呢.呵呵.   <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> and ord(mid(version(),1,1))&gt;51/<em> 如我所料.果然是4.0以上的.OK.我们来爆它的字段.    <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> order by 10</p>  <p><a href="http://img.cker.in/php_DA62/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/php_DA62/clip_image003_thumb.jpg" width="749" height="508" /></a></p>  <p>返回错误,说明字段小于10   <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> order by 9</p>  <p><a href="http://img.cker.in/php_DA62/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/php_DA62/clip_image004_thumb.jpg" width="1030" height="548" /></a></p>  <p>返回正常说明它有9个字段.OK.现在我们知道它的字段那我们就来爆它的管理员吧 呵呵.   <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> and 1=2 union select 1,2,3,4,5,6,7,8,9</p>  <p><a href="http://img.cker.in/php_DA62/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/php_DA62/clip_image005_thumb.jpg" width="848" height="337" /></a></p>  <p></p>
-      
-      </p>
-      
-      <p>
-          <a href="/836.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-11-22T04:46:22.000Z" itemprop="datePublished">2012-11-22</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-08-08T20:57:54.000Z" itemprop="datePublished">
-          2012-08-09
-      </time>
-    
-    
-    | 
-    <a href='/tag/Apache/'>Apache</a>,
-    
-    <a href='/tag/Mysql/'>Mysql</a>,
-    
-    <a href='/tag/php/'>php</a>,
-    
-    <a href='/tag/Linux-Mint/'>Linux Mint</a>,
-    
-    <a href='/tag/LNMP/'>LNMP</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/742.seo/">LinuxMint安装Lamp</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <h5><a href="http://ha.cker.in/tag/LinuxMint" target="_blank">LinuxMint</a>安装Apache2 Web服务</h5>  <p>VPS 默认有安装Apache2，但如果你删除了，就需要重新安装；如果没有删除，执行下面的命令会退出来，不会对系统产生任何影响。</p>  <p>输入如下命令安装</p>  <pre>sudo apt-get install apache2</pre><br><br><p>正常情况下会给出如下提示，说明Apache2默认已经安装好了：</p><br><br><pre><br />$sudo apt-get install apache2<br>Reading package lists… Done<br>Building dependency tree… Done<br>apache2 is already the newest version.<br>0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.</pre><br><a name=".E5.BC.80.E5.90.AF_Apache2_.E7.9A.84.E4.BC.AA.E9.9D.99.E6.80.81"></a><br><br><h5>开启 Apache2 的伪静态</h5>
-
-<p>如果希望开启Apache2 伪静态 rewrite 支持，输入如下命令安装</p>
-
-<pre>#a2enmod rewrite</pre>
-
-<p>正常情况下会给出如下提示，说明已经安装成功：</p>
-
-<pre>#a2enmod rewrite
-Module rewrite installed; run /etc/init.d/apache2 force-reload to enable.</pre>
-
-<p>提示需要重新加载Apache2的配置，由于下一步是安装mysql，所以暂时不用重启。</p>
-
-<p>或出现如下提示，表示已经开启了 rewrite</p>
-
-<pre># a2enmod rewrite
-Mudule rewrite already enabled</pre>
-<a name=".E5.AE.89.E8.A3.85_mysql_.E6.95.B0.E6.8D.AE.E5.BA.93.E6.9C.8D.E5.8A.A1"></a>
-
-<h5><strong>安装 mysql 数据库服务</strong></h5>
-
-<p>安装mysql前，#1的vps需要先关闭apache2，因为mysql的安装会初始化数据，占了很大内存，如果apache2不关闭，有可能导致安装mysql失败。</p>
-
-<p>1 输入如下命令关闭 apache2</p>
-
-<pre>$sudo service apache2 stop
-如果输入正确，会提示如下信息，表示apache2已经停止</pre>
-
-<pre><a href="http://img.cker.in/LinuxMintLnmpLamp_35CE/image.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="image" border="0" alt="image" src="http://img.cker.in/LinuxMintLnmpLamp_35CE/image_thumb.png" width="659" height="101" /></a> </pre>
-
-<p>2 输入如下命令安装mysql</p>
-
-<pre>$apt-get install mysql-server</pre>
-
-<p>如果输入正确，会提示如下信息：</p>
-
-<p><a href="http://img.cker.in/LinuxMintLnmpLamp_35CE/image_3.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="image" border="0" alt="image" src="http://img.cker.in/LinuxMintLnmpLamp_35CE/image_thumb_3.png" width="773" height="731" /></a> </p>
-
-<p>等待中……</p>
-
-<p>继续安装 会提示输入 mysql 的 root 用户密码，你可以输入密码后回车，也可以不输入任何密码直接回车。 （不输入密码不会影响到Mysql的安全性，因为Mysql仅仅用于本地监听，但不输入密码会导致后续phpmyadmin无法运行）</p>
-      
-      </p>
-      
-      <p>
-          <a href="/742.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/920.seo/" title="PHP提高编程效率的方法" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-04-10T12:50:29.000Z" itemprop="datePublished">
-          2012-04-10
-      </time>
+    <h1 itemprop="name">PHP提高编程效率的方法</h1>
     
-    
-    | 
-    <a href='/tag/Mysql/'>Mysql</a>,
-    
-    <a href='/tag/CentOS/'>CentOS</a>,
-    
-    <a href='/tag/Nginx/'>Nginx</a>,
-    
-    <a href='/tag/php/'>php</a>,
-    
-    <a href='/tag/LNMP/'>LNMP</a>,
-    
-    <a href='/tag/Php-fpm/'>Php-fpm</a>,
-    
-    <a href='/tag/RedHat/'>RedHat</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/369.seo/">CentOS 6.2   RedHat EL 5.4 yum安装配置lnmp服务器(Nginx+PHP+MySQL)</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><p><a href="http://img.cker.in/CentOS6.2RedHatEL5.4yumlnmpNginxPHPMySQL_43ED/image.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/CentOS6.2RedHatEL5.4yumlnmpNginxPHPMySQL_43ED/image_thumb.png" width="244" height="159"></a> </p> <p><strong>准备篇：</strong> <p><strong>1</strong><strong>、配置防火墙，开启80端口、3306端口</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong> vi /etc/sysconfig/iptables<br></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT（允许80端口通过防火墙）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -A INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT（允许3306端口通过防火墙）<br><strong>特别提示：很多网友把这两条规则添加到防火墙配置的最后一行，导致防火墙启动失败，正确的应该是添加到默认的22端口这条规则的下面</strong><br>添加好之后防火墙规则如下所示：<br>#########################################################<br># Firewall configuration written by system-config-firewall<br># Manual customization of this file is not recommended.<br><em>filter<br>:INPUT ACCEPT [0:0]<br>:FORWARD ACCEPT [0:0]<br>:OUTPUT ACCEPT [0:0]<br>-A INPUT -m state –state ESTABLISHED,RELATED -j ACCEPT<br>-A INPUT -p icmp -j ACCEPT<br>-A INPUT -i lo -j ACCEPT<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 22 -j ACCEPT<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT<br>-A INPUT -j REJECT –reject-with icmp-host-prohibited<br>-A FORWARD -j REJECT –reject-with icmp-host-prohibited<br>COMMIT<br>######################################################### <p><strong>/etc/init.d/iptables restart</strong>&nbsp; #最后重启防火墙使配置生效</p>
-      
-      </p>
-      
-      <p>
-          <a href="/369.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-11-01T06:24:53.000Z" itemprop="datePublished">2012-11-01</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-03-18T01:02:58.000Z" itemprop="datePublished">
-          2012-03-18
-      </time>
-    
-    
-    | 
-    <a href='/tag/Nginx/'>Nginx</a>,
-    
-    <a href='/tag/FastCGI/'>FastCGI</a>,
-    
-    <a href='/tag/php/'>php</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/289.seo/">实战Nginx与PHP（FastCGI）的安装、配置与优化</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        一、什么是 FastCGIFastCGI是一个可伸缩地、高速地在HTTP server和动态脚本语言间通信的接口。多数流行的HTTP server都支持FastCGI，包括Apache、Nginx和lighttpd等，同时，FastCGI也被许多脚本语言所支持，其中就有PHP。FastCGI是从CGI发展改进而来的。传统CGI接口方式的主要缺点是性能很差，因为每次HTTP服务器遇到动态程序时都需要重新启动脚本解析器来执行解析，然后结果被
-      
-      </p>
-      
-      <p>
-          <a href="/289.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/836.seo/" title="和我一起进行php渗透" itemprop="url">
   
-  <nav class="pagination" role="pagination">
+    <h1 itemprop="name">和我一起进行php渗透</h1>
     
-    <span class="page-number">Page 1 of 1</span>
+    <time datetime="2012-09-20T23:35:56.000Z" itemprop="datePublished">2012-09-21</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/742.seo/" title="LinuxMint安装Lamp" itemprop="url">
+  
+    <h1 itemprop="name">LinuxMint安装Lamp</h1>
     
-  </nav>
-</main>
+    <time datetime="2012-08-08T20:57:54.000Z" itemprop="datePublished">2012-08-09</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/369.seo/" title="CentOS 6.2   RedHat EL 5.4 yum安装配置lnmp服务器(Nginx+PHP+MySQL)" itemprop="url">
+  
+    <h1 itemprop="name">CentOS 6.2   RedHat EL 5.4 yum安装配置lnmp服务器(Nginx+PHP+MySQL)</h1>
+    
+    <time datetime="2012-04-10T12:50:29.000Z" itemprop="datePublished">2012-04-10</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/289.seo/" title="实战Nginx与PHP（FastCGI）的安装、配置与优化" itemprop="url">
+  
+    <h1 itemprop="name">实战Nginx与PHP（FastCGI）的安装、配置与优化</h1>
+    
+    <time datetime="2012-03-18T01:02:58.000Z" itemprop="datePublished">2012-03-18</time>
+  </a>
+</section>
 
 
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

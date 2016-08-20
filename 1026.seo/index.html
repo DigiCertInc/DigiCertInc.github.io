@@ -1,144 +1,441 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Base 64 Encoding 编码 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Base 64 Encoding 编码 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="Base 64 Encoding有什么用？举个简单的例子，你使用SMTP协议 （Simple Mail Transfer Protocol 简单邮件传输协议）来发送邮件。因为这个协议是基于文本的协议，所以如果邮件中包含一幅图片，我们知道图片的存储格式是二进制数据（binary data），而非文本格">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Base 64 Encoding 编码 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/1026.seo/" title="Base 64 Encoding 编码" itemprop="url">Base 64 Encoding 编码</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2013-09-05T05:17:52.000Z" itemprop="datePublished">2013-09-05</time>
+    Updated:<time datetime="2016-08-20T11:03:54.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p> Base 64 Encoding有什么用？举个简单的例子，你使用SMTP协议 （Simple Mail Transfer Protocol 简单邮件传输协议）来发送邮件。因为这个协议是基于文本的协议，所以如果邮件中包含一幅图片，我们知道图片的存储格式是二进制数据（binary data），而非文本格式，我们必须将二进制的数据编码成文本格式，这时候Base 64 Encoding就派上用场了。</p>  <p> （一）编码原理</p>  <p>Base 64 Encoding 的编码原理是将每三个字节（byte）转换为四个字符，每个字符占6 bit。</p>  <p><a href="http://images.cnblogs.com/cnblogs_com/jfzhu/201212/201212100007219276.png" target="_blank" rel="external"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="168" alt="clip_image001" src="http://img.cker.in/Base64Encoding_12B67/clip_image001.png" width="623" border="0"></a></p>  <p>6 bit一共有64种组合方式，也就是说该编码共需要使用至少64种字符（后面我们还会介绍一个特殊字符 =）。Base 64 Encoding使用了从 A 到 Z、a 到 z、0 到 9、以及 + 和 / 这些字符（即[A-Za-z0-9+/]）。</p>  <p><a href="http://images.cnblogs.com/cnblogs_com/jfzhu/201212/201212100007251912.png" target="_blank" rel="external"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="460" alt="clip_image002" src="http://img.cker.in/Base64Encoding_12B67/clip_image002.png" width="383" border="0"></a></p>  <p> 假设我们有三个字节的数据，byte[] {1, 2, 3}，用二进制表示为：</p>  <p>00000001 | 00000010 | 00000011</p>  <p> 依据上面的原理，使用Basee 64 Encoding编码后结果应该为：</p>  <p>000000 | 010000 | 001000 | 000011</p>  <p> 转换为十进制为 0 | 16 | 8 | 3，对照上面的表，编码后的文本为 AQID</p>  <p> 既然Base 64 Encoding将每三个字节转换为四个字符，那如果一幅图片的字节数不能被3整除该怎么办？</p>  <p> 如果剩余一个字节，该字节同样被转换为四个字符。第一个6 bit转换成一个字符，接下来2 bit转换成一个字符（注意这里是向右添加0），最后添加两个=字符。</p>  <p><a href="http://images.cnblogs.com/cnblogs_com/jfzhu/201212/201212100007283533.png" target="_blank" rel="external"><img title="clip_image003" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="173" alt="clip_image003" src="http://img.cker.in/Base64Encoding_12B67/clip_image003.png" width="351" border="0"></a></p>  <p> 假设我们有四个字节的数据，byte[] {1, 2, 3, 4}，用二进制表示为：</p>  <p>00000001 | 00000010 | 00000011 | 00000100</p>  <p> 依据上面的原理，使用Basee 64 Encoding编码后结果应该为：</p>  <p>000000 | 010000 | 001000 | 000011 | 000001 | 000000</p>  <p> 转换为十进制为 0 | 16 | 8 | 3 | 1 | 0，对照上面的表，编码后的文本为 AQIDBA==</p>  <p> 如果不能被3整除，而余下两个字节，编码方式类似剩余一个字节，同样是转换成四个字符，最后一个字符用=。</p>  <p><a href="http://images.cnblogs.com/cnblogs_com/jfzhu/201212/201212100007315711.png" target="_blank" rel="external"><img title="clip_image004" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="164" alt="clip_image004" src="http://img.cker.in/Base64Encoding_12B67/clip_image004.png" width="471" border="0"></a></p>  <p> 假设我们有五个字节的数据，byte[] {1, 2, 3, 4, 5}，用二进制表示为：</p>  <p>00000001 | 00000010 | 00000011 | 00000100 | 00000101</p>  <p> 依据上面的原理，使用Basee 64 Encoding编码后结果应该为：</p>  <p>000000 | 010000 | 001000 | 000011 | 000001 | 000000 | 010100</p>  <p> 转换为十进制为 0 | 16 | 8 | 3 | 1 | 0 | 20，对照上面的表，编码后的文本为 AQIDBAU=</p>  <p> （二）在.Net中的实现</p>  <p> 在.Net中，将二进制数据编码为文本可以使用public static string ToBase64String(byte[] inArray)方法；从文本文件转换回二进制数据可以使用public static byte[] FromBase64String(string s)方法。</p>  <p> 下面验证一下上面讲解的例子，分别将三组数据 byte[] {1, 2, 3}，byte[] {1, 2, 3, 4}，byte[] {1, 2, 3, 4, 5} 进行编码，并检验编码后的文本是否分别为AQID，AQIDBA==，AQIDBAU=。</p>  <p>byte[] binary1 = new byte[] { 1, 2, 3 }; </p>  <p>string encoded1 = Convert.ToBase64String(binary1); </p>  <p>byte[] decoded1 = Convert.FromBase64String(encoded1); </p>  <p>Console.WriteLine(&quot;Encoded string: {0}, Decoded binary is equal to orignial binary? {1}&quot;</p>  <p>, encoded1, binary1.SequenceEqual(decoded1));</p>  <p>byte[] binary2 = new byte[] { 1, 2, 3, 4}; </p>  <p>string encoded2 = Convert.ToBase64String(binary2); </p>  <p>byte[] decoded2 = Convert.FromBase64String(encoded2); </p>  <p>Console.WriteLine(&quot;Encoded string: {0}, Decoded binary is equal to orignial binary? {1}&quot;</p>  <p>, encoded2, binary2.SequenceEqual(decoded2));</p>  <p>byte[] binary3 = new byte[] { 1, 2, 3, 4, 5}; </p>  <p>string encoded3 = Convert.ToBase64String(binary3); </p>  <p>byte[] decoded3 = Convert.FromBase64String(encoded3); </p>  <p>Console.WriteLine(&quot;Encoded string: {0}, Decoded binary is equal to orignial binary? {1}&quot;</p>  <p>, encoded3, binary3.SequenceEqual(decoded3)); </p>  <p> 输出结果为：</p>  <p>Encoded string: AQID, Decoded binary is equal to orignial binary? True&#160; <br>Encoded string: AQIDBA==, Decoded binary is equal to orignial binary? True&#160; <br>Encoded string: AQIDBAU=, Decoded binary is equal to orignial binary? True</p>  <p> 总结：本文介绍了为何要使用编码，以及Base 64 Encoding编码的原理，最后还介绍了Base 64 Encoding在.Net中的实现。</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2013-09-05T05:17:52.000Z" itemprop="datePublished">
-          2013-09-05
-      </time>
-    
-</span>
-    <h1 class="post-title">Base 64 Encoding 编码</h1>
-    <section class="post-content">
-      <p> Base 64 Encoding有什么用？举个简单的例子，你使用SMTP协议 （Simple Mail Transfer Protocol 简单邮件传输协议）来发送邮件。因为这个协议是基于文本的协议，所以如果邮件中包含一幅图片，我们知道图片的存储格式是二进制数据（binary data），而非文本格式，我们必须将二进制的数据编码成文本格式，这时候Base 64 Encoding就派上用场了。</p>  <p> （一）编码原理</p>  <p>Base 64 Encoding 的编码原理是将每三个字节（byte）转换为四个字符，每个字符占6 bit。</p>  <p><a href="http://images.cnblogs.com/cnblogs_com/jfzhu/201212/201212100007219276.png" target="_blank" rel="external"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="168" alt="clip_image001" src="http://img.cker.in/Base64Encoding_12B67/clip_image001.png" width="623" border="0"></a></p>  <p>6 bit一共有64种组合方式，也就是说该编码共需要使用至少64种字符（后面我们还会介绍一个特殊字符 =）。Base 64 Encoding使用了从 A 到 Z、a 到 z、0 到 9、以及 + 和 / 这些字符（即[A-Za-z0-9+/]）。</p>  <p><a href="http://images.cnblogs.com/cnblogs_com/jfzhu/201212/201212100007251912.png" target="_blank" rel="external"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="460" alt="clip_image002" src="http://img.cker.in/Base64Encoding_12B67/clip_image002.png" width="383" border="0"></a></p>  <p> 假设我们有三个字节的数据，byte[] {1, 2, 3}，用二进制表示为：</p>  <p>00000001 | 00000010 | 00000011</p>  <p> 依据上面的原理，使用Basee 64 Encoding编码后结果应该为：</p>  <p>000000 | 010000 | 001000 | 000011</p>  <p> 转换为十进制为 0 | 16 | 8 | 3，对照上面的表，编码后的文本为 AQID</p>  <p> 既然Base 64 Encoding将每三个字节转换为四个字符，那如果一幅图片的字节数不能被3整除该怎么办？</p>  <p> 如果剩余一个字节，该字节同样被转换为四个字符。第一个6 bit转换成一个字符，接下来2 bit转换成一个字符（注意这里是向右添加0），最后添加两个=字符。</p>  <p><a href="http://images.cnblogs.com/cnblogs_com/jfzhu/201212/201212100007283533.png" target="_blank" rel="external"><img title="clip_image003" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="173" alt="clip_image003" src="http://img.cker.in/Base64Encoding_12B67/clip_image003.png" width="351" border="0"></a></p>  <p> 假设我们有四个字节的数据，byte[] {1, 2, 3, 4}，用二进制表示为：</p>  <p>00000001 | 00000010 | 00000011 | 00000100</p>  <p> 依据上面的原理，使用Basee 64 Encoding编码后结果应该为：</p>  <p>000000 | 010000 | 001000 | 000011 | 000001 | 000000</p>  <p> 转换为十进制为 0 | 16 | 8 | 3 | 1 | 0，对照上面的表，编码后的文本为 AQIDBA==</p>  <p> 如果不能被3整除，而余下两个字节，编码方式类似剩余一个字节，同样是转换成四个字符，最后一个字符用=。</p>  <p><a href="http://images.cnblogs.com/cnblogs_com/jfzhu/201212/201212100007315711.png" target="_blank" rel="external"><img title="clip_image004" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="164" alt="clip_image004" src="http://img.cker.in/Base64Encoding_12B67/clip_image004.png" width="471" border="0"></a></p>  <p> 假设我们有五个字节的数据，byte[] {1, 2, 3, 4, 5}，用二进制表示为：</p>  <p>00000001 | 00000010 | 00000011 | 00000100 | 00000101</p>  <p> 依据上面的原理，使用Basee 64 Encoding编码后结果应该为：</p>  <p>000000 | 010000 | 001000 | 000011 | 000001 | 000000 | 010100</p>  <p> 转换为十进制为 0 | 16 | 8 | 3 | 1 | 0 | 20，对照上面的表，编码后的文本为 AQIDBAU=</p>  <p> （二）在.Net中的实现</p>  <p> 在.Net中，将二进制数据编码为文本可以使用public static string ToBase64String(byte[] inArray)方法；从文本文件转换回二进制数据可以使用public static byte[] FromBase64String(string s)方法。</p>  <p> 下面验证一下上面讲解的例子，分别将三组数据 byte[] {1, 2, 3}，byte[] {1, 2, 3, 4}，byte[] {1, 2, 3, 4, 5} 进行编码，并检验编码后的文本是否分别为AQID，AQIDBA==，AQIDBAU=。</p>  <p>byte[] binary1 = new byte[] { 1, 2, 3 }; </p>  <p>string encoded1 = Convert.ToBase64String(binary1); </p>  <p>byte[] decoded1 = Convert.FromBase64String(encoded1); </p>  <p>Console.WriteLine(&quot;Encoded string: {0}, Decoded binary is equal to orignial binary? {1}&quot;</p>  <p>, encoded1, binary1.SequenceEqual(decoded1));</p>  <p>byte[] binary2 = new byte[] { 1, 2, 3, 4}; </p>  <p>string encoded2 = Convert.ToBase64String(binary2); </p>  <p>byte[] decoded2 = Convert.FromBase64String(encoded2); </p>  <p>Console.WriteLine(&quot;Encoded string: {0}, Decoded binary is equal to orignial binary? {1}&quot;</p>  <p>, encoded2, binary2.SequenceEqual(decoded2));</p>  <p>byte[] binary3 = new byte[] { 1, 2, 3, 4, 5}; </p>  <p>string encoded3 = Convert.ToBase64String(binary3); </p>  <p>byte[] decoded3 = Convert.FromBase64String(encoded3); </p>  <p>Console.WriteLine(&quot;Encoded string: {0}, Decoded binary is equal to orignial binary? {1}&quot;</p>  <p>, encoded3, binary3.SequenceEqual(decoded3)); </p>  <p> 输出结果为：</p>  <p>Encoded string: AQID, Decoded binary is equal to orignial binary? True&#160; <br>Encoded string: AQIDBA==, Decoded binary is equal to orignial binary? True&#160; <br>Encoded string: AQIDBAU=, Decoded binary is equal to orignial binary? True</p>  <p> 总结：本文介绍了为何要使用编码，以及Base 64 Encoding编码的原理，最后还介绍了Base 64 Encoding在.Net中的实现。</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1026.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1026.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1026.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1026.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/1027.seo/">
-        ← 从爆破shell到内网渗透(有亮点)
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/1025.seo/">
-        本地快速搭建反向代理平台，实现sebug等高危漏洞验证 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/代码学习/">代码学习</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/1027.seo/" title="从爆破shell到内网渗透(有亮点)">
+  <strong>Prev:</strong><br/>
+  <span>
+  从爆破shell到内网渗透(有亮点)</span>
+</a>
+</div>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/1025.seo/"  title="本地快速搭建反向代理平台，实现sebug等高危漏洞验证">
+ <strong>Next:</strong><br/> 
+ <span>本地快速搭建反向代理平台，实现sebug等高危漏洞验证
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-Base 64 Encoding 编码" data-title="Base 64 Encoding 编码" data-url="http://ha.cker.in/1026.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

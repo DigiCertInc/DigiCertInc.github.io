@@ -1,287 +1,274 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Archives: 2011 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Archives: 2011 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Archives: 2011 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="archive-icon">2011</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-12-16T06:49:13.000Z" itemprop="datePublished">
-          2011-12-16
-      </time>
-    
-    
-    | 
-    <a href='/tag/Tengine/'>Tengine</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/199.seo/">淘宝Web服务器Tengine基本安装步骤</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>我们很高兴的宣布由淘宝网核心系统部开发的<a href="http://tengine.taobao.org/">Tengine</a>服务器终于正式开源了。<a href="http://www.taobao.com/">淘宝网</a>是亚洲最大的电子商务 网站，Alexa全球排名第12位。每天访问淘宝网的PV超过了几十亿。大压力的访问，对淘宝网的Web服务器提出了严苛的要求。</p>  <p>经过一系列的对比，我们 最终选择了Nginx作为我们的Web服务器，因为它性能高，又非常节省资源（CPU和内存），并且有足够的灵活性。    <br />一开始我们使用Nginx还仅仅用它来处理静态文件、PHP等，接着我们又在Nginx上开发了几十个各种用途的模块。随着对Nginx的 越来越了解，我们发现它本身已经不能够完全满足我们的需求了，所以我们就开始对Nginx核心进行定制和开发。考虑到我们开发的功能中的一些对其它的互联 网用户也可能有用处，所以我们就想到了把这些公用的功能开源出来。淘宝网是开源软件的用户和受益者，我们也想成为开源软件的贡献者。这就是我们决定开源 Tengine的原因。     <br />Tengine基于最新的Nginx稳定版（Nginx-1.0.10），在它的基础上开发了一些功能和做了一些bug修复，比如：</p>  <li>组合多个CSS、JavaScript文件的访问请求变成一个请求； </li>  <li>支持管道和syslog形式的日志和抽样； </li>  <li>自动根据CPU数目设置亲缘性； </li>  <li>监控系统的负载和资源占用从而对系统进行保护； </li>  <li>显示对运维人员更友好的出错信息，便于定位出错机器； </li>  <li>更强大的访问速度限制模块； </li>  <li>backtrace模块，程序崩溃的时候可以显示出错的调用栈； </li>  <li>根据文件类型设置过期时间； </li>  <li>…    <br />基本上，Tengine可以被看作一个更好的Nginx，或者是Nginx的超集。最新1.2.1版可以在这里下载：     <br /><a href="http://tengine.taobao.org/download/tengine-1.2.1.tar.gz">http://tengine.taobao.org/download/tengine-1.2.1.tar.gz</a>     <br />在这里，我们想向Nginx团队致谢，尤其感谢Nginx的作者Igor Sysoev的伟大工作。我们也很乐意并在接下来的时间里将我们的工作成果捐献给Nginx官方。     <br />坦率的讲，现在Tengine的特性还不够多，但这是我们将我们在Nginx上的工作推向开源的第一步。我们已经围绕Tengine组建了 一个团队，而且内部还有一个很长的计划列表。Tengine开源不是项目开发的结束，而是开发的开始。相信接下来大家会看到我们在Tengine上的更多 工作进展。</li>
-      
-      </p>
-      
-      <p>
-          <a href="/199.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+  <div class="archiveslist archive-float clearfix">
+   <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">2016年04月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">2015年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">2015年07月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年06月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年05月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">2014年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">2014年06月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">2014年05月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2014年02月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年01月</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年11月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年10月</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年09月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年08月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">2013年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">2013年06月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">2013年05月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">2013年04月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">2013年03月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2013年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">2013年01月</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">2012年12月</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">2012年11月</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">2012年10月</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">2012年09月</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">2012年08月</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">2012年07月</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">2012年06月</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">2012年05月</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">2012年04月</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">2012年03月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">2012年02月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">2012年01月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">2011年12月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">2011年11月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">2011年10月</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">2011年09月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">2011年08月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">2011年07月</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">2011年06月</a><span class="archive-list-count">7</span></li></ul>
+ </div>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-12-16T03:57:35.000Z" itemprop="datePublished">
-          2011-12-16
-      </time>
-    
-    
-    | 
-    <a href='/tag/Linux/'>Linux</a>,
-    
-    <a href='/tag/虚拟主机/'>虚拟主机</a>,
-    
-    <a href='/tag/管理系统/'>管理系统</a>,
-    
-    <a href='/tag/VPS/'>VPS</a>,
-    
-    <a href='/tag/CPanel/'>CPanel</a>,
-    
-    <a href='/tag/ZPanel/'>ZPanel</a>,
-    
-    <a href='/tag/Webmin/'>Webmin</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/197.seo/">Linux下的六个免费的虚拟主机管理系统</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>收费的虚拟主机控制面板（比如CPanel，DirectAdmin）由于价格昂贵，花钱买不划算。于是一直在苦苦寻找免费或者破解的类似于DirectAdmin的虚拟主机管理系统,没想到开源界已经产生了如此多优秀的免费的虚拟主机管理系统：ZPanel，web-cp，VHCS，virtualmin，PHPMyWebHosting，SysCP。另外还有Kloxo……</p>
-      
-      </p>
-      
-      <p>
-          <a href="/197.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-12-08T05:15:30.000Z" itemprop="datePublished">
-          2011-12-08
-      </time>
-    
-</span>
-      <h2 class="post-title"><a href="/196.seo/">一句话，就毁掉一个小清新段子 ！</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>寒冬早晨，她下夜班回来发现他居然还赖在床上。她想着自己的辛苦，忍不住歇斯底里起来。他什么也没说，起来去厨房端出早已准备好的早饭，急急忙忙上班去了。她流着委屈的泪水，吃饭洗漱…当她躺下的时候，觉得被窝里暖暖地存着他的热量，才想起刚才他一直躺在她这边，忍不住又哭了。</p>  <p>毁：然后她拿出手机拨了一个再熟不过的电话：过来吧~他上班去了~</p>  <p>———————————————————-</p>  <p>老友相见，他们谈笑风生。他随意玩弄她的手机，一愣，“几年前的短信你居然还留着。”她抢过手机，“你没心没肺甩了我，我留着这些甜言蜜语日后调侃你还不行吗？”饭后，他自先离开。她安静地翻出短信一条条认真看，喃喃自语：“我只是需要些证据，证明即便分开，你也有过那么爱我的时候…”</p>  <p>毁：说完她就对着短信撸了起来。</p>  <p>———————————————————-</p>  <p>十年婚姻走到尽头。她坐上时空穿梭机，回到他们举行婚礼那天，待嫁新娘的自己满脸幸福，她狠下心说未来的生活并不幸福，那时的她泪流满面。回程后是预料的空荡，她无力坐下，结束了…身后门锁轻响，他熟悉的脸带着些许疲惫出现在她面前，她忽地哭了。原来爱，是即便知道结局，仍义无反顾。</p>  <p>毁：他一脸惊讶。“你？你怎么会在我家？”他后面跟着进来一连鬓络腮胡大汉。对他说：“老公，她是谁啊？”———————————————————-</p>  <p></p>
-      
-      </p>
-      
-      <p>
-          <a href="/196.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/199.seo/" title="淘宝Web服务器Tengine基本安装步骤" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-12-07T01:24:32.000Z" itemprop="datePublished">
-          2011-12-07
-      </time>
+    <h1 itemprop="name">淘宝Web服务器Tengine基本安装步骤</h1>
     
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/WVS/'>WVS</a>,
-    
-    <a href='/tag/神器/'>神器</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/195.seo/">Acunetix Web Vulnerability Scanner 8.x Enterprise Edition KeyGen By Hmily LCG</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        [转自Hmily’S Blog]     这是一款网络漏洞扫描工具。通过网络爬虫测试你的网站安全，检测流行的攻击 ,如交叉站点脚本,sql 注入等。在被黑客攻击前扫描购物车，表格、安全区域和其他Web应用程序。75% 的互联网攻击目标是基于Web的应用程序。因为他们时常接触机密数据并且被放置在防火墙之前。         企业原版下载地址:http://www.acunetix.com/download/fullver8        
-      
-      </p>
-      
-      <p>
-          <a href="/195.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2011-12-16T06:49:13.000Z" itemprop="datePublished">2011-12-16</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-12-01T23:42:00.000Z" itemprop="datePublished">
-          2011-12-02
-      </time>
-    
-    
-    | 
-    <a href='/tag/0day/'>0day</a>,
-    
-    <a href='/tag/京东商城/'>京东商城</a>,
-    
-    <a href='/tag/免运费/'>免运费</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/194.seo/">京东商城 39元商品不交运费0day</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        京东商城&lt;39元商品不交运费0day   条件    1 你购买的商品不满足39元    2 再买一件库存是0或者在途的商品，&gt;￥39，两件合并成一个订单    3 订单确认的时候一定勾选“先发有货商品（如果订单部分商品缺货，优先配送有货商）”    4 等你要的商品出库后，取消那件库存是0或在途的商品。   ============================================    后续状态：     
-      
-      </p>
-      
-      <p>
-          <a href="/194.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/197.seo/" title="Linux下的六个免费的虚拟主机管理系统" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-11-28T13:50:07.000Z" itemprop="datePublished">
-          2011-11-28
-      </time>
+    <h1 itemprop="name">Linux下的六个免费的虚拟主机管理系统</h1>
     
-    
-    | 
-    <a href='/tag/黑客/'>黑客</a>,
-    
-    <a href='/tag/书/'>书</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/189.seo/">读爱读的书</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>1、《鸟哥的私房菜（服务器架设篇）》<span style="color: #f00;">30%</span></p>
-<p>2、《黑客与画家》<span style="color: #ff0000;">完！</span></p>
-<p>3、《<a href="ftp://210.51.180.252/bbs/tp05/computer/Steve.Jobs_chs%5Bwww.TopSage.com%5D.zip ">史蒂夫·乔布斯传</a>》<span style="color: #ff0000;">完！</span></p>
-<p>4、《黑客大曝光：Web应用程序安全（原书第三版）》<span style="color: #f00;">30%</span><br>
-      
-      </p>
-      
-      <p>
-          <a href="/189.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2011-12-16T03:57:35.000Z" itemprop="datePublished">2011-12-16</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/archives/2011/">← Newer Posts</a>
-    <span class="page-number">Page 2 of 14</span>
-    <a class="older-posts" href="/archives/2011/page/3/">Older Posts →</a>
+    <a href="/196.seo/" title="一句话，就毁掉一个小清新段子 ！" itemprop="url">
+  
+    <h1 itemprop="name">一句话，就毁掉一个小清新段子 ！</h1>
+    
+    <time datetime="2011-12-08T05:15:30.000Z" itemprop="datePublished">2011-12-08</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/195.seo/" title="Acunetix Web Vulnerability Scanner 8.x Enterprise Edition KeyGen By Hmily LCG" itemprop="url">
+  
+    <h1 itemprop="name">Acunetix Web Vulnerability Scanner 8.x Enterprise Edition KeyGen By Hmily LCG</h1>
+    
+    <time datetime="2011-12-07T01:24:32.000Z" itemprop="datePublished">2011-12-07</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/194.seo/" title="京东商城 39元商品不交运费0day" itemprop="url">
+  
+    <h1 itemprop="name">京东商城 39元商品不交运费0day</h1>
+    
+    <time datetime="2011-12-01T23:42:00.000Z" itemprop="datePublished">2011-12-02</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/189.seo/" title="读爱读的书" itemprop="url">
+  
+    <h1 itemprop="name">读爱读的书</h1>
+    
+    <time datetime="2011-11-28T13:50:07.000Z" itemprop="datePublished">2011-11-28</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix archive-nav">
+    <a class="extend prev" rel="prev" href="/archives/2011/">&laquo; 上一页</a><a class="page-number" href="/archives/2011/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2011/page/3/">3</a><a class="page-number" href="/archives/2011/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2011/page/14/">14</a><a class="extend next" rel="next" href="/archives/2011/page/3/">下一页 &raquo;</a>
   </nav>
-</main>
 
-
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

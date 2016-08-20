@@ -1,157 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>反向代理在Web渗透测试中的运用 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>反向代理在Web渗透测试中的运用 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="反向代理在Web渗透测试中的运用   作者：不走的钟   来源：http://www.007hack.com/?p=770   在一次Web渗透测试中，目标是M国的一个Win+Apache+PHP+MYSQL的网站，独立服务器，对外仅开80端口，网站前端的业务系统比较简单，经过几天的测试也没有找到漏洞，甚至连XSS都没有发现，也未找到网站后台，在收集信息的时候已经排除了C段入侵的可行性（选择C段入侵的时候，需要对目标、网络、路由和国家区域进行分析和判断，如果不经思考和判断地去入侵C段服务器，当你费尽心思拿到某台服务器权限时，往往发现毫无半点用处，特别又是在国外，ARP基本上都没什么希望，当然内网渗透中又是另一回事。）    也许在渗透测试遇到这种情况时大多会选择放弃，在绝望的时候，我将目标临时转移到该网站域名注册商，因为拥有域名注册商网站权限，至少可以修改目标网站的域名解析。一般情况入侵域名注册网站难度比较大，但并不是没有希望，在09年的时候，国内很多域名注册商的网站都存在漏洞。渗透那个域名注册商网站，过程比较繁杂，也没有新的技术点，靠的就是细心和耐心，但最终还是获取到目标网站域名的管理账号和密码，那么此时我们已知和已有的条件如下:    目标域名：www.007hack.com(当然不是真的，文章来源007安全)    网站IP:1.1.1.1    环境：Win+Apache+PHP+MYSQL    已有权限：域名解析权限，可以将www.007hack.com解析到任何一个IP上    特别说明下，目标网站使用的服务器，并不是在域名注册商租用的，而是放置在公司机房中，所以通过域名注册商网站，是不能管理到Web源码的，只能进行域名解析。    当拥有域名解析权限后，如何才获取目标网站的权限呢？    A：构造一个和目标非常相似的网站？然后将域名解析到构造的网站？    B：使用iis重定向？   这些方法都非常容易被发现，并且也无法获取到权限，所以遇到这种场景的时候我们可以使用反向代理，也是本文的重点。了解反向代理之前，我做一个关于HTTP 代理的简单介绍， 代理常用的是普通代理和反向代理：   普通代理：为用户（客户端）提供代理，需要在客户端设置，比如在客户端浏览器中设置代理服务器IP和端口，完成配置后，用户可以通过代理服务器访问互联网，代理服务器相当于中间人的作用。根据代理服务器配置不同，又可以将普通代理分为，几种不同安全级别的代理，代理软件比较多，不同的厂商有不同的称谓和分级，一般情况都包括以下三个级别，透明代理、普通匿名代理和高匿名代理。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="反向代理在Web渗透测试中的运用 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/493.seo/" title="反向代理在Web渗透测试中的运用" itemprop="url">反向代理在Web渗透测试中的运用</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2012-06-12T09:55:42.000Z" itemprop="datePublished">2012-06-12</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>反向代理在Web渗透测试中的运用 </p>  <p>作者：不走的钟 </p>  <p>来源：<a href="http://www.007hack.com/?p=770" target="_blank" rel="external">http://www.007hack.com/?p=770</a></p>  <p> 在一次Web渗透测试中，目标是M国的一个Win+Apache+PHP+MYSQL的网站，独立服务器，对外仅开80端口，网站前端的业务系统比较简单，经过几天的测试也没有找到漏洞，甚至连XSS都没有发现，也未找到网站后台，在收集信息的时候已经排除了C段入侵的可行性（选择C段入侵的时候，需要对目标、网络、路由和国家区域进行分析和判断，如果不经思考和判断地去入侵C段服务器，当你费尽心思拿到某台服务器权限时，往往发现毫无半点用处，特别又是在国外，ARP基本上都没什么希望，当然内网渗透中又是另一回事。） </p>  <p> 也许在渗透测试遇到这种情况时大多会选择放弃，在绝望的时候，我将目标临时转移到该网站域名注册商，因为拥有域名注册商网站权限，至少可以修改目标网站的域名解析。一般情况入侵域名注册网站难度比较大，但并不是没有希望，在09年的时候，国内很多域名注册商的网站都存在漏洞。渗透那个域名注册商网站，过程比较繁杂，也没有新的技术点，靠的就是细心和耐心，但最终还是获取到目标网站域名的管理账号和密码，那么此时我们已知和已有的条件如下: </p>  <p> 目标域名：www.007hack.com(当然不是真的，文章来源007安全)   <br> 网站IP:1.1.1.1 </p>  <p> 环境：Win+Apache+PHP+MYSQL </p>  <p> 已有权限：域名解析权限，可以将www.007hack.com解析到任何一个IP上 </p>  <p> 特别说明下，目标网站使用的服务器，并不是在域名注册商租用的，而是放置在公司机房中，所以通过域名注册商网站，是不能管理到Web源码的，只能进行域名解析。 </p>  <p> 当拥有域名解析权限后，如何才获取目标网站的权限呢？ </p>  <p> A：构造一个和目标非常相似的网站？然后将域名解析到构造的网站？ </p>  <p> B：使用iis重定向？ </p>  <p>这些方法都非常容易被发现，并且也无法获取到权限，所以遇到这种场景的时候我们可以使用反向代理，也是本文的重点。了解反向代理之前，我做一个关于HTTP 代理的简单介绍， 代理常用的是普通代理和反向代理： </p>  <p>普通代理：为用户（客户端）提供代理，需要在客户端设置，比如在客户端浏览器中设置代理服务器IP和端口，完成配置后，用户可以通过代理服务器访问互联网，代理服务器相当于中间人的作用。根据代理服务器配置不同，又可以将普通代理分为，几种不同安全级别的代理，代理软件比较多，不同的厂商有不同的称谓和分级，一般情况都包括以下三个级别，透明代理、普通匿名代理和高匿名代理。</p><a id="more"></a><p> </p>  <p>透明代理： </p>  <p>REMOTE_ADDR = 代理服务器 IP   <br>HTTP_VIA = 代理服务器 IP    <br>HTTP_X_FORWARDED_FOR = 真实 IP </p>  <p>说明：使用透明代理，可以进行信息交互，但不能隐藏自己真实IP，安全性越差，所以黑客一般不会使用此类代理。 </p>  <p>普通匿名代理： </p>  <p>REMOTE_ADDR = 代理服务器 IP   <br>HTTP_VIA = 代理服务器 IP    <br>HTTP_X_FORWARDED_FOR = 代理服务器 IP </p>  <p>说明：隐藏了真实的IP，但通过HTTP_VIA可以判断出你使用了代理。 </p>  <p>高匿名代理： </p>  <p>REMOTE_ADDR = 代理服务器 IP   <br>HTTP_VIA = 没数值 </p>  <p>HTTP_X_FORWARDED_FOR = 没数值 </p>  <p>说明：可以隐藏真实IP，同时不会泄露你是否使用了代理，这类代理黑客往往比较喜欢。 </p>  <p>用户通过普通代理访问Web，实际上用户并没有直接访问Web服务器，而是通过代理服务器作为中转，的示意图如下： </p>  <p>反向代理：是为服务器提供代理和缓存，不需要在客户端。用户访问网站，实际上并不是直接访问Web服务器，而是首先访问反向代理服务器，如果请求的是html/htm/gif/jpg等这些静态文件时，反向代理服务器直接返回结果，如果用户请求是脚本如asp/php/jsp等内容时，反向代理服务器会将请求转发给Web服务器处理，再把结果返回给用户，从而通过缓存实现加速的效果。示意图如下： </p>  <p> Squid和Nginx是非常优秀的反向代理软件，本文主要介绍Squid，它支持Windows和Linux，由于目标网站环境是win，我这里使用Win下的squid（使用Linux也可以），配置方法如下： </p>  <p>Squid版本:2.7 For Win </p>  <p>1、配置squid/etc目录   <br>cachemgr.conf.default    <br>mime.conf.default    <br>squid.conf.default    <br>squid_radius_auth.conf.default(可能低版本这个文件不存在，如果没有就不用修改) </p>  <p>复制并改名为: </p>  <p>cachemgr.conf   <br>mime.conf    <br>squid.conf    <br>squid_radius_auth.conf </p>  <p>2．用文本编辑器打开squid.conf，需要修改的地方： </p>  <p>查找http_port 3128在后面增加一行   <br>http_port 80 vhost </p>  <p>查找#cache_peer sib2.foo.net sibling 3128 3130 [proxy-only]在后面增加一行   <br>cache_peer 1.1.1.1&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; parent&#160;&#160;&#160; 80&#160;&#160;&#160;&#160;&#160; 0&#160;&#160; no-query&#160;&#160; originserver </p>  <p>1.1.1.1为目标网站真实IP，80为端口 </p>  <p>查找# TAG: visible_hostname在后面增加一行 </p>  <p>visible_hostname volcano(任意命名) </p>  <p>查找http_access deny all 在其前面加#将这一行注释掉，然后增加一行 </p>  <p>http_access allow all </p>  <p>3.使用squid/sbin/squid.exe执行以下命令 </p>  <p>squid -i -n web_squid&#160; #命名squid服务的新名称   <br>squid -i&#160; #将squid服务加入到服务里面    <br>squid -r -n web_squid&#160; #删除指定名称的服务    <br>squid -z&#160; #创建缓存目录    <br>squid -k parse&#160; #检测配置是否有效    <br>net start web_squid #启动    <br>squid -dx #当服务不能启动时，进行调试 </p>  <p> 测试squid是否正常：   <br> 访问<a href="http://squid服务器ip" target="_blank" rel="external">http://squid服务器ip</a>    <br> 实际指向<a href="http://web服务器IP" target="_blank" rel="external">http://web服务器IP</a> </p>  <p> 完成测试后，将目标域名解析到squid服务器IP，网站以及功能完全正常，唯一差别就是ping返回的IP是squid服务器的IP，并不是真正的Web服务器IP，只要网站正常访问，管理员也不会时时去ping。 </p>  <p> 经过几个小时等待后，目标网站管理员登陆后台，在日志squid\var\logs\access.log就可以找到后台地址，后台目录文件名非常地长，同时收获了很多敏感的URL，准备研究如何截取Cookie或者后台账号密码时，后台xx_adduser.php存在本地验证漏洞，直接添加管理员成功，管理员和后台地址都有了，登陆后顺利拿到WebShell。 </p>  <p> 当然，如果后台不存在这个漏洞，应该还是有办法可以弄到权限的，毕竟用户/管理员访问的数据包都会经过这台squid服务器，只不过会麻烦许多……</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2012-06-12T09:55:42.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/反向代理/'>反向代理</a>,
-    
-    <a href='/tag/Nginx/'>Nginx</a>,
-    
-    <a href='/tag/web渗透测试/'>web渗透测试</a>,
-    
-    <a href='/tag/squid/'>squid</a>
-    
-    
-</span>
-    <h1 class="post-title">反向代理在Web渗透测试中的运用</h1>
-    <section class="post-content">
-      <p>反向代理在Web渗透测试中的运用 </p>  <p>作者：不走的钟 </p>  <p>来源：<a href="http://www.007hack.com/?p=770" target="_blank" rel="external">http://www.007hack.com/?p=770</a></p>  <p> 在一次Web渗透测试中，目标是M国的一个Win+Apache+PHP+MYSQL的网站，独立服务器，对外仅开80端口，网站前端的业务系统比较简单，经过几天的测试也没有找到漏洞，甚至连XSS都没有发现，也未找到网站后台，在收集信息的时候已经排除了C段入侵的可行性（选择C段入侵的时候，需要对目标、网络、路由和国家区域进行分析和判断，如果不经思考和判断地去入侵C段服务器，当你费尽心思拿到某台服务器权限时，往往发现毫无半点用处，特别又是在国外，ARP基本上都没什么希望，当然内网渗透中又是另一回事。） </p>  <p> 也许在渗透测试遇到这种情况时大多会选择放弃，在绝望的时候，我将目标临时转移到该网站域名注册商，因为拥有域名注册商网站权限，至少可以修改目标网站的域名解析。一般情况入侵域名注册网站难度比较大，但并不是没有希望，在09年的时候，国内很多域名注册商的网站都存在漏洞。渗透那个域名注册商网站，过程比较繁杂，也没有新的技术点，靠的就是细心和耐心，但最终还是获取到目标网站域名的管理账号和密码，那么此时我们已知和已有的条件如下: </p>  <p> 目标域名：www.007hack.com(当然不是真的，文章来源007安全)   <br> 网站IP:1.1.1.1 </p>  <p> 环境：Win+Apache+PHP+MYSQL </p>  <p> 已有权限：域名解析权限，可以将www.007hack.com解析到任何一个IP上 </p>  <p> 特别说明下，目标网站使用的服务器，并不是在域名注册商租用的，而是放置在公司机房中，所以通过域名注册商网站，是不能管理到Web源码的，只能进行域名解析。 </p>  <p> 当拥有域名解析权限后，如何才获取目标网站的权限呢？ </p>  <p> A：构造一个和目标非常相似的网站？然后将域名解析到构造的网站？ </p>  <p> B：使用iis重定向？ </p>  <p>这些方法都非常容易被发现，并且也无法获取到权限，所以遇到这种场景的时候我们可以使用反向代理，也是本文的重点。了解反向代理之前，我做一个关于HTTP 代理的简单介绍， 代理常用的是普通代理和反向代理： </p>  <p>普通代理：为用户（客户端）提供代理，需要在客户端设置，比如在客户端浏览器中设置代理服务器IP和端口，完成配置后，用户可以通过代理服务器访问互联网，代理服务器相当于中间人的作用。根据代理服务器配置不同，又可以将普通代理分为，几种不同安全级别的代理，代理软件比较多，不同的厂商有不同的称谓和分级，一般情况都包括以下三个级别，透明代理、普通匿名代理和高匿名代理。</p><a id="more"></a><p> </p>  <p>透明代理： </p>  <p>REMOTE_ADDR = 代理服务器 IP   <br>HTTP_VIA = 代理服务器 IP    <br>HTTP_X_FORWARDED_FOR = 真实 IP </p>  <p>说明：使用透明代理，可以进行信息交互，但不能隐藏自己真实IP，安全性越差，所以黑客一般不会使用此类代理。 </p>  <p>普通匿名代理： </p>  <p>REMOTE_ADDR = 代理服务器 IP   <br>HTTP_VIA = 代理服务器 IP    <br>HTTP_X_FORWARDED_FOR = 代理服务器 IP </p>  <p>说明：隐藏了真实的IP，但通过HTTP_VIA可以判断出你使用了代理。 </p>  <p>高匿名代理： </p>  <p>REMOTE_ADDR = 代理服务器 IP   <br>HTTP_VIA = 没数值 </p>  <p>HTTP_X_FORWARDED_FOR = 没数值 </p>  <p>说明：可以隐藏真实IP，同时不会泄露你是否使用了代理，这类代理黑客往往比较喜欢。 </p>  <p>用户通过普通代理访问Web，实际上用户并没有直接访问Web服务器，而是通过代理服务器作为中转，的示意图如下： </p>  <p>反向代理：是为服务器提供代理和缓存，不需要在客户端。用户访问网站，实际上并不是直接访问Web服务器，而是首先访问反向代理服务器，如果请求的是html/htm/gif/jpg等这些静态文件时，反向代理服务器直接返回结果，如果用户请求是脚本如asp/php/jsp等内容时，反向代理服务器会将请求转发给Web服务器处理，再把结果返回给用户，从而通过缓存实现加速的效果。示意图如下： </p>  <p> Squid和Nginx是非常优秀的反向代理软件，本文主要介绍Squid，它支持Windows和Linux，由于目标网站环境是win，我这里使用Win下的squid（使用Linux也可以），配置方法如下： </p>  <p>Squid版本:2.7 For Win </p>  <p>1、配置squid/etc目录   <br>cachemgr.conf.default    <br>mime.conf.default    <br>squid.conf.default    <br>squid_radius_auth.conf.default(可能低版本这个文件不存在，如果没有就不用修改) </p>  <p>复制并改名为: </p>  <p>cachemgr.conf   <br>mime.conf    <br>squid.conf    <br>squid_radius_auth.conf </p>  <p>2．用文本编辑器打开squid.conf，需要修改的地方： </p>  <p>查找http_port 3128在后面增加一行   <br>http_port 80 vhost </p>  <p>查找#cache_peer sib2.foo.net sibling 3128 3130 [proxy-only]在后面增加一行   <br>cache_peer 1.1.1.1&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; parent&#160;&#160;&#160; 80&#160;&#160;&#160;&#160;&#160; 0&#160;&#160; no-query&#160;&#160; originserver </p>  <p>1.1.1.1为目标网站真实IP，80为端口 </p>  <p>查找# TAG: visible_hostname在后面增加一行 </p>  <p>visible_hostname volcano(任意命名) </p>  <p>查找http_access deny all 在其前面加#将这一行注释掉，然后增加一行 </p>  <p>http_access allow all </p>  <p>3.使用squid/sbin/squid.exe执行以下命令 </p>  <p>squid -i -n web_squid&#160; #命名squid服务的新名称   <br>squid -i&#160; #将squid服务加入到服务里面    <br>squid -r -n web_squid&#160; #删除指定名称的服务    <br>squid -z&#160; #创建缓存目录    <br>squid -k parse&#160; #检测配置是否有效    <br>net start web_squid #启动    <br>squid -dx #当服务不能启动时，进行调试 </p>  <p> 测试squid是否正常：   <br> 访问<a href="http://squid服务器ip" target="_blank" rel="external">http://squid服务器ip</a>    <br> 实际指向<a href="http://web服务器IP" target="_blank" rel="external">http://web服务器IP</a> </p>  <p> 完成测试后，将目标域名解析到squid服务器IP，网站以及功能完全正常，唯一差别就是ping返回的IP是squid服务器的IP，并不是真正的Web服务器IP，只要网站正常访问，管理员也不会时时去ping。 </p>  <p> 经过几个小时等待后，目标网站管理员登陆后台，在日志squid\var\logs\access.log就可以找到后台地址，后台目录文件名非常地长，同时收获了很多敏感的URL，准备研究如何截取Cookie或者后台账号密码时，后台xx_adduser.php存在本地验证漏洞，直接添加管理员成功，管理员和后台地址都有了，登陆后顺利拿到WebShell。 </p>  <p> 当然，如果后台不存在这个漏洞，应该还是有办法可以弄到权限的，毕竟用户/管理员访问的数据包都会经过这台squid服务器，只不过会麻烦许多……</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/493.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/493.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/493.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/493.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/495.seo/">
-        ← 渗透某高校内网服务器
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/490.seo/">
-        回忆对某企业内网的一次渗透 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/渗透测试/">渗透测试</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/渗透/">渗透</a><a href="/tag/Nginx/">Nginx</a><a href="/tag/web渗透测试/">web渗透测试</a><a href="/tag/反向代理/">反向代理</a><a href="/tag/squid/">squid</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/495.seo/" title="渗透某高校内网服务器">
+  <strong>Prev:</strong><br/>
+  <span>
+  渗透某高校内网服务器</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/490.seo/"  title="回忆对某企业内网的一次渗透">
+ <strong>Next:</strong><br/> 
+ <span>回忆对某企业内网的一次渗透
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-反向代理在Web渗透测试中的运用" data-title="反向代理在Web渗透测试中的运用" data-url="http://ha.cker.in/493.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

@@ -1,62 +1,131 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>转~ 东京大学加密招生海报解密过程（警告：Geek范，内含妹子） | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
+  <meta charset="UTF-8">
+  
+    <title>转~ 东京大学加密招生海报解密过程（警告：Geek范，内含妹子） | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="我东京帝国大学，远没你想得那么简单，这就是日本技术宅的极致。  作为校友，请允许我使用熟谙且常用的傲娇文风(读者可按照《龙樱》中的形象自动补脑)，为母校写篇招生软文，弊校校训：“以质取胜，以质取量，培养国家领导人和各阶层中坚力量”。所以永不扩招，名额有限，速度申请啊亲。       这个是去年东京大学情報理工学系研究科的招生海报，我看到人人网和微博都疯狂转载。情报还理工！就要求你有超凡的情报分析能力和工科背景。就比如楼主其实叫余则润成，美国威廉姆斯中专毕业之后来到日本读博士，专业Mechanic机械师，拿着中日双份工资，碟中谍5。9月10日我第一个任务做掉出钱购岛的日本金融大臣松下忠洋http://www.baidu.com/s?wd=%CB%C9%CF%C2%D6%D2%D1%F3。曾在金三角完美训练，做的很干净，像自杀。9月13日第二个任务将新上任的大使西宫伸一http://www.baidu.com/s?wd=%CE%F7%B9%AC%C9%EC%D2%BB。我会继续当普通学生在这里好好学情报，请忘掉我的名字，如果非要记得我，请叫我城市猎人。  此图一出，宾大和CMU都难与之争锋。高校IT男屌纷纷跪舔，各种遐想和意淫，我们东大的软妹子一副古色古香的打扮，娴静而端庄，这样的的学妹，你有吗？当大家对着可爱的妹子胡思乱想时，不知你是否想过，前面的那一串二进制01串并非是用脸滚键盘出来的装饰品，而是别有深意呢？一曲肝肠断，天涯何处觅知音，我们只写给懂的人看。正如本太君常年写的日志，可以读成单纯的温情小故事，也可以读出高端黑，全看读者姿势水平。  实际上，这此图精髓之处并非作为背景的妹子，而恰恰是前面的这个0101一大串二进制数字，看到棒棒和洞洞你激动了吗？我想很多青年早已猜到里面含有信息——搞计算机的没妹子，而且不是1就是0。啊哈，玩笑过后我们就来看看这个0101到底是什么意思。  首先用ocr软件将图片上的数字转化为文本，数字串总共26行，除最后一行98个数字外其它每行110个数字，共计2848个数字。神马？你说你是人工抄写的？卧槽，连光学字符识别都不会用，您还是留在清华保研吧。  0001111110001011000010000000000000000000000000000000000000000000000000100000001101101101010100001100101101001110110000100100000000010100001111010101001100011110100001010101101010110101100000001110000000000011010100001101100001010001000100110110100011100010000101100011000100110001101011000100110000110100100110100110000011011000101110000001101001101010100101011110000111010001001101100111010110000000101100001111011101001011110111001011100011010110000001010010011000101110111111000000000011111111110000111000111101110000111000011110001100010110010011010000110010001001100100111100110010011100101110011111011110011110100100110111101111101110011111011111110101111100011111100000000110110000100001111011001000000110000101010010101101001001101011001100001001001000001000001010010100100001100011011000110010000110001101010110010001010101111001000101010010101100001100111100010011110111100001010010101111100100000000010100001110100100011000101011011000011001101000100100110111101111110100100010000100011000011100101110000100110010111001000010101000010111110001110011110100111110111001101101011010000000101110111101011101010110010010110000011011000010101111011010111010000111101101001110010110010110111001000111011011111111100001001111101111100111101111000011001101110000011101000010010010010000010101001011000110100001011000110001001101011011000011001110011010100100110010100100011111000001011000000010001001101101010101110011100000010011101011110110011001010101011001011010110111011111111010110000111010100100100110001111101011000010011100110110101010011110110101010001111100000111101000111101101000010101011101110101010011100100011101010001010001010000010101001011000110101101011000110000011100100101000001100010011000011000100011001011111110010110101001111001110110011110011000111100101110000101010101000110101101111010001000111001110100100001111110011111010101000110010101001100100011111110111110000001001110011110011101010100011011100110001001000101100101110100111110001011000010111110001010001001100011011011101001100100100111101101001011100000111100001110010010010001001110101101000111001001100101001101100001101100110000111111010010101000011010011000000111110100011000100001101010010110100110110110010100010100001010011100110101100001011100011110100001010010111001001101000010010000011010001101011111100010100101000010010001100001100011011011011111010000001001111011100110000001001110010010010110001000001011111110010110110110111000100000100010100000100001100001001110011101001000101000000110001110011000011101111100101000111101010000110100101001000110000010000100011110111100011010101001100011111101000011011101001000011011011000101011011100001011101110101111111101111001000010001010010110110110010011010111100000110111001010000001110011010101100001111011110010100000000010110111111110101010100011000010011100000110111110000000010000000000000000首先第一个想法肯定是ASCII编码，由于不知道是big-endian还是little-endian就两个都试一次，结果看不出来是什么有意义的字符串。考虑到可能用凯撒密码加密过，去掉非拉丁字母后反解出26个可能的文本，也都没有什么意义。看来不是ASCII编码。
 
-  
-  
-  
+考虑到2848长度是8的倍数，也可能是二进制文件，所以也big-endian和little-endian地读出来并写成二进制文件。  而big-endian的那个输出是一个gz压缩包。实际上，看不出来的话，也可以把文件头的3个字节丢google。如果你直接用Linux中的file命令看岂不是显得咱技术含量太低太傻瓜化？
 
-  
+  改名为bin.gz，解压得到一个叫做bin的文件。内容：
+
+\CA\FE\BA\BE\00\00\002\00!  \00\00  \00\00\00  \00\00  \00\00\00\00\00&amp;lt;init&amp;gt;\00
+
+()V\00
+ Code\00
+ main\00([Ljava/lang/String;)V\00 StackMapTable
+\00\00 \00
+\00\00\00)w-aurlwtcniewo./-t.kjhltiypioe.o/kvru.fae\00
+\00\00\00‑
+\00­\00 \00i\00java/lang/Object\00java/lang/System\00
+ out\00Ljava/io/PrintStream;\00java/lang/String\00charAt\00
+ (I)C\00java/io/PrintStream\00print\00
+ (C)V\00 \00\00\00\00\00\00\00[1]\00\00\00\00 \00\00
+\00\00\00\00\00\00\00\00*\B7\00\B1\00\00\00\00\00 \00
+\00
+\00\00
+\00\00\00=\00
+ \00
+ \00\00\00!
+ =)\A2\00\B2\00[1]
+ h)p\B6\00
+ \B6\00\84[1]\A7\FF\E5\B1\00\00\00\00 \00\00\00
+\00[1]\FD\00[1]\00\F9\00\00\00\00
+熟悉java的同学应该一眼就能看出(额也许熟悉java的也不一定能)这是个编译过的class文件（看不懂的也可以用jd-gui反编译），改名为bin.class，运行提示Exception in thread &amp;quot;main&amp;quot; java.lang.NoClassDefFoundError: bin (wrong name: i)再改名为i.class，运行得到www.i.u-tokyo.ac.jp/fun/hikari-loveletter 点开能在此帝国大学的官方网站里找到妹子写真哦~
+
+另外还有版权信息的文本解密： 0x11c开始，sjis编码         恭喜！能看到这一步，你已经有不提交任何材料直接给面试的资格了，但是离最终录取还有下面一段路程。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="转~ 东京大学加密招生海报解密过程（警告：Geek范，内含妹子） | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/927.seo/" title="转~ 东京大学加密招生海报解密过程（警告：Geek范，内含妹子）" itemprop="url">转~ 东京大学加密招生海报解密过程（警告：Geek范，内含妹子）</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2012-11-06T01:47:32.000Z" itemprop="datePublished">2012-11-06</time>
+    Updated:<time datetime="2016-08-20T11:03:54.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
-
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2012-11-06T01:47:32.000Z" itemprop="datePublished">
-          2012-11-06
-      </time>
-    
-    
-    | 
-    <a href='/tag/解密/'>解密</a>
-    
-    
-</span>
-    <h1 class="post-title">转~ 东京大学加密招生海报解密过程（警告：Geek范，内含妹子）</h1>
-    <section class="post-content">
-      <p>我东京帝国大学，远没你想得那么简单，这就是日本技术宅的极致。</p>  <p>作为校友，请允许我使用熟谙且常用的傲娇文风(读者可按照《龙樱》中的形象自动补脑)，为母校写篇招生软文，弊校校训：“以质取胜，以质取量，培养国家领导人和各阶层中坚力量”。所以永不扩招，名额有限，速度申请啊亲。   <br><a href="http://img.cker.in/Geek_F978/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="photo-media" border="0" alt="clip_image001" src="http://img.cker.in/Geek_F978/clip_image001_thumb.jpg" width="600" height="840"></a>    <br>这个是去年东京大学情報理工学系研究科的招生海报，我看到人人网和微博都疯狂转载。情报还理工！就要求你有超凡的情报分析能力和工科背景。就比如楼主其实叫余则润成，美国威廉姆斯中专毕业之后来到日本读博士，专业Mechanic机械师，拿着中日双份工资，碟中谍5。9月10日我第一个任务做掉出钱购岛的日本金融大臣松下忠洋<a href="http://rrurl.cn/4y9dbx" target="_blank" rel="external">http://www.baidu.com/s?wd=%CB%C9%CF%C2%D6%D2%D1%F3</a>。曾在金三角完美训练，做的很干净，像自杀。9月13日第二个任务将新上任的大使西宫伸一<a href="http://rrurl.cn/h7dwp0" target="_blank" rel="external">http://www.baidu.com/s?wd=%CE%F7%B9%AC%C9%EC%D2%BB</a>。我会继续当普通学生在这里好好学情报，请忘掉我的名字，如果非要记得我，请叫我城市猎人。</p>  <p>此图一出，宾大和CMU都难与之争锋。高校IT男屌纷纷跪舔，各种遐想和意淫，我们东大的软妹子一副古色古香的打扮，娴静而端庄，这样的的学妹，你有吗？当大家对着可爱的妹子胡思乱想时，不知你是否想过，前面的那一串二进制01串并非是用脸滚键盘出来的装饰品，而是别有深意呢？一曲肝肠断，天涯何处觅知音，我们只写给懂的人看。正如本太君常年写的日志，可以读成单纯的温情小故事，也可以读出高端黑，全看读者姿势水平。</p>  <p>实际上，这此图精髓之处并非作为背景的妹子，而恰恰是前面的这个0101一大串二进制数字，看到棒棒和洞洞你激动了吗？我想很多青年早已猜到里面含有信息——搞计算机的没妹子，而且不是1就是0。啊哈，玩笑过后我们就来看看这个0101到底是什么意思。</p>  <p>首先用ocr软件将图片上的数字转化为文本，数字串总共26行，除最后一行98个数字外其它每行110个数字，共计2848个数字。神马？你说你是人工抄写的？卧槽，连光学字符识别都不会用，您还是留在清华保研吧。</p>  <pre>00011111100010110000100000000000000000000000000000000000000000000000001000000011011011010101000011001011010011<br>10110000100100000000010100001111010101001100011110100001010101101010110101100000001110000000000011010100001101<br>10000101000100010011011010001110001000010110001100010011000110101100010011000011010010011010011000001101100010<br>11100000011010011010101001010111100001110100010011011001110101100000001011000011110111010010111101110010111000<br>11010110000001010010011000101110111111000000000011111111110000111000111101110000111000011110001100010110010011<br>01000011001000100110010011110011001001110010111001111101111001111010010011011110111110111001111101111111010111<br>11000111111000000001101100001000011110110010000001100001010100101011010010011010110011000010010010000010000010<br>10010100100001100011011000110010000110001101010110010001010101111001000101010010101100001100111100010011110111<br>10000101001010111110010000000001010000111010010001100010101101100001100110100010010011011110111111010010001000<br>01000110000111001011100001001100101110010000101010000101111100011100111101001111101110011011010110100000001011<br>10111101011101010110010010110000011011000010101111011010111010000111101101001110010110010110111001000111011011<br>11111110000100111110111110011110111100001100110111000001110100001001001001000001010100101100011010000101100011<br>00010011010110110000110011100110101001001100101001000111110000010110000000100010011011010101011100111000000100<br>11101011110110011001010101011001011010110111011111111010110000111010100100100110001111101011000010011100110110<br>10101001111011010101000111110000011110100011110110100001010101110111010101001110010001110101000101000101000001<br>01010010110001101011010110001100000111001001010000011000100110000110001000110010111111100101101010011110011101<br>10011110011000111100101110000101010101000110101101111010001000111001110100100001111110011111010101000110010101<br>00110010001111111011111000000100111001111001110101010001101110011000100100010110010111010011111000101100001011<br>11100010100010011000110110111010011001001001111011010010111000001111000011100100100100010011101011010001110010<br>01100101001101100001101100110000111111010010101000011010011000000111110100011000100001101010010110100110110110<br>01010001010000101001110011010110000101110001111010000101001011100100110100001001000001101000110101111110001010<br>01010000100100011000011000110110110111110100000010011110111001100000010011100100100101100010000010111111100101<br>10110110111000100000100010100000100001100001001110011101001000101000000110001110011000011101111100101000111101<br>01000011010010100100011000001000010001111011110001101010100110001111110100001101110100100001101101100010101101<br>11000010111011101011111111011110010000100010100101101101100100110101111000001101110010100000011100110101011000<br>01111011110010100000000010110111111110101010100011000010011100000110111110000000010000000000000000</pre><br><br><p>首先第一个想法肯定是ASCII编码，由于不知道是big-endian还是little-endian就两个都试一次，结果看不出来是什么有意义的字符串。考虑到可能用凯撒密码加密过，去掉非拉丁字母后反解出26个可能的文本，也都没有什么意义。看来不是ASCII编码。</p>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>我东京帝国大学，远没你想得那么简单，这就是日本技术宅的极致。</p>  <p>作为校友，请允许我使用熟谙且常用的傲娇文风(读者可按照《龙樱》中的形象自动补脑)，为母校写篇招生软文，弊校校训：“以质取胜，以质取量，培养国家领导人和各阶层中坚力量”。所以永不扩招，名额有限，速度申请啊亲。   <br><a href="http://img.cker.in/Geek_F978/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="photo-media" border="0" alt="clip_image001" src="http://img.cker.in/Geek_F978/clip_image001_thumb.jpg" width="600" height="840"></a>    <br>这个是去年东京大学情報理工学系研究科的招生海报，我看到人人网和微博都疯狂转载。情报还理工！就要求你有超凡的情报分析能力和工科背景。就比如楼主其实叫余则润成，美国威廉姆斯中专毕业之后来到日本读博士，专业Mechanic机械师，拿着中日双份工资，碟中谍5。9月10日我第一个任务做掉出钱购岛的日本金融大臣松下忠洋<a href="http://rrurl.cn/4y9dbx" target="_blank" rel="external">http://www.baidu.com/s?wd=%CB%C9%CF%C2%D6%D2%D1%F3</a>。曾在金三角完美训练，做的很干净，像自杀。9月13日第二个任务将新上任的大使西宫伸一<a href="http://rrurl.cn/h7dwp0" target="_blank" rel="external">http://www.baidu.com/s?wd=%CE%F7%B9%AC%C9%EC%D2%BB</a>。我会继续当普通学生在这里好好学情报，请忘掉我的名字，如果非要记得我，请叫我城市猎人。</p>  <p>此图一出，宾大和CMU都难与之争锋。高校IT男屌纷纷跪舔，各种遐想和意淫，我们东大的软妹子一副古色古香的打扮，娴静而端庄，这样的的学妹，你有吗？当大家对着可爱的妹子胡思乱想时，不知你是否想过，前面的那一串二进制01串并非是用脸滚键盘出来的装饰品，而是别有深意呢？一曲肝肠断，天涯何处觅知音，我们只写给懂的人看。正如本太君常年写的日志，可以读成单纯的温情小故事，也可以读出高端黑，全看读者姿势水平。</p>  <p>实际上，这此图精髓之处并非作为背景的妹子，而恰恰是前面的这个0101一大串二进制数字，看到棒棒和洞洞你激动了吗？我想很多青年早已猜到里面含有信息——搞计算机的没妹子，而且不是1就是0。啊哈，玩笑过后我们就来看看这个0101到底是什么意思。</p>  <p>首先用ocr软件将图片上的数字转化为文本，数字串总共26行，除最后一行98个数字外其它每行110个数字，共计2848个数字。神马？你说你是人工抄写的？卧槽，连光学字符识别都不会用，您还是留在清华保研吧。</p>  <pre>00011111100010110000100000000000000000000000000000000000000000000000001000000011011011010101000011001011010011<br>10110000100100000000010100001111010101001100011110100001010101101010110101100000001110000000000011010100001101<br>10000101000100010011011010001110001000010110001100010011000110101100010011000011010010011010011000001101100010<br>11100000011010011010101001010111100001110100010011011001110101100000001011000011110111010010111101110010111000<br>11010110000001010010011000101110111111000000000011111111110000111000111101110000111000011110001100010110010011<br>01000011001000100110010011110011001001110010111001111101111001111010010011011110111110111001111101111111010111<br>11000111111000000001101100001000011110110010000001100001010100101011010010011010110011000010010010000010000010<br>10010100100001100011011000110010000110001101010110010001010101111001000101010010101100001100111100010011110111<br>10000101001010111110010000000001010000111010010001100010101101100001100110100010010011011110111111010010001000<br>01000110000111001011100001001100101110010000101010000101111100011100111101001111101110011011010110100000001011<br>10111101011101010110010010110000011011000010101111011010111010000111101101001110010110010110111001000111011011<br>11111110000100111110111110011110111100001100110111000001110100001001001001000001010100101100011010000101100011<br>00010011010110110000110011100110101001001100101001000111110000010110000000100010011011010101011100111000000100<br>11101011110110011001010101011001011010110111011111111010110000111010100100100110001111101011000010011100110110<br>10101001111011010101000111110000011110100011110110100001010101110111010101001110010001110101000101000101000001<br>01010010110001101011010110001100000111001001010000011000100110000110001000110010111111100101101010011110011101<br>10011110011000111100101110000101010101000110101101111010001000111001110100100001111110011111010101000110010101<br>00110010001111111011111000000100111001111001110101010001101110011000100100010110010111010011111000101100001011<br>11100010100010011000110110111010011001001001111011010010111000001111000011100100100100010011101011010001110010<br>01100101001101100001101100110000111111010010101000011010011000000111110100011000100001101010010110100110110110<br>01010001010000101001110011010110000101110001111010000101001011100100110100001001000001101000110101111110001010<br>01010000100100011000011000110110110111110100000010011110111001100000010011100100100101100010000010111111100101<br>10110110111000100000100010100000100001100001001110011101001000101000000110001110011000011101111100101000111101<br>01000011010010100100011000001000010001111011110001101010100110001111110100001101110100100001101101100010101101<br>11000010111011101011111111011110010000100010100101101101100100110101111000001101110010100000011100110101011000<br>01111011110010100000000010110111111110101010100011000010011100000110111110000000010000000000000000</pre><br><br><p>首先第一个想法肯定是ASCII编码，由于不知道是big-endian还是little-endian就两个都试一次，结果看不出来是什么有意义的字符串。考虑到可能用凯撒密码加密过，去掉非拉丁字母后反解出26个可能的文本，也都没有什么意义。看来不是ASCII编码。</p>
 
 <p>考虑到2848长度是8的倍数，也可能是二进制文件，所以也big-endian和little-endian地读出来并写成二进制文件。<br>  <br>而big-endian的那个输出是一个gz压缩包。实际上，看不出来的话，也可以把文件头的3个字节丢google。如果你直接用Linux中的file命令看岂不是显得咱技术含量太低太傻瓜化？</p>
 
@@ -140,94 +209,352 @@
 
 <p>如果够技术宅，算到最后会得到一串密码，录取地址<a href="http://rrurl.cn/fS4A32" target="_blank" rel="external">http://www.i.u-tokyo.ac.jp/fun/010101/index.html</a></p>
 
-<p><a href="http://img.cker.in/Geek_F978/clip_image009.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="photo-media" border="0" alt="clip_image009" src="http://img.cker.in/Geek_F978/clip_image009_thumb.jpg" width="600" height="839"></a></p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/927.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/927.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/927.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/927.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
+<p><a href="http://img.cker.in/Geek_F978/clip_image009.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="photo-media" border="0" alt="clip_image009" src="http://img.cker.in/Geek_F978/clip_image009_thumb.jpg" width="600" height="839"></a></p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/928.seo/">
-        ← Metinfo 代码审计
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/926.seo/">
-        年终了，谈点个人入侵的经验〈转载〉 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/影音娱乐/">影音娱乐</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/解密/">解密</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/928.seo/" title="Metinfo 代码审计">
+  <strong>Prev:</strong><br/>
+  <span>
+  Metinfo 代码审计</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/926.seo/"  title="年终了，谈点个人入侵的经验〈转载〉">
+ <strong>Next:</strong><br/> 
+ <span>年终了，谈点个人入侵的经验〈转载〉
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-转~ 东京大学加密招生海报解密过程（警告：Geek范，内含妹子）" data-title="转~ 东京大学加密招生海报解密过程（警告：Geek范，内含妹子）" data-url="http://ha.cker.in/927.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

@@ -1,153 +1,448 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>沦陷学生之家，一次漂亮的渗透与源码分析 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>沦陷学生之家，一次漂亮的渗透与源码分析 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="某某河畔是郫县男子dota技术专修学校里各种骚男闷女无聊打发时间的地方。使用的是pw+php bluster搭建的。负责维护的童鞋几乎把pw的基础代码都改写过了，代码安全性还是比较高的。但是这次无情的被沦陷了。  详细说明：  1. 沦陷备份服务器   各种弱口令+cacti拿shell    访问http://xxx.xxxhome.net，使用弱密码admin/admin进入管理页面    上网找了几个cacti的漏洞，都没能利用上。于是自己开始下了一套cacti开始折磨。    看到install目录下有几个.php文件，顿时眼前一亮    把cacti的日志文件设置为这几个文件中的一个，重新登陆一下，可以看到日志确实被写进去了，那么只要想办法产生一些&amp;lt;?php这样的日志，就能执行代码了。最直接的想法那就是用&amp;lt;?php这样的用户去登录，有兴趣的同学可以继续深入，我反正没成功，cacti把尖括号神马的都过滤掉了。这条路暂时封死了。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="沦陷学生之家，一次漂亮的渗透与源码分析 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/954.seo/" title="沦陷学生之家，一次漂亮的渗透与源码分析" itemprop="url">沦陷学生之家，一次漂亮的渗透与源码分析</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2012-12-12T17:08:42.000Z" itemprop="datePublished">2012-12-13</time>
+    Updated:<time datetime="2016-08-20T11:03:54.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
-
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2012-12-12T17:08:42.000Z" itemprop="datePublished">
-          2012-12-13
-      </time>
-    
-    
-    | 
-    <a href='/tag/代码执行/'>代码执行</a>,
-    
-    <a href='/tag/cacti/'>cacti</a>
-    
-    
-</span>
-    <h1 class="post-title">沦陷学生之家，一次漂亮的渗透与源码分析</h1>
-    <section class="post-content">
-      <p></p><p>某某河畔是郫县男子dota技术专修学校里各种骚男闷女无聊打发时间的地方。使用的是pw+php bluster搭建的。负责维护的童鞋几乎把pw的基础代码都改写过了，代码安全性还是比较高的。但是这次无情的被沦陷了。</p>  <p>详细说明：</p>  <p>1. 沦陷备份服务器   <br>各种弱口令+cacti拿shell    <br>访问<a href="http://xxx.xxxhome.net，使用弱密码admin/admin进入管理页面" target="_blank" rel="external">http://xxx.xxxhome.net，使用弱密码admin/admin进入管理页面</a>    <br>上网找了几个cacti的<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>，都没能利用上。于是自己开始下了一套cacti开始折磨。    <br>看到install目录下有几个.php文件，顿时眼前一亮</p>  <p><a href="http://img.cker.in/527aebd1fe39_801B/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/527aebd1fe39_801B/clip_image001_thumb.jpg" width="594" height="273"></a></p>  <p>把cacti的日志文件设置为这几个文件中的一个，重新登陆一下，可以看到日志确实被写进去了，那么只要想办法产生一些&lt;?php这样的日志，就能执行代码了。最直接的想法那就是用&lt;?php这样的用户去登录，有兴趣的同学可以继续深入，我反正没成功，cacti把尖括号神马的都过滤掉了。这条路暂时封死了。</p><br><a id="more"></a><p></p>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">来源 剑心@乌云</span></a></li></ol>
+		</div>
+		
+		<p></p><p>某某河畔是郫县男子dota技术专修学校里各种骚男闷女无聊打发时间的地方。使用的是pw+php bluster搭建的。负责维护的童鞋几乎把pw的基础代码都改写过了，代码安全性还是比较高的。但是这次无情的被沦陷了。</p>  <p>详细说明：</p>  <p>1. 沦陷备份服务器   <br>各种弱口令+cacti拿shell    <br>访问<a href="http://xxx.xxxhome.net，使用弱密码admin/admin进入管理页面" target="_blank" rel="external">http://xxx.xxxhome.net，使用弱密码admin/admin进入管理页面</a>    <br>上网找了几个cacti的<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>，都没能利用上。于是自己开始下了一套cacti开始折磨。    <br>看到install目录下有几个.php文件，顿时眼前一亮</p>  <p><a href="http://img.cker.in/527aebd1fe39_801B/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/527aebd1fe39_801B/clip_image001_thumb.jpg" width="594" height="273"></a></p>  <p>把cacti的日志文件设置为这几个文件中的一个，重新登陆一下，可以看到日志确实被写进去了，那么只要想办法产生一些&lt;?php这样的日志，就能执行代码了。最直接的想法那就是用&lt;?php这样的用户去登录，有兴趣的同学可以继续深入，我反正没成功，cacti把尖括号神马的都过滤掉了。这条路暂时封死了。</p><br><a id="more"></a><p></p>
 <p></p><p></p>  <p><a href="http://img.cker.in/527aebd1fe39_801B/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/527aebd1fe39_801B/clip_image002_thumb.jpg" width="1066" height="479"></a><a href="http://img.cker.in/527aebd1fe39_801B/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/527aebd1fe39_801B/clip_image003_thumb.jpg" width="1057" height="208"></a></p>  <p>无聊之中，发现了同机器上竟然装了pma，尝试了下，默认密码竟然进去了。</p>  <p><a href="http://img.cker.in/527aebd1fe39_801B/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/527aebd1fe39_801B/clip_image004_thumb.jpg" width="577" height="234"></a></p>  <p>数据库中的poller_command引起了我的兴趣，照理说这应该是一个会导致命令执行的地方。大致看了下源码，水平搓，没有看懂究竟是执行shell命令还是php命令，实践出真知，直接写一句吧。</p>  <p><a href="http://img.cker.in/527aebd1fe39_801B/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/527aebd1fe39_801B/clip_image005_thumb.jpg" width="724" height="203"></a></p>  <p><a href="http://img.cker.in/527aebd1fe39_801B/clip_image006.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/527aebd1fe39_801B/clip_image006_thumb.jpg" width="787" height="237"></a></p>  <p>等了5分钟，poller执行（试过的童鞋应该知道，啥命令都不会被执行，不知道为啥），虽然没有直接效果，但是却在log中成功写入了php代码。Then，get shell</p>  <p><a href="http://img.cker.in/527aebd1fe39_801B/clip_image007.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/527aebd1fe39_801B/clip_image007_thumb.jpg" width="1017" height="404"></a></p>  <p>2. 代码漏洞，拿到bbs的shell   <br>通过观察，可以知道<a href="http://ha.cker.in/tag/cacti" target="_blank">cacti</a>的服务器同时还是备份服务器，bbs的代码被同步到了这个机器上。然后就是长期而苦逼的读代码的过程了。当然最直接的想法是去找调用了eval或者preg_replace这类直接能执行代码的地方。</p>  <p><a href="http://img.cker.in/527aebd1fe39_801B/clip_image008.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/527aebd1fe39_801B/clip_image008_thumb.jpg" width="353" height="273"></a></p>  <p>下面要扯一下某某河畔的论坛的登录。某某河畔论坛登录采用的是usercenter方式认证，bbs作为uc的一个application存在，每次需要认证的时候产生一个rand，记录在session中，并把需要的相关参数拼接上rand、app_key计算md5散列后作为附加参数，通过用户浏览器GET传递给uc；uc验证用户登录授权是否合法之后，将用户uid拼接上rand和app_key计算md5作为附加参数，通过用户浏览器GET回bbs。   <br>仔细观察登录验证的api代码，惊喜的发现一个eval。</p>  <p><a href="http://img.cker.in/527aebd1fe39_801B/clip_image009.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image009" border="0" alt="clip_image009" src="http://img.cker.in/527aebd1fe39_801B/clip_image009_thumb.jpg" width="315" height="101"></a></p>  <p>回查调用代码，只要通过下面代码的检查就会执行到eval，数据库密码明写在代码中，那么只要在数据库中添加一个名为“xxx.eval($_REQUEST[cmd]);//”的api就可以执行代码了。接下来的写一句话，自是不提。</p>  <p><a href="http://img.cker.in/527aebd1fe39_801B/clip_image010.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image010" border="0" alt="clip_image010" src="http://img.cker.in/527aebd1fe39_801B/clip_image010_thumb.jpg" width="720" height="523"></a></p>  <p><a href="http://img.cker.in/527aebd1fe39_801B/clip_image011.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image011" border="0" alt="clip_image011" src="http://img.cker.in/527aebd1fe39_801B/clip_image011_thumb.jpg" width="1011" height="389"></a></p>  <p>这次检测有几点感觉：   <br>1. 很过管理密码保持默认的危害性非常大，你完全不知道什么时候这个应用会被发现并威胁到服务器安全。特别是各种内部系统会对外开放的时候。    <br>2. 很多应用都是对外部数据防护得很好，而内部数据过于信任，根本就没有任何过滤措施。如这次<a href="http://ha.cker.in/tag/cacti" target="_blank">cacti</a>，可以任意指定log文件的位置，没有检查拓展名；没有检查数据库中commad的内容，直接将错误信息输出到log中；uc没有对api名做基本的检查，导致任意<a href="http://ha.cker.in/tag/代码执行" target="_blank">代码执行</a>。    <br>3. 很多机器web目录权限总是设置不当    <br>4. APT攻击几乎总能成功    <br>5. 安全问题总是很难防护得很完善，一处被击破，处处都受影响</p>  <p>漏洞证明：</p>  <p>见漏洞详情</p>  <p>修复方案：</p>  <p>1. cacti不用就卸载掉   <br>2. web目录的除了上传目录，都不应该让www用户有写权限，而上传目录应该限制死不能执行脚本    <br>3. bbs验证登录时，需要判断referer，从非用户渠道获取是否真正成功登陆，以避免app_key泄漏带来的各种风险    <br>4. 仅仅对于用户提交的数据严格过滤是不够的，对于来自数据库，session，文件这样的内部数据也要进行安全检查</p>  <h5>来源 <a href="http://www.wooyun.org/whitehats/%7F%E5%89%91%E5%BF%83%7F" target="_blank" rel="external">剑心</a>@<a href="http://www.wooyun.org/bugs/wooyun-2010-012209" target="_blank" rel="external">乌云</a></h5><p></p>
-
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/954.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/954.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/954.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/954.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/955.seo/">
-        ← 短信平台相关常见问题整理
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/953.seo/">
-        当Discuz!遇上xsser.me：基础认证钓鱼 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/Web安全/">Web安全</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/代码执行/">代码执行</a><a href="/tag/cacti/">cacti</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/955.seo/" title="短信平台相关常见问题整理">
+  <strong>Prev:</strong><br/>
+  <span>
+  短信平台相关常见问题整理</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/953.seo/"  title="当Discuz!遇上xsser.me：基础认证钓鱼">
+ <strong>Next:</strong><br/> 
+ <span>当Discuz!遇上xsser.me：基础认证钓鱼
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-沦陷学生之家，一次漂亮的渗透与源码分析" data-title="沦陷学生之家，一次漂亮的渗透与源码分析" data-url="http://ha.cker.in/954.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

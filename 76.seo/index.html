@@ -1,150 +1,447 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Google Hack 最新版 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Google Hack 最新版 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="新的Google Hack技巧1.phonebook:+英文姓名    作用：搜索电话号码簿，将会返回美国人姓名街道地址和电话号码列表，均真实，对需要大量美国地址的朋友很有用，只要是英文姓名都能找到。    例：phonebook:tom    另外还有两个小分类：rphonebook:仅搜索住宅用户电话号码簿；bphonebook:仅搜索商业的电话号码簿。2.cache:+网址    作用：打开google对该网址的缓存页，很多被删掉的文章或网站，只要知道链接就可以用这种方法打开，但是google快照被墙了，所以要配合代理使用。3.related:+网址    作用：找出和该网址类似的网站，比如想知道和amazon.com类似的大型网络书店有哪些时输入amazon.com网址。    例：related:amazon.com    4.inurl:+关键词    作用：用来寻找包含该关键词的网址，灵活使用的话是非常强的功能，比如许多人用来找在线的监视摄像头，网站后门什么的。    例：inurl:mail（可找一些免费邮箱）5.音乐搜索    找不到某首曲子的时候用这个方法试试    音乐名（或任意关键词）+ intitle:&amp;rdquo;index.of&amp;rdquo; &amp;ldquo;parent directory&amp;rdquo; &amp;ldquo;size&amp;rdquo; &amp;ldquo;last modified&amp;rdquo; &amp;ldquo;description&amp;rdquo; [snd] (mp4|mp3|avi) -inurl:(jsp|php|html|aspx|htm|cf|shtml|lyrics|mp3s|mp3|index) -gallery -intitle:&amp;rdquo;last modified&amp;rdquo; -intitle:(intitle|mp3)以下是另外一些google搜索技巧详解(不同颜色标注了不同的语法命令，绿色的较为常用的命令，黄色的是不常用但却非常有用的命令，蓝色是Google不推荐使用的命令)：：phonebook: 当我们用phonebook进行查询的时候，Google会返回美国当地跟查询关键词相关的电话信息。（使用phonebook的时候需要指定详细的州名和地点名）例，［phonebook:smith ca］allinanchor: anchor是一处说明性的文字，它标注说明了这个链接可能跳转到其它的网页或跳转 到当前网页的不同地方。当我们用allinanchor提交查询的时候，Google会限制搜索结果必须是那些在anchor文字里包含了我们所有查询关 键词的网页。例[ allinanchor: best museums Sydney ] ,提交这个查询，Google仅仅会返回在网页anchor说明文字里边包含了关键词&amp;rdquo;best&amp;rdquo; &amp;ldquo;museums&amp;rdquo; 和&amp;rdquo;Sydney&amp;rdquo;的网面。allintext: 当我们用allintext提交查询的时候，Google会限制搜索结果仅仅是在网页正 文里边包含了我们所有查询关键词的网页。例［allintext: travel packing list］,提交这个查询，Google仅仅会返回在一个网页包含了三个关键词&amp;rdquo;travel&amp;rdquo; &amp;ldquo;packing&amp;rdquo;和&amp;rdquo;list&amp;rdquo;的网页。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Google Hack 最新版 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/76.seo/" title="Google Hack 最新版" itemprop="url">Google Hack 最新版</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2011-09-13T00:55:51.000Z" itemprop="datePublished">2011-09-13</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
-
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2011-09-13T00:55:51.000Z" itemprop="datePublished">
-          2011-09-13
-      </time>
-    
-    
-    | 
-    <a href='/tag/Google-Hack/'>Google Hack</a>
-    
-    
-</span>
-    <h1 class="post-title">Google Hack 最新版</h1>
-    <section class="post-content">
-      <p>新的Google Hack技巧</p><br><p><strong>1.phonebook:+英文姓名</strong><br><br>    作用：搜索电话号码簿，将会返回美国人姓名街道地址和电话号码列表，均真实，对需要大量美国地址的朋友很有用，只要是英文姓名都能找到。<br><br>    例：phonebook:tom<br><br>    另外还有两个小分类：rphonebook:仅搜索住宅用户电话号码簿；bphonebook:仅搜索商业的电话号码簿。</p><br><p><strong>2.cache:+网址</strong><br><br>    作用：打开google对该网址的缓存页，很多被删掉的文章或网站，只要知道链接就可以用这种方法打开，但是google快照被墙了，所以要配合代理使用。</p><br><p><strong>3.related:+网址</strong><br><br>    作用：找出和该网址类似的网站，比如想知道和amazon.com类似的大型网络书店有哪些时输入amazon.com网址。<br><br>    例：related:amazon.com<br><br>    <strong>4.inurl:+关键词<br><br>    </strong>作用：用来寻找包含该关键词的网址，灵活使用的话是非常强的功能，比如许多人用来找在线的监视摄像头，网站后门什么的。<br><br>    例：inurl:mail（可找一些免费邮箱）</p><br><p><strong>5.音乐搜索</strong><br><br>    找不到某首曲子的时候用这个方法试试<br><br>    音乐名（或任意关键词）+ intitle:&rdquo;index.of&rdquo; &ldquo;parent directory&rdquo; &ldquo;size&rdquo; &ldquo;last modified&rdquo; &ldquo;description&rdquo; [snd] (mp4|mp3|avi) -inurl:(jsp|php|html|aspx|htm|cf|shtml|lyrics|mp3s|mp3|index) -gallery -intitle:&rdquo;last modified&rdquo; -intitle:(intitle|mp3)</p><br><p><strong>以下是另外一些google搜索技巧详解</strong>(不同颜色标注了不同的语法命令，绿色的较为常用的命令，黄色的是不常用但却非常有用的命令，蓝色是Google不推荐使用的命令)：<strong>：</strong></p><br><p><strong>phonebook</strong>: 当我们用phonebook进行查询的时候，Google会返回美国当地跟查询关键词相关的电话信息。（使用phonebook的时候需要指定详细的州名和地点名）例，［phonebook:smith ca］</p><br><p><strong>allinanchor: </strong>anchor是一处说明性的文字，它标注说明了这个链接可能跳转到其它的网页或跳转 到当前网页的不同地方。当我们用allinanchor提交查询的时候，Google会限制搜索结果必须是那些在anchor文字里包含了我们所有查询关 键词的网页。例[ allinanchor: best museums Sydney ] ,提交这个查询，Google仅仅会返回在网页anchor说明文字里边包含了关键词&rdquo;best&rdquo; &ldquo;museums&rdquo; 和&rdquo;Sydney&rdquo;的网面。</p><br><p><strong>allintext</strong>: 当我们用allintext提交查询的时候，Google会限制搜索结果仅仅是在网页正 文里边包含了我们所有查询关键词的网页。例［allintext: travel packing list］,提交这个查询，Google仅仅会返回在一个网页包含了三个关键词&rdquo;travel&rdquo; &ldquo;packing&rdquo;和&rdquo;list&rdquo;的网页。<a id="more"></a></p><br><p><strong>allintitle</strong>: 当我们用allintitle提交查询的时候，Google会限制搜索结果仅是那些在 网页标题里边包含了我们所有查询关键词的网页。例［allintitle: detect plagiarism］，提交这个查询，Google仅会返回在网页标题里边包含了&rdquo;detect&rdquo;和&rdquo;plagiarism&rdquo;这两个关键词的网页。</p><br><p><strong>allinurl</strong>: 当我们用allinurl提交查询的时候，Google会限制搜索结果仅是那些在 URL（网址）里边包含了我们所有查询关键词的网页。例［allinurl: google faq］，提交这个查询，Google仅会返回在URL里边包含了关键词&rdquo;google&rdquo;和&rdquo;faq&rdquo;的网页，象<a href="http://www.google.com/help/faq.html" target="_blank" rel="external">www.google.com/help/faq.html</a>等的网页。</p><br><p><strong>author</strong>: 当我们用author进行查询的时候，Google会限制返回结果仅仅是那些在Google论 坛里边，包含了特定作者的新闻文章。在这里，作者名可以是全名，也可以是一部分或邮件地址。例［children author:john author:doe］或［children author:doe@someaddress.com］返回结果将是作者John Doe 或是 <a href="mailto:doe@someaddress.com" target="_blank" rel="external">doe@someaddress.com</a>写的，关于包含关键词children的文章。</p><br><p><strong>bphonebook</strong>: 用bphonebook进行查询的时候，返回结果将是那些商务电话资料。</p><br><p><strong>cache</strong>: 提交cache:url ，Google会显示当前网页的快照信息，从而替换网页的当前信息。例［cache:www.rainio.cn］，提交这个查询，Google会返回所 有抓取的关于www.rainio.cn的网页快照信息。在显示的网页快照信息里边，Google会高亮显示查询关键词。（在cache:和URL之间不 能有空格）</p><br><p><strong>datarange</strong>: 当我们使用datarange进行查询的时候，Google会将查询结果限制在一个特定 的时间段内，这个时间相对于网站来说，是按网站被google收录的时间算的。例　&rdquo;Geri Halliwell&rdquo; &ldquo;Spice Girls&rdquo; daterange:2450958-2450968　。这里的时间日期格式是按天文学的儒略日。（这个搜索语法Google并不推荐使用，因为它会返回 一些莫名其妙的东西）</p><br><p><strong>define</strong>: 当我们用define进行查询的时候，Google会返回包含查询关键词定义的网面。例［define: blog］，这个查询将会返回Blog的定义。</p><br><p><strong>ext</strong>: 这是一个没有证实的语法，可以用于filetype:查找扩散名为ext的文件。</p><br><p><strong>filetype</strong>: 当我们在查询里边包含filetype:扩展名的时候，Google会限制查询结果仅返回 特定文件类型的网页。例［资产评估　filetype:pdf］，这个查询将会返回所有文件类型为pdf的资产评估信息。其它可用的特定文件类型格式查询 还有doc ,txt,ppt,xls.rtf,swf,ps等。</p><br><p><strong>group</strong>: 当我们用group查询的时候，Google会限制我们的论坛查询结果仅是某几个固定的论坛组或 是某些特定主题组的新闻文章。例［sleep group:misc.kids.moderated］，提交这个查询，Google仅会返回在用户组misc.kids.moderated里边包含了 查询关键字&rdquo;sleep&rdquo;的文章。</p><br><p><strong>id</strong>: 又是一个没有证实的语法，效果很一般。</p><br><p><strong>inanchor</strong>: 当我们用inanchor提交查询的时候，Google会限制结果是那些在网页 anchor链接里边包含了查询关键词的网页。例［restaurants inanchor:gourmet］，提交这个查询，Google会查询那些在anchor信息里包含了关键词&rdquo;restaurants&rdquo;和关键 词&rdquo;gourmet&rdquo;的网页。</p><br><p><strong>info</strong>: 提交info:url，将会显示需要查询网站的一些信息。例［info:rainio.cn］，提交这个查询，将会返回网站rainio.cn的所有信息。</p><br><p><strong>insubject</strong>: 当我们用insubject进行查询的时候，Google会限制论坛搜索结果仅是那些在 主题里边包含了查询关键词的网面。［insubject:&rdquo;falling asleep&rdquo;］，提交这个查询，Google会返回在文章主题里边包含了&rdquo;falling asleep&rdquo;的文章。</p><br><p><strong>intext</strong>: 当我们用intext进行查询的时候，Google会返回那些在文本正文里边包含了我们查询关 键词的网页。［Hamish Reid intext:pandemonia］，提交这个查询的时候，Google会返回在文本正文包含查询关键字pandemonia，在其它任何地方包含关键 词&rdquo;Hamish&rdquo;和&rdquo;Reid&rdquo;的网页。（intext:后面直接跟查询关键字，不能有空格）</p><br><p><strong>intitle</strong>: 当我们用intitle进行查询的时候，Google会返回那些在网页标题里边包含了我们查 询关键词的网页。例［flu shot intitle:help］，提交这个查询，Google会返回在网页标题包含了查询关键字&rdquo;help&rdquo;，而在其它任何地文包含了查询关键字&rdquo;flu&rdquo; 和&rdquo;shot&rdquo;的网页。（intitle:后面也不能有空格）</p><br><p><strong>inurl</strong>: 当我们用inurl进行查询的时候，Google会返回那些在URL（网址）里边包含了我们查询 关键词的网页。例［inurl:print site:www.rainio.cn］，提交这个查询，Google会查找www.rainio.cn这个网站下面网址里边包含了查询关键 词&rdquo;print&rdquo;的网页。</p><br><p><strong>link</strong>: 当我们使用link:URL提交查询的时候，Google会返回跟此URL做了链接的网站。例 ［link:www.rainio.cn］，提交这个查询，我们将得到所有跟www.rainio.cn这个网站做了链接的网站。（link是个单独的语 法，只能单独使用，且后面不能跟查询关键词，跟能跟URL）</p><br><p><strong>location</strong>: 当我们提交location进行Google新闻查询的时候，Google仅会返回你当前指定区的跟查询关键词相关的网页。例[ queen location:canada ]，提交这个查询，Google会返回加拿大的跟查询关键词&rdquo;queen&rdquo;相匹配的网站。</p><br><p><strong>movie</strong>: 当我们用movie提交查询的时候，Google会返回跟查询关键词相关的电影信息。(当前只支持英文Google)</p><br><p><strong>related</strong>: 用related提交查询，Google会返回跟我们要查询的网站结构内容相似的一些其它网 站。例[related:www.raino.cn]，提交这个查询，Google会返回所有跟网站www.rainio.cn结构内容相似的网站。我们 也可以通过点击搜索结果后面的相似网页，来查询跟当前网页类似的网页。（related:后面不能跟空格）</p><br><p><strong>rphonebook</strong>: 这个查询用来搜索美国当地跟查询关键词相关的住宅电话信息。</p><br><p><strong>safesearch</strong>: 用safesearch提交查询的时候，Google会过滤你搜索的结果，其中过滤的内容可能包括一些色情的，暴力，赌博性质的，还有传染病毒的网页。但是它不是百分之百确保安全的。例，［safesearch:breasts］。</p><br><p><strong>site</strong>: 当我们用site提交查询的时候，Google会限制查询仅在某个网站，或是某个域下面进行。例 ［admissions site:www.rainio.cn］，提交这个查询仅仅会搜索网站www.rainio.cn下面关于admissions的信息。我们还可以限制搜 索仅在域下面进行，例［javascript site:edu.cn］，提交这个查询，仅仅在教育网查询关于javascript的信息。（site:后面不能跟空格，且site命令可以配合其它命 令进行）</p><br><p><strong>source</strong>: 当用source提交查询的时候，Google新闻会限制我们的查询仅是那些我们指定了特定 ID或新闻源的网址。例［election source:new_york_times］，提交这个查询，Google将会显示纽约时报包含了查询关键词&rdquo;election&rdquo;的相关文章。（我们也 可以通过Google news高级搜索完成查询）</p><br><p><strong>stocks</strong>: 当我们用stocks提交查询的时候，Google会返回跟查询关键词相关的股票信息，这些信息一般来自于其它一些专业的财经网站。</p><br><p><strong>store</strong>: 当我们用store提交查询的时候，Google Froogle仅会显示我们指定了store ID的结果。例［polo shirt store:llbean］，提交这个查询，仅会搜索商店L. L. Bean.跟关键词&rdquo;polo&rdquo; &ldquo;shirt&rdquo;相关的结果。（只支持英文Google）</p><br><p><strong>weather</strong>: 当我们用weather提交查询的时候，如果我们指出一个Google可以识别的地区或城市，Google会返回该地区或城市当前的天气状况。</p>
-
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/76.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/76.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/76.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/76.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/77.seo/">
-        ← 转  哥的口令，你破解不了 之完全解密
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/75.seo/">
-        变形金刚3DVDscr版本下载：月黑之时 DVDscr版本  变形金刚3：黑月降临DVDscr版本 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>新的Google Hack技巧</p><br><p><strong>1.phonebook:+英文姓名</strong><br><br>    作用：搜索电话号码簿，将会返回美国人姓名街道地址和电话号码列表，均真实，对需要大量美国地址的朋友很有用，只要是英文姓名都能找到。<br><br>    例：phonebook:tom<br><br>    另外还有两个小分类：rphonebook:仅搜索住宅用户电话号码簿；bphonebook:仅搜索商业的电话号码簿。</p><br><p><strong>2.cache:+网址</strong><br><br>    作用：打开google对该网址的缓存页，很多被删掉的文章或网站，只要知道链接就可以用这种方法打开，但是google快照被墙了，所以要配合代理使用。</p><br><p><strong>3.related:+网址</strong><br><br>    作用：找出和该网址类似的网站，比如想知道和amazon.com类似的大型网络书店有哪些时输入amazon.com网址。<br><br>    例：related:amazon.com<br><br>    <strong>4.inurl:+关键词<br><br>    </strong>作用：用来寻找包含该关键词的网址，灵活使用的话是非常强的功能，比如许多人用来找在线的监视摄像头，网站后门什么的。<br><br>    例：inurl:mail（可找一些免费邮箱）</p><br><p><strong>5.音乐搜索</strong><br><br>    找不到某首曲子的时候用这个方法试试<br><br>    音乐名（或任意关键词）+ intitle:&rdquo;index.of&rdquo; &ldquo;parent directory&rdquo; &ldquo;size&rdquo; &ldquo;last modified&rdquo; &ldquo;description&rdquo; [snd] (mp4|mp3|avi) -inurl:(jsp|php|html|aspx|htm|cf|shtml|lyrics|mp3s|mp3|index) -gallery -intitle:&rdquo;last modified&rdquo; -intitle:(intitle|mp3)</p><br><p><strong>以下是另外一些google搜索技巧详解</strong>(不同颜色标注了不同的语法命令，绿色的较为常用的命令，黄色的是不常用但却非常有用的命令，蓝色是Google不推荐使用的命令)：<strong>：</strong></p><br><p><strong>phonebook</strong>: 当我们用phonebook进行查询的时候，Google会返回美国当地跟查询关键词相关的电话信息。（使用phonebook的时候需要指定详细的州名和地点名）例，［phonebook:smith ca］</p><br><p><strong>allinanchor: </strong>anchor是一处说明性的文字，它标注说明了这个链接可能跳转到其它的网页或跳转 到当前网页的不同地方。当我们用allinanchor提交查询的时候，Google会限制搜索结果必须是那些在anchor文字里包含了我们所有查询关 键词的网页。例[ allinanchor: best museums Sydney ] ,提交这个查询，Google仅仅会返回在网页anchor说明文字里边包含了关键词&rdquo;best&rdquo; &ldquo;museums&rdquo; 和&rdquo;Sydney&rdquo;的网面。</p><br><p><strong>allintext</strong>: 当我们用allintext提交查询的时候，Google会限制搜索结果仅仅是在网页正 文里边包含了我们所有查询关键词的网页。例［allintext: travel packing list］,提交这个查询，Google仅仅会返回在一个网页包含了三个关键词&rdquo;travel&rdquo; &ldquo;packing&rdquo;和&rdquo;list&rdquo;的网页。<a id="more"></a></p><br><p><strong>allintitle</strong>: 当我们用allintitle提交查询的时候，Google会限制搜索结果仅是那些在 网页标题里边包含了我们所有查询关键词的网页。例［allintitle: detect plagiarism］，提交这个查询，Google仅会返回在网页标题里边包含了&rdquo;detect&rdquo;和&rdquo;plagiarism&rdquo;这两个关键词的网页。</p><br><p><strong>allinurl</strong>: 当我们用allinurl提交查询的时候，Google会限制搜索结果仅是那些在 URL（网址）里边包含了我们所有查询关键词的网页。例［allinurl: google faq］，提交这个查询，Google仅会返回在URL里边包含了关键词&rdquo;google&rdquo;和&rdquo;faq&rdquo;的网页，象<a href="http://www.google.com/help/faq.html" target="_blank" rel="external">www.google.com/help/faq.html</a>等的网页。</p><br><p><strong>author</strong>: 当我们用author进行查询的时候，Google会限制返回结果仅仅是那些在Google论 坛里边，包含了特定作者的新闻文章。在这里，作者名可以是全名，也可以是一部分或邮件地址。例［children author:john author:doe］或［children author:doe@someaddress.com］返回结果将是作者John Doe 或是 <a href="mailto:doe@someaddress.com" target="_blank" rel="external">doe@someaddress.com</a>写的，关于包含关键词children的文章。</p><br><p><strong>bphonebook</strong>: 用bphonebook进行查询的时候，返回结果将是那些商务电话资料。</p><br><p><strong>cache</strong>: 提交cache:url ，Google会显示当前网页的快照信息，从而替换网页的当前信息。例［cache:www.rainio.cn］，提交这个查询，Google会返回所 有抓取的关于www.rainio.cn的网页快照信息。在显示的网页快照信息里边，Google会高亮显示查询关键词。（在cache:和URL之间不 能有空格）</p><br><p><strong>datarange</strong>: 当我们使用datarange进行查询的时候，Google会将查询结果限制在一个特定 的时间段内，这个时间相对于网站来说，是按网站被google收录的时间算的。例　&rdquo;Geri Halliwell&rdquo; &ldquo;Spice Girls&rdquo; daterange:2450958-2450968　。这里的时间日期格式是按天文学的儒略日。（这个搜索语法Google并不推荐使用，因为它会返回 一些莫名其妙的东西）</p><br><p><strong>define</strong>: 当我们用define进行查询的时候，Google会返回包含查询关键词定义的网面。例［define: blog］，这个查询将会返回Blog的定义。</p><br><p><strong>ext</strong>: 这是一个没有证实的语法，可以用于filetype:查找扩散名为ext的文件。</p><br><p><strong>filetype</strong>: 当我们在查询里边包含filetype:扩展名的时候，Google会限制查询结果仅返回 特定文件类型的网页。例［资产评估　filetype:pdf］，这个查询将会返回所有文件类型为pdf的资产评估信息。其它可用的特定文件类型格式查询 还有doc ,txt,ppt,xls.rtf,swf,ps等。</p><br><p><strong>group</strong>: 当我们用group查询的时候，Google会限制我们的论坛查询结果仅是某几个固定的论坛组或 是某些特定主题组的新闻文章。例［sleep group:misc.kids.moderated］，提交这个查询，Google仅会返回在用户组misc.kids.moderated里边包含了 查询关键字&rdquo;sleep&rdquo;的文章。</p><br><p><strong>id</strong>: 又是一个没有证实的语法，效果很一般。</p><br><p><strong>inanchor</strong>: 当我们用inanchor提交查询的时候，Google会限制结果是那些在网页 anchor链接里边包含了查询关键词的网页。例［restaurants inanchor:gourmet］，提交这个查询，Google会查询那些在anchor信息里包含了关键词&rdquo;restaurants&rdquo;和关键 词&rdquo;gourmet&rdquo;的网页。</p><br><p><strong>info</strong>: 提交info:url，将会显示需要查询网站的一些信息。例［info:rainio.cn］，提交这个查询，将会返回网站rainio.cn的所有信息。</p><br><p><strong>insubject</strong>: 当我们用insubject进行查询的时候，Google会限制论坛搜索结果仅是那些在 主题里边包含了查询关键词的网面。［insubject:&rdquo;falling asleep&rdquo;］，提交这个查询，Google会返回在文章主题里边包含了&rdquo;falling asleep&rdquo;的文章。</p><br><p><strong>intext</strong>: 当我们用intext进行查询的时候，Google会返回那些在文本正文里边包含了我们查询关 键词的网页。［Hamish Reid intext:pandemonia］，提交这个查询的时候，Google会返回在文本正文包含查询关键字pandemonia，在其它任何地方包含关键 词&rdquo;Hamish&rdquo;和&rdquo;Reid&rdquo;的网页。（intext:后面直接跟查询关键字，不能有空格）</p><br><p><strong>intitle</strong>: 当我们用intitle进行查询的时候，Google会返回那些在网页标题里边包含了我们查 询关键词的网页。例［flu shot intitle:help］，提交这个查询，Google会返回在网页标题包含了查询关键字&rdquo;help&rdquo;，而在其它任何地文包含了查询关键字&rdquo;flu&rdquo; 和&rdquo;shot&rdquo;的网页。（intitle:后面也不能有空格）</p><br><p><strong>inurl</strong>: 当我们用inurl进行查询的时候，Google会返回那些在URL（网址）里边包含了我们查询 关键词的网页。例［inurl:print site:www.rainio.cn］，提交这个查询，Google会查找www.rainio.cn这个网站下面网址里边包含了查询关键 词&rdquo;print&rdquo;的网页。</p><br><p><strong>link</strong>: 当我们使用link:URL提交查询的时候，Google会返回跟此URL做了链接的网站。例 ［link:www.rainio.cn］，提交这个查询，我们将得到所有跟www.rainio.cn这个网站做了链接的网站。（link是个单独的语 法，只能单独使用，且后面不能跟查询关键词，跟能跟URL）</p><br><p><strong>location</strong>: 当我们提交location进行Google新闻查询的时候，Google仅会返回你当前指定区的跟查询关键词相关的网页。例[ queen location:canada ]，提交这个查询，Google会返回加拿大的跟查询关键词&rdquo;queen&rdquo;相匹配的网站。</p><br><p><strong>movie</strong>: 当我们用movie提交查询的时候，Google会返回跟查询关键词相关的电影信息。(当前只支持英文Google)</p><br><p><strong>related</strong>: 用related提交查询，Google会返回跟我们要查询的网站结构内容相似的一些其它网 站。例[related:www.raino.cn]，提交这个查询，Google会返回所有跟网站www.rainio.cn结构内容相似的网站。我们 也可以通过点击搜索结果后面的相似网页，来查询跟当前网页类似的网页。（related:后面不能跟空格）</p><br><p><strong>rphonebook</strong>: 这个查询用来搜索美国当地跟查询关键词相关的住宅电话信息。</p><br><p><strong>safesearch</strong>: 用safesearch提交查询的时候，Google会过滤你搜索的结果，其中过滤的内容可能包括一些色情的，暴力，赌博性质的，还有传染病毒的网页。但是它不是百分之百确保安全的。例，［safesearch:breasts］。</p><br><p><strong>site</strong>: 当我们用site提交查询的时候，Google会限制查询仅在某个网站，或是某个域下面进行。例 ［admissions site:www.rainio.cn］，提交这个查询仅仅会搜索网站www.rainio.cn下面关于admissions的信息。我们还可以限制搜 索仅在域下面进行，例［javascript site:edu.cn］，提交这个查询，仅仅在教育网查询关于javascript的信息。（site:后面不能跟空格，且site命令可以配合其它命 令进行）</p><br><p><strong>source</strong>: 当用source提交查询的时候，Google新闻会限制我们的查询仅是那些我们指定了特定 ID或新闻源的网址。例［election source:new_york_times］，提交这个查询，Google将会显示纽约时报包含了查询关键词&rdquo;election&rdquo;的相关文章。（我们也 可以通过Google news高级搜索完成查询）</p><br><p><strong>stocks</strong>: 当我们用stocks提交查询的时候，Google会返回跟查询关键词相关的股票信息，这些信息一般来自于其它一些专业的财经网站。</p><br><p><strong>store</strong>: 当我们用store提交查询的时候，Google Froogle仅会显示我们指定了store ID的结果。例［polo shirt store:llbean］，提交这个查询，仅会搜索商店L. L. Bean.跟关键词&rdquo;polo&rdquo; &ldquo;shirt&rdquo;相关的结果。（只支持英文Google）</p><br><p><strong>weather</strong>: 当我们用weather提交查询的时候，如果我们指出一个Google可以识别的地区或城市，Google会返回该地区或城市当前的天气状况。</p>
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/黑客技巧/">黑客技巧</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/Google-Hack/">Google Hack</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/77.seo/" title="转  哥的口令，你破解不了 之完全解密">
+  <strong>Prev:</strong><br/>
+  <span>
+  转  哥的口令，你破解不了 之完全解密</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/75.seo/"  title="变形金刚3DVDscr版本下载：月黑之时 DVDscr版本  变形金刚3：黑月降临DVDscr版本">
+ <strong>Next:</strong><br/> 
+ <span>变形金刚3DVDscr版本下载：月黑之时 DVDscr版本  变形金刚3：黑月降临DVDscr版本
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-Google Hack 最新版" data-title="Google Hack 最新版" data-url="http://ha.cker.in/76.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

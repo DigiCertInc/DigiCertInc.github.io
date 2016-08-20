@@ -1,192 +1,236 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Tag: WAF | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Tag: WAF | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Tag: WAF | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="tag-icon">WAF</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-06-17T23:38:08.000Z" itemprop="datePublished">
-          2013-06-18
-      </time>
-    
-    
-    | 
-    <a href='/tag/WAF/'>WAF</a>,
-    
-    <a href='/tag/安全宝/'>安全宝</a>,
-    
-    <a href='/tag/白帽子/'>白帽子</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1005.seo/">浅谈安全宝等云端WAF的绕过思路</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        最近一直在搞些web安全，还是有一些收获的。其实我不是黑客，我真的只是白帽子。今天，准备渗透一个站，用了几个传统的注入方式，发现一直在弹出安全宝的拦截信息。让我很不爽，先来介绍一下安全宝。  什么安全宝  安全宝是创新工场的孵化产品，是一个基于云端的WAF(Web Application Firewall)。国内也有一些产品，比如加速乐、360等。这类产品其实是相当于网站的CDN，所有流量通过它进行转发。但是这些服务其实往往无法真正达到
-      
-      </p>
-      
-      <p>
-          <a href="/1005.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-03-11T17:22:13.000Z" itemprop="datePublished">
-          2013-03-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/WAF/'>WAF</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/978.seo/">Bypassing WAF via HTTP Parameter Pollution</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>Last week I was invited to join a team to participate in a CTF (Capture The Flag) contest organized by <a href="https://csawctf.poly.edu/">CSAW</a> Team.</p>  <p>   <br />With my wife and kids around, I only had the opportunity to pick one challenge related to Web Exploitation named: &quot;HorceForce&quot; worth 300 points! Basically, you were provided with a low-privilege account and needed to find your way to get Administrator access.</p>  <p>   <br />So, there are multiple resources explaining how to exploit it, but definitely I want to share my experience.</p>  <p>   <br />After sending some single quotes it was easy to find a SQL Injection bug by getting the well known &quot;MySQL SQL Error Message&quot;.</p>  <p>   <br />So, as you all know the first attempt was something like:</p>  <p>   <br /><font color="#00ff40"><a href="http://128.238.66.217/horse.php?id=7">http://128.238.66.217/horse.php?id=7</a> or 1 IN (select current_user)</font></p>  <p>   <br />And I got I ERROR Message saying something like &quot;PLEASE STOP trying to hack this blablablabla site&quot;.</p>  <p>   <br />Then after many techniques to bypass the filter I realized the <a href="http://ha.cker.in/tag/WAF" target="_blank">WAF</a> was configured to deny any string containing either &quot;select&quot; or &quot;union&quot;, blindly I assumed the WAF’s regular expression was something like:</p>  <p>   <br />/^.<em>select.</em>$/ or /^.<em>union.</em>$/ </p>  <p>   <br />Which means, every string which even makes no sense from SQLi point of view like: <font color="#00ff00">blablaSELECTblabla</font> or a bypass technique like: <font color="#00ff00">/<em>!union</em>/</font> , were triggering the Warning Message.</p>  <p>   <br />After some research I found the <a href="http://www.acunetix.com/blog/whitepaper-http-parameter-pollution/">HTTP Pollution</a> technique which basically allows the attacker (among other things) to play with the GET Parameters in order to confuse the WAF filter.</p>  <p>   <br />So, how it works?</p>  <p>   <br />Let’s say you have the GET parameter &quot;id&quot;, you can duplicate it (or even add it many times) and send something like:</p>  <p>   <br /><font color="#00ff00">?id=value1&amp;id=value2</font></p>  <p>   <br />And, depending on the Framework used (PHP, Java, ASP.NET, etc) the parameters are going to be parsed differently, in our case with Apache/PHP, if you inject the same parameter multiple times, only the last one will be parsed by the Framework (see table below) but guess what? Only the first parameter is going to be analyzed by the WAF!</p>  <p>   <br />This means, by injecting: ?id=7&amp;id=[SQLi]</p>  <p>   <br />WAF Network Layer parses&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; id=7&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;- Good to go!     <br />PHP Application Layer parses&#160;&#160;&#160;&#160;&#160;&#160; id=[SQLi]&#160;&#160;&#160;&#160; &lt;- SQLi successfully injected</p>  <p>   <br />So, this is a typical example where you can inject something that is going to be treated differently at Network Layer and Application Layer.</p>  <p>   <br />Below is a table where you can find how other Frameworks react when receiving the same parameter multiple times. Like ASP.NET, if it receives two parameters, it will concatenate them, and therefore you can split the attack into those fields to bypass the WAF, which is out of scope of this blog.</p>  <p><a href="http://img.cker.in/BypassingWAFviaHTTPParameterPollution_13D64/clip_image001.jpg"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/BypassingWAFviaHTTPParameterPollution_13D64/clip_image001_thumb.jpg" width="1284" height="740" /></a></p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/978.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1005.seo/" title="浅谈安全宝等云端WAF的绕过思路" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-10-15T21:47:56.000Z" itemprop="datePublished">
-          2012-10-16
-      </time>
+    <h1 itemprop="name">浅谈安全宝等云端WAF的绕过思路</h1>
     
-    
-    | 
-    <a href='/tag/WAF/'>WAF</a>,
-    
-    <a href='/tag/漏洞/'>漏洞</a>,
-    
-    <a href='/tag/注入/'>注入</a>,
-    
-    <a href='/tag/SQL注入/'>SQL注入</a>,
-    
-    <a href='/tag/绕过WAF/'>绕过WAF</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/892.seo/">通过HTTP参数污染绕过WAF拦截</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        译:pnig0s_小P@FreeBuf  上个星期我被邀请组队去参加一个由CSAW组织的CTF夺旗比赛.因为老婆孩子的缘故，我只能挑一个与Web漏洞利用相关的题目，名字叫做”HorceForce”.这道题价值300点。这道题大概的背景是，你拥有一个低权限的帐号并需要找到方法来获得管理员权限。  当然，有很多种方法来介绍如何通过这关，但我想分享下我的通关经验。  当把一些单引号作为参数值发送之后返回了MySQL的典型报错信息“MySQL 
-      
-      </p>
-      
-      <p>
-          <a href="/892.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2013-06-17T23:38:08.000Z" itemprop="datePublished">2013-06-18</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
+    <a href="/978.seo/" title="Bypassing WAF via HTTP Parameter Pollution" itemprop="url">
+  
+    <h1 itemprop="name">Bypassing WAF via HTTP Parameter Pollution</h1>
     
-    <span class="page-number">Page 1 of 1</span>
+    <time datetime="2013-03-11T17:22:13.000Z" itemprop="datePublished">2013-03-12</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/892.seo/" title="通过HTTP参数污染绕过WAF拦截" itemprop="url">
+  
+    <h1 itemprop="name">通过HTTP参数污染绕过WAF拦截</h1>
     
-  </nav>
-</main>
+    <time datetime="2012-10-15T21:47:56.000Z" itemprop="datePublished">2012-10-16</time>
+  </a>
+</section>
 
 
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

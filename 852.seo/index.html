@@ -1,153 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>对居然之家的一次内网渗透 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>对居然之家的一次内网渗透 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="先上图：    本来是不想搞站的，专心学点编程，可是老是有人来找我帮忙什么的。。。搞完这个我想专心学点编程，俗话说不会编程的黑客不算是高富帅。。。所以说，你懂得。  进入正题  1. 主站摸索  2. 旁站摸索  3. 旁服摸索  4.  不开玩笑了。。  嫖叔尝试过主站服务器了，但是没有搞下来，我这人比较懒，当时也没有追随着嫖叔的脚步搞那个db权限的注射点，一来好久没搞注入了，二来对注入也无爱了。后来玩命有一天很激动的告诉我说拿到了旁服上的一个shell，叫我提权试试，我想了想，既然这是个企业站，注册资金据说有8100w，肯定很有钱，服务器肯定也是大大的有，放在内网的话还能内网渗透一下，于是就上了。  顺便说下，玩命搞到的那个shell是通过注射加后台上传拿到的，大家就别再搞了。  上了shell看了下，权限很大，几乎全盘浏览了，支持asp，aspx，php，翻了下看见了xampp，管理员还真懒，mysql估计就是系统权限运行的，而且我猜root密码还是默认为空。于是翻查数据库连接文件，管理员果然没让我失望    于是果断mysql导出udf提权，加了个系统权限的用户，上了rootki.asp（这玩意用系统帐号登录，权限为system，比较方便）  查了下远程桌面端口发现没改，ipconfig发现是双网卡，但都在内网，装了金山杀毒软件和金山管理软件（不记得是不是这个名字了）  上传lcx想转发端口的，可惜被杀了，试了下taskkill，ntsd都不能把杀毒的进程给杀完，最主要的杀毒进程杀不掉，没办法，找小陈做了个免杀，自己又是外网（怨念哪。。当初花150买了个90块钱的tplink路由器，结果发现不能把自己放到dmz去，端口映射也不行，被黑出翔了，如果我是外网的，可以做更多的事的，反弹到我这里，用metasploit进行内网渗透。。。嘿嘿，留口水了）于是上外网服务器操作了，那慢的叫我想死了。。。不过好歹有个桌面环境给我操作，不用一直命令行了。  既然是内网，当然是要内网搞一搞了，但是之前我在服务器上翻了下，发现了装有winwebmail，这玩意一开始查同服的时候就知道了，只不过貌似限制了ip登录，但是我控制了服务端，不怕限制ip登录，以后可以作为一个信息来源，先留着。  Cmd下执行各种命令对内网环境做一个基本的了解。  C:Documents and Settingsfucker&amp;gt;net view /domain 查看有几个组  Domain————————————————————-  MYGROUP  WORKGROUP  命令成功完成。  C:Documents and Settingsfucker桌面Pwdump7&amp;gt;netview（查询有关系的机器）  服务器名称 注释  ————————————————————————  EFGP  IBM  IIBM  JR141&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; jr141  JR142  JURANZHIJIALEWU  JURZJCTI-9897F9  LEWU  OASERVER  POS27&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; pos27  POS28  POS29&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; pos29  POS30&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; pos30  USER-87C8B53A9C  命令成功完成。  C:Documents and Settingsfucker&amp;gt;net view/domain:workgroup（查看workgroup组下的机器）  服务器名称 注释  ——————————————————————  EFGP  IBM  JR141&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; jr141  JR142  JURANZHIJIALEWU  JURZJCTI-9897F9  LEWU  OASERVER  POS27&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; pos27  POS28  POS29&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; pos29  POS30&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; pos30  命令成功完成。  C:Documents and Settingsfucker&amp;gt;net view/domain:mygroup（查询mygroup组下的机器）  服务器名称 注释  ————————————————————————-  AP-3850-3&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; Samba Server Version 3.0.33-0.17.el4  GP53&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; Samba Server Version 3.0.33-3.28.el5  命令成功完成。-  其实这些东西查询出来">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="对居然之家的一次内网渗透 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/852.seo/" title="对居然之家的一次内网渗透" itemprop="url">对居然之家的一次内网渗透</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2012-09-25T05:56:48.000Z" itemprop="datePublished">2012-09-25</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>先上图：</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image001_thumb.jpg" width="508" height="287"></a></p>  <p>本来是不想搞站的，专心学点编程，可是老是有人来找我帮忙什么的。。。搞完这个我想专心学点编程，俗话说不会编程的黑客不算是高富帅。。。所以说，你懂得。</p>  <p>进入正题</p>  <p>1. 主站摸索</p>  <p>2. 旁站摸索</p>  <p>3. 旁服摸索</p>  <p>4.</p>  <p>不开玩笑了。。</p>  <p>嫖叔尝试过主站服务器了，但是没有搞下来，我这人比较懒，当时也没有追随着嫖叔的脚步搞那个db权限的注射点，一来好久没搞注入了，二来对注入也无爱了。后来玩命有一天很激动的告诉我说拿到了旁服上的一个shell，叫我提权试试，我想了想，既然这是个企业站，注册资金据说有8100w，肯定很有钱，服务器肯定也是大大的有，放在内网的话还能内网渗透一下，于是就上了。</p>  <p>顺便说下，玩命搞到的那个shell是通过注射加后台上传拿到的，大家就别再搞了。</p>  <p>上了shell看了下，权限很大，几乎全盘浏览了，支持asp，aspx，php，翻了下看见了xampp，管理员还真懒，mysql估计就是系统权限运行的，而且我猜root密码还是默认为空。于是翻查数据库连接文件，管理员果然没让我失望</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image002_thumb.jpg" width="508" height="305"></a></p>  <p>于是果断mysql导出udf提权，加了个系统权限的用户，上了rootki.asp（这玩意用系统帐号登录，权限为system，比较方便）</p>  <p>查了下远程桌面端口发现没改，ipconfig发现是双网卡，但都在内网，装了金山杀毒软件和金山管理软件（不记得是不是这个名字了）</p>  <p>上传lcx想转发端口的，可惜被杀了，试了下taskkill，ntsd都不能把杀毒的进程给杀完，最主要的杀毒进程杀不掉，没办法，找小陈做了个免杀，自己又是外网（怨念哪。。当初花150买了个90块钱的tplink路由器，结果发现不能把自己放到dmz去，端口映射也不行，被黑出翔了，如果我是外网的，可以做更多的事的，反弹到我这里，用metasploit进行内网渗透。。。嘿嘿，留口水了）于是上外网服务器操作了，那慢的叫我想死了。。。不过好歹有个桌面环境给我操作，不用一直命令行了。</p>  <p>既然是内网，当然是要内网搞一搞了，但是之前我在服务器上翻了下，发现了装有winwebmail，这玩意一开始查同服的时候就知道了，只不过貌似限制了ip登录，但是我控制了服务端，不怕限制ip登录，以后可以作为一个信息来源，先留着。</p>  <p>Cmd下执行各种命令对内网环境做一个基本的了解。</p>  <p>C:Documents and Settingsfucker&gt;net view /domain 查看有几个组</p>  <p>Domain————————————————————-</p>  <p>MYGROUP</p>  <p>WORKGROUP</p>  <p>命令成功完成。</p>  <p>C:Documents and Settingsfucker桌面Pwdump7&gt;netview（查询有关系的机器）</p>  <p>服务器名称 注释</p>  <p>————————————————————————</p>  <p>EFGP</p>  <p>IBM</p>  <p>IIBM</p>  <p>JR141&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; jr141</p>  <p>JR142</p>  <p>JURANZHIJIALEWU</p>  <p>JURZJCTI-9897F9</p>  <p>LEWU</p>  <p>OASERVER</p>  <p>POS27&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos27</p>  <p>POS28</p>  <p>POS29&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos29</p>  <p>POS30&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos30</p>  <p>USER-87C8B53A9C</p>  <p>命令成功完成。</p>  <p>C:Documents and Settingsfucker&gt;net view/domain:workgroup（查看workgroup组下的机器）</p>  <p>服务器名称 注释</p>  <p>——————————————————————</p>  <p>EFGP</p>  <p>IBM</p>  <p>JR141&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; jr141</p>  <p>JR142</p>  <p>JURANZHIJIALEWU</p>  <p>JURZJCTI-9897F9</p>  <p>LEWU</p>  <p>OASERVER</p>  <p>POS27&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos27</p>  <p>POS28</p>  <p>POS29&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos29</p>  <p>POS30&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos30</p>  <p>命令成功完成。</p>  <p>C:Documents and Settingsfucker&gt;net view/domain:mygroup（查询mygroup组下的机器）</p>  <p>服务器名称 注释</p>  <p>————————————————————————-</p>  <p>AP-3850-3&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Samba Server Version 3.0.33-0.17.el4</p>  <p>GP53&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Samba Server Version 3.0.33-3.28.el5</p>  <p>命令成功完成。-</p>  <p>其实这些东西查询出来</p><a id="more"></a><p>我也不懂有什么用。。。反正就是看别的内网渗透资料上的，就照做了。。。。</p>  <p>用wce和pwdump把本机的hash给导出来了（虽说wce可以读取内存中的明文密码，但是在导出hash的时候却没有pwdump给力，不知道为什么），拿去破解，做成了一个字典文件，挂到hscan上对内网的机器做一个大致的扫描，弱口令什么的在内网里是很常见的，而且因为是在内网，所以扫描到的端口比外网也会准确的多。</p>  <p>一阵扫描下来，收获颇丰</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image003_thumb.jpg" width="499" height="253"></a></p>  <p>这只是一部分，还有一些没有显示出来。</p>  <p>有三台服务器的mssql的sa密码为123，果断拿下</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image004_thumb.jpg" width="518" height="330"></a></p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image005_thumb.jpg" width="521" height="574"></a></p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image006.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image006_thumb.jpg" width="516" height="359"></a></p>  <p>发现上面装了飞秋，一个内网通讯工具，发现这个内网很大（实际上确实很大，后来在内网嗅探的时候得到了证实）以后可以作为一个社工的桥梁，冒充别人，获取更多的信息。</p>  <p>抓取hash，拿去破解，于是被我发现规律了。。</p>  <p>28的那台机器administrator密码为1.2</p>  <p>29的那台机器administrator密码为1.3</p>  <p>30的那台机器administrator密码为1.3</p>  <p>于是我在28之前和30之后对开启了远程桌面的机器进行了尝试，果断用1.1的密码进入了27的机器，但是其他的就没有成功。</p>  <p>在这些机器上全部种上winlogon木马，用以记录管理员的登录密码，万一能够记录到域管理的密码那就爽了。。。</p>  <p>3的那台机器同样是sa弱口令123，抓取hash破解为0o9i8u7y（看上去很复杂，实际上很简单，看下你的键盘就知道了），种上winlogon木马。</p>  <p>继续看hscan的扫描报告</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image007.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image007_thumb.jpg" width="490" height="351"></a></p>  <p>果断猜想192.168.0.21的adminsitrator密码为easyhome，连上去登录了</p>  <p>（这么敏感的东西都被我看到了，罪过罪过，安全有多重要啊）</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image008.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image008_thumb.jpg" width="513" height="593"></a></p>  <p>看到有几台机器的扫描报告几乎相同，怀疑是否是一台机器，一台机器分配了多个ip？</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image009.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image009" border="0" alt="clip_image009" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image009_thumb.jpg" width="500" height="299"></a></p>  <p>admin的帐号估计权限很大，sybase是oracle的最高权限的帐号，悲剧了，又是弱口令惹的祸，据说oracle可以执行命令，但是没有尝试，看上去貌似很麻烦，这网速龟一样，点个右键要两秒钟才能出来。telnet上去结果登录帐号但是回显的并不是能够执行命令的，这让我比较奇怪，后来嗅探的时候搞清楚了，这几台机器貌似是处理订单之类的。登录之后让我选择什么的，但是选择了编号回车之后就提示失去连接，后来用嗅探到的帐号登录发现也是同样的问题，暂时不知道原因。</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image010.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image010" border="0" alt="clip_image010" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image010_thumb.jpg" width="507" height="336"></a></p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image011.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image011" border="0" alt="clip_image011" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image011_thumb.jpg" width="516" height="486"></a></p>  <p>不能执行命令自然就不能溢出提权了，看到hscan扫到了80端口，访问发现是apache的默认页面（redhat貌似是默认安装的？），我的思路是通过ftp上传一个php木马，反弹一个shell到我这里来执行命令</p>  <p>Ftp连接上机器，找到网站目录之后发现没有上传的权限，但是在子目录里又有上传的权限，上传了php的webshell，但是访问发现是一片空白，不知道是什么原因，于是这个思路又断了。</p>  <p>到网上找了下ssh的相关版本有没有远程溢出的漏洞，无果，暂时放弃好了。</p>  <p>用到现在为止收集到的信息（管理员的帐号密码，翻各种文件找到的一些敏感信息），整理了下，再次弄了个字典，挂上hscan扫</p>  <p>有所斩获，192.168.0.7的机器的ftp帐号密码为adminsitrator，0o9i8u7y，果断连接远程桌面，发现是windows2000，不常见哟。</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image012.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image012" border="0" alt="clip_image012" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image012_thumb.jpg" width="519" height="321"></a></p>  <p>到这里陷入了僵局，再一次意淫了下自己是外网的情景，metaploit溢出于谈笑之间，在各台服务器上systeminfo了一下，发现没有打ms08-067的补丁，想到用08-067来远程溢出，但是发现网上所用的08-067抓鸡工具都是需要配置木马，让其下载运行再上线的，本机开放了80端口，但是内网其他机器下载的话需要经过http验证，没去查什么原因，懒。。。</p>  <p>再次用hscan扫描的到的弱口令一个一个试，发现还有aix系统的服务器，我自然是没有经验搞的了，但是收获还是有的，找到另外两台redhat服务器，登录之后能够执行命令，那就好办了，尝试udev通杀提权都不成功，然后一台内核版本2.6.18-194的用一句话给提权了，种上rootkit走人（本来想种个键盘记录的，但是想想还是算了，我得从网上下载下来，然后ftp传给linux，再进行安装，两台linux的dns配置都有问题，尝试ping www.91ri.org，无法访问外部网络，wget自然是没用的了，只能通过这个方法了，期间还得忍受鼠标1-2秒的延迟，欲乘风去撞墙~）还有一台用了各种exp，最后<a href="http://keio2.cccpan.com/在这里找到的exp给成功溢出了，同样种上rootkit" target="_blank" rel="external">http://keio2.cccpan.com/在这里找到的exp给成功溢出了，同样种上rootkit</a></p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image013.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image013" border="0" alt="clip_image013" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image013_thumb.jpg" width="514" height="591"></a></p>  <p>（这台是一句话提的权）</p>  <p>种rootkit的我没有截图下来，命令敲上来好了，rootkit下载地址：</p>  <p><a href="http://forum.eviloctal.com/attachment.php?aid=13419#tc_qz_original=47347" target="_blank" rel="external">http://forum.eviloctal.com/attachment.php?aid=13419#tc_qz_original=47347</a></p>  <p>传到tmp目录下，</p>  <p>tar zxvf mafix.tar.gz 解压缩。进入目录，赋予root文件执行权限</p>  <p>安装rootkit：./root 连接密码 端口 回车</p>  <p>如果成功回显如下：</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image014.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image014" border="0" alt="clip_image014" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image014_thumb.jpg" width="498" height="506"></a></p>  <p>下次之间用putty连接相应端口输入密码就可以了，root权限。</p>  <p>安装成功后目录会自行删除，最后history -c 清除命令记录。</p>  <p>又有两台服务器到手了，自然是下载/etc/shadow文件到本地尝试破解，很荣幸的，破解失败。</p>  <p>期间仍然在各台服务器的硬盘上各种翻，找敏感数据。</p>  <p>看到有三台思科路由器</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image015.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image015" border="0" alt="clip_image015" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image015_thumb.jpg" width="376" height="443"></a></p>  <p>弱口令登录失败，尝试暴力破解同样失败，telnet上去，回显：</p>  <p>Lishijie welcomes you! Are you allowed by administrator?If not, you are not allowed to enter!（大概就这么一段话）</p>  <p>得知了管理员叫做lishijie，百度了下“lishijie 居然” 也没发现什么，发现社工网站打不开了，在自己下载的csdn库中找lishijie找到多个帐号（为什么要到csdn找，你懂的）。。。不愿一个个去试了，本机把winwebmail中lishijie的那个文件夹中文件查看了下，发现些相关信息</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image016.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image016" border="0" alt="clip_image016" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image016_thumb.jpg" width="505" height="417"></a></p>  <p>再到csdn中找了下，终于找到了</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image017.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image017" border="0" alt="clip_image017" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image017_thumb.jpg" width="624" height="292"></a></p>  <p>尝试登录失败，很累，感觉不会爱了</p>  <p>不愿去社工了，省的没射到别人自己惹了一身骚。</p>  <p>直接apr嗅探好了</p>  <p>扫描同网关下的机器的时候发现还有打印机</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image018.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image018" border="0" alt="clip_image018" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image018_thumb.jpg" width="517" height="357"></a></p>  <p>可以考虑下微软的打印机远程溢出，惠普的应该存在远程溢出的，可惜我没找到。</p>  <p>嗅探了两天也没什么成果，telnet那边很多记录，都是前面我说的登录就要选择的那种，不能执行命令的。可惜没有root密码</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image019.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image019" border="0" alt="clip_image019" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image019_thumb.jpg" width="509" height="357"></a></p>  <p>类似的，我猜可能是订单管理之类的服务器，但是数据交换大都在10.XX.XX.XX和192.168.0.XX之间的，联想到之前的飞秋，我猜到了10.XX.XX.XX大概都是员工的个人pc，</p>  <p>不愿搞了，很累，感觉再也不会爱了。</p>  <p>干脆把居然之家主站的首页给换了吧，我首先想到的当然是netfuke劫持，但是没有找到主站服务器的内网ip啊。之前我嗅探的都是192.168.0.XX这个段的，于是嗅探了一段时间的192.168.1.XX，然后就被我发现了192.168.1.5这台机器和192.168.1.1网关之间有数据，domain显示<a href="http://www.juran.com.cn/" target="_blank" rel="external">www.juran.com.cn</a>，毫无疑问，这就是居然之家的主站了。</p>  <p>剩下的你大概也知道了，下载了netfuke，配置好，点开始，然后就把居然的首页给换了。</p>  <p>总结一下吧：运气很好，耐心不够，技术不足，我还是怨念我的内网环境。。。metasploit只能在本地测试，蛋疼死了，求推荐能放把机器在dmz区的路由~~</p>  <p>顺便说一句：年底我要想好好编程，日站什么的，还是别找我帮忙了吧，在此谢过各位大黑阔~</p>  <p>文章作者：A11riseforme [F4ck Team] 注：本文为法客论坛周年庆文章 转载请注明原文版权及本文链接！</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2012-09-25T05:56:48.000Z" itemprop="datePublished">
-          2012-09-25
-      </time>
-    
-    
-    | 
-    <a href='/tag/提权/'>提权</a>,
-    
-    <a href='/tag/内网渗透/'>内网渗透</a>,
-    
-    <a href='/tag/嗅探/'>嗅探</a>
-    
-    
-</span>
-    <h1 class="post-title">对居然之家的一次内网渗透</h1>
-    <section class="post-content">
-      <p>先上图：</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image001_thumb.jpg" width="508" height="287"></a></p>  <p>本来是不想搞站的，专心学点编程，可是老是有人来找我帮忙什么的。。。搞完这个我想专心学点编程，俗话说不会编程的黑客不算是高富帅。。。所以说，你懂得。</p>  <p>进入正题</p>  <p>1. 主站摸索</p>  <p>2. 旁站摸索</p>  <p>3. 旁服摸索</p>  <p>4.</p>  <p>不开玩笑了。。</p>  <p>嫖叔尝试过主站服务器了，但是没有搞下来，我这人比较懒，当时也没有追随着嫖叔的脚步搞那个db权限的注射点，一来好久没搞注入了，二来对注入也无爱了。后来玩命有一天很激动的告诉我说拿到了旁服上的一个shell，叫我提权试试，我想了想，既然这是个企业站，注册资金据说有8100w，肯定很有钱，服务器肯定也是大大的有，放在内网的话还能内网渗透一下，于是就上了。</p>  <p>顺便说下，玩命搞到的那个shell是通过注射加后台上传拿到的，大家就别再搞了。</p>  <p>上了shell看了下，权限很大，几乎全盘浏览了，支持asp，aspx，php，翻了下看见了xampp，管理员还真懒，mysql估计就是系统权限运行的，而且我猜root密码还是默认为空。于是翻查数据库连接文件，管理员果然没让我失望</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image002_thumb.jpg" width="508" height="305"></a></p>  <p>于是果断mysql导出udf提权，加了个系统权限的用户，上了rootki.asp（这玩意用系统帐号登录，权限为system，比较方便）</p>  <p>查了下远程桌面端口发现没改，ipconfig发现是双网卡，但都在内网，装了金山杀毒软件和金山管理软件（不记得是不是这个名字了）</p>  <p>上传lcx想转发端口的，可惜被杀了，试了下taskkill，ntsd都不能把杀毒的进程给杀完，最主要的杀毒进程杀不掉，没办法，找小陈做了个免杀，自己又是外网（怨念哪。。当初花150买了个90块钱的tplink路由器，结果发现不能把自己放到dmz去，端口映射也不行，被黑出翔了，如果我是外网的，可以做更多的事的，反弹到我这里，用metasploit进行内网渗透。。。嘿嘿，留口水了）于是上外网服务器操作了，那慢的叫我想死了。。。不过好歹有个桌面环境给我操作，不用一直命令行了。</p>  <p>既然是内网，当然是要内网搞一搞了，但是之前我在服务器上翻了下，发现了装有winwebmail，这玩意一开始查同服的时候就知道了，只不过貌似限制了ip登录，但是我控制了服务端，不怕限制ip登录，以后可以作为一个信息来源，先留着。</p>  <p>Cmd下执行各种命令对内网环境做一个基本的了解。</p>  <p>C:Documents and Settingsfucker&gt;net view /domain 查看有几个组</p>  <p>Domain————————————————————-</p>  <p>MYGROUP</p>  <p>WORKGROUP</p>  <p>命令成功完成。</p>  <p>C:Documents and Settingsfucker桌面Pwdump7&gt;netview（查询有关系的机器）</p>  <p>服务器名称 注释</p>  <p>————————————————————————</p>  <p>EFGP</p>  <p>IBM</p>  <p>IIBM</p>  <p>JR141&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; jr141</p>  <p>JR142</p>  <p>JURANZHIJIALEWU</p>  <p>JURZJCTI-9897F9</p>  <p>LEWU</p>  <p>OASERVER</p>  <p>POS27&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos27</p>  <p>POS28</p>  <p>POS29&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos29</p>  <p>POS30&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos30</p>  <p>USER-87C8B53A9C</p>  <p>命令成功完成。</p>  <p>C:Documents and Settingsfucker&gt;net view/domain:workgroup（查看workgroup组下的机器）</p>  <p>服务器名称 注释</p>  <p>——————————————————————</p>  <p>EFGP</p>  <p>IBM</p>  <p>JR141&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; jr141</p>  <p>JR142</p>  <p>JURANZHIJIALEWU</p>  <p>JURZJCTI-9897F9</p>  <p>LEWU</p>  <p>OASERVER</p>  <p>POS27&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos27</p>  <p>POS28</p>  <p>POS29&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos29</p>  <p>POS30&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos30</p>  <p>命令成功完成。</p>  <p>C:Documents and Settingsfucker&gt;net view/domain:mygroup（查询mygroup组下的机器）</p>  <p>服务器名称 注释</p>  <p>————————————————————————-</p>  <p>AP-3850-3&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Samba Server Version 3.0.33-0.17.el4</p>  <p>GP53&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Samba Server Version 3.0.33-3.28.el5</p>  <p>命令成功完成。-</p>  <p>其实这些东西查询出来</p><a id="more"></a><p>我也不懂有什么用。。。反正就是看别的内网渗透资料上的，就照做了。。。。</p>  <p>用wce和pwdump把本机的hash给导出来了（虽说wce可以读取内存中的明文密码，但是在导出hash的时候却没有pwdump给力，不知道为什么），拿去破解，做成了一个字典文件，挂到hscan上对内网的机器做一个大致的扫描，弱口令什么的在内网里是很常见的，而且因为是在内网，所以扫描到的端口比外网也会准确的多。</p>  <p>一阵扫描下来，收获颇丰</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image003_thumb.jpg" width="499" height="253"></a></p>  <p>这只是一部分，还有一些没有显示出来。</p>  <p>有三台服务器的mssql的sa密码为123，果断拿下</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image004_thumb.jpg" width="518" height="330"></a></p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image005_thumb.jpg" width="521" height="574"></a></p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image006.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image006_thumb.jpg" width="516" height="359"></a></p>  <p>发现上面装了飞秋，一个内网通讯工具，发现这个内网很大（实际上确实很大，后来在内网嗅探的时候得到了证实）以后可以作为一个社工的桥梁，冒充别人，获取更多的信息。</p>  <p>抓取hash，拿去破解，于是被我发现规律了。。</p>  <p>28的那台机器administrator密码为1.2</p>  <p>29的那台机器administrator密码为1.3</p>  <p>30的那台机器administrator密码为1.3</p>  <p>于是我在28之前和30之后对开启了远程桌面的机器进行了尝试，果断用1.1的密码进入了27的机器，但是其他的就没有成功。</p>  <p>在这些机器上全部种上winlogon木马，用以记录管理员的登录密码，万一能够记录到域管理的密码那就爽了。。。</p>  <p>3的那台机器同样是sa弱口令123，抓取hash破解为0o9i8u7y（看上去很复杂，实际上很简单，看下你的键盘就知道了），种上winlogon木马。</p>  <p>继续看hscan的扫描报告</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image007.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image007_thumb.jpg" width="490" height="351"></a></p>  <p>果断猜想192.168.0.21的adminsitrator密码为easyhome，连上去登录了</p>  <p>（这么敏感的东西都被我看到了，罪过罪过，安全有多重要啊）</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image008.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image008_thumb.jpg" width="513" height="593"></a></p>  <p>看到有几台机器的扫描报告几乎相同，怀疑是否是一台机器，一台机器分配了多个ip？</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image009.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image009" border="0" alt="clip_image009" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image009_thumb.jpg" width="500" height="299"></a></p>  <p>admin的帐号估计权限很大，sybase是oracle的最高权限的帐号，悲剧了，又是弱口令惹的祸，据说oracle可以执行命令，但是没有尝试，看上去貌似很麻烦，这网速龟一样，点个右键要两秒钟才能出来。telnet上去结果登录帐号但是回显的并不是能够执行命令的，这让我比较奇怪，后来嗅探的时候搞清楚了，这几台机器貌似是处理订单之类的。登录之后让我选择什么的，但是选择了编号回车之后就提示失去连接，后来用嗅探到的帐号登录发现也是同样的问题，暂时不知道原因。</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image010.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image010" border="0" alt="clip_image010" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image010_thumb.jpg" width="507" height="336"></a></p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image011.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image011" border="0" alt="clip_image011" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image011_thumb.jpg" width="516" height="486"></a></p>  <p>不能执行命令自然就不能溢出提权了，看到hscan扫到了80端口，访问发现是apache的默认页面（redhat貌似是默认安装的？），我的思路是通过ftp上传一个php木马，反弹一个shell到我这里来执行命令</p>  <p>Ftp连接上机器，找到网站目录之后发现没有上传的权限，但是在子目录里又有上传的权限，上传了php的webshell，但是访问发现是一片空白，不知道是什么原因，于是这个思路又断了。</p>  <p>到网上找了下ssh的相关版本有没有远程溢出的漏洞，无果，暂时放弃好了。</p>  <p>用到现在为止收集到的信息（管理员的帐号密码，翻各种文件找到的一些敏感信息），整理了下，再次弄了个字典，挂上hscan扫</p>  <p>有所斩获，192.168.0.7的机器的ftp帐号密码为adminsitrator，0o9i8u7y，果断连接远程桌面，发现是windows2000，不常见哟。</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image012.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image012" border="0" alt="clip_image012" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image012_thumb.jpg" width="519" height="321"></a></p>  <p>到这里陷入了僵局，再一次意淫了下自己是外网的情景，metaploit溢出于谈笑之间，在各台服务器上systeminfo了一下，发现没有打ms08-067的补丁，想到用08-067来远程溢出，但是发现网上所用的08-067抓鸡工具都是需要配置木马，让其下载运行再上线的，本机开放了80端口，但是内网其他机器下载的话需要经过http验证，没去查什么原因，懒。。。</p>  <p>再次用hscan扫描的到的弱口令一个一个试，发现还有aix系统的服务器，我自然是没有经验搞的了，但是收获还是有的，找到另外两台redhat服务器，登录之后能够执行命令，那就好办了，尝试udev通杀提权都不成功，然后一台内核版本2.6.18-194的用一句话给提权了，种上rootkit走人（本来想种个键盘记录的，但是想想还是算了，我得从网上下载下来，然后ftp传给linux，再进行安装，两台linux的dns配置都有问题，尝试ping www.91ri.org，无法访问外部网络，wget自然是没用的了，只能通过这个方法了，期间还得忍受鼠标1-2秒的延迟，欲乘风去撞墙~）还有一台用了各种exp，最后<a href="http://keio2.cccpan.com/在这里找到的exp给成功溢出了，同样种上rootkit" target="_blank" rel="external">http://keio2.cccpan.com/在这里找到的exp给成功溢出了，同样种上rootkit</a></p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image013.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image013" border="0" alt="clip_image013" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image013_thumb.jpg" width="514" height="591"></a></p>  <p>（这台是一句话提的权）</p>  <p>种rootkit的我没有截图下来，命令敲上来好了，rootkit下载地址：</p>  <p><a href="http://forum.eviloctal.com/attachment.php?aid=13419#tc_qz_original=47347" target="_blank" rel="external">http://forum.eviloctal.com/attachment.php?aid=13419#tc_qz_original=47347</a></p>  <p>传到tmp目录下，</p>  <p>tar zxvf mafix.tar.gz 解压缩。进入目录，赋予root文件执行权限</p>  <p>安装rootkit：./root 连接密码 端口 回车</p>  <p>如果成功回显如下：</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image014.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image014" border="0" alt="clip_image014" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image014_thumb.jpg" width="498" height="506"></a></p>  <p>下次之间用putty连接相应端口输入密码就可以了，root权限。</p>  <p>安装成功后目录会自行删除，最后history -c 清除命令记录。</p>  <p>又有两台服务器到手了，自然是下载/etc/shadow文件到本地尝试破解，很荣幸的，破解失败。</p>  <p>期间仍然在各台服务器的硬盘上各种翻，找敏感数据。</p>  <p>看到有三台思科路由器</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image015.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image015" border="0" alt="clip_image015" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image015_thumb.jpg" width="376" height="443"></a></p>  <p>弱口令登录失败，尝试暴力破解同样失败，telnet上去，回显：</p>  <p>Lishijie welcomes you! Are you allowed by administrator?If not, you are not allowed to enter!（大概就这么一段话）</p>  <p>得知了管理员叫做lishijie，百度了下“lishijie 居然” 也没发现什么，发现社工网站打不开了，在自己下载的csdn库中找lishijie找到多个帐号（为什么要到csdn找，你懂的）。。。不愿一个个去试了，本机把winwebmail中lishijie的那个文件夹中文件查看了下，发现些相关信息</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image016.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image016" border="0" alt="clip_image016" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image016_thumb.jpg" width="505" height="417"></a></p>  <p>再到csdn中找了下，终于找到了</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image017.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image017" border="0" alt="clip_image017" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image017_thumb.jpg" width="624" height="292"></a></p>  <p>尝试登录失败，很累，感觉不会爱了</p>  <p>不愿去社工了，省的没射到别人自己惹了一身骚。</p>  <p>直接apr嗅探好了</p>  <p>扫描同网关下的机器的时候发现还有打印机</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image018.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image018" border="0" alt="clip_image018" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image018_thumb.jpg" width="517" height="357"></a></p>  <p>可以考虑下微软的打印机远程溢出，惠普的应该存在远程溢出的，可惜我没找到。</p>  <p>嗅探了两天也没什么成果，telnet那边很多记录，都是前面我说的登录就要选择的那种，不能执行命令的。可惜没有root密码</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image019.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image019" border="0" alt="clip_image019" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image019_thumb.jpg" width="509" height="357"></a></p>  <p>类似的，我猜可能是订单管理之类的服务器，但是数据交换大都在10.XX.XX.XX和192.168.0.XX之间的，联想到之前的飞秋，我猜到了10.XX.XX.XX大概都是员工的个人pc，</p>  <p>不愿搞了，很累，感觉再也不会爱了。</p>  <p>干脆把居然之家主站的首页给换了吧，我首先想到的当然是netfuke劫持，但是没有找到主站服务器的内网ip啊。之前我嗅探的都是192.168.0.XX这个段的，于是嗅探了一段时间的192.168.1.XX，然后就被我发现了192.168.1.5这台机器和192.168.1.1网关之间有数据，domain显示<a href="http://www.juran.com.cn/" target="_blank" rel="external">www.juran.com.cn</a>，毫无疑问，这就是居然之家的主站了。</p>  <p>剩下的你大概也知道了，下载了netfuke，配置好，点开始，然后就把居然的首页给换了。</p>  <p>总结一下吧：运气很好，耐心不够，技术不足，我还是怨念我的内网环境。。。metasploit只能在本地测试，蛋疼死了，求推荐能放把机器在dmz区的路由~~</p>  <p>顺便说一句：年底我要想好好编程，日站什么的，还是别找我帮忙了吧，在此谢过各位大黑阔~</p>  <p>文章作者：A11riseforme [F4ck Team] 注：本文为法客论坛周年庆文章 转载请注明原文版权及本文链接！</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/852.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/852.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/852.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/852.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/856.seo/">
-        ← Burp suit截包上传 - 联想最后一个的站点沦陷
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/849.seo/">
-        爱拍DNS域传送漏洞 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/渗透测试/">渗透测试</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/嗅探/">嗅探</a><a href="/tag/提权/">提权</a><a href="/tag/内网渗透/">内网渗透</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/856.seo/" title="Burp suit截包上传 - 联想最后一个的站点沦陷">
+  <strong>Prev:</strong><br/>
+  <span>
+  Burp suit截包上传 - 联想最后一个的站点沦陷</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/849.seo/"  title="爱拍DNS域传送漏洞">
+ <strong>Next:</strong><br/> 
+ <span>爱拍DNS域传送漏洞
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-对居然之家的一次内网渗透" data-title="对居然之家的一次内网渗透" data-url="http://ha.cker.in/852.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

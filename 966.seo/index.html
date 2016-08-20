@@ -1,151 +1,448 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Mongodb学习手册 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Mongodb学习手册 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="Mongodb学习手册  启动mongodb服务进程：  MongoDB默认的数据库文件的位置是/data/db，但是它不会自动的生产目录，所以如果采用默认的文件位置的话，我们需要自己先建立该目录，如下：  $ sudo mkdir -p /data/db/   $ sudo chown id -u /data/db   接下来可以启动 mongodb的服务了：  $ ./mongod   我们也可以用-dbpath选项来指定自己的数据库位置，如下：  $ ./mongod -dbpath ../../data/db  启动成功以后，会有如下界面显示：  [tsaip@ossesbwas bin]$ Mon May 30 12:17:16 [initandlisten] MongoDB starting :   pid=3662 port=27017 dbpath=../../data/db 64-bit  Mon May 30 12:17:16 [initandlisten] db version v1.8.2-rc2, pdfile version 4.5   Mon May 30 12:17:16 [initandlisten] git version:   373038f53049071fddb5404698c8bebf99e3b51f   Mon May 30 12:17:16 [initandlisten] build sys info: Linux bs-linux64.10gen.cc   2.6.21.7-2.ec2.v1.2.fc8xen #1 SMP Fri Nov 20 17:48:28 EST 2009 x86_64   BOOST_LIB_VERSION=1_41   Mon May 30 12:17:16 [initandlisten] waiting for connections on port 27017   Mon May 30 12:17:16 [websvr] web admin interface listening on port 28017">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Mongodb学习手册 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/966.seo/" title="Mongodb学习手册" itemprop="url">Mongodb学习手册</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2013-01-16T03:11:42.000Z" itemprop="datePublished">2013-01-16</time>
+    Updated:<time datetime="2016-08-20T11:03:54.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
-
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2013-01-16T03:11:42.000Z" itemprop="datePublished">
-          2013-01-16
-      </time>
-    
-    
-    | 
-    <a href='/tag/Mongodb/'>Mongodb</a>
-    
-    
-</span>
-    <h1 class="post-title">Mongodb学习手册</h1>
-    <section class="post-content">
-      <p></p><p><a href="http://ha.cker.in/tag/Mongodb" target="_blank">Mongodb</a>学习手册</p>  <p>启动mongodb服务进程：</p>  <p><a href="http://ha.cker.in/tag/Mongodb" target="_blank">MongoDB</a>默认的数据库文件的位置是/data/db，但是它不会自动的生产目录，所以如果采用默认的文件位置的话，我们需要自己先建立该目录，如下：</p>  <p>$ sudo mkdir -p /data/db/ </p>  <p>$ sudo chown <code>id -u</code> /data/db </p>  <p>接下来可以启动 mongodb的服务了：</p>  <p>$ ./mongod </p>  <p>我们也可以用-dbpath选项来指定自己的数据库位置，如下：</p>  <p>$ ./mongod -dbpath ../../data/db</p>  <p>启动成功以后，会有如下界面显示：</p>  <p>[tsaip@ossesbwas bin]$ Mon May 30 12:17:16 [initandlisten] MongoDB starting : </p>  <p>pid=3662 port=27017 dbpath=../../data/db 64-bit</p>  <p>Mon May 30 12:17:16 [initandlisten] db version v1.8.2-rc2, pdfile version 4.5 </p>  <p>Mon May 30 12:17:16 [initandlisten] git version: </p>  <p>373038f53049071fddb5404698c8bebf99e3b51f </p>  <p>Mon May 30 12:17:16 [initandlisten] build sys info: Linux bs-linux64.10gen.cc </p>  <p>2.6.21.7-2.ec2.v1.2.fc8xen #1 SMP Fri Nov 20 17:48:28 EST 2009 x86_64 </p>  <p>BOOST_LIB_VERSION=1_41 </p>  <p>Mon May 30 12:17:16 [initandlisten] waiting for connections on port 27017 </p>  <p>Mon May 30 12:17:16 [websvr] web admin interface listening on port 28017</p><br><a id="more"></a><p></p>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p></p><p><a href="http://ha.cker.in/tag/Mongodb" target="_blank">Mongodb</a>学习手册</p>  <p>启动mongodb服务进程：</p>  <p><a href="http://ha.cker.in/tag/Mongodb" target="_blank">MongoDB</a>默认的数据库文件的位置是/data/db，但是它不会自动的生产目录，所以如果采用默认的文件位置的话，我们需要自己先建立该目录，如下：</p>  <p>$ sudo mkdir -p /data/db/ </p>  <p>$ sudo chown <code>id -u</code> /data/db </p>  <p>接下来可以启动 mongodb的服务了：</p>  <p>$ ./mongod </p>  <p>我们也可以用-dbpath选项来指定自己的数据库位置，如下：</p>  <p>$ ./mongod -dbpath ../../data/db</p>  <p>启动成功以后，会有如下界面显示：</p>  <p>[tsaip@ossesbwas bin]$ Mon May 30 12:17:16 [initandlisten] MongoDB starting : </p>  <p>pid=3662 port=27017 dbpath=../../data/db 64-bit</p>  <p>Mon May 30 12:17:16 [initandlisten] db version v1.8.2-rc2, pdfile version 4.5 </p>  <p>Mon May 30 12:17:16 [initandlisten] git version: </p>  <p>373038f53049071fddb5404698c8bebf99e3b51f </p>  <p>Mon May 30 12:17:16 [initandlisten] build sys info: Linux bs-linux64.10gen.cc </p>  <p>2.6.21.7-2.ec2.v1.2.fc8xen #1 SMP Fri Nov 20 17:48:28 EST 2009 x86_64 </p>  <p>BOOST_LIB_VERSION=1_41 </p>  <p>Mon May 30 12:17:16 [initandlisten] waiting for connections on port 27017 </p>  <p>Mon May 30 12:17:16 [websvr] web admin interface listening on port 28017</p><br><a id="more"></a><p></p>
 <p></p><p>启动命令常用参数选项说明</p>  <p>mongod 启动数据库进程</p>  <p>–dbpath 指定数据库的目录</p>  <p>–port 指定数据库的端口,默认是27017 </p>  <p>–bind_ip 绑定IP </p>  <p>–directoryperdb为每个db创建一个独立子目录</p>  <p>–logpath指定日志存放目录</p>  <p>–logappend指定日志生成方式(追加/覆盖) </p>  <p>–pidfilepath 指定进程文件路径，如果不指定，那么将不产生进程文件</p>  <p>–keyFile 集群模式的关键标识</p>  <p>–cpu 周期性的显示 CPU和IO的利用率</p>  <p>–journal 启用日志</p>  <p>–ipv6 启用IPV6支持</p>  <p>–nssize 指定.ns 文件的大小，单位MB，默认是16M，最大是 2GB </p>  <p>–maxConns 最大的并发连接数 10 </p>  <p>–notablescan 不允许进行表扫描</p>  <p>–quota 限制每个数据库的文件个数，默认是 8个</p>  <p>–quotaFiles 每个数据库的文件个数，配合—quota参数</p>  <p>–noprealloc 关闭数据文件的预分配功能</p>  <p>更多的参数选项利用 mongod –help 进行查看启动客户端</p>  <p>服务端进程启动成功以后，就可以启动客户端，跟服务端进行连接，如下：</p>  <p>[tsaip@ossesbwas bin]$ ./mongo</p>  <p>MongoDB shell version: 1.8.2-rc2 </p>  <p>connecting to: test </p>  <p>Mon May 30 12:36:18 [initandlisten] connection accepted from </p>  <p>127.0.0.1:59154 #1 </p>  <p>&gt; </p>  <p>6. 关闭mongodb服务</p>  <p>&gt; use admin; </p>  <p>switched to db admin </p>  <p>&gt; db.shutdownServer(); </p>  <p>Mon May 30 12:41:52 [conn2] terminating, shutdown command received </p>  <p>Mon May 30 12:41:52 dbexit: shutdown called </p>  <p>Mon May 30 12:41:52 [conn2] shutdown: going to close listening sockets… </p>  <p>Mon May 30 12:41:52 [conn2] closing listening socket: 5 </p>  <p>Mon May 30 12:41:52 [conn2] closing listening socket: 6 </p>  <p>Mon May 30 12:41:52 [conn2] closing listening socket: 7 </p>  <p>Mon May 30 12:41:52 [conn2] closing listening socket: 8 </p>  <p>Mon May 30 12:41:52 [conn2] removing socket file: /tmp/mongodb-27017.sock </p>  <p>Mon May 30 12:41:52 [conn2] removing socket file: /tmp/mongodb-28017.sock </p>  <p>Mon May 30 12:41:52 [conn2] shutdown: going to flush diaglog… </p>  <p>Mon May 30 12:41:52 [conn2] shutdown: going to close sockets… </p>  <p>Mon May 30 12:41:52 [conn2] shutdown: waiting for fs preallocator… </p>  <p>Mon May 30 12:41:52 [conn2] shutdown: closing all files… </p>  <p>Mon May 30 12:41:52 closeAllFiles() finished </p>  <p>Mon May 30 12:41:52 [conn2] shutdown: removing fs lock… </p>  <p>Mon May 30 12:41:52 dbexit: really exiting now </p>  <p>Mon May 30 12:41:52 DBClientCursor::init call() failed </p>  <p>Mon May 30 12:41:52 query failed : admin.$cmd { shutdown: 1.0 } to: 127.0.0.1 </p>  <p>server should be down… </p>  <p>Mon May 30 12:41:52 trying reconnect to 127.0.0.1 </p>  <p>Mon May 30 12:41:52 reconnect 127.0.0.1 failed couldn’t connect to server </p>  <p>127.0.0.1 </p>  <p>Mon May 30 12:41:52 Error: error doing query: unknown shell/collection.js:150 </p>  <p>六、 MongoDB 数据类型</p>  <p>MongoDB除了包含这些string, integer, boolean, double, null, array, and </p>  <p>object基本的数据类型外，还包含：date, object id, binary data, regular </p>  <p>expression, and code这些附加的数据类型。</p>  <p>1. <b>Timestamp</b><b>类型</b>(时间戳) </p>  <p>Timestamp类型从 1.8 版本开始支持，Timestamp 有一个特殊的用法:timestamp类型的字段必须是位于文档的前两位.看下面例子: </p>  <p>//位于第三个字段</p>  <p>&gt; db.coll.insert({_id:1,x:2,y:new Timestamp()}); </p>  <p>&gt; db.coll.findOne({_id:1}); </p>  <p>{ &quot;_id&quot; : 1, &quot;x&quot; : 2, &quot;y&quot; : { &quot;t&quot; : 0, &quot;i&quot; : 0 } } </p>  <p>//位于第二个字段</p>  <p>&gt; db.coll.insert({_id:2,y:new Timestamp(),x:2}); </p>  <p>&gt; db.coll.findOne({_id:2});</p>  <p>{ &quot;_id&quot; : 2, &quot;y&quot; : { &quot;t&quot; : 1306746538000, &quot;i&quot; : 1 }, &quot;x&quot; : 2 } </p>  <p>2. <b>ObjectId</b><b>类型</b></p>  <p>在 mongodb 中,几乎每个文档（除了某些 Collection 或者某些Capped Collection）都要求有一个主键:_id,用来唯一标识他们，通常它的值就是 ObjectId 类型。当用户往文档中插入一条新记录的时候，如果没有指定_id属性，那么MongoDB会自动生成一个ObjectId类型的值，保存为_id的值。</p>  <p>_id 的值可以为任何类型，除了数组，在实际应用中，鼓励用户自己定义_id值，但是要保证它的唯一性。如下有两个方案： Sequence Numbers：序列号传统的数据库中，通常用一个递增的序列来提供 MongoDB</p>  <p>中用ObjectId的来代替，我们可以通过如下的函数来获取主键：</p>  <p>function counter(name) { </p>  <p>var ret = db.counters.findAndModify({query:{_id:name}, </p>  <p>update:{$inc : {next:1}}, &quot;new&quot;:true, upsert:true}); </p>  <p>return ret.next; </p>  <p>} </p>  <p>db.users.insert({_id:counter(&quot;users&quot;), name:&quot;Sarah C.&quot;}) // _id : 1 </p>  <p>db.users.insert({_id:counter(&quot;users&quot;), name:&quot;Bob D.&quot;}) // _id :2 </p>  <p>利用UUID </p>  <p>如果用UUID来提供主键，我们的应用需要自己去生成 UUID，考虑到效率，建议把UUID保存为BSON BinData类型，如果用例中对效率要求不是很高，也可以保存为字符串类型。</p>  <p>3. 数据库关联</p>  <p>在 MongoDB 中，通常的关联习惯有两种，一种是简单的手动关联，一种是用DBRef。</p>  <p>简单的手工关联</p>  <p>//查找</p>  <p>&gt; db.post.save({title:’MongoDB Manual’,author:’sam’}); </p>  <p>&gt; p = db.post.findOne();</p>  <p>{ </p>  <p>&quot;_id&quot; : ObjectId(&quot;4de36b33282677bdc555a83a&quot;), </p>  <p>&quot;title&quot; : &quot;MongoDB Manual&quot;, </p>  <p>&quot;author&quot; : &quot;sam&quot; </p>  <p>} </p>  <p>//关联</p>  <p>&gt; db.authors.findOne({name:p.author}); </p>  <p>{ </p>  <p>&quot;_id&quot; : ObjectId(&quot;4de36c14282677bdc555a83b&quot;), </p>  <p>&quot;name&quot; : &quot;sam&quot;, </p>  <p>&quot;age&quot; : 24, </p>  <p>&quot;email&quot; : &quot;sanlai_lee@lisanlai.cn&quot; </p>  <p>} </p>  <p>利用 DBRef关联</p>  <p>DBRef 关联语法：</p>  <p>{ $ref : &lt;collname&gt;, $id : &lt;idvalue&gt;[, $db : &lt;dbname&gt;] } </p>  <p>例子：</p>  <p>&gt; x = { name : ‘Biology’ } </p>  <p>{ &quot;name&quot; : &quot;Biology&quot; } </p>  <p>&gt; db.courses.save(x) </p>  <p>&gt; x </p>  <p>{ &quot;name&quot; : &quot;Biology&quot;, &quot;_id&quot; : </p>  <p>ObjectId(&quot;4b0552b0f0da7d1eb6f126a1&quot;) } </p>  <p>&gt; stu = { name : ‘Joe’, classes : [ new DBRef(‘courses’, </p>  <p>x._id) ] } </p>  <p>// or we could write: </p>  <p>// stu = { name : ‘Joe’, classes : </p>  <p>[ {$ref:’courses’,$id:x._id} ] } </p>  <p>&gt; db.students.save(stu) </p>  <p>&gt; stu </p>  <p>{ </p>  <p>&quot;name&quot; : &quot;Joe&quot;, </p>  <p>&quot;classes&quot; : [ </p>  <p>{ </p>  <p>&quot;$ref&quot; : &quot;courses&quot;, </p>  <p>&quot;$id&quot; : </p>  <p>ObjectId(&quot;4b0552b0f0da7d1eb6f126a1&quot;) </p>  <p>} </p>  <p>], </p>  <p>&quot;_id&quot; : ObjectId(&quot;4b0552e4f0da7d1eb6f126a2&quot;) </p>  <p>} </p>  <p>&gt; stu.classes[0] </p>  <p>{ &quot;$ref&quot; : &quot;courses&quot;, &quot;$id&quot; : ObjectId(&quot;4b0552b0f0da7d1eb6f126a1&quot;) } </p>  <p>&gt; stu.classes[0].fetch() </p>  <p>{ &quot;_id&quot; : ObjectId(&quot;4b0552b0f0da7d1eb6f126a1&quot;), &quot;name&quot; : &quot;Biology&quot; }</p>  <p>&#160;</p>  <p>七、 GridFS文件系统</p>  <p>由于在MongoDB 中，1.7版本之前，BSON 对象的大小只有 4MB 的限制，1.7-1.8版本，大小限制是16MB，将来的版本，这个数值还会提高，不适合存储一些大型文件。但是MongoDB提 GridFS 文件系统，为大型文件的存储提供了解决方案</p>  <p>八、 索引</p>  <p>MongoDB 的索引跟传统数据库的索引相似，一般的如果在传统数据库中需要建立索引的字段，在MongoDB 中也可以建立索引。MongoDB中_id字段默认已经建立了索引，这个索引特殊，并且不可删除，不过Capped Collections 例外。</p>  <p>1. 建立索引</p>  <p>建立索引的函数：ensureIndex() </p>  <p>例子：</p>  <p>&gt;$ db.persons.ensureIndex({name:1}); </p>  <p>2. 使用索引</p>  <p>a) 普通索引</p>  <p>&gt;$ db.persons.find({name sam // fast - uses index </p>  <p>&gt;$ db. persons.find({age: 3}); // slow - has to check all </p>  <p>because ‘age’ isn’t indexed </p>  <p>b) 嵌入式索引</p>  <p>&gt;$ db.things.ensureIndex({&quot;address.city&quot;: 1}) </p>  <p>c) 文档式索引</p>  <p>&gt;$db.factories.insert( { name: &quot;xyz&quot;, metro: { city: &quot;New </p>  <p>York&quot;, state: &quot;NY&quot; } } ); </p>  <p>&gt;$db.factories.ensureIndex( { metro : 1 } ); </p>  <p>d) 组合索引</p>  <p>&gt;$db.things.ensureIndex({j:1, name:-1}); </p>  <p>e) 唯一索引</p>  <p>&gt;$db.things.ensureIndex({firstname: 1, lastname: 1}, </p>  <p>{unique: true}); </p>  <p>当一个记录被插入到唯一性索引文档时，缺失的字段会以 null 为默认值被插入文档</p>  <p>例子：</p>  <p>&gt;$db.things.ensureIndex({firstname: 1}, {unique: true}); </p>  <p>&gt;$db.things.save({lastname: &quot;Smith&quot;}); </p>  <p>//下面这个操作将会失败，因为 firstname 上有唯一性索引，值为 null </p>  <p>&gt;$db.things.save({lastname: &quot;Jones&quot;}); </p>  <p>3. 查看索引</p>  <p>&gt; db.persons.getIndexes();</p>  <p>[ </p>  <p>{ </p>  <p>&quot;name&quot; : &quot;<em>id</em>&quot;, </p>  <p>&quot;ns&quot; : &quot;test.persons&quot;, </p>  <p>&quot;key&quot; : { </p>  <p>&quot;_id&quot; : 1 </p>  <p>}, </p>  <p>&quot;v&quot; : 0 </p>  <p>}, </p>  <p>{ </p>  <p>&quot;_id&quot; : ObjectId(&quot;4de39060282677bdc555a83d&quot;), </p>  <p>&quot;ns&quot; : &quot;test.persons&quot;, </p>  <p>&quot;key&quot; : { </p>  <p>&quot;name&quot; : 1 </p>  <p>}, </p>  <p>&quot;name&quot; : &quot;name_1&quot;, </p>  <p>&quot;v&quot; : 0 </p>  <p>} </p>  <p>] </p>  <p>4. 删除索引</p>  <p>a) 删除所有索引</p>  <p>db.collection.dropIndexes(); </p>  <p>b) 删除单个索引</p>  <p>db.collection.dropIndex({x: 1, y: -1}) </p>  <p>c) 用运行命令的方式删除索引</p>  <p>// note: command was &quot;deleteIndexes&quot;, not &quot;dropIndexes&quot;, </p>  <p>before MongoDB v1.3.2 </p>  <p>// remove index with key pattern {y:1} from collection foo </p>  <p>db.runCommand({dropIndexes:’foo’, index : {y:1}}) </p>  <p>// remove all indexes: </p>  <p>db.runCommand({dropIndexes:’foo’, index : ‘<em>‘}) </em></p>  <p>5. 重建索引</p>  <p>db.myCollection.reIndex() </p>  <p>// same as: </p>  <p>db.runCommand( { reIndex : ‘myCollection’ } ) </p>  <p>这个操作是个加锁操作，并且如果集合很大，这个操作会很耗时。</p>  <p>注：用repair 命令修复数据库的时候，会重建索引</p>  <p>九、 主（Master）/从（slave）数据库同步</p>  <p>需要启动的两个 MongoDB 文档数据库，一个是以主模式启动，另一个属于从模式启动。因此，主服务器进程将创建一个 local.oplog，将通过这个“交易记录”同 Slave服务器中。</p>  <p>1. 建立主/从服务器</p>  <p>主服务器：132.129.31.213:10111（A）</p>  <p>从服务器：132.129.31.213:10112（B）</p>  <p>启动Master数据库服务器：</p>  <p>$./mongod –master -port=10111 -dbpath=/home/tsaip/mongodb/data/10111 -nohttpinterface &amp; </p>  <p>启动Slave数据库服务器：5s 同步一次</p>  <p>$./mongod –slave –source=132.129.31.213:10111 -port=10112 -dbpath=/home/tsaip/mongodb/data/10112 –slavedelay 5 -nohttpinterface &amp; </p>  <p>测试同步结果：</p>  <p>//登录master 数据库服务器</p>  <p>$ ./mongo -host 132.129.31.213 -port 10111 </p>  <p>MongoDB shell version: 1.8.2-rc2 </p>  <p>connecting to: 132.129.31.213:10111/test </p>  <p>&gt; use test; </p>  <p>switched to db test </p>  <p>&gt; db.user.insert({_id:1,name:’samlee’,age:80}); </p>  <p>&gt; db.user.find(); </p>  <p>{ &quot;_id&quot; : 1, &quot;name&quot; : &quot;samlee&quot;, &quot;age&quot; : 80 } </p>  <p>&gt; </p>  <p>//登录slave 数据库服务器</p>  <p>$ ./mongo -host 132.129.31.213 -port 10112 </p>  <p>MongoDB shell version: 1.8.2-rc2 </p>  <p>connecting to: 132.129.31.213:10112/test </p>  <p>&gt; use test; </p>  <p>switched to db test </p>  <p>&gt; db.user.find(); </p>  <p>{ &quot;_id&quot; : 1, &quot;name&quot; : &quot;samlee&quot;, &quot;age&quot; : 80 } </p>  <p>&gt; </p>  <p>数据同步成功！！</p>  <p>在slave数据库服务器上执行如下操作：</p>  <p>&gt; db.user.insert({_id:2,name:’Jack’,age:23}); </p>  <p>not master </p>  <p>&gt; </p>  <p>提：not master，所以slave服务器只可以执行读操作，不可以执行写操作，如下图所示：</p>  <p><a href="http://img.cker.in/Mongodb_10D6E/clip_image001.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Mongodb_10D6E/clip_image001_thumb.png" width="364" height="224"></a></p>  <p>2. 相关参数说明</p>  <p>Master </p>  <p>–master #master 模式</p>  <p>–oplogSize arg #size limit (in MB) for op log </p>  <p>Slave </p>  <p>–slave #slave 模式</p>  <p>–source arg #source 指定 master 位置</p>  <p>–only arg #单独指定备份某一 database </p>  <p>–slavedelay arg #指定与Master 延迟时间(秒) </p>  <p>–autoresync #当Slave数据过时后自动重连</p>  <p>3. Slave顶替 Master </p>  <p>如果上面的主服务器A宕了，此时需要用B机器来顶替master服务，步骤如下：</p>  <p>停止B 进程(mongod)，删除B 数据目录中的 local.，以–master模式启动 B </p>  <p>4. 切换Master/Slave 角色</p>  <p>a) 假设已经具备主机A 和从机B，此时想切换它们的角色，步骤如下：（假设A 是健康的）</p>  <p>b) 用fsync命令暂停A上的写操作</p>  <p>c) 确定B 是从机，关闭 B上的服务</p>  <p>d) 清空B 上的local.<em>文件</em></p>  <p>e) 用-master选项重启B 服务</p>  <p>f) 在B上执行一次写操作，初始化 oplog，获得一个同步起始点</p>  <p>g) 关闭B 服务，此时B 已经有了信的local.文件</p>  <p>h) 关闭A 服务，并且用 B上新的local.<em>文件来代替 A上的 local.</em>文件（拷贝之前，记得先压缩，因为文件可能很大）</p>  <p>i) 用-master选项重启B 服务</p>  <p>j) 在平时的slave选项上加一个-fastsync选项来重启 A服务如果 A 不是健康的，但是硬件是健康的，那么跳过上面的前两步，并且用 B 上所有文件去替换A 上的文件，重启服务。</p>  <p>5. 更新主服务器位置</p>  <p>假设现有从机启动方式如下：</p>  <p>$ mongod –slave –source 132.129.31.213:10000 </p>  <p>此时如果想更换主机的位置，可以通过以下的步骤来完成：</p>  <p>重启mongod服务，不要加-slave 和–source选项：</p>  <p>$ mongod </p>  <p>启动shell，执行如下操作：</p>  <p>&gt; use local </p>  <p>switched to db local </p>  <p>&gt; db.sources.update({host : &quot;132.129.31.213：10000&quot;}, </p>  <p>{$set : {host : &quot;132.129.31.213：10001&quot;}}) </p>  <p>接着重启从机上的服务：</p>  <p>$ ./mongod –slave –source 132.129.31.213:10001 </p>  <p>$ # or </p>  <p>$ ./mongod –slave</p>  <p>&#160;</p>  <p>十、 MongoDB 分片和集群</p>  <p>1. 简单分片实例</p>  <p>MongoDB的数据分块称为 chunk。每个 chunk 都是Collection中一段连续的数据记录，通常最大尺寸是 200MB，超出则生成新的数据块。</p>  <p>要构建一个 MongoDB Sharding Cluster，需要三种角色：</p>  <p><em> 实例，用于存储实际的数据块。</em></p>  <p> 实例，存储了整个 Cluster Metadata，其中包括 chunk 信息。</p>  <p><em> 实例，前端路由，客户端由此接入，且让整个集群看上去像单一进程数据库。Route 转发请求到实际的目标服务进程，并将多个结果合并回传</em></p>  <p>给客户端。Route 本身并不存储任何数据和状态，仅在启动时从Config Server 获取信息。Config Server 上的任何变动都会传递给所有的 Route Process。在实际使用中，为了获取高可用、高性能的集群方案，我们会将Shard Server 部署成 Replica Sets，然后用 LVS 部署多个 Route。</p>  <p>我们先构建一个简单的 Sharding Cluster，以熟悉相关的配置。</p>  <p>1) 启动 Shard Server </p>  <p>//server_1 </p>  <p>$ ./mongod -shardsvr -port 10000 -dbpath /home/tsaip/mongodb/data/10000 -fork -logpath </p>  <p>/home/tsaip/mongodb/data/logs/null </p>  <p>all output going to: /home/tsaip/mongodb/data/logs/null </p>  <p>forked process: 9347 </p>  <p>//server_2 </p>  <p>$ ./mongod -shardsvr -port 10011 -dbpath /home/tsaip/mongodb/data/10011 -fork -logpath </p>  <p>/home/tsaip/mongodb/data/logs/null </p>  <p>all output going to: /home/tsaip/mongodb/data/logs/null </p>  <p>forked process: 9383 </p>  <p>2) 启动Config Server </p>  <p>$ ./mongod -configsvr -port 20000 -dbpath /home/tsaip/mongodb/data/config -fork -logpath </p>  <p>/home/tsaip/mongodb/data/logs/null </p>  <p>all output going to: /home/tsaip/mongodb/data/logs/null </p>  <p>forked process: 9399 </p>  <p>3) 启动Route Process </p>  <p>./mongos -configdb 132.129.31.213:20000 -fork -logpath /home/tsaip/mongodb/data/logs/null </p>  <p>all output going to: /home/tsaip/mongodb/data/logs/null </p>  <p>forked process: 9431 </p>  <p>注：可以用 -chunkSize 参数指定分块大小</p>  <p>4) 开始配置</p>  <p>相关命令：</p>  <p>addshard:添加Shard Server， 相关的命令还有listshards和removeshard。</p>  <p>enablesharding:用于设置可以被分布存储的数据库。</p>  <p>shardcollection:用于设置具体被切块的集合名称，且必须指定Shard Key系统会自动创建索引。</p>  <p>注 : Sharded Collection只能有一个unique index，且必须是shard key </p>  <p>$ ./mongo </p>  <p>MongoDB shell version: 1.8.2-rc2 </p>  <p>connecting to: test </p>  <p>&gt; use admin; </p>  <p>switched to db admin </p>  <p>&gt; db.runCommand({addshard:’132.129.31.213:10000’}); </p>  <p>{ &quot;shardAdded&quot; : &quot;shard0000&quot;, &quot;ok&quot; : 1 } </p>  <p>&gt; db.runCommand({addshard:’132.129.31.213:10011’}); </p>  <p>{ &quot;shardAdded&quot; : &quot;shard0001&quot;, &quot;ok&quot; : 1 } </p>  <p>&gt; db.runCommand({enablesharding:’test’});</p>  <p>{ &quot;ok&quot; : 1 } </p>  <p>&gt; db.runCommand({shardcollection:’test.user’,key:{_id:1}}); </p>  <p>{ &quot;collectionsharded&quot; : &quot;test.user&quot;, &quot;ok&quot; : 1 } </p>  <p>&gt; </p>  <p>5) 管理命令 listshards:列出所有的 Shard Server </p>  <p>&gt; db.runCommand({listshards:1}); </p>  <p>{ </p>  <p>&quot;shards&quot; : [ </p>  <p>{ </p>  <p>&quot;_id&quot; : &quot;shard0000&quot;, </p>  <p>&quot;host&quot; : &quot;132.129.31.213:10000&quot; </p>  <p>}, </p>  <p>{ </p>  <p>&quot;_id&quot; : &quot;shard0001&quot;, </p>  <p>&quot;host&quot; : &quot;132.129.31.213:10011&quot; </p>  <p>} </p>  <p>], </p>  <p>&quot;ok&quot; : 1 </p>  <p>} </p>  <p>移除 shard </p>  <p>&gt; db.runCommand( { removeshard : &quot;localhost:10000&quot; } ); </p>  <p>{ msg : &quot;draining started successfully&quot; , state: &quot;started&quot; , </p>  <p>shard :&quot;localhost:10000&quot; , ok : 1 printShardingStatus:查看 Sharding 信息</p>  <p>&gt; printShardingStatus(); </p>  <p>— Sharding Status —</p>  <p>sharding version: { &quot;_id&quot; : 1, &quot;version&quot; : 3 } </p>  <p>shards: </p>  <p>{ &quot;_id&quot; : &quot;shard0000&quot;, &quot;host&quot; : &quot;132.129.31.213:10000&quot; } </p>  <p>{ &quot;_id&quot; : &quot;shard0001&quot;, &quot;host&quot; : &quot;132.129.31.213:10011&quot; } </p>  <p>databases: </p>  <p>{ &quot;_id&quot; : &quot;admin&quot;, &quot;partitioned&quot; : false, &quot;primary&quot; : &quot;config&quot; } </p>  <p>{ &quot;_id&quot; : &quot;test&quot;, &quot;partitioned&quot; : true, &quot;primary&quot; : &quot;shard0000&quot; } </p>  <p>test.user chunks: </p>  <p>shard0000 1 </p>  <p>{ &quot;_id&quot; : { $minKey : 1 } } –&gt;&gt; { &quot;_id&quot; : { $maxKey : 1 } } on : shard0000 </p>  <p>{ &quot;t&quot; : 1000, &quot;i&quot; : 0 } </p>  <p>&gt; </p>  <p>db.&lt;collection_name&gt;.stats()：查看具体的 Shard 存储信息</p>  <p>&gt; use test; </p>  <p>switched to db test </p>  <p>&gt; db.user.stats(); </p>  <p>{ </p>  <p>&quot;sharded&quot; : true, </p>  <p>&quot;ns&quot; : &quot;test.user&quot;, </p>  <p>&quot;count&quot; : 0, </p>  <p>&quot;size&quot; : 0, </p>  <p>&quot;avgObjSize&quot; : NaN, </p>  <p>&quot;storageSize&quot; : 8192, </p>  <p>&quot;nindexes&quot; : 1, </p>  <p>&quot;nchunks&quot; : 1, </p>  <p>&quot;shards&quot; : { </p>  <p>&quot;shard0000&quot; : { </p>  <p>&quot;ns&quot; : &quot;test.user&quot;, </p>  <p>&quot;count&quot; : 0, </p>  <p>&quot;size&quot; : 0, </p>  <p>&quot;storageSize&quot; : 8192, </p>  <p>&quot;numExtents&quot; : 1, </p>  <p>&quot;nindexes&quot; : 1, </p>  <p>&quot;lastExtentSize&quot; : 8192, </p>  <p>&quot;paddingFactor&quot; : 1, </p>  <p>&quot;flags&quot; : 1, </p>  <p>&quot;totalIndexSize&quot; : 8192, </p>  <p>&quot;indexSizes&quot; : { </p>  <p>&quot;<em>id</em>&quot; : 8192 </p>  <p>}, </p>  <p>&quot;ok&quot; : 1 </p>  <p>} </p>  <p>}, </p>  <p>&quot;ok&quot; : 1 </p>  <p>} </p>  <p>&gt; </p>  <p>isdbgrid：用来确认当前是否是Sharding Cluster </p>  <p>&gt; db.runCommand({isdbgrid:1}); </p>  <p>{ &quot;isdbgrid&quot; : 1, &quot;hostname&quot; : &quot;ossesbwas&quot;, &quot;ok&quot; : 1 } </p>  <p>&gt; db.runCommand({ismaster:1}); </p>  <p>{ </p>  <p>&quot;ismaster&quot; : true, </p>  <p>&quot;msg&quot; : &quot;isdbgrid&quot;, </p>  <p>&quot;maxBsonObjectSize&quot; : 16777216, </p>  <p>&quot;ok&quot; : 1 </p>  <p>} </p>  <p>&gt; </p>  <p>2. 高级分片实例</p>  <p>MongoDB Auto-Sharding 解决了海量存储和动态扩容的问题，但离实际生产环境所需的高可靠(high reliability)、高可用(high availability)还有些距离。</p>  <p>解决方案: Shard: 使用 Replica Sets，确保每个数据节点都具有备份、自动容错转移、</p>  <p>自动恢复能力。 Config: 使用 3 个配置服务器，确保元数据完整性(two-phase commit)。 Route: 配合 LVS，实现负载平衡，提 (high performance)。 配置一个 Replica Sets + Sharding 环境</p>  <p>1. 创建所有需要的数据库目录</p>  <p>$ mkdir -p /home/tsaip/mongodb/data/10001 </p>  <p>$ mkdir -p /home/tsaip/mongodb/data/10002 </p>  <p>$ mkdir -p /home/tsaip/mongodb/data/10003 </p>  <p>$ mkdir -p /home/tsaip/mongodb/data/10011 </p>  <p>$ mkdir -p /home/tsaip/mongodb/data/10012 </p>  <p>$ mkdir -p /home/tsaip/mongodb/data/10013 </p>  <p>$ mkdir -p /home/tsaip/mongodb/data/config1 </p>  <p>$ mkdir -p /home/tsaip/mongodb/data/config2 </p>  <p>$ mkdir -p /home/tsaip/mongodb/data/config3 </p>  <p>$ mkdir -p /home/tsaip/mongodb/data/logs </p>  <p>2. 配置 Shard Replica Sets </p>  <p>//第一组sets </p>  <p>//10001 </p>  <p>$./mongod –shardsvr –fork –logpath /home/tsaip/mongodb/data/logs/null –dbpath </p>  <p>/home/tsaip/mongodb/data/10001 –port 10001 –nohttpinterface –replSet set1 </p>  <p>forked process: 9704 </p>  <p>all output going to: /home/tsaip/mongodb/data/logs/null </p>  <p>//10002 </p>  <p>$./mongod –shardsvr –fork –logpath /home/tsaip/mongodb/data/logs/null –dbpath </p>  <p>/home/tsaip/mongodb/data/10002 –port 10002 –nohttpinterface –replSet set1 </p>  <p>all output going to: /home/tsaip/mongodb/data/logs/null </p>  <p>forked process: 9718 </p>  <p>//10003 </p>  <p>$./mongod –shardsvr –fork –logpath /home/tsaip/mongodb/data/logs/null –dbpath </p>  <p>/home/tsaip/mongodb/data/10003 –port 10003 –nohttpinterface –replSet set1 </p>  <p>forked process: 9732 </p>  <p>all output going to: /home/tsaip/mongodb/data/logs/null </p>  <p>$ ./mongo -port 10001 </p>  <p>MongoDB shell version: 1.8.2-rc2 </p>  <p>connecting to: 127.0.0.1:10001/test </p>  <p>&gt;cfg= {_id:’set1’, </p>  <p>members:[ </p>  <p>{_id:1,host:’132.129.31.213:10001’}, </p>  <p>{_id:2,host:’132.129.31.213:10002’}, </p>  <p>{_id:3,host:’132.129.31.213:10003’}] </p>  <p>}; </p>  <p>{ </p>  <p>&quot;_id&quot; : &quot;set1&quot;, </p>  <p>&quot;members&quot; : [ </p>  <p>{ </p>  <p>&quot;_id&quot; : 1, </p>  <p>&quot;host&quot; : &quot;132.129.31.213:10001&quot; </p>  <p>}, </p>  <p>{ </p>  <p>&quot;_id&quot; : 2, </p>  <p>&quot;host&quot; : &quot;132.129.31.213:10002&quot; </p>  <p>}, </p>  <p>{ </p>  <p>&quot;_id&quot; : 3, </p>  <p>&quot;host&quot; : &quot;132.129.31.213:10003&quot; </p>  <p>} </p>  <p>] </p>  <p>} </p>  <p>&gt; rs.initiate(cfg); </p>  <p>{ </p>  <p>&quot;info&quot; : &quot;Config now saved locally. Should come online in about a minute.&quot;, </p>  <p>&quot;ok&quot; : 1 </p>  <p>} </p>  <p>&gt; rs.status(); </p>  <p>{ </p>  <p>&quot;set&quot; : &quot;set1&quot;, </p>  <p>&quot;date&quot; : ISODate(&quot;2011-05-31T04:28:50Z&quot;), </p>  <p>&quot;myState&quot; : 1, </p>  <p>&quot;members&quot; : [ </p>  <p>{ </p>  <p>&quot;_id&quot; : 1, </p>  <p>&quot;name&quot; : &quot;132.129.31.213:10001&quot;, </p>  <p>&quot;health&quot; : 1, </p>  <p>&quot;state&quot; : 1, </p>  <p>&quot;stateStr&quot; : &quot;PRIMARY&quot;, </p>  <p>&quot;optime&quot; : { </p>  <p>&quot;t&quot; : 1306816113000, </p>  <p>&quot;i&quot; : 1 </p>  <p>}, </p>  <p>&quot;optimeDate&quot; : ISODate(&quot;2011-05-31T04:28:33Z&quot;), </p>  <p>&quot;self&quot; : true </p>  <p>}, </p>  <p>{ </p>  <p>&quot;_id&quot; : 2, </p>  <p>&quot;name&quot; : &quot;132.129.31.213:10002&quot;, </p>  <p>&quot;health&quot; : 1, </p>  <p>&quot;state&quot; : 3, </p>  <p>&quot;stateStr&quot; : &quot;RECOVERING&quot;, </p>  <p>&quot;uptime&quot; : 9, </p>  <p>&quot;optime&quot; : { </p>  <p>&quot;t&quot; : 0, </p>  <p>&quot;i&quot; : 0 </p>  <p>}, </p>  <p>&quot;optimeDate&quot; : ISODate(&quot;1970-01-01T00:00:00Z&quot;), </p>  <p>&quot;lastHeartbeat&quot; : ISODate(&quot;2011-05-31T04:28:49Z&quot;) </p>  <p>}, </p>  <p>{ </p>  <p>&quot;_id&quot; : 3, </p>  <p>&quot;name&quot; : &quot;132.129.31.213:10003&quot;, </p>  <p>&quot;health&quot; : 0, </p>  <p>&quot;state&quot; : 6, </p>  <p>&quot;stateStr&quot; : &quot;(not reachable/healthy)&quot;, </p>  <p>&quot;uptime&quot; : 0, </p>  <p>&quot;optime&quot; : { </p>  <p>&quot;t&quot; : 0, </p>  <p>&quot;i&quot; : 0 </p>  <p>}, </p>  <p>&quot;optimeDate&quot; : ISODate(&quot;1970-01-01T00:00:00Z&quot;), </p>  <p>&quot;lastHeartbeat&quot; : ISODate(&quot;2011-05-31T04:28:49Z&quot;), </p>  <p>&quot;errmsg&quot; : &quot;still initializing&quot; </p>  <p>} </p>  <p>], </p>  <p>&quot;ok&quot; : 1 </p>  <p>} </p>  <p>set1:PRIMARY&gt; </p>  <p>//第二组sets </p>  <p>//10011 </p>  <p>[tsaip@ossesbwas bin]$./mongod –shardsvr –fork –logpath </p>  <p>/home/tsaip/mongodb/data/logs/null –dbpath /home/tsaip/mongodb/data/10011 –port 10011 </p>  <p>–nohttpinterface –replSet set2 </p>  <p>all output going to: /home/tsaip/mongodb/data/logs/null </p>  <p>forked process: 10326 </p>  <p>//10012 </p>  <p>[tsaip@ossesbwas bin]$./mongod –shardsvr –fork –logpath </p>  <p>/home/tsaip/mongodb/data/logs/null –dbpath /home/tsaip/mongodb/data/10012 –port 10012 </p>  <p>–nohttpinterface –replSet set2 </p>  <p>all output going to: /home/tsaip/mongodb/data/logs/null </p>  <p>forked process: 10335 </p>  <p>//10013 </p>  <p>[tsaip@ossesbwas bin]$./mongod –shardsvr –fork –logpath </p>  <p>/home/tsaip/mongodb/data/logs/null –dbpath /home/tsaip/mongodb/data/10013 –port 10013 </p>  <p>–nohttpinterface –replSet set2 </p>  <p>forked process: 10347 </p>  <p>[tsaip@ossesbwas bin]$ ./mongo -port 10011 </p>  <p>MongoDB shell version: 1.8.2-rc2 </p>  <p>connecting to: 127.0.0.1:10011/test </p>  <p>&gt; cfg = </p>  <p>{_id:’set2’,members:[{_id:0,host:’132.129.31.213:10011’},{_id:1,host:’132.129.31.213:10012’},{_i</p>  <p>d:2,host:’132.129.31.213:10013’}]}; </p>  <p>{ </p>  <p>&quot;_id&quot; : &quot;set2&quot;, </p>  <p>&quot;members&quot; : [ </p>  <p>{ </p>  <p>&quot;_id&quot; : 0, </p>  <p>&quot;host&quot; : &quot;132.129.31.213:10011&quot; </p>  <p>}, </p>  <p>{ </p>  <p>&quot;_id&quot; : 1, </p>  <p>&quot;host&quot; : &quot;132.129.31.213:10012&quot; </p>  <p>}, </p>  <p>{ </p>  <p>&quot;_id&quot; : 2, </p>  <p>&quot;host&quot; : &quot;132.129.31.213:10013&quot; </p>  <p>} </p>  <p>] </p>  <p>} </p>  <p>&gt; rs.initiate(cfg); </p>  <p>{ </p>  <p>&quot;info&quot; : &quot;Config now saved locally. Should come online in about a minute.&quot;, </p>  <p>&quot;ok&quot; : 1 </p>  <p>} </p>  <p>set2:STARTUP2&gt;</p>  <p>set2:PRIMARY&gt;</p>  <p>set2:PRIMARY&gt; rs.status(); </p>  <p>{ </p>  <p>&quot;set&quot; : &quot;set2&quot;, </p>  <p>&quot;date&quot; : ISODate(&quot;2011-05-31T06:32:07Z&quot;), </p>  <p>&quot;myState&quot; : 1, </p>  <p>&quot;members&quot; : [ </p>  <p>{ </p>  <p>&quot;_id&quot; : 0, </p>  <p>&quot;name&quot; : &quot;132.129.31.213:10011&quot;, </p>  <p>&quot;health&quot; : 1, </p>  <p>&quot;state&quot; : 1, </p>  <p>&quot;stateStr&quot; : &quot;PRIMARY&quot;, </p>  <p>&quot;optime&quot; : { </p>  <p>&quot;t&quot; : 1306823510000, </p>  <p>&quot;i&quot; : 1 </p>  <p>}, </p>  <p>&quot;optimeDate&quot; : ISODate(&quot;2011-05-31T06:31:50Z&quot;), </p>  <p>&quot;self&quot; : true </p>  <p>}, </p>  <p>{ </p>  <p>&quot;_id&quot; : 1, </p>  <p>&quot;name&quot; : &quot;132.129.31.213:10012&quot;, </p>  <p>&quot;health&quot; : 1, </p>  <p>&quot;state&quot; : 3, </p>  <p>&quot;stateStr&quot; : &quot;RECOVERING&quot;, </p>  <p>&quot;uptime&quot; : 11, </p>  <p>&quot;optime&quot; : { </p>  <p>&quot;t&quot; : 0, </p>  <p>&quot;i&quot; : 0 </p>  <p>}, </p>  <p>&quot;optimeDate&quot; : ISODate(&quot;1970-01-01T00:00:00Z&quot;), </p>  <p>&quot;lastHeartbeat&quot; : ISODate(&quot;2011-05-31T06:32:07Z&quot;), </p>  <p>&quot;errmsg&quot; : &quot;.&quot; </p>  <p>}, </p>  <p>{ </p>  <p>&quot;_id&quot; : 2, </p>  <p>&quot;name&quot; : &quot;132.129.31.213:10013&quot;, </p>  <p>&quot;health&quot; : 1, </p>  <p>&quot;state&quot; : 3, </p>  <p>&quot;stateStr&quot; : &quot;RECOVERING&quot;, </p>  <p>&quot;uptime&quot; : 3, </p>  <p>&quot;optime&quot; : { </p>  <p>&quot;t&quot; : 0, </p>  <p>&quot;i&quot; : 0 </p>  <p>}, </p>  <p>&quot;optimeDate&quot; : ISODate(&quot;1970-01-01T00:00:00Z&quot;), </p>  <p>&quot;lastHeartbeat&quot; : ISODate(&quot;2011-05-31T06:32:06Z&quot;) </p>  <p>} </p>  <p>], </p>  <p>&quot;ok&quot; : 1 </p>  <p>} </p>  <p>3. 启动Config Server </p>  <p>可以只使用1个Config Server，但3个理论上更有保障性。</p>  <p>[tsaip@ossesbwas bin]$ ./mongod –configsvr –fork –logpath </p>  <p>/home/tsaip/mongodb/data/logs/null –dbpath /home/tsaip/mongodb/data/config1 –port </p>  <p>20000 –nohttpinterface –fork –logpath /home/tsaip/mongodb/data/logs/null –dbpath </p>  <p>/home/tsaip/mongodb/data/config1 –port 20000 </p>  <p>all output going to: /home/tsaip/mongodb/data/logs/null </p>  <p>forked process: 10460 </p>  <p>[tsaip@ossesbwas bin]$ ./mongod –configsvr –fork –logpath </p>  <p>/home/tsaip/mongodb/data/logs/null –dbpath /home/tsaip/mongodb/data/config2 –port </p>  <p>20001 –nohttpinterface </p>  <p>all output going to: /home/tsaip/mongodb/data/logs/null </p>  <p>forked process: 10467 </p>  <p>[tsaip@ossesbwas bin]$ ./mongod –configsvr –fork –logpath </p>  <p>/home/tsaip/mongodb/data/logs/null –dbpath /home/tsaip/mongodb/data/config3 –port </p>  <p>20002 –nohttpinterface </p>  <p>all output going to: /home/tsaip/mongodb/data/logs/null </p>  <p>forked process: 10476 </p>  <p>注：这个不是 Replica Sets，不需要 –replSet 参数。</p>  <p>4. 启动 Route Server </p>  <p>[tsaip@ossesbwas bin]$ ./mongos –fork –logpath /home/tsaip/mongodb/data/logs/null </p>  <p>–configdb &quot;132.129.31.213:20000,132.129.31.213:20001,132.129.31.213:20002&quot; </p>  <p>all output going to: /home/tsaip/mongodb/data/logs/null </p>  <p>forked process: 10512 </p>  <p>[tsaip@ossesbwas bin]$ ps aux | grep mongos | grep -v grep </p>  <p>tsaip 10497 0.0 0.0 155988 2092 ? Sl 14:40 0:00 ./mongos –fork </p>  <p>–logpath /home/tsaip/mongodb/data/logs/null –configdb </p>  <p>132.129.31.213:20000,132.129.31.213:20001,132.129.31.213:20002 </p>  <p>注：注意 –configdb 参数</p>  <p>5. 开始配置 Sharding </p>  <p>[tsaip@ossesbwas bin]$ ./mongo </p>  <p>MongoDB shell version: 1.8.2-rc2 </p>  <p>connecting to: test </p>  <p>&gt; use admin; </p>  <p>switched to db admin </p>  <p>&gt; </p>  <p>db.runCommand({addshard:’set1/132.129.31.213:10001,132.129.31.213:10002,132.129.31.213:</p>  <p>10003’});</p>  <p>{ &quot;shardAdded&quot; : &quot;set1&quot;, &quot;ok&quot; : 1 } </p>  <p>&gt; </p>  <p>db.runCommand({ addshard:’set2/132.129.31.213:10011,132.129.31.213:10012,132.129.31.213:</p>  <p>10013’ }) </p>  <p>{ &quot;shardAdded&quot; : &quot;set2&quot;, &quot;ok&quot; : 1 } </p>  <p>&gt; db.runCommand({ enablesharding:’test’ }); </p>  <p>{ &quot;ok&quot; : 1 } </p>  <p>&gt; db.runCommand({ shardcollection:’test.user’, key:{_id:1} }); </p>  <p>{ &quot;collectionsharded&quot; : &quot;test.user&quot;, &quot;ok&quot; : 1 } </p>  <p>&gt; db.runCommand({ listshards:1 }); </p>  <p>{ </p>  <p>&quot;shards&quot; : [ </p>  <p>{ </p>  <p>&quot;_id&quot; : &quot;set1&quot;, </p>  <p>&quot;host&quot; : </p>  <p>&quot;set1/132.129.31.213:10001,132.129.31.213:10002,132.129.31.213:10003&quot; </p>  <p>}, </p>  <p>{ </p>  <p>&quot;_id&quot; : &quot;set2&quot;, </p>  <p>&quot;host&quot; : </p>  <p>&quot;set2/132.129.31.213:10011,132.129.31.213:10012,132.129.31.213:10013&quot; </p>  <p>} </p>  <p>], </p>  <p>&quot;ok&quot; : 1 </p>  <p>} </p>  <p>&gt; printShardingStatus(); </p>  <p>— Sharding Status —</p>  <p>sharding version: { &quot;_id&quot; : 1, &quot;version&quot; : 3 } </p>  <p>shards: </p>  <p>{ </p>  <p>&quot;_id&quot; : &quot;set1&quot;, </p>  <p>&quot;host&quot; : &quot;set1/132.129.31.213:10001,132.129.31.213:10002,132.129.31.213:10003&quot; </p>  <p>} </p>  <p>{ </p>  <p>&quot;_id&quot; : &quot;set2&quot;, </p>  <p>&quot;host&quot; : &quot;set2/132.129.31.213:10011,132.129.31.213:10012,132.129.31.213:10013&quot; </p>  <p>} </p>  <p>databases: </p>  <p>{ &quot;_id&quot; : &quot;admin&quot;, &quot;partitioned&quot; : false, &quot;primary&quot; : &quot;config&quot; } </p>  <p>{ &quot;_id&quot; : &quot;test&quot;, &quot;partitioned&quot; : true, &quot;primary&quot; : &quot;set1&quot; } </p>  <p>test.user chunks: </p>  <p>set1 1 </p>  <p>{ &quot;_id&quot; : { $minKey : 1 } } –&gt;&gt; { &quot;_id&quot; : { $maxKey : 1 } } on : set1 { &quot;t&quot; : 1000, &quot;i&quot; : 0 } </p>  <p>&gt; </p>  <p>注：addshard 添加 Replica Sets 的格式。</p>  <p>至此配置结束，测试下：</p>  <p>&gt; use test; </p>  <p>switched to db test </p>  <p>&gt; db.user.insert({_id:10,name:’tom’,age:20});</p>  <p>&gt; db.user.insert({_id:11,name:’jim’,age:20}); </p>  <p>&gt; db.user.insert({_id:12,name:’smith’,age:20}); </p>  <p>&gt; db.user.find(); </p>  <p>{ &quot;_id&quot; : 10, &quot;name&quot; : &quot;tom&quot;, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 11, &quot;name&quot; : &quot;jim&quot;, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 12, &quot;name&quot; : &quot;smith&quot;, &quot;age&quot; : 20 } </p>  <p>十一、 数据库基本操作：增查删改</p>  <p>1. Insert </p>  <p>Mongodb 是面向文档存储的数据库，文档结构形式叫 BSON（类似JSON）。</p>  <p>实例：</p>  <p>//定义文档</p>  <p>&gt;doc = { </p>  <p>&quot;_id&quot; : 1, </p>  <p>&quot;author&quot; : &quot;sam&quot;, </p>  <p>&quot;title&quot; : &quot;i love you&quot;, </p>  <p>&quot;text&quot; : &quot;this is a test&quot;, </p>  <p>&quot;tags&quot; : [ </p>  <p>&quot;love&quot;, </p>  <p>&quot;test&quot; </p>  <p>], </p>  <p>&quot;comments&quot; : [ </p>  <p>{ </p>  <p>&quot;author&quot; : &quot;jim&quot;, </p>  <p>&quot;comment&quot; : &quot;yes&quot; </p>  <p>}, </p>  <p>{ </p>  <p>&quot;author&quot; : &quot;tom&quot;, </p>  <p>&quot;comment&quot; : &quot;no&quot; </p>  <p>} </p>  <p>] </p>  <p>} </p>  <p>//插入文档</p>  <p>&gt; db.posts.insert(doc); </p>  <p>//查找文档</p>  <p>&gt; db.posts.find({‘comments.author’:’jim’}); </p>  <p>{ &quot;_id&quot; : 1, &quot;author&quot; : &quot;sam&quot;, &quot;title&quot; : &quot;i love you&quot;, &quot;text&quot; : &quot;this is a test&quot;, &quot;tags&quot; : </p>  <p>[ &quot;love&quot;, &quot;test&quot; ], &quot;comments&quot; : [ </p>  <p>{ </p>  <p>&quot;author&quot; : &quot;jim&quot;, </p>  <p>&quot;comment&quot; : &quot;yes&quot; </p>  <p>}, </p>  <p>{ </p>  <p>&quot;author&quot; : &quot;tom&quot;, </p>  <p>&quot;comment&quot; : &quot;no&quot; </p>  <p>} </p>  <p>] } </p>  <p>2. Query </p>  <p>Mongodb 最大的功能之一就是它支持动态查询，就跟传统的关系型数据库查询一样，但是它的查询来的更灵活。</p>  <p>1) Query Expression Objects：查询表达式对象</p>  <p>查询表达式文档也是一个 BSON 结构的文档，例如，我们可以用下面的查询语句来查询集合中的所有记录：</p>  <p>db.users.find({}) </p>  <p>这里，表达式对象是一个空文档，在查询的时候去去匹配所有的记录。</p>  <p>再看：</p>  <p>db.users.find({‘last_name’: ‘Smith’}) </p>  <p>这里，我们将会查询出所有“last_name”属性值为“Smith”的文档记录。</p>  <p>2) 查询选项</p>  <p>除了查询表达式意外，Mongodb 还支持一些额外的参数选项。例如，我们可能仅仅只想返回某</p>  <p>//返回除了age 字段外的所有字段</p>  <p>&gt; db.user.find({},{age:0}); </p>  <p>//返回tags=tennis 除了comments 的所有列</p>  <p>db.posts.find( { tags : ‘tennis’ }, { comments : 0 } ); </p>  <p>//返回userid=16 的 name 字段</p>  <p>&gt; db.user.find({userid:16},{name:1}); </p>  <p>{ &quot;_id&quot; : 16, &quot;name&quot; : &quot;user16&quot; } </p>  <p>//返回x=john 的所有 z字段</p>  <p>db.things.find( { x : &quot;john&quot; }, { z : 1 } ); </p>  <p>注： _id 字段始终都会被返回，哪怕没有明确指定</p>  <p>3) 条件表达式</p>  <p>1) &lt;, &lt;=, &gt;, &gt;= </p>  <p>语法：</p>  <p>// 大于: field &gt; value </p>  <p>db.collection.find({ &quot;field&quot; : { $gt: value } } );</p>  <p>//小于：field &lt; value </p>  <p>db.collection.find({ &quot;field&quot; : { $lt: value } } );</p>  <p>//大于等于: field &gt;= value </p>  <p>db.collection.find({ &quot;field&quot; : { $gte: value } } );</p>  <p>//小于等于：field&lt;=value </p>  <p>db.collection.find({ &quot;field&quot; : { $lte: value } } );</p>  <p>实例：</p>  <p>//大于</p>  <p>&gt; db.user.find({_id:{$gt:20}}).limit(8); </p>  <p>{ &quot;_id&quot; : 21, &quot;name&quot; : &quot;user21&quot;, &quot;userid&quot; : 21, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 22, &quot;name&quot; : &quot;user22&quot;, &quot;userid&quot; : 22, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 23, &quot;name&quot; : &quot;user23&quot;, &quot;userid&quot; : 23, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 24, &quot;name&quot; : &quot;user24&quot;, &quot;userid&quot; : 24, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 25, &quot;name&quot; : &quot;user25&quot;, &quot;userid&quot; : 25, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 26, &quot;name&quot; : &quot;user26&quot;, &quot;userid&quot; : 26, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 27, &quot;name&quot; : &quot;user27&quot;, &quot;userid&quot; : 27, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 28, &quot;name&quot; : &quot;user28&quot;, &quot;userid&quot; : 28, &quot;age&quot; : 30 } </p>  <p>//大于等于</p>  <p>&gt; db.user.find({_id:{$gte:20}}).limit(8); </p>  <p>{ &quot;_id&quot; : 20, &quot;name&quot; : &quot;user20&quot;, &quot;userid&quot; : 20, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 21, &quot;name&quot; : &quot;user21&quot;, &quot;userid&quot; : 21, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 22, &quot;name&quot; : &quot;user22&quot;, &quot;userid&quot; : 22, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 23, &quot;name&quot; : &quot;user23&quot;, &quot;userid&quot; : 23, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 24, &quot;name&quot; : &quot;user24&quot;, &quot;userid&quot; : 24, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 25, &quot;name&quot; : &quot;user25&quot;, &quot;userid&quot; : 25, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 26, &quot;name&quot; : &quot;user26&quot;, &quot;userid&quot; : 26, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 27, &quot;name&quot; : &quot;user27&quot;, &quot;userid&quot; : 27, &quot;age&quot; : 30 } </p>  <p>//小于</p>  <p>&gt; db.user.find({_id:{$lt:8}}).limit(8);</p>  <p>{ &quot;_id&quot; : 0, &quot;name&quot; : &quot;user0&quot;, &quot;userid&quot; : 0, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 1, &quot;name&quot; : &quot;user1&quot;, &quot;userid&quot; : 1, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 2, &quot;name&quot; : &quot;user2&quot;, &quot;userid&quot; : 2, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 3, &quot;name&quot; : &quot;user3&quot;, &quot;userid&quot; : 3, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 4, &quot;name&quot; : &quot;user4&quot;, &quot;userid&quot; : 4, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 5, &quot;name&quot; : &quot;user5&quot;, &quot;userid&quot; : 5, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 6, &quot;name&quot; : &quot;user6&quot;, &quot;userid&quot; : 6, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 7, &quot;name&quot; : &quot;user7&quot;, &quot;userid&quot; : 7, &quot;age&quot; : 30 } </p>  <p>//小于等于</p>  <p>&gt; db.user.find({_id:{$lte:8}}).limit(8);</p>  <p>{ &quot;_id&quot; : 0, &quot;name&quot; : &quot;user0&quot;, &quot;userid&quot; : 0, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 1, &quot;name&quot; : &quot;user1&quot;, &quot;userid&quot; : 1, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 2, &quot;name&quot; : &quot;user2&quot;, &quot;userid&quot; : 2, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 3, &quot;name&quot; : &quot;user3&quot;, &quot;userid&quot; : 3, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 4, &quot;name&quot; : &quot;user4&quot;, &quot;userid&quot; : 4, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 5, &quot;name&quot; : &quot;user5&quot;, &quot;userid&quot; : 5, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 6, &quot;name&quot; : &quot;user6&quot;, &quot;userid&quot; : 6, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 7, &quot;name&quot; : &quot;user7&quot;, &quot;userid&quot; : 7, &quot;age&quot; : 30 } </p>  <p>//区间查询</p>  <p>&gt; db.user.find({_id:{$gt:5,$lte:10}}); </p>  <p>{ &quot;_id&quot; : 6, &quot;name&quot; : &quot;user6&quot;, &quot;userid&quot; : 6, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 7, &quot;name&quot; : &quot;user7&quot;, &quot;userid&quot; : 7, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 8, &quot;name&quot; : &quot;user8&quot;, &quot;userid&quot; : 8, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 9, &quot;name&quot; : &quot;user9&quot;, &quot;userid&quot; : 9, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 10, &quot;name&quot; : &quot;user10&quot;, &quot;userid&quot; : 10, &quot;age&quot; : 30 } </p>  <p>2) $all </p>  <p>$all 操作类似$in 操作，但是不同的是，$all 操作要求数组里面的值全部被包含在返回的记录里面，如：</p>  <p>&gt; use test; </p>  <p>switched to db test </p>  <p>&gt; db.things.insert({a:[1,2,3]}); </p>  <p>&gt; db.things.find();</p>  <p>{ &quot;_id&quot; : ObjectId(&quot;4de73360059e7f4bdf907cfe&quot;), &quot;a&quot; : [ 1, 2, 3 ] } </p>  <p>&gt; db.things.find({a:{$all:[2,3]}}); </p>  <p>{ &quot;_id&quot; : ObjectId(&quot;4de73360059e7f4bdf907cfe&quot;), &quot;a&quot; : [ 1, 2, 3 ] } </p>  <p>&gt; db.things.find({a:{$all:[1,2,3]}}); </p>  <p>{ &quot;_id&quot; : ObjectId(&quot;4de73360059e7f4bdf907cfe&quot;), &quot;a&quot; : [ 1, 2, 3 ] } </p>  <p>&gt; db.things.find({a:{$all:[1]}});</p>  <p>{ &quot;_id&quot; : ObjectId(&quot;4de73360059e7f4bdf907cfe&quot;), &quot;a&quot; : [ 1, 2, 3 ] } </p>  <p>&gt; db.things.find({a:{$all:[1,2,3,4]}}); </p>  <p>&gt; </p>  <p>3) $exists </p>  <p>$exists操作检查一个字段是否存在，如：</p>  <p>&gt; for(var i=0;i&lt;1000;i++) db.user.save({_id:i,name:’user’+i,userid:i,age:20}); </p>  <p>//包含_id，索引</p>  <p>&gt; db.user.find({_id:{$exists:true}}).limit(5); </p>  <p>{ &quot;_id&quot; : 0, &quot;name&quot; : &quot;user0&quot;, &quot;userid&quot; : 0, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 1, &quot;name&quot; : &quot;user1&quot;, &quot;userid&quot; : 1, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 2, &quot;name&quot; : &quot;user2&quot;, &quot;userid&quot; : 2, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 3, &quot;name&quot; : &quot;user3&quot;, &quot;userid&quot; : 3, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 4, &quot;name&quot; : &quot;user4&quot;, &quot;userid&quot; : 4, &quot;age&quot; : 20 } </p>  <p>//包含userid </p>  <p>&gt; db.user.find({userid:{$exists:true}}).limit(5); </p>  <p>{ &quot;_id&quot; : 0, &quot;name&quot; : &quot;user0&quot;, &quot;userid&quot; : 0, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 1, &quot;name&quot; : &quot;user1&quot;, &quot;userid&quot; : 1, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 2, &quot;name&quot; : &quot;user2&quot;, &quot;userid&quot; : 2, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 3, &quot;name&quot; : &quot;user3&quot;, &quot;userid&quot; : 3, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 4, &quot;name&quot; : &quot;user4&quot;, &quot;userid&quot; : 4, &quot;age&quot; : 20 } </p>  <p>//不包含sex字段</p>  <p>&gt; db.user.find({sex:{$exists:true}}).limit(5);</p>  <p>&gt; </p>  <p>注：1.8 版本之前，$exists操作不可用于索引上面</p>  <p>4) $mod </p>  <p>$mod 操作可以让我们简单的进行取模操作，而不需要用到 where 子句，如：</p>  <p>//where 子句</p>  <p>&gt; db.user.find(&quot;this._id%10==1&quot;).limit(5); </p>  <p>{ &quot;_id&quot; : 1, &quot;name&quot; : &quot;user1&quot;, &quot;userid&quot; : 1, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 11, &quot;name&quot; : &quot;user11&quot;, &quot;userid&quot; : 11, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 21, &quot;name&quot; : &quot;user21&quot;, &quot;userid&quot; : 21, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 31, &quot;name&quot; : &quot;user31&quot;, &quot;userid&quot; : 31, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 41, &quot;name&quot; : &quot;user41&quot;, &quot;userid&quot; : 41, &quot;age&quot; : 20 } </p>  <p>//$mod 操作</p>  <p>&gt; db.user.find({_id:{$mod:[10,1]}}).limit(5); </p>  <p>{ &quot;_id&quot; : 1, &quot;name&quot; : &quot;user1&quot;, &quot;userid&quot; : 1, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 11, &quot;name&quot; : &quot;user11&quot;, &quot;userid&quot; : 11, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 21, &quot;name&quot; : &quot;user21&quot;, &quot;userid&quot; : 21, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 31, &quot;name&quot; : &quot;user31&quot;, &quot;userid&quot; : 31, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 41, &quot;name&quot; : &quot;user41&quot;, &quot;userid&quot; : 41, &quot;age&quot; : 20 } </p>  <p>&gt; </p>  <p>5) $ne </p>  <p>$ne 意思是not equal，不等于，不用多说，看例子：</p>  <p>&gt; db.user.find().limit(5); </p>  <p>{ &quot;_id&quot; : 0, &quot;name&quot; : &quot;user0&quot;, &quot;userid&quot; : 0, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 1, &quot;name&quot; : &quot;user1&quot;, &quot;userid&quot; : 1, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 2, &quot;name&quot; : &quot;user2&quot;, &quot;userid&quot; : 2, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 3, &quot;name&quot; : &quot;user3&quot;, &quot;userid&quot; : 3, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 4, &quot;name&quot; : &quot;user4&quot;, &quot;userid&quot; : 4, &quot;age&quot; : 20 } </p>  <p>&gt; db.user.find({_id:{$ne:0}}).limit(5); </p>  <p>{ &quot;_id&quot; : 1, &quot;name&quot; : &quot;user1&quot;, &quot;userid&quot; : 1, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 2, &quot;name&quot; : &quot;user2&quot;, &quot;userid&quot; : 2, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 3, &quot;name&quot; : &quot;user3&quot;, &quot;userid&quot; : 3, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 4, &quot;name&quot; : &quot;user4&quot;, &quot;userid&quot; : 4, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 5, &quot;name&quot; : &quot;user5&quot;, &quot;userid&quot; : 5, &quot;age&quot; : 20 } </p>  <p>&gt; </p>  <p>6) $in </p>  <p>$in 操作类似于传统关系数据库中的 IN，看例子：</p>  <p>//数据库中有所有数组对应的记录</p>  <p>&gt; db.user.find({_id:{$in:[2,3,4,5,6]}}).limit(5); </p>  <p>{ &quot;_id&quot; : 2, &quot;name&quot; : &quot;user2&quot;, &quot;userid&quot; : 2, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 3, &quot;name&quot; : &quot;user3&quot;, &quot;userid&quot; : 3, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 4, &quot;name&quot; : &quot;user4&quot;, &quot;userid&quot; : 4, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 5, &quot;name&quot; : &quot;user5&quot;, &quot;userid&quot; : 5, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 6, &quot;name&quot; : &quot;user6&quot;, &quot;userid&quot; : 6, &quot;age&quot; : 20 } </p>  <p>//因为数据库中没有_id=1111 的记录</p>  <p>&gt; db.user.find({_id:{$in:[2,3,4,5,1111]}}).limit(5); </p>  <p>{ &quot;_id&quot; : 2, &quot;name&quot; : &quot;user2&quot;, &quot;userid&quot; : 2, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 3, &quot;name&quot; : &quot;user3&quot;, &quot;userid&quot; : 3, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 4, &quot;name&quot; : &quot;user4&quot;, &quot;userid&quot; : 4, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 5, &quot;name&quot; : &quot;user5&quot;, &quot;userid&quot; : 5, &quot;age&quot; : 20 } </p>  <p>&gt; </p>  <p>7) $nin </p>  <p>$nin 跟$in 操作相反，看例子：</p>  <p>//扣掉_id=1/2/3/4 的记录</p>  <p>&gt; db.user.find({_id:{$nin:[1,2,3,4]}}).limit(5);</p>  <p>{ &quot;_id&quot; : 0, &quot;name&quot; : &quot;user0&quot;, &quot;userid&quot; : 0, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 5, &quot;name&quot; : &quot;user5&quot;, &quot;userid&quot; : 5, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 6, &quot;name&quot; : &quot;user6&quot;, &quot;userid&quot; : 6, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 7, &quot;name&quot; : &quot;user7&quot;, &quot;userid&quot; : 7, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 8, &quot;name&quot; : &quot;user8&quot;, &quot;userid&quot; : 8, &quot;age&quot; : 20 } </p>  <p>&gt; </p>  <p>8) $nor </p>  <p>$nor 跟$or 相反，不好解释，看例子：</p>  <p>&gt; db.user.find({$nor:[{_id:2},{name:’user3’},{userid:4}]}).limit(5);</p>  <p>{ &quot;_id&quot; : 0, &quot;name&quot; : &quot;user0&quot;, &quot;userid&quot; : 0, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 1, &quot;name&quot; : &quot;user1&quot;, &quot;userid&quot; : 1, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 5, &quot;name&quot; : &quot;user5&quot;, &quot;userid&quot; : 5, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 6, &quot;name&quot; : &quot;user6&quot;, &quot;userid&quot; : 6, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 7, &quot;name&quot; : &quot;user7&quot;, &quot;userid&quot; : 7, &quot;age&quot; : 20 } </p>  <p>&gt; </p>  <p>可以看到，_id=2,name=user3 和userid=4 的记录都被过滤了</p>  <p>9) $or </p>  <p>&gt; db.user.find({$or:[{_id:2},{name:’user3’},{userid:4}]}).limit(5);</p>  <p>{ &quot;_id&quot; : 2, &quot;name&quot; : &quot;user2&quot;, &quot;userid&quot; : 2, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 3, &quot;name&quot; : &quot;user3&quot;, &quot;userid&quot; : 3, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 4, &quot;name&quot; : &quot;user4&quot;, &quot;userid&quot; : 4, &quot;age&quot; : 20 } </p>  <p>&gt; </p>  <p>可以看到，只有_id=2,name=user3 和userid=4三条记录都选择了</p>  <p>10) $size </p>  <p>$size 操作将会查询数组长度等于输入参数的数组，例子：</p>  <p>&gt; db.things.find(); </p>  <p>{ &quot;_id&quot; : ObjectId(&quot;4de73360059e7f4bdf907cfe&quot;), &quot;a&quot; : [ 1, 2, 3 ] } </p>  <p>&gt; db.things.find({a:{$size:3}}); </p>  <p>{ &quot;_id&quot; : ObjectId(&quot;4de73360059e7f4bdf907cfe&quot;), &quot;a&quot; : [ 1, 2, 3 ] } </p>  <p>&gt; db.things.find({a:{$size:2}}); </p>  <p>&gt; db.things.find({a:{$size:1}}); </p>  <p>11) $where </p>  <p>例子：</p>  <p>db.mycollection.find( { $where : function() { return this.a </p>  <p>== 3 || this.b == 4; } } ); </p>  <p>//同上效果</p>  <p>db.mycollection.find( function() { return this.a == 3 || </p>  <p>this.b == 4; } ); </p>  <p>12) $type </p>  <p>$type 将会根据字段的BSON 类型来检索数据，例如：</p>  <p>//返回a是字符串的记录</p>  <p>db.things.find( { a : { $type : 2 } } ); // matches if a is </p>  <p>a string </p>  <p>//返回a是int类型的记录</p>  <p>db.things.find( { a : { $type : 16 } } ); // matches if a is </p>  <p>an int</p>  <p>下表是BSON 数据类型表格映射：</p>  <p>Type Name Type Number </p>  <p>Double 1 </p>  <p>String 2 </p>  <p>Object 3 </p>  <p>Array 4 </p>  <p>Binary data 5 </p>  <p>Object id 7 </p>  <p>Boolean 8 </p>  <p>Date 9 </p>  <p>Null 10 </p>  <p>Regular expression 11 </p>  <p>JavaScript code 13 </p>  <p>Symbol 14 </p>  <p>JavaScript code with scope 15 </p>  <p>32-bit integer 16 </p>  <p>Timestamp 17 </p>  <p>64-bit integer 18 </p>  <p>Min key 255 </p>  <p>Max key 127</p>  <p>4) 正则表达式</p>  <p>Mongodb 同样支持正则表达式进行检索，如：</p>  <p>//检索name 属性是以u 开头，4 结尾的所有用户</p>  <p>&gt; db.user.find({name:/u.4$/i}).limit(5); </p>  <p>{ &quot;_id&quot; : 4, &quot;name&quot; : &quot;user4&quot;, &quot;userid&quot; : 4, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 14, &quot;name&quot; : &quot;user14&quot;, &quot;userid&quot; : 14, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 24, &quot;name&quot; : &quot;user24&quot;, &quot;userid&quot; : 24, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 34, &quot;name&quot; : &quot;user34&quot;, &quot;userid&quot; : 34, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 44, &quot;name&quot; : &quot;user44&quot;, &quot;userid&quot; : 44, &quot;age&quot; : 20 } </p>  <p>&gt; </p>  <p>//同样效果的查询语句</p>  <p>&gt; db.user.find({name:{$regex:’u.<em>4$’,$options:’i’}}).limit(5); </em></p>  <p>{ &quot;_id&quot; : 4, &quot;name&quot; : &quot;user4&quot;, &quot;userid&quot; : 4, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 14, &quot;name&quot; : &quot;user14&quot;, &quot;userid&quot; : 14, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 24, &quot;name&quot; : &quot;user24&quot;, &quot;userid&quot; : 24, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 34, &quot;name&quot; : &quot;user34&quot;, &quot;userid&quot; : 34, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 44, &quot;name&quot; : &quot;user44&quot;, &quot;userid&quot; : 44, &quot;age&quot; : 20 } </p>  <p>&gt; </p>  <p>配合其他操作一起使用：</p>  <p>&gt; db.user.find({name:{$regex:’u.4$’,$options:’i’,$nin:[‘user4’]}}).limit(5); </p>  <p>{ &quot;_id&quot; : 14, &quot;name&quot; : &quot;user14&quot;, &quot;userid&quot; : 14, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 24, &quot;name&quot; : &quot;user24&quot;, &quot;userid&quot; : 24, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 34, &quot;name&quot; : &quot;user34&quot;, &quot;userid&quot; : 34, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 44, &quot;name&quot; : &quot;user44&quot;, &quot;userid&quot; : 44, &quot;age&quot; : 20 } </p>  <p>{ &quot;_id&quot; : 54, &quot;name&quot; : &quot;user54&quot;, &quot;userid&quot; : 54, &quot;age&quot; : 20 } </p>  <p>&gt; db.user.find({name:{$regex:’u.<em>4$’,$options:’i’,$in:[‘user4’]}}).limit(5);</em></p>  <p>{ &quot;_id&quot; : 4, &quot;name&quot; : &quot;user4&quot;, &quot;userid&quot; : 4, &quot;age&quot; : 20 } </p>  <p>&gt; </p>  <p>注意：/^a/；/^a./； /^a.<em>$/这三个表达式最后的效果一样，但是后两种查询</em></p>  <p>效率比第一种要低很多，因为后两种表达式会执行扫描整个字符串，然而第一种</p>  <p>扫描到第一个字符就停止了</p>  <p>选项：</p>  <p>-i:忽略大小写</p>  <p>-m:起始符^,结束符$对于每一个新行都起作用</p>  <p>-x:忽略空白字符</p>  <p>-s:这个选项从1.9 版本后才支持，加上它就可以让“.”表示所有字符了，包括</p>  <p>换行符，例如 /a.b/不匹配&quot;apple\nbanana&quot;，但是 /a.<em>b/s可以</em></p>  <p>5) 排序</p>  <p>Mongodb 支持排序，例如，按照last_name 属性进行升序排序返回所有文档：</p>  <p>//1表示升序，-1 表示降序</p>  <p>db.users.find({}).sort({last_name: 1}); </p>  <p>6) Group </p>  <p>语法：</p>  <p>db.coll.group( </p>  <p>{ cond: {filed：conditions} </p>  <p>, key: {filed: true} </p>  <p>, initial: {count: 0, total_time:0} </p>  <p>, reduce: function(doc, out){ } </p>  <p>, finalize: function(out){} </p>  <p>} ); </p>  <p>参数说明：</p>  <p>Key：对那个字段进行 Group </p>  <p>Cond：查询条件</p>  <p>Initial：初始化group 计数器</p>  <p>Reduce：通常做统计操作</p>  <p>Finalize：通常都统计结果进行进一步操作，例如求平均值</p>  <p>Keyf：用一个函数来返回一个替代 KEY 的值</p>  <p>例子：</p>  <p>db.test.group( </p>  <p>{ cond: {&quot;invoked_at.d&quot;: {$gte: &quot;2009-11&quot;, $lt: </p>  <p>&quot;2009-12&quot;}} </p>  <p>, key: {http_action: true} </p>  <p>, initial: {count: 0, total_time:0} </p>  <p>, reduce: function(doc, out){ out.count++; </p>  <p>out.total_time+=doc.response_time } </p>  <p>, finalize: function(out){ out.avg_time = out.total_time </p>  <p>/ out.count } </p>  <p>} ); </p>  <p>[ </p>  <p>{ </p>  <p>&quot;http_action&quot; : &quot;GET /display/DOCS/Aggregation&quot;, </p>  <p>&quot;count&quot; : 1, </p>  <p>&quot;total_time&quot; : 0.05, </p>  <p>&quot;avg_time&quot; : 0.05 </p>  <p>} </p>  <p>] </p>  <p>7) Distinct </p>  <p>类似于关系数据库中的 Distinct，如：</p>  <p>// </p>  <p>&gt; db.addresses.insert({&quot;zip-code&quot;: 10010}) </p>  <p>&gt; db.addresses.insert({&quot;zip-code&quot;: 10010}) </p>  <p>&gt; db.addresses.insert({&quot;zip-code&quot;: 99701}) </p>  <p>&gt; // shell helper: </p>  <p>&gt; db.addresses.distinct(&quot;zip-code&quot;); </p>  <p>[ 10010, 99701 ] </p>  <p>&gt; // running as a command manually: </p>  <p>&gt; db.runCommand( { distinct: ‘addresses’, key: ‘zip-code’ } ) </p>  <p>{ &quot;values&quot; : [ 10010, 99701 ], &quot;ok&quot; </p>  <p>// </p>  <p>&gt; db.comments.save({&quot;user&quot;: {&quot;points&quot;: 25}}) </p>  <p>&gt; db.comments.save({&quot;user&quot;: {&quot;points&quot;: 31}}) </p>  <p>&gt; db.comments.save({&quot;user&quot;: {&quot;points&quot;: 25}}) </p>  <p>&gt; db.comments.distinct(&quot;user.points&quot;); </p>  <p>[ 25, 31 ] </p>  <p>8) 分页查询</p>  <p>Mongodb 支持skip 和limit 命令来进行分页查询，例如：</p>  <p>//跳过前10 条记录</p>  <p>&gt; db.user.find().skip(10);</p>  <p>//每页返回8 条记录</p>  <p>&gt; db.user.find().limit(8); </p>  <p>//跳过前20 条记录，并且每页返回 10 条记录</p>  <p>&gt;db.user.find().skip(20).limit(8); </p>  <p>//下面这个语句跟上一条一样，只是表达不够清晰</p>  <p>&gt; db.user.find({},{},8,20); </p>  <p>9) $elemMatch </p>  <p>&gt; t.find( { x : { $elemMatch : { a : 1, b : { $gt : 1 } } } } ) </p>  <p>{ &quot;_id&quot; : ObjectId(&quot;4b5783300334000000000aa9&quot;), </p>  <p>&quot;x&quot; : [ { &quot;a&quot; : 1, &quot;b&quot; : 3 }, 7, { &quot;b&quot; : 99 }, { &quot;a&quot; : 11 } ] </p>  <p>} </p>  <p>//同样效果</p>  <p>&gt; t.find( { &quot;x.a&quot; : 1, &quot;x.b&quot; : { $gt : 1 } } ) </p>  <p>10) slaveOk </p>  <p>当我们在replica set 进行检索操作时，默认的路由会选择 master 机器，当我们需要针对任意的从机进行查询的时候，我们需要开启 slaveOk选项。当我们在没有开启salveOk选项的时候，如果进行此操作会报如下错：</p>  <p>** not master and slaveok=false </p>  <p>所以我们要进行如下操作：</p>  <p>rs.slaveOk(); // enable querying a secondary </p>  <p>db.users.find(…) </p>  <p>11) Cursors游标及 Cursor Methods </p>  <p>a) 遍历游标</p>  <p>类似传统的关系型数据库，Mongodb 也有游标的概念。可以利用游标对查询结果进行遍历，如：</p>  <p>//利用游标遍历检索结果</p>  <p>&gt; var cur = db.user.find().skip(10).limit(8); </p>  <p>&gt; cur.forEach(function(x){print(tojson(x))}); </p>  <p>{ &quot;_id&quot; : 10, &quot;name&quot; : &quot;user10&quot;, &quot;userid&quot; : 10, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 11, &quot;name&quot; : &quot;user11&quot;, &quot;userid&quot; : 11, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 12, &quot;name&quot; : &quot;user12&quot;, &quot;userid&quot; : 12, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 13, &quot;name&quot; : &quot;user13&quot;, &quot;userid&quot; : 13, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 14, &quot;name&quot; : &quot;user14&quot;, &quot;userid&quot; : 14, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 15, &quot;name&quot; : &quot;user15&quot;, &quot;userid&quot; : 15, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 16, &quot;name&quot; : &quot;user16&quot;, &quot;userid&quot; : 16, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 17, &quot;name&quot; : &quot;user17&quot;, &quot;userid&quot; : 17, &quot;age&quot; : 30 } </p>  <p>&gt; </p>  <p>b) skip() </p>  <p>skip()方法指定查询记录从第几条开始返回，如，我要从第 10 个用户开始返回：</p>  <p>&gt; db.user.find().skip(10);</p>  <p>{ &quot;_id&quot; : 10, &quot;name&quot; : &quot;user10&quot;, &quot;userid&quot; : 10, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 11, &quot;name&quot; : &quot;user11&quot;, &quot;userid&quot; : 11, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 12, &quot;name&quot; : &quot;user12&quot;, &quot;userid&quot; : 12, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 13, &quot;name&quot; : &quot;user13&quot;, &quot;userid&quot; : 13, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 14, &quot;name&quot; : &quot;user14&quot;, &quot;userid&quot; : 14, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 15, &quot;name&quot; : &quot;user15&quot;, &quot;userid&quot; : 15, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 16, &quot;name&quot; : &quot;user16&quot;, &quot;userid&quot; : 16, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 17, &quot;name&quot; : &quot;user17&quot;, &quot;userid&quot; : 17, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 18, &quot;name&quot; : &quot;user18&quot;, &quot;userid&quot; : 18, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 19, &quot;name&quot; : &quot;user19&quot;, &quot;userid&quot; : 19, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 20, &quot;name&quot; : &quot;user20&quot;, &quot;userid&quot; : 20, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 21, &quot;name&quot; : &quot;user21&quot;, &quot;userid&quot; : 21, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 22, &quot;name&quot; : &quot;user22&quot;, &quot;userid&quot; : 22, &quot;age&quot; : 30 } </p>  <p>{ &quot;_id&quot; : 23, &quot;name&quot; : &quot;user23&quot;, &quot;userid&quot; : 23, &quot;age&quot; : 30 } </p>  <p>{ &amp;quo</p>
-
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/966.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/966.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/966.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/966.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/967.seo/">
-        ← 360浏览器抢票专版
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/965.seo/">
-        Pureftpd的卸载和CentOS vsftpd安装配置 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/Linux笔记/">Linux笔记</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/Mongodb/">Mongodb</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/967.seo/" title="360浏览器抢票专版">
+  <strong>Prev:</strong><br/>
+  <span>
+  360浏览器抢票专版</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/965.seo/"  title="Pureftpd的卸载和CentOS vsftpd安装配置">
+ <strong>Next:</strong><br/> 
+ <span>Pureftpd的卸载和CentOS vsftpd安装配置
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-Mongodb学习手册" data-title="Mongodb学习手册" data-url="http://ha.cker.in/966.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

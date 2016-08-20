@@ -1,294 +1,270 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Category: 渗透测试 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Category: 渗透测试 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Category: 渗透测试 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="category-icon">渗透测试</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-08-23T21:10:24.000Z" itemprop="datePublished">
-          2012-08-24
-      </time>
-    
-    
-    | 
-    <a href='/tag/注入/'>注入</a>,
-    
-    <a href='/tag/post/'>post</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/766.seo/">说说那些年躺在硬盘里的源码</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>作品：说说那些年躺在硬盘里的.    <br />作者：adwin     <br />来自：法客论坛 – F4ckTeam     <br />网址：<a href="http://team.f4ck.net/">http://team.f4ck.net/</a></p>  <p>/<em>第一页内容纯扯皮，可虑过，想直接看实际内容的可跳至第二页</em>/    <br />从过年的时候就有个想法想要搞一个友情链接互换的这么一个平台，我个人觉得这个想法其    <br />实还是不错的，目前来说做这个的人真的是寥寥无几，百度一下，能找到的也就是那么几个    <br />站点。但是后来种种原因，一直到现在这个平台也没搭建起来。     <br />最近得知老嫖同志要搞活动，既然线下的活动没能在哈尔滨地区举办，没有机会参加了，    <br />那就参加个线上活动也不错，所以决定写篇文章，不过自从上了大学以后，有一年没怎么实    <br />际上手实践了（寝室的网速尼玛蛋碎啊），真心害怕写不出什么好的文章，所以…大伙就凑    <br />合着看吧…     <br />========以上背景=============     <br />说了寝室的网速有点难以让人相信，上个 QQ 还得经常掉线，写点什么好呢，好吧，刚好发    <br />现&#160; 那些年躺在硬盘里的…源码（不要想歪了…），过年的时候由于想要搞那个链接交换平台    <br />所以下载了几套源码。前面说过搞这个东西的人很少，所以这个源码也着实&#160; 不好找，费了    <br />好大的力气找了几套，质量也是参差不齐，选出了一套凑合着可以用的，其他的就都删了。    <br />蛋碎的网速根本不允许去检测什么网站了，所以就想到，不 如就拿这套源码下手吧。     <br />另，什么 asp php jsp 的，我是一样也不懂…本文分析的是一套 asp 的程序，因为不懂 asp 代    <br />码，所以文中若粗线各种错误的地方还请见谅并指出。     <br />随便打开一个文件看了看，果然，代码很乱，一看就像是实习生写的…竟然每个页面都相同    <br />的 head 部分都没有作为一个文件包含起来，总是代码是乱的不能再乱了…     <br />如何下手呢，当然是先运行起来了。我本机win7，本来想用自带的 iis7来着，结果不知道什    <br />么毛错误运行不起来（汗！），算了，找了一款 asp 调试工具，这样总算是有了运行的环境。    <br />首先打开首页如下图：     <br /><a href="http://img.cker.in/83c624f2318a_B8E7/image.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/83c624f2318a_B8E7/image_thumb.png" width="613" height="409" /></a> </p>  <p>（打码部分其实是某妹纸的电话…当时在看代码，电话没地方记顺便给写广告位上了…）    <br />随便打开了一个链接的详细内容页面，发现是动态链接（说了代码质量很低的，作者不可能 </p>  <p>去做生成静态或者伪静态的处理），一下面的 URL（由于本文的例子比&#160; 较特殊，所以下文   <br />中若出现 链接 一词，则表示链接交换平台中的数据，即包含 百度收录&#160; PR&#160; 快照日期 交    <br />换要求&#160; 发布时间&#160; 等详细内容，若测试注入漏洞等，则将其地址用&#160; URL&#160; 一词表示，而不是     <br />链接，请注意区分）为例：<a href="http://111.43.205.21/display.asp?id=23850（111.43.205.21为笔者当">http://111.43.205.21/display.asp?id=23850（111.43.205.21为笔者当</a></p>
-      
-      </p>
-      
-      <p>
-          <a href="/766.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-08-19T10:28:01.000Z" itemprop="datePublished">
-          2012-08-19
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透测试/'>渗透测试</a>,
-    
-    <a href='/tag/安全加固/'>安全加固</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/762.seo/">对某高级技工学校网站的安全检测和加固</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>虽然今年金融危机给人们带来了“酷冬”，我国经济收到明显影响，到处都在传某某公司准备裁多少人！感觉这个冬天特别冷，在写这篇文章的时候，俺仍然感觉很冷，加入安天365这个团队，让俺感觉很温暖，在这个物欲横流，唯利是图的时候还有人对技术如此执著，对网络安全技术进行系统研究，那是何等的一种精神，我很欣赏团队中的一句话：技术需要沉淀，学习是一个渐进的过程，时间长了，即使是一块顽石，我也能把它滴穿！</p>  <p>今天发现的是一所技工学校，先对其进行安全检测，然后对其出现漏洞的地方进行了防范，下面将漏洞挖掘、分析和修补过程写出来跟大家分享。</p>  <p>（一）漏洞挖掘</p>  <p>1.获取初步信息</p>  <p>某天simeon在群里发了一个IP地址，让众兄弟们看看看看网站安全性如何，说是有奖励。（某人偷笑ing：有奖励好啊！俺就好这口）。首先打开网站看看网站能否访问，一看原来是个高级技工学校的网站，如图1所示，这几天搞学校的网站搞出毛病了，一看到学校网站就两眼放光，因为学校网站院系众多，而且网站更新比较缓慢，一套程序可能用上几百年也不一定换，所以漏洞自然也少不了，因此总的来说搞学校网站还是相对容易的。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/181807596.jpg"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image002.jpg" width="518" height="455" /></a></p>         </td>       </tr>        <tr>         <td>           <p>图1 查看网站基本情况</p>         </td>       </tr>     </tbody></table> </p>  <p>说明：</p>  <p>由于发来的是一个IP地址，因此需要先看看该地址时候在默认80端口开放了Web服务，然后看看是使用什么语言，当然也可以直接将地址放入SQL注入扫描工具中进行SQL注入点检测。</p>  <p>2.查看端口开放情况</p>  <p>使用“sfind –p 222.134.217.206”命令查看该服务器端口开放情况，如图2所示，计算机开放了21、80以及4899端口，看到这里，嘿嘿，俺觉得该服务器的安全应该不是太高，可以拿到权限。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/762.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-08-19T10:26:26.000Z" itemprop="datePublished">
-          2012-08-19
-      </time>
-    
-    
-    | 
-    <a href='/tag/提权/'>提权</a>,
-    
-    <a href='/tag/入侵/'>入侵</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/759.seo/">记入侵提权时一次绕过3389证书验证</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>一天，在源码站下载了一套《易天工作室通用企业型后台管理系统》源代码来读。check.asp页面中发现了一个问题，由于程序没有对输入内容进行过滤，我们可以输入万能密码登陆，直接进入后台。（难道这个就是传说的中企业后台漏洞？）</p>  <p>发现了这套程序的漏洞，那我们当然要利用此漏洞来拿服务器咯。Google hacking 了一下，来到了郑州大学某院系的页面。直接在URL后面加上admin，后台一下就跳出来了。让我们看看漏洞是否存在吧。在用户名和密码处都填’or’=’or’ ，然后把验证码写好，点登陆，果然进入了管理页面，说明漏洞真的存在哦。因为这套程序本身就有备份的功能，所以得到WEBSHELL就很简单了。</p>  <p>先把我们的ASP木马改成JPG格式上传，如图1在空间图片管理的最后1页或2页就可以看到我们的图片木马了。如图2然后右键，属性就可以得到上传的路径了。之后，在数据库备份里把我们的图片木马还原成ASP格式就可以了。（在备份的时候，如果路径填写错误会提示网页无法显示，如果出现这样的情况，可以检查下图片的路径是否填写正确。此套程序中也有ewebeditor，如果后台中备份的功能被删除了，可以试试用这个来拿webshell，因为很多管理员都忘记更改它的默认密码或数据库路径）。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/759.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-08-15T20:05:16.000Z" itemprop="datePublished">
-          2012-08-16
-      </time>
-    
-    
-    | 
-    <a href='/tag/提权/'>提权</a>,
-    
-    <a href='/tag/入侵/'>入侵</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/755.seo/">对mcc.net.cn的一次检测</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>原文地址：法克论坛   <br />N久前的事情了 以前是独服的 现在旁站很多 检测原因:雅兰MJJ 在群里发的这个站，说没事大家去日它装逼。听说还是全国最大的MCC潮流社区。于是我就开始了邪恶之旅先踩点:网站是ASP的 IIS6.0 windows2003有个数据库雅兰下载来了不过得到的密</p>  <p>PS:N 久前的事情了 以前是独服的 现在旁站很多   <br /> 检测原因:雅兰MJJ 在群里发的这个站，说没事大家去日它装逼。听说还是全国最大的MCC潮流社区。    <br />于是我就开始了邪恶之旅    <br />先踩点:网站是ASP的 IIS6.0 windows2003    <br />有个数据库雅兰下载来了    <br />不过得到的密码是这个 +++++++++sadasc636++++    <br />哎 无果    <br />那就看旁站吧    <br /><a href="http://img.cker.in/mcc.net.cn_A915/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/mcc.net.cn_A915/clip_image001_thumb.jpg" width="806" height="554" /></a>    <br />有个论坛    <br />Bbs.mcc.net.cn    <br />论坛也是ASP的然后根据ICO 发现他是DVBBS 的程序    <br />版本未知</p>
-      
-      </p>
-      
-      <p>
-          <a href="/755.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-08-09T18:23:55.000Z" itemprop="datePublished">
-          2012-08-10
-      </time>
-    
-    
-    | 
-    <a href='/tag/Wordpress/'>Wordpress</a>,
-    
-    <a href='/tag/入侵/'>入侵</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/750.seo/">转国外 干掉一个wp站点</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>他站点（旁站：sameip.org）：</p>
-<p><a href="http://img.cker.in/wp_90E7/clip_image001.png" target="_blank"><img style="display: inline; border: 0px;" title="clip_image001" src="http://img.cker.in/wp_90E7/clip_image001_thumb.png" alt="clip_image001" width="541" height="296" border="0" /></a></p>
-<p><a href="http://sameip.org/">Same IP</a>   26 sites hosted on IP Address 173.236.138.113</p>
-<p style="text-align: justify;"><strong>IDDomainSite Link</strong>1</p>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
 
-<p><pre>hijackthisforum.com<a href="http://www.hijackthisforum.com/">hijackthisforum.com</a>2sportforum.net<a href="http://www.sportforum.net/">sportforum.net</a>3freeonlinesudoku.net<a href="http://www.freeonlinesudoku.net/">freeonlinesudoku.net</a>4cosplayhell.com<a href="http://www.cosplayhell.com/">cosplayhell.com</a>5videogamenews.org<a href="http://www.videogamenews.org/">videogamenews.org</a>6gametour.com<a href="http://www.gametour.com/">gametour.com</a>7qualitypetsitting.net<a href="http://www.qualitypetsitting.net/">qualitypetsitting.net</a>8brendanichols.com<a href="http://www.brendanichols.com/">brendanichols.com</a>98ez.com<a href="http://www.8ez.com/">8ez.com</a>10hack-test.com<a href="http://www.hack-test.com/">hack-test.com</a>11kisax.com<a href="http://www.kisax.com/">kisax.com</a>12paisans.com<a href="http://www.paisans.com/">paisans.com</a>13mghz.com<a href="http://www.mghz.com/">mghz.com</a>14debateful.com<a href="http://www.debateful.com/">debateful.com</a>15jazzygoodtimes.com<a href="http://www.jazzygoodtimes.com/">jazzygoodtimes.com</a>16fruny.com<a href="http://www.fruny.com/">fruny.com</a>17vbum.com<a href="http://www.vbum.com/">vbum.com</a>18wuckie.com<a href="http://www.wuckie.com/">wuckie.com</a>19force5inc.com<a href="http://www.force5inc.com/">force5inc.com</a>20virushero.com<a href="http://www.virushero.com/">virushero.com</a>21twincitiesbusinesspeernetwork.com<a href="http://www.twincitiesbusinesspeernetwork.com/">twincitiesbusinesspeernetwork.com</a>22jennieko.com<a href="http://www.jennieko.com/">jennieko.com</a>23davereedy.com<a href="http://www.davereedy.com/">davereedy.com</a>24joygarrido.com<a href="http://www.joygarrido.com/">joygarrido.com</a>25prismapp.com<a href="http://www.prismapp.com/">prismapp.com</a>26utiligolf.com<a href="http://www.utiligolf.com/">utiligolf.com</a></pre><br>总计有26个站点在[173.236.138.113]这台服务器上。为了黑掉目标站点，许多黑客会把目标站点同服的其他站点也划入攻击范围内。但是出于学习的目的，我们今天暂且将其他站点放在一边。</p>
-<p>我们需要更多关于目标站点的信息（Ps：笔者认为在渗透测试过程中，这比实施测试的环节来得重要得多。），他们包括：</p>
-<p>1.DNS记录（A，NS，TXT，MX）</p>
-<p>2.WEB服务类型（IIS，APACHE，TOMCAT）</p>
-<p>3.域名注册者的信息（所持有域名公司等）</p>
-<p>4.目标站点管理员（相关人员）的姓名，电话，邮箱和住址等</p>
-<p>5.目标站点所支持的脚本类型（PHP，ASP，JSP，ASP.net，CFM）</p>
-<p>6.目标站点的操作系统（UNIX,LINUX,WINDOWS,SOLARIS）</p>
-<p>7.目标站点开放的端口</p>
-<p>让我们先来查询相关DNS记录吧，这里用的是 who.is：</p>
-<p><a href="http://img.cker.in/wp_90E7/clip_image002.png" target="_blank"><img style="display: inline; border: 0px;" title="clip_image002" src="http://img.cker.in/wp_90E7/clip_image002_thumb.png" alt="clip_image002" width="596" height="326" border="0" /></a></p>
-      
-      </p>
-      
-      <p>
-          <a href="/750.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-08-09T18:13:46.000Z" itemprop="datePublished">
-          2012-08-10
-      </time>
-    
-    
-    | 
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/idc/'>idc</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/747.seo/">对IDC的一次检测</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>群里兄弟抛来一个站点，说要弄C段的另一个站点。看看，该IDC站点有数据备份后台，弱口令进入。   <br /><a href="http://img.cker.in/IDC_8FAD/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/IDC_8FAD/clip_image002_thumb.jpg" width="620" height="452" /></a>    <br />一、拿个shell    <br />php站点，mysql数据库，可以sql备份、导入、导出、执行SQL，没有上传，root权限。    <br />但是找不到站点的绝对路径，群里兄弟就找找周围的站点，希望能得到某个站点的绝对路径，    <br />不久就爆出一个php的站点，准备mysql导出shell，但网站有注入检测系统，导入不成功，原因有：    <br />（1）路径不对；    <br />（2）root被降权，没有权限写；    <br />（3）被检测到恶意代码；    <br />前几天碰到过这种情况，改了</p>  <p>1. Select ‘&lt;?php @eval($_POST[cmd])?&gt;; ‘ into/**/outfile……../b.php’，OK</p>  <p>复制代码</p>  <p>连接成功。得到一个旁站的php shell。   <br />测试了结果：    <br />(1)执行命令不行；    <br />(2)只能在本站转；    <br />什么也干不了。    <br />二、再拿php、asp&#160; shell    <br />后来有人把mysql的root密码破了，登陆phpmyadmin，直接进行数据库操作。用mysql客户端登陆没有登陆上。    <br />上php大马，udf提权也失败了，原因不明。旁站的php shell权限很小，想到能利用的真不多。    <br />又有人得到一个asp旁站的shell，上去看了，除了数据库组件、fso、mai组件外，其他都不能用，难怪不能执行cmd。    <br />陆续又得到几个旁站的shell，都市php和asp的，能利用的少。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/747.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/766.seo/" title="说说那些年躺在硬盘里的源码" itemprop="url">
   
-  <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/category/渗透测试/page/9/">← Newer Posts</a>
-    <span class="page-number">Page 10 of 16</span>
-    <a class="older-posts" href="/category/渗透测试/page/11/">Older Posts →</a>
+    <h1 itemprop="name">说说那些年躺在硬盘里的源码</h1>
+    
+    <time datetime="2012-08-23T21:10:24.000Z" itemprop="datePublished">2012-08-24</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/762.seo/" title="对某高级技工学校网站的安全检测和加固" itemprop="url">
+  
+    <h1 itemprop="name">对某高级技工学校网站的安全检测和加固</h1>
+    
+    <time datetime="2012-08-19T10:28:01.000Z" itemprop="datePublished">2012-08-19</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/759.seo/" title="记入侵提权时一次绕过3389证书验证" itemprop="url">
+  
+    <h1 itemprop="name">记入侵提权时一次绕过3389证书验证</h1>
+    
+    <time datetime="2012-08-19T10:26:26.000Z" itemprop="datePublished">2012-08-19</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/755.seo/" title="对mcc.net.cn的一次检测" itemprop="url">
+  
+    <h1 itemprop="name">对mcc.net.cn的一次检测</h1>
+    
+    <time datetime="2012-08-15T20:05:16.000Z" itemprop="datePublished">2012-08-16</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/750.seo/" title="转国外 干掉一个wp站点" itemprop="url">
+  
+    <h1 itemprop="name">转国外 干掉一个wp站点</h1>
+    
+    <time datetime="2012-08-09T18:23:55.000Z" itemprop="datePublished">2012-08-10</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/747.seo/" title="对IDC的一次检测" itemprop="url">
+  
+    <h1 itemprop="name">对IDC的一次检测</h1>
+    
+    <time datetime="2012-08-09T18:13:46.000Z" itemprop="datePublished">2012-08-10</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix archive-nav">
+    <a class="extend prev" rel="prev" href="/category/渗透测试/page/9/">&laquo; 上一页</a><a class="page-number" href="/category/渗透测试/">1</a><span class="space">&hellip;</span><a class="page-number" href="/category/渗透测试/page/8/">8</a><a class="page-number" href="/category/渗透测试/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/category/渗透测试/page/11/">11</a><a class="page-number" href="/category/渗透测试/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/category/渗透测试/page/16/">16</a><a class="extend next" rel="next" href="/category/渗透测试/page/11/">下一页 &raquo;</a>
   </nav>
-</main>
 
-
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

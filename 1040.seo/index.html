@@ -1,64 +1,101 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>攻击JavaWeb应用 5 -MVC安全 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>攻击JavaWeb应用 5 -MVC安全 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="攻击JavaWeb应用[5]-MVC安全  http://drops.wooyun.org/tips/347  注:这一节主要是消除很多人把JSP当作了JavaWeb的全部的误解，了解MVC及其框架思想。MVC是用于组织代码用一种业务逻辑和数据显示分离的方法，不管是Java的Struts2、SpringMVC还是PHP的ThinkPHP都爆出过高危的任意代码执行,本节重在让更多的人了解MVC和MVC框架安全，由浅到深尽可能的照顾没Java基础的朋友。所谓攻击JavaWeb，如果连JavaWeb是个什么，有什么特性都不知道，就算能用Struts刷再多的RANK又有何意义？还不如沏一杯清茶，读一本好书，不浮躁，撸上一天。  0x00、初识MVC    传统的开发存在结构混乱易用性差耦合度高可维护性差等多种问题，为了解决这些毛病分层思想和MVC框架就出现了。MVC是三个单词的缩写,分别为： 模型(Model),视图(View) 和控制(Controller)。 MVC模式的目的就是实现Web系统的职能分工。  Model层实现系统中的业务逻辑，通常可以用JavaBean或EJB来实现。  View层用于与用户的交互，通常用JSP来实现(前面有讲到，JavaWeb项目中如果不采用JSP作为展现层完全可以没有任何JSP文件，甚至是过滤一切JSP请求，JEECMS是一个最为典型的案例)。  Controller层是Model与View之间沟通的桥梁，它可以分派用户的请求并选择恰当的视图用于显示，同时它也可以解释用户的输入并将它们映射为模型层可执行的操作。    Model1和Model2：  Model1主要是用JSP去处理来自客户端的请求，所有的业务逻辑都在一个或者多个JSP页面里面完成，这种是最不科学的。举例:http://localhost/show_user.jsp?id=2。JSP页面获取到参数id=2就会带到数据库去查询数据库当中id等于 2的用户数据，由于这样的实现方式虽然简单，但是维护成本就非常高。JSP页面跟逻辑业务都捆绑在一起高耦合了。而软件开发的目标就是为了去解耦，让程序之间的依赖性减小。在model1里面SQL注入等攻击简直就是家常便饭。因为在页面里面频繁的去处理各种业务会非常麻烦，更别说关注安全了。典型的Model1的代码就是之前用于演示的SQL注入的JSP页面。  Model1的流程：    Model 2表示的是基于MVC模式的框架，JSP+Servlet。Model2已经带有一定的分层思想了，即Jsp只做简单的展现层，Servlet做后端的业务逻辑处理。这样视图和业务逻辑就相应的分开了。例如：http://localhost/ShowUserServlet?id=2。也就是说把请求交给Servlet处理，Servlet处理完成后再交给jsp或HTML做页面展示。JSP页面就不必要去关心你传入的id=2是怎么查询出来的，而是怎么样去显示id=2的用户的信息(多是用EL表达式或JSP脚本做页面展现)。视图和逻辑分开的好处是可以更加清晰的去处理业务逻辑，这样的出现安全问题的几率会相对降低。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="攻击JavaWeb应用 5 -MVC安全 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/1040.seo/" title="攻击JavaWeb应用 5 -MVC安全" itemprop="url">攻击JavaWeb应用 5 -MVC安全</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2013-10-21T20:05:06.000Z" itemprop="datePublished">2013-10-22</time>
+    Updated:<time datetime="2016-08-20T11:03:54.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
-
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2013-10-21T20:05:06.000Z" itemprop="datePublished">
-          2013-10-22
-      </time>
-    
-    
-    | 
-    <a href='/tag/Struts2/'>Struts2</a>,
-    
-    <a href='/tag/MVC/'>MVC</a>
-    
-    
-</span>
-    <h1 class="post-title">攻击JavaWeb应用 5 -MVC安全</h1>
-    <section class="post-content">
-      <p><a href="http://drops.wooyun.org/tips/347" target="_blank" rel="external">攻击JavaWeb应用[5]-MVC安全</a></p>  <p><a href="http://drops.wooyun.org/tips/347" target="_blank" rel="external">http://drops.wooyun.org/tips/347</a></p>  <h5>注:这一节主要是消除很多人把JSP当作了JavaWeb的全部的误解，了解MVC及其框架思想。MVC是用于组织代码用一种业务逻辑和数据显示分离的方法，不管是Java的Struts2、SpringMVC还是PHP的ThinkPHP都爆出过高危的任意代码执行,本节重在让更多的人了解MVC和MVC框架安全，由浅到深尽可能的照顾没Java基础的朋友。所谓攻击JavaWeb，如果连JavaWeb是个什么，有什么特性都不知道，就算能用Struts刷再多的RANK又有何意义？还不如沏一杯清茶，读一本好书，不浮躁，撸上一天。</h5>  <h5>0x00、初识MVC</h5>  <hr align="center" width="100%" size="2">  <p>传统的开发存在结构混乱易用性差耦合度高可维护性差等多种问题，为了解决这些毛病分层思想和<a href="http://Ha.Cker.In/tag/MVC" target="_blank">MVC</a>框架就出现了。MVC是三个单词的缩写,分别为： <strong>模型(Model),视图(View) 和控制(Controller)</strong>。 MVC模式的目的就是实现Web系统的职能分工。</p>  <p><strong>Model</strong><strong>层</strong>实现系统中的<strong>业务逻辑</strong>，通常可以用JavaBean或EJB来实现。</p>  <p><strong>View<em></em></strong><strong>层</strong>用于与<strong>用户的交互</strong>，通常用JSP来实现(前面有讲到，JavaWeb项目中如果不采用JSP作为展现层完全可以没有任何JSP文件，甚至是过滤一切JSP请求，JEECMS是一个最为典型的案例)。</p>  <p><strong>Controller</strong><strong>层</strong>是<strong>Model</strong><strong>与View之间沟通的桥梁</strong>，它可以分派用户的请求并选择恰当的视图用于显示，同时它也可以解释用户的输入并将它们映射为模型层可执行的操作。</p>  <p><a href="http://img.cker.in/JavaWeb5MVC_8EFB/clip_image001.jpg" target="_blank" rel="external"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="321" alt="clip_image001" src="http://img.cker.in/JavaWeb5MVC_8EFB/clip_image001_thumb.jpg" width="330" border="0"></a></p>  <h6><strong>Model1</strong><strong>和Model2：</strong></h6>  <p>Model1主要是用JSP去处理来自客户端的请求，所有的业务逻辑都在一个或者多个JSP页面里面完成，这种是最不科学的。举例:<a href="http://localhost/show_user.jsp?id=2。JSP页面获取到参数id=2就会带到数据库去查询数据库当中id等于" target="_blank" rel="external">http://localhost/show_user.jsp?id=2。JSP页面获取到参数id=2就会带到数据库去查询数据库当中id等于</a> 2的用户数据，由于这样的实现方式虽然简单，但是维护成本就非常高。JSP页面跟逻辑业务都捆绑在一起高耦合了。而软件开发的目标就是为了去解耦，让程序之间的依赖性减小。在model1里面SQL注入等攻击简直就是家常便饭。因为在页面里面频繁的去处理各种业务会非常麻烦，更别说关注安全了。典型的Model1的代码就是之前用于演示的SQL注入的JSP页面。</p>  <h6><strong>Model1</strong><strong>的流程：</strong></h6>  <p><a href="http://img.cker.in/JavaWeb5MVC_8EFB/clip_image002.jpg" target="_blank" rel="external"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="443" alt="clip_image002" src="http://img.cker.in/JavaWeb5MVC_8EFB/clip_image002_thumb.jpg" width="567" border="0"></a></p>  <p>Model 2表示的是基于MVC模式的框架，JSP+Servlet。Model2已经带有一定的分层思想了，即Jsp只做简单的展现层，Servlet做后端的业务逻辑处理。这样视图和业务逻辑就相应的分开了。例如：<a href="http://localhost/ShowUserServlet?id=2" target="_blank" rel="external">http://localhost/ShowUserServlet?id=2</a>。也就是说把请求交给Servlet处理，Servlet处理完成后再交给jsp或HTML做页面展示。JSP页面就不必要去关心你传入的id=2是怎么查询出来的，而是怎么样去显示id=2的用户的信息(多是用EL表达式或JSP脚本做页面展现)。视图和逻辑分开的好处是可以更加清晰的去处理业务逻辑，这样的出现安全问题的几率会相对降低。</p><br><a id="more"></a><br><p></p>  <p><a href="http://img.cker.in/JavaWeb5MVC_8EFB/clip_image003.jpg" target="_blank" rel="external"><img title="clip_image003" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="389" alt="clip_image003" src="http://img.cker.in/JavaWeb5MVC_8EFB/clip_image003_thumb.jpg" width="829" border="0"></a></p>  <h6><strong>Mvc</strong><strong>框架存在的问题:</strong></h6>  <p>当Model1和Model2都难以满足开发需求的时候，通用性的MVC框架也就产生了，模型视图控制器，各司其责程序结构一目了然，业务安全相关控制井井有序，这便是MVC框架给我们带来的好处，但是不幸的是由于MVC的框架的实现各自不同，某些东西因为其越来越强大，而衍生出来越来越多的安全问题，<strong>典型的由于安全问题处理不当造成近期无数互联网站被黑阔攻击的MVC框架便是Struts2</strong>。神器过于锋利伤到自己也就在所难免了。而在Struts和Spring当中最喜欢被人用来挖0day的就是标签和OGNL的安全处理问题了。</p>  <h6><strong>Spring Mvc:</strong></h6>  <p>Spring 框架提供了构建 Web应用程序的全功能 MVC 模块。使用 Spring 可插入的 MVC 架构，可以选择是使用内置的 Spring Web 框架还是 Struts 这样的 Web 框架。通过策略接口，Spring 框架是高度可配置的，而且包含多种视图技术，例如 JavaServer Pages（JSP）技术、Velocity、Tiles、iText 和 POI、Freemarker。Spring MVC 框架并不知道使用的视图，所以不会强迫您只使用 JSP 技术。Spring MVC 分离了控制器、模型对象、分派器以及处理程序对象的角色，这种分离让它们更容易进行定制。</p>  <h6><strong>Struts2:</strong></h6>  <p>Struts是apache基金会jakarta项目组的一个开源项目，采用MVC模式，能够很好的帮助我们提高开发web项目的效率。Struts主要采用了servlet和jsp技术来实现，把servlet、jsp、标签库等技术整合到整个框架中。<a href="http://Ha.Cker.In/tag/Struts2" target="_blank">Struts2</a>比Struts1内部实现更加复杂，但是使用起来更加简单，功能更加强大。</p>  <p><a href="http://Ha.Cker.In/tag/Struts2" target="_blank">Struts2</a>历史版本下载地址：<a href="http://archive.apache.org/dist/struts/binaries/" target="_blank" rel="external">http://archive.apache.org/dist/struts/binaries/</a></p>  <p>官方网站是: <a href="http://struts.apache.org/" target="_blank" rel="external">http://struts.apache.org/</a></p>  <h6><strong>常见MVC比较：</strong></h6>  <p>按性能排序：1、Jsp+servlet&gt;2、struts1&gt;2、spring mvc&gt;3、struts2+freemarker&gt;&gt;4、struts2,ognl,值栈。</p>  <p><strong>开发效率上,基本正好相反。值得强调的是，Spring mvc开发效率和Struts2不相上下。</strong></p>  <p><a href="http://Ha.Cker.In/tag/Struts2" target="_blank">Struts2</a>的性能低的原因是因为OGNL和值栈造成的。所以如果你的系统并发量高，可以使用freemaker进行显示，而不是采用OGNL和值栈。这样，在性能上会有相当大得提高。</p>  <p>而每一次Struts2的远程代码执行的原因都是因为OGNL。</p>  <p>当前JavaWeb当中最为流行的MVC框架主要有Spring MVC和Struts。相比Struts2而言，SpringMVC具有更轻巧，更简易，更安全等优点。但是由于SpringMVC历史远没有Struts那么悠久，SpringMVC想要在一朝一夕颠覆Struts1、2还是非常有困难的。</p>  <h6><em>JavaWeb</em><em>的Servlet和Filter：</em></h6>  <p>可以说JavaWeb和PHP的实现有着本质的区别，PHP属于解释性语言.不需要在服务器启动的时候就通过一堆的配置去初始化apps而是在任意一个请求到达以后再去加载配置完成来自客户端的请求。ASP和PHP有个非常大的共同点就是不需要预先编译成类似Java的字节码文件，所有的类方法都存在于.PHP文件当中。而在Java里面可以在项目启动时去加载配置到Servlet容器内。在web.xml里面配置一个Servlet或者Filter后可以非常轻松的拦截、过滤来自于客户端的任意后缀请求。在系列2的时候就有提到Servlet，这里再重温一下。</p>  <h6><strong>Servlet</strong><strong>配置：</strong></h6>  <pre><code>&lt;servlet&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;servlet-name&gt;LoginServlet&lt;/servlet-name&gt;</code></pre><br><br><pre><code>&lt;servlet-class&gt;org.javaweb.servlet.LoginServlet&lt;/servlet-class&gt;</code></pre><br><br><pre><code>&lt;/servlet&gt;</code></pre><br><br><pre><code>&lt;servlet-mapping&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;servlet-name&gt;LoginServlet&lt;/servlet-name&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;url-pattern&gt;/servlet/LoginServlet.action&lt;/url-pattern&gt;</code></pre><br><br><pre><code>&lt;/servlet-mapping&gt;</code></pre><br><br><h6><strong>Filter</strong><strong>配置：</strong></h6><br><br><pre><code>&lt;filter&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;filter-name&gt;struts2&lt;/filter-name&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;filter-class&gt;org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter&lt;/filter-class&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;/filter&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;filter-mapping&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;filter-name&gt;struts2&lt;/filter-name&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;url-pattern&gt;/<em>&lt;/url-pattern&gt;</em></code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;/filter-mapping&gt;</code></pre><br><br><p>Filter在JavaWeb当中用来做权限控制再合适不过了，再也不用在每个页面都去做session验证了。假如过滤的url-pattern是/admin/那么所有URI中带有admin的请求都必须经过如下Filter过滤：</p>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">注:这一节主要是消除很多人把JSP当作了JavaWeb的全部的误解，了解MVC及其框架思想。MVC是用于组织代码用一种业务逻辑和数据显示分离的方法，不管是Java的Struts2、SpringMVC还是PHP的ThinkPHP都爆出过高危的任意代码执行,本节重在让更多的人了解MVC和MVC框架安全，由浅到深尽可能的照顾没Java基础的朋友。所谓攻击JavaWeb，如果连JavaWeb是个什么，有什么特性都不知道，就算能用Struts刷再多的RANK又有何意义？还不如沏一杯清茶，读一本好书，不浮躁，撸上一天。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">0x00、初识MVC</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">Model1和Model2：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">Model1的流程：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.</span> <span class="toc-text">Mvc框架存在的问题:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.4.</span> <span class="toc-text">Spring Mvc:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.5.</span> <span class="toc-text">Struts2:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.6.</span> <span class="toc-text">常见MVC比较：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.7.</span> <span class="toc-text">JavaWeb的Servlet和Filter：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.8.</span> <span class="toc-text">Servlet配置：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.9.</span> <span class="toc-text">Filter配置：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">0x01、Struts概述</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">3.1.</span> <span class="toc-text">STRUTS2框架内部流程：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">3.2.</span> <span class="toc-text">SpringMVC框架内部流程：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">3.3.</span> <span class="toc-text">Struts2请求处理流程分析:</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">0x02、Struts2中ActionContext、ValueStack、Ognl</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">4.1.</span> <span class="toc-text">ActionContext对象：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">4.2.</span> <span class="toc-text">注：struts2后，使用装饰器模式来实现上述功能。</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">4.3.</span> <span class="toc-text">获取Web容器信息：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">4.4.</span> <span class="toc-text">Struts2 OGNL:</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">0x03、Struts漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">5.1.</span> <span class="toc-text">Struts2漏洞病例：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">5.2.</span> <span class="toc-text">Struts公开的安全问题：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">5.3.</span> <span class="toc-text">Struts2漏洞利用详情：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">5.4.</span> <span class="toc-text">吐槽一下：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">5.5.</span> <span class="toc-text">Struts2 Debug：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">5.6.</span> <span class="toc-text">Debug Tips：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">5.7.</span> <span class="toc-text">解密Struts2的“神秘”的POC：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">5.8.</span> <span class="toc-text">精确判断是否存在（延迟判断）:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">5.9.</span> <span class="toc-text">命令执行：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">5.10.</span> <span class="toc-text">GetShell POC：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">5.11.</span> <span class="toc-text">Struts2:</span></a></li></ol></li></ol>
+		</div>
+		
+		<p><a href="http://drops.wooyun.org/tips/347" target="_blank" rel="external">攻击JavaWeb应用[5]-MVC安全</a></p>  <p><a href="http://drops.wooyun.org/tips/347" target="_blank" rel="external">http://drops.wooyun.org/tips/347</a></p>  <h5>注:这一节主要是消除很多人把JSP当作了JavaWeb的全部的误解，了解MVC及其框架思想。MVC是用于组织代码用一种业务逻辑和数据显示分离的方法，不管是Java的Struts2、SpringMVC还是PHP的ThinkPHP都爆出过高危的任意代码执行,本节重在让更多的人了解MVC和MVC框架安全，由浅到深尽可能的照顾没Java基础的朋友。所谓攻击JavaWeb，如果连JavaWeb是个什么，有什么特性都不知道，就算能用Struts刷再多的RANK又有何意义？还不如沏一杯清茶，读一本好书，不浮躁，撸上一天。</h5>  <h5>0x00、初识MVC</h5>  <hr align="center" width="100%" size="2">  <p>传统的开发存在结构混乱易用性差耦合度高可维护性差等多种问题，为了解决这些毛病分层思想和<a href="http://Ha.Cker.In/tag/MVC" target="_blank">MVC</a>框架就出现了。MVC是三个单词的缩写,分别为： <strong>模型(Model),视图(View) 和控制(Controller)</strong>。 MVC模式的目的就是实现Web系统的职能分工。</p>  <p><strong>Model</strong><strong>层</strong>实现系统中的<strong>业务逻辑</strong>，通常可以用JavaBean或EJB来实现。</p>  <p><strong>View<em></em></strong><strong>层</strong>用于与<strong>用户的交互</strong>，通常用JSP来实现(前面有讲到，JavaWeb项目中如果不采用JSP作为展现层完全可以没有任何JSP文件，甚至是过滤一切JSP请求，JEECMS是一个最为典型的案例)。</p>  <p><strong>Controller</strong><strong>层</strong>是<strong>Model</strong><strong>与View之间沟通的桥梁</strong>，它可以分派用户的请求并选择恰当的视图用于显示，同时它也可以解释用户的输入并将它们映射为模型层可执行的操作。</p>  <p><a href="http://img.cker.in/JavaWeb5MVC_8EFB/clip_image001.jpg" target="_blank" rel="external"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="321" alt="clip_image001" src="http://img.cker.in/JavaWeb5MVC_8EFB/clip_image001_thumb.jpg" width="330" border="0"></a></p>  <h6><strong>Model1</strong><strong>和Model2：</strong></h6>  <p>Model1主要是用JSP去处理来自客户端的请求，所有的业务逻辑都在一个或者多个JSP页面里面完成，这种是最不科学的。举例:<a href="http://localhost/show_user.jsp?id=2。JSP页面获取到参数id=2就会带到数据库去查询数据库当中id等于" target="_blank" rel="external">http://localhost/show_user.jsp?id=2。JSP页面获取到参数id=2就会带到数据库去查询数据库当中id等于</a> 2的用户数据，由于这样的实现方式虽然简单，但是维护成本就非常高。JSP页面跟逻辑业务都捆绑在一起高耦合了。而软件开发的目标就是为了去解耦，让程序之间的依赖性减小。在model1里面SQL注入等攻击简直就是家常便饭。因为在页面里面频繁的去处理各种业务会非常麻烦，更别说关注安全了。典型的Model1的代码就是之前用于演示的SQL注入的JSP页面。</p>  <h6><strong>Model1</strong><strong>的流程：</strong></h6>  <p><a href="http://img.cker.in/JavaWeb5MVC_8EFB/clip_image002.jpg" target="_blank" rel="external"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="443" alt="clip_image002" src="http://img.cker.in/JavaWeb5MVC_8EFB/clip_image002_thumb.jpg" width="567" border="0"></a></p>  <p>Model 2表示的是基于MVC模式的框架，JSP+Servlet。Model2已经带有一定的分层思想了，即Jsp只做简单的展现层，Servlet做后端的业务逻辑处理。这样视图和业务逻辑就相应的分开了。例如：<a href="http://localhost/ShowUserServlet?id=2" target="_blank" rel="external">http://localhost/ShowUserServlet?id=2</a>。也就是说把请求交给Servlet处理，Servlet处理完成后再交给jsp或HTML做页面展示。JSP页面就不必要去关心你传入的id=2是怎么查询出来的，而是怎么样去显示id=2的用户的信息(多是用EL表达式或JSP脚本做页面展现)。视图和逻辑分开的好处是可以更加清晰的去处理业务逻辑，这样的出现安全问题的几率会相对降低。</p><br><a id="more"></a><br><p></p>  <p><a href="http://img.cker.in/JavaWeb5MVC_8EFB/clip_image003.jpg" target="_blank" rel="external"><img title="clip_image003" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="389" alt="clip_image003" src="http://img.cker.in/JavaWeb5MVC_8EFB/clip_image003_thumb.jpg" width="829" border="0"></a></p>  <h6><strong>Mvc</strong><strong>框架存在的问题:</strong></h6>  <p>当Model1和Model2都难以满足开发需求的时候，通用性的MVC框架也就产生了，模型视图控制器，各司其责程序结构一目了然，业务安全相关控制井井有序，这便是MVC框架给我们带来的好处，但是不幸的是由于MVC的框架的实现各自不同，某些东西因为其越来越强大，而衍生出来越来越多的安全问题，<strong>典型的由于安全问题处理不当造成近期无数互联网站被黑阔攻击的MVC框架便是Struts2</strong>。神器过于锋利伤到自己也就在所难免了。而在Struts和Spring当中最喜欢被人用来挖0day的就是标签和OGNL的安全处理问题了。</p>  <h6><strong>Spring Mvc:</strong></h6>  <p>Spring 框架提供了构建 Web应用程序的全功能 MVC 模块。使用 Spring 可插入的 MVC 架构，可以选择是使用内置的 Spring Web 框架还是 Struts 这样的 Web 框架。通过策略接口，Spring 框架是高度可配置的，而且包含多种视图技术，例如 JavaServer Pages（JSP）技术、Velocity、Tiles、iText 和 POI、Freemarker。Spring MVC 框架并不知道使用的视图，所以不会强迫您只使用 JSP 技术。Spring MVC 分离了控制器、模型对象、分派器以及处理程序对象的角色，这种分离让它们更容易进行定制。</p>  <h6><strong>Struts2:</strong></h6>  <p>Struts是apache基金会jakarta项目组的一个开源项目，采用MVC模式，能够很好的帮助我们提高开发web项目的效率。Struts主要采用了servlet和jsp技术来实现，把servlet、jsp、标签库等技术整合到整个框架中。<a href="http://Ha.Cker.In/tag/Struts2" target="_blank">Struts2</a>比Struts1内部实现更加复杂，但是使用起来更加简单，功能更加强大。</p>  <p><a href="http://Ha.Cker.In/tag/Struts2" target="_blank">Struts2</a>历史版本下载地址：<a href="http://archive.apache.org/dist/struts/binaries/" target="_blank" rel="external">http://archive.apache.org/dist/struts/binaries/</a></p>  <p>官方网站是: <a href="http://struts.apache.org/" target="_blank" rel="external">http://struts.apache.org/</a></p>  <h6><strong>常见MVC比较：</strong></h6>  <p>按性能排序：1、Jsp+servlet&gt;2、struts1&gt;2、spring mvc&gt;3、struts2+freemarker&gt;&gt;4、struts2,ognl,值栈。</p>  <p><strong>开发效率上,基本正好相反。值得强调的是，Spring mvc开发效率和Struts2不相上下。</strong></p>  <p><a href="http://Ha.Cker.In/tag/Struts2" target="_blank">Struts2</a>的性能低的原因是因为OGNL和值栈造成的。所以如果你的系统并发量高，可以使用freemaker进行显示，而不是采用OGNL和值栈。这样，在性能上会有相当大得提高。</p>  <p>而每一次Struts2的远程代码执行的原因都是因为OGNL。</p>  <p>当前JavaWeb当中最为流行的MVC框架主要有Spring MVC和Struts。相比Struts2而言，SpringMVC具有更轻巧，更简易，更安全等优点。但是由于SpringMVC历史远没有Struts那么悠久，SpringMVC想要在一朝一夕颠覆Struts1、2还是非常有困难的。</p>  <h6><em>JavaWeb</em><em>的Servlet和Filter：</em></h6>  <p>可以说JavaWeb和PHP的实现有着本质的区别，PHP属于解释性语言.不需要在服务器启动的时候就通过一堆的配置去初始化apps而是在任意一个请求到达以后再去加载配置完成来自客户端的请求。ASP和PHP有个非常大的共同点就是不需要预先编译成类似Java的字节码文件，所有的类方法都存在于.PHP文件当中。而在Java里面可以在项目启动时去加载配置到Servlet容器内。在web.xml里面配置一个Servlet或者Filter后可以非常轻松的拦截、过滤来自于客户端的任意后缀请求。在系列2的时候就有提到Servlet，这里再重温一下。</p>  <h6><strong>Servlet</strong><strong>配置：</strong></h6>  <pre><code>&lt;servlet&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;servlet-name&gt;LoginServlet&lt;/servlet-name&gt;</code></pre><br><br><pre><code>&lt;servlet-class&gt;org.javaweb.servlet.LoginServlet&lt;/servlet-class&gt;</code></pre><br><br><pre><code>&lt;/servlet&gt;</code></pre><br><br><pre><code>&lt;servlet-mapping&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;servlet-name&gt;LoginServlet&lt;/servlet-name&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;url-pattern&gt;/servlet/LoginServlet.action&lt;/url-pattern&gt;</code></pre><br><br><pre><code>&lt;/servlet-mapping&gt;</code></pre><br><br><h6><strong>Filter</strong><strong>配置：</strong></h6><br><br><pre><code>&lt;filter&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;filter-name&gt;struts2&lt;/filter-name&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;filter-class&gt;org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter&lt;/filter-class&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;/filter&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;filter-mapping&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;filter-name&gt;struts2&lt;/filter-name&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;url-pattern&gt;/<em>&lt;/url-pattern&gt;</em></code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;/filter-mapping&gt;</code></pre><br><br><p>Filter在JavaWeb当中用来做权限控制再合适不过了，再也不用在每个页面都去做session验证了。假如过滤的url-pattern是/admin/那么所有URI中带有admin的请求都必须经过如下Filter过滤：</p>
 
 <p><a href="http://img.cker.in/JavaWeb5MVC_8EFB/clip_image004.jpg" target="_blank" rel="external"><img title="clip_image004" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="572" alt="clip_image004" src="http://img.cker.in/JavaWeb5MVC_8EFB/clip_image004_thumb.jpg" width="1089" border="0"></a></p>
 
@@ -626,94 +663,352 @@
 
 <pre><code>6</code><code>、&#160; </code><code>实在没办法就打补丁</code></pre>
 
-<pre><code>7</code><code>、&#160; </code><code>终极解决办法可以考虑使用其他MVC</code><code>框架</code></pre>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1040.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1040.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1040.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1040.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
+<pre><code>7</code><code>、&#160; </code><code>终极解决办法可以考虑使用其他MVC</code><code>框架</code></pre>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/1041.seo/">
-        ← 攻击JavaWeb应用 6 -程序架构与代码审计
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/1039.seo/">
-        攻击JavaWeb应用 4 -SQL注入 2 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/Web安全/">Web安全</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/Struts2/">Struts2</a><a href="/tag/MVC/">MVC</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/1041.seo/" title="攻击JavaWeb应用 6 -程序架构与代码审计">
+  <strong>Prev:</strong><br/>
+  <span>
+  攻击JavaWeb应用 6 -程序架构与代码审计</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/1039.seo/"  title="攻击JavaWeb应用 4 -SQL注入 2">
+ <strong>Next:</strong><br/> 
+ <span>攻击JavaWeb应用 4 -SQL注入 2
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-攻击JavaWeb应用 5 -MVC安全" data-title="攻击JavaWeb应用 5 -MVC安全" data-url="http://ha.cker.in/1040.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

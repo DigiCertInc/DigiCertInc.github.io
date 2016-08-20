@@ -1,192 +1,236 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Tag: 大黑阔 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Tag: 大黑阔 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Tag: 大黑阔 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="tag-icon">大黑阔</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T10:12:48.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/大黑阔/'>大黑阔</a>,
-    
-    <a href='/tag/小黑客/'>小黑客</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/502.seo/">政府的数十万设备为什么连小黑客都挡不住</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>嘟嘟的手机铃声，惊扰了我午夜的酣睡，迷迷糊糊中隐约的听到电话中急切的声音：“我们政府网站遭受黑客攻击了”，听到这里我顿时睡意全无，细心的聆听电话那头的情况陈述……。   <br />掌握大致情况后，迅速爬上网络打开受攻击的站点，原来的页面已经被改得面目全非了。在网页的首屏上是一个来回走动的大螃蟹，下面附着一条标语：“老子横行江湖数年，偶而路过，只因最近十分烦躁，特拿此站练手”。 </p>  <p>解决受攻击站点实例 </p>  <p>这种情况只有去查服务器记录，半个小时后，我到了该政府的服务器机房。做的第一件事就是把服务器访问日志下载到自己的笔记本上，(因为习惯，对谁的机器都不放心，只相信自己的)，经过仔细分析日志，发现有人在主站的上传了一个私人论坛。根据经验判断，这个论坛程序是罪魁祸首。于是经过调查，发现论坛是负责维护该站的小李私自放上去的，这个论坛是免费的动网论坛，小李只是做了简单的修改，便把程序上传到服务器。在业内很多人都知道动网=洞网，从日志的分析来看，入侵者就是利用某安全组织刚刚公布的动网上传漏洞，获得了主服务器的控制权。随后删除了论坛程序，还原备份页面，至此恢复了网站的原貌。从踏入机房到恢复站点，只有5分种。   <br />企业网络信息安全面临不解的困惑    <br />此事件引起了政府相关部门领导的高度重视，第二天，他们领导奇怪的问我：我们每年都花几十万的政府采购，更是把网络安全放在了第一位，我们配备的有防火墙，IPS，IDS，为什么这么坚固的城墙就不管用呢，早知道如此，就不去买这些设备了。这个问题也许是很多企业都面临的困惑。 </p>  <p>解惑一：缺乏技术培训，好刀使不到刃上 </p>  <p>其实防火墙、IDS、IPS等硬件防护设备针对某些入侵手段有着很好的效果，只是企业部署后，没有发挥真正的作用。如上面的实例中，我曾检查过防火墙的配置，发现好多设置都是默认状态，竟然连登陆用户名和密码都是出厂默认值。这可以说明网络管理人员缺乏相应技能培训，才会造成很多设备无用武之地的尴尬局面，就好象厨子用青龙偃月刀切菜一样，同样一把刀，放在厨子手里只能切菜，而放在关羽手里则能过五关斩六将。所以，有了好设备不等于有了安全，需要把设备进行合理的配置才能发挥它们应有的性能。很多企业显然把这些技术工作交给了集成商和厂家来完成。从资金投入角度考虑，这样的做法非常适合中小企业。但政府的中心机构和大型企业不缺的就是资金，想要实现网络信息安全，这些大型企业就一定要有自己的运行维护力量，只有自己的东西自己管才能真正的确保第一道安全 防线。 </p>  <p>解惑二：没有安全意识，安全将无从谈起 </p>  <p>从上面的实例中，我们不难看出，企业员工的安全意识决定了企业网络安全的健壮性。这一点对网络管理人员来说，尤其重要。作为单位的网络管理者如果小李懂得起码的安全常识，就不会把免费的论坛放到服务器上；如果小李了解安全的重要性，也不会去下载这样的程序，起码不会在企业网络内下载。这些都是员工缺乏安全意识的表现。   <br />再举个实例：某集团也曾打来求助电话，他们的企业网络频繁的掉线，几乎处于瘫痪状态。我在检查了设备信息和配置后，发现一台华为交换机，全部都是死包，凭借经验初步判断应该是遭到了蠕虫攻击，但这还需要事实来证明。捕获数据包后，经过分析，确定就是蠕虫病毒惹的祸。而查找毒源却遇到了麻烦，根据数据包的分析，很快能判断出毒源机器的IP与MAC地址，但问管理人员这是哪台机器时，他们没有一个人知道的。这就只能从交换机处下手，但让我郁闷的事情又来了，由于机房管理混乱，防静电地板上的烟头随处可见，很多交换机上都没有网线标签，布线也极乱无比，为了排查这台机器，我们3个人用笔一个一个记录，花了整整2个小时才把问题机 找到。在这个问题机上发现了大量的病毒，还有很多成人片。    <br />无论政府还是企业都应该有相应的安全管理制度和规范，这些是指导员工行为的重要准则。如 果该政府相关部门规定不允许下载任何程序，或是只限网络管理人员下载，那政府站点的小李下载带有安全隐患程序的情况就不会出现；如果规范机房的管理和使用，那我也不会在集团公司浪费2个小时整理线缆，如果规范的操作流程守则，如果有规范的网络安全制度，如果……，有这些如果也会黑客入侵攻击增加相当大的 难度。这也印证了不知道谁说的那句古话：安全是三分技术，七分管理。 </p>  <p>解惑三：如何规范配置网络安全设备，制定合理的安全策略 </p>  <p>1、要规范防火墙的安全策略，如增加防火墙的规则匹配，有些防火墙属于嵌入式开发的设备，这就需要熟练使用linux命令和dos 命令，还有一些防火墙需要按自身情况具体配置，如Cisco的PIX防火墙，H3C的SecPath防火墙等。   <br />2、然后最好能在网络中计划分出vlan和绝对独立的安全域，即使有病毒蔓延，也不至于感染整个网络。    <br />3、对于工作站，要启用组策略，并且在系统里面把自动播放给完全禁用，根据目前流行的蠕虫攻击和移动存储设备感染来看，多数都是自动访问存储设备的时造成了间接感染。删除guest帐号，定期更改密码等基本安全维护策略。最好能绑定工作站的mac地址和ip地址，具体落实到一机一人，达到规范使用计算机的目的。    <br />4、把个人移动存储设备与企业办公用存储设备分开使用。人手一个，专人专用，定期杀毒。    <br />其实从国内信息安全的整体情况看，企业和政府依然存在很大的安全隐患，就是买了再好的网络安全设备，没有人调试和配置，那也是形同虚设，网络管理不规范，员工的安全意识不够高，都可能造成严重的恶果。 </p>
-      
-      </p>
-      
-      <p>
-          <a href="/502.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T09:37:14.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/大黑阔/'>大黑阔</a>,
-    
-    <a href='/tag/黑站/'>黑站</a>,
-    
-    <a href='/tag/日站/'>日站</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/481.seo/">历时5个月拿下PR7网站思路</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>历时5个月拿下PR7网站思路</p>  <p>作者：xxbing </p>  <p>在腾讯2009年安全技术峰会上我曾经提出一个观点：墨菲定律：如果它能够被黑阔攻破，它就将被攻破。对于一个黑阔来说，他要黑一个企业，仅仅是时间上的问题，总之是成本上的问题，比如有个盗号集团在支持他，他说我给你一年时间你把这个企业黑了，搞定了就给你多少钱。一年时间我相信只要他有这个毅力，基本上在座的公司逃不过这一劫。</p>  <p>这个观点看似有点哗众取宠，但它确实是一个不争的事实。XXB同学就上演了5个月日掉PR7网站的LIVE秀。</p>  <p>我总结下教训：</p>  <p>UDEV补丁没打，估计其他几个内核补丁肯定也没打</p>  <p><a name="tpc">2</a>、主机安全需要有基线，PHP安全模式得打开    <br />3、被安装了ssh后门却蒙在鼓里    <br />这三点看似简单，但却知难行易；建立完善的主机入侵防御体系，技术对抗很重要，但技术对抗只是一个小问题。引用caoz的一段话：    <br />1.技术是为了解决问题，而不是制造问题。    <br />2.把握目标去应用技术，而不是为了技术去虚构目标。（包子注：技术狂人一般喜欢这么做，为了追求自己的满足感，成就感，虚构目标，虚构需求）    <br />3.用户需求（通常是潜在需求）决定技术和产品方向，技术反过来刺激需求的显现和增长。    <br />4.技术仍然非常重要，非常有价值，但是前提是，它要用到正确的方向上。    <br />【文中网址都已和谐！该站点网址用<a href="http://www.xxbing.com/">ha.cker.in</a>代替】    <br />美女同学要看言情小说，<a href="http://www.xxbing.com/">ha.cker.in</a> 的言情小说要收钱，于是就帮她找找“空子”！    <br />在<a href="http://tool.chinaz.com/">http://tool.chinaz.com/</a>查了一下<a href="http://www.xxbing.com/">ha.cker.in</a>信息，日IP访问量快达到40W了。很牛逼呀。全站采用php构架。nignx服务器。好了，废话结束。进入正题。    <br />首先我注册了一个账号，然后我登陆作者平台，申请成为作者需要提交自己的原创作品。于是我上baidu搜索了一本很多年前的小说，提交了几章，等待审核。    <br />几天后，成功的申请成为作者。经过1-2个小时的手工测试，成功的在管理作品处寻到一个注射点。    <br />类似： book.php?bookid=123    <br />我提交 book.php?bookid=123 and 1=1 [正常]    <br />book.php?bookid=124-1 [正常]    <br />book.php?bookid=123 and 1=2 [错误]提示权限不足。    <br />book.php?bookid=124 [错误]提示权限不足。    <br />可以判断这里是注射点了，为什么会提示权限不足，应该是每个bookid代表一本图书，有其他字段控制着作者信息，防止非法编辑他人作品。    <br />用order判断出有53个字段。    <br />book.php?bookid=123 and 1=2 union select 1,2,3,……,52,53# 提示：[错误]提示权限不足。    <br />绝对是其中某个位置的数字不正确，导致系统判断我编辑了其他人的图书。于是我把注射点丢到pangolin里面暴力跑字段。成功的跑出53个字段名出来。（一个字符一个字符的暴力猜解。跑了很久）    <br />然后提交： book.php?bookid=123 and 1=2 union select 字段名1,字段名1,字段名3,……,字段名52,字段名53# 成功显示正常页面。    <br />接着我把字段名1、字段名2等等，一个个替换成数字，这个过程中一直显示正常页面。终于到了字段名13的时候，出错了，提示权限不足。那就可以跑了。    <br />book.php?bookid=123 and 1=2 union select 1,2,3,…,字段名13,…,52,53# 正常页面，页面上出现我定义的数字。    <br />接下来就丢到WSI 5.1里面跑数据。很可惜，数据库里面只有一些作品内容，也有编辑用户表，所有编辑账号密码都有，但是找不到后台。    <br />于是我开始寻找绝对路径，也找了N久，后来被我在上传图片处找到。上传一张图片，系统会自动生成该图片的缩略图，我上传一个文本图片，处理的时候出错了。爆出了绝对路径。    <br />[/opt/data/www/xxx.cn/common/include/upfile.php]    <br />用load_file能读出来。顺藤摸瓜，成功读到Mysql账号密码。    <br />mysql账号： Myuser    <br />密码： (Myuser.pass)</p>
-      
-      </p>
-      
-      <p>
-          <a href="/481.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/502.seo/" title="政府的数十万设备为什么连小黑客都挡不住" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-05-18T07:34:47.000Z" itemprop="datePublished">
-          2012-05-18
-      </time>
+    <h1 itemprop="name">政府的数十万设备为什么连小黑客都挡不住</h1>
     
-    
-    | 
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/田众和/'>田众和</a>,
-    
-    <a href='/tag/大黑阔/'>大黑阔</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/437.seo/">黑掉田众和全过程</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>第一次入侵</p>  <p>话说那个田众和炒的可谓沸沸扬扬，看了腾讯拍的采访，发现了许多可疑点，</p>  <p>视频字幕出现了雷人的一幕…（如图1）</p>  <p><a href="http://xider-wordpress.stor.sinaapp.com/uploads/2012/02/1.bmp"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="黑掉田众和" border="0" alt="黑掉田众和" src="http://img.cker.in/5a733781cedb_140B6/clip_image001.png" width="500" height="377" /></a>     <br />懂技术的人都知道田众和所说的其实是js、css、ajax，这三种网站建设中的前端语言，而字幕居然写成这样，可见制作视频的人从策划到编辑根本就没有 一个是懂得网络技术的人，因此田众和说什么对于这些不懂的视频制作人员来说都是可信的，因为他们不懂，他们的目标只是做出来一个网络热门话题，可奇怪的是 这个视频居然没有让田众和本人看一下吗？</p>  <p>小弟我看完这片子，感慨啊，12岁的小盆友，15天写出PE系统，这严重打击了我们这些学技术的叉子们….还说什么精通php，c语言。这孩子一看就是个忽悠…</p>  <p>看完片子后，立即打开那传说中的时代网络工作室，对，是php做的。嗯，也没什么低级注入，看到底部赫赫大字，网页程序by小田…我心想，难道我多疑了。这个是他写的？</p>  <p>不管，先扫一下后台再说…拿出我的6.5M的wwwscan，开始扫…..</p>  <p><a href="http://xider-wordpress.stor.sinaapp.com/uploads/2012/02/%E5%9B%BE%E7%89%872.bmp"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="黑掉田众和" border="0" alt="黑掉田众和" src="http://img.cker.in/5a733781cedb_140B6/clip_image002.png" width="561" height="370" /></a></p>  <p>这不是wp的目录吗（如图2）？赶紧去wp默认后台…</p>
-      
-      </p>
-      
-      <p>
-          <a href="/437.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2012-06-12T10:12:48.000Z" itemprop="datePublished">2012-06-12</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
+    <a href="/481.seo/" title="历时5个月拿下PR7网站思路" itemprop="url">
+  
+    <h1 itemprop="name">历时5个月拿下PR7网站思路</h1>
     
-    <span class="page-number">Page 1 of 1</span>
+    <time datetime="2012-06-12T09:37:14.000Z" itemprop="datePublished">2012-06-12</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/437.seo/" title="黑掉田众和全过程" itemprop="url">
+  
+    <h1 itemprop="name">黑掉田众和全过程</h1>
     
-  </nav>
-</main>
+    <time datetime="2012-05-18T07:34:47.000Z" itemprop="datePublished">2012-05-18</time>
+  </a>
+</section>
 
 
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

@@ -1,295 +1,260 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Archives: 2016/4 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Archives: 2016/4 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Archives: 2016/4 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="archive-icon">2016/4</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2016-04-26T23:12:44.000Z" itemprop="datePublished">
-          2016-04-27
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透测试/'>渗透测试</a>,
-    
-    <a href='/tag/Facebook/'>Facebook</a>,
-    
-    <a href='/tag/社工库/'>社工库</a>,
-    
-    <a href='/tag/SSL-VPN/'>SSL VPN</a>,
-    
-    <a href='/tag/Auditd/'>Auditd</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1138.seo/">渗透Facebook的思路与发现</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><b>写在故事之前</b></p>  <p>身为一位<a href="http://ha.cker.in/tag/渗透测试" target="_blank">渗透测试</a>人员，比起 Client Side 的弱点我更喜欢 Server Side 的攻击，能够直接的控制服务器、获得权限操作 SHELL 才爽 &lt;(￣︶￣)&gt;</p>  <p>当然一次完美的渗透任何形式的弱点都不可小觑，在实际渗透时偶尔还是需要些 Client Side 弱点组合可以更完美的控制服务器，但是在寻找弱点时我本身还是先偏向以可直接进入服务器的方式来去寻找风险高、能长驱直入的弱点。</p>  <p>随着 <a href="http://ha.cker.in/tag/Facebook" target="_blank">Facebook</a> 在世界上越来越火红、用户量越来越多，一直以来都有想要尝试看看的想法，恰巧 <a href="http://ha.cker.in/tag/Facebook" target="_blank">Facebook</a> 在 2012 年开始有了 <a href="https://www.facebook.com/whitehat/">Bug Bounty</a> 奖金猎人的机制让我更跃跃欲试。</p>  <p>一般如由渗透的角度来说习惯性都会从收集数据、侦查开始，首先界定出目标在网络上的 “范围” 有多大，姑且可以评估一下从何处比较有机会下手。例如:</p>  <p>Google Hacking 到什么数据?</p>  <p>用了几个 B 段的 IP ? C 段的 IP ?</p>  <p>Whois? Reverse Whois?</p>  <p>用了什么域名? 内部使用的域名? 接着做子域名的猜测、扫描</p>  <p>公司平常爱用什么样技术、设备?</p>  <p>在 Github, Pastebin 上是否有泄漏什么信息?</p>  <p>…etc</p>  <p>当然 Bug Bounty 并不是让你无限制的攻击，将所搜集到的范围与 Bug Bounty 所允许的范围做交集后才是你真正可以去尝试的目标。</p>  <p>一般来说大公司在渗透中比较容易出现的问题点这里举几个例子来探讨</p>  <ol>   <li>对多数大公司而言，&quot;<b>网络边界</b>”是比较难顾及、容易出现问题的一块，当公司规模越大，同时拥有数千、数万台机器在线，网管很难顾及到每台机器。在攻防里，防守要防的是一个面，但攻击只需 找个一个点就可以突破，所以防守方相对处于弱势，攻击者只要找到一台位于网络边界的机器入侵进去就可以开始在内网进行渗透了!</li>    <li>对于 “<b>连网设备</b>” 的安全意识相对薄弱，由于连网设备通常不会提供 SHELL 给管理员做进一步的操作，只能由设备本身所提供的接口设定，所以通常对于设备的防御都是从网络层来抵挡，但如遇到设备本身的 0-Day 或者是 1-Day 可能连被入侵了都不自觉。</li>    <li>人的安全，随着 “<a href="http://ha.cker.in/tag/社工库" target="_blank">社工库</a><b></b>” 的崛起，有时可以让一次渗透的流程变得异常简单，从公开数据找出公司员工列表，再从社工库找到可以登入 VPN 的员工密码就可以开始进行内网渗透，尤其当社工库数量越来越多 “<b>量变成质变</b>” 时只要关键人物的密码在社工库中可找到，那企业的安全性就全然突破。</li> </ol>  <p>理所当然在寻找 <a href="http://ha.cker.in/tag/Facebook" target="_blank">Facebook</a> 弱点时会以平常进行渗透的思路进行，在开始搜集数据时除了针对 Facebook 本身域名查询外也对注册信箱进行 Reverse Whois 意外发现了个奇妙的域名名称</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1138.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+  <div class="archiveslist archive-float clearfix">
+   <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">2016年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">2016年04月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">2016年01月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">2015年10月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">2015年09月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">2015年07月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">2015年06月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">2015年05月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">2015年04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">2015年03月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">2015年01月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">2014年12月</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">2014年10月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">2014年09月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">2014年08月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">2014年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">2014年06月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">2014年05月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">2014年04月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">2014年03月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">2014年02月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">2014年01月</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">2013年12月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">2013年11月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">2013年10月</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">2013年09月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">2013年08月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">2013年07月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/06/">2013年06月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">2013年05月</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">2013年04月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">2013年03月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">2013年02月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">2013年01月</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">2012年12月</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">2012年11月</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">2012年10月</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">2012年09月</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">2012年08月</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">2012年07月</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">2012年06月</a><span class="archive-list-count">58</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">2012年05月</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">2012年04月</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">2012年03月</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">2012年02月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">2012年01月</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">2011年12月</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">2011年11月</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">2011年10月</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/09/">2011年09月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">2011年08月</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">2011年07月</a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">2011年06月</a><span class="archive-list-count">7</span></li></ul>
+ </div>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2016-04-20T18:02:09.000Z" itemprop="datePublished">
-          2016-04-21
-      </time>
-    
-    
-    | 
-    <a href='/tag/Tor/'>Tor</a>,
-    
-    <a href='/tag/Hacking-Team/'>Hacking Team</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1137.seo/">渗透Hacking Team过程</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>0x00 Hacking Team</p>  <p><a href="http://ha.cker.in/tag/Hacking Team" target="_blank">Hacking Team</a> 是一个协助政府hack和监视记者、政治家等的公司（详见段尾链接），当然有时候也会监控恐怖分子和罪犯。其CEO——Vincenzetti——很喜欢在他的邮件末尾加上一句纳粹标语“boia chi molla” (放弃者该死)，同时，他一直宣称拥有可以解决“Tor 问题”和“暗网问题”的技术。但是我一直很怀疑他的那种技术的有效性。</p>  <h3>0x01 小心点</h3>  <p>很不幸，我们的世界是颠倒的，你越做坏事越富有，越做好事反而被抓。但幸运的是，多亏了人们的努力，比如&quot;Tor项目&quot;，你可以通过以下指导来防止被人抓住把柄：</p>  <p>1) 加密的你的硬盘</p>  <p>如果有一天你做的事被发现了，警察叔叔带走了你的电脑，尽管被发现就意味着你已经犯了很多错误，但是加密硬盘会比不加密要好得多。</p>  <p>2) 使用虚拟机并且把所有的网络都走Tor</p>  <p>这样就实现了两点，第一、你的所有流量都匿名了。第二、把你的个人生活和匿名操作分开了，防止两种生活互相混合。</p>  <p>3) 不要直接连接<a href="http://ha.cker.in/tag/Tor" target="_blank">Tor</a>网络 (可选项)</p>  <p>Tor不是万能药，有可能你在连接到Tor网络的时候刚好在做坏事。也可能你在退出Tor网络的时候你同样在做坏事。最好还是用别人的wifi，或者连接vpn或者中转机子，然后连接Tor匿名网络。</p>  <h3>0x02 搜集信息</h3>  <p>尽管这个过程非常无聊，但却是非常重要，目标越大越多，漏洞出现的几率就越大。</p>  <h6>1 技术方面的信息</h6>  <p>主要使用以下各种方面的信息</p>  <p>1)Google</p>  <p>如果使用合适的语句，你可以发现大量的意外收获。</p>  <p>2)二级域名搜集</p>  <p>一般来说，域名大部分都是又第三方公司提供的，你需要寻找到其域名的IP范围。当然，有时候会存在DNS域传送漏洞，这样就更好搜集信息了。</p>  <p>3)Whois查询和反向查询</p>  <p>通过各种Whois查询和其ip范围的域名反向查询，你也可以获得很多其他子域名，据我所知，没有免费的反向查询，除非谷歌hack。</p>  <p>4)端口扫描和指纹提取</p>  <p>和其他的技术不同，你可以跟公司的员工聊天。我把它作为可选项放在这里因为它不是一种攻击方式，只是搜集信息的一种方式。在扫描的过程中，该业务的入侵检测系统可能会告警，但是不用担心，整个Inernet都经常会扫描自身。</p>  <p>对于扫描来说，<a href="http://ha.cker.in/tag/nmap" target="_blank">Nmap</a>是再合适不过了，它也可以识别各种服务的指纹。但是对于大规模网络来说，zmap和masscan更快速。WhatWeb和BlindElephant 适合抓取web指纹。</p>  <h6>2 社工信息</h6>  <p>对于社会工程学来说，搜集员工信息非常重要，包括他们的各自的角色，合约，使用的操作系统，浏览器，插件，软件等。一般使用如下途径：</p>  <p>1)Google</p>  <p>这也是最有用的工具。</p>  <p>2)theHarvester y recon-ng</p>  <p>我在上一个内容中就提到了这些东西，但是他们其实还有更多的用处。你可以自动快速地找到大量的信息，这也值得你去花时间阅读官方文档。</p>  <p>3)LinkedIn</p>  <p>你可以通过这个软件获取到大量的雇员信息，内部人员总是倾向于与他人交流。</p>  <p>4)Data.com</p>  <p>它就像拼图一样把各种信息整合在一起。</p>  <p>5)File metadata</p>  <p>你可以在他们公司发布的各种文档中找到大量有用的信息。</p>  <h3>0x03 打入内网</h3>  <p>进入内网的方式有很多种。我打入HT内网的方式是不常见的，而且比平时花的精力要多得多，所以我在这里提一下进入内网的两种常见的方式，这两种也是我推荐的。</p>  <h6>1 社工</h6>  <p>社会工程学，尤其是鱼叉式网络钓鱼，是各种渗透技巧中比较可靠的一种。更多技巧请移步段尾链接。我不想尝试对HT进行钓鱼攻击，因为这种攻击方式对他们来说太常见了，所以他们会非常警惕。既增加了难度，又容易被发现我的意图。 </p>  <p><a href="http://www.hacknbytes.com/2016/01/apt-pentest-con-empire.html">http://www.hacknbytes.com/2016/01/apt-pentest-con-empire.html</a></p>  <p><a href="http://blog.cobaltstrike.com/2015/09/30/advanced-threat-tactics-course-and-notes/">http://blog.cobaltstrike.com/2015/09/30/advanced-threat-tactics-course-and-notes/</a></p>  <p><a href="http://www.netcomunity.com/lestertheteacher/doc/ingsocial1.pdf">http://www.netcomunity.com/lestertheteacher/doc/ingsocial1.pdf</a></p>  <h6>2 购买权限</h6>  <p>多亏了勤劳的俄罗斯人和他们的渗透工具 “traffic sellers”和“bot herders”，许多公司都已经有了被入侵的电脑。几乎所有世界五百强的大型网络中都存在一些被入侵的机器。但是Hacking Team是个小公司，他们的大多数员工都是信息安全专家，所以他们内部存在被入侵机器的可能性非常小。</p>  <h5>3 技术入侵</h5>  <p>Gamma公司被黑以后，我就已经描述了一个寻找漏洞的过程：</p>  <pre><a href="http://pastebin.com/raw.php?i=cRYvK4jb">http://pastebin.com/raw.php?i=cRYvK4jb</a></pre><br><br><p>Hacking Team有一个段的公网IP:</p>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
 
-<pre>inetnum:&#160;&#160;&#160;&#160;&#160;&#160;&#160; 93.62.139.32 - 93.62.139.47</pre>
-
-<pre>descr:&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; HT public subnet</pre>
-
-<p>他们的网络有少量暴露在外网，比如不像Gamma公司，他们的公网地址都需要证书才能连接。HT的公网服务器主要有一个Joomla的博客(joomscan没有扫出来有用的东西)，一个邮件服务器，几个路由，两个VPN，一个垃圾邮箱过滤系统。所以我现在只能通过以下方式获取权限：发现一个Joomla的0day，或者postfix的0day，或者他们其他一个系统的0day。嵌入式系统的0day对于我来说比较靠谱点，于是我花了两周的时间，通过逆向发现了一个命令执行0day。这个0day至今仍然没有修复，所以我也不方便给出更多细节。</p>
-
-<h3>0x04 事前准备</h3>
-
-<p>在正式攻击之前，我做了很多测试和准备，在硬件里面写入了一个后门，并且在嵌入式系统上编译了各种各样的工具：</p>
-
-<p>1) busybox</p>
-
-<p>这个工具大多数的Unix系机器都没有。</p>
-
-<p>2)nmap</p>
-
-<p>扫描工具</p>
-
-<p>3)Responder.py</p>
-
-<p>内网中间人攻击神器</p>
-
-<p>4)python</p>
-
-<p>这个必须得有</p>
-
-<p>5)tcpdump</p>
-
-<p>抓包</p>
-
-<p>6)dsniff</p>
-
-<p>在内网中嗅探各种密码之类的，我更喜欢用HT的ettercap，但是编译起来很麻烦。</p>
-
-<p>7)socat</p>
-
-<p>NC的升级版，主要端口转发</p>
-
-<p>8)screen</p>
-
-<p>可以让你多窗口执行命令，其实也不是太需要</p>
-
-<p>9)socks5代理主机</p>
-
-<p>加上proxychains，插入内网</p>
-
-<p>10)tgcd</p>
-
-<p>通过转发端口，穿透防火墙</p>
-
-<p>最坑的事儿就是你把后门和工具部署上去之后，系统挂了，然后运维上去一看，全完了。所以我花了一周的时间在最后的部署之前测试我的各种后门和exp。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1137.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2016-04-07T18:44:39.000Z" itemprop="datePublished">
-          2016-04-08
-      </time>
-    
-</span>
-      <h2 class="post-title"><a href="/1136.seo/">特殊条件数据传输</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        0x00 借问酒家    有什么东西想拿却拿不出来？不妨开开脑洞。    缘起是2014年底的时候看到金山做的在线恶意代码分析系统“Fire eye”（https://fireeye.ijinshan.com/）。感觉很新鲜，丢了自己攒的几个样本丢了上去，分析的结果还算可以。从分析报告来看，它也是一类沙箱检测工具，把样本丢到虚拟机里跑，再在虚拟机内外布控，监测样本的各种行为，最后生成分析报告并给出判断是否恶意样本，分析报告里还包含样本运
-      
-      </p>
-      
-      <p>
-          <a href="/1136.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1138.seo/" title="渗透Facebook的思路与发现" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2016-04-06T17:18:43.000Z" itemprop="datePublished">
-          2016-04-07
-      </time>
+    <h1 itemprop="name">渗透Facebook的思路与发现</h1>
     
-    
-    | 
-    <a href='/tag/BlueStacks/'>BlueStacks</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1135.seo/">Android APP安全测试入门</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><b>背景</b></p>  <p>最近这两年移动端真是非常火，每个单位或多或少都会有那么几款App，对于我们Web安全攻城师来说，App安全也需要或多或少的了解一些。年初单位来了一位对App安全略有研究的小伙伴，某日闲来无事教了笔者几招，分享给大家。有句古语:”工欲善其事，必先利其器”，我们要研究App安全，没有几款高大上的神器是会非常麻烦的，因此本文主要给大家分享一下笔者学到的一些基础知识，主要是一些移动端测试辅助工具的使用。</p>  <p><b>模拟器</b></p>  <p>模拟器笔者经常使用有两款，一款是<a href="http://ha.cker.in/tag/BlueStacks" target="_blank">BlueStacks</a>，这款个人感觉是做的非常不错的，一般安装操作App非常流畅，不会有卡死的情况。另外一款就是SDK模拟器(Software Development Kit)了，这款是特别高大上的，类似虚拟机vm一样，可以建立多个虚拟机，安装不同的android系统。</p>  <p><b>BlueStacks</b></p>  <p>下载地址：</p>  <p><a href="http://www.bluestacks.net.cn/Download/">http://www.bluestacks.net.cn/Download/</a></p>  <p>安装的时候会提示安装”给力助手”，给力助手是辅助操作的，可以安装电脑上下载的app安装包到模拟器，也可以卸载已经安装的，还有很多针对模拟器的设置功能，如图：</p>  <p><a href="http://img.cker.in/AndroidAPP_DE31/clip_image001.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/AndroidAPP_DE31/clip_image001_thumb.jpg" width="872" height="542" /></a></p>  <p>BlueStacks安装之后，安装APP，打开App界面如图：</p>  <p><a href="http://img.cker.in/AndroidAPP_DE31/clip_image002.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/AndroidAPP_DE31/clip_image002_thumb.jpg" width="494" height="768" /></a></p>  <p>功能方面使用都非常简单，本文就不做介绍了。</p>  <p><b>Software Development Kit</b></p>  <p>下载地址：</p>  <p><a href="http://developer.android.com/sdk/index.html">http://developer.android.com/sdk/index.html</a></p>  <p>下载之后打开包中的eclipse，然后进行模拟器Android镜像的下载，包中自带的镜像是Android 5.0的镜像，建议下载老版本的，方便测试App，新版的镜像部分App在安装的过程中可能会有不兼容的情况。   <br />SDK Android镜像的下载如下图所示：</p>  <p><a href="http://img.cker.in/AndroidAPP_DE31/clip_image003.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/AndroidAPP_DE31/clip_image003_thumb.jpg" width="945" height="721" /></a></p>  <p></p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1135.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2016-04-26T23:12:44.000Z" itemprop="datePublished">2016-04-27</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2016-04-05T00:31:06.000Z" itemprop="datePublished">
-          2016-04-05
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透测试/'>渗透测试</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1134.seo/">渗透测试中上传文件到目标系统的四种姿势</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>&#160;</p>  <p><b>#Windows </b><b>的 debug 方法</b></p>  <p>Windows 有一个程序叫 debug，这个程序可以将十六进制的机器码转换为可执行的文件。Windows 的 debug 方法可以先将文件转化为十六进制，然后通过非交互式 shell 在目标系统上 echo 出这个文件，最后使用 debug 转换十六进制并执行。Kali 里有一个名为 exe2bat 的程序位于 /usr/share/windows-binaries。</p>  <p>我们可以这样运行</p>  <p>root@kali:/usr/share/windows-binaries# wine exe2bat.exe nc.exe nc2.txt</p>  <p>Finished: nc.exe &gt; nc2.txt</p>  <p>root@kali:/usr/share/windows-binaries#</p>  <p>这条命令会生成一个 txt 文档，其中内容类似如下：</p>  <p>echo 6e 76 69 72 6f 6e 6d 65 6e 74 53 74 72 69 6e 67 73 57 00 00 a3 00 47 65 74 43 50 49 6e 66 6f 00 9d 00 47 65 74 41 43 50 00 00 09 01 47 65 74 4f 45 4d 43 50 00 00 1e 00 43 6f 6d 70 61 72 65 53 74 72 69 6e 6$</p>  <p>echo e e780 &gt;&gt;123.hex</p>  <p>echo 6c 65 00 00 19 02 53 65 74 46 69 6c 65 50 6f 69 6e 74 65 72 00 00 2b 01 47 65 74 53 74 72 69 6e 67 54 79 70 65 41 00 00 2e 01 47 65 74 53 74 72 69 6e 67 54 79 70 65 57 00 00 16 01 47 65 74 50 72 6f 63 41 6$</p>  <p>echo e e800 &gt;&gt;123.hex</p>  <p>echo 47 65 74 4e 75 6d 62 65 72 4f 66 43 6f 6e 73 6f 6c 65 49 6e 70 75 74 45 76 65 6e 74 73 00 31 00 43 72 65 61 74 65 46 69 6c 65 41 00 10 02 53 65 74 45 6e 64 4f 66 46 69 6c 65 00 00 8d 01 4c 43 4d 61 70 53 7$</p>  <p>echo e e880 &gt;&gt;123.hex</p>  <p>echo 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 0$</p>  <p>echo e e900 &gt;&gt;123.hex</p>  <p>echo &gt;&gt;123.hex</p>  <p>echo r cx &gt;&gt;123.hex</p>  <p>echo e800 &gt;&gt;123.hex</p>  <p>echo w &gt;&gt;123.hex</p>  <p>echo q &gt;&gt;123.hex</p>  <p>debug&lt;123.hex</p>  <p>copy 1.dll nc.exe</p>  <p>之后我们要做的就是复制文档中所有的内容，粘贴到 Shell 窗口内即可。</p>  <p>0<b>C96</b>:E8E0 00.00 00.00 00.00 00.00 00.00 00.00 00.00 00.00</p>  <p>0<b>C96</b>:E8E8 00.00 00.00 00.00 00.00 00.00 00.00 00.00 00.00</p>  <p>0<b>C96</b>:E8F0 00.00 00.00 00.00 00.00 00.00 00.00 00.00 00.00</p>  <p>0<b>C96</b>:E8F8 00.00 00.00 00.00 00.00 00.00 00.00 00.00 00.00</p>  <p>0<b>C96</b>:E900 <b>EC</b>. 0<b>E</b>. <b>AC</b>.</p>  <p><b>-e</b> <b>e900</b></p>  <p>0<b>C96</b>:E900 <b>EC</b>.</p>  <p><b>EC</b> 0<b>E</b>.e <b>AC</b>.ac</p>  <p><b>-r</b> <b>cx</b></p>  <p><b>CX</b> 0000</p>  <p>:e800</p>  <p><b>-w</b></p>  <p><b>Writing</b> 0<b>E800</b> <b>bytes</b></p>  <p><b>-q</b></p>  <p><b>C</b>:\<b>TRANSF</b>~1&gt;</p>  <p>这样我们的文件就出现在远程的目录里了。</p>  <p>21/10/2015 22:44 &lt;DIR&gt; .</p>  <p>21/10/2015 22:44 &lt;DIR&gt; ..</p>  <p>21/10/2015 22:44 59.392 1.DLL</p>  <p>21/10/2015 22:44 184.270 123.hex</p>  <p>21/10/2015 22:44 59.392 nc.exe</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1134.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1137.seo/" title="渗透Hacking Team过程" itemprop="url">
   
-  <nav class="pagination" role="pagination">
+    <h1 itemprop="name">渗透Hacking Team过程</h1>
     
-    <span class="page-number">Page 1 of 1</span>
+    <time datetime="2016-04-20T18:02:09.000Z" itemprop="datePublished">2016-04-21</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/1136.seo/" title="特殊条件数据传输" itemprop="url">
+  
+    <h1 itemprop="name">特殊条件数据传输</h1>
     
-  </nav>
-</main>
+    <time datetime="2016-04-07T18:44:39.000Z" itemprop="datePublished">2016-04-08</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/1135.seo/" title="Android APP安全测试入门" itemprop="url">
+  
+    <h1 itemprop="name">Android APP安全测试入门</h1>
+    
+    <time datetime="2016-04-06T17:18:43.000Z" itemprop="datePublished">2016-04-07</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/1134.seo/" title="渗透测试中上传文件到目标系统的四种姿势" itemprop="url">
+  
+    <h1 itemprop="name">渗透测试中上传文件到目标系统的四种姿势</h1>
+    
+    <time datetime="2016-04-05T00:31:06.000Z" itemprop="datePublished">2016-04-05</time>
+  </a>
+</section>
 
 
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

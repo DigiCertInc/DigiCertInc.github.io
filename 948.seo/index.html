@@ -1,154 +1,447 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>从Jannock渗透小米科技(xiaomi.com)说起 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>从Jannock渗透小米科技(xiaomi.com)说起 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="过年的时候在家无聊，适逢wooyun开站,于是去看了看，居然看到有人12月份发了小米科技渗透的过程。仔细看了看，非常经典的一次渗透过程，其中注入,上传,社工基本上是无缝结合。现在渗透在外面，有些人看来似乎没有什么技术含量，有些人则认为高不可及，那么从这个渗透的案例，我来解答下相关的技术点。看看大家掌">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="从Jannock渗透小米科技(xiaomi.com)说起 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/948.seo/" title="从Jannock渗透小米科技(xiaomi.com)说起" itemprop="url">从Jannock渗透小米科技(xiaomi.com)说起</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2012-11-24T12:49:46.000Z" itemprop="datePublished">2012-11-24</time>
+    Updated:<time datetime="2016-08-20T11:03:54.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
-
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2012-11-24T12:49:46.000Z" itemprop="datePublished">
-          2012-11-24
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/穿山甲/'>穿山甲</a>,
-    
-    <a href='/tag/盲注/'>盲注</a>
-    
-    
-</span>
-    <h1 class="post-title">从Jannock渗透小米科技(xiaomi.com)说起</h1>
-    <section class="post-content">
-      <p></p><p>过年的时候在家无聊，适逢wooyun开站,于是去看了看，居然看到有人12月份发了小米科技渗透的过程。仔细看了看，非常经典的一次<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a>过程，其中注入,上传,社工基本上是无缝结合。现在渗透在外面，有些人看来似乎没有什么技术含量，有些人则认为高不可及，那么从这个渗透的案例，我来解答下相关的技术点。看看大家掌握了多少。    <br>首先,作者是从<a href="http://xshare.api.xiaomi.com/xShare?do=list2&amp;choice=sms&amp;category=x%27%20and%201=2%20union%20select%201,2,3,host,user,password,7,8,9,0,1,2,3%20from%20mysql.user%23&amp;orderby=m_hot这个注入点开始的。我想SQL注入这个东西，就不用说了，大家可能都比较熟悉。说到这里，随便的提下" target="_blank" rel="external">http://xshare.api.xiaomi.com/xShare?do=list2&amp;choice=sms&amp;category=x%27%20and%201=2%20union%20select%201,2,3,host,user,password,7,8,9,0,1,2,3%20from%20mysql.user%23&amp;orderby=m_hot这个注入点开始的。我想SQL注入这个东西，就不用说了，大家可能都比较熟悉。说到这里，随便的提下</a><a href="http://ha.cker.in/tag/盲注" target="_blank">盲注</a>。上面的注入点，很显然是一个普通的注入点，但如果是一些不显错，甚至是跳转的注入点，需要进行盲注什么的，一般的<a href="http://ha.cker.in/tag/穿山甲" target="_blank">穿山甲</a>之类的可能很难做，推荐sqlmap,或者webinsepct自带的那个SQL注入工具。作者通过这个注入点获取到那些信息.    <br>1.mysql的版本,链接账户,权限,数据库列表,数据库所在路径等等.具体看数据库用户的权限是否够大，他这里是mysql的root用户链接的，所以只要内置函数可以获取的环境都可以获取到。    <br>2.当前库的表,字段,数据等等。    <br>以上两点，是初步可以获取的信息。这些信息直接影响到后面的渗透。这里作者通过mysql的root用户,使用into outfile来导出一个webshell到web目录。    <br>这里要说下，首先你链接的mysql用户必须有file_prv才可以使用into outfile来导出文件，因此这里在后面加固的时候或者说前期进行安全配置的时候，使用什么权限的用户进行数据库链接非常重要。其次,web路径的获取，可以是用load_file来获取。当然,可能有些系统直接通过暴错等就可以获取到web系统的路径。    <br>这里关键点,数据库链接用户的权限过大。    <br>简单来说通过注入点-&gt;mysql的root可以操作文件-&gt;通过load_file等手段获取web应用的物理路径-&gt;通过into outfile导出webshell    <br>到这里,已经有一个webshell了。就是作者提到的<a href="http://xshare.api.xiaomi.com/rso/1.php" target="_blank" rel="external">http://xshare.api.xiaomi.com/rso/1.php</a>    <br>这里我还要说下，还是权限的问题。一般来说，在配置linux服务器的时候，web目录不应该对所有用户都有读写权限的。也就是说，启动mysql服务的那个用户，不应该对web目录可以写的。但是悲剧的是，这种不可写的情况比较少见。    <br>通常有webshell后，我们会作得事，无非是以下几样    <br>1.通过webshell来提权,linux下，应该都会有bash shell的。不管是通过python还是c，还是perl来反弹。当然，还有一些更高级的反弹shell的办法。    <br>2.收集一切可能有用的信息，包括类似数据库数据,数据库链接用户密码,当然可能还有bash_histroy等等，能收集到什么信息，完全靠平时渗透的时候，你掌握了多少知识，所以说渗透的价值也在这里，渗透是有价值的工作！    <br>通过上面的webshell，然后再通过mysql的root用户，作者首先想到的是查看数据库的数据。且好,数据库里残留了老版本的用户库,这个库虽然是遗弃的，但是里面有很多信息仍然非常有用，这时候，社会工程学就开始发挥重大的作用。 </p>  <p>到了这里我们应该注意下，作者想渗透的目标不是这个已经遗弃的服务器，而是他现在在使用的电商站。 </p>  <p>3.由于数据库链接用户是root，作者通过root跨库到残留在服务器上的用户库ucenter。从uc库里，作者通过查询xiaomi.com的域名信息，然后反查注册邮箱，找出了库里用户的密码hash。这步属于社会工程学。 </p>  <p>这里作者有一点没提，discuz的密码hash好像没那么好破，不知道是什么手段。 </p>  <p>通过反查snowhilloldman@gmail.com，作者找了域名管理员的uc库中的用户名，然后破解在此地的密码，社工进入用户gmail邮箱。 </p>  <p>到这里，应该是可以控制用户的域名了，起码可以通过找回密码的方式重新设置域名的A记录。xiaomi.com似乎并没有做什么域名保护~ </p>  <p>4.由于通过找回密码等方式获取域名控制权比较的危险，所以作者进行了下一步的渗透，通过上面的邮箱通讯录，找到了，wanghaizhou@gmail.com这个邮箱。我估计wanghaizhou就是他在UC库里的用户名，因此黑客认定此邮箱是同一个人。还是一样的密码，进入这个gmail里。从这个邮箱里读到了大量的敏感信息，比如服务器密码，内网VPN等等。从而控制到了整个服务器。 </p>  <p>渗透就完成了。 </p>  <p>以上是对作者渗透小米的过程的一个描述，wooyun上也有作者自己写的。我只是添加了一些自己的看法。 </p>  <p>那么就这件事来说，那些地方是小米没有做足功夫的呢？ </p>  <p>1.没有做审计就上线产品。这点是肯定的，不然那么明显的注入点，肯定是不可能出现的。 </p>  <p>2.不用的应用不及时的删除或者限制访问。总认为这个链接我不用了，就没人知道。侥幸心理。 </p>  <p>3.服务器配置不当，应用配置不正确。使用权限过大的用户配置环境。应用环境安全配置，是很重要的一块。现在估计有2/3的安全问题都是出现在配置不当导致的。坦率的说，也是运维做安全的一个悲剧。 </p>  <p>4.多处使用同一个密码，并且在重要业务领域也使用同一个密码。这点很不应该。 </p>  <p>5.在网络上，或者说非控制区域，存储敏感信息。 </p>  <p>总的来说，运维人员犯了所有能犯的错误，安全意识差，黑客只是尽量多的挖掘了这些信息而已！ </p>  <p>惭愧的说，我之前也尝试渗透过小米，只是没有找到这个注入的入口点。这是比较关键的一点。</p> 原文 <a href="http://www.unshadow.com/?p=121" target="_blank" rel="external">http://www.unshadow.com/?p=121</a><p></p>
-
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/948.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/948.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/948.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/948.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/949.seo/">
-        ← 链路劫持攻击一二三
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/947.seo/">
-        小米科技成功渗透进内部网络 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p></p><p>过年的时候在家无聊，适逢wooyun开站,于是去看了看，居然看到有人12月份发了小米科技渗透的过程。仔细看了看，非常经典的一次<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a>过程，其中注入,上传,社工基本上是无缝结合。现在渗透在外面，有些人看来似乎没有什么技术含量，有些人则认为高不可及，那么从这个渗透的案例，我来解答下相关的技术点。看看大家掌握了多少。    <br>首先,作者是从<a href="http://xshare.api.xiaomi.com/xShare?do=list2&amp;choice=sms&amp;category=x%27%20and%201=2%20union%20select%201,2,3,host,user,password,7,8,9,0,1,2,3%20from%20mysql.user%23&amp;orderby=m_hot这个注入点开始的。我想SQL注入这个东西，就不用说了，大家可能都比较熟悉。说到这里，随便的提下" target="_blank" rel="external">http://xshare.api.xiaomi.com/xShare?do=list2&amp;choice=sms&amp;category=x%27%20and%201=2%20union%20select%201,2,3,host,user,password,7,8,9,0,1,2,3%20from%20mysql.user%23&amp;orderby=m_hot这个注入点开始的。我想SQL注入这个东西，就不用说了，大家可能都比较熟悉。说到这里，随便的提下</a><a href="http://ha.cker.in/tag/盲注" target="_blank">盲注</a>。上面的注入点，很显然是一个普通的注入点，但如果是一些不显错，甚至是跳转的注入点，需要进行盲注什么的，一般的<a href="http://ha.cker.in/tag/穿山甲" target="_blank">穿山甲</a>之类的可能很难做，推荐sqlmap,或者webinsepct自带的那个SQL注入工具。作者通过这个注入点获取到那些信息.    <br>1.mysql的版本,链接账户,权限,数据库列表,数据库所在路径等等.具体看数据库用户的权限是否够大，他这里是mysql的root用户链接的，所以只要内置函数可以获取的环境都可以获取到。    <br>2.当前库的表,字段,数据等等。    <br>以上两点，是初步可以获取的信息。这些信息直接影响到后面的渗透。这里作者通过mysql的root用户,使用into outfile来导出一个webshell到web目录。    <br>这里要说下，首先你链接的mysql用户必须有file_prv才可以使用into outfile来导出文件，因此这里在后面加固的时候或者说前期进行安全配置的时候，使用什么权限的用户进行数据库链接非常重要。其次,web路径的获取，可以是用load_file来获取。当然,可能有些系统直接通过暴错等就可以获取到web系统的路径。    <br>这里关键点,数据库链接用户的权限过大。    <br>简单来说通过注入点-&gt;mysql的root可以操作文件-&gt;通过load_file等手段获取web应用的物理路径-&gt;通过into outfile导出webshell    <br>到这里,已经有一个webshell了。就是作者提到的<a href="http://xshare.api.xiaomi.com/rso/1.php" target="_blank" rel="external">http://xshare.api.xiaomi.com/rso/1.php</a>    <br>这里我还要说下，还是权限的问题。一般来说，在配置linux服务器的时候，web目录不应该对所有用户都有读写权限的。也就是说，启动mysql服务的那个用户，不应该对web目录可以写的。但是悲剧的是，这种不可写的情况比较少见。    <br>通常有webshell后，我们会作得事，无非是以下几样    <br>1.通过webshell来提权,linux下，应该都会有bash shell的。不管是通过python还是c，还是perl来反弹。当然，还有一些更高级的反弹shell的办法。    <br>2.收集一切可能有用的信息，包括类似数据库数据,数据库链接用户密码,当然可能还有bash_histroy等等，能收集到什么信息，完全靠平时渗透的时候，你掌握了多少知识，所以说渗透的价值也在这里，渗透是有价值的工作！    <br>通过上面的webshell，然后再通过mysql的root用户，作者首先想到的是查看数据库的数据。且好,数据库里残留了老版本的用户库,这个库虽然是遗弃的，但是里面有很多信息仍然非常有用，这时候，社会工程学就开始发挥重大的作用。 </p>  <p>到了这里我们应该注意下，作者想渗透的目标不是这个已经遗弃的服务器，而是他现在在使用的电商站。 </p>  <p>3.由于数据库链接用户是root，作者通过root跨库到残留在服务器上的用户库ucenter。从uc库里，作者通过查询xiaomi.com的域名信息，然后反查注册邮箱，找出了库里用户的密码hash。这步属于社会工程学。 </p>  <p>这里作者有一点没提，discuz的密码hash好像没那么好破，不知道是什么手段。 </p>  <p>通过反查snowhilloldman@gmail.com，作者找了域名管理员的uc库中的用户名，然后破解在此地的密码，社工进入用户gmail邮箱。 </p>  <p>到这里，应该是可以控制用户的域名了，起码可以通过找回密码的方式重新设置域名的A记录。xiaomi.com似乎并没有做什么域名保护~ </p>  <p>4.由于通过找回密码等方式获取域名控制权比较的危险，所以作者进行了下一步的渗透，通过上面的邮箱通讯录，找到了，wanghaizhou@gmail.com这个邮箱。我估计wanghaizhou就是他在UC库里的用户名，因此黑客认定此邮箱是同一个人。还是一样的密码，进入这个gmail里。从这个邮箱里读到了大量的敏感信息，比如服务器密码，内网VPN等等。从而控制到了整个服务器。 </p>  <p>渗透就完成了。 </p>  <p>以上是对作者渗透小米的过程的一个描述，wooyun上也有作者自己写的。我只是添加了一些自己的看法。 </p>  <p>那么就这件事来说，那些地方是小米没有做足功夫的呢？ </p>  <p>1.没有做审计就上线产品。这点是肯定的，不然那么明显的注入点，肯定是不可能出现的。 </p>  <p>2.不用的应用不及时的删除或者限制访问。总认为这个链接我不用了，就没人知道。侥幸心理。 </p>  <p>3.服务器配置不当，应用配置不正确。使用权限过大的用户配置环境。应用环境安全配置，是很重要的一块。现在估计有2/3的安全问题都是出现在配置不当导致的。坦率的说，也是运维做安全的一个悲剧。 </p>  <p>4.多处使用同一个密码，并且在重要业务领域也使用同一个密码。这点很不应该。 </p>  <p>5.在网络上，或者说非控制区域，存储敏感信息。 </p>  <p>总的来说，运维人员犯了所有能犯的错误，安全意识差，黑客只是尽量多的挖掘了这些信息而已！ </p>  <p>惭愧的说，我之前也尝试渗透过小米，只是没有找到这个注入的入口点。这是比较关键的一点。</p> 原文 <a href="http://www.unshadow.com/?p=121" target="_blank" rel="external">http://www.unshadow.com/?p=121</a><p></p>
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/黑客技巧/">黑客技巧</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/渗透/">渗透</a><a href="/tag/穿山甲/">穿山甲</a><a href="/tag/盲注/">盲注</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/949.seo/" title="链路劫持攻击一二三">
+  <strong>Prev:</strong><br/>
+  <span>
+  链路劫持攻击一二三</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/947.seo/"  title="小米科技成功渗透进内部网络">
+ <strong>Next:</strong><br/> 
+ <span>小米科技成功渗透进内部网络
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-从Jannock渗透小米科技(xiaomi.com)说起" data-title="从Jannock渗透小米科技(xiaomi.com)说起" data-url="http://ha.cker.in/948.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

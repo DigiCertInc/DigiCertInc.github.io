@@ -1,161 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Linux下的六个免费的虚拟主机管理系统 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Linux下的六个免费的虚拟主机管理系统 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="收费的虚拟主机控制面板（比如CPanel，DirectAdmin）由于价格昂贵，花钱买不划算。于是一直在苦苦寻找免费或者破解的类似于DirectAdmin的虚拟主机管理系统,没想到开源界已经产生了如此多优秀的免费的虚拟主机管理系统：ZPanel，web-cp，VHCS，virtualmin，PHPMyWebHosting，SysCP。另外还有Kloxo……">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Linux下的六个免费的虚拟主机管理系统 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/197.seo/" title="Linux下的六个免费的虚拟主机管理系统" itemprop="url">Linux下的六个免费的虚拟主机管理系统</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2011-12-16T03:57:35.000Z" itemprop="datePublished">2011-12-16</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>收费的虚拟主机控制面板（比如CPanel，DirectAdmin）由于价格昂贵，花钱买不划算。于是一直在苦苦寻找免费或者破解的类似于DirectAdmin的虚拟主机管理系统,没想到开源界已经产生了如此多优秀的免费的虚拟主机管理系统：ZPanel，web-cp，VHCS，virtualmin，PHPMyWebHosting，SysCP。另外还有Kloxo……</p><a id="more"></a><p>1. ZPanel – 在Windows下的免费Hosting Panel   <br> ZPanel已经更名为RapidCP，最新版本为RapidCP 3.0    <br> 网址：    <br><a href="http://sourceforge.net/projects/zpanel/" target="_blank" rel="external">http://sourceforge.net/projects/zpanel/</a>    <br><a href="http://www.rapidcp.com/" target="_blank" rel="external">http://www.rapidcp.com/</a>    <br> RapidCP新功能介绍：<a href="http://www.rapidcp.com/features/" target="_blank" rel="external">http://www.rapidcp.com/features/</a>    <br> ZPanel 2.6 is the latest stable release. It is recommended for production environments.    <br> RapidCP 3.0 is the latest beta release. It is intended for testing purposes only.</p>  <p>   <br>2. web-cp – <em>nix的虚拟主机管理    <br> 网址：    <br><a href="http://sourceforge.net/projects/webcp/" target="_blank" rel="external">http://sourceforge.net/projects/webcp/</a>    <br><a href="http://www.web-cp.net/" target="_blank" rel="external">http://www.web-cp.net/</a>    <br> 用PHP－CLI写的一个Web服务器    <br> 支持多种脚本Scripting PHP,sun asp,cf,perl…    <br> 支持shell access    <br> 支持 SSI    <br> 支持.htacess    <br> 支持多种DNS服务 bind,powerdns,mydns,tinydns    <br> 完全使用PHP开发，支持Shell Access    <br> 要安装PHP CLI(Command-LIne ) 控制面板的后端服务器 server/webcp.php 和 httpd服务器 server/webcp-httpd.php 都需要 PHP CLI二进制支持，以便能够操作系统进程    <br> 个人：个人信息，密码，邮件,ftp    <br> 域:允许域的所有者在该域下增删用户，设定别名，子域名，数据库    <br> 销售商:增加domain    <br> 服务器: 监视服务，管理服务</em></p>  <p>   <br>3. VHCS – Virtual Hosting Control System    <br> 支持nix系统的，用Perl和C实现核心功能，PHP实现管理界面。    <br> 网址：    <br><a href="http://sourceforge.net/projects/vhcs/" target="_blank" rel="external">http://sourceforge.net/projects/vhcs/</a>    <br><a href="http://www.vhcs.net/" target="_blank" rel="external">http://www.vhcs.net/</a></p>  <p>   <br>4、webmin的虚拟主机管理模块virtualmin    <br> webmin是一个可运行于Linux/freebsd的web界面的主机管理系统，有中文包    <br> 而virtualmin则是它的一个虚拟主机管理模块，提供中文支持。    <br> webmin官方站： <a href="http://www.webmin.com/" target="_blank" rel="external">http://www.webmin.com/</a>    <br> virtaulmin站点： <a href="http://www.swelltech.com/virtualmin/" target="_blank" rel="external">http://www.swelltech.com/virtualmin/</a>    <br>5、基于php/mysql的虚拟主机控制程序PHPMyWebHosting    <br> PHPMyWebHosting是个开源的，基于php/mysql的虚拟主机控制面板程序，你可以用它建立带有邮箱，mysql支持的多域名虚拟主机，它须建立在Linux/freebsd之上，不支持windows。    <br> 安装phpmywebhosting你必须拥有系统管理员(root)权限，并依次安装以下套件：    <br> MySQL    <br> Apache and PHP    <br> Postfix    <br> Maildrop    <br> Courier    <br> ProFTPd    <br> PHPMyWebHosting    <br> 官方站上有基于各平台详细的安装说明 <a href="http://www.ladse.de" target="_blank" rel="external">http://www.ladse.de</a>    <br> phpmywebhosting下载：<a href="http://www.ladse.de/index.php/Files" target="_blank" rel="external">http://www.ladse.de/index.php/Files</a></p>  <p>   <br>6、SysCP虚拟主机管理系统[全php版]    <br> 1.有中文包    <br> 2.admin,reseller,client 三级管理    <br> 3.全部为php代码构成    <br> 4.有不少模块(modules)供选择安装    <br> 5.开源，免费（基于GPL）    <br> 6.Linux/bsd环境，特别是debian(最初是专为它开发的)    <br> 是德国人写的，有简体中文,英文,法文，德文语言包，是多语言的    <br> 具有以下特性：    <br> Customer Interface    <br> <em> managing email accounts    <br> </em> managing email forwarders    <br> <em> managing subdomains    <br> </em> managing mysql databases    <br> <em> managing additional ftp account    <br> </em> managing .htaccess password protections for directories    <br> <em> managing path options for example directorylisting    <br> Admin Interface:    <br> </em> managing of customers: you can define exactly what kind of resources your customers get (e.g. amount of pop accounts, amount of mysql databases etc.)    <br> * manage domains: you can individualy edit zone files and directory index per domain    <br> 支持以下配套服务器或引擎：    <br> # webserver: [Apache 1.3] with [PHP4] (apache2.0.x也可以)    <br> # mail transfer agent: [Postfix]    <br> # pop/imap server: [Courier]    <br> # ftp server: [ProFTPd]    <br> # database server: [MySQL]    <br> # nameserver: [Bind9]    <br> # traffic accounting and statistics: [Webalizer]    <br> 官方站：<a href="http://www.syscp.de/" target="_blank" rel="external">http://www.syscp.de/</a>    <br> 下载：<a href="http://www.syscp.de/wiki/EnDownloads" target="_blank" rel="external">http://www.syscp.de/wiki/EnDownloads</a>    <br> 模块下载：<a href="http://modules.syscp.de/" target="_blank" rel="external">http://modules.syscp.de/</a>    <br> 在线演示：<a href="http://www.syscp.de/onlinedemo/index.php" target="_blank" rel="external">http://www.syscp.de/onlinedemo/index.php</a></p>  <p>&#160;</p>  <p>Webmin是目前功能最强大的基于Web的Unix系统管理工具。管理员通过浏览器访问Webmin的各种管理功能并完成相应的管理动作。目前Webmin支持绝大多数的Unix系统，这些系统除了各种版本的linux以为还包括：AIX、HPUX、Solaris、Unixware、Irix和FreeBSD等。   <br> Webmin 让您能够在远程使用支持 HTTPS (SSL 上的 HTTP)协议的 Web 浏览器通过 Web 界面管理您的主机。这在保证了安全性的前提下提供了简单深入的远程管理。这使得 Webmin 对系统管理员非常理想，因为所有主流平台都有满足甚至超出上述需求的 Web 浏览器。而且，Webmin 有其自己的“Web 服务器”，因此不需要运行第三方软件(比如 Web服务器)。万事具备。Webmin 的模块化架构允许您在需要时编写您自己的配置模块。除了在此介绍的模块之外，Webmin 还包括许多模块。尽管目前我们将主要关注网络服务，但是您会看到，几乎您系统的每一部分都能够通过 Webmin 来配置和管理。    <br> 开源主机/虚拟主机管理系统    <br> ISPCONFIG:安装简单,可以满足基本的虚拟主机服务商需求.    <br> VHCS:感觉安装复杂,相关说明文档少.    <br> WEB-CP,SYSCP:功能有点弱.    <br> PHPMyWebHosting:需要改动的东西很多.    <br> GNUHH:功能最强大,管理模块最多,用户和管理员的操作流程也比较清晰.推荐系统管理员和IDC使用.    <br> 评价参考    <br> 用户群最多的 VHCS. 而 Web-CP,DTC和SysCp也都有许多用户    <br> 功能最强大的 GNU Hosting Helper 支持机群，文档，订单    <br> 单机版本功能最强大的是ISPConfig    <br> 结构最好的 SysCP, 采用类似结构的有Web-Cp,DTC,VHCS    <br> 结论：大型IDC，推荐GNU Hosting Helper,备选ISPMan    <br> 单台主机，推荐 VHCS2,备选 Web-CP,DTC,ISPConfig,WHT,RavenCore(推荐程度依次降低,其实这几个系统都不错，看个人的喜好了)    <br> DTC是一个即适合单机使用，也适合集群使用的主机管理系统，Apple欧洲公司就是选用这套系统在Mac OS X上使用 </p>  <p> ——————————–华丽的分割线———————————-   <br> Case1: ISPConfig    <br> Download ==) <a href="http://www.ispconfig.org/downloads.htm" target="_blank" rel="external">http://www.ispconfig.org/downloads.htm</a>    <br> Forums ==) <a href="http://www.howtoforge.com/forums" target="_blank" rel="external">http://www.howtoforge.com/forums</a>    <br> The current version is: 2.2.22 (== 2008/15/04    <br> Case2: ISP-Manager    <br> Download ==) <a href="http://www.projektfarm.com/updates_en.html" target="_blank" rel="external">http://www.projektfarm.com/updates_en.html</a>    <br> The current version is: 2.0.4 (== 2005/24/10    <br> ispconfig使用手冊    <br> ispconfig user_guide ==) <a href="http://ispconfig.org/downloads/manual_big5/toc.html" target="_blank" rel="external">http://ispconfig.org/downloads/manual_big5/toc.html</a>    <br> 中文版的管理員手冊_chinese: Administrator manual    <br> ref: <a href="http://ispconfig.org/downloads/manua…n_big5_src.htm" target="_blank" rel="external">http://ispconfig.org/downloads/manua…n_big5_src.htm</a>    <br> 中文版的reseller手冊_chinese: Reseller manual    <br> ref: <a href="http://ispconfig.org/downloads/manua…r_big5_src.htm" target="_blank" rel="external">http://ispconfig.org/downloads/manua…r_big5_src.htm</a>    <br> 中文版的客戶手冊_chinese: Clients manual    <br> ref: <a href="http://ispconfig.org/downloads/manua…e_big5_src.htm" target="_blank" rel="external">http://ispconfig.org/downloads/manua…e_big5_src.htm</a></p>  <p> ———————————-再分————————————–   <br> 一些独立主机之_Control<em>Panel</em>全部都免费.    <br> 1. xpanel.com    <br> 2. webmin    <br> 3. webcp ==) <a href="http://web-cp.net/" target="_blank" rel="external">http://web-cp.net/</a>    <br> 4. vhcs.net    <br> 5. isp-control.net    <br> 6. syscp ==) <a href="http://www.syscp.de" target="_blank" rel="external">http://www.syscp.de</a>    <br> 7. dtc ==) <a href="http://www.gplhost.com/?rub=softwares&amp;sousrub=dtc" target="_blank" rel="external">http://www.gplhost.com/?rub=softwares&amp;sousrub=dtc</a>    <br> 8. zpanel ==) <a href="http://www.thezpanel.com/" target="_blank" rel="external">http://www.thezpanel.com/</a>    <br> 9. <a href="http://phpanel.net" target="_blank" rel="external">http://phpanel.net</a>    <br> 0. <a href="http://www.ispconfig.org/" target="_blank" rel="external">http://www.ispconfig.org/</a>    <br> a. <a href="http://www.parsv.com/winpanel.htm" target="_blank" rel="external">http://www.parsv.com/winpanel.htm</a>    <br> b. <a href="http://cubepanel.com/download/index.htm" target="_blank" rel="external">http://cubepanel.com/download/index.htm</a></p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2011-12-16T03:57:35.000Z" itemprop="datePublished">
-          2011-12-16
-      </time>
-    
-    
-    | 
-    <a href='/tag/Linux/'>Linux</a>,
-    
-    <a href='/tag/虚拟主机/'>虚拟主机</a>,
-    
-    <a href='/tag/管理系统/'>管理系统</a>,
-    
-    <a href='/tag/VPS/'>VPS</a>,
-    
-    <a href='/tag/CPanel/'>CPanel</a>,
-    
-    <a href='/tag/ZPanel/'>ZPanel</a>,
-    
-    <a href='/tag/Webmin/'>Webmin</a>
-    
-    
-</span>
-    <h1 class="post-title">Linux下的六个免费的虚拟主机管理系统</h1>
-    <section class="post-content">
-      <p>收费的虚拟主机控制面板（比如CPanel，DirectAdmin）由于价格昂贵，花钱买不划算。于是一直在苦苦寻找免费或者破解的类似于DirectAdmin的虚拟主机管理系统,没想到开源界已经产生了如此多优秀的免费的虚拟主机管理系统：ZPanel，web-cp，VHCS，virtualmin，PHPMyWebHosting，SysCP。另外还有Kloxo……</p><a id="more"></a><p>1. ZPanel – 在Windows下的免费Hosting Panel   <br> ZPanel已经更名为RapidCP，最新版本为RapidCP 3.0    <br> 网址：    <br><a href="http://sourceforge.net/projects/zpanel/" target="_blank" rel="external">http://sourceforge.net/projects/zpanel/</a>    <br><a href="http://www.rapidcp.com/" target="_blank" rel="external">http://www.rapidcp.com/</a>    <br> RapidCP新功能介绍：<a href="http://www.rapidcp.com/features/" target="_blank" rel="external">http://www.rapidcp.com/features/</a>    <br> ZPanel 2.6 is the latest stable release. It is recommended for production environments.    <br> RapidCP 3.0 is the latest beta release. It is intended for testing purposes only.</p>  <p>   <br>2. web-cp – <em>nix的虚拟主机管理    <br> 网址：    <br><a href="http://sourceforge.net/projects/webcp/" target="_blank" rel="external">http://sourceforge.net/projects/webcp/</a>    <br><a href="http://www.web-cp.net/" target="_blank" rel="external">http://www.web-cp.net/</a>    <br> 用PHP－CLI写的一个Web服务器    <br> 支持多种脚本Scripting PHP,sun asp,cf,perl…    <br> 支持shell access    <br> 支持 SSI    <br> 支持.htacess    <br> 支持多种DNS服务 bind,powerdns,mydns,tinydns    <br> 完全使用PHP开发，支持Shell Access    <br> 要安装PHP CLI(Command-LIne ) 控制面板的后端服务器 server/webcp.php 和 httpd服务器 server/webcp-httpd.php 都需要 PHP CLI二进制支持，以便能够操作系统进程    <br> 个人：个人信息，密码，邮件,ftp    <br> 域:允许域的所有者在该域下增删用户，设定别名，子域名，数据库    <br> 销售商:增加domain    <br> 服务器: 监视服务，管理服务</em></p>  <p>   <br>3. VHCS – Virtual Hosting Control System    <br> 支持nix系统的，用Perl和C实现核心功能，PHP实现管理界面。    <br> 网址：    <br><a href="http://sourceforge.net/projects/vhcs/" target="_blank" rel="external">http://sourceforge.net/projects/vhcs/</a>    <br><a href="http://www.vhcs.net/" target="_blank" rel="external">http://www.vhcs.net/</a></p>  <p>   <br>4、webmin的虚拟主机管理模块virtualmin    <br> webmin是一个可运行于Linux/freebsd的web界面的主机管理系统，有中文包    <br> 而virtualmin则是它的一个虚拟主机管理模块，提供中文支持。    <br> webmin官方站： <a href="http://www.webmin.com/" target="_blank" rel="external">http://www.webmin.com/</a>    <br> virtaulmin站点： <a href="http://www.swelltech.com/virtualmin/" target="_blank" rel="external">http://www.swelltech.com/virtualmin/</a>    <br>5、基于php/mysql的虚拟主机控制程序PHPMyWebHosting    <br> PHPMyWebHosting是个开源的，基于php/mysql的虚拟主机控制面板程序，你可以用它建立带有邮箱，mysql支持的多域名虚拟主机，它须建立在Linux/freebsd之上，不支持windows。    <br> 安装phpmywebhosting你必须拥有系统管理员(root)权限，并依次安装以下套件：    <br> MySQL    <br> Apache and PHP    <br> Postfix    <br> Maildrop    <br> Courier    <br> ProFTPd    <br> PHPMyWebHosting    <br> 官方站上有基于各平台详细的安装说明 <a href="http://www.ladse.de" target="_blank" rel="external">http://www.ladse.de</a>    <br> phpmywebhosting下载：<a href="http://www.ladse.de/index.php/Files" target="_blank" rel="external">http://www.ladse.de/index.php/Files</a></p>  <p>   <br>6、SysCP虚拟主机管理系统[全php版]    <br> 1.有中文包    <br> 2.admin,reseller,client 三级管理    <br> 3.全部为php代码构成    <br> 4.有不少模块(modules)供选择安装    <br> 5.开源，免费（基于GPL）    <br> 6.Linux/bsd环境，特别是debian(最初是专为它开发的)    <br> 是德国人写的，有简体中文,英文,法文，德文语言包，是多语言的    <br> 具有以下特性：    <br> Customer Interface    <br> <em> managing email accounts    <br> </em> managing email forwarders    <br> <em> managing subdomains    <br> </em> managing mysql databases    <br> <em> managing additional ftp account    <br> </em> managing .htaccess password protections for directories    <br> <em> managing path options for example directorylisting    <br> Admin Interface:    <br> </em> managing of customers: you can define exactly what kind of resources your customers get (e.g. amount of pop accounts, amount of mysql databases etc.)    <br> * manage domains: you can individualy edit zone files and directory index per domain    <br> 支持以下配套服务器或引擎：    <br> # webserver: [Apache 1.3] with [PHP4] (apache2.0.x也可以)    <br> # mail transfer agent: [Postfix]    <br> # pop/imap server: [Courier]    <br> # ftp server: [ProFTPd]    <br> # database server: [MySQL]    <br> # nameserver: [Bind9]    <br> # traffic accounting and statistics: [Webalizer]    <br> 官方站：<a href="http://www.syscp.de/" target="_blank" rel="external">http://www.syscp.de/</a>    <br> 下载：<a href="http://www.syscp.de/wiki/EnDownloads" target="_blank" rel="external">http://www.syscp.de/wiki/EnDownloads</a>    <br> 模块下载：<a href="http://modules.syscp.de/" target="_blank" rel="external">http://modules.syscp.de/</a>    <br> 在线演示：<a href="http://www.syscp.de/onlinedemo/index.php" target="_blank" rel="external">http://www.syscp.de/onlinedemo/index.php</a></p>  <p>&#160;</p>  <p>Webmin是目前功能最强大的基于Web的Unix系统管理工具。管理员通过浏览器访问Webmin的各种管理功能并完成相应的管理动作。目前Webmin支持绝大多数的Unix系统，这些系统除了各种版本的linux以为还包括：AIX、HPUX、Solaris、Unixware、Irix和FreeBSD等。   <br> Webmin 让您能够在远程使用支持 HTTPS (SSL 上的 HTTP)协议的 Web 浏览器通过 Web 界面管理您的主机。这在保证了安全性的前提下提供了简单深入的远程管理。这使得 Webmin 对系统管理员非常理想，因为所有主流平台都有满足甚至超出上述需求的 Web 浏览器。而且，Webmin 有其自己的“Web 服务器”，因此不需要运行第三方软件(比如 Web服务器)。万事具备。Webmin 的模块化架构允许您在需要时编写您自己的配置模块。除了在此介绍的模块之外，Webmin 还包括许多模块。尽管目前我们将主要关注网络服务，但是您会看到，几乎您系统的每一部分都能够通过 Webmin 来配置和管理。    <br> 开源主机/虚拟主机管理系统    <br> ISPCONFIG:安装简单,可以满足基本的虚拟主机服务商需求.    <br> VHCS:感觉安装复杂,相关说明文档少.    <br> WEB-CP,SYSCP:功能有点弱.    <br> PHPMyWebHosting:需要改动的东西很多.    <br> GNUHH:功能最强大,管理模块最多,用户和管理员的操作流程也比较清晰.推荐系统管理员和IDC使用.    <br> 评价参考    <br> 用户群最多的 VHCS. 而 Web-CP,DTC和SysCp也都有许多用户    <br> 功能最强大的 GNU Hosting Helper 支持机群，文档，订单    <br> 单机版本功能最强大的是ISPConfig    <br> 结构最好的 SysCP, 采用类似结构的有Web-Cp,DTC,VHCS    <br> 结论：大型IDC，推荐GNU Hosting Helper,备选ISPMan    <br> 单台主机，推荐 VHCS2,备选 Web-CP,DTC,ISPConfig,WHT,RavenCore(推荐程度依次降低,其实这几个系统都不错，看个人的喜好了)    <br> DTC是一个即适合单机使用，也适合集群使用的主机管理系统，Apple欧洲公司就是选用这套系统在Mac OS X上使用 </p>  <p> ——————————–华丽的分割线———————————-   <br> Case1: ISPConfig    <br> Download ==) <a href="http://www.ispconfig.org/downloads.htm" target="_blank" rel="external">http://www.ispconfig.org/downloads.htm</a>    <br> Forums ==) <a href="http://www.howtoforge.com/forums" target="_blank" rel="external">http://www.howtoforge.com/forums</a>    <br> The current version is: 2.2.22 (== 2008/15/04    <br> Case2: ISP-Manager    <br> Download ==) <a href="http://www.projektfarm.com/updates_en.html" target="_blank" rel="external">http://www.projektfarm.com/updates_en.html</a>    <br> The current version is: 2.0.4 (== 2005/24/10    <br> ispconfig使用手冊    <br> ispconfig user_guide ==) <a href="http://ispconfig.org/downloads/manual_big5/toc.html" target="_blank" rel="external">http://ispconfig.org/downloads/manual_big5/toc.html</a>    <br> 中文版的管理員手冊_chinese: Administrator manual    <br> ref: <a href="http://ispconfig.org/downloads/manua…n_big5_src.htm" target="_blank" rel="external">http://ispconfig.org/downloads/manua…n_big5_src.htm</a>    <br> 中文版的reseller手冊_chinese: Reseller manual    <br> ref: <a href="http://ispconfig.org/downloads/manua…r_big5_src.htm" target="_blank" rel="external">http://ispconfig.org/downloads/manua…r_big5_src.htm</a>    <br> 中文版的客戶手冊_chinese: Clients manual    <br> ref: <a href="http://ispconfig.org/downloads/manua…e_big5_src.htm" target="_blank" rel="external">http://ispconfig.org/downloads/manua…e_big5_src.htm</a></p>  <p> ———————————-再分————————————–   <br> 一些独立主机之_Control<em>Panel</em>全部都免费.    <br> 1. xpanel.com    <br> 2. webmin    <br> 3. webcp ==) <a href="http://web-cp.net/" target="_blank" rel="external">http://web-cp.net/</a>    <br> 4. vhcs.net    <br> 5. isp-control.net    <br> 6. syscp ==) <a href="http://www.syscp.de" target="_blank" rel="external">http://www.syscp.de</a>    <br> 7. dtc ==) <a href="http://www.gplhost.com/?rub=softwares&amp;sousrub=dtc" target="_blank" rel="external">http://www.gplhost.com/?rub=softwares&amp;sousrub=dtc</a>    <br> 8. zpanel ==) <a href="http://www.thezpanel.com/" target="_blank" rel="external">http://www.thezpanel.com/</a>    <br> 9. <a href="http://phpanel.net" target="_blank" rel="external">http://phpanel.net</a>    <br> 0. <a href="http://www.ispconfig.org/" target="_blank" rel="external">http://www.ispconfig.org/</a>    <br> a. <a href="http://www.parsv.com/winpanel.htm" target="_blank" rel="external">http://www.parsv.com/winpanel.htm</a>    <br> b. <a href="http://cubepanel.com/download/index.htm" target="_blank" rel="external">http://cubepanel.com/download/index.htm</a></p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/197.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/197.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/197.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/197.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/199.seo/">
-        ← 淘宝Web服务器Tengine基本安装步骤
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/196.seo/">
-        一句话，就毁掉一个小清新段子 ！ →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/Linux笔记/">Linux笔记</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/Linux/">Linux</a><a href="/tag/虚拟主机/">虚拟主机</a><a href="/tag/管理系统/">管理系统</a><a href="/tag/VPS/">VPS</a><a href="/tag/CPanel/">CPanel</a><a href="/tag/ZPanel/">ZPanel</a><a href="/tag/Webmin/">Webmin</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/199.seo/" title="淘宝Web服务器Tengine基本安装步骤">
+  <strong>Prev:</strong><br/>
+  <span>
+  淘宝Web服务器Tengine基本安装步骤</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/196.seo/"  title="一句话，就毁掉一个小清新段子 ！">
+ <strong>Next:</strong><br/> 
+ <span>一句话，就毁掉一个小清新段子 ！
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-Linux下的六个免费的虚拟主机管理系统" data-title="Linux下的六个免费的虚拟主机管理系统" data-url="http://ha.cker.in/197.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

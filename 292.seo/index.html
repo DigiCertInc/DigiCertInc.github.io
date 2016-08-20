@@ -1,150 +1,447 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>IIS6.0+Tomcat整合 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>IIS6.0+Tomcat整合 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="（转载） 1.首先准备工作 Windows IIS 6.0 apache-tomcat-7.0.26.exe tomcat-connectors-1.2.33-windows-i386-iis.zip jdk-7u1-windows-7.0.exe apache-tomcat和tomcat-connectors可以到http://tomcat.apache.org/里面去下载到 jdk可以到http://www.oracle.com/technetwork/java/javase/downloads/index.html里面下载">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="IIS6.0+Tomcat整合 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/292.seo/" title="IIS6.0+Tomcat整合" itemprop="url">IIS6.0+Tomcat整合</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2012-03-18T01:07:53.000Z" itemprop="datePublished">2012-03-18</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
-
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2012-03-18T01:07:53.000Z" itemprop="datePublished">
-          2012-03-18
-      </time>
-    
-    
-    | 
-    <a href='/tag/Tomcat/'>Tomcat</a>
-    
-    
-</span>
-    <h1 class="post-title">IIS6.0+Tomcat整合</h1>
-    <section class="post-content">
-      <p></p><p>（转载） </p><p>1.首先准备工作 </p><p>Windows IIS 6.0 </p><p>apache-tomcat-7.0.26.exe </p><p>tomcat-connectors-1.2.33-windows-i386-iis.zip </p><p>jdk-7u1-windows-7.0.exe </p><p>apache-tomcat和tomcat-connectors可以到<a href="http://tomcat.apache.org/" target="_blank" rel="external">http://tomcat.apache.org/里面去下载到</a> </p><p>jdk可以到<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/javase/downloads/index.html里面下载</a> </p><p><a href="http://img1.51cto.com/attachment/201203/115240455.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/115240455.png" width="650"></a></p><a id="more"></a><p> </p><p>软件都下载好了，现在我们就来开始安装软件。 </p><p>1. 先安装java </p><p>根据自己的爱好把java安装到指定的目录里面去。我装在D:/Java </p><p><a href="http://img1.51cto.com/attachment/201203/115404188.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/115404188.png" width="650"></a> </p><p>安装好了之后会有一个jre目录。其实用到的主要是这个目录，现在开始来设置java的环境变量。 </p><p><b>Java</b><b>环境变量：</b> </p><p>打开-&gt;我的电脑-&gt;属性-&gt;高级-&gt;环境变量 </p><p><a href="http://img1.51cto.com/attachment/201203/115449386.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/115449386.png" width="650"></a> </p><p>会看到一个用户变量和一个系统变量，这里要注意了在用户变量里面定义的系统变量里面是引用不了的。 </p><p>(1)首先要想java程序在任何位置都能被使用，就要为java设置系统的环境变量 </p><p>你会看到一个administrator的环境变量窗口和一个系统环境变量窗口。 </p><p>1、administrator设置java环境变量 </p><p>首先先建一个JAVA_HOME变量名，值为jdk的路径(如jdk安装在D:/Java/jdk_1.7.x) </p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JAVA_HOME=D:/Java/jdk_1.7.x </p><p>然后设置一个CLASSPATH </p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CLASSPATH=.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar </p><p>注意：路径前面有个点，这个点是必须的，后面的%JAVA_HOME%是引用前面的路径，\lib\dt.jar和 \lib\tools.jar要和安装路里的文件要对应上。 </p><p>最后在设置一个Path </p><p>Path=%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin </p><p>这样administrator的java环境变量就设置好了，测试一下 </p><p>运行-&gt;cmd-&gt;java javac java -version看看有没有信息出来，如果有就说明成功了，如果没有，就说明没有成功。 </p><p>2、打开我的电脑-&gt;属性-&gt;高级-&gt;环境变量-&gt;设置(系统下设置java环境变量) </p><p>首先先建一个JAVA_HOME跟上面设置的一样 </p><p>然后在设置一个CLASSPATH也跟上面一样 </p><p>最后在设置一个Path </p><p>注意：最后的一个Path系统变量里面有，把%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin追加到后面就行了。 </p><p>现在来测有没有成功。 </p><p><a href="http://img1.51cto.com/attachment/201203/115553404.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/115553404.png" width="650"></a> </p><p>网上有很多设置java环境变量的文章，我看了很多都没有说明应该在哪设置，怎么设置。经过我的测试，我已经得出应该怎么设置了 </p><p>windows的环境变量分了两个一个是用户的系统变量一个是系统的系统变量，用户的系统变量只有这个用户登陆才能生效，系统环境变量 </p><p>就不一样了，不管哪个，上面的设置只能在一个环境里面设置，不能在用户环境里设置，然后到系统环境里面去引用，那会找不到的。所以 </p><p>要设置只能在一个环境里面设置好，如果有变量名的追加到后面，用;分隔，没有的就新建一个。 </p><p>到此Java就配置好了，之后的操作跟Java就没有关系了。 </p><p>2. 安装Tomcat </p><p>根据提示安装好Tomcat，这样Tomcat就安装好了 </p><p>3. 配置tomcat连接器 </p><p>(1).首先在tomcat目录下建一个jakarta目录，我这里建在tomcat/bin/jakarta下面 </p><p>然后在创建workers.properties、uriworkermap.properties这两个文件 </p><p>workers.properties内容为： </p><p>workers.tomcat_home=D:\Tomcat_7 </p><p>workers.java_home=D:\Java\jdk1.7.0_01 </p><p>ps=\ </p><p>worker.list=ajp13 </p><p>worker.ajp13.port=8009 </p><p>worker.ajp13.host=localhost </p><p>woker.ajp13.type=ajp13 </p><p>worker.ajp13.lbfactor=1 </p><p>这里面的路径要根据自己的软件安装位置设置。 </p><p> uriworkermap.properties内容为： </p><p>/<em>.jsp=ajp13 <p>/</p></em>=ajp13 </p><p>然后在新建一个a.reg名字可以随便起的 </p><p>a.reg内容为：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Windows Registry Editor Version 5.00 </p><p>[HKEY_LOCAL_MACHINE\SOFTWARE\Apache Software Foundation] </p><p>[HKEY_LOCAL_MACHINE\SOFTWARE\Apache Software Foundation\Jakarta Isapi Redirector] </p><p>[HKEY_LOCAL_MACHINE\SOFTWARE\Apache Software Foundation\Jakarta Isapi Redirector\1.0] </p><p>“extension_uri”=”/jakarta/isapi_redirect.dll” </p><p>“worker_file”=”D:\Tomcat_7\bin\jakarta\conf\workers.properties” </p><p>“worker_mount_file”=”D:\Tomcat_7\bin\jakarta\conf\uriworkermap.properties” </p><p>“log_file”=”D:\Tomcat_7\bin\jakarta\logs\isapi.log” </p><p>“log_level”=”debug” </p><p>这里也是根据自己的软件路径来写。然后运行一下a.reg文件。然后在到注册表里看一下有没有生成。 </p><p><a href="http://img1.51cto.com/attachment/201203/115806854.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/115806854.png" width="650"></a> </p><p>最后在把tomcat-connectors-1.2.33-windows-i386-iis.zip里面的isapi_redirect.dll解压到之前建的jakarta里面去 </p><p>好了到此tomcat连接器配置好了 </p><p>现在来整合IIS和Tomcat。 </p><p>4. 整合IIS和Tomcat </p><p>安装好IIS的可以直接来配置了，如果没有安装的现在来安装一下 </p><p><a href="http://img1.51cto.com/attachment/201203/115839406.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/115839406.png" width="650"></a> </p><p>在配置之前先来确定一下IIS和tomcat 是不是都是正常的 </p><p><a href="http://img1.51cto.com/attachment/201203/115913850.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/115913850.png" width="650"></a> </p><p>正常的现在我们来配置IIS让他能支持jsp. </p><p>(1) 新建一个虚拟主机，或者直接用默认网站(这里我是新建的主机www) </p><p><a href="http://img1.51cto.com/attachment/201203/115937424.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/115937424.png" width="650"></a> </p><p><a href="http://img1.51cto.com/attachment/201203/120033933.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/120033933.png"></a> </p><p><a href="http://img1.51cto.com/attachment/201203/120045969.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/120045969.png"></a> </p><p><a href="http://img1.51cto.com/attachment/201203/120105285.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/120105285.png"></a> </p><p>属性-&gt;添加ISAPI筛选器 </p><p><a href="http://img1.51cto.com/attachment/201203/120149110.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/120149110.png"></a> </p><p>然后主目录-&gt;配置 </p><p><a href="http://img1.51cto.com/attachment/201203/120259852.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/120259852.png" width="650"></a> </p><p>添加一个ISAPI扩展 </p><p>然后在文档里面添加一个默认文档 </p><p><a href="http://img1.51cto.com/attachment/201203/120324898.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/120324898.png"></a> </p><p>最后在web服务扩展里加一个jakarta并启用它 </p><p><a href="http://img1.51cto.com/attachment/201203/120344718.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/120344718.png" width="650"></a> </p><p>到此IIS就配置好了，现在访问一下<a href="http://localhost/看看是不是跟http://localhost:8080/的内容一样的" target="_blank" rel="external">http://localhost/看看是不是跟http://localhost:8080/的内容一样的</a> </p><p>注意：ISAPI筛选器是在访问过后才激活的，新建的是没有那个绿色上向的箭头的 </p><p><a href="http://img1.51cto.com/attachment/201203/120708530.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/120708530.png" width="650"></a> </p><p>到此IIS和Tomcat 就整合好了，以后的优化在进一步配置。</p>
-
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/292.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/292.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/292.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/292.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/296.seo/">
-        ← 登录框注入无回显的情况下另类收集服务器信息拿服务器
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/289.seo/">
-        实战Nginx与PHP（FastCGI）的安装、配置与优化 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p></p><p>（转载） </p><p>1.首先准备工作 </p><p>Windows IIS 6.0 </p><p>apache-tomcat-7.0.26.exe </p><p>tomcat-connectors-1.2.33-windows-i386-iis.zip </p><p>jdk-7u1-windows-7.0.exe </p><p>apache-tomcat和tomcat-connectors可以到<a href="http://tomcat.apache.org/" target="_blank" rel="external">http://tomcat.apache.org/里面去下载到</a> </p><p>jdk可以到<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/javase/downloads/index.html里面下载</a> </p><p><a href="http://img1.51cto.com/attachment/201203/115240455.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/115240455.png" width="650"></a></p><a id="more"></a><p> </p><p>软件都下载好了，现在我们就来开始安装软件。 </p><p>1. 先安装java </p><p>根据自己的爱好把java安装到指定的目录里面去。我装在D:/Java </p><p><a href="http://img1.51cto.com/attachment/201203/115404188.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/115404188.png" width="650"></a> </p><p>安装好了之后会有一个jre目录。其实用到的主要是这个目录，现在开始来设置java的环境变量。 </p><p><b>Java</b><b>环境变量：</b> </p><p>打开-&gt;我的电脑-&gt;属性-&gt;高级-&gt;环境变量 </p><p><a href="http://img1.51cto.com/attachment/201203/115449386.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/115449386.png" width="650"></a> </p><p>会看到一个用户变量和一个系统变量，这里要注意了在用户变量里面定义的系统变量里面是引用不了的。 </p><p>(1)首先要想java程序在任何位置都能被使用，就要为java设置系统的环境变量 </p><p>你会看到一个administrator的环境变量窗口和一个系统环境变量窗口。 </p><p>1、administrator设置java环境变量 </p><p>首先先建一个JAVA_HOME变量名，值为jdk的路径(如jdk安装在D:/Java/jdk_1.7.x) </p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JAVA_HOME=D:/Java/jdk_1.7.x </p><p>然后设置一个CLASSPATH </p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CLASSPATH=.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar </p><p>注意：路径前面有个点，这个点是必须的，后面的%JAVA_HOME%是引用前面的路径，\lib\dt.jar和 \lib\tools.jar要和安装路里的文件要对应上。 </p><p>最后在设置一个Path </p><p>Path=%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin </p><p>这样administrator的java环境变量就设置好了，测试一下 </p><p>运行-&gt;cmd-&gt;java javac java -version看看有没有信息出来，如果有就说明成功了，如果没有，就说明没有成功。 </p><p>2、打开我的电脑-&gt;属性-&gt;高级-&gt;环境变量-&gt;设置(系统下设置java环境变量) </p><p>首先先建一个JAVA_HOME跟上面设置的一样 </p><p>然后在设置一个CLASSPATH也跟上面一样 </p><p>最后在设置一个Path </p><p>注意：最后的一个Path系统变量里面有，把%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin追加到后面就行了。 </p><p>现在来测有没有成功。 </p><p><a href="http://img1.51cto.com/attachment/201203/115553404.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/115553404.png" width="650"></a> </p><p>网上有很多设置java环境变量的文章，我看了很多都没有说明应该在哪设置，怎么设置。经过我的测试，我已经得出应该怎么设置了 </p><p>windows的环境变量分了两个一个是用户的系统变量一个是系统的系统变量，用户的系统变量只有这个用户登陆才能生效，系统环境变量 </p><p>就不一样了，不管哪个，上面的设置只能在一个环境里面设置，不能在用户环境里设置，然后到系统环境里面去引用，那会找不到的。所以 </p><p>要设置只能在一个环境里面设置好，如果有变量名的追加到后面，用;分隔，没有的就新建一个。 </p><p>到此Java就配置好了，之后的操作跟Java就没有关系了。 </p><p>2. 安装Tomcat </p><p>根据提示安装好Tomcat，这样Tomcat就安装好了 </p><p>3. 配置tomcat连接器 </p><p>(1).首先在tomcat目录下建一个jakarta目录，我这里建在tomcat/bin/jakarta下面 </p><p>然后在创建workers.properties、uriworkermap.properties这两个文件 </p><p>workers.properties内容为： </p><p>workers.tomcat_home=D:\Tomcat_7 </p><p>workers.java_home=D:\Java\jdk1.7.0_01 </p><p>ps=\ </p><p>worker.list=ajp13 </p><p>worker.ajp13.port=8009 </p><p>worker.ajp13.host=localhost </p><p>woker.ajp13.type=ajp13 </p><p>worker.ajp13.lbfactor=1 </p><p>这里面的路径要根据自己的软件安装位置设置。 </p><p> uriworkermap.properties内容为： </p><p>/<em>.jsp=ajp13 <p>/</p></em>=ajp13 </p><p>然后在新建一个a.reg名字可以随便起的 </p><p>a.reg内容为：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Windows Registry Editor Version 5.00 </p><p>[HKEY_LOCAL_MACHINE\SOFTWARE\Apache Software Foundation] </p><p>[HKEY_LOCAL_MACHINE\SOFTWARE\Apache Software Foundation\Jakarta Isapi Redirector] </p><p>[HKEY_LOCAL_MACHINE\SOFTWARE\Apache Software Foundation\Jakarta Isapi Redirector\1.0] </p><p>“extension_uri”=”/jakarta/isapi_redirect.dll” </p><p>“worker_file”=”D:\Tomcat_7\bin\jakarta\conf\workers.properties” </p><p>“worker_mount_file”=”D:\Tomcat_7\bin\jakarta\conf\uriworkermap.properties” </p><p>“log_file”=”D:\Tomcat_7\bin\jakarta\logs\isapi.log” </p><p>“log_level”=”debug” </p><p>这里也是根据自己的软件路径来写。然后运行一下a.reg文件。然后在到注册表里看一下有没有生成。 </p><p><a href="http://img1.51cto.com/attachment/201203/115806854.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/115806854.png" width="650"></a> </p><p>最后在把tomcat-connectors-1.2.33-windows-i386-iis.zip里面的isapi_redirect.dll解压到之前建的jakarta里面去 </p><p>好了到此tomcat连接器配置好了 </p><p>现在来整合IIS和Tomcat。 </p><p>4. 整合IIS和Tomcat </p><p>安装好IIS的可以直接来配置了，如果没有安装的现在来安装一下 </p><p><a href="http://img1.51cto.com/attachment/201203/115839406.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/115839406.png" width="650"></a> </p><p>在配置之前先来确定一下IIS和tomcat 是不是都是正常的 </p><p><a href="http://img1.51cto.com/attachment/201203/115913850.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/115913850.png" width="650"></a> </p><p>正常的现在我们来配置IIS让他能支持jsp. </p><p>(1) 新建一个虚拟主机，或者直接用默认网站(这里我是新建的主机www) </p><p><a href="http://img1.51cto.com/attachment/201203/115937424.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/115937424.png" width="650"></a> </p><p><a href="http://img1.51cto.com/attachment/201203/120033933.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/120033933.png"></a> </p><p><a href="http://img1.51cto.com/attachment/201203/120045969.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/120045969.png"></a> </p><p><a href="http://img1.51cto.com/attachment/201203/120105285.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/120105285.png"></a> </p><p>属性-&gt;添加ISAPI筛选器 </p><p><a href="http://img1.51cto.com/attachment/201203/120149110.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/120149110.png"></a> </p><p>然后主目录-&gt;配置 </p><p><a href="http://img1.51cto.com/attachment/201203/120259852.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/120259852.png" width="650"></a> </p><p>添加一个ISAPI扩展 </p><p>然后在文档里面添加一个默认文档 </p><p><a href="http://img1.51cto.com/attachment/201203/120324898.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/120324898.png"></a> </p><p>最后在web服务扩展里加一个jakarta并启用它 </p><p><a href="http://img1.51cto.com/attachment/201203/120344718.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/120344718.png" width="650"></a> </p><p>到此IIS就配置好了，现在访问一下<a href="http://localhost/看看是不是跟http://localhost:8080/的内容一样的" target="_blank" rel="external">http://localhost/看看是不是跟http://localhost:8080/的内容一样的</a> </p><p>注意：ISAPI筛选器是在访问过后才激活的，新建的是没有那个绿色上向的箭头的 </p><p><a href="http://img1.51cto.com/attachment/201203/120708530.png" target="_blank" rel="external"><img border="0" alt="" src="http://img1.51cto.com/attachment/201203/120708530.png" width="650"></a> </p><p>到此IIS和Tomcat 就整合好了，以后的优化在进一步配置。</p>
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/Web安全/">Web安全</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/Tomcat/">Tomcat</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/296.seo/" title="登录框注入无回显的情况下另类收集服务器信息拿服务器">
+  <strong>Prev:</strong><br/>
+  <span>
+  登录框注入无回显的情况下另类收集服务器信息拿服务器</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/289.seo/"  title="实战Nginx与PHP（FastCGI）的安装、配置与优化">
+ <strong>Next:</strong><br/> 
+ <span>实战Nginx与PHP（FastCGI）的安装、配置与优化
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-IIS6.0+Tomcat整合" data-title="IIS6.0+Tomcat整合" data-url="http://ha.cker.in/292.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

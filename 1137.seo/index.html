@@ -1,64 +1,153 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>渗透Hacking Team过程 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
+  <meta charset="UTF-8">
+  
+    <title>渗透Hacking Team过程 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="0x00 Hacking Team  Hacking Team 是一个协助政府hack和监视记者、政治家等的公司（详见段尾链接），当然有时候也会监控恐怖分子和罪犯。其CEO——Vincenzetti——很喜欢在他的邮件末尾加上一句纳粹标语“boia chi molla” (放弃者该死)，同时，他一直宣称拥有可以解决“Tor 问题”和“暗网问题”的技术。但是我一直很怀疑他的那种技术的有效性。  0x01 小心点  很不幸，我们的世界是颠倒的，你越做坏事越富有，越做好事反而被抓。但幸运的是，多亏了人们的努力，比如&amp;quot;Tor项目&amp;quot;，你可以通过以下指导来防止被人抓住把柄：  1) 加密的你的硬盘  如果有一天你做的事被发现了，警察叔叔带走了你的电脑，尽管被发现就意味着你已经犯了很多错误，但是加密硬盘会比不加密要好得多。  2) 使用虚拟机并且把所有的网络都走Tor  这样就实现了两点，第一、你的所有流量都匿名了。第二、把你的个人生活和匿名操作分开了，防止两种生活互相混合。  3) 不要直接连接Tor网络 (可选项)  Tor不是万能药，有可能你在连接到Tor网络的时候刚好在做坏事。也可能你在退出Tor网络的时候你同样在做坏事。最好还是用别人的wifi，或者连接vpn或者中转机子，然后连接Tor匿名网络。  0x02 搜集信息  尽管这个过程非常无聊，但却是非常重要，目标越大越多，漏洞出现的几率就越大。  1 技术方面的信息  主要使用以下各种方面的信息  1)Google  如果使用合适的语句，你可以发现大量的意外收获。  2)二级域名搜集  一般来说，域名大部分都是又第三方公司提供的，你需要寻找到其域名的IP范围。当然，有时候会存在DNS域传送漏洞，这样就更好搜集信息了。  3)Whois查询和反向查询  通过各种Whois查询和其ip范围的域名反向查询，你也可以获得很多其他子域名，据我所知，没有免费的反向查询，除非谷歌hack。  4)端口扫描和指纹提取  和其他的技术不同，你可以跟公司的员工聊天。我把它作为可选项放在这里因为它不是一种攻击方式，只是搜集信息的一种方式。在扫描的过程中，该业务的入侵检测系统可能会告警，但是不用担心，整个Inernet都经常会扫描自身。  对于扫描来说，Nmap是再合适不过了，它也可以识别各种服务的指纹。但是对于大规模网络来说，zmap和masscan更快速。WhatWeb和BlindElephant 适合抓取web指纹。  2 社工信息  对于社会工程学来说，搜集员工信息非常重要，包括他们的各自的角色，合约，使用的操作系统，浏览器，插件，软件等。一般使用如下途径：  1)Google  这也是最有用的工具。  2)theHarvester y recon-ng  我在上一个内容中就提到了这些东西，但是他们其实还有更多的用处。你可以自动快速地找到大量的信息，这也值得你去花时间阅读官方文档。  3)LinkedIn  你可以通过这个软件获取到大量的雇员信息，内部人员总是倾向于与他人交流。  4)Data.com  它就像拼图一样把各种信息整合在一起。  5)File metadata  你可以在他们公司发布的各种文档中找到大量有用的信息。  0x03 打入内网  进入内网的方式有很多种。我打入HT内网的方式是不常见的，而且比平时花的精力要多得多，所以我在这里提一下进入内网的两种常见的方式，这两种也是我推荐的。  1 社工  社会工程学，尤其是鱼叉式网络钓鱼，是各种渗透技巧中比较可靠的一种。更多技巧请移步段尾链接。我不想尝试对HT进行钓鱼攻击，因为这种攻击方式对他们来说太常见了，所以他们会非常警惕。既增加了难度，又容易被发现我的意图。   http://www.hacknbytes.com/2016/01/apt-pentest-con-empire.html  http://blog.cobaltstrike.com/2015/09/30/advanced-threat-tactics-course-and-notes/  http://www.netcomunity.com/lestertheteacher/doc/ingsocial1.pdf  2 购买权限  多亏了勤劳的俄罗斯人和他们的渗透工具 “traffic sellers”和“bot herders”，许多公司都已经有了被入侵的电脑。几乎所有世界五百强的大型网络中都存在一些被入侵的机器。但是Hacking Team是个小公司，他们的大多数员工都是信息安全专家，所以他们内部存在被入侵机器的可能性非常小。  3 技术入侵  Gamma公司被黑以后，我就已经描述了一个寻找漏洞的过程：  http://pastebin.com/raw.php?i=cRYvK4jbHacking Team有一个段的公网IP:
 
-  
-  
-  
+inetnum:&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; 93.62.139.32 - 93.62.139.47
 
-  
+descr:&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160;&amp;#160; HT public subnet
+
+他们的网络有少量暴露在外网，比如不像Gamma公司，他们的公网地址都需要证书才能连接。HT的公网服务器主要有一个Joomla的博客(joomscan没有扫出来有用的东西)，一个邮件服务器，几个路由，两个VPN，一个垃圾邮箱过滤系统。所以我现在只能通过以下方式获取权限：发现一个Joomla的0day，或者postfix的0day，或者他们其他一个系统的0day。嵌入式系统的0day对于我来说比较靠谱点，于是我花了两周的时间，通过逆向发现了一个命令执行0day。这个0day至今仍然没有修复，所以我也不方便给出更多细节。
+
+0x04 事前准备
+
+在正式攻击之前，我做了很多测试和准备，在硬件里面写入了一个后门，并且在嵌入式系统上编译了各种各样的工具：
+
+1) busybox
+
+这个工具大多数的Unix系机器都没有。
+
+2)nmap
+
+扫描工具
+
+3)Responder.py
+
+内网中间人攻击神器
+
+4)python
+
+这个必须得有
+
+5)tcpdump
+
+抓包
+
+6)dsniff
+
+在内网中嗅探各种密码之类的，我更喜欢用HT的ettercap，但是编译起来很麻烦。
+
+7)socat
+
+NC的升级版，主要端口转发
+
+8)screen
+
+可以让你多窗口执行命令，其实也不是太需要
+
+9)socks5代理主机
+
+加上proxychains，插入内网
+
+10)tgcd
+
+通过转发端口，穿透防火墙
+
+最坑的事儿就是你把后门和工具部署上去之后，系统挂了，然后运维上去一看，全完了。所以我花了一周的时间在最后的部署之前测试我的各种后门和exp。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="渗透Hacking Team过程 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/1137.seo/" title="渗透Hacking Team过程" itemprop="url">渗透Hacking Team过程</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2016-04-20T18:02:09.000Z" itemprop="datePublished">2016-04-21</time>
+    Updated:<time datetime="2016-08-20T11:03:54.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
-
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2016-04-20T18:02:09.000Z" itemprop="datePublished">
-          2016-04-21
-      </time>
-    
-    
-    | 
-    <a href='/tag/Tor/'>Tor</a>,
-    
-    <a href='/tag/Hacking-Team/'>Hacking Team</a>
-    
-    
-</span>
-    <h1 class="post-title">渗透Hacking Team过程</h1>
-    <section class="post-content">
-      <p>0x00 Hacking Team</p>  <p><a href="http://ha.cker.in/tag/Hacking Team" target="_blank">Hacking Team</a> 是一个协助政府hack和监视记者、政治家等的公司（详见段尾链接），当然有时候也会监控恐怖分子和罪犯。其CEO——Vincenzetti——很喜欢在他的邮件末尾加上一句纳粹标语“boia chi molla” (放弃者该死)，同时，他一直宣称拥有可以解决“Tor 问题”和“暗网问题”的技术。但是我一直很怀疑他的那种技术的有效性。</p>  <h3>0x01 小心点</h3>  <p>很不幸，我们的世界是颠倒的，你越做坏事越富有，越做好事反而被抓。但幸运的是，多亏了人们的努力，比如&quot;Tor项目&quot;，你可以通过以下指导来防止被人抓住把柄：</p>  <p>1) 加密的你的硬盘</p>  <p>如果有一天你做的事被发现了，警察叔叔带走了你的电脑，尽管被发现就意味着你已经犯了很多错误，但是加密硬盘会比不加密要好得多。</p>  <p>2) 使用虚拟机并且把所有的网络都走Tor</p>  <p>这样就实现了两点，第一、你的所有流量都匿名了。第二、把你的个人生活和匿名操作分开了，防止两种生活互相混合。</p>  <p>3) 不要直接连接<a href="http://ha.cker.in/tag/Tor" target="_blank">Tor</a>网络 (可选项)</p>  <p>Tor不是万能药，有可能你在连接到Tor网络的时候刚好在做坏事。也可能你在退出Tor网络的时候你同样在做坏事。最好还是用别人的wifi，或者连接vpn或者中转机子，然后连接Tor匿名网络。</p>  <h3>0x02 搜集信息</h3>  <p>尽管这个过程非常无聊，但却是非常重要，目标越大越多，漏洞出现的几率就越大。</p>  <h6>1 技术方面的信息</h6>  <p>主要使用以下各种方面的信息</p>  <p>1)Google</p>  <p>如果使用合适的语句，你可以发现大量的意外收获。</p>  <p>2)二级域名搜集</p>  <p>一般来说，域名大部分都是又第三方公司提供的，你需要寻找到其域名的IP范围。当然，有时候会存在DNS域传送漏洞，这样就更好搜集信息了。</p>  <p>3)Whois查询和反向查询</p>  <p>通过各种Whois查询和其ip范围的域名反向查询，你也可以获得很多其他子域名，据我所知，没有免费的反向查询，除非谷歌hack。</p>  <p>4)端口扫描和指纹提取</p>  <p>和其他的技术不同，你可以跟公司的员工聊天。我把它作为可选项放在这里因为它不是一种攻击方式，只是搜集信息的一种方式。在扫描的过程中，该业务的入侵检测系统可能会告警，但是不用担心，整个Inernet都经常会扫描自身。</p>  <p>对于扫描来说，<a href="http://ha.cker.in/tag/nmap" target="_blank">Nmap</a>是再合适不过了，它也可以识别各种服务的指纹。但是对于大规模网络来说，zmap和masscan更快速。WhatWeb和BlindElephant 适合抓取web指纹。</p>  <h6>2 社工信息</h6>  <p>对于社会工程学来说，搜集员工信息非常重要，包括他们的各自的角色，合约，使用的操作系统，浏览器，插件，软件等。一般使用如下途径：</p>  <p>1)Google</p>  <p>这也是最有用的工具。</p>  <p>2)theHarvester y recon-ng</p>  <p>我在上一个内容中就提到了这些东西，但是他们其实还有更多的用处。你可以自动快速地找到大量的信息，这也值得你去花时间阅读官方文档。</p>  <p>3)LinkedIn</p>  <p>你可以通过这个软件获取到大量的雇员信息，内部人员总是倾向于与他人交流。</p>  <p>4)Data.com</p>  <p>它就像拼图一样把各种信息整合在一起。</p>  <p>5)File metadata</p>  <p>你可以在他们公司发布的各种文档中找到大量有用的信息。</p>  <h3>0x03 打入内网</h3>  <p>进入内网的方式有很多种。我打入HT内网的方式是不常见的，而且比平时花的精力要多得多，所以我在这里提一下进入内网的两种常见的方式，这两种也是我推荐的。</p>  <h6>1 社工</h6>  <p>社会工程学，尤其是鱼叉式网络钓鱼，是各种渗透技巧中比较可靠的一种。更多技巧请移步段尾链接。我不想尝试对HT进行钓鱼攻击，因为这种攻击方式对他们来说太常见了，所以他们会非常警惕。既增加了难度，又容易被发现我的意图。 </p>  <p><a href="http://www.hacknbytes.com/2016/01/apt-pentest-con-empire.html" target="_blank" rel="external">http://www.hacknbytes.com/2016/01/apt-pentest-con-empire.html</a></p>  <p><a href="http://blog.cobaltstrike.com/2015/09/30/advanced-threat-tactics-course-and-notes/" target="_blank" rel="external">http://blog.cobaltstrike.com/2015/09/30/advanced-threat-tactics-course-and-notes/</a></p>  <p><a href="http://www.netcomunity.com/lestertheteacher/doc/ingsocial1.pdf" target="_blank" rel="external">http://www.netcomunity.com/lestertheteacher/doc/ingsocial1.pdf</a></p>  <h6>2 购买权限</h6>  <p>多亏了勤劳的俄罗斯人和他们的渗透工具 “traffic sellers”和“bot herders”，许多公司都已经有了被入侵的电脑。几乎所有世界五百强的大型网络中都存在一些被入侵的机器。但是Hacking Team是个小公司，他们的大多数员工都是信息安全专家，所以他们内部存在被入侵机器的可能性非常小。</p>  <h5>3 技术入侵</h5>  <p>Gamma公司被黑以后，我就已经描述了一个寻找漏洞的过程：</p>  <pre><a href="http://pastebin.com/raw.php?i=cRYvK4jb" target="_blank" rel="external">http://pastebin.com/raw.php?i=cRYvK4jb</a></pre><br><br><p>Hacking Team有一个段的公网IP:</p>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">0x01 小心点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">0x02 搜集信息</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">1 技术方面的信息</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">2 社工信息</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">0x03 打入内网</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">3.0.0.1.</span> <span class="toc-text">1 社工</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">3.0.0.2.</span> <span class="toc-text">2 购买权限</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">3.0.1.</span> <span class="toc-text">3 技术入侵</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">0x04 事前准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">0x05 到处看看</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">0x06 非关系型数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">7.</span> <span class="toc-text">0x07 跨网段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">8.</span> <span class="toc-text">0x08 从安全备份到域管理员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">9.</span> <span class="toc-text">0x09 下载邮件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">10.</span> <span class="toc-text">0x0a 下载档案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">11.</span> <span class="toc-text">0x0b windows域渗透简介</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">11.0.0.1.</span> <span class="toc-text">1 横向移动(这种名词国内好像还没有对应的术语)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">11.0.0.2.</span> <span class="toc-text">2 维持权限</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">11.0.0.3.</span> <span class="toc-text">3 内部侦查</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">12.</span> <span class="toc-text">0x0c 寻猎系统管理员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">13.</span> <span class="toc-text">0x0d 桥梁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">14.</span> <span class="toc-text">0x0e 再次利用并重置密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">15.</span> <span class="toc-text">0x0f 总结</span></a></li></ol>
+		</div>
+		
+		<p>0x00 Hacking Team</p>  <p><a href="http://ha.cker.in/tag/Hacking Team" target="_blank">Hacking Team</a> 是一个协助政府hack和监视记者、政治家等的公司（详见段尾链接），当然有时候也会监控恐怖分子和罪犯。其CEO——Vincenzetti——很喜欢在他的邮件末尾加上一句纳粹标语“boia chi molla” (放弃者该死)，同时，他一直宣称拥有可以解决“Tor 问题”和“暗网问题”的技术。但是我一直很怀疑他的那种技术的有效性。</p>  <h3>0x01 小心点</h3>  <p>很不幸，我们的世界是颠倒的，你越做坏事越富有，越做好事反而被抓。但幸运的是，多亏了人们的努力，比如&quot;Tor项目&quot;，你可以通过以下指导来防止被人抓住把柄：</p>  <p>1) 加密的你的硬盘</p>  <p>如果有一天你做的事被发现了，警察叔叔带走了你的电脑，尽管被发现就意味着你已经犯了很多错误，但是加密硬盘会比不加密要好得多。</p>  <p>2) 使用虚拟机并且把所有的网络都走Tor</p>  <p>这样就实现了两点，第一、你的所有流量都匿名了。第二、把你的个人生活和匿名操作分开了，防止两种生活互相混合。</p>  <p>3) 不要直接连接<a href="http://ha.cker.in/tag/Tor" target="_blank">Tor</a>网络 (可选项)</p>  <p>Tor不是万能药，有可能你在连接到Tor网络的时候刚好在做坏事。也可能你在退出Tor网络的时候你同样在做坏事。最好还是用别人的wifi，或者连接vpn或者中转机子，然后连接Tor匿名网络。</p>  <h3>0x02 搜集信息</h3>  <p>尽管这个过程非常无聊，但却是非常重要，目标越大越多，漏洞出现的几率就越大。</p>  <h6>1 技术方面的信息</h6>  <p>主要使用以下各种方面的信息</p>  <p>1)Google</p>  <p>如果使用合适的语句，你可以发现大量的意外收获。</p>  <p>2)二级域名搜集</p>  <p>一般来说，域名大部分都是又第三方公司提供的，你需要寻找到其域名的IP范围。当然，有时候会存在DNS域传送漏洞，这样就更好搜集信息了。</p>  <p>3)Whois查询和反向查询</p>  <p>通过各种Whois查询和其ip范围的域名反向查询，你也可以获得很多其他子域名，据我所知，没有免费的反向查询，除非谷歌hack。</p>  <p>4)端口扫描和指纹提取</p>  <p>和其他的技术不同，你可以跟公司的员工聊天。我把它作为可选项放在这里因为它不是一种攻击方式，只是搜集信息的一种方式。在扫描的过程中，该业务的入侵检测系统可能会告警，但是不用担心，整个Inernet都经常会扫描自身。</p>  <p>对于扫描来说，<a href="http://ha.cker.in/tag/nmap" target="_blank">Nmap</a>是再合适不过了，它也可以识别各种服务的指纹。但是对于大规模网络来说，zmap和masscan更快速。WhatWeb和BlindElephant 适合抓取web指纹。</p>  <h6>2 社工信息</h6>  <p>对于社会工程学来说，搜集员工信息非常重要，包括他们的各自的角色，合约，使用的操作系统，浏览器，插件，软件等。一般使用如下途径：</p>  <p>1)Google</p>  <p>这也是最有用的工具。</p>  <p>2)theHarvester y recon-ng</p>  <p>我在上一个内容中就提到了这些东西，但是他们其实还有更多的用处。你可以自动快速地找到大量的信息，这也值得你去花时间阅读官方文档。</p>  <p>3)LinkedIn</p>  <p>你可以通过这个软件获取到大量的雇员信息，内部人员总是倾向于与他人交流。</p>  <p>4)Data.com</p>  <p>它就像拼图一样把各种信息整合在一起。</p>  <p>5)File metadata</p>  <p>你可以在他们公司发布的各种文档中找到大量有用的信息。</p>  <h3>0x03 打入内网</h3>  <p>进入内网的方式有很多种。我打入HT内网的方式是不常见的，而且比平时花的精力要多得多，所以我在这里提一下进入内网的两种常见的方式，这两种也是我推荐的。</p>  <h6>1 社工</h6>  <p>社会工程学，尤其是鱼叉式网络钓鱼，是各种渗透技巧中比较可靠的一种。更多技巧请移步段尾链接。我不想尝试对HT进行钓鱼攻击，因为这种攻击方式对他们来说太常见了，所以他们会非常警惕。既增加了难度，又容易被发现我的意图。 </p>  <p><a href="http://www.hacknbytes.com/2016/01/apt-pentest-con-empire.html" target="_blank" rel="external">http://www.hacknbytes.com/2016/01/apt-pentest-con-empire.html</a></p>  <p><a href="http://blog.cobaltstrike.com/2015/09/30/advanced-threat-tactics-course-and-notes/" target="_blank" rel="external">http://blog.cobaltstrike.com/2015/09/30/advanced-threat-tactics-course-and-notes/</a></p>  <p><a href="http://www.netcomunity.com/lestertheteacher/doc/ingsocial1.pdf" target="_blank" rel="external">http://www.netcomunity.com/lestertheteacher/doc/ingsocial1.pdf</a></p>  <h6>2 购买权限</h6>  <p>多亏了勤劳的俄罗斯人和他们的渗透工具 “traffic sellers”和“bot herders”，许多公司都已经有了被入侵的电脑。几乎所有世界五百强的大型网络中都存在一些被入侵的机器。但是Hacking Team是个小公司，他们的大多数员工都是信息安全专家，所以他们内部存在被入侵机器的可能性非常小。</p>  <h5>3 技术入侵</h5>  <p>Gamma公司被黑以后，我就已经描述了一个寻找漏洞的过程：</p>  <pre><a href="http://pastebin.com/raw.php?i=cRYvK4jb" target="_blank" rel="external">http://pastebin.com/raw.php?i=cRYvK4jb</a></pre><br><br><p>Hacking Team有一个段的公网IP:</p>
 
 <pre>inetnum:&#160;&#160;&#160;&#160;&#160;&#160;&#160; 93.62.139.32 - 93.62.139.47</pre>
 
@@ -408,94 +497,352 @@
 
 <p>HT视他们自己为意大利创新的一部分，但是在我看来，Vincenzetti和他的公司，他在警察中的密友，政府都是意大利法西斯主义的传统。谨以此文献给在迪亚兹阿曼多学校的突袭中的受害者们，和所有因意大利法西斯主义而受到过伤害的人们。</p>
 
-<p>原作：<a href="https://ghostbin.com/paste/6kho7?luicode=10000359，由" target="_blank" rel="external">https://ghostbin.com/paste/6kho7?luicode=10000359，由</a><a href="http://weibo.com/u/5824380435" target="_blank" rel="external">安全工具箱</a>翻译。</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1137.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1137.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1137.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1137.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
+<p>原作：<a href="https://ghostbin.com/paste/6kho7?luicode=10000359，由" target="_blank" rel="external">https://ghostbin.com/paste/6kho7?luicode=10000359，由</a><a href="http://weibo.com/u/5824380435" target="_blank" rel="external">安全工具箱</a>翻译。</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/1138.seo/">
-        ← 渗透Facebook的思路与发现
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/1136.seo/">
-        特殊条件数据传输 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/渗透测试/">渗透测试</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/Tor/">Tor</a><a href="/tag/Hacking-Team/">Hacking Team</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/1138.seo/" title="渗透Facebook的思路与发现">
+  <strong>Prev:</strong><br/>
+  <span>
+  渗透Facebook的思路与发现</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/1136.seo/"  title="特殊条件数据传输">
+ <strong>Next:</strong><br/> 
+ <span>特殊条件数据传输
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-渗透Hacking Team过程" data-title="渗透Hacking Team过程" data-url="http://ha.cker.in/1137.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

@@ -1,157 +1,226 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Tag: 安全加固 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Tag: 安全加固 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Tag: 安全加固 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="tag-icon">安全加固</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-08-19T10:28:01.000Z" itemprop="datePublished">
-          2012-08-19
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透测试/'>渗透测试</a>,
-    
-    <a href='/tag/安全加固/'>安全加固</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/762.seo/">对某高级技工学校网站的安全检测和加固</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>虽然今年金融危机给人们带来了“酷冬”，我国经济收到明显影响，到处都在传某某公司准备裁多少人！感觉这个冬天特别冷，在写这篇文章的时候，俺仍然感觉很冷，加入安天365这个团队，让俺感觉很温暖，在这个物欲横流，唯利是图的时候还有人对技术如此执著，对网络安全技术进行系统研究，那是何等的一种精神，我很欣赏团队中的一句话：技术需要沉淀，学习是一个渐进的过程，时间长了，即使是一块顽石，我也能把它滴穿！</p>  <p>今天发现的是一所技工学校，先对其进行安全检测，然后对其出现漏洞的地方进行了防范，下面将漏洞挖掘、分析和修补过程写出来跟大家分享。</p>  <p>（一）漏洞挖掘</p>  <p>1.获取初步信息</p>  <p>某天simeon在群里发了一个IP地址，让众兄弟们看看看看网站安全性如何，说是有奖励。（某人偷笑ing：有奖励好啊！俺就好这口）。首先打开网站看看网站能否访问，一看原来是个高级技工学校的网站，如图1所示，这几天搞学校的网站搞出毛病了，一看到学校网站就两眼放光，因为学校网站院系众多，而且网站更新比较缓慢，一套程序可能用上几百年也不一定换，所以漏洞自然也少不了，因此总的来说搞学校网站还是相对容易的。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/181807596.jpg"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image002.jpg" width="518" height="455" /></a></p>         </td>       </tr>        <tr>         <td>           <p>图1 查看网站基本情况</p>         </td>       </tr>     </tbody></table> </p>  <p>说明：</p>  <p>由于发来的是一个IP地址，因此需要先看看该地址时候在默认80端口开放了Web服务，然后看看是使用什么语言，当然也可以直接将地址放入SQL注入扫描工具中进行SQL注入点检测。</p>  <p>2.查看端口开放情况</p>  <p>使用“sfind –p 222.134.217.206”命令查看该服务器端口开放情况，如图2所示，计算机开放了21、80以及4899端口，看到这里，嘿嘿，俺觉得该服务器的安全应该不是太高，可以拿到权限。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/762.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-21T07:44:56.000Z" itemprop="datePublished">
-          2012-06-21
-      </time>
-    
-    
-    | 
-    <a href='/tag/安全加固/'>安全加固</a>,
-    
-    <a href='/tag/WIN2003/'>WIN2003</a>,
-    
-    <a href='/tag/服务器维护/'>服务器维护</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/549.seo/">WIN2003服务器维护安全加固方案</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>一：因为IIS(即Internet Information Server)的方便性和易用性，使它成为最受欢迎的Web服务器软件之一。但是，IIS的安全性却一直令人担忧。如何利用IIS建立一个安全的Web服务器，是很多人关心的话题。要创建一个安全可靠的Web服务器，必须要实现Windows 2003和IIS的双重安全，因为IIS的用户同时也是Windows 2003的用户，并且IIS目录的权限依赖Windows的NTFS文件系统的权限控制，所以保护IIS安全的第一步就是确保Windows 2000操作系统的安全，所以要对服务器进行安全加固，以免遭到黑客的攻击，造成严重的后果。 </p>  <p>二．我们通过一下几个方面对您的系统进行安全加固： </p>  <p>1． 系统的安全加固：我们通过配置目录权限，系统安全策略，协议栈加强，系统服务和访问控制加固您的系统，整体提高服务器的安全性。 </p>  <p>2． IIS手工加固：手工加固iis可以有效的提高iweb站点的安全性，合理分配用户权限，配置相应的安全策略，有效的防止iis用户溢出提权。 </p>  <p>3． 系统应用程序加固，提供应用程序的安全性，例如sql的安全配置以及服务器应用软件的安全加固。 </p>
-      
-      </p>
-      
-      <p>
-          <a href="/549.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/762.seo/" title="对某高级技工学校网站的安全检测和加固" itemprop="url">
   
-  <nav class="pagination" role="pagination">
+    <h1 itemprop="name">对某高级技工学校网站的安全检测和加固</h1>
     
-    <span class="page-number">Page 1 of 1</span>
+    <time datetime="2012-08-19T10:28:01.000Z" itemprop="datePublished">2012-08-19</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/549.seo/" title="WIN2003服务器维护安全加固方案" itemprop="url">
+  
+    <h1 itemprop="name">WIN2003服务器维护安全加固方案</h1>
     
-  </nav>
-</main>
+    <time datetime="2012-06-21T07:44:56.000Z" itemprop="datePublished">2012-06-21</time>
+  </a>
+</section>
 
 
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

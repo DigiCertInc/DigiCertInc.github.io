@@ -1,151 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>浅谈路由CSRF危害，和非主流姿势 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>浅谈路由CSRF危害，和非主流姿势 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="0x00 环境分析    近期爆出的D-link的后门让大家人心惶惶。。还好我不用D-link，这样就完事了？用户有能力补上漏洞吗，厂商能及时通知用户防止中枪吗？很显然，谁都没有做到。  首先只要一公布xxx路由存在xxx漏洞，这就给自己的公司抹黑，首先用户不会升级(能正常上网谁这么无聊去更新路由器的固件，丁丁很大？)，又给公司添加了公关压力，这搁给谁谁都不会去做。  所以我们总结成几个点:  路由器出现漏洞后，用户不会补！厂商不想补！用户懒得补！  0x01 漏洞从哪里来    路由器的漏洞实在是很少。大部分都是远程命令执行和后门，xss等等，但是大牛们手中都是远程命令执行，基本覆盖X科，X为等机房常用的路油器，只需要执行几个poc，啪的一下，权限就到手了，这种场面只有在大牛的APT场面才能看到。  但是对于那些普通的屌丝黑阔来说，我对APT不感兴趣，我更喜欢那些妹子的路由器。  于是乎，黑阔到了电脑广场，来到路由器批发部，拿出50大洋给老板，告诉老板，我想试试你们热卖的路由器的性能。老板看在软妹币的面子上，拿了二十来款路由器给黑阔看，黑阔看到路由器就笑了，露出大金牙，操起几款wvs就是狂扫，然后按照型号仔细记录漏洞。  就这样，这个灰阔一天花了不到200软妹币，但是记录了国内主流路由器的各种臭虫(→→，真是个淫荡的家伙)  0x02 邪恶力量的萌发    那个黑阔搞完扫描后，满足的关上笔记本，路由器老板还在心中暗爽，又赚了一个傻逼的钱。。。但他不知道这才是游戏的开始。  奔袭了一天，屌丝灰阔在路边的一个炒粉摊上坐了下来，看着周边搬砖的民工，心中总有一种亲切感，望着工头开着宝马远去的身影，黑阔决心继续努力，怒天一吼:老板，两份炒粉加肉！！！  吃饱了以后，灰阔去到一个桌游的店里，选了一个安静的角落，为神马去桌游。。。他告诉我，桌游75软妹币6个小时，饮料无限续杯，重要的是有20M的wifi，而且那些土豪都是陪妹子玩桌游，都木有人跟他抢网速，空气又比网吧好几十倍，撸代码没思路的时候还可以看看旁边的漂亮妹子(→→，哎。我只想说，下次请带上我！！！)  黑阔打开电脑，又开始撸起拿油腻的键盘，打开几个wvs的报告，挑出其中的命令执行，csrf，xss，还有越权访问等漏洞进行分类，并标记是否可控，还把每个功能post,get的包进行整理。  就这样。。。一个通用的路由漏洞库就完成的差不多了。。。  黑阔这些漏洞放到了自己的xss的平台上，规划了几个规则。通过title来确定路由器的牌子，然后再对照型号。。。进行各种姿势的插，可控的CSRF就直接插到路由里，如果不可控就就用默认密码插进去，他告诉我…其实直接插进去的几率很小，但是通过默认密码的CSRF插进去的几率很大。。。(这里说明路由安全意识要提高，别以为你在内网就插不了。。。默认密码没改照样换个姿势插你)  针对路由器渗透有很多种的，但平常灰阔很关心的还是DMZ和DNS。  比如说一个通过CSRF让路由器的DMZ功能打开，把目标主机暴露于公网。。。。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="浅谈路由CSRF危害，和非主流姿势 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/1052.seo/" title="浅谈路由CSRF危害，和非主流姿势" itemprop="url">浅谈路由CSRF危害，和非主流姿势</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2013-11-08T01:34:03.000Z" itemprop="datePublished">2013-11-08</time>
+    Updated:<time datetime="2016-08-20T11:03:54.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p><b>0x00 </b><b>环境分析</b></p>  <hr align="center" size="2" width="100%">  <p>近期爆出的D-link的后门让大家人心惶惶。。还好我不用D-link，这样就完事了？用户有能力补上漏洞吗，厂商能及时通知用户防止中枪吗？很显然，谁都没有做到。</p>  <p>首先只要一公布xxx路由存在xxx漏洞，这就给自己的公司抹黑，首先用户不会升级(能正常上网谁这么无聊去更新路由器的固件，丁丁很大？)，又给公司添加了公关压力，这搁给谁谁都不会去做。</p>  <p>所以我们总结成几个点:</p>  <p>路由器出现漏洞后，用户不会补！厂商不想补！用户懒得补！</p>  <p><b>0x01 </b><b>漏洞从哪里来</b></p>  <hr align="center" size="2" width="100%">  <p>路由器的漏洞实在是很少。大部分都是远程命令执行和后门，xss等等，但是大牛们手中都是远程命令执行，基本覆盖X科，X为等机房常用的路油器，只需要执行几个poc，啪的一下，权限就到手了，这种场面只有在大牛的<a href="http://Ha.Cker.In/tag/APT" target="_blank">APT</a>场面才能看到。</p>  <p>但是对于那些普通的屌丝黑阔来说，我对APT不感兴趣，我更喜欢那些妹子的路由器。</p>  <p>于是乎，黑阔到了电脑广场，来到路由器批发部，拿出50大洋给老板，告诉老板，我想试试你们热卖的路由器的性能。老板看在软妹币的面子上，拿了二十来款路由器给黑阔看，黑阔看到路由器就笑了，露出大金牙，操起几款wvs就是狂扫，然后按照型号仔细记录漏洞。</p>  <p>就这样，这个灰阔一天花了不到200软妹币，但是记录了国内主流路由器的各种臭虫(→<em>→，真是个淫荡的家伙)</em></p>  <p><b>0x02 </b><b>邪恶力量的萌发</b></p>  <hr align="center" size="2" width="100%">  <p>那个黑阔搞完扫描后，满足的关上笔记本，路由器老板还在心中暗爽，又赚了一个傻逼的钱。。。但他不知道这才是游戏的开始。</p>  <p>奔袭了一天，屌丝灰阔在路边的一个炒粉摊上坐了下来，看着周边搬砖的民工，心中总有一种亲切感，望着工头开着宝马远去的身影，黑阔决心继续努力，怒天一吼:老板，两份炒粉加肉！！！</p>  <p>吃饱了以后，灰阔去到一个桌游的店里，选了一个安静的角落，为神马去桌游。。。他告诉我，桌游75软妹币6个小时，饮料无限续杯，重要的是有20M的wifi，而且那些土豪都是陪妹子玩桌游，都木有人跟他抢网速，空气又比网吧好几十倍，撸代码没思路的时候还可以看看旁边的漂亮妹子(→→，哎。我只想说，下次请带上我！！！)</p>  <p>黑阔打开电脑，又开始撸起拿油腻的键盘，打开几个wvs的报告，挑出其中的命令执行，csrf，xss，还有越权访问等漏洞进行分类，并标记是否可控，还把每个功能post,get的包进行整理。</p>  <p>就这样。。。一个通用的路由漏洞库就完成的差不多了。。。</p>  <p>黑阔这些漏洞放到了自己的xss的平台上，规划了几个规则。通过title来确定路由器的牌子，然后再对照型号。。。进行各种姿势的插，可控的CSRF就直接插到路由里，如果不可控就就用默认密码插进去，他告诉我…其实直接插进去的几率很小，但是通过默认密码的CSRF插进去的几率很大。。。(这里说明路由安全意识要提高，别以为你在内网就插不了。。。默认密码没改照样换个姿势插你)</p>  <p>针对路由器渗透有很多种的，但平常灰阔很关心的还是DMZ和DNS。</p>  <p>比如说一个通过<a href="http://Ha.Cker.In/tag/CSRF" target="_blank">CSRF</a>让路由器的DMZ功能打开，把目标主机暴露于公网。。。。</p><br><a id="more"></a><br><p>&#160;</p>  <p><b>0x03 </b><b>开枪不仅仅只要子弹，还需要一把枪</b></p>  <hr align="center" size="2" width="100%">  <p>上次去电脑广场花了百来大洋，让黑阔的生活有点吃紧，这几天吧他的xss平台搬到了日本一个比较高质量的vps…他怕后边扛不住大流量。。(哎，大牛果然有先见之明)</p>  <p>这周黑阔省吃俭用，不去吃炒粉了。每天几个大馒头送水，终于攒下了一笔钱，在美帝租了一台服务器，花了一个晚上把服务器装成了DNS服务器，黑阔露出他的大金牙，呵呵的睡着了。</p>  <p><b>0x04 </b><b>黎明的前期永远是最寂静的</b></p>  <hr align="center" size="2" width="100%">  <p>这几天黑阔开始玩倒时差，白天睡觉，晚上开始打游戏，或者出去和基友吃烧烤，把渗透时间都换到了晚上。</p>  <p>每天上网的时候，都去寻找大网站，寻找用户和网站可以交互和提交数据的地方，并记录下来。深夜的时候就开始各种bypass ,然后构造蠕虫，蠕虫里融入了黑阔的xss平台，在传播的时候不忘用力的给路由器来上一发！！！</p>  <p>深夜的时候，搞运维的还在梦乡，搞开发的程序猿还在妹子床上。。。所以黑阔弄好蠕虫后先不触发，等到用户上线率比较高时，(例如早上8点到10点半，11点半到中午1点，晚上8点到10点半)，就触发前几天找到的储存型的xss。</p>  <p>这几天的白天黑阔也没有停下来， 四处寻找各种广告，很多人质疑他没有能力找到这么多的流量。黑阔只是呵呵一笑，默默地把单子接下。</p>  <p><b>0x05 </b><b>忽如一夜春风来，千树万树菊花开</b></p>  <hr align="center" size="2" width="100%">  <p>黑阔为了保证自己测试的可效性，直接在午夜十二点就开始部署平台了，把xss平台上的规则换成全dns劫持，主要是可控的CSRF改路由器的DNS，不可控的直接用默认密码测试。。。不同的路由器的牌子和型号对应着不同的规则。   <br>就这样，随着第一个看到蠕虫的人，转发了同域的蠕虫，然后感染的人呈几个倍数的增长，而中枪人的路由器都被黑阔改成了他在美帝租的那台DNS服务器上，服务器又指向广告地址。。。。    <br>早上10点，看着广告的PV呈几何倍数增长，黑阔又露出了他的大金牙 :D&#160; </p>  <p>一个月后，黑阔开着他的超跑路过他曾经的工地，望着工头工友那熟悉的背影呵呵一笑拉风地开走了，因为黑阔的蠕虫不像白帽子装逼一样，一定要弹个窗口告诉别人我把你插了。而是在后台继续传播，这样管理员很难发现(有监控平台除外)。。。</p>  <p><b>0x06 </b><b>总结</b></p>  <hr align="center" size="2" width="100%">  <p>很多时候，路由器存在着大量的漏洞，特别是在已知目标设备下进行有计划的APT活动，例如已知目标主机是在内网，而且看见路由器是xx-link的牌子和型号，黑阔直接利用xss把路由器DMZ开启，目标主机就直接暴露在外网了。</p>  <p>这些说明了神马，我们列下几点:</p>  <p>1.买到的路由器一定要修改默认密码，还有默认的路由地址(比如192.168.1.1改成192.168.30.1)这样能很大程度防止CSRF。</p>  <p>2.不要浏览不良网站，即使浏览那也就算了，但一定要定期检查数据有没有被恶意修改，比如说xss蠕虫。</p>  <p>3.电信也为路由器做了一些拦截，只要是当电信用户的DNS指向国外服务器时，有些地区的电信就会弹窗提示dns被修改。。。这里说的只是一些地区，其他地方我不知道，网通和联通截止到写稿时貌似木有这种功能。</p>  <p>4.尽量少浏览那些OOXX的网站，你懂的，因为他们赚的不只是流量钱。。。尽管还是忍不住去看的话尽量不要用IE去看。。有条件就直接把动作片下载吧。或者在虚拟机里面看。</p>  <p>5.&#160; 准备双十一了，淘宝各种活动，装个杀软吧，估计黑阔们都在扩张服务器，还害怕流量过大。。。所以双十一附近要多加防范！！！</p>  <p>特此声明：此故事纯属虚构，请勿用于非法用途，所造成的后果与本文作者无关。大牛莫喷</p>  <p><a href="http://drops.wooyun.org/news/721" target="_blank">乌云的小说</a></p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2013-11-08T01:34:03.000Z" itemprop="datePublished">
-          2013-11-08
-      </time>
-    
-    
-    | 
-    <a href='/tag/CSRF/'>CSRF</a>,
-    
-    <a href='/tag/APT/'>APT</a>
-    
-    
-</span>
-    <h1 class="post-title">浅谈路由CSRF危害，和非主流姿势</h1>
-    <section class="post-content">
-      <p><b>0x00 </b><b>环境分析</b></p>  <hr align="center" size="2" width="100%">  <p>近期爆出的D-link的后门让大家人心惶惶。。还好我不用D-link，这样就完事了？用户有能力补上漏洞吗，厂商能及时通知用户防止中枪吗？很显然，谁都没有做到。</p>  <p>首先只要一公布xxx路由存在xxx漏洞，这就给自己的公司抹黑，首先用户不会升级(能正常上网谁这么无聊去更新路由器的固件，丁丁很大？)，又给公司添加了公关压力，这搁给谁谁都不会去做。</p>  <p>所以我们总结成几个点:</p>  <p>路由器出现漏洞后，用户不会补！厂商不想补！用户懒得补！</p>  <p><b>0x01 </b><b>漏洞从哪里来</b></p>  <hr align="center" size="2" width="100%">  <p>路由器的漏洞实在是很少。大部分都是远程命令执行和后门，xss等等，但是大牛们手中都是远程命令执行，基本覆盖X科，X为等机房常用的路油器，只需要执行几个poc，啪的一下，权限就到手了，这种场面只有在大牛的<a href="http://Ha.Cker.In/tag/APT" target="_blank">APT</a>场面才能看到。</p>  <p>但是对于那些普通的屌丝黑阔来说，我对APT不感兴趣，我更喜欢那些妹子的路由器。</p>  <p>于是乎，黑阔到了电脑广场，来到路由器批发部，拿出50大洋给老板，告诉老板，我想试试你们热卖的路由器的性能。老板看在软妹币的面子上，拿了二十来款路由器给黑阔看，黑阔看到路由器就笑了，露出大金牙，操起几款wvs就是狂扫，然后按照型号仔细记录漏洞。</p>  <p>就这样，这个灰阔一天花了不到200软妹币，但是记录了国内主流路由器的各种臭虫(→<em>→，真是个淫荡的家伙)</em></p>  <p><b>0x02 </b><b>邪恶力量的萌发</b></p>  <hr align="center" size="2" width="100%">  <p>那个黑阔搞完扫描后，满足的关上笔记本，路由器老板还在心中暗爽，又赚了一个傻逼的钱。。。但他不知道这才是游戏的开始。</p>  <p>奔袭了一天，屌丝灰阔在路边的一个炒粉摊上坐了下来，看着周边搬砖的民工，心中总有一种亲切感，望着工头开着宝马远去的身影，黑阔决心继续努力，怒天一吼:老板，两份炒粉加肉！！！</p>  <p>吃饱了以后，灰阔去到一个桌游的店里，选了一个安静的角落，为神马去桌游。。。他告诉我，桌游75软妹币6个小时，饮料无限续杯，重要的是有20M的wifi，而且那些土豪都是陪妹子玩桌游，都木有人跟他抢网速，空气又比网吧好几十倍，撸代码没思路的时候还可以看看旁边的漂亮妹子(→→，哎。我只想说，下次请带上我！！！)</p>  <p>黑阔打开电脑，又开始撸起拿油腻的键盘，打开几个wvs的报告，挑出其中的命令执行，csrf，xss，还有越权访问等漏洞进行分类，并标记是否可控，还把每个功能post,get的包进行整理。</p>  <p>就这样。。。一个通用的路由漏洞库就完成的差不多了。。。</p>  <p>黑阔这些漏洞放到了自己的xss的平台上，规划了几个规则。通过title来确定路由器的牌子，然后再对照型号。。。进行各种姿势的插，可控的CSRF就直接插到路由里，如果不可控就就用默认密码插进去，他告诉我…其实直接插进去的几率很小，但是通过默认密码的CSRF插进去的几率很大。。。(这里说明路由安全意识要提高，别以为你在内网就插不了。。。默认密码没改照样换个姿势插你)</p>  <p>针对路由器渗透有很多种的，但平常灰阔很关心的还是DMZ和DNS。</p>  <p>比如说一个通过<a href="http://Ha.Cker.In/tag/CSRF" target="_blank">CSRF</a>让路由器的DMZ功能打开，把目标主机暴露于公网。。。。</p><br><a id="more"></a><br><p>&#160;</p>  <p><b>0x03 </b><b>开枪不仅仅只要子弹，还需要一把枪</b></p>  <hr align="center" size="2" width="100%">  <p>上次去电脑广场花了百来大洋，让黑阔的生活有点吃紧，这几天吧他的xss平台搬到了日本一个比较高质量的vps…他怕后边扛不住大流量。。(哎，大牛果然有先见之明)</p>  <p>这周黑阔省吃俭用，不去吃炒粉了。每天几个大馒头送水，终于攒下了一笔钱，在美帝租了一台服务器，花了一个晚上把服务器装成了DNS服务器，黑阔露出他的大金牙，呵呵的睡着了。</p>  <p><b>0x04 </b><b>黎明的前期永远是最寂静的</b></p>  <hr align="center" size="2" width="100%">  <p>这几天黑阔开始玩倒时差，白天睡觉，晚上开始打游戏，或者出去和基友吃烧烤，把渗透时间都换到了晚上。</p>  <p>每天上网的时候，都去寻找大网站，寻找用户和网站可以交互和提交数据的地方，并记录下来。深夜的时候就开始各种bypass ,然后构造蠕虫，蠕虫里融入了黑阔的xss平台，在传播的时候不忘用力的给路由器来上一发！！！</p>  <p>深夜的时候，搞运维的还在梦乡，搞开发的程序猿还在妹子床上。。。所以黑阔弄好蠕虫后先不触发，等到用户上线率比较高时，(例如早上8点到10点半，11点半到中午1点，晚上8点到10点半)，就触发前几天找到的储存型的xss。</p>  <p>这几天的白天黑阔也没有停下来， 四处寻找各种广告，很多人质疑他没有能力找到这么多的流量。黑阔只是呵呵一笑，默默地把单子接下。</p>  <p><b>0x05 </b><b>忽如一夜春风来，千树万树菊花开</b></p>  <hr align="center" size="2" width="100%">  <p>黑阔为了保证自己测试的可效性，直接在午夜十二点就开始部署平台了，把xss平台上的规则换成全dns劫持，主要是可控的CSRF改路由器的DNS，不可控的直接用默认密码测试。。。不同的路由器的牌子和型号对应着不同的规则。   <br>就这样，随着第一个看到蠕虫的人，转发了同域的蠕虫，然后感染的人呈几个倍数的增长，而中枪人的路由器都被黑阔改成了他在美帝租的那台DNS服务器上，服务器又指向广告地址。。。。    <br>早上10点，看着广告的PV呈几何倍数增长，黑阔又露出了他的大金牙 :D&#160; </p>  <p>一个月后，黑阔开着他的超跑路过他曾经的工地，望着工头工友那熟悉的背影呵呵一笑拉风地开走了，因为黑阔的蠕虫不像白帽子装逼一样，一定要弹个窗口告诉别人我把你插了。而是在后台继续传播，这样管理员很难发现(有监控平台除外)。。。</p>  <p><b>0x06 </b><b>总结</b></p>  <hr align="center" size="2" width="100%">  <p>很多时候，路由器存在着大量的漏洞，特别是在已知目标设备下进行有计划的APT活动，例如已知目标主机是在内网，而且看见路由器是xx-link的牌子和型号，黑阔直接利用xss把路由器DMZ开启，目标主机就直接暴露在外网了。</p>  <p>这些说明了神马，我们列下几点:</p>  <p>1.买到的路由器一定要修改默认密码，还有默认的路由地址(比如192.168.1.1改成192.168.30.1)这样能很大程度防止CSRF。</p>  <p>2.不要浏览不良网站，即使浏览那也就算了，但一定要定期检查数据有没有被恶意修改，比如说xss蠕虫。</p>  <p>3.电信也为路由器做了一些拦截，只要是当电信用户的DNS指向国外服务器时，有些地区的电信就会弹窗提示dns被修改。。。这里说的只是一些地区，其他地方我不知道，网通和联通截止到写稿时貌似木有这种功能。</p>  <p>4.尽量少浏览那些OOXX的网站，你懂的，因为他们赚的不只是流量钱。。。尽管还是忍不住去看的话尽量不要用IE去看。。有条件就直接把动作片下载吧。或者在虚拟机里面看。</p>  <p>5.&#160; 准备双十一了，淘宝各种活动，装个杀软吧，估计黑阔们都在扩张服务器，还害怕流量过大。。。所以双十一附近要多加防范！！！</p>  <p>特此声明：此故事纯属虚构，请勿用于非法用途，所造成的后果与本文作者无关。大牛莫喷</p>  <p><a href="http://drops.wooyun.org/news/721" target="_blank">乌云的小说</a></p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1052.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1052.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1052.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1052.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/1053.seo/">
-        ← JavaScript面向对象15分钟教程
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/1051.seo/">
-        揭秘全球最大网站Facebook背后的那些软件 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/黑客技巧/">黑客技巧</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/CSRF/">CSRF</a><a href="/tag/APT/">APT</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/1053.seo/" title="JavaScript面向对象15分钟教程">
+  <strong>Prev:</strong><br/>
+  <span>
+  JavaScript面向对象15分钟教程</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/1051.seo/"  title="揭秘全球最大网站Facebook背后的那些软件">
+ <strong>Next:</strong><br/> 
+ <span>揭秘全球最大网站Facebook背后的那些软件
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-浅谈路由CSRF危害，和非主流姿势" data-title="浅谈路由CSRF危害，和非主流姿势" data-url="http://ha.cker.in/1052.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

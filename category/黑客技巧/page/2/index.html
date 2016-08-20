@@ -1,266 +1,270 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Category: 黑客技巧 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Category: 黑客技巧 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Category: 黑客技巧 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="category-icon">黑客技巧</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2015-04-27T06:26:16.000Z" itemprop="datePublished">
-          2015-04-27
-      </time>
-    
-    
-    | 
-    <a href='/tag/邮件注入/'>邮件注入</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1107.seo/">实战 PHP邮件注入攻击技术</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>1. 简介</p>  <hr align="center" size="0" width="100%" noshade="noshade" />  <p>如今,互联网的使用急剧上升,但绝大多数互联网用户没有安全知识背景。大多数的人都会使用互联网通过邮件Email的方式和他人进行通信。出于这个原因,大多数网站允许他们的用户联系他们，向网站提供建议,报告一个问题,或者要求反馈,用户将会发送反馈给网站管理员的电子邮件。   <br />不幸的是,大多数web开发人员对安全编码Code-Security没有足够的认识,其中的一些程序猿使用现成的库或框架,这些库受到许多已知的漏洞。这些漏洞是已经公布,厂商并已经对其进行了修补，并且相应的攻击源代码poc都在互联网上可下载的,但大多数开发人员都懒得升级到最新版本。</p>  <p>今天我们要谈论电子邮件注射,攻击者可以使用你的邮件服务器来发送垃圾邮件。</p>  <p>2. 邮件注入</p>  <hr align="center" size="0" width="100%" noshade="noshade" />  <p>From Wikipedia:</p>  <p>电子<a href="http://ha.cker.in/tag/邮件注入" target="_blank">邮件注入</a>是一个安全漏洞,这种漏洞广泛存在于在互联网电子邮件收发应用中。这是电子邮件注射和HTTP头注射类似。和<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>攻击类似,这种漏洞是一类常见的的漏洞,发生在当一个编程语言是嵌入到另一个，例如MYSQL嵌入到PHP中。</p>  <p>当一个可以提交数据到一个Web应用程序表单被添加到一个Web页面,恶意用户可能会利用MIME格式添加额外的信息到要发送的消息中(POST/GET),比如一个新的收件人列表或一个完全不同的消息体。因为MIME格式使用回车分隔在数据包中信息(HTTP数据包中的每一行之间都有一个换行符,在POST和HTTP HEADER之间有两个换行符),通过添加回车提交表单数据(使用FB的一些插件可以很容易的做到),可以允许一个简单的留言板是用来发送成千上万的消息。同样,一个垃圾邮件发送者可以使用这种战术的恶意发送大量的匿名消息。</p>  <p>电子邮件注入是针对PHP内置邮件功能的一种攻击类型。它允许恶意攻击者注入任何邮件头字段,BCC、CC、主题等,它允许黑客通过注入手段从受害者的邮件服务器发送垃圾邮件。由于这个原因,这种攻击称为电子邮件注入,或者邮件形式滥发。这个漏洞是不限于PHP。它可能会影响任何从用户UI接收消息并发送电子邮件消息的应用程序。这种攻击的主要原因是不适当的用户输入验证或应用程序根本没有验证和过滤机制。</p>  <p>3. 邮件注入的攻击原理</p>  <hr align="center" size="0" width="100%" noshade="noshade" />  <p>中国古话说得好: 知其然才能知其所以然。   <br />为了解释邮件注入的工作原理，我们必须先了解PHP Email函数的工作原理。下面是从PHP Manual中找到API解释</p>  <p>mail():</p>  <p><a href="http://www.php.net/manual/en/function.mail.php">http://www.php.net/manual/en/function.mail.php</a></p>  <p>bool mail ( string $to , string $subject , string $message [, string $additional_headers [, string $additional_parameters ]] )</p>  <p>你可以注意到,这需要三个必填参数(”目的地、主题和消息”)和其他一些可选参数和函数返回一个布尔值。</p>  <p>那么让我们来看看一个带漏洞的代码来演示这个漏洞:</p>  <p><a href="http://img.cker.in/PHP_138FF/clip_image002.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="PHP邮件注入攻击技术" border="0" alt="PHP邮件注入攻击技术" src="http://img.cker.in/PHP_138FF/clip_image002_thumb.jpg" width="694" height="141" /></a></p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1107.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2014-12-24T06:28:42.000Z" itemprop="datePublished">
-          2014-12-24
-      </time>
-    
-    
-    | 
-    <a href='/tag/WMIC/'>WMIC</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1102.seo/">How To Find User's SIDs with WMIC</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        Follow these easy steps to display a table of user names and their corresponding SIDs:    Difficulty: Easy     Time Required: It’ll take less than a minute to find a user’s SID in Windows via WMIC:     Here’s How:     Op
-      
-      </p>
-      
-      <p>
-          <a href="/1102.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1107.seo/" title="实战 PHP邮件注入攻击技术" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2014-12-19T07:14:26.000Z" itemprop="datePublished">
-          2014-12-19
-      </time>
+    <h1 itemprop="name">实战 PHP邮件注入攻击技术</h1>
     
-    
-    | 
-    <a href='/tag/Exchange/'>Exchange</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1099.seo/">关闭和开启Exchange 2010、2007、2003服务的命令脚本</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>关闭和开启<a href="http://ha.cker.in/tag/Exchange" target="_blank">Exchange</a> 2010服务的命令脚本</p>  <blockquote>   <p>net stop msexchangeadtopology /y     <br />net stop msexchangefba /y      <br />net stop msftesql-exchange /y      <br />net stop msexchangeis /y      <br />net stop msexchangesa /y      <br />net stop iisadmin /y      <br />net stop w3svc /y </p> </blockquote>  <p>#What does the script do? </p>  <p>net stop msexchangeadtopology /y   <br />#Stops the &quot;Microsoft Exchange Active Directory Topology Service&quot; which will stop the following services </p>  <p>Microsoft Exchange Transport Log Search   <br />Microsoft Exchange Transport    <br />Microsoft Exchange Throttling    <br />Microsoft Exchange Service Host    <br />Microsoft Exchange Search Indexer    <br />Microsoft Exchange RPC Client Access    <br />Microsoft Exchange Replication    <br />Microsoft Exchange Protected Service Host    <br />Microsoft Exchange Mail Submission    <br />Microsoft Exchange Mailbox Replication    <br />Microsoft Exchange Mailbox Assistants    <br />Microsoft Exchange File Distribution    <br />Microsoft Exchange EdgeSync    <br />Microsoft Exchange Anti-spam Update    <br />Microsoft Exchange Address Book </p>  <p>It will also stop POP3, IMAP4 and Unified Messaging if those are enabled. </p>  <p>net stop msexchangefba /y   <br />#stops the &quot;Microsoft Exchange Forms-Based Authentication&quot; service which does not have any dependencies </p>  <p>net stop msftesql-exchange /y   <br />#stops the &quot;Microsoft Search (Exchange)&quot; service which does not have any dependencies </p>  <p>net stop msexchangeis /y   <br />#stops the &quot;Microsoft Exchange Information Store&quot; service which does not have any dependencies </p>  <p>net stop msexchangesa /y   <br />#stops the &quot;Microsoft Exchange System Attendant&quot; service which does not have any dependencies </p>  <p>net stop iisadmin /y   <br />#stops the IIS admin service, which does not have any dependencies. </p>  <p>net stop w3svc /y   <br />#stops the &quot;World Wide Web Publishing&quot; service, which may have any dependencies - on SBS this will also stop the Remote Desktop Gateway service, which could kick you out of the server if you are using the RWW to access the server. </p>  <p>If you are using a third party plug-in, then you may find that there is a dependency on that plug-in which can cause the script to fail. The /y at the end of each command should deal with it, but if you find that the third party service doesn’t stop in time, adjust the script to include a delay. (Sleep is part of the Windows Resource Kit tools, if you don’t have it installed on the server) </p>  <p>For example, this is a script used with an old version of McAfee Group Shield </p>  <blockquote>   <p>net stop &quot;McAfee GroupShield Exchange&quot; /y     <br />sleep 30      <br />net stop msexchangefba /y      <br />net stop msftesql-exchange /y      <br />net stop msexchangeis /y      <br />net stop msexchangesa /y      <br />net stop iisadmin /y      <br />net stop w3svc /y </p> </blockquote>  <p>Starting Exchange with a Script </p>  <p>Finally, you might also want a script to start Exchange again. This can be useful if you apply an update which requires a restart of the Exchange services, but don’t need to restart the server. However starting the services is a little more complex as the less number of the services are dependant on other services. Therefore more services have to be started manually. Simply copy and paste it in to a new notepad document and save it as &quot;start-exchange.cmd&quot;. </p>  <p>Remember to add POP3 and IMAP services if you are using those </p>  <blockquote>   <p>net start &quot;World Wide Web Publishing Service&quot;     <br />net start &quot;Microsoft Exchange System Attendant&quot;      <br />net start &quot;Microsoft Search&#160; (Exchange)&quot;      <br />net start &quot;Microsoft Exchange Information Store&quot;      <br />net start &quot;Microsoft Exchange Unified Messaging&quot;      <br />net start &quot;Microsoft Exchange Transport Log Search&quot;      <br />net start &quot;Microsoft Exchange Transport&quot;      <br />net start &quot;Microsoft Exchange Throttling&quot;      <br />net start &quot;Microsoft Exchange Service Host&quot;      <br />net start &quot;Microsoft Exchange Search Indexer&quot;      <br />net start &quot;Microsoft Exchange RPC Client Access&quot;      <br />net start &quot;Microsoft Exchange Replication&quot;      <br />net start &quot;Microsoft Exchange Protected Service Host&quot;      <br />net start &quot;Microsoft Exchange Mailbox Replication&quot;      <br />net start &quot;Microsoft Exchange Mailbox Assistants&quot;      <br />net start &quot;Microsoft Exchange Mail Submission&quot;      <br />net start &quot;Microsoft Exchange Forms-Based Authentication service&quot;      <br />net start &quot;Microsoft Exchange File Distribution&quot;      <br />net start &quot;Microsoft Exchange EdgeSync&quot;      <br />net start &quot;Microsoft Exchange Anti-spam Update&quot;      <br />net start &quot;Microsoft Exchange Address Book&quot; </p> </blockquote>  <p><a href="http://exchange.sembee.info/2010/shutdown-script.asp">http://exchange.sembee.info/2010/shutdown-script.asp</a></p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1099.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2015-04-27T06:26:16.000Z" itemprop="datePublished">2015-04-27</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2014-12-10T19:01:51.000Z" itemprop="datePublished">
-          2014-12-11
-      </time>
-    
-</span>
-      <h2 class="post-title"><a href="/1098.seo/">CRLF Injection漏洞的利用与实例分析</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>0x00 背景</p>  <p>CRLFInjection很少遇见，这次被我逮住了。我看zone中（<a href="http://zone.wooyun.org/content/13323）还有一些同学对于这个漏洞不甚了解，甚至分不清它与CSRF，我详细说一下吧。">http://zone.wooyun.org/content/13323）还有一些同学对于这个漏洞不甚了解，甚至分不清它与CSRF，我详细说一下吧。</a></p>  <p>CRLF是”回车+换行”（\r\n）的简称。在HTTP协议中，HTTPHeader与HTTPBody是用两个CRLF分隔的，浏览器就是根据这两个CRLF来取出HTTP内容并显示出来。所以，一旦我们能够控制HTTP消息头中的字符，注入一些恶意的换行，这样我们就能注入一些会话Cookie或者HTML代码，所以CRLFInjection又叫HTTPResponseSplitting，简称HRS。</p>  <p>HRS是比XSS危害更大的安全问题，具体是为什么，我们往下看。</p>  <p>对于HRS最简单的利用方式是注入两个\r\n，之后在写入XSS代码，来构造一个xss。</p>  <p>0x01 实例</p>  <p>举个例子，一般网站会在HTTP头中用Location:<a href="http://baidu.com这种方式来进行302跳转，所以我们能控制的内容就是Location:后面的XXX某个网址。">http://baidu.com这种方式来进行302跳转，所以我们能控制的内容就是Location:后面的XXX某个网址。</a></p>  <p>所以一个正常的302跳转包是这样：</p>  <p>HTTP/1.1 302 Moved Temporarily Date: Fri, 27 Jun 2014 17:52:17 GMT Content-Type: text/html Content-Length: 154 Connection: close Location: <a href="http://www.sina.com.cn">http://www.sina.com.cn</a></p>  <p>但如果我们输入的是</p>  <p><a href="http://www.sina.com.cn%0aSet-cookie:JSPSESSID%3Dwooyun">http://www.sina.com.cn%0aSet-cookie:JSPSESSID%3Dwooyun</a></p>  <p>注入了一个换行，此时的返回包就会变成这样：</p>  <p>HTTP/1.1 302 Moved Temporarily Date: Fri, 27 Jun 2014 17:52:17 GMT Content-Type: text/html Content-Length: 154 Connection: close Location: <a href="http://www.sina.com.cn">http://www.sina.com.cn</a> Set-cookie: JSPSESSID=wooyun</p>  <p>这个时候这样我们就给访问者设置了一个SESSION，造成一个“会话固定漏洞”。</p>  <p>当然，HRS并不仅限于会话固定，通过注入两个CRLF就能造成一个无视浏览器Filter的反射型XSS。</p>  <p>比如一个网站接受url参数<a href="http://test.sina.com.cn/?url=xxx，xxx放在Location后面作为一个跳转。如果我们输入的是">http://test.sina.com.cn/?url=xxx，xxx放在Location后面作为一个跳转。如果我们输入的是</a></p>  <p><a href="http://test.sina.com.cn/?url=%0d%0a%0d%0a&lt;imgsrc=1onerror=alert(/xss/)&amp;gt">http://test.sina.com.cn/?url=%0d%0a%0d%0a&lt;imgsrc=1onerror=alert(/xss/)&amp;gt</a>;</p>  <p>我们的返回包就会变成这样：</p>  <p>HTTP/1.1 302 Moved Temporarily Date: Fri, 27 Jun 2014 17:52:17 GMT Content-Type: text/html Content-Length: 154 Connection: close Location: &lt;img src=1 onerror=alert(/xss/)&gt;</p>  <p>之前说了浏览器会根据第一个CRLF把HTTP包分成头和体，然后将体显示出来。于是我们这里这个标签就会显示出来，造成一个XSS。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1098.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1102.seo/" title="How To Find User&#39;s SIDs with WMIC" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2014-07-03T01:53:48.000Z" itemprop="datePublished">
-          2014-07-03
-      </time>
+    <h1 itemprop="name">How To Find User&#39;s SIDs with WMIC</h1>
     
-    
-    | 
-    <a href='/tag/SQL注入/'>SQL注入</a>,
-    
-    <a href='/tag/安全狗/'>安全狗</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1089.seo/">全方位绕过安全狗</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><b>一、前言</b><b></b></p>  <p><a href="http://ha.cker.in/tag/安全狗" target="_blank">安全狗</a>是一款大家熟悉的服务器安全加固产品，据称已经拥有50W的用户量。最近经过一些研究，发现<a href="http://ha.cker.in/tag/安全狗" target="_blank">安全狗</a>的一些防护功能，例如<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>、文件上传、防webshell等都可以被绕过，下面为大家一一介绍。</p>  <p><b>二、测试环境</b><b></b></p>  <p>本次测试环境为</p>  <p>中文版Win2003 SP2+PHP 5.3.28+Mysql 5.1.72</p>  <p>网站安全狗IIS版3.2.08417</p>  <p><b>三、SQL注入绕过</b><b></b></p>  <p>我们先写一个存在SQL注入漏洞的php：</p>  <p>&lt;?</p>  <p>$uid = $_REQUEST[‘id’];</p>  <p>if(!$conn = @mysql_connect(&quot;localhost&quot;, &quot;root&quot;, &quot;123456&quot;))</p>  <p>die(‘&lt;font size=+1&gt;An Error Occured&lt;/font&gt;&lt;hr&gt;unable to connect to the database.’);</p>  <p>if(!@mysql_select_db(&quot;supe&quot;,$conn))</p>  <p>die(&quot;&lt;font size=+1&gt;An Error Occured&lt;/font&gt;&lt;hr&gt;unable to find it at database on your MySQL server.&quot;);</p>  <p>$text = &quot;select <em> from supe_members where uid=&quot;.$uid;</p>  <p>$rs = mysql_query ($text,$conn);</p>  <p>while($rom = mysql_fetch_array($rs))</p>  <p>{</p>  <p>&#160;&#160;&#160; echo $rom[&quot;username&quot;];</p>  <p>}</p>  <p>?&gt;</p>  <p>我用的是supesite的库，可以看到这里是有明显<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>漏洞的，当没有安全狗的时候可以成功注入：</p>  <p><a href="http://img.cker.in/de86e6665f70_D948/clip_image001.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="injsuc.png" border="0" alt="全方位绕过安全狗" src="http://img.cker.in/de86e6665f70_D948/clip_image001_thumb.jpg" width="694" height="332" /></a></p>  <p>当安装安全狗之后，注入语句会被拦截：</p>  <p><a href="http://img.cker.in/de86e6665f70_D948/clip_image002.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="injfail.png" border="0" alt="全方位绕过安全狗" src="http://img.cker.in/de86e6665f70_D948/clip_image002_thumb.jpg" width="694" height="312" /></a></p>  <p>经过测试发现，安全狗这块的匹配正则应该是\s+and这类的，所以只要想办法去掉空格，用普通注释/**/是不行的，安全狗也防了这块。但是对内联注释/</em>!and<em>/这种不知道为什么安全狗没有拦截。</p>  <p>用下面语句成功绕过SQL注入过滤：</p>  <p><a href="http://192.168.200.115/inj.php?id=1/">http://192.168.200.115/inj.php?id=1/</a></em>!and<em>/1=2/</em>!union<em>//</em>!select*/1,2,version(),4,5,6,7,8,9,10,11,12,13,14,15,16,17</p>  <p><a href="http://img.cker.in/de86e6665f70_D948/clip_image003.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="injbypass.png" border="0" alt="全方位绕过安全狗" src="http://img.cker.in/de86e6665f70_D948/clip_image003_thumb.jpg" width="694" height="350" /></a></p>  <p>有人说只有POST才可以，但是我测试最新版本的安全狗GET注入也是可以用这种方法绕过的。</p>  <p><b>四、文件上传绕过</b><b></b></p>  <p>安全狗的防上传也是做在WEB层，即分析HTTP协议来防止上传，按照yuange说的安全是一个条件语句，这显然是不符合安全规范的，只检查HTTP并不能保证文件系统层上的问题。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1089.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2014-12-24T06:28:42.000Z" itemprop="datePublished">2014-12-24</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2014-07-02T09:47:48.000Z" itemprop="datePublished">
-          2014-07-02
-      </time>
-    
-    
-    | 
-    <a href='/tag/SMB中继攻击/'>SMB中继攻击</a>,
-    
-    <a href='/tag/DNS劫持/'>DNS劫持</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1086.seo/">再谈SMB中继攻击</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>首先，介绍一下<a href="http://ha.cker.in/tag/SMB中继攻击" target="_blank">SMB中继攻击</a>的运作原理</p>  <p><a href="http://img.cker.in/SMB_1566/clip_image001.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/SMB_1566/clip_image001_thumb.jpg" width="695" height="487" /></a></p>  <p> 假设左边的主机为A，右边的主机为B</p>  <p>A试图访问B的共享服务</p>  <p> 第一步 A对B说：骚年，请让我登陆</p>  <p> 第二步 B对A说：骚年，我给你一个challenge，请先把你的密码Hash和challenge加密一下返回给我，我得确认你是否有权限</p>  <p> 第三步 A对B说：我加密好了，给你</p>  <p> 情景一：</p>  <p> 第四步 B对A说：嗯，对的，请进(认证结束)</p>  <p> 情景二：</p>  <p> 第四步 B对A说：骚年，不对，你的身份不能登陆，你可以试试以别人的身份来登陆</p>  <p> 第五步 A对B说：好嘛，我用你之前告诉我的身份试试，回到第一步，循环下去</p>  <p> 现在，如果加入了一名第三者C到两者之间，C企图查看B的隐私，C会怎么做?</p>  <p><a href="http://img.cker.in/SMB_1566/clip_image002.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/SMB_1566/clip_image002_thumb.jpg" width="1011" height="639" /></a></p>  <p> 上图就是C的做法</p>  <p> 第一步 A对C说：骚年，请让我登陆</p>  <p> 第二步 C对B说：骚年，请让我登陆</p>  <p> 第三步 B对C说：骚年，我给你一个challenge，请先把你的密码Hash和challenge加密一下返回给我，我得确认你是否有权限</p>  <p> 第四步 C对A说：骚年，我给你一个challenge(这是B发出的challenge)，请先把你的密码Hash和challenge加密一下返回给我，我得确认你是否有权限</p>  <p> 第五步 A对C说：我加密好了，给你</p>  <p> 第六步 C对B说：我加密好了，给你</p>  <p> 情景一：</p>  <p> 第七步 B对C说：嗯，对的，请进(认证结束，C替代A获取了权限)</p>  <p> 第八步 C对A说：骚年，不对，你的身份不能登陆(A的认证结束)</p>  <p> 情景二：</p>  <p> 第七步 B对C说：骚年，不对，你的身份不能登陆，你可以试试以别人的身份来登陆</p>  <p> 第八步 C对B说：好嘛，我用你之前告诉我的身份试试</p>  <p> 第九步 C对A说：骚年，不对，你的身份不能登陆，你可以试试以别人的身份来登陆</p>  <p> 第十步 A对C说：好嘛，我用你之前告诉我的身份试试，回到第一步，循环下去</p>  <p>OK，你可以看出，A和B都被C欺骗了，这明显是一场中间人攻击</p>  <p> 这里面还有一处不合理的地方，不知道你发现没有，A想和B对话，怎么会和C吹起牛来了呢?</p>  <p> 肯定是A误以为C就是B，C是怎么做到的呢?</p>  <p> 下面就来探究一下C的骗人手法，如果你是C你会怎么做呢?</p>  <p>1. NBNS欺骗，前提</p>  <p>a) A B C必须都处在同一个局域网下面</p>  <p>b) A寻找B是用的B的计算机名而不是B的ip</p>  <p>2. DNS劫持，前提</p>  <p>a) A寻找B是用的B的域名而不是B的ip</p>  <p> 下面就让我们来重演一下这次攻击!</p>  <p> 方式1：NBNS欺骗 + SMB中继</p>  <p> 出品人：</p>  <p>A winxp 192.168.30.129</p>  <p>B win2k3 192.168.30.130 计算机名：smbserver</p>  <p>C kali 192.168.30.145</p>  <p>Kali msf下使用smb_replay模块，设置SMBHOST为B(192.168.30.130)</p>  <p>Kali msf下使用nbns_response模块将B的计算机名(smbserver)解析到C的IP(192.168.30.145)</p>  <p><a href="http://img.cker.in/SMB_1566/clip_image003.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/SMB_1566/clip_image003_thumb.jpg" width="693" height="341" /></a></p>  <p>Winxp 访问smbserver的共享</p>  <p><a href="http://img.cker.in/SMB_1566/clip_image004.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/SMB_1566/clip_image004_thumb.jpg" width="742" height="429" /></a></p>  <p>OK，到Kali下看看结果</p>  <p>Cool，我们成功拿到了B的Meterpreter shell</p>  <p> 原理：NBNS是广播的，所以C只需要赶在B之前告诉A：“C的计算机名是smbserver”就行了</p>  <p> 方式2：DNS劫持+SMB中继</p>  <p> 出品人：</p>  <p>A winxp 192.168.30.129</p>  <p>B win2k3 192.168.30.130 域名：share.baidu.com</p>  <p>C kali 192.168.30.145</p>  <p> 由于虚拟机有限，我将B模拟成一台内网中被黑掉的DNS服务器</p>  <p>Kali msf下使用smb_replay模块，设置SMBHOST为B(192.168.30.130)</p>  <p> 将DNS服务器的 share.baidu.com 域名指向C(192.168.30.145)</p>  <p><a href="http://img.cker.in/SMB_1566/clip_image005.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/SMB_1566/clip_image005_thumb.jpg" width="459" height="252" /></a></p>  <p>Winxp 访问share.baidu.com的共享</p>  <p><a href="http://img.cker.in/SMB_1566/clip_image006.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/SMB_1566/clip_image006_thumb.jpg" width="633" height="342" /></a></p>  <p>OK，到Kali下看看结果</p>  <p><a href="http://img.cker.in/SMB_1566/clip_image007.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/SMB_1566/clip_image007_thumb.jpg" width="867" height="370" /></a></p>  <p> 成功拿到B的shell</p>  <p> 如果你很注意细节，你应该会有一个问题，如果我们将NBNS欺骗和<a href="http://ha.cker.in/tag/DNS劫持" target="_blank">DNS劫持</a>同时启用，但指向不同的IP会有怎样的效果?</p>  <p> 我将告诉你：只有DNS劫持会起作用</p>  <p> 看下图就知道了</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1086.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1099.seo/" title="关闭和开启Exchange 2010、2007、2003服务的命令脚本" itemprop="url">
   
-  <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/category/黑客技巧/">← Newer Posts</a>
-    <span class="page-number">Page 2 of 13</span>
-    <a class="older-posts" href="/category/黑客技巧/page/3/">Older Posts →</a>
+    <h1 itemprop="name">关闭和开启Exchange 2010、2007、2003服务的命令脚本</h1>
+    
+    <time datetime="2014-12-19T07:14:26.000Z" itemprop="datePublished">2014-12-19</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/1098.seo/" title="CRLF Injection漏洞的利用与实例分析" itemprop="url">
+  
+    <h1 itemprop="name">CRLF Injection漏洞的利用与实例分析</h1>
+    
+    <time datetime="2014-12-10T19:01:51.000Z" itemprop="datePublished">2014-12-11</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/1089.seo/" title="全方位绕过安全狗" itemprop="url">
+  
+    <h1 itemprop="name">全方位绕过安全狗</h1>
+    
+    <time datetime="2014-07-03T01:53:48.000Z" itemprop="datePublished">2014-07-03</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/1086.seo/" title="再谈SMB中继攻击" itemprop="url">
+  
+    <h1 itemprop="name">再谈SMB中继攻击</h1>
+    
+    <time datetime="2014-07-02T09:47:48.000Z" itemprop="datePublished">2014-07-02</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix archive-nav">
+    <a class="extend prev" rel="prev" href="/category/黑客技巧/">&laquo; 上一页</a><a class="page-number" href="/category/黑客技巧/">1</a><span class="page-number current">2</span><a class="page-number" href="/category/黑客技巧/page/3/">3</a><a class="page-number" href="/category/黑客技巧/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/category/黑客技巧/page/13/">13</a><a class="extend next" rel="next" href="/category/黑客技巧/page/3/">下一页 &raquo;</a>
   </nav>
-</main>
 
-
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

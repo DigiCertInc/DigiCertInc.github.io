@@ -1,285 +1,396 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+    </header>
+    
 
-      
-<main class="content" role="main">
+    <div id="container">
+      <div id="main">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2014-07-03T01:53:48.000Z" itemprop="datePublished">
-          2014-07-03
-      </time>
-    
-    
-    | 
-    <a href='/tag/SQL注入/'>SQL注入</a>,
-    
-    <a href='/tag/安全狗/'>安全狗</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1089.seo/">全方位绕过安全狗</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><b>一、前言</b><b></b></p>  <p><a href="http://ha.cker.in/tag/安全狗" target="_blank">安全狗</a>是一款大家熟悉的服务器安全加固产品，据称已经拥有50W的用户量。最近经过一些研究，发现<a href="http://ha.cker.in/tag/安全狗" target="_blank">安全狗</a>的一些防护功能，例如<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>、文件上传、防webshell等都可以被绕过，下面为大家一一介绍。</p>  <p><b>二、测试环境</b><b></b></p>  <p>本次测试环境为</p>  <p>中文版Win2003 SP2+PHP 5.3.28+Mysql 5.1.72</p>  <p>网站安全狗IIS版3.2.08417</p>  <p><b>三、SQL注入绕过</b><b></b></p>  <p>我们先写一个存在SQL注入漏洞的php：</p>  <p>&lt;?</p>  <p>$uid = $_REQUEST[‘id’];</p>  <p>if(!$conn = @mysql_connect(&quot;localhost&quot;, &quot;root&quot;, &quot;123456&quot;))</p>  <p>die(‘&lt;font size=+1&gt;An Error Occured&lt;/font&gt;&lt;hr&gt;unable to connect to the database.’);</p>  <p>if(!@mysql_select_db(&quot;supe&quot;,$conn))</p>  <p>die(&quot;&lt;font size=+1&gt;An Error Occured&lt;/font&gt;&lt;hr&gt;unable to find it at database on your MySQL server.&quot;);</p>  <p>$text = &quot;select <em> from supe_members where uid=&quot;.$uid;</p>  <p>$rs = mysql_query ($text,$conn);</p>  <p>while($rom = mysql_fetch_array($rs))</p>  <p>{</p>  <p>&#160;&#160;&#160; echo $rom[&quot;username&quot;];</p>  <p>}</p>  <p>?&gt;</p>  <p>我用的是supesite的库，可以看到这里是有明显<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>漏洞的，当没有安全狗的时候可以成功注入：</p>  <p><a href="http://img.cker.in/de86e6665f70_D948/clip_image001.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="injsuc.png" border="0" alt="全方位绕过安全狗" src="http://img.cker.in/de86e6665f70_D948/clip_image001_thumb.jpg" width="694" height="332" /></a></p>  <p>当安装安全狗之后，注入语句会被拦截：</p>  <p><a href="http://img.cker.in/de86e6665f70_D948/clip_image002.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="injfail.png" border="0" alt="全方位绕过安全狗" src="http://img.cker.in/de86e6665f70_D948/clip_image002_thumb.jpg" width="694" height="312" /></a></p>  <p>经过测试发现，安全狗这块的匹配正则应该是\s+and这类的，所以只要想办法去掉空格，用普通注释/**/是不行的，安全狗也防了这块。但是对内联注释/</em>!and<em>/这种不知道为什么安全狗没有拦截。</p>  <p>用下面语句成功绕过SQL注入过滤：</p>  <p><a href="http://192.168.200.115/inj.php?id=1/">http://192.168.200.115/inj.php?id=1/</a></em>!and<em>/1=2/</em>!union<em>//</em>!select*/1,2,version(),4,5,6,7,8,9,10,11,12,13,14,15,16,17</p>  <p><a href="http://img.cker.in/de86e6665f70_D948/clip_image003.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="injbypass.png" border="0" alt="全方位绕过安全狗" src="http://img.cker.in/de86e6665f70_D948/clip_image003_thumb.jpg" width="694" height="350" /></a></p>  <p>有人说只有POST才可以，但是我测试最新版本的安全狗GET注入也是可以用这种方法绕过的。</p>  <p><b>四、文件上传绕过</b><b></b></p>  <p>安全狗的防上传也是做在WEB层，即分析HTTP协议来防止上传，按照yuange说的安全是一个条件语句，这显然是不符合安全规范的，只检查HTTP并不能保证文件系统层上的问题。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1089.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1089.seo/" title="全方位绕过安全狗" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2014-07-02T12:34:32.000Z" itemprop="datePublished">
-          2014-07-02
-      </time>
+    <h1 itemprop="name">全方位绕过安全狗</h1>
     
-    
-    | 
-    <a href='/tag/SQL注入/'>SQL注入</a>,
-    
-    <a href='/tag/Discuz/'>Discuz</a>,
-    
-    <a href='/tag/Acunetix-Web-Vulnerability-Scanner/'>Acunetix Web Vulnerability Scanner</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1088.seo/">编写自己的Acunetix WVS漏洞脚本详细教程</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
+     
+       <p itemprop="description" >一、前言  安全狗是一款大家熟悉的服务器安全加固产品，据称已经拥有50W的用户量。最近经过一些研究，发现安全狗的一些防护功能，例如SQL注入、文件上传、防webshell等都可以被绕过，下面为大家一一介绍。  二、测试环境  本次测试环境为  中文版Win2003 SP2+PHP</p>
       
-        AWVS提供了自定义的脚本编程接口，可是网上的资料很少，只有官方的几篇介绍和参考手册，最近研究了一下怎么编写AWVS的漏洞脚本来写一篇简单性的文章，大家有兴趣的可以交流 。  本文以8.0为例，首先呢安装好Acunetix Web Vulnerability Scanner 8（该破解的破解，该付费的付费），然后我们需要WVS公开的小小的SDK，下载地址：http://www.acunetix.com/download/tools/WV
-      
-      </p>
-      
-      <p>
-          <a href="/1088.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    
+    <time datetime="2014-07-03T01:53:48.000Z" itemprop="datePublished">2014-07-03</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2014-07-02T10:28:06.000Z" itemprop="datePublished">
-          2014-07-02
-      </time>
-    
-    
-    | 
-    <a href='/tag/Discuz/'>Discuz</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1087.seo/">discuz7.2 faq.php 最新注入漏洞分析</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        discuz7.2 faq.php 最新注入漏洞分析  之前乌云上被提交的漏洞，今天突然被人发出来了，然后就各种中枪。奈何各种考试马上就来了，我也没工夫去写exp或脚本什么的，趁点休息时间把代码看看就好。实话说我很讨厌这种情况，一大堆人会的不会的拿着别人发的exp刷漏洞，刷分刷钱。不如静下心来分析一下漏洞产生的原因，也算是我吃不到葡萄在说葡萄酸吧，笑。  因为有同学给出POC了，POC如下：  &#160;&#160;&#160; ht
-      
-      </p>
-      
-      <p>
-          <a href="/1087.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1088.seo/" title="编写自己的Acunetix WVS漏洞脚本详细教程" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2014-07-02T09:47:48.000Z" itemprop="datePublished">
-          2014-07-02
-      </time>
+    <h1 itemprop="name">编写自己的Acunetix WVS漏洞脚本详细教程</h1>
     
+     
+           <p itemprop="description" >AWVS提供了自定义的脚本编程接口，可是网上的资料很少，只有官方的几篇介绍和参考手册，最近研究了一下怎么编写AWVS的漏洞脚本来写一篇简单性的文章，大家有兴趣的可以交流 。  本文以8.0为例，首先呢安装好Acunetix Web Vulnerability Scanner 8（</p>
+        
     
-    | 
-    <a href='/tag/SMB中继攻击/'>SMB中继攻击</a>,
-    
-    <a href='/tag/DNS劫持/'>DNS劫持</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1086.seo/">再谈SMB中继攻击</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>首先，介绍一下<a href="http://ha.cker.in/tag/SMB中继攻击" target="_blank">SMB中继攻击</a>的运作原理</p>  <p><a href="http://img.cker.in/SMB_1566/clip_image001.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/SMB_1566/clip_image001_thumb.jpg" width="695" height="487" /></a></p>  <p> 假设左边的主机为A，右边的主机为B</p>  <p>A试图访问B的共享服务</p>  <p> 第一步 A对B说：骚年，请让我登陆</p>  <p> 第二步 B对A说：骚年，我给你一个challenge，请先把你的密码Hash和challenge加密一下返回给我，我得确认你是否有权限</p>  <p> 第三步 A对B说：我加密好了，给你</p>  <p> 情景一：</p>  <p> 第四步 B对A说：嗯，对的，请进(认证结束)</p>  <p> 情景二：</p>  <p> 第四步 B对A说：骚年，不对，你的身份不能登陆，你可以试试以别人的身份来登陆</p>  <p> 第五步 A对B说：好嘛，我用你之前告诉我的身份试试，回到第一步，循环下去</p>  <p> 现在，如果加入了一名第三者C到两者之间，C企图查看B的隐私，C会怎么做?</p>  <p><a href="http://img.cker.in/SMB_1566/clip_image002.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/SMB_1566/clip_image002_thumb.jpg" width="1011" height="639" /></a></p>  <p> 上图就是C的做法</p>  <p> 第一步 A对C说：骚年，请让我登陆</p>  <p> 第二步 C对B说：骚年，请让我登陆</p>  <p> 第三步 B对C说：骚年，我给你一个challenge，请先把你的密码Hash和challenge加密一下返回给我，我得确认你是否有权限</p>  <p> 第四步 C对A说：骚年，我给你一个challenge(这是B发出的challenge)，请先把你的密码Hash和challenge加密一下返回给我，我得确认你是否有权限</p>  <p> 第五步 A对C说：我加密好了，给你</p>  <p> 第六步 C对B说：我加密好了，给你</p>  <p> 情景一：</p>  <p> 第七步 B对C说：嗯，对的，请进(认证结束，C替代A获取了权限)</p>  <p> 第八步 C对A说：骚年，不对，你的身份不能登陆(A的认证结束)</p>  <p> 情景二：</p>  <p> 第七步 B对C说：骚年，不对，你的身份不能登陆，你可以试试以别人的身份来登陆</p>  <p> 第八步 C对B说：好嘛，我用你之前告诉我的身份试试</p>  <p> 第九步 C对A说：骚年，不对，你的身份不能登陆，你可以试试以别人的身份来登陆</p>  <p> 第十步 A对C说：好嘛，我用你之前告诉我的身份试试，回到第一步，循环下去</p>  <p>OK，你可以看出，A和B都被C欺骗了，这明显是一场中间人攻击</p>  <p> 这里面还有一处不合理的地方，不知道你发现没有，A想和B对话，怎么会和C吹起牛来了呢?</p>  <p> 肯定是A误以为C就是B，C是怎么做到的呢?</p>  <p> 下面就来探究一下C的骗人手法，如果你是C你会怎么做呢?</p>  <p>1. NBNS欺骗，前提</p>  <p>a) A B C必须都处在同一个局域网下面</p>  <p>b) A寻找B是用的B的计算机名而不是B的ip</p>  <p>2. DNS劫持，前提</p>  <p>a) A寻找B是用的B的域名而不是B的ip</p>  <p> 下面就让我们来重演一下这次攻击!</p>  <p> 方式1：NBNS欺骗 + SMB中继</p>  <p> 出品人：</p>  <p>A winxp 192.168.30.129</p>  <p>B win2k3 192.168.30.130 计算机名：smbserver</p>  <p>C kali 192.168.30.145</p>  <p>Kali msf下使用smb_replay模块，设置SMBHOST为B(192.168.30.130)</p>  <p>Kali msf下使用nbns_response模块将B的计算机名(smbserver)解析到C的IP(192.168.30.145)</p>  <p><a href="http://img.cker.in/SMB_1566/clip_image003.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/SMB_1566/clip_image003_thumb.jpg" width="693" height="341" /></a></p>  <p>Winxp 访问smbserver的共享</p>  <p><a href="http://img.cker.in/SMB_1566/clip_image004.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/SMB_1566/clip_image004_thumb.jpg" width="742" height="429" /></a></p>  <p>OK，到Kali下看看结果</p>  <p>Cool，我们成功拿到了B的Meterpreter shell</p>  <p> 原理：NBNS是广播的，所以C只需要赶在B之前告诉A：“C的计算机名是smbserver”就行了</p>  <p> 方式2：DNS劫持+SMB中继</p>  <p> 出品人：</p>  <p>A winxp 192.168.30.129</p>  <p>B win2k3 192.168.30.130 域名：share.baidu.com</p>  <p>C kali 192.168.30.145</p>  <p> 由于虚拟机有限，我将B模拟成一台内网中被黑掉的DNS服务器</p>  <p>Kali msf下使用smb_replay模块，设置SMBHOST为B(192.168.30.130)</p>  <p> 将DNS服务器的 share.baidu.com 域名指向C(192.168.30.145)</p>  <p><a href="http://img.cker.in/SMB_1566/clip_image005.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/SMB_1566/clip_image005_thumb.jpg" width="459" height="252" /></a></p>  <p>Winxp 访问share.baidu.com的共享</p>  <p><a href="http://img.cker.in/SMB_1566/clip_image006.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/SMB_1566/clip_image006_thumb.jpg" width="633" height="342" /></a></p>  <p>OK，到Kali下看看结果</p>  <p><a href="http://img.cker.in/SMB_1566/clip_image007.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/SMB_1566/clip_image007_thumb.jpg" width="867" height="370" /></a></p>  <p> 成功拿到B的shell</p>  <p> 如果你很注意细节，你应该会有一个问题，如果我们将NBNS欺骗和<a href="http://ha.cker.in/tag/DNS劫持" target="_blank">DNS劫持</a>同时启用，但指向不同的IP会有怎样的效果?</p>  <p> 我将告诉你：只有DNS劫持会起作用</p>  <p> 看下图就知道了</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1086.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2014-07-02T12:34:32.000Z" itemprop="datePublished">2014-07-02</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2014-07-02T09:28:05.000Z" itemprop="datePublished">
-          2014-07-02
-      </time>
-    
-    
-    | 
-    <a href='/tag/黑产/'>黑产</a>,
-    
-    <a href='/tag/黑色产业/'>黑色产业</a>,
-    
-    <a href='/tag/黑阔/'>黑阔</a>,
-    
-    <a href='/tag/比特币/'>比特币</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1085.seo/">论黑产黑阔如何安全地转移赃款 洗钱？</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        0x00 背景  相信曾经与黑色产业打过交道的同鞋们对这个话题并不陌生。赃款转移，是黑色产业链中最重要的一环，因为这一环直接与黑阔们的收入息息相关。赃款转移地太过安全，容易产生巨额手续费/汇率而导致收入减少。赃款转移不够安全，容易导致水表被查，也就是那句：有命赚钱没命花钱。  下面将会在此文章中谈谈我曾经见过的黑钱转移手段以及自己的分析。各位看官娱乐娱乐即可，请不要将黑产的魔掌伸向普通老百姓，也请各位黑产黑阔们在洗别人银行卡的时候分析下
-      
-      </p>
-      
-      <p>
-          <a href="/1085.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1087.seo/" title="discuz7.2 faq.php 最新注入漏洞分析" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2014-06-07T12:50:02.000Z" itemprop="datePublished">
-          2014-06-07
-      </time>
+    <h1 itemprop="name">discuz7.2 faq.php 最新注入漏洞分析</h1>
     
+     
+           <p itemprop="description" >discuz7.2 faq.php 最新注入漏洞分析  之前乌云上被提交的漏洞，今天突然被人发出来了，然后就各种中枪。奈何各种考试马上就来了，我也没工夫去写exp或脚本什么的，趁点休息时间把代码看看就好。实话说我很讨厌这种情况，一大堆人会的不会的拿着别人发的exp刷漏洞，刷分刷钱</p>
+        
     
-    | 
-    <a href='/tag/Parallels-Desktop/'>Parallels Desktop</a>,
-    
-    <a href='/tag/Metasploitable/'>Metasploitable</a>,
-    
-    <a href='/tag/VMWare-Workstation/'>VMWare Workstation</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1084.seo/">去掉VMWare检测hypervisor</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        最近在 Parallels Desktop 里装了个Win7,然后Win7里装VMWare Workstation 8,出现错误：  You are running VMware Workstation through an incompatible hypervisor.&#160; You cannot power on a virtual machine until this hypervisor is disabled.    
-      
-      </p>
-      
-      <p>
-          <a href="/1084.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2014-07-02T10:28:06.000Z" itemprop="datePublished">2014-07-02</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/page/7/">← Newer Posts</a>
-    <span class="page-number">Page 8 of 81</span>
-    <a class="older-posts" href="/page/9/">Older Posts →</a>
+    <a href="/1086.seo/" title="再谈SMB中继攻击" itemprop="url">
+  
+    <h1 itemprop="name">再谈SMB中继攻击</h1>
+    
+     
+       <p itemprop="description" >首先，介绍一下SMB中继攻击的运作原理     假设左边的主机为A，右边的主机为B  A试图访问B的共享服务   第一步 A对B说：骚年，请让我登陆   第二步 B对A说：骚年，我给你一个challenge，请先把你的密码Hash和challenge加密一下返回给我，我得确认你是</p>
+      
+    
+    <time datetime="2014-07-02T09:47:48.000Z" itemprop="datePublished">2014-07-02</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/1085.seo/" title="论黑产黑阔如何安全地转移赃款 洗钱？" itemprop="url">
+  
+    <h1 itemprop="name">论黑产黑阔如何安全地转移赃款 洗钱？</h1>
+    
+     
+           <p itemprop="description" >0x00 背景  相信曾经与黑色产业打过交道的同鞋们对这个话题并不陌生。赃款转移，是黑色产业链中最重要的一环，因为这一环直接与黑阔们的收入息息相关。赃款转移地太过安全，容易产生巨额手续费/汇率而导致收入减少。赃款转移不够安全，容易导致水表被查，也就是那句：有命赚钱没命花钱。  下</p>
+        
+    
+    <time datetime="2014-07-02T09:28:05.000Z" itemprop="datePublished">2014-07-02</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/1084.seo/" title="去掉VMWare检测hypervisor" itemprop="url">
+  
+    <h1 itemprop="name">去掉VMWare检测hypervisor</h1>
+    
+     
+           <p itemprop="description" >最近在 Parallels Desktop 里装了个Win7,然后Win7里装VMWare Workstation 8,出现错误：  You are running VMware Workstation through an incompatible hypervisor.&amp;#1</p>
+        
+    
+    <time datetime="2014-06-07T12:50:02.000Z" itemprop="datePublished">2014-06-07</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/page/7/">&laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/81/">81</a><a class="extend next" rel="next" href="/page/9/">下一页 &raquo;</a>
   </nav>
-</main>
 
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
-      
-<footer class="site-footer">
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+  </body>
+ </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

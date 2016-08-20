@@ -1,192 +1,236 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Tag: CSRF | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Tag: CSRF | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Tag: CSRF | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="tag-icon">CSRF</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2014-04-26T11:36:26.000Z" itemprop="datePublished">
-          2014-04-26
-      </time>
-    
-    
-    | 
-    <a href='/tag/CSRF/'>CSRF</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1080.seo/">Flash CSRF</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        目录    0x00 Flash CSRF名词解释0x01 Flash CSRF形成的原因0x02 Flash CSRF可以干些什么0x03 Flash CSRF如何利用0x04 Flash CSRF怎么防御0x00 Flash CSRF名词解释
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
 
-
-
-CSRF（Cross-site request forgery跨站请求伪造，是一种对网站的恶意利用，CSRF则通过伪装来自受信任用户的请求来利用受信任的网站。
-
-Flash CSRF通常
-      
-      </p>
-      
-      <p>
-          <a href="/1080.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-11-08T01:34:03.000Z" itemprop="datePublished">
-          2013-11-08
-      </time>
-    
-    
-    | 
-    <a href='/tag/CSRF/'>CSRF</a>,
-    
-    <a href='/tag/APT/'>APT</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1052.seo/">浅谈路由CSRF危害，和非主流姿势</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><b>0x00 </b><b>环境分析</b></p>  <hr align="center" size="2" width="100%" />  <p>近期爆出的D-link的后门让大家人心惶惶。。还好我不用D-link，这样就完事了？用户有能力补上漏洞吗，厂商能及时通知用户防止中枪吗？很显然，谁都没有做到。</p>  <p>首先只要一公布xxx路由存在xxx漏洞，这就给自己的公司抹黑，首先用户不会升级(能正常上网谁这么无聊去更新路由器的固件，丁丁很大？)，又给公司添加了公关压力，这搁给谁谁都不会去做。</p>  <p>所以我们总结成几个点:</p>  <p>路由器出现漏洞后，用户不会补！厂商不想补！用户懒得补！</p>  <p><b>0x01 </b><b>漏洞从哪里来</b></p>  <hr align="center" size="2" width="100%" />  <p>路由器的漏洞实在是很少。大部分都是远程命令执行和后门，xss等等，但是大牛们手中都是远程命令执行，基本覆盖X科，X为等机房常用的路油器，只需要执行几个poc，啪的一下，权限就到手了，这种场面只有在大牛的<a href="http://Ha.Cker.In/tag/APT" target="_blank">APT</a>场面才能看到。</p>  <p>但是对于那些普通的屌丝黑阔来说，我对APT不感兴趣，我更喜欢那些妹子的路由器。</p>  <p>于是乎，黑阔到了电脑广场，来到路由器批发部，拿出50大洋给老板，告诉老板，我想试试你们热卖的路由器的性能。老板看在软妹币的面子上，拿了二十来款路由器给黑阔看，黑阔看到路由器就笑了，露出大金牙，操起几款wvs就是狂扫，然后按照型号仔细记录漏洞。</p>  <p>就这样，这个灰阔一天花了不到200软妹币，但是记录了国内主流路由器的各种臭虫(→<em>→，真是个淫荡的家伙)</p>  <p><b>0x02 </b><b>邪恶力量的萌发</b></p>  <hr align="center" size="2" width="100%" />  <p>那个黑阔搞完扫描后，满足的关上笔记本，路由器老板还在心中暗爽，又赚了一个傻逼的钱。。。但他不知道这才是游戏的开始。</p>  <p>奔袭了一天，屌丝灰阔在路边的一个炒粉摊上坐了下来，看着周边搬砖的民工，心中总有一种亲切感，望着工头开着宝马远去的身影，黑阔决心继续努力，怒天一吼:老板，两份炒粉加肉！！！</p>  <p>吃饱了以后，灰阔去到一个桌游的店里，选了一个安静的角落，为神马去桌游。。。他告诉我，桌游75软妹币6个小时，饮料无限续杯，重要的是有20M的wifi，而且那些土豪都是陪妹子玩桌游，都木有人跟他抢网速，空气又比网吧好几十倍，撸代码没思路的时候还可以看看旁边的漂亮妹子(→</em>→，哎。我只想说，下次请带上我！！！)</p>  <p>黑阔打开电脑，又开始撸起拿油腻的键盘，打开几个wvs的报告，挑出其中的命令执行，csrf，xss，还有越权访问等漏洞进行分类，并标记是否可控，还把每个功能post,get的包进行整理。</p>  <p>就这样。。。一个通用的路由漏洞库就完成的差不多了。。。</p>  <p>黑阔这些漏洞放到了自己的xss的平台上，规划了几个规则。通过title来确定路由器的牌子，然后再对照型号。。。进行各种姿势的插，可控的CSRF就直接插到路由里，如果不可控就就用默认密码插进去，他告诉我…其实直接插进去的几率很小，但是通过默认密码的CSRF插进去的几率很大。。。(这里说明路由安全意识要提高，别以为你在内网就插不了。。。默认密码没改照样换个姿势插你)</p>  <p>针对路由器渗透有很多种的，但平常灰阔很关心的还是DMZ和DNS。</p>  <p>比如说一个通过<a href="http://Ha.Cker.In/tag/CSRF" target="_blank">CSRF</a>让路由器的DMZ功能打开，把目标主机暴露于公网。。。。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1052.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1080.seo/" title="Flash CSRF" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-10-21T18:10:58.000Z" itemprop="datePublished">
-          2013-10-22
-      </time>
+    <h1 itemprop="name">Flash CSRF</h1>
     
-    
-    | 
-    <a href='/tag/xss/'>xss</a>,
-    
-    <a href='/tag/CSRF/'>CSRF</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1037.seo/">攻击JavaWeb应用 2 -CS交互安全</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><a href="http://drops.wooyun.org/tips/164">攻击JavaWeb应用[2]-CS交互安全</a></p>  <p><a href="http://drops.wooyun.org/tips/164">http://drops.wooyun.org/tips/164</a></p>  <h5>注:本节意在让大家了解客户端和服务器端的一个交互的过程,我个人不喜欢xss,对xss知之甚少所以只能简要的讲解下。这一节主要包含HttpServletRequest、HttpServletResponse、session、cookie、HttpOnly和xss，文章是年前几天写的本应该是有续集的但年后就没什么时间去接着续写了。由于工作并非安全行业，所以写的并不算专业希望大家能够理解。后面的章节可能会有Java里的SQL注入、Servlet容器相关、Java的框架问题、eclipse代码审计等。</h5>  <h5>0x00 Request &amp; Response(请求与响应)</h5>  <hr align="center" width="100%" size="2" />  <p>请求和响应在Web开发当中没有语言之分不管是ASP、PHP、ASPX还是JAVAEE也好，Web服务的核心应该是一样的。</p>  <p>在我看来Web开发最为核心也是最为基础的东西就是Request和Response！我们的Web应用最终都是面向用户的，而请求和响应完成了客户端和服务器端的交互。   <br />服务器的工作主要是围绕着客户端的请求与响应的。</p>  <p>如下图我们通过Tamper data拦截请求后可以从请求头中清晰的看到发出请求的客户端请求的地址为：localhost。</p>  <p>浏览器为FireFox，操作系统为Win7等信息，这些是客户端的请求行为，也就是Request。</p>  <p><a href="http://img.cker.in/JavaWeb2CS_8BCE/clip_image001.png"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="444" alt="clip_image001" src="http://img.cker.in/JavaWeb2CS_8BCE/clip_image001_thumb.png" width="1142" border="0" /></a></p>  <p>当客户端发送一个Http请求到达服务器端之后，服务器端会接受到客户端提交的请求信息(HttpServletRequest)，然后进行处理并返回处理结(HttpServletResopnse)。</p>  <p>下图演示了服务器接收到客户端发送的请求头里面包含的信息：</p>  <p><a href="http://img.cker.in/JavaWeb2CS_8BCE/clip_image002.png"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="549" alt="clip_image002" src="http://img.cker.in/JavaWeb2CS_8BCE/clip_image002_thumb.png" width="655" border="0" /></a></p>  <p>页面输出的内容为：</p>  <pre><code>host=localhost</code></pre><br><br><pre><code>user-agent=Mozilla/5.0 (Windows NT 6.1; rv:18.0) Gecko/20100101 Firefox/18.0</code><code> </code></pre><br><br><pre><code>accept=text/html,application/xhtml+xml,application/xml;q=0.9,<em>/</em>;q=0.8</code><code> </code></pre><br><br><pre><code>accept-language=zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3</code><code> </code></pre><br><br><pre><code>accept-encoding=gzip, deflate</code><code> </code></pre><br><br><pre><code>connection=keep-alive</code></pre><br><br><h6>请求头信息伪造XSS</h6><br><br><p>关于伪造问题我是这样理解的：发送Http请求是客户端的主动行为，服务器端通过ServerSocket监听并按照Http协议去解析客户端的请求行为。</p>
+    <time datetime="2014-04-26T11:36:26.000Z" itemprop="datePublished">2014-04-26</time>
+  </a>
+</section>
 
-<p>所以请求头当中的信息可能并不一定遵循标准Http协议。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1037.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+  <section class="post" itemscope itemprop="blogPost">
   
-  <nav class="pagination" role="pagination">
+    <a href="/1052.seo/" title="浅谈路由CSRF危害，和非主流姿势" itemprop="url">
+  
+    <h1 itemprop="name">浅谈路由CSRF危害，和非主流姿势</h1>
     
-    <span class="page-number">Page 1 of 1</span>
+    <time datetime="2013-11-08T01:34:03.000Z" itemprop="datePublished">2013-11-08</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/1037.seo/" title="攻击JavaWeb应用 2 -CS交互安全" itemprop="url">
+  
+    <h1 itemprop="name">攻击JavaWeb应用 2 -CS交互安全</h1>
     
-  </nav>
-</main>
+    <time datetime="2013-10-21T18:10:58.000Z" itemprop="datePublished">2013-10-22</time>
+  </a>
+</section>
 
 
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

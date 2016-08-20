@@ -1,329 +1,266 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Tag: Mysql | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Tag: Mysql | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Tag: Mysql | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="tag-icon">Mysql</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2014-05-25T03:24:31.000Z" itemprop="datePublished">
-          2014-05-25
-      </time>
-    
-    
-    | 
-    <a href='/tag/Mysql/'>Mysql</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1083.seo/">开启MySQL的sql语句记录</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        在开发的时候经常会想看一下MySQL最终执行的sql或者想保存sql记录，所以我们可以启用MySQL的sql记录功能。   开启方法：   编辑MySQL的my.cnf文件，在文件的[mysqld]节点最下面添加下面的文本：   log-output=FILE   general-log=1    general_log_file=mysql-general.log   最后重启一下MySQL服务就可以了，最后会 记录在mysql的da
-      
-      </p>
-      
-      <p>
-          <a href="/1083.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-01-10T02:08:25.000Z" itemprop="datePublished">
-          2013-01-10
-      </time>
-    
-    
-    | 
-    <a href='/tag/Mysql/'>Mysql</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/963.seo/">正确重置MySQL密码</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        如果你忘记了MySQL密码，如何重置它呢?   下面是错误答案：    首先停止MySQL服务，然后使用skip-grant-tables参数启动它：     shell&gt; /etc/init.d/mysql stop     shell&gt; mysqld_safe –skip-grant-tables &amp;     此时无需授权就可以进入到MySQL命令行，使用SQL重置MySQL密码：   UPDATE mysql.
-      
-      </p>
-      
-      <p>
-          <a href="/963.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1083.seo/" title="开启MySQL的sql语句记录" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-08-08T20:57:54.000Z" itemprop="datePublished">
-          2012-08-09
-      </time>
+    <h1 itemprop="name">开启MySQL的sql语句记录</h1>
     
-    
-    | 
-    <a href='/tag/Apache/'>Apache</a>,
-    
-    <a href='/tag/Mysql/'>Mysql</a>,
-    
-    <a href='/tag/php/'>php</a>,
-    
-    <a href='/tag/Linux-Mint/'>Linux Mint</a>,
-    
-    <a href='/tag/LNMP/'>LNMP</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/742.seo/">LinuxMint安装Lamp</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <h5><a href="http://ha.cker.in/tag/LinuxMint" target="_blank">LinuxMint</a>安装Apache2 Web服务</h5>  <p>VPS 默认有安装Apache2，但如果你删除了，就需要重新安装；如果没有删除，执行下面的命令会退出来，不会对系统产生任何影响。</p>  <p>输入如下命令安装</p>  <pre>sudo apt-get install apache2</pre><br><br><p>正常情况下会给出如下提示，说明Apache2默认已经安装好了：</p><br><br><pre><br />$sudo apt-get install apache2<br>Reading package lists… Done<br>Building dependency tree… Done<br>apache2 is already the newest version.<br>0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.</pre><br><a name=".E5.BC.80.E5.90.AF_Apache2_.E7.9A.84.E4.BC.AA.E9.9D.99.E6.80.81"></a><br><br><h5>开启 Apache2 的伪静态</h5>
+    <time datetime="2014-05-25T03:24:31.000Z" itemprop="datePublished">2014-05-25</time>
+  </a>
+</section>
 
-<p>如果希望开启Apache2 伪静态 rewrite 支持，输入如下命令安装</p>
-
-<pre>#a2enmod rewrite</pre>
-
-<p>正常情况下会给出如下提示，说明已经安装成功：</p>
-
-<pre>#a2enmod rewrite
-Module rewrite installed; run /etc/init.d/apache2 force-reload to enable.</pre>
-
-<p>提示需要重新加载Apache2的配置，由于下一步是安装mysql，所以暂时不用重启。</p>
-
-<p>或出现如下提示，表示已经开启了 rewrite</p>
-
-<pre># a2enmod rewrite
-Mudule rewrite already enabled</pre>
-<a name=".E5.AE.89.E8.A3.85_mysql_.E6.95.B0.E6.8D.AE.E5.BA.93.E6.9C.8D.E5.8A.A1"></a>
-
-<h5><strong>安装 mysql 数据库服务</strong></h5>
-
-<p>安装mysql前，#1的vps需要先关闭apache2，因为mysql的安装会初始化数据，占了很大内存，如果apache2不关闭，有可能导致安装mysql失败。</p>
-
-<p>1 输入如下命令关闭 apache2</p>
-
-<pre>$sudo service apache2 stop
-如果输入正确，会提示如下信息，表示apache2已经停止</pre>
-
-<pre><a href="http://img.cker.in/LinuxMintLnmpLamp_35CE/image.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="image" border="0" alt="image" src="http://img.cker.in/LinuxMintLnmpLamp_35CE/image_thumb.png" width="659" height="101" /></a> </pre>
-
-<p>2 输入如下命令安装mysql</p>
-
-<pre>$apt-get install mysql-server</pre>
-
-<p>如果输入正确，会提示如下信息：</p>
-
-<p><a href="http://img.cker.in/LinuxMintLnmpLamp_35CE/image_3.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="image" border="0" alt="image" src="http://img.cker.in/LinuxMintLnmpLamp_35CE/image_thumb_3.png" width="773" height="731" /></a> </p>
-
-<p>等待中……</p>
-
-<p>继续安装 会提示输入 mysql 的 root 用户密码，你可以输入密码后回车，也可以不输入任何密码直接回车。 （不输入密码不会影响到Mysql的安全性，因为Mysql仅仅用于本地监听，但不输入密码会导致后续phpmyadmin无法运行）</p>
-      
-      </p>
-      
-      <p>
-          <a href="/742.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-04-10T12:50:29.000Z" itemprop="datePublished">
-          2012-04-10
-      </time>
-    
-    
-    | 
-    <a href='/tag/Mysql/'>Mysql</a>,
-    
-    <a href='/tag/CentOS/'>CentOS</a>,
-    
-    <a href='/tag/Nginx/'>Nginx</a>,
-    
-    <a href='/tag/php/'>php</a>,
-    
-    <a href='/tag/LNMP/'>LNMP</a>,
-    
-    <a href='/tag/Php-fpm/'>Php-fpm</a>,
-    
-    <a href='/tag/RedHat/'>RedHat</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/369.seo/">CentOS 6.2   RedHat EL 5.4 yum安装配置lnmp服务器(Nginx+PHP+MySQL)</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><p><a href="http://img.cker.in/CentOS6.2RedHatEL5.4yumlnmpNginxPHPMySQL_43ED/image.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/CentOS6.2RedHatEL5.4yumlnmpNginxPHPMySQL_43ED/image_thumb.png" width="244" height="159"></a> </p> <p><strong>准备篇：</strong> <p><strong>1</strong><strong>、配置防火墙，开启80端口、3306端口</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong> vi /etc/sysconfig/iptables<br></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT（允许80端口通过防火墙）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -A INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT（允许3306端口通过防火墙）<br><strong>特别提示：很多网友把这两条规则添加到防火墙配置的最后一行，导致防火墙启动失败，正确的应该是添加到默认的22端口这条规则的下面</strong><br>添加好之后防火墙规则如下所示：<br>#########################################################<br># Firewall configuration written by system-config-firewall<br># Manual customization of this file is not recommended.<br><em>filter<br>:INPUT ACCEPT [0:0]<br>:FORWARD ACCEPT [0:0]<br>:OUTPUT ACCEPT [0:0]<br>-A INPUT -m state –state ESTABLISHED,RELATED -j ACCEPT<br>-A INPUT -p icmp -j ACCEPT<br>-A INPUT -i lo -j ACCEPT<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 22 -j ACCEPT<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT<br>-A INPUT -j REJECT –reject-with icmp-host-prohibited<br>-A FORWARD -j REJECT –reject-with icmp-host-prohibited<br>COMMIT<br>######################################################### <p><strong>/etc/init.d/iptables restart</strong>&nbsp; #最后重启防火墙使配置生效</p>
-      
-      </p>
-      
-      <p>
-          <a href="/369.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/963.seo/" title="正确重置MySQL密码" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-10-17T18:39:10.000Z" itemprop="datePublished">
-          2011-10-18
-      </time>
+    <h1 itemprop="name">正确重置MySQL密码</h1>
     
-    
-    | 
-    <a href='/tag/Mysql/'>Mysql</a>,
-    
-    <a href='/tag/入侵/'>入侵</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/129.seo/">入侵国外站思路总结</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><blockquote>   <p>转自3EST <a href="http://www.3est.com/6049/">http://www.3est.com/6049/</a></p> </blockquote>  <p>主题:入侵国外站思路总结   <br />作者:zhenker    <br />微博:<a href="http://t.qq.com/zhenker1">http://t.qq.com/zhenker1</a>    <br />版权:3EST信息安全团队 (<a href="http://www.3est.com/">www.3est.com</a>)    <br />好久没写东西 ，搞韩国站有些日子了，本人小菜写点搞国外站思路，许多人看着国外站就烦，1网速不给力，2 字看不懂，这些都是浮云，只要自己淡定。    <br />（这里省略掉扫服务器端口 弱口令漏洞，一般国外用的linux,不过可以尝试扫下3306的弱口令，跟ssh弱口令）    <br />1.    <br />一般开始就是寻注入，主站无注入，看旁站的注入。注入多做解释。但是国外MYSQL注入不是普通注入，大家先把MYSQL高级注入法都学好。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/129.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2013-01-10T02:08:25.000Z" itemprop="datePublished">2013-01-10</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-07-12T02:52:44.000Z" itemprop="datePublished">
-          2011-07-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/Mysql/'>Mysql</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/41.seo/">mysql中Table is read only的解决</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        今天遇到一个这样的提示repair数据表的时候出现“mysql中Table is read only”  在mysql中，Select之类的都正常，但在网页程序中提示：Table ‘3389’ is read only  然后我  SQL代码chmod -R 0777&nbsp; /var/lib/mysql/taoniu2007/&nbsp;&nbsp; 给数据库目录的所属用户和组改为mysql，并加上777的权限，还是一样提示。  
-      
-      </p>
-      
-      <p>
-          <a href="/41.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/742.seo/" title="LinuxMint安装Lamp" itemprop="url">
   
-  <nav class="pagination" role="pagination">
+    <h1 itemprop="name">LinuxMint安装Lamp</h1>
     
-    <span class="page-number">Page 1 of 1</span>
+    <time datetime="2012-08-08T20:57:54.000Z" itemprop="datePublished">2012-08-09</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/369.seo/" title="CentOS 6.2   RedHat EL 5.4 yum安装配置lnmp服务器(Nginx+PHP+MySQL)" itemprop="url">
+  
+    <h1 itemprop="name">CentOS 6.2   RedHat EL 5.4 yum安装配置lnmp服务器(Nginx+PHP+MySQL)</h1>
     
-  </nav>
-</main>
+    <time datetime="2012-04-10T12:50:29.000Z" itemprop="datePublished">2012-04-10</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/129.seo/" title="入侵国外站思路总结" itemprop="url">
+  
+    <h1 itemprop="name">入侵国外站思路总结</h1>
+    
+    <time datetime="2011-10-17T18:39:10.000Z" itemprop="datePublished">2011-10-18</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/41.seo/" title="mysql中Table is read only的解决" itemprop="url">
+  
+    <h1 itemprop="name">mysql中Table is read only的解决</h1>
+    
+    <time datetime="2011-07-12T02:52:44.000Z" itemprop="datePublished">2011-07-12</time>
+  </a>
+</section>
 
 
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

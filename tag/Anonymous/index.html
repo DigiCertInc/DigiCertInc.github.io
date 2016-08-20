@@ -1,155 +1,226 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Tag: Anonymous | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Tag: Anonymous | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Tag: Anonymous | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="tag-icon">Anonymous</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-01-21T23:26:11.000Z" itemprop="datePublished">
-          2013-01-22
-      </time>
-    
-    
-    | 
-    <a href='/tag/Anonymous/'>Anonymous</a>,
-    
-    <a href='/tag/匿名者/'>匿名者</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/970.seo/">黑客组织Anonymous疯狂入侵中国站点思路分析</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>关于<a href="http://ha.cker.in/tag/匿名者" target="_blank">匿名者</a>组织的疯狂拿站和统一黑页显示时间的行为，相信大家已经见怪不怪了，但是当匿名者组织开始侵略中国网站的时候，相信大家都坐不住了。首先，个人感觉反击的意义何在，或者说究竟有没有意义，笔者不是哲学家，思想家，不做过多探讨。但是，知己知彼确实是必要的。笔者对前一段时间，国内地方GOV被疯狂秒杀的一次行动做了一次没什么技术含量的分析和猜想。</p>  <p>（以下敏感域名用WWW.XXX.COM略过）</p>  <p>首先，笔者登陆了FACEBOOK找寻了一些热议的话题：</p>  <p>（以下为GOOGLE翻译，英文不好，只好找谷大哥帮忙）</p>  <p>1.中国3000+政务工作网站 匿名者成功获取权限</p>  <p>2.匿名者再次攻击亚洲各国，宣传独立自由 在网络中</p>  <p>3.亚洲强国网络安全成为匿名者的击打目标。</p>  <p>以上是通过匿名者为关键字模糊搜索的热议转载，基本每个热议都指向匿名者发布新闻和预告信的推特，笔者只好继续翻阅防火长城登陆推特，观看了一些匿名者发布针对亚洲和其他洲的攻击成果发布，评论中充斥着各种赞扬与羡慕，当然不乏我国人士（最大的悲剧），当然，也有进行技术分析的人，有一条评论中带有这样一个域名：</p>  <p>www.xxseo.com（化名）</p>  <p>接着，笔者C段了一下：</p>  <p>IP：</p>  <p>XXX.XXX.XXX.200</p>  <p>XXX.XXX.XXX.201</p>  <p>XXX.XXX.XXX.202</p>  <p>XXX.XXX.XXX.203</p>  <p>XXX.XXX.XXX.204</p>  <p>XXX.XXX.XXX.205</p>  <p>``````````````````````````````</p>  <p>以上IP全部指向中国某省级机房</p>  <p>OK，就这个IP段开始旁站扫描，得到无数四级域名：</p>  <p>XXX.host1068.xxxseo.com.cn</p>  <p>XXX.host1079.xxxseo.com.cn</p>  <p>XXX.host1081.xxxseo.com.cn</p>  <p>XXX.host1083.xxxseo.com.cn</p>  <p>XXX.host1093.xxxseo.com.cn</p>  <p>XXX.host1099.xxxseo.com.cn</p>  <p>·····························</p>  <p>相信看到这里，大家应该明白了些什么，当然笔者还是打开验证了下</p>  <p>无一例外，全部是政务网站，各地GOV。</p>  <p>XXX.host1099.xxxseo.com.cn</p>  <p>都是IDC机房托管的分配四级域名，实际绑定是WWW.XXX.GOV.CN</p>  <p>笔者继续扫描旁站，并导出所有URL（四级域名）</p>  <p>将导出的列表批量经行绑定域名反查，得到实际绑定域名结果列表。</p>  <p>在工具经行这些自动化扫描导出的时候，笔者继续做着准备，将匿名者在推特发布的攻击我国站点的列表下载了一份，可以不是文本，图片质量又狂差，只能美图秀秀去个雾（不会PS的伤不起），勉强看清了URL。</p>  <p>准备工作做完，手上有两份列表，一份是扫描旁站得出的IDC C段的GOV站点 URL列表。另一份是匿名者发布的攻击我国站点公开列表。</p>  <p>然后笔者比对了一下，相信结果大家都猜到了。</p>  <p>IDC下的163个GOV站点，有112个在匿名者攻击列表中，当然匿名者公布了3000+个。</p>  <p>好的，对匿名者每次行动的印象让我立即从庞大组织的集体攻击，变成了组织性的批量拿站。</p>  <p>这个时候，笔者又有了另一个猜想，即使是批量攻击，整个C段也是要花时间的，于是笔者爬行了5个网站的目录，BINGO，全中，居然是一模一样的目录结构，好的，原来是一个公司的业务啊！统一的建站系统，统一的OA系统，统一的邮件系统，统一的VPN登陆远程办公系统，好吧，你赢了！</p>  <p><a href="http://img.cker.in/Anonymous_D8D1/clip_image001.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Anonymous_D8D1/clip_image001_thumb.jpg" width="504" height="344" /></a></p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/970.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-07-16T14:38:53.000Z" itemprop="datePublished">
-          2012-07-16
-      </time>
-    
-    
-    | 
-    <a href='/tag/黑客/'>黑客</a>,
-    
-    <a href='/tag/Anonymous/'>Anonymous</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/706.seo/">黑客组织Anonymous揭秘：FBI曾悄然组织其活动</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><a href="http://img.cker.in/AnonymousFBI_5D37/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="Anonymous" border="0" alt="Anonymous" src="http://img.cker.in/AnonymousFBI_5D37/clip_image001_thumb.jpg" width="570" height="570" /></a></p>  <p><a href="http://ha.cker.in/tag/黑客" target="_blank">黑客</a>组织<a href="http://ha.cker.in/tag/Anonymous" target="_blank">Anonymous</a>揭秘（腾讯科技配图）</p>  <p>除了赫克特·沙维尔-蒙赛格（Hector Xavier Monsegur）之外，没人知道他为什么或是在何时成为了“Sabu”，并加入了奇怪、混乱的互联网知名黑客组织Anonymous。不过我们都知道“Sabu”被捕的那一天。2011年6月7日，联邦探员走进了他位于纽约下东的公寓，并威胁这位28岁的年轻人面临一系列指控，累计将被判入狱124年。也正是因为这样，赫克特·蒙赛格，这位曾在<a href="http://ha.cker.in/tag/Anonymous" target="_blank">Anonymous</a>被称为“Sabu”且有着众多粉丝的黑客，向一位新的、同样从不露面且神秘的大师屈服，这位大师就是：联邦调查局（FBI）。</p>  <p>在随后的8个月时间里，Sabu继续活跃在互联网上，并是Anonymous下属的黑客组织AntiSec的核心成员之一。Sabu不仅帮助丑化政府和企业网站，甚至还协助攻击了美国安全智库——全球情报分析机构Stratfor。但事实上，Sabu的所有活动均受到了联邦调查局的密切监控。法律执行官员后来向福克斯新闻表示，在去年8月认罪后的几周时间里，蒙赛格“几乎每天” 都在联邦调查局办公室协助该部门的工作。随后，蒙赛格还在自己家中继续协助该部门的工作，有一位联邦调查局探员每天24小时来监视蒙赛格。有些时候，联邦调查局的探员甚至会直接冒充Sabu。去年圣诞节，就在Stratfor被黑之前，Sabu还曾在网络聊天时向AntiSec成员表示，“我们已经习惯于高温；我们已经从第一轮攻击中存活了下来。”</p>
-      
-      </p>
-      
-      <p>
-          <a href="/706.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/970.seo/" title="黑客组织Anonymous疯狂入侵中国站点思路分析" itemprop="url">
   
-  <nav class="pagination" role="pagination">
+    <h1 itemprop="name">黑客组织Anonymous疯狂入侵中国站点思路分析</h1>
     
-    <span class="page-number">Page 1 of 1</span>
+    <time datetime="2013-01-21T23:26:11.000Z" itemprop="datePublished">2013-01-22</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/706.seo/" title="黑客组织Anonymous揭秘：FBI曾悄然组织其活动" itemprop="url">
+  
+    <h1 itemprop="name">黑客组织Anonymous揭秘：FBI曾悄然组织其活动</h1>
     
-  </nav>
-</main>
+    <time datetime="2012-07-16T14:38:53.000Z" itemprop="datePublished">2012-07-16</time>
+  </a>
+</section>
 
 
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

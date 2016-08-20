@@ -1,151 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>说说那些年躺在硬盘里的源码 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>说说那些年躺在硬盘里的源码 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="作品：说说那些年躺在硬盘里的.    作者：adwin     来自：法客论坛 – F4ckTeam     网址：http://team.f4ck.net/  /第一页内容纯扯皮，可虑过，想直接看实际内容的可跳至第二页/    从过年的时候就有个想法想要搞一个友情链接互换的这么一个平台，我个人觉得这个想法其    实还是不错的，目前来说做这个的人真的是寥寥无几，百度一下，能找到的也就是那么几个    站点。但是后来种种原因，一直到现在这个平台也没搭建起来。     最近得知老嫖同志要搞活动，既然线下的活动没能在哈尔滨地区举办，没有机会参加了，    那就参加个线上活动也不错，所以决定写篇文章，不过自从上了大学以后，有一年没怎么实    际上手实践了（寝室的网速尼玛蛋碎啊），真心害怕写不出什么好的文章，所以…大伙就凑    合着看吧…     ========以上背景=============     说了寝室的网速有点难以让人相信，上个 QQ 还得经常掉线，写点什么好呢，好吧，刚好发    现&amp;#160; 那些年躺在硬盘里的…源码（不要想歪了…），过年的时候由于想要搞那个链接交换平台    所以下载了几套源码。前面说过搞这个东西的人很少，所以这个源码也着实&amp;#160; 不好找，费了    好大的力气找了几套，质量也是参差不齐，选出了一套凑合着可以用的，其他的就都删了。    蛋碎的网速根本不允许去检测什么网站了，所以就想到，不 如就拿这套源码下手吧。     另，什么 asp php jsp 的，我是一样也不懂…本文分析的是一套 asp 的程序，因为不懂 asp 代    码，所以文中若粗线各种错误的地方还请见谅并指出。     随便打开一个文件看了看，果然，代码很乱，一看就像是实习生写的…竟然每个页面都相同    的 head 部分都没有作为一个文件包含起来，总是代码是乱的不能再乱了…     如何下手呢，当然是先运行起来了。我本机win7，本来想用自带的 iis7来着，结果不知道什    么毛错误运行不起来（汗！），算了，找了一款 asp 调试工具，这样总算是有了运行的环境。    首先打开首页如下图：        （打码部分其实是某妹纸的电话…当时在看代码，电话没地方记顺便给写广告位上了…）    随便打开了一个链接的详细内容页面，发现是动态链接（说了代码质量很低的，作者不可能   去做生成静态或者伪静态的处理），一下面的 URL（由于本文的例子比&amp;#160; 较特殊，所以下文   中若出现 链接 一词，则表示链接交换平台中的数据，即包含 百度收录&amp;#160; PR&amp;#160; 快照日期 交    换要求&amp;#160; 发布时间&amp;#160; 等详细内容，若测试注入漏洞等，则将其地址用&amp;#160; URL&amp;#160; 一词表示，而不是     链接，请注意区分）为例：http://111.43.205.21/display.asp?id=23850（111.43.205.21为笔者当">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="说说那些年躺在硬盘里的源码 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/766.seo/" title="说说那些年躺在硬盘里的源码" itemprop="url">说说那些年躺在硬盘里的源码</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2012-08-23T21:10:24.000Z" itemprop="datePublished">2012-08-24</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>作品：说说那些年躺在硬盘里的.    <br>作者：adwin     <br>来自：法客论坛 – F4ckTeam     <br>网址：<a href="http://team.f4ck.net/" target="_blank" rel="external">http://team.f4ck.net/</a></p>  <p>/<em>第一页内容纯扯皮，可虑过，想直接看实际内容的可跳至第二页</em>/    <br>从过年的时候就有个想法想要搞一个友情链接互换的这么一个平台，我个人觉得这个想法其    <br>实还是不错的，目前来说做这个的人真的是寥寥无几，百度一下，能找到的也就是那么几个    <br>站点。但是后来种种原因，一直到现在这个平台也没搭建起来。     <br>最近得知老嫖同志要搞活动，既然线下的活动没能在哈尔滨地区举办，没有机会参加了，    <br>那就参加个线上活动也不错，所以决定写篇文章，不过自从上了大学以后，有一年没怎么实    <br>际上手实践了（寝室的网速尼玛蛋碎啊），真心害怕写不出什么好的文章，所以…大伙就凑    <br>合着看吧…     <br>========以上背景=============     <br>说了寝室的网速有点难以让人相信，上个 QQ 还得经常掉线，写点什么好呢，好吧，刚好发    <br>现&#160; 那些年躺在硬盘里的…源码（不要想歪了…），过年的时候由于想要搞那个链接交换平台    <br>所以下载了几套源码。前面说过搞这个东西的人很少，所以这个源码也着实&#160; 不好找，费了    <br>好大的力气找了几套，质量也是参差不齐，选出了一套凑合着可以用的，其他的就都删了。    <br>蛋碎的网速根本不允许去检测什么网站了，所以就想到，不 如就拿这套源码下手吧。     <br>另，什么 asp php jsp 的，我是一样也不懂…本文分析的是一套 asp 的程序，因为不懂 asp 代    <br>码，所以文中若粗线各种错误的地方还请见谅并指出。     <br>随便打开一个文件看了看，果然，代码很乱，一看就像是实习生写的…竟然每个页面都相同    <br>的 head 部分都没有作为一个文件包含起来，总是代码是乱的不能再乱了…     <br>如何下手呢，当然是先运行起来了。我本机win7，本来想用自带的 iis7来着，结果不知道什    <br>么毛错误运行不起来（汗！），算了，找了一款 asp 调试工具，这样总算是有了运行的环境。    <br>首先打开首页如下图：     <br><a href="http://img.cker.in/83c624f2318a_B8E7/image.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/83c624f2318a_B8E7/image_thumb.png" width="613" height="409"></a> </p>  <p>（打码部分其实是某妹纸的电话…当时在看代码，电话没地方记顺便给写广告位上了…）    <br>随便打开了一个链接的详细内容页面，发现是动态链接（说了代码质量很低的，作者不可能 </p>  <p>去做生成静态或者伪静态的处理），一下面的 URL（由于本文的例子比&#160; 较特殊，所以下文   <br>中若出现 链接 一词，则表示链接交换平台中的数据，即包含 百度收录&#160; PR&#160; 快照日期 交    <br>换要求&#160; 发布时间&#160; 等详细内容，若测试注入漏洞等，则将其地址用&#160; URL&#160; 一词表示，而不是     <br>链接，请注意区分）为例：<a href="http://111.43.205.21/display.asp?id=23850（111.43.205.21为笔者当" target="_blank" rel="external">http://111.43.205.21/display.asp?id=23850（111.43.205.21为笔者当</a></p><a id="more"></a><p>前&#160; IP 地址，受不确定性因素影响，这个 IP 地址随时有可能发生变化，但实际都是在本地测   <br>试的），先简单的测试一下注入漏洞吧，单引号之，结果是返回500错&#160; 误，and 1=1之，结果    <br>被过滤关键字： <a href="http://img.cker.in/83c624f2318a_B8E7/image_3.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/83c624f2318a_B8E7/image_thumb_3.png" width="619" height="381"></a>     <br>OK，如果我们没有这套程序的源码，可能就需要猜测他的防注入机制了，但是我们现在手    <br>里有源码，并且本文主要分析代码，所以我们直接来找一下防注入的代码。     <br>这个防注入出现在了 display.asp 这个文件里，我们就先来看一下这个文件（我确信防注入代    <br>码不会写在这个文件里，而是这个文件包含了含有防注入代&#160; 码的文件），代码果然很乱：首    <br>先包含了一个 MDB.asp 然后写了一段如果获取不到 ID 值的时候的处理代码，随后又包含了    <br>setsite.asp，之后写 了网页的 head 部分…总之这个文件总共包含了四个文件，分别是：    <br>&lt;!–#include file=&quot;MDB.asp&quot;–&gt;、&#160; &lt;!–#include file=&quot;setsite.asp&quot;–&gt;、&lt;!–#include     <br>file=&quot;top.asp&quot;–&gt;、&lt;!–#include file=&quot;foot.asp&quot;–&gt;，部分代码如图：<a href="http://img.cker.in/83c624f2318a_B8E7/image_4.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/83c624f2318a_B8E7/image_thumb_4.png" width="617" height="405"></a> </p>  <p>OK，如果我们没有这套程序的源码，可能就需要猜测他的防注入机制了，但是我们现在手   <br>里有源码，并且本文主要分析代码，所以我们直接来找一下防注入的代码。     <br>这个防注入出现在了 display.asp 这个文件里，我们就先来看一下这个文件（我确信防注入代    <br>码不会写在这个文件里，而是这个文件包含了含有防注入代&#160; 码的文件），代码果然很乱：首    <br>先包含了一个 MDB.asp 然后写了一段如果获取不到 ID 值的时候的处理代码，随后又包含了    <br>setsite.asp，之后写 了网页的 head 部分…总之这个文件总共包含了四个文件，分别是：    <br>&lt;!–#include file=&quot;MDB.asp&quot;–&gt;、&#160; &lt;!–#include file=&quot;setsite.asp&quot;–&gt;、&lt;!–#include     <br>file=&quot;top.asp&quot;–&gt;、&lt;!–#include file=&quot;foot.asp&quot;–&gt;，部分代码如图：<a href="http://img.cker.in/83c624f2318a_B8E7/image_5.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/83c624f2318a_B8E7/image_thumb_5.png" width="619" height="396"></a> </p>  <p>可以看到，MDB.asp 中并没有出现防注入代码，但是在开头却包含了 conn.asp 这个文件，   <br>那好，我们再追溯到 conn.asp 这个文件来看一下。 结果同上，图与代码略，这次包含的是    <br>safe.asp，从文件名字来看，应该就是这个safe.asp 了，打开来看，果然如此。搭眼一看便知，    <br>这个防注入&#160; 文件采用的是过滤关键字的办法，从下面这行代码当中我们找到了被过滤掉的    <br>关键字：     <br>N_no = &quot;’|;|and|exec|insert|select|delete|update|count|<em>|chr|mid|master|truncate|char|declare&quot;     <br>为了验证我们的结论，那么我就用这里没有的关键字来试一下，比如前面的 and 1=1改成    <br>AND 1=1：</em></p>  <p><a href="http://img.cker.in/83c624f2318a_B8E7/image_6.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/83c624f2318a_B8E7/image_thumb_6.png" width="570" height="297"></a>     <br>但事实证明我们的想法是错误的，变化大小写是无法绕过这个防注入程序的，并且我们可以    <br>看到这里已过滤的关键字还是比较全面的，要想在 GET 注入这里下功夫&#160; 突破恐怕就比较难    <br>了。代码中可以看到对 POST 也进行了过滤，经尝试 cookie 中转注入也无法突破，所以这 </p>  <p>个防注入程序写的还是比较好的。 （Safe.asp 将作为本文的附件一提供下载，供大家研习   <br>之，若找到突破的办法欢迎发出来共勉之）。     <br>这个时候你想到什么？天啊，注入这条路肯定是行不通了~！但是我说其实即使不能绕过    <br>safe.asp 还是一样可以注入你相信吗？肯定不信，对，我也不信。。。     <br>先来说说，如果你是程序员，假设防注入程序是百分之百安全和可信任的，那么你会怎么做    <br>才能让整个站点都杜绝注入漏洞的出现呢？我想多数人会说在每一个页面 里都包含    <br>safe.asp，是啊，这的确不错，但是为什么不用更好更省事更把握的办法呢？如果是我我会    <br>用 conn.asp（数据库连接文件）或&#160; head.asp 来包含safe.asp 文件，这样一来，只要想对数据    <br>库进行操作，就必须要包含 conn.asp/head.asp，只要包含了 conn.asp/head.asp 就同时包含了    <br>safe.asp，基本可以肯定不会出现注入漏洞。     <br>为什么说这些呢，因为这套源码实在是太让我蛋疼了…在会员的注册模块，通过 reg.asp、    <br>reg2.asp、reg3.asp 这三个文件来实现，但是我&#160; 真的是理解不了这个程序的作者是怎么想的，    <br>他几乎在所有需要对数据库进行操作的文件里都包含了 safe.asp 这个文件，但是为什么偏偏    <br>这几个文件不包含 呢？这直接导致了 post 注入的出现…至于利用方面就不多说了。     <br>其实有的时候如果我们只是简单的想要干掉一个站点，而不是非要拿他的数据的话，会有非    <br>常多的办法，根本不必拿到 web shell，也不必使用纯流量的 DDOS 攻击，只要一个简单 XSS    <br>就可以满足了。     <br>关于这套程序的 XSS 我真的不想说的太多，遍地都是，几乎只要存在输入框的地方都可以    <br>XSS，虽然有的地方用 JavaScript 作了简单的验证，但是鸡&#160; 肋的很，动一动手指就可以绕过    <br>去。还有一个需要讨论的问题就是，有了 XSS 我们可以做什么？关于这个问题，我想说 XSS    <br>的利用跟实际场景还是有很大关系&#160; 的，有的 XSS 可以 get shell，但是有的也就是谈个框框。    <br>就本文中提到的这套源码来说，你可以利用一个存储型的 XSS 使页面执行任意你想执行的    <br>html语句，也就是说你可以&#160; 在页面中插入任意的 html代码，而不仅仅是谈个框框那么简单    <br>（一个死循环的 alert？挂个黑链？挂马？或是别的什么想法），而且是存储型的哟~~~但&#160; 是    <br>至于盗取 cookies 什么的，还是不要想了，因为现在的程序验证用户身份都是通过 session    <br>了验证的，cookies 欺骗的可能性几乎没有了，而 且 cookies 中也不可能存储用户的敏感信    <br>息，所以就算你拿到 cookies 也没用。至于什么是 session，自行百度。     <br>/接下来纯属扯淡，不想看的请直接关闭本文档即可*/     <br>先写这么多，我记得这套程序还有别的漏洞来着，貌似还挺危险的漏洞，一时想不起来了，    <br>想起来的时候再补上吧（汗，丢人）…其实也是赶时间敲代码，答应该客户做的东西还一点    <br>没做，最后期限眼看就要到了，还好多事情没有做，一个礼拜的事情全都压在今晚了… </p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2012-08-23T21:10:24.000Z" itemprop="datePublished">
-          2012-08-24
-      </time>
-    
-    
-    | 
-    <a href='/tag/注入/'>注入</a>,
-    
-    <a href='/tag/post/'>post</a>
-    
-    
-</span>
-    <h1 class="post-title">说说那些年躺在硬盘里的源码</h1>
-    <section class="post-content">
-      <p>作品：说说那些年躺在硬盘里的.    <br>作者：adwin     <br>来自：法客论坛 – F4ckTeam     <br>网址：<a href="http://team.f4ck.net/" target="_blank" rel="external">http://team.f4ck.net/</a></p>  <p>/<em>第一页内容纯扯皮，可虑过，想直接看实际内容的可跳至第二页</em>/    <br>从过年的时候就有个想法想要搞一个友情链接互换的这么一个平台，我个人觉得这个想法其    <br>实还是不错的，目前来说做这个的人真的是寥寥无几，百度一下，能找到的也就是那么几个    <br>站点。但是后来种种原因，一直到现在这个平台也没搭建起来。     <br>最近得知老嫖同志要搞活动，既然线下的活动没能在哈尔滨地区举办，没有机会参加了，    <br>那就参加个线上活动也不错，所以决定写篇文章，不过自从上了大学以后，有一年没怎么实    <br>际上手实践了（寝室的网速尼玛蛋碎啊），真心害怕写不出什么好的文章，所以…大伙就凑    <br>合着看吧…     <br>========以上背景=============     <br>说了寝室的网速有点难以让人相信，上个 QQ 还得经常掉线，写点什么好呢，好吧，刚好发    <br>现&#160; 那些年躺在硬盘里的…源码（不要想歪了…），过年的时候由于想要搞那个链接交换平台    <br>所以下载了几套源码。前面说过搞这个东西的人很少，所以这个源码也着实&#160; 不好找，费了    <br>好大的力气找了几套，质量也是参差不齐，选出了一套凑合着可以用的，其他的就都删了。    <br>蛋碎的网速根本不允许去检测什么网站了，所以就想到，不 如就拿这套源码下手吧。     <br>另，什么 asp php jsp 的，我是一样也不懂…本文分析的是一套 asp 的程序，因为不懂 asp 代    <br>码，所以文中若粗线各种错误的地方还请见谅并指出。     <br>随便打开一个文件看了看，果然，代码很乱，一看就像是实习生写的…竟然每个页面都相同    <br>的 head 部分都没有作为一个文件包含起来，总是代码是乱的不能再乱了…     <br>如何下手呢，当然是先运行起来了。我本机win7，本来想用自带的 iis7来着，结果不知道什    <br>么毛错误运行不起来（汗！），算了，找了一款 asp 调试工具，这样总算是有了运行的环境。    <br>首先打开首页如下图：     <br><a href="http://img.cker.in/83c624f2318a_B8E7/image.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/83c624f2318a_B8E7/image_thumb.png" width="613" height="409"></a> </p>  <p>（打码部分其实是某妹纸的电话…当时在看代码，电话没地方记顺便给写广告位上了…）    <br>随便打开了一个链接的详细内容页面，发现是动态链接（说了代码质量很低的，作者不可能 </p>  <p>去做生成静态或者伪静态的处理），一下面的 URL（由于本文的例子比&#160; 较特殊，所以下文   <br>中若出现 链接 一词，则表示链接交换平台中的数据，即包含 百度收录&#160; PR&#160; 快照日期 交    <br>换要求&#160; 发布时间&#160; 等详细内容，若测试注入漏洞等，则将其地址用&#160; URL&#160; 一词表示，而不是     <br>链接，请注意区分）为例：<a href="http://111.43.205.21/display.asp?id=23850（111.43.205.21为笔者当" target="_blank" rel="external">http://111.43.205.21/display.asp?id=23850（111.43.205.21为笔者当</a></p><a id="more"></a><p>前&#160; IP 地址，受不确定性因素影响，这个 IP 地址随时有可能发生变化，但实际都是在本地测   <br>试的），先简单的测试一下注入漏洞吧，单引号之，结果是返回500错&#160; 误，and 1=1之，结果    <br>被过滤关键字： <a href="http://img.cker.in/83c624f2318a_B8E7/image_3.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/83c624f2318a_B8E7/image_thumb_3.png" width="619" height="381"></a>     <br>OK，如果我们没有这套程序的源码，可能就需要猜测他的防注入机制了，但是我们现在手    <br>里有源码，并且本文主要分析代码，所以我们直接来找一下防注入的代码。     <br>这个防注入出现在了 display.asp 这个文件里，我们就先来看一下这个文件（我确信防注入代    <br>码不会写在这个文件里，而是这个文件包含了含有防注入代&#160; 码的文件），代码果然很乱：首    <br>先包含了一个 MDB.asp 然后写了一段如果获取不到 ID 值的时候的处理代码，随后又包含了    <br>setsite.asp，之后写 了网页的 head 部分…总之这个文件总共包含了四个文件，分别是：    <br>&lt;!–#include file=&quot;MDB.asp&quot;–&gt;、&#160; &lt;!–#include file=&quot;setsite.asp&quot;–&gt;、&lt;!–#include     <br>file=&quot;top.asp&quot;–&gt;、&lt;!–#include file=&quot;foot.asp&quot;–&gt;，部分代码如图：<a href="http://img.cker.in/83c624f2318a_B8E7/image_4.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/83c624f2318a_B8E7/image_thumb_4.png" width="617" height="405"></a> </p>  <p>OK，如果我们没有这套程序的源码，可能就需要猜测他的防注入机制了，但是我们现在手   <br>里有源码，并且本文主要分析代码，所以我们直接来找一下防注入的代码。     <br>这个防注入出现在了 display.asp 这个文件里，我们就先来看一下这个文件（我确信防注入代    <br>码不会写在这个文件里，而是这个文件包含了含有防注入代&#160; 码的文件），代码果然很乱：首    <br>先包含了一个 MDB.asp 然后写了一段如果获取不到 ID 值的时候的处理代码，随后又包含了    <br>setsite.asp，之后写 了网页的 head 部分…总之这个文件总共包含了四个文件，分别是：    <br>&lt;!–#include file=&quot;MDB.asp&quot;–&gt;、&#160; &lt;!–#include file=&quot;setsite.asp&quot;–&gt;、&lt;!–#include     <br>file=&quot;top.asp&quot;–&gt;、&lt;!–#include file=&quot;foot.asp&quot;–&gt;，部分代码如图：<a href="http://img.cker.in/83c624f2318a_B8E7/image_5.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/83c624f2318a_B8E7/image_thumb_5.png" width="619" height="396"></a> </p>  <p>可以看到，MDB.asp 中并没有出现防注入代码，但是在开头却包含了 conn.asp 这个文件，   <br>那好，我们再追溯到 conn.asp 这个文件来看一下。 结果同上，图与代码略，这次包含的是    <br>safe.asp，从文件名字来看，应该就是这个safe.asp 了，打开来看，果然如此。搭眼一看便知，    <br>这个防注入&#160; 文件采用的是过滤关键字的办法，从下面这行代码当中我们找到了被过滤掉的    <br>关键字：     <br>N_no = &quot;’|;|and|exec|insert|select|delete|update|count|<em>|chr|mid|master|truncate|char|declare&quot;     <br>为了验证我们的结论，那么我就用这里没有的关键字来试一下，比如前面的 and 1=1改成    <br>AND 1=1：</em></p>  <p><a href="http://img.cker.in/83c624f2318a_B8E7/image_6.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/83c624f2318a_B8E7/image_thumb_6.png" width="570" height="297"></a>     <br>但事实证明我们的想法是错误的，变化大小写是无法绕过这个防注入程序的，并且我们可以    <br>看到这里已过滤的关键字还是比较全面的，要想在 GET 注入这里下功夫&#160; 突破恐怕就比较难    <br>了。代码中可以看到对 POST 也进行了过滤，经尝试 cookie 中转注入也无法突破，所以这 </p>  <p>个防注入程序写的还是比较好的。 （Safe.asp 将作为本文的附件一提供下载，供大家研习   <br>之，若找到突破的办法欢迎发出来共勉之）。     <br>这个时候你想到什么？天啊，注入这条路肯定是行不通了~！但是我说其实即使不能绕过    <br>safe.asp 还是一样可以注入你相信吗？肯定不信，对，我也不信。。。     <br>先来说说，如果你是程序员，假设防注入程序是百分之百安全和可信任的，那么你会怎么做    <br>才能让整个站点都杜绝注入漏洞的出现呢？我想多数人会说在每一个页面 里都包含    <br>safe.asp，是啊，这的确不错，但是为什么不用更好更省事更把握的办法呢？如果是我我会    <br>用 conn.asp（数据库连接文件）或&#160; head.asp 来包含safe.asp 文件，这样一来，只要想对数据    <br>库进行操作，就必须要包含 conn.asp/head.asp，只要包含了 conn.asp/head.asp 就同时包含了    <br>safe.asp，基本可以肯定不会出现注入漏洞。     <br>为什么说这些呢，因为这套源码实在是太让我蛋疼了…在会员的注册模块，通过 reg.asp、    <br>reg2.asp、reg3.asp 这三个文件来实现，但是我&#160; 真的是理解不了这个程序的作者是怎么想的，    <br>他几乎在所有需要对数据库进行操作的文件里都包含了 safe.asp 这个文件，但是为什么偏偏    <br>这几个文件不包含 呢？这直接导致了 post 注入的出现…至于利用方面就不多说了。     <br>其实有的时候如果我们只是简单的想要干掉一个站点，而不是非要拿他的数据的话，会有非    <br>常多的办法，根本不必拿到 web shell，也不必使用纯流量的 DDOS 攻击，只要一个简单 XSS    <br>就可以满足了。     <br>关于这套程序的 XSS 我真的不想说的太多，遍地都是，几乎只要存在输入框的地方都可以    <br>XSS，虽然有的地方用 JavaScript 作了简单的验证，但是鸡&#160; 肋的很，动一动手指就可以绕过    <br>去。还有一个需要讨论的问题就是，有了 XSS 我们可以做什么？关于这个问题，我想说 XSS    <br>的利用跟实际场景还是有很大关系&#160; 的，有的 XSS 可以 get shell，但是有的也就是谈个框框。    <br>就本文中提到的这套源码来说，你可以利用一个存储型的 XSS 使页面执行任意你想执行的    <br>html语句，也就是说你可以&#160; 在页面中插入任意的 html代码，而不仅仅是谈个框框那么简单    <br>（一个死循环的 alert？挂个黑链？挂马？或是别的什么想法），而且是存储型的哟~~~但&#160; 是    <br>至于盗取 cookies 什么的，还是不要想了，因为现在的程序验证用户身份都是通过 session    <br>了验证的，cookies 欺骗的可能性几乎没有了，而 且 cookies 中也不可能存储用户的敏感信    <br>息，所以就算你拿到 cookies 也没用。至于什么是 session，自行百度。     <br>/接下来纯属扯淡，不想看的请直接关闭本文档即可*/     <br>先写这么多，我记得这套程序还有别的漏洞来着，貌似还挺危险的漏洞，一时想不起来了，    <br>想起来的时候再补上吧（汗，丢人）…其实也是赶时间敲代码，答应该客户做的东西还一点    <br>没做，最后期限眼看就要到了，还好多事情没有做，一个礼拜的事情全都压在今晚了… </p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/766.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/766.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/766.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/766.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/769.seo/">
-        ← 网易某系统未授权访问致内网被渗透
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/762.seo/">
-        对某高级技工学校网站的安全检测和加固 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/渗透测试/">渗透测试</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/注入/">注入</a><a href="/tag/post/">post</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/769.seo/" title="网易某系统未授权访问致内网被渗透">
+  <strong>Prev:</strong><br/>
+  <span>
+  网易某系统未授权访问致内网被渗透</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/762.seo/"  title="对某高级技工学校网站的安全检测和加固">
+ <strong>Next:</strong><br/> 
+ <span>对某高级技工学校网站的安全检测和加固
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-说说那些年躺在硬盘里的源码" data-title="说说那些年躺在硬盘里的源码" data-url="http://ha.cker.in/766.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

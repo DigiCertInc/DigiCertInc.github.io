@@ -1,151 +1,446 @@
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE HTML>
+<html  xmlns:wb="http://open.weibo.com/wb">
 <head>
-  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>对某高级技工学校网站的安全检测和加固 | Blog of Secer</title>
-  <meta name="description" content="" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="MobileOptimized" content="320" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <meta name="generator" content="Blog of Secer">
-
+  <meta charset="UTF-8">
   
-  
-  
-
-  
+    <title>对某高级技工学校网站的安全检测和加固 | Blog of Secer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Secer">
+    
+    <meta name="description" content="虽然今年金融危机给人们带来了“酷冬”，我国经济收到明显影响，到处都在传某某公司准备裁多少人！感觉这个冬天特别冷，在写这篇文章的时候，俺仍然感觉很冷，加入安天365这个团队，让俺感觉很温暖，在这个物欲横流，唯利是图的时候还有人对技术如此执著，对网络安全技术进行系统研究，那是何等的一种精神，我很欣赏团队中的一句话：技术需要沉淀，学习是一个渐进的过程，时间长了，即使是一块顽石，我也能把它滴穿！  今天发现的是一所技工学校，先对其进行安全检测，然后对其出现漏洞的地方进行了防范，下面将漏洞挖掘、分析和修补过程写出来跟大家分享。  （一）漏洞挖掘  1.获取初步信息  某天simeon在群里发了一个IP地址，让众兄弟们看看看看网站安全性如何，说是有奖励。（某人偷笑ing：有奖励好啊！俺就好这口）。首先打开网站看看网站能否访问，一看原来是个高级技工学校的网站，如图1所示，这几天搞学校的网站搞出毛病了，一看到学校网站就两眼放光，因为学校网站院系众多，而且网站更新比较缓慢，一套程序可能用上几百年也不一定换，所以漏洞自然也少不了，因此总的来说搞学校网站还是相对容易的。                                                                           图1 查看网站基本情况                        说明：  由于发来的是一个IP地址，因此需要先看看该地址时候在默认80端口开放了Web服务，然后看看是使用什么语言，当然也可以直接将地址放入SQL注入扫描工具中进行SQL注入点检测。  2.查看端口开放情况  使用“sfind –p 222.134.217.206”命令查看该服务器端口开放情况，如图2所示，计算机开放了21、80以及4899端口，看到这里，嘿嘿，俺觉得该服务器的安全应该不是太高，可以拿到权限。">
+    
+    
+    
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="333" />
+    <meta name="twitter:title" content="对某高级技工学校网站的安全检测和加固 | Blog of Secer" />
+      
+    
+    
+    <link rel="alternate" href="atom.xml" title="Blog of Secer" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<!--
-<body class="post-template">
--->
-<body class="home-template">
-<div id="perspective" class="perspective effect-movedown">
-  <div class="container">
-    <!-- wrapper -->
-    <div class="wrapper">
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">文章</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+						<li><a href="/atom.xml">RSS订阅</a></li>
+					
+					<li>
+					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
 
-      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
-    <div class="vertical">
-        <div class="site-head-content inner">
-             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
-            <h1 class="blog-title">Blog of Secer</h1>
-            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
-        </div>
-    </div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/762.seo/" title="对某高级技工学校网站的安全检测和加固" itemprop="url">对某高级技工学校网站的安全检测和加固</a>
+  </h1>
+  <!-- 显示作者
+  <p class="article-author">By
+    
+      <a href="http://ha.cker.in" title="Secer">Secer</a>
+    </p>
+  -->  
+  <p class="article-time">
+    <time datetime="2012-08-19T10:28:01.000Z" itemprop="datePublished">2012-08-19</time>
+    Updated:<time datetime="2016-08-20T11:03:53.000Z" itemprop="dateModified">2016-08-20</time>
+    
+  </p>
 </header>
 
-      
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>虽然今年金融危机给人们带来了“酷冬”，我国经济收到明显影响，到处都在传某某公司准备裁多少人！感觉这个冬天特别冷，在写这篇文章的时候，俺仍然感觉很冷，加入安天365这个团队，让俺感觉很温暖，在这个物欲横流，唯利是图的时候还有人对技术如此执著，对网络安全技术进行系统研究，那是何等的一种精神，我很欣赏团队中的一句话：技术需要沉淀，学习是一个渐进的过程，时间长了，即使是一块顽石，我也能把它滴穿！</p>  <p>今天发现的是一所技工学校，先对其进行安全检测，然后对其出现漏洞的地方进行了防范，下面将漏洞挖掘、分析和修补过程写出来跟大家分享。</p>  <p>（一）漏洞挖掘</p>  <p>1.获取初步信息</p>  <p>某天simeon在群里发了一个IP地址，让众兄弟们看看看看网站安全性如何，说是有奖励。（某人偷笑ing：有奖励好啊！俺就好这口）。首先打开网站看看网站能否访问，一看原来是个高级技工学校的网站，如图1所示，这几天搞学校的网站搞出毛病了，一看到学校网站就两眼放光，因为学校网站院系众多，而且网站更新比较缓慢，一套程序可能用上几百年也不一定换，所以漏洞自然也少不了，因此总的来说搞学校网站还是相对容易的。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/181807596.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image002.jpg" width="518" height="455"></a></p>         </td>       </tr>        <tr>         <td>           <p>图1 查看网站基本情况</p>         </td>       </tr>     </tbody></table> </p>  <p>说明：</p>  <p>由于发来的是一个IP地址，因此需要先看看该地址时候在默认80端口开放了Web服务，然后看看是使用什么语言，当然也可以直接将地址放入SQL注入扫描工具中进行SQL注入点检测。</p>  <p>2.查看端口开放情况</p>  <p>使用“sfind –p 222.134.217.206”命令查看该服务器端口开放情况，如图2所示，计算机开放了21、80以及4899端口，看到这里，嘿嘿，俺觉得该服务器的安全应该不是太高，可以拿到权限。</p><a id="more"></a><p>   <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/181819458.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image004.jpg" width="518" height="400"></a></p>         </td>       </tr>        <tr>         <td>           <p>图2 查看端口开放情况</p>         </td>       </tr>     </tbody></table> </p>  <p>3.查看系统功能</p>  <p>通过网站的导航条查看网站系统是自己开发的还是直接从网上搬来的，在该学校网站的导航条中有“校园论坛”链接，打开一看原来是dvbbs8.2的论坛，如图3所示。后面该学校网站其它功能模块进行了查看，没有发现有CMS等，初步估计网站除论坛外，其余程序是定制开发。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/181829422.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image006.jpg" width="518" height="355"></a></p>         </td>       </tr>        <tr>         <td>           <p>图3 系统使用了动感论坛</p>         </td>       </tr>     </tbody></table> </p>  <p>说明：</p>  <p>前期工作做到位，可以减少很多工作量，通过查看系统是否采用CMS、是否使用网上流行论坛等，从而进行针对性的安全检测。</p>  <p>4.实施初步检测</p>  <p>（1）论坛安全检测</p>  <p>从论坛中会员人数不多来判断，管理员应该不是经常进行管理，很多设置都是默认设置的，因此可以尝试数据库是否采用默认设置，直接可以下载。直接在网址后面加“data/dvbbs8.mdb”也就是dvbbs8.2的默认地址，运气还不错，提示下载，如图4所示。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/181838501.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image008.jpg" width="518" height="455"></a></p>         </td>       </tr>        <tr>         <td>           <p>图4 下载dvbbs8.2默认数据库</p>         </td>       </tr>     </tbody></table> </p>  <p>（2）获取管理员密码</p>  <p>下载完后用access打开，首先查看Dv_Admin表，如图5所示，打开后发现管理员还是有一定的安全意识，将默认的admin修改为“曹老师”（真的很嘲），将md5加密值“8a10<strong>8c0f7c**</strong>”复制到记事本，然后查看Dv_user表中的管理员——曹老师所对应的md5值，我的乖乖，两个值是一样的！    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/181851795.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image010" border="0" alt="clip_image010" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image010.jpg" width="518" height="436"></a></p>         </td>       </tr>        <tr>         <td>           <p>图5 获取管理员的md5值</p>         </td>       </tr>     </tbody></table> </p>  <p>（3）破解md5加密值</p>  <p>发现前台和后台管理员的MD5值都是一样的，如果能够破解，那就省去了很多事情，将MD5加密值拿到cmd5上面破解却提示没有找到，如图6所示，dvbbs8.2好像也没有爆出啥cookies欺骗的漏洞，看来管理员也不是白给的。此路不通。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/181900380.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image012" border="0" alt="clip_image012" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image012.jpg" width="518" height="436"></a></p>         </td>       </tr>        <tr>         <td>           <p>图6 md5加密值查找未果</p>         </td>       </tr>     </tbody></table> </p>  <p>5.再次进行SQL注入检测</p>  <p>DVbbs数据库的用户密码加密值拿到了，由于CMD5网站查不到结果，估计自己使用md5cracker破解也需要很长时间，看来需要换一种思路，看看能否突破，实在不行再进行暴力破解！</p>  <p>因此首先回到网站首页，用啊D注入工具扫了一下注入点，结果还真找到一个注入点，一会就跑出了用户名为admin，密码为“6bfb281ef3d9<strong><em>**</em></strong>4b9f202ecd2f”，如图7所示。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/181916287.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image014" border="0" alt="clip_image014" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image014.jpg" width="518" height="480"></a></p>         </td>       </tr>        <tr>         <td>           <p>图7使用啊D注入工具获取管理员密码</p>         </td>       </tr>     </tbody></table> </p>  <p>可是将该Md5值拿到<a href="http://www.cmd5.com/" target="_blank" rel="external">www.CMD5.com</a>网站去查询，其查询结果提示需要购买，如图8所示，CMD5真不厚道，俺检测容易吗，要花钱，拉到吧！。顺便用啊D扫了下后台也没有发现，即使破出密码来也没办法登陆后台啊，再说即使能够登陆后台也不一定能拿到webshell啊。看来此路也不通。     <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/181928897.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image016" border="0" alt="clip_image016" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image016.jpg" width="518" height="754"></a></p>         </td>       </tr>        <tr>         <td>           <p>图8 查到结果却需要购买</p>         </td>       </tr>     </tbody></table> </p>  <p>6.看看旁注可否</p>  <p>上“<a href="http://www.myipneighbors.com/”这个网站查了下这个网站结果表明该网站属于独立服务器，那么用旁注也不好使了。旁注结果如图9所示。" target="_blank" rel="external">http://www.myipneighbors.com/”这个网站查了下这个网站结果表明该网站属于独立服务器，那么用旁注也不好使了。旁注结果如图9所示。</a>    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182009660.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image018" border="0" alt="clip_image018" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image018.jpg" width="518" height="355"></a></p>         </td>       </tr>        <tr>         <td>           <p>图9查询该IP地址域名情况</p>         </td>       </tr>     </tbody></table> </p>  <p>很多菜鸟朋友们到这里可能要放弃了，我在测试的时候也想放弃来着，可是为了simeon的奖励俺也要厚着脸皮上的。</p>  <p>7．再次分析网站结构</p>  <p>刚才只是对整个网站大体的分析了一下，这在入侵的时候也是必须的工作，根据自己的经验来对网站的结构做些大体的了解，等到我们先前工作做完了，那我们就有了更大的把握来把网站给搞下来。</p>  <p>接下来只能来狠的了，拿出俺的杀手锏wscan了，挺强大的一个网站目录和文件扫描工具，不过这个工具有的时候会误报的，明明存在的目录它也扫描不出来。用它扫了好几遍也没什么可以利用的东西。然后换了wwwscan结果还好一点，因为以前收集过一些字典而且原点也给过我他的字典，所以结合起来也算挺全的了，在cmd下用“wwwscan <strong><em>.</em></strong>.217.206 –m 300 –t 30”，剩下的就是等待了，一会结果出来了，扫到了不少好东西，结果如图10所示。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182031173.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image020" border="0" alt="clip_image020" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image020.jpg" width="518" height="394"></a></p>         </td>       </tr>        <tr>         <td>           <p>图10 使用wscan扫描网站目录和文件</p>         </td>       </tr>     </tbody></table> </p>  <p>8.其它尝试</p>  <p>有个“upfile.asp”看来是个上传文件，用domain的综合上传功能试了下传不上去，而且“conn.asp”也爆不了库，最后视线落到了“ewebeditor”身上，看看用它能不能搞定。在网址后面加上“ewebeditor/admin_login.asp”提交一下，一愣神的功夫血红的登陆界面就跳出来了，如图11所示。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182044349.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image022" border="0" alt="clip_image022" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image022.jpg" width="518" height="410"></a></p>         </td>       </tr>        <tr>         <td>           <p>图11 使用ewebeditor管理器编辑登录</p>         </td>       </tr>     </tbody></table> </p>  <p>直接输入默认的“admin”，“admin”，成功的登陆到了后台，如图12所示，兴奋了，不知道为什么学校网站都对“ewebeditor”这个编辑器情有独钟，以致如此多的网站都倒在了她的红裙之下。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182115859.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image024" border="0" alt="clip_image024" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image024.jpg" width="518" height="409"></a></p>         </td>       </tr>        <tr>         <td>           <p>图12 登录ewebeditor管理器后台</p>         </td>       </tr>     </tbody></table> </p>  <p>（二）提升权限</p>  <p>1.获取Webshell权限</p>  <p>关于ewebeditor如何拿shell的方法我就不废话了，反正我是拿到了webshell，可以跟simeon邀功了，不过这还不算完满，因为网站是独立服务器的，而且又是学校的服务器，相信安全不会做的太好，接下来俺就动了“邪念”，想把服务器权限也给拿下来。</p>  <p>2.执行命令</p>  <p>用大马的wscript.Shell执行下“netstat -an“命令，出错了，很正常，2003的IUSER这个用户是不能访问”c:\windows\system32\cmd.exe“的，解决的办法很简单，把自己经过压缩处理的cmd.exe传到服务器上就行了，这样DOS命令就能成功执行了。如图13所示，开放的端口还真不少。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182131153.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image026" border="0" alt="clip_image026" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image026.jpg" width="518" height="379"></a></p>         </td>       </tr>        <tr>         <td>           <p>图13 上传cmd程序并执行命令</p>         </td>       </tr>     </tbody></table> </p>  <p>3.使用radmin提升权限</p>  <p>在开始端口查看结果中知道服务器开放了4489端口，也就是Radmin，玩过radmin的老鸟可能都知道以前的radmin安装的时候是把密码写入到注册表的，具体位置在“HKEY_LOCAL_MACHINE\SYSTEM\RAdmin\v2.0\Server\Parameters\Parameter”这个键值下的。不过如果是一步江湖的radmin的话我们在注册表是找不到的。用大马读了下上面的注册表的价值，成功读取了出来，结果如图14所示。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182140744.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image028" border="0" alt="clip_image028" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image028.jpg" width="518" height="412"></a></p>         </td>       </tr>        <tr>         <td>           <p>图14 获取Radmin口令加密值</p>         </td>       </tr>     </tbody></table> </p>  <p>看来有希望了，不过大马读取出来的都是转成十进制的数据，我们还需要再转换成十六进制的，太麻烦了，拿出自己珍藏的radmin注册表读取工具，就可以直接读取出radmin 32位的MD5密码散列了，而且还能读取radmin日志文件存储的位置，由它记录了所有连接服务器radmin的信息，这个东西必须得处理了，要不管理员大哥查看这个日志文件就能找到我们的踪迹了。结果如图15所示（这里不方便给出源码，如果想要的话就到antian365.com网站下载，呵呵，其实很弱智的一个东西）。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182214653.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image030" border="0" alt="clip_image030" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image030.jpg" width="518" height="209"></a></p>         </td>       </tr>        <tr>         <td>           <p>图15 读取Radmin值的asp程序</p>         </td>       </tr>     </tbody></table> </p>  <p>Radmin的MD5密码终于到手了，到CMD5破解下，没有找到结果，不过不用担心，这里我们可以用牛人经过修改的可以利用MD5散列直接登陆4899肉鸡的工具，连接一下，把32位的MD5值填进去，终于进去了，这样俺就得到了“<strong><em>.</em></strong>.217.206”这台服务器的所有的权限了。</p>  <p>（四）内网渗透</p>  <p>1.获取管理员ftp密码</p>  <p>通过radmin-hash工具完全控制该服务器后，通过查看发现该服务器所在网络还有三台服务器，可以尝试进行内网渗透。在内网渗透中最好的办法就是得到管理员administrator的密码，我们可以用“GetPW Local$”命令得到系统的密码hash值，然后再用LC5跑，也可以用“WinlogonHack”这个后门工具记录管理员密码，不过我最喜欢的是从网站服务器的应用程序上找突破，比如ftp工具这就是很好的泄露管理员密码的工具。</p>  <p>用radmin文件管理功能经过一番查找，终于在D盘找到了“ultrafxp“这个ftp工具，此工具和flashftp特别相似，功能也非常强大，不过也存在这暴露ftp用户信息的漏洞。</p>  <p>把服务器上的ultrafxp的安装文件全部拖到本地，然后直接运行“UltraFxp.exe“这个程序就可以打开ftp管理的主界面了，在”站点管理器“这个的地方我们就能够找到管理员用” ultrafxp“连接过的所有站点的信息了（管理员好懒，连接完了也不清除掉，等俺们来读）。如图16所示，206服务器的Ftp用户密码“silvery<strong>*”是我用星号查看器读取出来的。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182227819.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image032" border="0" alt="clip_image032" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image032.jpg" width="518" height="352"></a></p>         </td>       </tr>        <tr>         <td>           <p>图16获取ftp用户的密码</p>         </td>       </tr>     </tbody></table> </strong></p>  <p>2.获取远程终端端口</p>  <p>206这台服务器上的ftp密码，其中用户名是“administrator”，我想玩过社工的朋友一定想到了吧，有可能服务器登陆的密码就是这个。看看这个是不是管理员密码，用大马的查看终端端口的功能找到终端端口为3372，如图17所示。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182235268.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image034" border="0" alt="clip_image034" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image034.jpg" width="518" height="361"></a></p>         </td>       </tr>        <tr>         <td>           <p>图17 获取远程终端服务端口3372</p>         </td>       </tr>     </tbody></table> </p>  <p>3.社工登录3389终端服务器</p>  <p>不废话了直接用mstsc连接用户名就用“administrator”密码用读取出来的“silvery”，ok和预想的一样成功登陆服务器了，如图18所示，呵呵，很有胜利感。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182243731.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image036" border="0" alt="clip_image036" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image036.jpg" width="518" height="454"></a></p>         </td>       </tr>        <tr>         <td>           <p>图18 成功登录服务器</p>         </td>       </tr>     </tbody></table> </p>  <p>4.利用社会工程继续渗透</p>  <p>接下来就是社会工程学了，我在站点管理的地方发现了其他几个ftp站点的连接账户和密码，分别是“<strong><em>.</em></strong>.217.204”，“ “<strong><em>.</em></strong>.217.205”，看来管理员管理的网站还不少啊。再次使用sfind扫了下这个网段的4899端口，如图19所示，结果也表明这三台服务器有radmin的，看来管理员是用radmin来远程管理服务器的。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182253575.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image038" border="0" alt="clip_image038" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image038.jpg" width="518" height="406"></a></p>         </td>       </tr>        <tr>         <td>           <p>图19 使用sfind扫描附近计算机Radmin端口开放情况</p>         </td>       </tr>     </tbody></table> </p>  <p>用radmin.asp读取出来的MD5值分别用Radmin_Hash登录 “<strong><em>.</em></strong>.217.204”，“<strong><em>.</em></strong>.217.205”，成功登陆到了“<strong><em>.</em></strong>.217.205”这台电脑，可是“<strong><em>.</em></strong>.217.204”却死活不能成功登陆，用从“ultrafxp“得到的用户名和密码都试了一遍，也不行。不知道管理员为啥对204这台机子单独设置密码，呵呵。如图20所示，是我连上的radmin。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182302178.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image040" border="0" alt="clip_image040" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image040.jpg" width="518" height="420"></a></p>         </td>       </tr>        <tr>         <td>           <p>图20 使用radmin-hash工具控制相邻服务器</p>         </td>       </tr>     </tbody></table> </p>  <p>用mstsc连接了下它的3372，3389端口也都不能连接。最后没办法了也只能放弃了。</p>  <p>5.再次验证密码</p>  <p>通过前面的安全检测，可以知道管理员在多个管理工具中使用的均是相同密码，我再次在cmd5网站中使用获取的密码进行md5加密，如图21所示，果然该密码跟dvbbs中的md5值一样。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182314800.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image042" border="0" alt="clip_image042" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image042.jpg" width="518" height="436"></a></p>         </td>       </tr>        <tr>         <td>           <p>图21 dv_admin中管理员密码hash值</p>         </td>       </tr>     </tbody></table> </p>  <p>（五）安全加固</p>  <p>1.使用jsky工具对该网站进行全面扫描</p>  <p>使用zwell的jsky工具对该网站进行全面的漏洞扫描，如果22所示，发现2个SQL注入点，1个跨站漏洞，因此高危漏洞为3个。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182327210.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image044" border="0" alt="clip_image044" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image044.jpg" width="518" height="483"></a></p>         </td>       </tr>        <tr>         <td>           <p>图22 使用jsky安全扫描工具对网站进行全面安全检测</p>         </td>       </tr>     </tbody></table> </p>  <p>2.修复程序漏洞</p>  <p>到该服务器上找到news.asp以及photo.asp程序，在其中对获取的参数id进行过滤，仅仅允许数字，其它均禁止，修改后如图23所示。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182342301.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image046" border="0" alt="clip_image046" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image046.jpg" width="518" height="455"></a></p>         </td>       </tr>        <tr>         <td>           <p>图23 修复程序中的漏洞</p>         </td>       </tr>     </tbody></table> </p>  <p>3.修改数据库默认路径以及名称</p>  <p>到动感bbs目录，修改数据库连接文件conn.asp有关数据库路径以及数据库名称，如图24，使其难以被猜测和被下载。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182357546.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image048" border="0" alt="clip_image048" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image048.jpg" width="518" height="455"></a></p>         </td>       </tr>        <tr>         <td>           <p>图24 修改数据库默认名称和路径</p>         </td>       </tr>     </tbody></table> </p>  <p>4.修改数据库密码</p>  <p>打开数据库，将默认的密码修改为一个更加难以破解的密码，在本例中设置了一个经过30位加密的md5密码，嘿嘿，md5跑去吧，如图25，26所示，将经过md5处理的字符串填入到userpassword中，其它表中涉及后台管理的均进行相应处理，使入侵者难以破解密码。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182406800.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image050" border="0" alt="clip_image050" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image050.jpg" width="518" height="455"></a></p>         </td>       </tr>        <tr>         <td>           <p>图25 修改数据库密码为一个强健的新密码</p>         </td>       </tr>     </tbody></table>    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182420185.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image052" border="0" alt="clip_image052" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image052.jpg" width="518" height="455"></a></p>         </td>       </tr>        <tr>         <td>           <p>图26 修改blog中的管理员密码</p>         </td>       </tr>     </tbody></table> </p>  <p>5.对网站文件进行清除木马和挂马处理</p>  <p>关于清除木马和挂马的细节，俺就不讲了，有关这些知识，请继续关注我们的专题文章，在网站中找到网页木马，将其删除，如图27所示，如果存在挂马代码，一并清除。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182432504.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image054" border="0" alt="clip_image054" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image054.jpg" width="518" height="455"></a></p>         </td>       </tr>        <tr>         <td>           <p>图27清除网页木马和挂马代码</p>         </td>       </tr>     </tbody></table> </p>  <p>6.提醒管理员更改密码以及做相应的安全处理</p>  <p>最后将已经修复的漏洞告诉管理员，将修改的密码放在管理员桌面的漏洞提醒文件中，如图28所示，进行友情提醒，最后关闭远程终端。结束本次的安全检测与加固。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182440160.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image056" border="0" alt="clip_image056" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image056.jpg" width="518" height="455"></a></p>         </td>       </tr>        <tr>         <td>           <p>图28</p>         </td>       </tr>     </tbody></table> </p>  <p>呵呵，最后谢谢antian365团队给了我一个机会，通过本次检测，俺将多个知识点运用在实践中，在实战中得到了提高。作为一个安全技术爱好者，我们的责任是保卫我的家园，保卫我们的信息，因此在安全检测后，如果有条件可以进行适当的安全加固。欢迎提高安全线索，我以及安天365团队将乐意免费为您提供安全检测和加固服务，写的不到之处请安全大牛指点，谢谢大家耐心的看文鄙人的陋文。</p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-share" id="share">
 
-<main class="content" role="main">
-  <article class="post">
-    <span class="post-meta">
-      <time datetime="2012-08-19T10:28:01.000Z" itemprop="datePublished">
-          2012-08-19
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透测试/'>渗透测试</a>,
-    
-    <a href='/tag/安全加固/'>安全加固</a>
-    
-    
-</span>
-    <h1 class="post-title">对某高级技工学校网站的安全检测和加固</h1>
-    <section class="post-content">
-      <p>虽然今年金融危机给人们带来了“酷冬”，我国经济收到明显影响，到处都在传某某公司准备裁多少人！感觉这个冬天特别冷，在写这篇文章的时候，俺仍然感觉很冷，加入安天365这个团队，让俺感觉很温暖，在这个物欲横流，唯利是图的时候还有人对技术如此执著，对网络安全技术进行系统研究，那是何等的一种精神，我很欣赏团队中的一句话：技术需要沉淀，学习是一个渐进的过程，时间长了，即使是一块顽石，我也能把它滴穿！</p>  <p>今天发现的是一所技工学校，先对其进行安全检测，然后对其出现漏洞的地方进行了防范，下面将漏洞挖掘、分析和修补过程写出来跟大家分享。</p>  <p>（一）漏洞挖掘</p>  <p>1.获取初步信息</p>  <p>某天simeon在群里发了一个IP地址，让众兄弟们看看看看网站安全性如何，说是有奖励。（某人偷笑ing：有奖励好啊！俺就好这口）。首先打开网站看看网站能否访问，一看原来是个高级技工学校的网站，如图1所示，这几天搞学校的网站搞出毛病了，一看到学校网站就两眼放光，因为学校网站院系众多，而且网站更新比较缓慢，一套程序可能用上几百年也不一定换，所以漏洞自然也少不了，因此总的来说搞学校网站还是相对容易的。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/181807596.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image002.jpg" width="518" height="455"></a></p>         </td>       </tr>        <tr>         <td>           <p>图1 查看网站基本情况</p>         </td>       </tr>     </tbody></table> </p>  <p>说明：</p>  <p>由于发来的是一个IP地址，因此需要先看看该地址时候在默认80端口开放了Web服务，然后看看是使用什么语言，当然也可以直接将地址放入SQL注入扫描工具中进行SQL注入点检测。</p>  <p>2.查看端口开放情况</p>  <p>使用“sfind –p 222.134.217.206”命令查看该服务器端口开放情况，如图2所示，计算机开放了21、80以及4899端口，看到这里，嘿嘿，俺觉得该服务器的安全应该不是太高，可以拿到权限。</p><a id="more"></a><p>   <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/181819458.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image004.jpg" width="518" height="400"></a></p>         </td>       </tr>        <tr>         <td>           <p>图2 查看端口开放情况</p>         </td>       </tr>     </tbody></table> </p>  <p>3.查看系统功能</p>  <p>通过网站的导航条查看网站系统是自己开发的还是直接从网上搬来的，在该学校网站的导航条中有“校园论坛”链接，打开一看原来是dvbbs8.2的论坛，如图3所示。后面该学校网站其它功能模块进行了查看，没有发现有CMS等，初步估计网站除论坛外，其余程序是定制开发。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/181829422.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image006.jpg" width="518" height="355"></a></p>         </td>       </tr>        <tr>         <td>           <p>图3 系统使用了动感论坛</p>         </td>       </tr>     </tbody></table> </p>  <p>说明：</p>  <p>前期工作做到位，可以减少很多工作量，通过查看系统是否采用CMS、是否使用网上流行论坛等，从而进行针对性的安全检测。</p>  <p>4.实施初步检测</p>  <p>（1）论坛安全检测</p>  <p>从论坛中会员人数不多来判断，管理员应该不是经常进行管理，很多设置都是默认设置的，因此可以尝试数据库是否采用默认设置，直接可以下载。直接在网址后面加“data/dvbbs8.mdb”也就是dvbbs8.2的默认地址，运气还不错，提示下载，如图4所示。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/181838501.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image008.jpg" width="518" height="455"></a></p>         </td>       </tr>        <tr>         <td>           <p>图4 下载dvbbs8.2默认数据库</p>         </td>       </tr>     </tbody></table> </p>  <p>（2）获取管理员密码</p>  <p>下载完后用access打开，首先查看Dv_Admin表，如图5所示，打开后发现管理员还是有一定的安全意识，将默认的admin修改为“曹老师”（真的很嘲），将md5加密值“8a10<strong>8c0f7c**</strong>”复制到记事本，然后查看Dv_user表中的管理员——曹老师所对应的md5值，我的乖乖，两个值是一样的！    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/181851795.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image010" border="0" alt="clip_image010" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image010.jpg" width="518" height="436"></a></p>         </td>       </tr>        <tr>         <td>           <p>图5 获取管理员的md5值</p>         </td>       </tr>     </tbody></table> </p>  <p>（3）破解md5加密值</p>  <p>发现前台和后台管理员的MD5值都是一样的，如果能够破解，那就省去了很多事情，将MD5加密值拿到cmd5上面破解却提示没有找到，如图6所示，dvbbs8.2好像也没有爆出啥cookies欺骗的漏洞，看来管理员也不是白给的。此路不通。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/181900380.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image012" border="0" alt="clip_image012" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image012.jpg" width="518" height="436"></a></p>         </td>       </tr>        <tr>         <td>           <p>图6 md5加密值查找未果</p>         </td>       </tr>     </tbody></table> </p>  <p>5.再次进行SQL注入检测</p>  <p>DVbbs数据库的用户密码加密值拿到了，由于CMD5网站查不到结果，估计自己使用md5cracker破解也需要很长时间，看来需要换一种思路，看看能否突破，实在不行再进行暴力破解！</p>  <p>因此首先回到网站首页，用啊D注入工具扫了一下注入点，结果还真找到一个注入点，一会就跑出了用户名为admin，密码为“6bfb281ef3d9<strong><em>**</em></strong>4b9f202ecd2f”，如图7所示。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/181916287.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image014" border="0" alt="clip_image014" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image014.jpg" width="518" height="480"></a></p>         </td>       </tr>        <tr>         <td>           <p>图7使用啊D注入工具获取管理员密码</p>         </td>       </tr>     </tbody></table> </p>  <p>可是将该Md5值拿到<a href="http://www.cmd5.com/" target="_blank" rel="external">www.CMD5.com</a>网站去查询，其查询结果提示需要购买，如图8所示，CMD5真不厚道，俺检测容易吗，要花钱，拉到吧！。顺便用啊D扫了下后台也没有发现，即使破出密码来也没办法登陆后台啊，再说即使能够登陆后台也不一定能拿到webshell啊。看来此路也不通。     <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/181928897.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image016" border="0" alt="clip_image016" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image016.jpg" width="518" height="754"></a></p>         </td>       </tr>        <tr>         <td>           <p>图8 查到结果却需要购买</p>         </td>       </tr>     </tbody></table> </p>  <p>6.看看旁注可否</p>  <p>上“<a href="http://www.myipneighbors.com/”这个网站查了下这个网站结果表明该网站属于独立服务器，那么用旁注也不好使了。旁注结果如图9所示。" target="_blank" rel="external">http://www.myipneighbors.com/”这个网站查了下这个网站结果表明该网站属于独立服务器，那么用旁注也不好使了。旁注结果如图9所示。</a>    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182009660.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image018" border="0" alt="clip_image018" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image018.jpg" width="518" height="355"></a></p>         </td>       </tr>        <tr>         <td>           <p>图9查询该IP地址域名情况</p>         </td>       </tr>     </tbody></table> </p>  <p>很多菜鸟朋友们到这里可能要放弃了，我在测试的时候也想放弃来着，可是为了simeon的奖励俺也要厚着脸皮上的。</p>  <p>7．再次分析网站结构</p>  <p>刚才只是对整个网站大体的分析了一下，这在入侵的时候也是必须的工作，根据自己的经验来对网站的结构做些大体的了解，等到我们先前工作做完了，那我们就有了更大的把握来把网站给搞下来。</p>  <p>接下来只能来狠的了，拿出俺的杀手锏wscan了，挺强大的一个网站目录和文件扫描工具，不过这个工具有的时候会误报的，明明存在的目录它也扫描不出来。用它扫了好几遍也没什么可以利用的东西。然后换了wwwscan结果还好一点，因为以前收集过一些字典而且原点也给过我他的字典，所以结合起来也算挺全的了，在cmd下用“wwwscan <strong><em>.</em></strong>.217.206 –m 300 –t 30”，剩下的就是等待了，一会结果出来了，扫到了不少好东西，结果如图10所示。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182031173.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image020" border="0" alt="clip_image020" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image020.jpg" width="518" height="394"></a></p>         </td>       </tr>        <tr>         <td>           <p>图10 使用wscan扫描网站目录和文件</p>         </td>       </tr>     </tbody></table> </p>  <p>8.其它尝试</p>  <p>有个“upfile.asp”看来是个上传文件，用domain的综合上传功能试了下传不上去，而且“conn.asp”也爆不了库，最后视线落到了“ewebeditor”身上，看看用它能不能搞定。在网址后面加上“ewebeditor/admin_login.asp”提交一下，一愣神的功夫血红的登陆界面就跳出来了，如图11所示。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182044349.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image022" border="0" alt="clip_image022" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image022.jpg" width="518" height="410"></a></p>         </td>       </tr>        <tr>         <td>           <p>图11 使用ewebeditor管理器编辑登录</p>         </td>       </tr>     </tbody></table> </p>  <p>直接输入默认的“admin”，“admin”，成功的登陆到了后台，如图12所示，兴奋了，不知道为什么学校网站都对“ewebeditor”这个编辑器情有独钟，以致如此多的网站都倒在了她的红裙之下。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182115859.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image024" border="0" alt="clip_image024" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image024.jpg" width="518" height="409"></a></p>         </td>       </tr>        <tr>         <td>           <p>图12 登录ewebeditor管理器后台</p>         </td>       </tr>     </tbody></table> </p>  <p>（二）提升权限</p>  <p>1.获取Webshell权限</p>  <p>关于ewebeditor如何拿shell的方法我就不废话了，反正我是拿到了webshell，可以跟simeon邀功了，不过这还不算完满，因为网站是独立服务器的，而且又是学校的服务器，相信安全不会做的太好，接下来俺就动了“邪念”，想把服务器权限也给拿下来。</p>  <p>2.执行命令</p>  <p>用大马的wscript.Shell执行下“netstat -an“命令，出错了，很正常，2003的IUSER这个用户是不能访问”c:\windows\system32\cmd.exe“的，解决的办法很简单，把自己经过压缩处理的cmd.exe传到服务器上就行了，这样DOS命令就能成功执行了。如图13所示，开放的端口还真不少。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182131153.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image026" border="0" alt="clip_image026" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image026.jpg" width="518" height="379"></a></p>         </td>       </tr>        <tr>         <td>           <p>图13 上传cmd程序并执行命令</p>         </td>       </tr>     </tbody></table> </p>  <p>3.使用radmin提升权限</p>  <p>在开始端口查看结果中知道服务器开放了4489端口，也就是Radmin，玩过radmin的老鸟可能都知道以前的radmin安装的时候是把密码写入到注册表的，具体位置在“HKEY_LOCAL_MACHINE\SYSTEM\RAdmin\v2.0\Server\Parameters\Parameter”这个键值下的。不过如果是一步江湖的radmin的话我们在注册表是找不到的。用大马读了下上面的注册表的价值，成功读取了出来，结果如图14所示。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182140744.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image028" border="0" alt="clip_image028" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image028.jpg" width="518" height="412"></a></p>         </td>       </tr>        <tr>         <td>           <p>图14 获取Radmin口令加密值</p>         </td>       </tr>     </tbody></table> </p>  <p>看来有希望了，不过大马读取出来的都是转成十进制的数据，我们还需要再转换成十六进制的，太麻烦了，拿出自己珍藏的radmin注册表读取工具，就可以直接读取出radmin 32位的MD5密码散列了，而且还能读取radmin日志文件存储的位置，由它记录了所有连接服务器radmin的信息，这个东西必须得处理了，要不管理员大哥查看这个日志文件就能找到我们的踪迹了。结果如图15所示（这里不方便给出源码，如果想要的话就到antian365.com网站下载，呵呵，其实很弱智的一个东西）。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182214653.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image030" border="0" alt="clip_image030" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image030.jpg" width="518" height="209"></a></p>         </td>       </tr>        <tr>         <td>           <p>图15 读取Radmin值的asp程序</p>         </td>       </tr>     </tbody></table> </p>  <p>Radmin的MD5密码终于到手了，到CMD5破解下，没有找到结果，不过不用担心，这里我们可以用牛人经过修改的可以利用MD5散列直接登陆4899肉鸡的工具，连接一下，把32位的MD5值填进去，终于进去了，这样俺就得到了“<strong><em>.</em></strong>.217.206”这台服务器的所有的权限了。</p>  <p>（四）内网渗透</p>  <p>1.获取管理员ftp密码</p>  <p>通过radmin-hash工具完全控制该服务器后，通过查看发现该服务器所在网络还有三台服务器，可以尝试进行内网渗透。在内网渗透中最好的办法就是得到管理员administrator的密码，我们可以用“GetPW Local$”命令得到系统的密码hash值，然后再用LC5跑，也可以用“WinlogonHack”这个后门工具记录管理员密码，不过我最喜欢的是从网站服务器的应用程序上找突破，比如ftp工具这就是很好的泄露管理员密码的工具。</p>  <p>用radmin文件管理功能经过一番查找，终于在D盘找到了“ultrafxp“这个ftp工具，此工具和flashftp特别相似，功能也非常强大，不过也存在这暴露ftp用户信息的漏洞。</p>  <p>把服务器上的ultrafxp的安装文件全部拖到本地，然后直接运行“UltraFxp.exe“这个程序就可以打开ftp管理的主界面了，在”站点管理器“这个的地方我们就能够找到管理员用” ultrafxp“连接过的所有站点的信息了（管理员好懒，连接完了也不清除掉，等俺们来读）。如图16所示，206服务器的Ftp用户密码“silvery<strong>*”是我用星号查看器读取出来的。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182227819.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image032" border="0" alt="clip_image032" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image032.jpg" width="518" height="352"></a></p>         </td>       </tr>        <tr>         <td>           <p>图16获取ftp用户的密码</p>         </td>       </tr>     </tbody></table> </strong></p>  <p>2.获取远程终端端口</p>  <p>206这台服务器上的ftp密码，其中用户名是“administrator”，我想玩过社工的朋友一定想到了吧，有可能服务器登陆的密码就是这个。看看这个是不是管理员密码，用大马的查看终端端口的功能找到终端端口为3372，如图17所示。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182235268.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image034" border="0" alt="clip_image034" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image034.jpg" width="518" height="361"></a></p>         </td>       </tr>        <tr>         <td>           <p>图17 获取远程终端服务端口3372</p>         </td>       </tr>     </tbody></table> </p>  <p>3.社工登录3389终端服务器</p>  <p>不废话了直接用mstsc连接用户名就用“administrator”密码用读取出来的“silvery”，ok和预想的一样成功登陆服务器了，如图18所示，呵呵，很有胜利感。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182243731.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image036" border="0" alt="clip_image036" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image036.jpg" width="518" height="454"></a></p>         </td>       </tr>        <tr>         <td>           <p>图18 成功登录服务器</p>         </td>       </tr>     </tbody></table> </p>  <p>4.利用社会工程继续渗透</p>  <p>接下来就是社会工程学了，我在站点管理的地方发现了其他几个ftp站点的连接账户和密码，分别是“<strong><em>.</em></strong>.217.204”，“ “<strong><em>.</em></strong>.217.205”，看来管理员管理的网站还不少啊。再次使用sfind扫了下这个网段的4899端口，如图19所示，结果也表明这三台服务器有radmin的，看来管理员是用radmin来远程管理服务器的。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182253575.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image038" border="0" alt="clip_image038" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image038.jpg" width="518" height="406"></a></p>         </td>       </tr>        <tr>         <td>           <p>图19 使用sfind扫描附近计算机Radmin端口开放情况</p>         </td>       </tr>     </tbody></table> </p>  <p>用radmin.asp读取出来的MD5值分别用Radmin_Hash登录 “<strong><em>.</em></strong>.217.204”，“<strong><em>.</em></strong>.217.205”，成功登陆到了“<strong><em>.</em></strong>.217.205”这台电脑，可是“<strong><em>.</em></strong>.217.204”却死活不能成功登陆，用从“ultrafxp“得到的用户名和密码都试了一遍，也不行。不知道管理员为啥对204这台机子单独设置密码，呵呵。如图20所示，是我连上的radmin。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182302178.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image040" border="0" alt="clip_image040" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image040.jpg" width="518" height="420"></a></p>         </td>       </tr>        <tr>         <td>           <p>图20 使用radmin-hash工具控制相邻服务器</p>         </td>       </tr>     </tbody></table> </p>  <p>用mstsc连接了下它的3372，3389端口也都不能连接。最后没办法了也只能放弃了。</p>  <p>5.再次验证密码</p>  <p>通过前面的安全检测，可以知道管理员在多个管理工具中使用的均是相同密码，我再次在cmd5网站中使用获取的密码进行md5加密，如图21所示，果然该密码跟dvbbs中的md5值一样。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182314800.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image042" border="0" alt="clip_image042" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image042.jpg" width="518" height="436"></a></p>         </td>       </tr>        <tr>         <td>           <p>图21 dv_admin中管理员密码hash值</p>         </td>       </tr>     </tbody></table> </p>  <p>（五）安全加固</p>  <p>1.使用jsky工具对该网站进行全面扫描</p>  <p>使用zwell的jsky工具对该网站进行全面的漏洞扫描，如果22所示，发现2个SQL注入点，1个跨站漏洞，因此高危漏洞为3个。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182327210.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image044" border="0" alt="clip_image044" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image044.jpg" width="518" height="483"></a></p>         </td>       </tr>        <tr>         <td>           <p>图22 使用jsky安全扫描工具对网站进行全面安全检测</p>         </td>       </tr>     </tbody></table> </p>  <p>2.修复程序漏洞</p>  <p>到该服务器上找到news.asp以及photo.asp程序，在其中对获取的参数id进行过滤，仅仅允许数字，其它均禁止，修改后如图23所示。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182342301.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image046" border="0" alt="clip_image046" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image046.jpg" width="518" height="455"></a></p>         </td>       </tr>        <tr>         <td>           <p>图23 修复程序中的漏洞</p>         </td>       </tr>     </tbody></table> </p>  <p>3.修改数据库默认路径以及名称</p>  <p>到动感bbs目录，修改数据库连接文件conn.asp有关数据库路径以及数据库名称，如图24，使其难以被猜测和被下载。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182357546.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image048" border="0" alt="clip_image048" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image048.jpg" width="518" height="455"></a></p>         </td>       </tr>        <tr>         <td>           <p>图24 修改数据库默认名称和路径</p>         </td>       </tr>     </tbody></table> </p>  <p>4.修改数据库密码</p>  <p>打开数据库，将默认的密码修改为一个更加难以破解的密码，在本例中设置了一个经过30位加密的md5密码，嘿嘿，md5跑去吧，如图25，26所示，将经过md5处理的字符串填入到userpassword中，其它表中涉及后台管理的均进行相应处理，使入侵者难以破解密码。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182406800.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image050" border="0" alt="clip_image050" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image050.jpg" width="518" height="455"></a></p>         </td>       </tr>        <tr>         <td>           <p>图25 修改数据库密码为一个强健的新密码</p>         </td>       </tr>     </tbody></table>    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182420185.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image052" border="0" alt="clip_image052" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image052.jpg" width="518" height="455"></a></p>         </td>       </tr>        <tr>         <td>           <p>图26 修改blog中的管理员密码</p>         </td>       </tr>     </tbody></table> </p>  <p>5.对网站文件进行清除木马和挂马处理</p>  <p>关于清除木马和挂马的细节，俺就不讲了，有关这些知识，请继续关注我们的专题文章，在网站中找到网页木马，将其删除，如图27所示，如果存在挂马代码，一并清除。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182432504.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image054" border="0" alt="clip_image054" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image054.jpg" width="518" height="455"></a></p>         </td>       </tr>        <tr>         <td>           <p>图27清除网页木马和挂马代码</p>         </td>       </tr>     </tbody></table> </p>  <p>6.提醒管理员更改密码以及做相应的安全处理</p>  <p>最后将已经修复的漏洞告诉管理员，将修改的密码放在管理员桌面的漏洞提醒文件中，如图28所示，进行友情提醒，最后关闭远程终端。结束本次的安全检测与加固。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/182440160.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image056" border="0" alt="clip_image056" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image056.jpg" width="518" height="455"></a></p>         </td>       </tr>        <tr>         <td>           <p>图28</p>         </td>       </tr>     </tbody></table> </p>  <p>呵呵，最后谢谢antian365团队给了我一个机会，通过本次检测，俺将多个知识点运用在实践中，在实战中得到了提高。作为一个安全技术爱好者，我们的责任是保卫我的家园，保卫我们的信息，因此在安全检测后，如果有条件可以进行适当的安全加固。欢迎提高安全线索，我以及安天365团队将乐意免费为您提供安全检测和加固服务，写的不到之处请安全大牛指点，谢谢大家耐心的看文鄙人的陋文。</p>
-    </section>
-    <footer class="post-footer">
-      <section class="author">
-    <h4>Secer</h4>
-    <p>记录互联网安全历程与个人成长经历</p>
-</section>
-      <section class="share">
-    <h4>Share this post</h4>
-    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/762.seo/" target="_blank">
-        <span class="hidden">weibo</span>
-    </a>
-    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/762.seo/"
-       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-        <span class="hidden">Twitter</span>
-    </a>
-    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/762.seo/"
-       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-        <span class="hidden">Facebook</span>
-    </a>
-    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/762.seo/"
-       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-        <span class="hidden">Google+</span>
-    </a>
-</section>
-
-    </footer>
-  </article>
-  <nav class="pagination" role="pagination">
-    
-    <a class="newer-posts" href="/766.seo/">
-        ← 说说那些年躺在硬盘里的源码
-    </a>
-    
-    <span class="icon-logo">•</span>
-    
-    <a class="older-posts" href="/759.seo/">
-        记入侵提权时一次绕过3389证书验证 →
-    </a>
-    
-</nav>
-
-  <div id="comment" class="comments-area">
-    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
-    
-</div>
-
-</main>
-
-
-      
-<footer class="site-footer">
   
-  <div class="inner">
-     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
-     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
-  </div>
-</footer>
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    <a class="jiathis_button_qzone"></a>
+    <a class="jiathis_button_tsina"></a>
+    <a class="jiathis_button_tqq"></a>
+    <a class="jiathis_button_weixin"></a>
+    <a class="jiathis_button_renren"></a>
+    <a href="http://www.jiathis.com/share?uid=1987046" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript">
+var jiathis_config = {data_track_clickback:'true'};
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1987046" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="/js/index.js"></script>
-<script type="text/javascript" src="/js/menu.js"></script>
 
 
-
-
-
-  </div>
 </div>
 
-<nav  class="outer-nav top horizontal">
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/category/渗透测试/">渗透测试</a>
+</div>
 
-          <a class="icon-home"  href="/"><span>Home</span></a>
 
-          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tag/渗透测试/">渗透测试</a><a href="/tag/安全加固/">安全加固</a>
+  </div>
 
-          <a class="icon-image"  href="/images"><span>Images</span></a>
 
-          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/766.seo/" title="说说那些年躺在硬盘里的源码">
+  <strong>Prev:</strong><br/>
+  <span>
+  说说那些年躺在硬盘里的源码</span>
+</a>
+</div>
 
-          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
 
-          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+<div class="next">
+<a href="/759.seo/"  title="记入侵提权时一次绕过3389证书验证">
+ <strong>Next:</strong><br/> 
+ <span>记入侵提权时一次绕过3389证书验证
+</span>
+</a>
+</div>
 
 </nav>
 
+	<!-- 多说-->
+
+<section class="comment">
+<div class="ds-thread" data-thread-key="post-对某高级技工学校网站的安全检测和加固" data-title="对某高级技工学校网站的安全检测和加固" data-url="http://ha.cker.in/762.seo/"></div>
+</section>
+<!-- disqus-->
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <p class="asidetitle">关注</p>
+<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2583230784&verifier=1d07a1a0&dpc=1"></iframe>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/category/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
+		
+			<li><a href="/category/Web安全/" title="Web安全">Web安全<sup>88</sup></a></li>
+		
+			<li><a href="/category/代码学习/" title="代码学习">代码学习<sup>25</sup></a></li>
+		
+			<li><a href="/category/原创文章/" title="原创文章">原创文章<sup>37</sup></a></li>
+		
+			<li><a href="/category/工具视频/" title="工具视频">工具视频<sup>12</sup></a></li>
+		
+			<li><a href="/category/影音娱乐/" title="影音娱乐">影音娱乐<sup>15</sup></a></li>
+		
+			<li><a href="/category/手机安全/" title="手机安全">手机安全<sup>11</sup></a></li>
+		
+			<li><a href="/category/无线安全/" title="无线安全">无线安全<sup>4</sup></a></li>
+		
+			<li><a href="/category/渗透测试/" title="渗透测试">渗透测试<sup>94</sup></a></li>
+		
+			<li><a href="/category/疑难杂症/" title="疑难杂症">疑难杂症<sup>11</sup></a></li>
+		
+			<li><a href="/category/精品软件/" title="精品软件">精品软件<sup>16</sup></a></li>
+		
+			<li><a href="/category/絮叨碎语/" title="絮叨碎语">絮叨碎语<sup>47</sup></a></li>
+		
+			<li><a href="/category/黑客技巧/" title="黑客技巧">黑客技巧<sup>77</sup></a></li>
+		
+		</ul>
 </div>
-</body>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
+		
+			<li><a href="/tag/0day/" title="0day">0day<sup>5</sup></a></li>
+		
+			<li><a href="/tag/12306/" title="12306">12306<sup>3</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂/" title="12306刷票外挂">12306刷票外挂<sup>1</sup></a></li>
+		
+			<li><a href="/tag/12306刷票外挂下载/" title="12306刷票外挂下载">12306刷票外挂下载<sup>1</sup></a></li>
+		
+			<li><a href="/tag/1521/" title="1521">1521<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3389/" title="3389">3389<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360/" title="360">360<sup>1</sup></a></li>
+		
+			<li><a href="/tag/3600safe/" title="3600safe">3600safe<sup>1</sup></a></li>
+		
+			<li><a href="/tag/360浏览器抢票专版/" title="360浏览器抢票专版">360浏览器抢票专版<sup>1</sup></a></li>
+		
+			<li><a href="/tag/61398/" title="61398">61398<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ACL/" title="ACL">ACL<sup>1</sup></a></li>
+		
+			<li><a href="/tag/APT/" title="APT">APT<sup>3</sup></a></li>
+		
+			<li><a href="/tag/ARP/" title="ARP">ARP<sup>2</sup></a></li>
+		
+			<li><a href="/tag/ASP/" title="ASP">ASP<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ASP中FSO的神奇功能/" title="ASP中FSO的神奇功能">ASP中FSO的神奇功能<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ATM/" title="ATM">ATM<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript中shellcode的定位和提取/" title="ActionScript中shellcode的定位和提取">ActionScript中shellcode的定位和提取<sup>1</sup></a></li>
+		
+			<li><a href="/tag/ActionScript的反汇编和反编译/" title="ActionScript的反汇编和反编译">ActionScript的反汇编和反编译<sup>1</sup></a></li>
+		
+			<li><a href="/tag/Acunetix-Web-Vulnerability-Scanner/" title="Acunetix Web Vulnerability Scanner">Acunetix Web Vulnerability Scanner<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://blog.csdn.net/dreajay" target="_blank" title="dreajay csdn">CSDN</a></li>
+      <li><a href="https://github.com/dreajay" target="_blank" title="dreajay github">github</a></li>
+      <li><a href="http://www.douban.com/people/72514701/" target="_blank" title="dreajay豆瓣">豆瓣</a></li>
+    </ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> 没有礁石，就没有美丽的浪花；没有挫折，就没有壮丽的人生！ <br/>
+			再长的路，一步步也能走完，再短的路，不迈开双脚也无法到达，平凡的脚步也可以走完伟大的行程！</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		
+		
+		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		
+		
+		<a href="https://github.com/333" target="_blank" title="github"></a>
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
+		
+		<a href="http://ha.cker.in" target="_blank" title="Secer">Secer</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"dreajaygithubblog"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77edef7e6931022edbd2322ec66456e1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+<script type="text/javascript">
+	(function($) { 
+		// When to show the scroll link
+		// higher number = scroll link appears further down the page   
+		var upperLimit = 300;
+		
+		// Our scroll link element
+		var scrollElem = $('#totop');
+	   
+		// Scroll to top speed
+		var scrollSpeed = 800;
+	   
+		// Show and hide the scroll to top link based on scroll position   
+		scrollElem.hide();
+		$(window).scroll(function () {            
+			var scrollTop = $(document).scrollTop();       
+			if ( scrollTop > upperLimit ) {
+				$(scrollElem).stop().fadeTo(300, 1); // fade back in           
+			}else{       
+				$(scrollElem).stop().fadeTo(300, 0); // fade out
+			}
+		});
+		// Scroll to top animation on click
+		$(scrollElem).click(function(){
+			$('html, body').animate({scrollTop:0}, scrollSpeed); return false;
+		});
+	})(jQuery);
+</script>
+
+
+  </body>
 </html>
+
