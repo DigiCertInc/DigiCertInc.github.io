@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Tag: Session劫持 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-05-14T00:13:05.000Z" itemprop="datePublished">
+          2013-05-14
+      </time>
+    
+    
+    | 
+    <a href='/tag/Session劫持/'>Session劫持</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/995.seo/">PHP漏洞之session会话劫持</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>本文主要介绍针对PHP网站<a href="http://Ha.Cker.In/tag/Session劫持" target="_blank">Session劫持</a>。session劫持是一种比较复杂的攻击方法。大部分互联网上的电脑多存在被攻击的危险。这是一种劫持tcp协议的方法，所以几乎所有的局域网，都存在被劫持可能。</p>  <p>服务端和客户端之间是通过session(会话)来连接沟通。当客户端的浏览器连接到服务器后，服务器就会建立一个该用户的session。每个用 户的session都是独立的，并且由服务器来维护。每个用户的session是由一个独特的字符串来识别，成为session id。用户发出请求时，所发送的http表头内包含session id 的值。服务器使用http表头内的session id来识别时哪个用户提交的请求。</p>  <p>session保存的是每个用户的个人数据，一般的web应用程序会使用session来保存通过验证的用户账号和密码。在转换不同的网页时，如果 需要验证用户身份，就是用session内所保存的账号和密码来比较。session的生命周期从用户连上服务器后开始，在用户关掉浏览器或是注销时用户 session_destroy函数删除session数据时结束。如果用户在20分钟内没有使用计算机的动作，session也会自动结束。</p>  <p>php处理session的应用架构    <br /><img title="clip_image001[4]" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="466" alt="clip_image001[4]" src="http://ha.cker.in/usr/uploads/2013/05/3858525608.jpg" width="389" border="0" /></p>  <p>会话劫持</p>  <p>会话劫持是指攻击者利用各种手段来获取目标用户的session id。一旦获取到session id，那么攻击者可以利用目标用户的身份来登录网站，获取目标用户的操作权限。</p>  <p>攻击者获取目标用户session id的方法:    <br />1）暴力破解:尝试各种session id，直到破解为止。     <br />2）计算:如果session id使用非随机的方式产生，那么就有可能计算出来     <br />3）窃取:使用网络截获，xss攻击等方法获得</p>  <p>会话劫持的攻击步骤</p>  <p><img title="" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; margin-left: 0px; margin-right: 0px; border-right-width: 0px" height="354" alt="" src="http://ha.cker.in/usr/uploads/2013/05/857104028.jpg" width="396" border="0" /></p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/995.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    
+    <span class="page-number">Page 1 of 1</span>
+    
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

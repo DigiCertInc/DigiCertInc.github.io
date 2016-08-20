@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Pureftpd的卸载和CentOS vsftpd安装配置 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-01-14T23:23:22.000Z" itemprop="datePublished">
+          2013-01-15
+      </time>
+    
+    
+    | 
+    <a href='/tag/Pureftpd/'>Pureftpd</a>,
+    
+    <a href='/tag/CentOS/'>CentOS</a>,
+    
+    <a href='/tag/vsftpd/'>vsftpd</a>
+    
+    
+</span>
+    <h1 class="post-title">Pureftpd的卸载和CentOS vsftpd安装配置</h1>
+    <section class="post-content">
+      <p><a href="http://ha.cker.in/tag/Pureftpd" target="_blank">Pureftpd</a>挂了，重装了几次没效果，没办法web管理还是方便，现在只有让它下岗了！换上<a href="http://ha.cker.in/tag/vsftpd" target="_blank">vsftpd</a></p>  <p>&#160;</p>  <p><strong>Pureftpd的卸载</strong></p>  <p>1、停止pureftpd进程，运行命令： /root/pureftpd stop</p>  <p>2、删除文件，运行命令：</p>  <p>rm -r usr/local/pureftpd</p>  <p>rm -r home/wwwroot/ftp (管理程序的位置，请根据实际情况设置) </p>  <p>rm /root/pureftpd</p>  <p>到phpmyadmin里面删除ftp的数据库和用户即可</p>  <p>PureFTPd状态管理 /root/pureftpd {start|stop|restart|kill|status}</p>  <p>&#160;</p>  <p><strong>Centos vsftpd安装配置</strong></p>  <p>1、首先查看有没有安装vsftpd    <br></p>  <p>rpm -qa | grep vsftpd    <br></p>  <p>2、用yum方式安装vsftpd    <br></p>  <p>yum install vsftpd    <br></p>  <p>3、安装完成后，设置开始自动启动    <br></p>  <p>chkconfig vsftpd on    <br></p>  <p>service vsftpd start </p>  <p>&#160;</p>  <p>4、查看ftp端口是否在侦听了    <br></p>  <p>netstat –tl    <br></p>  <p>5、配置vsftpd.conf    <br></p>  <p>/etc/vsftpd/ftpusers 和 /etc/vsftpd/user_list，#不能登陆FTP的用户    <br></p>  <p>配置：/etc/vsftpd/vsftpd.conf    <br></p>  <p>将anonymous_enable=YES改为# anonymous_enable=YES 并在下面新加一行：    <br></p>  <p>anonymous_enable=NO //不允许匿名用户访问    <br></p>  <p>将# chroot_local_user=YES改为chroot_local_user=YES //表示把FTP用户都限制在家目录中    <br></p>  <p>6、设置FTP目录    <br></p>  <p>mkdir /home/ftproot //创建FTP目录    <br></p>  <p>chmod -R 777 /home/ftproot //递归地给此目录下所有文件和子目录的读、写、执行权限    <br></p>  <p>chgrp -R ftp /home/ftproot //递归地把此目录及该目录下所有文件和子目录的组属性设置成ftp组    <br></p>  <p>7、增加FTP用户    <br></p>  <p>adduser -d /home/ftproot -g ftp -s /sbin/nologin user //增加用户，组是FTP，目录是/home/ftproot    <br></p>  <p>passwd user //为FTP用户设定密码    <br></p>  <p>8、重启vsftpd    <br></p>  <p>service vsftpd restart    <br></p>  <p>9、FTP用户管理    <br></p>  <p>userdel 选项 用户名 #删除用户    <br></p>  <p>常用的选项是-r，它的作用是把用户的主目录一起删除。    <br></p>  <p>passwd 选项 用户名 #修改口令    <br></p>  <p>passwd -l 用户名 锁定口令，即禁用账号。    <br></p>  <p>passwd -u 用户名 口令解锁。    <br></p>  <p>passwd -d 用户名 使账号无口令。    <br></p>  <p>passwd -f 用户名 强迫用户下次登录时修改口令。    <br></p>  <p>如果默认用户名，则修改当前用户的口令。    <br></p>  <p>如果是超级用户，可以用下列形式指定任何用户的口令：    <br></p>  <p>passwd 用户名    <br></p>  <p>passwd -d 用户名 此命令将用户的口令删除，这样用户下一次登录时，系统就不再询问口令    <br></p>  <p>10、修改默认21端口    <br></p>  <p>先修改防火墙，增加其FTP端口，下面使用211    <br></p>  <p>iptables -A RH-Firewall-1-INPUT -m state –state NEW -m tcp -p tcp –dport 211 -j ACCEPT    <br></p>  <p>service iptables restart    <br></p>  <p>/etc/vsftpd/vsftpd.conf 里增加加 listen_port=211    <br></p>  <p>service vsftpd restart    <br></p>  <p>netstat -an | grep 211 //查看端口是否正常启动</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/965.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/965.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/965.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/965.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/966.seo/">
+        ← Mongodb学习手册
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/964.seo/">
+        为什么还有人雇佣糟糕的程序员？ →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

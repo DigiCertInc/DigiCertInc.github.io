@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>攻击JavaWeb应用 6 -程序架构与代码审计 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-10-21T20:52:58.000Z" itemprop="datePublished">
+          2013-10-22
+      </time>
+    
+    
+    | 
+    <a href='/tag/xss/'>xss</a>,
+    
+    <a href='/tag/Java/'>Java</a>
+    
+    
+</span>
+    <h1 class="post-title">攻击JavaWeb应用 6 -程序架构与代码审计</h1>
+    <section class="post-content">
+      <p><a href="http://drops.wooyun.org/tips/429" target="_blank" rel="external">攻击JavaWeb应用[6]-程序架构与代码审计</a></p>  <p><a href="http://drops.wooyun.org/tips/429" target="_blank" rel="external">http://drops.wooyun.org/tips/429</a></p>  <h6>注：</h6>  <p>不管多么强大的系统总会有那么些安全问题，影响小的可能仅仅只会影响用户体验，危害性大点的可能会让攻击者获取到服务器权限。这一节重点是怎样去找到并利用问题去获取一些有意思的东西。</p>  <h6>Before:</h6>  <p>有MM的地方就有江湖，有程序的地方就有漏洞。现在已经不是SQL注入漫天的年代了，Java的一些优秀的开源框架让其项目坚固了不少。在一个中大型的Web应用漏洞的似乎永远都存在，只是在于影响的大小、发现的难易等问题。有很多比较隐晦的漏洞需要在了解业务逻辑甚至是查看源代码才能揪出来。JavaWeb跟PHP和ASP很大的不同在于其安全性相对来说更高。但是具体体现在什么地方？JavaWeb开发会有那些问题？这些正是我们今天讨论的话题。</p>  <h4>JavaWeb开发概念</h4>  <hr align="center" width="100%" size="2">  <h5><a href="http://Ha.Cker.In/tag/Java" target="_blank">Java</a>分层思想</h5>  <p>通过前面几章的介绍相信已经有不少的朋友对Jsp、Servlet有一定了解了。上一节讲MVC的有说的JSP+Servlet构成了性能好但开发效率并不高的Model2。在JavaWeb开发当中一般会分出很多的层去做不同的业务。</p>  <h6>常见的分层</h6>  <pre><code>1、展现层(View 视图) </code></pre><br><br><pre><code>2、控制层（Controller 控制层） </code></pre><br><br><pre><code>3、服务层（Service） </code></pre><br><br><pre><code>4、实体层（entity 实体对象、VO(value object) 值对象 、模型层（bean）。</code></pre><br><br><pre><code>5、业务逻辑层BO(business object) </code></pre><br><br><pre><code>6、持久层（dao- Data Access Object 数据访问层、PO(persistant object) 持久对象）</code></pre><br><br><h5>依赖关系</h5><br><br><p>在了解一个项目之前至少要知道它的主要业务是什么主要的业务逻辑和容易出现问题的环节。其次是了解项目的结构和项目当中的类依赖。再次才是去根据业务模块去读对应的代码。从功能去关联业务代码入手往往比逮着段代码就看效率高无数倍。</p>
+
+<p>前几天在Iteye看到一款不错的生成项目依赖图的工具- Structure101，试用了下Structure101感觉挺不错的，不过是收费的而且价格昂贵。用Structure101生成Jeebbs的项目架构图：</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image001.png" target="_blank" rel="external"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="635" alt="clip_image001" src="http://img.cker.in/JavaWeb6_9C8E/clip_image001_thumb.png" width="982" border="0"></a></p>
+
+<p>Structure101导入jeebss架构图-包调用： </p><br><a id="more"></a><br><p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image002.png" target="_blank" rel="external"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="729" alt="clip_image002" src="http://img.cker.in/JavaWeb6_9C8E/clip_image002_thumb.png" width="1111" border="0"></a></p>
+
+<p>Structure101包调用详情：</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image003.png" target="_blank" rel="external"><img title="clip_image003" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="746" alt="clip_image003" src="http://img.cker.in/JavaWeb6_9C8E/clip_image003_thumb.png" width="1385" border="0"></a></p>
+
+<p>Structure101可以比较方便的去生成类关系图、调用图等。Jeebbs项目比较大，逻辑相对复杂，不过可以看下我的半成品的博客系统。</p>
+
+<p>项目图：</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image004.png" target="_blank" rel="external"><img title="clip_image004" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="529" alt="clip_image004" src="http://img.cker.in/JavaWeb6_9C8E/clip_image004_thumb.png" width="351" border="0"></a></p>
+
+<p>架构图：</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image005.png" target="_blank" rel="external"><img title="clip_image005" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="746" alt="clip_image005" src="http://img.cker.in/JavaWeb6_9C8E/clip_image005_thumb.png" width="1385" border="0"></a></p>
+
+<p>控制层：</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image006.png" target="_blank" rel="external"><img title="clip_image006" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="545" alt="clip_image006" src="http://img.cker.in/JavaWeb6_9C8E/clip_image006_thumb.png" width="899" border="0"></a></p>
+
+<p>调用流程（demo还没处理异常，最好能try catch下用上面的logger记录一下）： ￼</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image007.png" target="_blank" rel="external"><img title="clip_image007" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="518" alt="clip_image007" src="http://img.cker.in/JavaWeb6_9C8E/clip_image007_thumb.png" width="1293" border="0"></a></p>
+
+<h4>漏洞发掘基础</h4>
+
+<hr align="center" width="100%" size="2">
+
+<p>Eclipse采用的是SWT编写，俗称万能IDE拥有各种语言的插件可以写。Myeclipse是Eclipse的插件版，功能比eclipse更简单更强大。</p>
+
+<p>导入Web项目到Myeclipse，Myeclipse默认提供了主流的Server可以非常方便的去部署你的Web项目到对应的Server上，JavaWeb容器异常之多，而ASP、 PHP的容器却相对较少。容器可能除了开发者有更多的选择外往往意味着需要调试程序在不同的Server半桶的版本的表现，这是让人一件非常崩溃的事。</p>
+
+<p>调试开源的项目需下载源码到本地然后导入部署，如果没有源代码怎么办？一般情况下JavaWeb程序不会去混淆代码，所以通过之前的反编译工具就能够比较轻松的拿到源代码。但是反编译过来的源代码并不能够直接作用于debug。不过对我们了解程序逻辑和结构有了非常大的帮助，根据逻辑代码目测基本上也能完成debug。 ￼</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image008.png" target="_blank" rel="external"><img title="clip_image008" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="464" alt="clip_image008" src="http://img.cker.in/JavaWeb6_9C8E/clip_image008_thumb.png" width="418" border="0"></a></p>
+
+<p>在上一节已经讲过了一个客户端的请求到达服务器端后，后端会去找到这个URL所在的类，然后调用业务相关代码完成请求的处理，最后返回处理完成后的内容。跟踪请求的方式一般是先找到对应的控制层，然后深入到具体的逻辑代码当中。另一种方法是事先到dao或业务逻辑层去找漏洞，然后逆向去找对应的控制层。最直接的如model1、model2并不用那么费劲直接代码在jsp、servlet代码里面就能找到一大堆业务逻辑。</p>
+
+<h5>按业务类型有序测试</h5>
+
+<p>普通的测试一般都是按功能和模块去写测试的用例，即按照业务一块一块去测试对应的功能。这一种方式是顺着了Http请求跟踪到业务逻辑代码，相对来说比较简单方便，而且逻辑会更加的清晰。</p>
+
+<p>上面的架构图和包截图不知道有没有同学仔细看，Java里面的包的概念相对来说比较严谨。公认的命名方式是com/org.公司名.项目名.业务名全小写。</p>
+
+<p>如:<code>org.javaweb.ylog.dao</code>部署到服务器上对应的文件夹应当是<code>/WEB-INF/classes/org/javaweb/ylog/dao/</code>其中的.意味着一级目录。</p>
+
+<p>现在知道了包和分层规范要找到控制层简直就是轻而易举了，一般来说找到Controller或者Action所在的包的路径就行了。左边是jeebbs右边是我的blog，其中的action下和controller下的都是控制层的方法。<code>@RequestMapping(&quot;/top.do&quot;)</code>表示了直接把请求映射到该方法上，Struts2略有不同，需要在xml配置一个action对应的处理类方法和返回的页面。不过这暂时不是我们讨论的话题，我们需要知道隐藏在框架背后的请求入口的类和方法在哪。 ￼</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image009.png" target="_blank" rel="external"><img title="clip_image009" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="527" alt="clip_image009" src="http://img.cker.in/JavaWeb6_9C8E/clip_image009_thumb.png" width="1343" border="0"></a></p>
+
+<p>用例图：</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image010.png" target="_blank" rel="external"><img title="clip_image010" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="388" alt="clip_image010" src="http://img.cker.in/JavaWeb6_9C8E/clip_image010_thumb.png" width="553" border="0"></a></p>
+
+<h5>用户注册问题</h5>
+
+<p>用户逻辑图：</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image011.png" target="_blank" rel="external"><img title="clip_image011" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="559" alt="clip_image011" src="http://img.cker.in/JavaWeb6_9C8E/clip_image011_thumb.png" width="815" border="0"></a></p>
+
+<p>容易出现的问题:</p>
+
+<pre><code>1</code><code>、没有校验用户唯一性。</code></pre>
+
+<pre><code>2</code><code>、校验唯一性和存储信息时拼Sql</code><code>导致Sql</code><code>注入。</code></pre>
+
+<pre><code>3</code><code>、用户信息（用户名、邮箱等）未校验格式有效性，可能导致存储性xss</code><code>。</code></pre>
+
+<pre><code>4</code><code>、头像上传漏洞。</code></pre>
+
+<pre><code>5</code><code>、用户类型注册时可控导致注册越权（直接注册管理员帐号）。</code></pre>
+
+<pre><code>6</code><code>、注册完成后的跳转地址导致xss</code><code>。</code></pre>
+
+<h5>Jeebbs邮箱逻辑验证漏洞：</h5>
+
+<p>注册的URL地址是：<a href="http://localhost/jeebbs/register.jspx，" target="_blank" rel="external">http://localhost/jeebbs/register.jspx，</a> register.jspx很明显是控制层映射的URL，第一要务是找到它。然后看他的逻辑。</p>
+
+<h6>Tips：Eclipse全局搜索关键字方法 ￼</h6>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image012.png" target="_blank" rel="external"><img title="clip_image012" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="722" alt="clip_image012" src="http://img.cker.in/JavaWeb6_9C8E/clip_image012_thumb.png" width="1385" border="0"></a></p>
+
+<p>根据搜索结果找到对应文件：</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image013.png" target="_blank" rel="external"><img title="clip_image013" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="543" alt="clip_image013" src="http://img.cker.in/JavaWeb6_9C8E/clip_image013_thumb.png" width="903" border="0"></a></p>
+
+<p>根据结果找到对应的<code>public class RegisterAct</code>类，并查看对应逻辑代码： ￼</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image014.png" target="_blank" rel="external"><img title="clip_image014" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="621" alt="clip_image014" src="http://img.cker.in/JavaWeb6_9C8E/clip_image014_thumb.png" width="1351" border="0"></a></p>
+
+<p>找到控制层的入口后即可在对应的方法内设上断点，然后发送请求到控制层的URL进入Debug模式。 注册发送数据包时用Tamper data拦截并修改请求当中的email为xss攻击代码。 ￼</p>
+
+<p>￼<a href="http://img.cker.in/JavaWeb6_9C8E/clip_image015.png" target="_blank" rel="external"><img title="clip_image015" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="616" alt="clip_image015" src="http://img.cker.in/JavaWeb6_9C8E/clip_image015_thumb.png" width="1178" border="0"></a></p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image016.png" target="_blank" rel="external"><img title="clip_image016" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="728" alt="clip_image016" src="http://img.cker.in/JavaWeb6_9C8E/clip_image016_thumb.png" width="1384" border="0"></a></p>
+
+<p>选择任意对象右键Watch即可查看对应的值（任意完整的，有效的对象包括方法执行）。 F6单步执行。</p>
+
+<p>￼<a href="http://img.cker.in/JavaWeb6_9C8E/clip_image017.png" target="_blank" rel="external"><img title="clip_image017" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="428" alt="clip_image017" src="http://img.cker.in/JavaWeb6_9C8E/clip_image017_thumb.png" width="861" border="0"></a></p>
+
+<p>F5进入validateSubmit：</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image018.png" target="_blank" rel="external"><img title="clip_image018" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="521" alt="clip_image018" src="http://img.cker.in/JavaWeb6_9C8E/clip_image018_thumb.png" width="1313" border="0"></a></p>
+
+<p>F6跟到125行注册调用：</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image019.png" target="_blank" rel="external"><img title="clip_image019" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="540" alt="clip_image019" src="http://img.cker.in/JavaWeb6_9C8E/clip_image019_thumb.png" width="748" border="0"></a></p>
+
+<p>F3可以先点开registerMember类看看：</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image020.png" target="_blank" rel="external"><img title="clip_image020" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="390" alt="clip_image020" src="http://img.cker.in/JavaWeb6_9C8E/clip_image020_thumb.png" width="1077" border="0"></a></p>
+
+<p>找到接口实现类即最终的注册逻辑代码：</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image021.png" target="_blank" rel="external"><img title="clip_image021" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="468" alt="clip_image021" src="http://img.cker.in/JavaWeb6_9C8E/clip_image021_thumb.png" width="1337" border="0"></a></p>
+
+<h5>Jeebbs危险的用户名注册<a href="http://Ha.Cker.In/tag/漏洞" target="_blank">漏洞</a></h5>
+
+<p>Jeebbs的数据库结构当中用户名长度过长：</p>
+
+<pre><code>`username` varchar(100) NOT NULL COMMENT '</code><code>用户名'</code></pre>
+
+<p>这会让你想到了什么？</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image022.png" target="_blank" rel="external"><img title="clip_image022" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="575" alt="clip_image022" src="http://img.cker.in/JavaWeb6_9C8E/clip_image022_thumb.png" width="1145" border="0"></a></p>
+
+<p>当用户名的输入框失去焦点后会发送Ajax请求校验用户名唯一性。请输入一个长度介于 3 和 20 之间的字符串。也就是说满足这个条件并且用户名不重复就行了吧？前端是有用户名长度判断的，那么后端代码呢？因为我已经知道了用户名长度可以存100个字符，所以如果没有判断格式的话直接可以注册100个字符的用户名。首先输入一个合法的用户名完成客户端的唯一性校验请求，然后在点击注册发送数据包的时候拦截请求修改成需要注册的<a href="http://Ha.Cker.In/tag/XSS" target="_blank">xss</a>用户名，逻辑就不跟了跟上面的邮箱差不多，想像一下用户名可以xss是多么的恐怖。任何地方只要出现下<a href="http://Ha.Cker.In/tag/XSS" target="_blank">xss</a>用户名就可以轻易拿到别人的cookie。 </p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image023.png" target="_blank" rel="external"><img title="clip_image023" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="547" alt="clip_image023" src="http://img.cker.in/JavaWeb6_9C8E/clip_image023_thumb.png" width="874" border="0"></a></p>
+
+<h5>Cookie明文存储安全问题： ￼</h5>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image024.png" target="_blank" rel="external"><img title="clip_image024" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="462" alt="clip_image024" src="http://img.cker.in/JavaWeb6_9C8E/clip_image024_thumb.png" width="1188" border="0"></a></p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image025.png" target="_blank" rel="external"><img title="clip_image025" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="95" alt="clip_image025" src="http://img.cker.in/JavaWeb6_9C8E/clip_image025_thumb.png" width="1017" border="0"></a></p>
+
+<p>代码没有任何加密就直接setCookie了，如果说cookie明文储存用户帐号密码不算漏洞的话等会弹出用户明文密码不知道是算不算漏洞。</p>
+
+<h5>个性签名修改为xss,发帖后显示个性签名处可xss ￼</h5>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image026.png" target="_blank" rel="external"><img title="clip_image026" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="419" alt="clip_image026" src="http://img.cker.in/JavaWeb6_9C8E/clip_image026_thumb.png" width="1055" border="0"></a></p>
+
+<p>因为个性签名会在帖子里显示，所以回帖或者发帖就会触发JS脚本了。这里说一下默认不记住密码的情况下（不设置cookie）不能够拿到cookie当中的明文密码，这个漏洞用来打管理员PP挺不错的。不应该啊，起码应该过滤下。</p>
+
+<h5>不科学的积分漏洞</h5>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image027.png" target="_blank" rel="external"><img title="clip_image027" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="618" alt="clip_image027" src="http://img.cker.in/JavaWeb6_9C8E/clip_image027_thumb.png" width="1322" border="0"></a></p>
+
+<p>积分兑换方法如下：</p>
+
+<pre><code>@RequestMapping(value = &quot;/member/creditExchange.jspx&quot;)</code></pre>
+
+<pre><code>public void creditExchange(Integer creditIn, Integer creditOut, Integer creditOutType, Integer miniBalance, String password, HttpServletRequest request, HttpServletResponse response) {}</code></pre>
+
+<p>可以看到这里直接用了SpringMvc注入参数，而这些参数恰恰是控制程序逻辑的关键。比如构建如下URL，通过GET或者POST方式都能恶意修改用户的积分：</p>
+
+<pre><code>http://localhost/jeebbs/member/creditExchange.jspx?creditIn=26&amp;creditOut=-27600&amp;creditOutType=1&amp;miniBalance=-10000000&amp;password=wooyun</code></pre>
+
+<p>因为他的逻辑是这么写的：</p>
+
+<pre><code>if(user.getPoint()-creditOut&gt;miniBalance){</code></pre>
+
+<pre><code>&#160;&#160;&#160; balance=true;</code></pre>
+
+<pre><code>}else{</code></pre>
+
+<pre><code>&#160;&#160;&#160; flag=1;</code></pre>
+
+<pre><code>}</code></pre>
+
+<p>从User对象里面取出积分的数值，而积分兑换威望具体需要多少是在确定兑换关系后由ajax去后台计算出来的，提交的时候也没有验证计算的结果有没有被客户端改过。其中的creditOut和miniBalance都是我们可控的。所以这个等式不管在什么情况下我们都可以让它成立。</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image028.png" target="_blank" rel="external"><img title="clip_image028" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="479" alt="clip_image028" src="http://img.cker.in/JavaWeb6_9C8E/clip_image028_thumb.png" width="1102" border="0"></a></p>
+
+<h5>打招呼XSS 逻辑有做判断：</h5>
+
+<pre><code>1</code><code>、用户名为空。</code></pre>
+
+<pre><code>2</code><code>、不允许发送消息给自己。</code></pre>
+
+<pre><code>3</code><code>、用户名不存在。</code></pre>
+
+<p>在控制层并没有做过滤： ￼</p>
+
+<p>￼<a href="http://img.cker.in/JavaWeb6_9C8E/clip_image029.png" target="_blank" rel="external"><img title="clip_image029" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="456" alt="clip_image029" src="http://img.cker.in/JavaWeb6_9C8E/clip_image029_thumb.png" width="1180" border="0"></a></p>
+
+<p>在调用com.jeecms.bbs.manager.impl. BbsMessageMngImpl.java的sendMsg方法的时候依旧没有过滤。到最终的BbsMessageDaoImpl 的save方法还是没有过滤就直接储存了; 一般性的做法，关系到用户交互的地方最好做referer和xss过滤检测，控制层负责收集数据的同时最好处理下用户的请求，就算controller不处理起码在service层做下处理吧。</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image030.png" target="_blank" rel="external"><img title="clip_image030" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="702" alt="clip_image030" src="http://img.cker.in/JavaWeb6_9C8E/clip_image030_thumb.png" width="1385" border="0"></a></p>
+
+<h6>发布投票贴xss发布一片投票帖子，标题xss内容。</h6>
+
+<h6>邮箱的两处没有验证xss</h6>
+
+<h6>个人资料全部xss</h6>
+
+<h6>投稿打管理员后台点击查看触发</h6>
+
+<h6>搜索xss</h6>
+
+<p><a href="http://demo.jeecms.com/search.jspx?q=%2F%3E%3Cscript%3Ealert%28document.cookie%29%3B%3C%2Fscript%3Ehello&amp;channelId=" target="_blank" rel="external">http://demo.jeecms.com/search.jspx?q=%2F%3E%3Cscript%3Ealert%28document.cookie%29%3B%3C%2Fscript%3Ehello&amp;channelId=</a></p>
+
+<p>漏洞N………</p>
+
+<h5>按程序实现逆向测试</h5>
+
+<h6>“逆向”找SQL注入</h6>
+
+<p>SQL注入理论上是最容易找的，因为SQL语句的特殊性只要Ctrl+H 搜索select、from 等关键字就能够快速找到项目下所有的SQL语句，然后根据搜索结果基本上都能够确定是否存在SQL注入。<strong>凡是SQL语句中出现了拼SQL（如select * from admin where id=’”+id+”’）那么基本上80%可以确定是SQL注入。但也有特例，比如拼凑的SQL参数并不受我们控制，无法在前台通过提交SQL注入语句的方式去控制最终的查询SQL。而采用预编译?占位方式的一般不存在注入。</strong></p>
+
+<p>比如搜索51javacms项目当中的SQL语句： ￼</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image031.png" target="_blank" rel="external"><img title="clip_image031" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="573" alt="clip_image031" src="http://img.cker.in/JavaWeb6_9C8E/clip_image031_thumb.png" width="1318" border="0"></a></p>
+
+<h6>Tips:ORM框架特殊性</h6>
+
+<h5>Hibernate HQL：</h5>
+
+<p>需要注意的是Hibernate的HQL是对对象进行操作，所以它的SQL可能是：</p>
+
+<pre><code>String hql = &quot;from Emp&quot;;</code></pre>
+
+<pre><code>Query q = session.createQuery(hql);</code></pre>
+
+<p>也可以</p>
+
+<pre><code>String hql = &quot;select count(*) from Emp&quot;;</code></pre>
+
+<pre><code>Query q = session.createQuery(hql);</code></pre>
+
+<p>甚至是</p>
+
+<pre><code>String hql = &quot;select new Emp(e.empno,e.ename) from Emp e &quot;;</code></pre>
+
+<pre><code>Query q = session.createQuery(hql);</code></pre>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image032.png" target="_blank" rel="external"><img title="clip_image032" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="601" alt="clip_image032" src="http://img.cker.in/JavaWeb6_9C8E/clip_image032_thumb.png" width="576" border="0"></a></p>
+
+<h5>Mybatis(Ibatis3.0后版本叫Mybatis)：</h5>
+
+<p>Ibatis、Mybatis的SQL语句可以基于注解的方式写在类方法上面，更多的是以xml的方式写到xml文件。</p>
+
+<p>￼<a href="http://img.cker.in/JavaWeb6_9C8E/clip_image033.png" target="_blank" rel="external"><img title="clip_image033" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="551" alt="clip_image033" src="http://img.cker.in/JavaWeb6_9C8E/clip_image033_thumb.png" width="936" border="0"></a></p>
+
+<p>在当前项目下搜索SQL语句关键字，查找疑似SQL注入的调用：</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image034.png" target="_blank" rel="external"><img title="clip_image034" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="1013" alt="clip_image034" src="http://img.cker.in/JavaWeb6_9C8E/clip_image034_thumb.png" width="1348" border="0"></a></p>
+
+<p>进入搜索结果的具体逻辑代码：</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image035.png" target="_blank" rel="external"><img title="clip_image035" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="725" alt="clip_image035" src="http://img.cker.in/JavaWeb6_9C8E/clip_image035_thumb.png" width="1380" border="0"></a></p>
+
+<p>最外层的Contrller： ￼</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image036.png" target="_blank" rel="external"><img title="clip_image036" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="480" alt="clip_image036" src="http://img.cker.in/JavaWeb6_9C8E/clip_image036_thumb.png" width="1286" border="0"></a></p>
+
+<p>“逆向”找到控制层URL以后构建的SQL注入请求：</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image037.png" target="_blank" rel="external"><img title="clip_image037" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="743" alt="clip_image037" src="http://img.cker.in/JavaWeb6_9C8E/clip_image037_thumb.png" width="1385" border="0"></a></p>
+
+<p>可能大家关注的代码审计最核心的怎么去发掘SQL注入这样高危的漏洞，其次是XSS等类型的漏洞。</p>
+
+<h6>小结：</h6>
+
+<pre><code>学会怎样Debug</code><code>。</code></pre>
+
+<pre><code>学会怎样通过从控制层到最终的数据访问层的代码跟踪和从数据访问层倒着找到控制层的入口。</code></pre>
+
+<pre><code>学会怎样去分析功能模块的用例。</code></pre>
+
+<h5>文件上传、下载、编辑漏洞</h5>
+
+<p>文件上传漏洞即没有对上传的文件的后缀进行过滤，导致任意文件上传。有的时候就算有后缀判断，但是由于解析漏洞造成GETSHELL这是比较难避免的。</p>
+
+<h6>1、没有做任何限制的上传漏洞：</h6>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image038.png" target="_blank" rel="external"><img title="clip_image038" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="805" alt="clip_image038" src="http://img.cker.in/JavaWeb6_9C8E/clip_image038_thumb.png" width="1004" border="0"></a></p>
+
+<p>这一种是不需要任何绕过直接就可以上传任意脚本威胁性可想而知。</p>
+
+<h6>2、Bypass白名单和黑名单限制</h6>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image039.png" target="_blank" rel="external"><img title="clip_image039" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="739" alt="clip_image039" src="http://img.cker.in/JavaWeb6_9C8E/clip_image039_thumb.png" width="828" border="0"></a></p>
+
+<p>某些时候就算做了后缀验证我们一样可以通过查看验证的逻辑代码找到绕过方式。第35、36行分别定义了白名单和黑名单后缀列表。41到46行是第一种通过黑名单方式校验后缀合法性。47到57行代码是第二种通过白名单方式去校验后缀合法性。现在来瞧下上诉代码都有那些方式可以Bypass。</p>
+
+<pre><code>1</code><code>、假设37</code><code>行代码的upload</code><code>不是在代码里面写死了而是从客户端传入的参数，那么可以自定义修改path</code><code>把文件传到当前server</code><code>下的任意路径。</code></pre>
+
+<pre><code>2</code><code>、第39</code><code>行犯下了个致命的错误，因为文件名里面可以包含多个”.”</code><code>而”xxxxx”.indexOf(“.”)</code><code>取到的永远是第一个”.”,</code><code>假设我们的文件名是1.jpg.jsp</code><code>即可绕过第一个黑名单校验。</code></pre>
+
+<pre><code>3</code><code>、第42</code><code>行又是另一个致命错误s.equals(fileSuffix)</code><code>比较是不区分大小写假设我们提交1.jSP</code><code>即可突破验证。</code></pre>
+
+<pre><code>4</code><code>、第50</code><code>行同样是一个致命的错误，直接用客户端上传的文件名作为最终文件名，可导致多个漏洞包括解析漏洞和上面的1.jpg.jsp</code><code>上传漏洞。</code></pre>
+
+<h6>文件上传漏洞修复方案:</h6>
+
+<pre><code>1</code><code>、文件上传的目录必须写死</code></pre>
+
+<pre><code>2</code><code>、把原来的fileName.indexOf(&quot;.&quot;)</code><code>改成fileName.lastIndexOf(&quot;.&quot;)</code></pre>
+
+<pre><code>3</code><code>、s.equals(fileSuffix)</code><code>改成s.equalsIgnoreCase(fileSuffix) </code><code>即忽略大小写或者把前面的fileSuffix</code><code>字符转换成小写s.equals(fileSuffix.toLowerCase())</code></pre>
+
+<h5>文件下载漏洞</h5>
+
+<p>51JavaCms典型的文件下载漏洞，我们不妨看下其逻辑为什么会存在漏洞。51javacms并没有用流行的SSH框架而是用了Servlert3.0自行做了各种封装，实现了各种漏洞。Ctrl+H搜索DownLoadFilePage找到下载的Servlet：</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image040.png" target="_blank" rel="external"><img title="clip_image040" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="1005" alt="clip_image040" src="http://img.cker.in/JavaWeb6_9C8E/clip_image040_thumb.png" width="954" border="0"></a></p>
+
+<p>改装了下51javacms的垃圾代码： ￼</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image041.png" target="_blank" rel="external"><img title="clip_image041" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="596" alt="clip_image041" src="http://img.cker.in/JavaWeb6_9C8E/clip_image041_thumb.png" width="1047" border="0"></a></p>
+
+<p>请求不存在的文件：</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image042.png" target="_blank" rel="external"><img title="clip_image042" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="401" alt="clip_image042" src="http://img.cker.in/JavaWeb6_9C8E/clip_image042_thumb.png" width="1141" border="0"></a></p>
+
+<p>跨目录请求一个存在的文件：</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image043.png" target="_blank" rel="external"><img title="clip_image043" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="288" alt="clip_image043" src="http://img.cker.in/JavaWeb6_9C8E/clip_image043_thumb.png" width="1369" border="0"></a></p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image044.png" target="_blank" rel="external"><img title="clip_image044" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="628" alt="clip_image044" src="http://img.cker.in/JavaWeb6_9C8E/clip_image044_thumb.png" width="1384" border="0"></a></p>
+
+<h5>文件编辑漏洞</h5>
+
+<p>JeeCms之前的后台就存在任意文件编辑漏洞（JEECMS后台任意文件编辑漏洞and官方漏洞及拿shell ：<a href="http://wooyun.org/bugs/wooyun-2010-04030）官方的最新的修复方式是把path加了StartWith验证。" target="_blank" rel="external">http://wooyun.org/bugs/wooyun-2010-04030）官方的最新的修复方式是把path加了StartWith验证。</a></p>
+
+<h4>基于Junit高级测试</h4>
+
+<hr align="center" width="100%" size="2">
+
+<p>Junit写单元测试这个难度略高需要对代码和业务逻辑有比较深入的了解，只是简单的提下,有兴趣的朋友可以自行了解。</p>
+
+<p>JUnit是由 Erich Gamma 和 Kent Beck 编写的一个回归测试框架（regression testing framework）。Junit测试是程序员测试，即所谓白盒测试，因为程序员知道被测试的软件如何（How）完成功能和完成什么样（What）的功能。Junit是一套框架，继承TestCase类，就可以用Junit进行自动测试了。</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image045.png" target="_blank" rel="external"><img title="clip_image045" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="608" alt="clip_image045" src="http://img.cker.in/JavaWeb6_9C8E/clip_image045_thumb.png" width="1372" border="0"></a></p>
+
+<h4>其他</h4>
+
+<hr align="center" width="100%" size="2">
+
+<h5>1、通过查看Jar包快速定位Struts2漏洞</h5>
+
+<p>比如直接打开lerxCms的lib目录：</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image046.png" target="_blank" rel="external"><img title="clip_image046" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="775" alt="clip_image046" src="http://img.cker.in/JavaWeb6_9C8E/clip_image046_thumb.png" width="968" border="0"></a></p>
+
+<h5>2、报错信息快速确认Server框架</h5>
+
+<p>类型转换错误：</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image047.png" target="_blank" rel="external"><img title="clip_image047" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="539" alt="clip_image047" src="http://img.cker.in/JavaWeb6_9C8E/clip_image047_thumb.png" width="1075" border="0"></a></p>
+
+<p>Struts2：</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image048.png" target="_blank" rel="external"><img title="clip_image048" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="205" alt="clip_image048" src="http://img.cker.in/JavaWeb6_9C8E/clip_image048_thumb.png" width="1145" border="0"></a></p>
+
+<h5>3、二次校验逻辑漏洞</h5>
+
+<p>比如修改密保邮箱业务只做了失去焦点唯一性校验，但是在提交的时候听没有校验唯一性</p>
+
+<h5>4、隐藏在Select框下的邪恶</h5>
+
+<p>Select下拉框能有什么漏洞？一般人我不告诉他，最常见的有select框Sql注入、存储性xss漏洞。搜索注入的时候也许最容易出现注入的地方不是搜索的内容，而是搜索的条件！</p>
+
+<p>Discuz select下拉框存储也有类型的问题，但Discuz对Xss过滤较严未造成xss：</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image049.jpg" target="_blank" rel="external"><img title="clip_image049" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="562" alt="clip_image049" src="http://img.cker.in/JavaWeb6_9C8E/clip_image049_thumb.jpg" width="933" border="0"></a></p>
+
+<p>下拉框的Sql注入： ￼</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image050.png" target="_blank" rel="external"><img title="clip_image050" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="555" alt="clip_image050" src="http://img.cker.in/JavaWeb6_9C8E/clip_image050_thumb.png" width="961" border="0"></a></p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image051.png" target="_blank" rel="external"><img title="clip_image051" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="498" alt="clip_image051" src="http://img.cker.in/JavaWeb6_9C8E/clip_image051_thumb.png" width="1023" border="0"></a></p>
+
+<p>小结： 本节不过是漏洞发掘审计的冰山一角，很多东西没法一次性写出来跟大家分享。本系列完成后公布ylog博客源码。本节源代码暂不发布，如果需要源码站内。</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1041.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1041.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1041.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1041.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/1042.seo/">
+        ← 攻击JavaWeb应用 7 -Server篇 1
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/1040.seo/">
+        攻击JavaWeb应用 5 -MVC安全 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

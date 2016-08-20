@@ -45,6 +45,99 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
+      <time datetime="2013-11-08T01:34:03.000Z" itemprop="datePublished">
+          2013-11-08
+      </time>
+    
+    
+    | 
+    <a href='/tag/CSRF/'>CSRF</a>,
+    
+    <a href='/tag/APT/'>APT</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1052.seo/">浅谈路由CSRF危害，和非主流姿势</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><b>0x00 </b><b>环境分析</b></p>  <hr align="center" size="2" width="100%" />  <p>近期爆出的D-link的后门让大家人心惶惶。。还好我不用D-link，这样就完事了？用户有能力补上漏洞吗，厂商能及时通知用户防止中枪吗？很显然，谁都没有做到。</p>  <p>首先只要一公布xxx路由存在xxx漏洞，这就给自己的公司抹黑，首先用户不会升级(能正常上网谁这么无聊去更新路由器的固件，丁丁很大？)，又给公司添加了公关压力，这搁给谁谁都不会去做。</p>  <p>所以我们总结成几个点:</p>  <p>路由器出现漏洞后，用户不会补！厂商不想补！用户懒得补！</p>  <p><b>0x01 </b><b>漏洞从哪里来</b></p>  <hr align="center" size="2" width="100%" />  <p>路由器的漏洞实在是很少。大部分都是远程命令执行和后门，xss等等，但是大牛们手中都是远程命令执行，基本覆盖X科，X为等机房常用的路油器，只需要执行几个poc，啪的一下，权限就到手了，这种场面只有在大牛的<a href="http://Ha.Cker.In/tag/APT" target="_blank">APT</a>场面才能看到。</p>  <p>但是对于那些普通的屌丝黑阔来说，我对APT不感兴趣，我更喜欢那些妹子的路由器。</p>  <p>于是乎，黑阔到了电脑广场，来到路由器批发部，拿出50大洋给老板，告诉老板，我想试试你们热卖的路由器的性能。老板看在软妹币的面子上，拿了二十来款路由器给黑阔看，黑阔看到路由器就笑了，露出大金牙，操起几款wvs就是狂扫，然后按照型号仔细记录漏洞。</p>  <p>就这样，这个灰阔一天花了不到200软妹币，但是记录了国内主流路由器的各种臭虫(→<em>→，真是个淫荡的家伙)</p>  <p><b>0x02 </b><b>邪恶力量的萌发</b></p>  <hr align="center" size="2" width="100%" />  <p>那个黑阔搞完扫描后，满足的关上笔记本，路由器老板还在心中暗爽，又赚了一个傻逼的钱。。。但他不知道这才是游戏的开始。</p>  <p>奔袭了一天，屌丝灰阔在路边的一个炒粉摊上坐了下来，看着周边搬砖的民工，心中总有一种亲切感，望着工头开着宝马远去的身影，黑阔决心继续努力，怒天一吼:老板，两份炒粉加肉！！！</p>  <p>吃饱了以后，灰阔去到一个桌游的店里，选了一个安静的角落，为神马去桌游。。。他告诉我，桌游75软妹币6个小时，饮料无限续杯，重要的是有20M的wifi，而且那些土豪都是陪妹子玩桌游，都木有人跟他抢网速，空气又比网吧好几十倍，撸代码没思路的时候还可以看看旁边的漂亮妹子(→</em>→，哎。我只想说，下次请带上我！！！)</p>  <p>黑阔打开电脑，又开始撸起拿油腻的键盘，打开几个wvs的报告，挑出其中的命令执行，csrf，xss，还有越权访问等漏洞进行分类，并标记是否可控，还把每个功能post,get的包进行整理。</p>  <p>就这样。。。一个通用的路由漏洞库就完成的差不多了。。。</p>  <p>黑阔这些漏洞放到了自己的xss的平台上，规划了几个规则。通过title来确定路由器的牌子，然后再对照型号。。。进行各种姿势的插，可控的CSRF就直接插到路由里，如果不可控就就用默认密码插进去，他告诉我…其实直接插进去的几率很小，但是通过默认密码的CSRF插进去的几率很大。。。(这里说明路由安全意识要提高，别以为你在内网就插不了。。。默认密码没改照样换个姿势插你)</p>  <p>针对路由器渗透有很多种的，但平常灰阔很关心的还是DMZ和DNS。</p>  <p>比如说一个通过<a href="http://Ha.Cker.In/tag/CSRF" target="_blank">CSRF</a>让路由器的DMZ功能打开，把目标主机暴露于公网。。。。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/1052.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-11-07T18:19:02.000Z" itemprop="datePublished">
+          2013-11-08
+      </time>
+    
+    
+    | 
+    <a href='/tag/Memcached/'>Memcached</a>,
+    
+    <a href='/tag/Thrift/'>Thrift</a>,
+    
+    <a href='/tag/Scribe/'>Scribe</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1051.seo/">揭秘全球最大网站Facebook背后的那些软件</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><strong>2010</strong><strong>年</strong><strong>6</strong><strong>月，</strong><strong>Google</strong><strong>公布全球</strong><strong><a href="http://www.google.com/adplanner/static/top1000/">Top 1000</a></strong><strong>网站。</strong><strong>Facebook</strong><strong>独占鳌头。</strong></p>  <p>以Facebook现在的经营规模，诸多传统服务器的技术均将崩溃或根本无法支撑。那么面对5亿的活跃用户，Facebook的工程师们又将如何让网站平稳运转呢？伯乐在线博客的这篇译文将展示Facebook的工程师完成这个艰巨任务所用到的一系列软件。</p>  <p><strong>Facebook</strong><strong>级别规模的挑战</strong></p>  <p><a href="http://blog.jobbole.com/wp-content/uploads/vb/73-facebook-logo-289-75.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="facebook-logo-289-75.png" border="0" alt="clip_image001" src="http://img.cker.in/Facebook_90E1/clip_image001.png" width="309" height="237" /></a></p>  <p>在我们深入细节之前，先了解一组Facebook不得不面对数据，你就可以想象这种规模。</p>  <p>● Facebook每月的PV量：630,000,000,000 （6千3百亿）</p>  <p>● Facebook上的图片数量超过其他图片网站的总和（包括诸如Flickr这样的图片网站）</p>  <p>● 每个月有超过30亿的图片上传到Facebook</p>  <p>● Facebook系统每秒可以处理120万张图片。这还不包括Facebook的CDN处理的图片。</p>  <p>● 每月处理超过250亿的信息内容（包括用户状态更新，评论等）</p>  <p>● Facebook的服务器数量超过3万台（此数据为2009年的数据）</p>  <p><strong>Facebook</strong><strong>所用的软件</strong></p>  <p>从某些方面来说，Facebook还是属于LAMP类型网站，但是，为了配合其他大量的组件和服务，Facebook对已有的方法，已经做了必要的改变、拓展和修改。</p>  <p>比如：</p>  <p>● Facebook依然使用PHP，但Facebook已重建新的编译器，以满足在其Web服务器上加载本地代码，从而提升性能；</p>  <p>● Facebook使用Linux系统，但为了自身目的，也已做了必要的优化。（尤其是在网络吞吐量方面）；</p>  <p>● Facebook使用MySQL，但也对其做优化。</p>  <p>还有定制的系统，比如， Haystack — 高度可扩展的对象存储，用来处理Facebook的庞大的图片；Scribe — Facebook的日志系统。</p>  <p>下面展现给大家的是，全球最大的社交网站Facebook所使用到的软件。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/1051.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-11-06T22:42:26.000Z" itemprop="datePublished">
+          2013-11-07
+      </time>
+    
+    
+    | 
+    <a href='/tag/SQLmap/'>SQLmap</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1050.seo/">SQlMap Tamper注入Base64编码注入点</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        WVS扫某站就出来一个SQL Injection，参数还是base64编码的，手工注入麻烦一步，用sqlmap怎么自动注射呢？  sqlmap的tamper里有个base64encode.py  使用如下  sqlmap -u http://ha.cker.in/index.php?tel=LTEnIG9yICc4OCc9Jzg5 –tamper base64encode.py –dbs  &#160;  sqlmap拥有很多功能强力的
+      
+      </p>
+      
+      <p>
+          <a href="/1050.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
       <time datetime="2013-11-06T22:41:30.000Z" itemprop="datePublished">
           2013-11-07
       </time>
@@ -131,86 +224,9 @@
     </section>
   </article>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-10-24T18:01:31.000Z" itemprop="datePublished">
-          2013-10-25
-      </time>
-    
-</span>
-      <h2 class="post-title"><a href="/1046.seo/">图片攻击-BMP图片中注入恶意JS代码</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        译自 碳基体  昨天看到一篇文章《hacking throung images》，里面介绍了如何在BMP格式的图片里注入JS代码，使得BMP图片既可以正常显示，    也可以运行其中的JS代码，觉得相当有趣。    执行JS注入的脚本    关键：构造符合正常BMP格式的图片    步骤    1. 将原BMP文件的第三，第四字节替换为\x2F\x2A， 对应js中的注释符号/    BMP文件的第三、四、五、六字节表示BMP文件的大小
-      
-      </p>
-      
-      <p>
-          <a href="/1046.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-10-24T06:31:35.000Z" itemprop="datePublished">
-          2013-10-24
-      </time>
-    
-</span>
-      <h2 class="post-title"><a href="/1045.seo/">ali</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        &#160;  好啊，你们来吧，   我已经在监狱待了400年    再去那儿过个4年5年无所谓    但我不会跑10000英里…    去帮助杀戮那些可怜的民族    如果我想死，我就死在这儿，立刻！    和你们战斗！如果我想死    你们才是我的敌人，不是中国人，    不是越共，也不是日本人    我要自由的时候你们就是我的对手！    我要正义的时候你们就是我的对手！    我要平等的时候你们就是我的对手！    你们想让我去
-      
-      </p>
-      
-      <p>
-          <a href="/1045.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-10-21T23:57:30.000Z" itemprop="datePublished">
-          2013-10-22
-      </time>
-    
-    
-    | 
-    <a href='/tag/Apache/'>Apache</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1044.seo/">http-only型cookie截取及利用</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><a href="http://Ha.Cker.In/tag/Apache" target="_blank">Apache</a>服务器2.2.0-2.2.21版本存在一个漏洞（CVE-2012-0053），攻击者可通过给网站植入超大的Cookie，使得HTTP头超过apache的LimitRequestFieldSize（最大请求长度）8192字节，apache便会返回400错误，状态页中就包含了http-only保护的cookies。</p>  <p><a href="http://img.cker.in/httponlycookie_E01C/image.png"><img title="image" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="580" alt="image" src="http://img.cker.in/httponlycookie_E01C/image_thumb.png" width="701" border="0" /></a>&#160;</p>  <p><a href="http://Ha.Cker.In/tag/httpOnly" target="_blank">httpOnly</a>型cookie截取及利用(Apache CVE：2112-0053)</p>  <p>漏洞名称：<a href="http://Ha.Cker.In/tag/Apache" target="_blank">APACHE</a> <a href="http://Ha.Cker.In/tag/httpOnly" target="_blank">Httponly</a> Cookie Disclosure（CVE：2112-0053）    <br />测试目标环境：Windows xp sp3、discuz x2.5、apache2.2.17（漏洞存在的版本）</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1044.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/archives/page/13/">← Newer Posts</a>
-    <span class="page-number">Page 14 of 57</span>
+    <span class="page-number">Page 14 of 81</span>
     <a class="older-posts" href="/archives/page/15/">Older Posts →</a>
   </nav>
 </main>

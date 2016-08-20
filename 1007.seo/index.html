@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>webkit浏览器css设置滚动条 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-06-24T21:08:11.000Z" itemprop="datePublished">
+          2013-06-25
+      </time>
+    
+    
+    | 
+    <a href='/tag/css/'>css</a>
+    
+    
+</span>
+    <h1 class="post-title">webkit浏览器css设置滚动条</h1>
+    <section class="post-content">
+      <p>主要有下面7个属性</p>  <p>1. <b>::-webkit-scrollbar</b> 滚动条整体部分，可以设置宽度啥的</p>  <p>2. <b>::-webkit-scrollbar-button</b> 滚动条两端的按钮</p>  <p>3. <b>::-webkit-scrollbar-track</b> 外层轨道</p>  <p>4. <b>::-webkit-scrollbar-track-piece</b> 内层滚动槽</p>  <p>5. <b>::-webkit-scrollbar-thumb</b> 滚动的滑块</p>  <p>6. <b>::-webkit-scrollbar-corner</b> 边角</p>  <p>7. <b>::-webkit-resizer</b> 定义右下角拖动块的样式</p>  <p>具体所指如图例</p>  <p><a href="http://www.javascript100.com/wp-content/uploads/2012/10/scrollbarparts.png" target="_blank" rel="external"><img title="scrollbarparts" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="468" alt="clip_image001" src="http://img.cker.in/webkitcss_B8AB/clip_image001.png" width="590" border="0"></a></p>  <p>上面是滚动条的主要几个设置属性，还有更详尽的CSS属性</p>  <p><b>:horizontal </b>水平方向的滚动条</p>  <p><b>:vertical</b> 垂直 方向的滚动条</p>  <p><b>:decrement</b> 应用于按钮和内层轨道(track piece)。它用来指示按钮或者内层轨道是否会减小视窗的位置(比如，垂直滚动条的上面，水平滚动条的左边。)</p>  <p><b>:increment</b> decrement类似，用来指示按钮或内层轨道是否会增大视窗的位置(比如，垂直滚动条的下面和水平滚动条的右边。)</p>  <p><b>:start</b> 伪类也应用于按钮和滑块。它用来定义对象是否放到滑块的前面。</p>  <p><b>:end</b> 类似于start伪类，标识对象是否放到滑块的后面。</p>  <p><b>:double-button</b> 该伪类以用于按钮和内层轨道。用于判断一个按钮是不是放在滚动条同一端的一对按钮中的一个。对于内层轨道来说，它表示内层轨道是否紧靠一对按钮。</p>  <p><b>:single-button</b> 类似于double-button伪类。对按钮来说，它用于判断一个按钮是否自己独立的在滚动条的一段。对内层轨道来说，它表示内层轨道是否紧靠一个single-button。</p>  <p><b>:no-button</b> 用于内层轨道，表示内层轨道是否要滚动到滚动条的终端，比如，滚动条两端没有按钮的时候。</p>  <p><b>:corner-present</b> 用于所有滚动条轨道，指示滚动条圆角是否显示。</p>  <p><b>:window-inactive</b> 用于所有的滚动条轨道，指示应用滚动条的某个页面容器(元素)是否当前被激活。(在webkit最近的版本中，该伪类也可以用于::selection伪元素。webkit团队有计划扩展它并推动成为一个标准的伪类)</p>  <p>写个实例demo吧（请在webkit浏览器下观看），不能光说不练。<a href="http://Ha.Cker.In/tag/css" target="_blank">css</a>也很简单。</p>  <div>   <pre> <span style="color: #008000">/<em> 设置滚动条的样式 </em>/</span><br><br> ::-webkit-scrollbar {<br><br> width: 12px;<br><br> }<br><br> <span style="color: #008000">/<em> 滚动槽 </em>/</span><br><br> ::-webkit-scrollbar-track {<br><br> -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);<br><br> border-radius: 10px;<br><br> }<br><br><br><br> <span style="color: #008000">/<em> 滚动条滑块 </em>/</span><br><br> ::-webkit-scrollbar-thumb {<br><br> border-radius: 10px;<br><br> background: rgba(0,0,0,0.1);<br><br> -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);<br><br> }<br><br> ::-webkit-scrollbar-thumb:window-inactive {<br><br> background: rgba(255,0,0,0.4);<br><br> }</pre><br></div><br><br><br><br><br><p><b>IE</b><b>下面的</b><b>CSS</b><b>设置滚动条</b><b></b></p>
+
+<p>IE下面就比较简单那了，自定义的项目比较少，全是颜色。</p>
+
+<p>1. scrollbar-arrow-color: color; /<em>三角箭头的颜色</em>/</p>
+
+<p>2. scrollbar-face-color: color; /<em>立体滚动条的颜色（包括箭头部分的背景色）</em>/</p>
+
+<p>3. scrollbar-3dlight-color: color; /<em>立体滚动条亮边的颜色</em>/</p>
+
+<p>4. scrollbar-highlight-color: color; /<em>滚动条的高亮颜色（左阴影？）</em>/</p>
+
+<p>5. scrollbar-shadow-color: color; /<em>立体滚动条阴影的颜色</em>/</p>
+
+<p>6. scrollbar-darkshadow-color: color; /<em>立体滚动条外阴影的颜色</em>/</p>
+
+<p>7. scrollbar-track-color: color; /<em>立体滚动条背景颜色</em>/</p>
+
+<p>8. scrollbar-base-color:color; /<em>滚动条的基色</em>/</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1007.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1007.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1007.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1007.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/1008.seo/">
+        ← Windows提权时，自动查询补丁号的批处理
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/1006.seo/">
+        Dedecms最新注入漏洞分析 download.php →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

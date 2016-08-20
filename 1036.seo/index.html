@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>攻击JavaWeb应用 1 -JavaEE 基础 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-10-21T17:56:42.000Z" itemprop="datePublished">
+          2013-10-22
+      </time>
+    
+    
+    | 
+    <a href='/tag/Java/'>Java</a>
+    
+    
+</span>
+    <h1 class="post-title">攻击JavaWeb应用 1 -JavaEE 基础</h1>
+    <section class="post-content">
+      <p><a href="http://drops.wooyun.org/tips/163" target="_blank" rel="external">攻击JavaWeb应用[1]-JavaEE 基础</a></p>  <p><a href="http://drops.wooyun.org/tips/163" target="_blank" rel="external">http://drops.wooyun.org/tips/163</a></p>  <h5>0x00 JavaEE 基础</h5>  <hr align="center" width="100%" size="2">  <p>JSP: 全名为java server page，其根本是一个简化的<a href="http://baike.baidu.com/view/25169.htm" target="_blank" rel="external">Servlet</a>。</p>  <p>Servlet：Servlet是一种服务器端的Java应用程序，可以生成动态的Web页面。</p>  <p>JavaEE: JavaEE是J2EE新的名称。改名目的是让大家清楚J2EE只是Java企业应用。</p>  <p>什么叫Jsp什么叫Java我真的非常让大家搞清楚！拜托别一上来就来一句：“前几天我搞了一个jsp的服务器，可难吭了。”。</p>  <p>请大家分清楚什么是jsp什么是JavaEE! <a href="http://Ha.Cker.In/tag/Java" target="_blank">Java</a>平台结构图：</p>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image001.jpg" target="_blank" rel="external"><img title="clip_image001" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="437" alt="clip_image001" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image001_thumb.jpg" width="715" border="0"></a></p>  <p>可以看到Java平台非常的庞大，而开发者的分化为：</p>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image002.jpg" target="_blank" rel="external"><img title="clip_image002" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="777" alt="clip_image002" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image002_thumb.jpg" width="519" border="0"></a></p>  <p>列举这两个图的原因就是让你知道你看到的JSP不过是冰山一角，Jsp技术不过是Java初级开发人员必备的技术而已。</p>  <p>我今天要讲的就是Java树的最下面的两层了，也是初级工程师需要掌握的东西。</p>  <p>Web请求与相应简要的流程：</p>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image003.gif" target="_blank" rel="external"><img title="clip_image003" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="241" alt="clip_image003" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image003_thumb.gif" width="418" border="0"></a></p>  <p>这是一个典型的就是客户端发送一个HTTP请求到服务器端，服务器端接收到请求并处理、响应的一个过程。</p>  <p>如果请求的是JSP，tomcat会把我们的JSP编译成Servlet也就是一个普通的Java类。</p>  <p>其实JSP是Servlet的一种特殊形式，每个JSP页面就是一个Servlet实例。Servlet又是一个普通的Java类它编译后就是一个普通的class文件。</p><br><a id="more"></a><br><p></p>  <p>这是一个普通的jsp脚本页面，因为我只用JSP来作为展示层仅仅做了简单的后端数据的页面展示：</p>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image004.jpg" target="_blank" rel="external"><img title="clip_image004" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="534" alt="clip_image004" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image004_thumb.jpg" width="662" border="0"></a></p>  <p>上图可以非常清晰的看到通常的Jsp在项目中的地位并不如我们大多数人所想的那么重要，甚至是可有可无！因为我们完全可以用其他的东西来代替JSP作为前端展示层。 我们来看一下这个页面编译成class后是什么样子：</p>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image005.jpg" target="_blank" rel="external"><img title="clip_image005" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="569" alt="clip_image005" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image005_thumb.jpg" width="963" border="0"></a></p>  <p>你会发现你根本就看不懂这个class文件，因为这是字节码文件我们根本就没法看。通过我们的TOMCAT编译后他编程了一个Java类文件保存在Tomcat的work目录下。</p>  <p>文件目录：<code>C:\apache-tomcat-7.0.34\work\Catalina\localhost\</code><code>你的项目名</code><code>\org\apache\jsp\</code></p>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image006.jpg" target="_blank" rel="external"><img title="clip_image006" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="238" alt="clip_image006" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image006_thumb.jpg" width="715" border="0"></a></p>  <p>我们只要打开index_jsp.java或者用jd-gui（Java反编译工具）打开就行了：</p>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image007.jpg" target="_blank" rel="external"><img title="clip_image007" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="552" alt="clip_image007" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image007_thumb.jpg" width="949" border="0"></a></p>  <p>有人说这是Servlet吗？当然了。</p>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image008.jpg" target="_blank" rel="external"><img title="clip_image008" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="66" alt="clip_image008" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image008_thumb.jpg" width="392" border="0"></a></p>  <p>继承HttpJspBase类，该类其实是个HttpServlet的子类(jasper是tomcat的jsp engine)。</p>  <p>Jsp有着比Servlet更加优越的展现，很多初学PHP的人恐怕很难把视图和逻辑分开吧。比如之前在写PHPSQL注入测试的DEMO：</p>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image009.jpg" target="_blank" rel="external"><img title="clip_image009" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="647" alt="clip_image009" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image009_thumb.jpg" width="771" border="0"></a></p>  <p>这代码看起来似乎没有什么大的问题，也能正确的跑起来啊会有什么问题呢？原因很简单这属于典型的展现和业务逻辑没有分开！这和写得烂的Servlet差不多！</p>  <p>说了这么多，很多人会觉得Servlet很抽象。我们还是连创建一个Servlet吧：</p>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image010.jpg" target="_blank" rel="external"><img title="clip_image010" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="518" alt="clip_image010" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image010_thumb.jpg" width="597" border="0"></a></p>  <p>创建成功后会自动的往web.xml里面写入：</p>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image011.jpg" target="_blank" rel="external"><img title="clip_image011" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="365" alt="clip_image011" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image011_thumb.jpg" width="552" border="0"></a></p>  <p>其实就是一个映射的URL和一个处理映射的类的路径。而我们自动生成的Java类精简后大致是这个样子：</p>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image012.jpg" target="_blank" rel="external"><img title="clip_image012" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="570" alt="clip_image012" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image012_thumb.jpg" width="826" border="0"></a></p>  <p>请求响应输出内容：</p>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image013.jpg" target="_blank" rel="external"><img title="clip_image013" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="391" alt="clip_image013" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image013_thumb.jpg" width="601" border="0"></a></p>  <p>熟悉PHP的大神们这里就不做解释了哦。了解了Jsp、Servlet我们再来非常简单的看一下JavaWeb应用是怎样跑起来的。</p>  <p>加载web.xml的配置然后从配置里面获取各种信息为WEB应用启动准备。</p>  <h6>科普：C:\apache-tomcat-7.0.34\webapps\下默认是部署的Web项目。webapps 下的文件夹就是你的项目名了，而项目下的WebRoot一般就是网站的根目录了，WebRoot下的文件夹WEB-INF默认是不让Web访问的，一般存在配置泄漏多半是nginx配置没有过滤掉这个目录。</h6>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image014.jpg" target="_blank" rel="external"><img title="clip_image014" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="194" alt="clip_image014" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image014_thumb.jpg" width="709" border="0"></a></p>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image015.jpg" target="_blank" rel="external"><img title="clip_image015" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="158" alt="clip_image015" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image015_thumb.jpg" width="890" border="0"></a></p>  <p>快速定位数据库连接信息：</p>  <p>大家可能都非常关心数据库连接一般都配置在什么地方呢？</p>  <p>答案普遍是：<code>C:\apache-tomcat-7.0.34\webapps\wordpress\WEB-INF\</code>下的<code><em>*</em>.xml</code></p>  <p>大多数的Spring框架都是配置在applicationContext里面的：</p>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image016.jpg" target="_blank" rel="external"><img title="clip_image016" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="664" alt="clip_image016" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image016_thumb.jpg" width="1056" border="0"></a></p>  <p>如果用到Hibernate框架那么：<code>WebRoot\WEB-INF\hibernate.cfg.xml</code></p>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image017.jpg" target="_blank" rel="external"><img title="clip_image017" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="275" alt="clip_image017" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image017_thumb.jpg" width="967" border="0"></a></p>  <p>还有一种变态的配置方式就是直接写在源代码里面:</p>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image018.jpg" target="_blank" rel="external"><img title="clip_image018" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="322" alt="clip_image018" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image018_thumb.jpg" width="818" border="0"></a></p>  <p>Tomcat的数据源（其他的服务器大同小异）：</p>  <p>目录：<code>C:\apache-tomcat-7.0.34\conf\context.xml</code><code>、</code><code>server.xml</code></p>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image019.jpg" target="_blank" rel="external"><img title="clip_image019" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="517" alt="clip_image019" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image019_thumb.jpg" width="954" border="0"></a></p>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image020.jpg" target="_blank" rel="external"><img title="clip_image020" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="631" alt="clip_image020" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image020_thumb.jpg" width="1044" border="0"></a></p>  <p>Resin数据源：</p>  <p>路径：<code>D:\install\Dev\</code>     <br><code>esin-pro-4.0.28conf</code>     <br><code>esin.conf(resin 3.x</code><code>是</code><code>resin.xml)</code></p>  <p>其他的配置方式诸如读取如JEECMS读取的就是<strong>.properties</strong>配置文件，这种方式非常的常见：</p>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image021.jpg" target="_blank" rel="external"><img title="clip_image021" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="392" alt="clip_image021" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image021_thumb.jpg" width="961" border="0"></a></p>  <h5>0x01 Tomcat 基础</h5>  <hr align="center" width="100%" size="2">  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image022.png" target="_blank" rel="external"><img title="clip_image022" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="112" alt="clip_image022" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image022_thumb.png" width="166" border="0"></a></p>  <p>没错,这就是 TOM 猫。楼主跟这只猫打交道已经有好几年了,在 Java 应用当中 TOMCAT 运用的非常的广泛。</p>  <p>TOM 猫是一个 Web 应用服务器,也是 Servlet 容器。</p>  <p>Apache+Tomcat 做负载均衡:</p>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image023.jpg" target="_blank" rel="external"><img title="clip_image023" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="370" alt="clip_image023" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image023_thumb.jpg" width="522" border="0"></a></p>  <h6>Tomcat快速定位到网站目录：</h6>  <p>如何快速的找到tomcat的安装路径:</p>  <pre><code>1</code><code>、不管是谁都应该明白的是不管apache</code><code>还是tomcat</code><code>安装的路径都是随意的，所以找不到路径也是非常正常的。</code></pre><br><br><pre><code>2</code><code>、在你的/etc/httpd/conf/httpd.conf</code><code>里面会有一个LoadModule jk_module</code><code>配置用于集成tomcat</code><code>然后找到JkWorkersFile</code><code>也就是tomcat</code><code>的配置，找到.properties</code><code>的路径。httpd</code><code>里面也有可能会配置路径如果没有找到那就去apache2\conf\extra\httpd-vhosts</code><code>看下有没有配置域名绑定。&#160; </code></pre><br><br><pre><code>3</code><code>、在第二步的时候找到了properties</code><code>配置文件并读取，找到workers.tomcat_home</code><code>也就是tomcat</code><code>的配置路径了。&#160; </code></pre><br><br><pre><code>4</code><code>、得到tomcat</code><code>的路径你还没有成功，域名的具体配置是在conf</code><code>下的server.xml</code><code>。&#160; </code></pre><br><br><pre><code>5</code><code>、读取server.xml</code><code>不出意外你就可以找到网站的目录了。&#160; </code></pre><br><br><pre><code>6</code><code>、如果第五步没有找到那么去webapps</code><code>目录下ROOT</code><code>瞧瞧默认不配置的话网站是部署在ROOT</code><code>下的。&#160; </code></pre><br><br><pre><code>7</code><code>、这一点是附加的科普知识爱听则听：数据库如果启用的tomcat</code><code>有可能会采用tomcat</code><code>的数据源配置未见为conf</code><code>下的context.xml</code><code>、server.xml</code><code>。如果网站有域名绑定那么你可以试下ping</code><code>域名然后带上端口访问。有可能会出现tomcat</code><code>的登录界面。tomcat</code><code>默认是没有配置用户登录的，所以当tomcat-users.xml</code><code>下没有相关的用户配置就别在这里浪费时间了。&#160; </code></pre><br><br><pre><code>8</code><code>、如果配置未找到那么到网站目录下的WEB-INF</code><code>目录和其下的classes</code><code>目录下找下对应的properties</code><code>、xml</code><code>（一般都是properties</code><code>）。&#160; </code></pre><br><br><pre><code>9</code><code>、如果你够蛋疼可以读取WEB.XML</code><code>下的classess</code><code>内的源码。&#160; </code></pre><br><br><pre><code>10</code><code>、祝你好运。</code></pre><br><br><h6>apache快速定位到网站目录：</h6><br><br><p>普通的域名绑定：</p>
+
+<p>直接添加到<code>conf\httpd.conf</code><code>、</code><code>conf\extra\httpd-vhosts.conf</code></p>
+
+<h6>Resin快速定位到网站目录:</h6>
+
+<p>在resin的conf下的resin.conf(resin3.x)和resin.xml(resin4.x)</p>
+
+<p>Resin apache 负载均衡配置(从我以前的文章中节选的)</p>
+
+<p>APACHE RESIN 做负载均衡,Resin 用来做 JAVAWEB 的支持,APACHE 用于处理静态</p>
+
+<p>和 PHP 请求,RESIN 的速度飞快,RESIN 和 apache 的配合应该是非常完美的吧。</p>
+
+<p>域名解析：apache 的 httpd.conf:</p>
+
+<p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image024.jpg" target="_blank" rel="external"><img title="clip_image024" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="168" alt="clip_image024" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image024_thumb.jpg" width="594" border="0"></a></p>
+
+<p>需要修改:Include conf/extra/httpd-vhosts.conf(一定要把前面的#除掉,否则配置不起作用)</p>
+
+<p>普通的域名绑定:</p>
+
+<p>直接添加到 httpd.conf</p>
+
+<pre><code>&lt;VirtualHost *:80&gt;</code></pre>
+
+<pre><code>ServerAdmin admin@bjcyw.cn DocumentRoot E:/XXXX/XXX</code></pre>
+
+<pre><code>ServerName beijingcanyinwang.com ErrorLog E:/XXXX/XXX/bssn-error_log CustomLog E:/XXXX/XXX/bssn_log common </code></pre>
+
+<pre><code>&lt;/VirtualHost&gt;</code></pre>
+
+<p>二级域名绑定,需要修改:</p>
+
+<pre><code>E:\install\apache2\conf\extra\httpd-vhosts.conf</code></pre>
+
+<p>如:</p>
+
+<pre><code>&lt;VirtualHost *:80&gt;</code></pre>
+
+<pre><code>DocumentRoot E:/XXXXXXX/XXX</code></pre>
+
+<pre><code>ServerName bbs.beijingcanyinwang.com DirectoryIndex index.html index.php index.htm</code></pre>
+
+<pre><code>&lt;/VirtualHost&gt;</code></pre>
+
+<p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image025.png" target="_blank" rel="external"><img title="clip_image025" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="516" alt="clip_image025" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image025_thumb.png" width="754" border="0"></a></p>
+
+<p>Resin 的</p>
+
+<p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image026.jpg" target="_blank" rel="external"><img title="clip_image026" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="293" alt="clip_image026" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image026_thumb.jpg" width="656" border="0"></a></p>
+
+<p>请求处理:</p>
+
+<pre><code>&lt;LocationMatch (.*?).jsp&gt;</code></pre>
+
+<pre><code>SetHandler caucho-request </code></pre>
+
+<pre><code>&lt;/LocationMatch&gt;</code></pre>
+
+<pre><code>&lt;LocationMatch (.*?).action&gt; </code></pre>
+
+<pre><code>SetHandler caucho-request </code></pre>
+
+<pre><code>&lt;/LocationMatch&gt;</code></pre>
+
+<pre><code>&lt;LocationMatch union-resin-stat-davic&gt; </code></pre>
+
+<pre><code>SetHandler caucho-request </code></pre>
+
+<pre><code>&lt;/LocationMatch&gt;</code></pre>
+
+<pre><code>&lt;LocationMatch stat&gt; </code></pre>
+
+<pre><code>SetHandler caucho-request </code></pre>
+
+<pre><code>&lt;/LocationMatch&gt; </code></pre>
+
+<pre><code>&lt;LocationMatch load&gt;</code></pre>
+
+<pre><code>SetHandler caucho-request </code></pre>
+
+<pre><code>&lt;/LocationMatch&gt; </code></pre>
+
+<pre><code>&lt;LocationMatch vote&gt; </code></pre>
+
+<pre><code>SetHandler caucho-request </code></pre>
+
+<pre><code>&lt;/LocationMatch&gt;</code></pre>
+
+<p>APACHE 添加对 Resin 的支持:</p>
+
+<p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image027.png" target="_blank" rel="external"><img title="clip_image027" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="464" alt="clip_image027" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image027_thumb.png" width="776" border="0"></a></p>
+
+<pre><code>LoadModule caucho_module &quot;E:/install/resin-pro-3.1.12/win32/apache-2.2/mod_caucho. dll&quot;</code></pre>
+
+<p>然后在末尾加上:</p>
+
+<pre><code>&lt;IfModule mod_caucho.c&gt; </code></pre>
+
+<pre><code>ResinConfigServer localhost 6800 </code></pre>
+
+<pre><code>CauchoStatus yes</code></pre>
+
+<pre><code>&lt;/IfModule&gt;</code></pre>
+
+<p>只有就能让 apache 找到 resin 了。</p>
+
+<p>PHP 支持问题:</p>
+
+<p>resin 默认是支持 PHP 的测试 4.0.29 的时候就算你把 PHP 解析的 servlet 配置删了一样解析 PHP,无奈换成了 resin 3.1 在注释掉 PHP 的 servlet 配置就无压力了。</p>
+
+<p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image028.jpg" target="_blank" rel="external"><img title="clip_image028" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="301" alt="clip_image028" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image028_thumb.jpg" width="680" border="0"></a></p>
+
+<p>整合成功后:</p>
+
+<p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image029.png" target="_blank" rel="external"><img title="clip_image029" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="239" alt="clip_image029" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image029_thumb.png" width="439" border="0"></a></p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1036.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1036.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1036.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1036.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/1037.seo/">
+        ← 攻击JavaWeb应用 2 -CS交互安全
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/1035.seo/">
+        转载 我是如何在谷歌财经发现一个XSS漏洞，并且拿到了5千美元奖励 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

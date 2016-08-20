@@ -45,8 +45,99 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-30T11:19:37.000Z" itemprop="datePublished">
-          2012-08-30
+      <time datetime="2012-09-21T06:29:15.000Z" itemprop="datePublished">
+          2012-09-21
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/841.seo/">一次郁闷的操0渗透 被跑单了</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>QQ:964323781</p>  <p>听说法克快一岁了呀 。祝法克 年年有今日 岁岁有今朝 有福同享有难同当 一日夫妻百日恩</p>  <p>算是个 单子站 把</p>  <p>浮尘基友 说有个单子可以做 3000呢</p>  <p>不知道此文章 可不可以弄到 纪念看里面去</p>  <p>目标站: <a href="http://www.oppein.com/">http://www.oppein.com/</a></p>  <p>看了下 NET的</p>  <p>我这个人那。不喜欢直接搞目标站。因为要是目标站都存在漏洞 那还是单子么。</p>  <p>当然 有一些是例外的</p>  <p><a href="http://img.cker.in/0_1394B/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/0_1394B/clip_image002_thumb.jpg" width="573" height="377" /></a></p>  <p>应该是有什么防火墙阻止ping之类的把。后来才知道 有麦咖啡。</p>  <p>Bing查找了下</p>  <p>旁注也有9个多把 是apche的</p>  <p>支持jsp 暗想：jsp拿下的话 权限应该很大</p>  <p>发现有disc nt的。但是没发现漏洞</p>  <p><a href="http://img.cker.in/0_1394B/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/0_1394B/clip_image003_thumb.jpg" width="601" height="644" /></a></p>  <p>后来发现 五六 个站</p>  <p>都是以这种形式出现的</p>  <p><a href="http://img.cker.in/0_1394B/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/0_1394B/clip_image004_thumb.jpg" width="601" height="364" /></a></p>  <p>Ip:XXX 后台</p>  <p><a href="http://img.cker.in/0_1394B/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/0_1394B/clip_image005_thumb.jpg" width="602" height="504" /></a></p>  <p>没发现什么可利用的信息</p>  <p>IP:xxxx 管理</p>  <p>IP:xxx 错误</p>  <p>IP:xxxx 注册</p>  <p>IP:xxxx 上传</p>  <p>IP:xxxx 登陆</p>  <p>操0 什么也没发现</p>  <p>于是扫了下端口</p>  <p>发现开放了80 3306 3389 21 8080</p>  <p>于是登陆3389看看。</p>  <p>Shift5下。哈哈 没出现什么东西</p>  <p>于是再次拿出Hscan 扫了下 IP段。</p>  <p>几分钟后。什么也没出现。关了</p>  <p>操蛋。旁注都是JSP的</p>  <p>傻逼了我</p>  <p>后来浮尘 发了个有ewebeditor编辑器</p>  <p>但是登陆的时候跳转到了后台 <a href="http://img.cker.in/0_1394B/clip_image007.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/0_1394B/clip_image007_thumb.jpg" width="573" height="276" /></a></p>  <p>然后就是各种弱口令。什么地了</p>  <p>但是也没成功</p>  <p>发现 旁注的后台</p>  <p><a href="http://www.zcfc.com/managerweb">http://www.zcfc.com/managerweb</a> 各种弱口令 社工 失败。</p>  <p>我艹</p>  <p>后来看了下这个站<a href="http://www.zcfc.com">http://www.zcfc.com</a> 刚好发现有注入</p>  <p>那边 浮尘 也发现了这个站的注入</p>  <p>&#160;<a href="http://img.cker.in/0_1394B/clip_image008.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/0_1394B/clip_image008_thumb.jpg" width="359" height="132" /></a></p>  <p>自己手工了下 and 1=1 and 1=2</p>  <p>正常 。错误。说明是有注入的</p>  <p>Order by 10 的时候 发现 net错误了</p>  <p>Order by 1 的时候 也错误了</p>  <p>这个时候 我明白了 用工具把。</p>  <p>于是把我发现的这个注入地址弄到havij上去</p>  <p><a href="http://www.zcfc.com/news_center.jsp?one_id=999999">http://www.zcfc.com/news_center.jsp?one_id=999999</a>.9</p>  <p>Target: <a href="http://www.zcfc.com/news_center.jsp?one_id=999999.9">http://www.zcfc.com/news_center.jsp?one_id=999999.9</a></p>  <p>Host IP: 116.254.253.50</p>  <p>Web Server: Microsoft-IIS/6.0</p>  <p>Powered-by: ASP.NET</p>  <p>DB Server: MySQL</p>  <p>Current DB: zhuxian</p>
+      
+      </p>
+      
+      <p>
+          <a href="/841.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-09-20T23:35:56.000Z" itemprop="datePublished">
+          2012-09-21
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>,
+    
+    <a href='/tag/php/'>php</a>,
+    
+    <a href='/tag/手工注入/'>手工注入</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/836.seo/">和我一起进行php渗透</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>作者:Maxil   <br />已经发表在黑客手册2008年第三期</p>  <p>最近一直比较关注<a href="http://ha.cker.in/tag/PHP" target="_blank">PHP</a>注射的东西.学习好几天了.也应该实战一下了.目标<a href="http://app.xxxx.com">http://app.xxxx.com</a> .一个市场调查的门户.找注射点嘛,还是要用我们可爱的搜索引擎.为什么可爱呢?一会就知道了.Go Go Go !!!!!</p>  <p>在google中搜索php?id= site:xxx.com.意思就是说搜索XXX网站中以php?id=的URL.嘿.还真让我找到一个. <a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> .打开吓我一条，它页面本身就存在错误直接出来了绝对路径.   <br /><a href="http://img.cker.in/php_DA62/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/php_DA62/clip_image001_thumb.jpg" width="1086" height="498" /></a></p>  <p>/data01/www/cati/article_literature.php 呵呵,人品爆发了..通过路径可以得知是台Linux主机.判断下是否可以进行注射.and 1=1返回正常,and 1=2返回错误..OK存在注射.然后我们判断数据库,不出意外应该是mysql.传说中的LMAP.环境(L=Linux M=Mysql A=Apache P=Php)   <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11/*">http://app.xxx.com/cati/article_literature.php?id=11/*</a> 在后面加上/<em>,返回正常则是Mysql.因为/</em>是Mysql的注释标记.</p>  <p><a href="http://img.cker.in/php_DA62/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/php_DA62/clip_image002_thumb.jpg" width="1086" height="498" /></a></p>  <p>返回正常,确定是Mysql的数据库.现在我们来检测下Mysql的版本.4.0以上支持union联合查询.一般都回是4.0已经.为什么.因为Mysql是开源的数据库不收费傻子才不更新呢.呵呵.   <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> and ord(mid(version(),1,1))&gt;51/<em> 如我所料.果然是4.0以上的.OK.我们来爆它的字段.    <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> order by 10</p>  <p><a href="http://img.cker.in/php_DA62/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/php_DA62/clip_image003_thumb.jpg" width="749" height="508" /></a></p>  <p>返回错误,说明字段小于10   <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> order by 9</p>  <p><a href="http://img.cker.in/php_DA62/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/php_DA62/clip_image004_thumb.jpg" width="1030" height="548" /></a></p>  <p>返回正常说明它有9个字段.OK.现在我们知道它的字段那我们就来爆它的管理员吧 呵呵.   <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> and 1=2 union select 1,2,3,4,5,6,7,8,9</p>  <p><a href="http://img.cker.in/php_DA62/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/php_DA62/clip_image005_thumb.jpg" width="848" height="337" /></a></p>  <p></p>
+      
+      </p>
+      
+      <p>
+          <a href="/836.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-09-16T05:56:40.000Z" itemprop="datePublished">
+          2012-09-16
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/831.seo/">对王心凌的一次渗透过程</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>From:www.3est.com&#160; <br />Author:Mars&#160; <br />前几天,听说Cyndi出新专辑了,哥好激动啊..听了几天Music.突然萌发了个思想！想了解更多的有关于她的资料.下面一出好戏即将上演！</p>  <p>总共有三个步骤 ：1.先分析 2.再踩点 3.最后渗透</p>  <p>拿到一个目标要先学会分析,首先Cyndi是位明星,所以利用搜索引擎是不可能搜索到什么有价值的信息.&#160; <br />一般明星在网络上都有自己的Fans基地,好吧.目标已经确定了！    <br />通过百度搜索到一个她留言过的Fans基地<a href="http://www.cyndifans.net/">www.CyndiFans.net</a>    <br />既然目标确定了,该执行第二步了.去ip.3est.com 反查询一下它所在的服务器上还有其他站点没！查询结果如下:&#160; <br /><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image001_thumb.jpg" width="449" height="259" /></a></p>  <p>大概看了下,基本都采用Dz7.0+Uchome+SiteSuper7.5 组合!&#160; <br />手里又没0day.所以没抱有太大希望.只好采用ARP方式来看看能获得什么有价值的信息,首先得先获得C段一台服务器权限,&#160; <br />拿出平时常用的Hscan 来扫描一下有C段没有Ftp弱口令.&#160; <br />悲剧了！竟然一个没扫出来.接着用IIS利用工具扫描下C段.记录装有IIS6.0的服务器IP&#160; <br />因为他的IP是xx.xx.xx.154 大多数情况是1或者129作为网关，叫前C段和后C段,154距离129比较,所以目标放在129-255之间！    <br />然后进入cn.bing.com输入ip:xx.xx.xx.xx 搜索下后C段装有IIS6.0的服务器IP 看看有什么站.一般各类型网站多的的就是虚拟主机,排除掉这些,&#160; <br />就剩下2台主机了..汗 真郁闷..那么集中精力看看其中一台xx人才网,wwwscan扫描下没扫描到有价值东西,进入网站转悠了半天,&#160; <br />在他的分站点了个图片属性,路径是ewe我猜想了下应该是Ewebeditor这个编辑器，输入ewe/admin/admin_login.asp 发现后台被删了,&#160; <br />数据库是默认的先下载下来看看有没有被人搞过,结果失望了.运气不怎么好..先休息下再搞了..去群里聊了会天    <br />过几个小时,来了精神.继续在它的网站转悠,我觉得问题最多的还是上传的地方,就注册了个会员.进入管理中心没有发现什么上传的位置,&#160; <br />接着又注册了个企业会员.发现了个上传企业照片的地方.把小马改成1.asp;.jpg格式结果上传成功了.没提示路径.用抓包工具看一下.&#160; <br />总算见到可爱的小马..拿到webshell之后,开始提权,结果那破服务器慢的要死.开个高速VPN,速度果然提升了.随便看了下感觉提权无望.&#160; <br />.基本组建都被卸载了.目录还不能查看.有SU不过是9.1版本没溢出漏洞.唉 权限配置的很死.看来管理员挺懂安全啊.看了下配置文件最后发现个sa,&#160; <br />哈哈 激动死了!直接加系统用户拿到服务器权限.然后更变态的事情发生了.进去看任务管理器竟然CPU100%总共运行72个进程..&#160; <br />我的天啊…这么破烂的服务器一ARP不就挂掉了.我一个一个把没用的进程结束掉.到30个进程了.在结束服务器就挂了.&#160; <br />然后打开我的电脑管理想看看这服务器是什么高级配置.结果点了属性Shell32.dl被禁,进C盘弹出拒绝访问..打开网页不让下载东西..&#160; <br />一系列的问题皆然发生！终于把Cain放到服务器了.还好不出我所预料.这个服务器网关是129. 哈哈只能扫到后C段的服务器Mac .&#160; <br />然后开始ARP 154这个主机,嗅探开始了.他服务器装有ARP防火墙软件把发送的数据给拦截了..&#160; <br />这时候想起玫瑰的ARP突破方法,结果试验了下没成功,后来配合幻境网盾用了下.成功欺骗突破防火墙.终于嗅探到数据了,&#160; <br />挺高兴的.结果5秒钟都没,Cain卡爆了！服务器挂了10分钟我才登录上.发现嗅探到的3万多个Http信息竟然都是盛大传奇的,&#160; <br />我纳闷了会,地址确实是盛大的!&#160; <br /><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image002_thumb.jpg" width="535" height="251" /></a></p>
+      
+      </p>
+      
+      <p>
+          <a href="/831.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-09-03T09:14:46.000Z" itemprop="datePublished">
+          2012-09-03
       </time>
     
     
@@ -57,17 +148,17 @@
     
     
 </span>
-      <h2 class="post-title"><a href="/769.seo/">网易某系统未授权访问致内网被渗透</a></h2>
+      <h2 class="post-title"><a href="/804.seo/">某官网的渗透笔记</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><b>网易某系统未授权访问致内网被<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a></b></p>  <p>网易某系统未授权访问，导致可访问部分内部系统，或可<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a>至内网。     <br />测试从这里开始，<a href="http://123.125.50.162:3000。">http://123.125.50.162:3000。</a>     <br />系统是Jenkins（软件测试），没有设置登录验证。     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image0014.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001[4]" border="0" alt="clip_image001[4]" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image0014_thumb.jpg" width="858" height="348" /></a>     <br />在设置邮箱处，破解了邮箱密码。     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image0024.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002[4]" border="0" alt="clip_image002[4]" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image0024_thumb.jpg" width="885" height="384" /></a>     <br />此账号可登录部分网易内部系统，如Bugzilla，QA，OA，论坛等。     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image0034.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image003[4]" border="0" alt="clip_image003[4]" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image0034_thumb.jpg" width="866" height="382" /></a>     <br />登录Bugzilla后，可将自己加为管理员，拥有系统管理权限，Bug涉及所有的邮箱系统。0.0     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image0044.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004[4]" border="0" alt="clip_image004[4]" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image0044_thumb.jpg" width="867" height="369" /></a>     <br />软件测试部的OA系统。除了测试需要，别的东西都没动啊。     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image0054.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image005[4]" border="0" alt="clip_image005[4]" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image0054_thumb.jpg" width="875" height="398" /></a>     <br />公司内部论坛。DZ7.0的，没WAP模块。     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image0064.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image006[4]" border="0" alt="clip_image006[4]" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image0064_thumb.jpg" width="849" height="370" /></a>     <br />因为是邮箱账号，所以邮件里有一些测试机的用户名和密码信息，包括218.107.63.245，218.107.63.248等。     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image007.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image007_thumb.jpg" width="877" height="561" /></a>     <br />修复方案：     <br />1. Jenkins增加用户验证。     <br />2. 推荐使用动态口令。</p>  <p>&#160;</p>
+        原文：http://26836659.blogcn.com/articles/%E6%9F%90%E5%AE%98%E7%BD%91%E7%9A%84%E6%B8%97%E9%80%8F%E7%AC%94%E8%AE%B0.html某官网的渗透笔记，挖掘的某0DAY拿到webshell，USER权限，联通外网，提权SYSTEM的EXP无效，看来打的补丁很全，服务器用的是微软FTP,MSSQL，没啥突破口。路过其他盘，发现一个小有年份的B
       
       </p>
       
       <p>
-          <a href="/769.seo/" class="excerpt-link">Read More...</a>
+          <a href="/804.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -76,27 +167,33 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-08T11:57:47.000Z" itemprop="datePublished">
-          2012-08-08
+      <time datetime="2012-08-30T22:01:40.000Z" itemprop="datePublished">
+          2012-08-31
       </time>
     
     
     | 
-    <a href='/tag/渗透/'>渗透</a>
+    <a href='/tag/C段/'>C段</a>,
+    
+    <a href='/tag/渗透/'>渗透</a>,
+    
+    <a href='/tag/社工/'>社工</a>,
+    
+    <a href='/tag/嗅探/'>嗅探</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/739.seo/">对21cn分站的检测</a></h2>
+      <h2 class="post-title"><a href="/779.seo/">友谊的 招呼 -对母校的亲密检测</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>原文地址：法克论坛   <br />作者：泪少    <br />网址：<a href="http://zhao.21cn.com（漏洞站点的域名/URL）">http://zhao.21cn.com（漏洞站点的域名/URL）</a></p>  <p>站点：天翼关爱 电信旗下21分站 （漏洞站点的名字，记得是全称）</p>  <p>风险一   <br />风险描述：后台列目录 可以下载源文件 从文件找到mysql的密码 找到mysql库里查询后台登录地址 进一步<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a> （这里你发现的是什么漏洞就写什么漏洞）    <br />风险示例：    <br /><a href="http://img.cker.in/21cn_3785/clip_image001.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/21cn_3785/clip_image001_thumb.png" width="497" height="395" /></a></p>
+        <p>我记得在校的时候某校的领导以及老师来到我们学校参观，虽然我见到对方学校的领导我会非常有礼貌的打招呼，一次回到家里的时候，出于友谊，决定为此国家重点级的学校进行友情的“招呼”！</p>  <p>国家级重点级，相对震精的学校，最近我在看《黑客与画家》，里面第一篇的内容是“为什么书呆子不受欢迎”，有段作者是说公立的学校的老师就像监狱里的狱卒，除了防止你打架做坏事之外，都不会管你！我就得说得非常好！作为国家级重点级的学校，这也是更加的！好了，不说题外话了，这篇文章是以前“招呼”的了！所以现在写下来，给大家参考下，虽然不是很好，但是各位也不要喷我吧！</p>  <p>我重申一次，我确实是个贱人</p>  <p>0x00</p>  <p>作为国家级的重点学校，我听说他的服务器是ZF给的，买了200W左右，当然我也参观过，虽然外表看不出来，我想那个网管老师也不会吹牛B吧，就是这样才出于好奇心，才弄得！</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/df99b5f14772_C386/clip_image002_thumb.jpg" width="574" height="286" /></a></p>  <p>为了防止被万人骑，所以部分过滤了！</p>  <p>手握神器，开始动工！这次的“招呼”任务我会在win下进行，当然如果需要的情况下，我会使用win+linux交互渗透！</p>  <p>0x01</p>  <p>踩点。</p>  <p>作为一个国家级的重点学校，我相信安全也是非常好的！起码也是服务器独立域名，内网等吧！收集下信息，我会采用某社工神器这个软件我非常喜欢</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/df99b5f14772_C386/clip_image004_thumb.jpg" width="573" height="358" /></a></p>  <p>说下他的用途吧，适用大型<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a>适用</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image006.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/df99b5f14772_C386/clip_image006_thumb.jpg" width="128" height="478" /></a></p>  <p>有各种信息的收集，不懂E文的朋友，可能会比较亏哦！这个工具其实已经融入了bt5系列了，呵呵，说下现在收集到的情况吧。Win03+iis6.0+内网+C段一个站，无CDN，asp+php+aspx，<a href="http://ha.cker.in/tag/C段" target="_blank">C段</a>的站是asp+aspx+win03+iis6.0+内网！招聘站一个，三台服务器的管理都是同一人，说下怎么收集的吧！首先google语法。Site:url inurl:asp|php|aspx|jsp。还有根据报错等清楚是iis，我就比较懒，火狐插件直接获得</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image008.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/df99b5f14772_C386/clip_image008_thumb.jpg" width="445" height="275" /></a></p>  <p>对两台服务器进行了扫描端口与分析工作，在win下，我会选择用superscan，如果在linux下我会选择更为精准的nmap！superscan比较简单，因为在gui，直接填入IP和所需的端口就行了，如果在linux下的nmap格式就是：namp –v –a ip</p>  <p>得到的端口有：</p>  <p>21 ftp</p>  <p>80 www</p>  <p>面对以上者两个端口，可以参考的攻击思路如下：</p>  <p>21—爆破模式，或者社工，嗅探等。</p>  <p>80—iis写权限，以及脚本渗透。</p>  <p>有些人问，不是有php和aspx吗？！应该会扫描到1433和3306的啊！很简单，以为他不允许对外访问，或者内网，他就扫描不出了啊。</p>  <p>扫描了整站目录以及文件，有二级目录上的站。暂时没发现主站的后台，另一个分站是教师系统，我见过那些老师是在上面进行公告浏览以及发布什么规定的地方。</p>
       
       </p>
       
       <p>
-          <a href="/739.seo/" class="excerpt-link">Read More...</a>
+          <a href="/779.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -105,122 +202,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-08T07:06:36.000Z" itemprop="datePublished">
-          2012-07-08
+      <time datetime="2012-08-30T11:24:47.000Z" itemprop="datePublished">
+          2012-08-30
       </time>
     
     
     | 
     <a href='/tag/渗透/'>渗透</a>,
     
-    <a href='/tag/钓鱼/'>钓鱼</a>
+    <a href='/tag/爆路径/'>爆路径</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/656.seo/">对某钓鱼网站的一次渗透</a></h2>
+      <h2 class="post-title"><a href="/772.seo/">记一次不同寻常的网站渗透测试过程，上传基于time（）</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>某天在淘宝上买了点东西，和店主确认几句之后，他发来一个链接，让我去支付。    <br />七转八转来到这个页面:     <br /><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/8f598be352ba_B732/clip_image001.jpg" width="516" height="345" />     <br />我看了一下这个网址不对劲，是<a href="http://item.taobao.com-xxxx.co.tv/pay/，莫非我遇上了传说中的淘宝钓鱼？于是立马来了精神，那就顺势检测一下这个钓鱼网站吧。">http://item.taobao.com-xxxx.co.tv/pay/，莫非我遇上了传说中的淘宝钓鱼？于是立马来了精神，那就顺势检测一下这个钓鱼网站吧。</a>     <br />先试试手气，在网址后面加个login.asp，居然看到了后台登录页面！     <br /><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/8f598be352ba_B732/clip_image002.jpg" width="444" height="321" />     <br />试了几个弱口令和万能密码都无果。但是我发现，当用户名输入”admin”，密码为”123”的时候，提示”你输入的密码有误！”；而用户名输入”123”,密码为”123”时，则提示“你输入的用户名有误！”。</p>
+        发现注入点：   http://www.xxx.com/xx.php?id=xxxx    直接sqlmap脱库，发现有admin表，内容是显示的是账号admin密码admin，这时心里高兴了下，没加密。可是，曲折的在后面呢 ！管理后台很容易找到，直接上admin admin 可是，显示密码不对，怎么回事？？    在看看数据库，翻遍数据库，账号密码也就这一个admin admin，（事实上也是这么回事） ，看看它登陆页面的源码吧，注入
       
       </p>
       
       <p>
-          <a href="/656.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-28T07:48:16.000Z" itemprop="datePublished">
-          2012-06-28
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/611.seo/">记新手的一次渗透入侵</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><table border="0" cellspacing="0" cellpadding="0"><tbody>     <tr>       <td>         <p>一年前把，<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a><b></b>了，这次发现不是root，但帐户支持load_file()            <br />Ps：我严重鄙视挂马的人，还有那些黑心贩子。。。            <br />Ps：我从一开始写文章到现在，不屏蔽<b>渗透</b>的地址连接，主要的原因还是希望            <br />大家可以通过我的文章，真正实践性滴学习本文内容，新人朋友可以一步步滴实践操作            <br />【懒得扯淡了，希望大家那个什么什么什么，你们懂的，人品很重要】            <br /><a href="http://www.czxtaiji.net/content.php?theMenuId=4&amp;theSubMenuId=1&amp;theArticleId=48%20and%201=2">http://www.czxtaiji.net/content. … leId=48%20and%201=2</a>            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 947            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 948            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 949            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 950            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 951            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 952            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 953            <br />获取到路径：d:\czxsite\bin\sys\config.php            <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/0a82505b9f50_14E77/clip_image002.jpg" width="604" height="316" />            <br /><a href="http://www.czxtaiji.net/content.php">http://www.czxtaiji.net/content.php</a>            <br />?theMenuId=4            <br />&amp;theSubMenuId=1            <br />&amp;theArticleId=48 order by 9            <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/0a82505b9f50_14E77/clip_image004.jpg" width="604" height="240" />            <br /><a href="http://www.czxtaiji.net/content.php">http://www.czxtaiji.net/content.php</a>            <br />?theMenuId=4            <br />&amp;theSubMenuId=1            <br />&amp;theArticleId=-48 union select 1,2,3,4,5,6,7,8,9            <br />Warning: disparticlecontent(7): failed to open stream: No such file or directory in d:\czxsite\bin\sys\config.php on line 976            <br />Warning: disparticlecontent(): Failed opening ‘7’ for inclusion (include_path=’.;c:\php4\pear’) in d:\czxsite\bin\sys\config.php on line 976            <br /><a href="http://www.czxtaiji.net/content.php">http://www.czxtaiji.net/content.php</a>            <br />?theMenuId=4            <br />&amp;theSubMenuId=1            <br />&amp;theArticleId=-48 union select 1,2,3,4,user(),database(),7,8,version()            <br />user():czxtaiji@localhost            <br />version():4.0.18-nt&#160;&#160; <br />database():czxtaiji            <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/0a82505b9f50_14E77/clip_image006.jpg" width="604" height="237" /></p>       </td>     </tr>   </tbody></table>
-      
-      </p>
-      
-      <p>
-          <a href="/611.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-21T12:29:20.000Z" itemprop="datePublished">
-          2012-06-21
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/572.seo/">渗透一站全过程</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>目标的环境：   <br />目测 2003+iis6+asp.net+mssql&#160; 但是这个网站程序应该是使用的某个asp.net+soap开发的，至少出现漏洞的地方是。    <br /><b>一</b><b>.Web</b><b>站点的渗透</b>    <br />这次渗透并未使用任何扫描嗅探工具去探测目标完全使用手工检查的,经过一系列的测试后在网页源代码里面发现了一个比较有意思的链接。    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/4cca5dc413a9_3F08/clip_image001.jpg" width="558" height="238" />    <br />上图中用篮筐拉出来的地址，引起了我的注意。根据名字这应该是用于上传文件的。    <br />访问这个链接后就证实了我的猜想</p>
-      
-      </p>
-      
-      <p>
-          <a href="/572.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T10:28:08.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透测试/'>渗透测试</a>,
-    
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/backtrack/'>backtrack</a>,
-    
-    <a href='/tag/VoIP渗透测试/'>VoIP渗透测试</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/507.seo/">VoIP渗透测试</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>VoIP or voice over IP (Internet protocol) is a transmission mode designed for use in voice and multimedia communications. As IP (Internet protocol)-based networks like the Internet seem to be most successful communications infrastructure, the traditional telephone network is currently being replaced VoIP. Nowadays, its clear improvements and advantages over the old systems make it a popular substitute, with a number of advantages. Among them:</p>  <p>The low cost of VoIP as compared to a traditional telephone network. There are any number of services available free of cost (like Skype) that allow you to communicate over distances long or short, PC-to-PC and free of cost.</p>  <p>VoIP is portable. Portability and mobility is another advantage of VoIP over traditional telephone; you only need an Internet connection for communication.</p>  <p>VoIP service includes a number of different advanced features not normally available with traditional telephone service, including call forwarding, conference call, caller ID, virtual numbers and more.</p>  <p>The advantages are many but this is not our main topic of discussion. (Likewise, there are a number of disadvantages, too: VoIP services depend on Internet connection speed; voice quality depends on the performance of your computer, and so forth). So what is our point in discussing this? What we examine here will be the security aspect of VoIP. In this article, we will review:</p>  <p>An overview of VoIP </p>  <p>What is Asterisk? (and what are the functionalities) </p>  <p>What is Trixbox? </p>  <p>VoIP hacking (Penetration testing on an asterisk based network)</p>  <p>With so many aforementioned advantages, VoIP is gaining popularity among both organizations and private users alike. But what about the security issues? As should be entirely predictable, any new technology immediately presents opportunities for those seeking to cause mischief. This is confirmed by reports I’m sure you’ve heard about: not just the phone hacking scandal in Britain, but the hacking in which thieves easily steal confidential information from a victim because their network was not secure.</p>  <p>If you are a pen tester or ethical hacker, then you have an idea about the importance of penetration testing in VoIP, because most of the important communications going on today occur on VoIP and securing confidential information is therefore critical. We will do some practical penetration testing on a VoIP-based network, but first of all I will show you how to build it.</p>  <p>Asterisk is an open-source software that can turn your computer into a communications server. There’s an asterisk software for PBX (private branch exchange) that allows you to make calls and transfer your data.</p>  <p>Trixbox is a wonderful software (or PBX: private branch exchange), based on the asterisk project. It was formally known as but in October 2006 it was renamed Trixbox. The difference between trixbox with other PBX is that trixbox is based on IP (Internet protocol) and has been designed for small and medium sized businesses. There are mainly two version of trixbox available: one is Trixbox CE (a free and open source), while the other – called Trixbox Pro – is one that you will need to purchase.</p>  <p>Protocols &amp; Ports</p>  <p>You must have an idea about the protocols and their ports before attempting to launch actual penetration testing on a VoIP network.</p>  <p>SIP (or session initiation protocol) has been defined by Internet Engineering Task Force (IETF) as the protocol for VoIP communication (in other words: a signaling protocol). SIP uses port 5060 and 5061 for both TCP and UDP.</p>  <p>SDP or session description protocol is for multimedia communications, while MGCP (media gateway control protocol) uses port number 2427 and 2727 for UDP.</p>  <p>RTP (real-time transfer protocol) defines the packets to deliver videos and audios on IP based network like VoIP. RTCP (RTP control protocol) is just like RTP, and it is used to structure the packets that are defined by RTP.</p>  <p>IAX (Inter-Asterisk eXchange) is an important protocol used in the asterisk system and is supported by a different soft-phone and PBX. IAX2 is the second version of IAX and works on the UDP port number 4569.</p>  <p>VoIP Penetration Testing</p>  <p>The process of penetration testing on a VoIP network is generally the same as the penetration testing on any other network. All we need to do is to follow the general guidelines, starting with information gathering, as we would with any form of penetration testing. We will do the same on VoIP network.</p>
-      
-      </p>
-      
-      <p>
-          <a href="/507.seo/" class="excerpt-link">Read More...</a>
+          <a href="/772.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -228,7 +232,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/tag/渗透/">← Newer Posts</a>
-    <span class="page-number">Page 2 of 4</span>
+    <span class="page-number">Page 2 of 5</span>
     <a class="older-posts" href="/tag/渗透/page/3/">Older Posts →</a>
   </nav>
 </main>

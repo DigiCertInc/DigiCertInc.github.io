@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>渗透某页游平台 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-12-24T16:30:05.000Z" itemprop="datePublished">
+          2012-12-25
+      </time>
+    
+    
+    | 
+    <a href='/tag/社工/'>社工</a>
+    
+    
+</span>
+    <h1 class="post-title">渗透某页游平台</h1>
+    <section class="post-content">
+      <p></p><p>作者：9999@f4ck</p>  <p>0x01.起因—为了部落</p>  <p>0x02.踩点—硬柿子</p>  <p>0x03.主站碰壁—鼻青脸肿</p>  <p>0x04.分站进行时—未战即降</p>  <p>0x05.僵局中闪现突破口—完成任务</p>  <p>0x06.扩大战果遇奇葩—步步为营</p>  <p>0x07.总结—耐心,恒心,细心</p>  <p><b>0x01. </b><b>起因..</b></p>  <p>一个朋友玩这个平台的某游戏, 跟以后生骂起来了, 找我帮忙搞出这人资料.. </p>  <p><b>0x02. </b><b>踩点</b></p>  <p>先随便看了看, 小收集一下资料.</p>  <p>主站连接全为phtml文件, 同IP有N个平台, 全是这家公司开的, 还有个开服表的站, 推送新开服内容全是其旗下平台的.. 恩.. 这个策略不错..</p>  <p>有个论坛, 每个平台指向的论坛地址不同, logo不同, 但是整合了ucenter的, 所以数据是相同的, dz x1.5架设, 同段不同服, [IP尾数差两位]</p>  <p>所有论坛地址加ucenter自动跳转同一个域名ucenter.<strong><strong>.com</strong></strong></p>  <p>恩, 目测创始站. Google下site:.com inurl:php|asp|aspx|jsp, 出来的都是论坛, 语句改为site:www.<strong><strong>.com inurl:php|asp|aspx|jsp 噢. </strong></strong></p>  <p>Aucun document ne correspond aux termes de recherche spécifiés (<b>site:.com inurl:php|asp|aspx|jsp</b>). 什么都没有..</p>  <p>主站于其他平台为同一服务器.</p>  <p>Hscan扫两个ip皆只开了80端口. http banner返回nginx, </p>  <p><a href="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image002.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image002_thumb.jpg" width="279" height="137"></a></p>  <p>测试文件尾名phtml phtmL, php pHp 确定都是<a href="http://ha.cker.in/tag/Linux" target="_blank">linux</a>服务器, </p>  <p>因未返回<a href="http://ha.cker.in/tag/nginx" target="_blank">nginx</a>版本, 继续测试<a href="http://ha.cker.in/tag/nginx" target="_blank">nginx</a>解析漏洞/.php, %00.php都失败. [两台服务器都测试了]</p>  <p>扫后台蛋都没扫出来.. 蛋开始隐隐作痛了..</p>  <p><b>0x03. </b><b>主站碰壁</b></p>  <p>在继续看主站.. </p>  <p>新闻和公共的连接方式都是</p>  <p><a href="http://www.****.com/index/news/gonggao/1103.phtm" target="_blank" rel="external">http://www.****.com/index/news/gonggao/1103.phtm</a></p>  <p><a href="http://www.****.com/index/news/news/4103.phtm" target="_blank" rel="external">http://www.****.com/index/news/news/4103.phtm</a></p>  <p>这样的, 像是htacsse rewrite了.</p>  <p>打开</p>  <p><a href="http://www.****.com/index/news" target="_blank" rel="external">http://www.****.com/index/news</a></p>  <p><a href="http://www.****.com/index/" target="_blank" rel="external">http://www.****.com/index/</a></p>  <p>都返回404, htacsse重定向没得跑了.</p>  <p>继续测试</p>  <p><a href="http://www.****.com/index/news/gonggao/1103-1.phtm" target="_blank" rel="external">http://www.****.com/index/news/gonggao/1103-1.phtm</a></p>  <p>失败, cookie值中无可利用方向.</p>  <p>查看二级域名, 看看能不能有个admin.<strong><em>.com之类的后台管理地址. 唉.. 只有www和bbs..</em></strong></p>  <p>在看看论坛吧, 顺便开始尝试<a href="http://ha.cker.in/tag/社工" target="_blank">社工</a>..进入公告发布板块看看管理员账户名, 同时</p>  <p><a href="http://whois.domaintools.com/*" target="_blank" rel="external">http://whois.domaintools.com/*</a>.com 一下看看注册域名和管理域名的人的资料.</p>  <p>都是domain@<em>**</em>.com …而且</p>  <p>Email Search: [这是这个email的图片]is associated with about <b>23 domains</b></p>  <p>23个域名.. 估计其他那些平台也都是这个邮箱注册的了..</p>  <p>在确定一下,随便查了几个其他平台的域名资料.. 果然都是这个邮箱…</p>  <p>资料填写也都是公司地址, 电话为座机, 和官网上的联系我们的号码是同样的.</p>  <p>蛋.. 你肿么了..</p>  <p><b>0x04.</b><b>分站进行时</b></p>  <p>公告板块翻了10几页, 发布公告人有13个以上.. ID都是GM0001-GM0024, ID都是20W+的.. 身份是编辑.. 用户组也改了名, 鼠标放到编辑二字上, 连接地址为home.php?mod=spacecp&amp;ac=usergroup&amp;gid=22 哦.. 因为dz从低级用户到管理员的groupID总共就10几个, 印象中.. 所以应该新建的用户组.. 不知权限如何.. 但估计很小..</p>  <p>点击名字查看资料却没有权限, 也懒得注册号去看, 因为应该还是没有权限的.. </p>  <p>这里就给个小tip, 也不是什么漏洞, 算是代码过滤不严谨吧. 是前段时间无意中发现的,.</p>  <p>———————————–Tip开始———————————–</p>  <p>Dz很多版本, 具体没有测试, 就是未注册用户和普通用户是没有权限查看其他用户资料的.</p>  <p>就拿官网举例吧, 公告发布人有个<a href="http://www.discuz.net/thread-2744369-1-1.html" target="_blank" rel="external"></a><cite>Cnteacher</cite>, ID是859, groupID也是1,即管理员权限. 想进入空间看资料, <a href="http://www.discuz.net/home.php?mod=space&amp;uid=859" target="_blank" rel="external">http://www.discuz.net/home.php?mod=space&amp;uid=859</a>, 却显示’请先登录后才能继续浏览’</p>  <p><a href="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image004.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image004_thumb.jpg" width="573" height="498"></a></p><br><a id="more"></a><p></p>
+<p></p><p></p>  <p>这时在url后面添加&amp;do=index&amp;view=admin 根据字面意思就是用admin权限浏览这个id的主页. 添加&amp;do=profile&amp;view=admin 就是用admin权限浏览这个id的个人资料. 如图</p>  <p><a href="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image006.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image006_thumb.jpg" width="573" height="326"></a></p>  <p>Ps:不要小看这些鸡肋的不算漏洞的漏洞, 有时能帮上大忙的.</p>  <p>———————————–Tip结束———————————–</p>  <p>这不, 现在就用上了, 可惜查看资料什么有用的资料都没有得到, 在查看ID为1的用户和前几的用户. </p>  <p>=-=, admin的用户组是新手上路. 高端啊. </p>  <p>2到20的ID只存在2个, 一个是test另外一个是test2.. 蛋.. 你不要死.. </p>  <p>蛋疼的在翻公告板块的帖子, 顺手试着已有的x1.5exp, 利索用当的失败.</p>  <p>同时惊喜的发现ID为GM0009的会员组为1. 管理员 这三个红红的大字看的我好开心.. 而且ID还有个9, 恩, 喜欢, 不过要是GM9999多好.. 虽然帖子内容中没发现什么有用的东西, 但起码有了安抚蛋的东西. 乖, 小蛋蛋, 不痛, 等下爆他菊花.</p>  <p>哦. 蛋蛋, 又让你失望了, 一点资料都没有留下.. 而目前得到的邮箱有两个, 一个是domain注册邮箱, 另外一个是联系我们中的hr邮箱… 即为hr@<strong><strong>.com ..</strong></strong></p>  <p>难道我还要扮演域名收购者和高级裸辞人员? Oh no, 这样的欺骗要念多少经来去除业障啊.. 还是先不要了..</p>  <p><b>0x05.</b><b>僵局中闪现突破口</b></p>  <p>僵局啊..</p>  <p>在去<a href="http://www.whoismind.com/" target="_blank" rel="external">http://www.whoismind.com/</a>在看看这个邮箱所注册的域名有没有其他的..</p>  <p>啊哈, 还有个开服表的站的, 居然忘记了看这个了, 一般开服表的都是dede改的.. 看看这个是什么.</p>  <p>哇哦, 这.. 还是连着ucenter的, 弄的很漂亮啊, 和校内网很像啊.</p>  <p><a href="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image008.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image008_thumb.jpg" width="573" height="102"></a></p>  <p>看起来不是dede了, 还是抱着试一试的态度看了下plus/search.php , 果然404..</p>  <p>扫扫后台吧, 在google一下. 顺便看一下新服连接方式.</p>  <p><a href="http://***" target="_blank" rel="external">http://***</a>.com/?do=yx&amp;key=&amp;game=<strong><strong></strong></strong></p>  <p>点击开始游戏的连接是</p>  <p>http:// <em>*</em>.com/?mygamesid=3728</p>  <p>看上去游戏啊, </p>  <p>点击进入是直接跳转到游戏进入页面了, 试一下提交?mygamesid=3728-1, 没用.. 加’ 直接跳到主页了.. 各种测试失败.. 继续看..</p>  <p>页面上有个开服时间选择, 接着测试. 无果..</p>  <p>Google也没有任何有用的.. </p>  <p>返回查看源代码, 看到开服时间选择哪里有两个变量, 一个是 ?newgamehrs=1 另外一个是?newgameday=2412这样的. 刚才在页面上只看到hrs=<em>的变量, 试试day的, </em></p>  <p>构造个url</p>  <p><a href="http://******" target="_blank" rel="external">http://******</a>.com/?newgamehrs=1&amp;newgameday=2412-1</p>  <p>Omfg!!! 有了!!!返回的内容不同了, 和2411相同!!</p>  <p>存在注入!!!!! 不知过滤怎样.. </p>  <p>?newgamehrs=1&amp;newgameday=2412 and 1=1直接403了.. 换.</p>  <p>?newgamehrs=1&amp;newgameday=2412/<strong>/aNd/</strong>/9=9</p>  <p>lmao!! 通过了, 跳转正确!!!!</p>  <p>?newgamehrs=1&amp;newgameday=2412/<strong>/aNd/</strong>/9=9999</p>  <p>内容位置返回空白..Oh no.. 盲注吗… 你怎能不报错… </p>  <p>抱着侥幸的心态打开源代码.. 啊哈哈哈, rp爆发了!</p>  <p>报错了, 可页面上怎么没有显示呢? 在看页面, 看着那仿校内网的顶端工具条.. 我..好像明白了什么… 这尼玛把报错的内容挡住了.. </p>  <p>哈哈哈, 不过心底的兴奋劲还是止不住, 继续扩展吧`</p>  <p>手工注入文章那么多, 就不详表了, 而且有工具能做到的东西, 就不费那个神了. </p>  <p>直接havij跑了, 替换几个敏感字符.</p>  <p><a href="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image010.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image010" border="0" alt="clip_image010" src="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image010_thumb.jpg" width="381" height="331"></a></p>  <p>走你~</p>  <p>成功注出. </p>  <p>可等等, host ip怎么有点不对劲..</p>  <p>Target: <a href="http://******.com/?newgamehrs=1&amp;newgameday=2412" target="_blank" rel="external">http://******.com/?newgamehrs=1&amp;newgameday=2412</a></p>  <p>Host IP: <strong>.*.</strong>.61</p>  <p>Web Server: nginx</p>  <p>DB Server: MySQL</p>  <p>Resp. Time(avg): 623 ms</p>  <p>Current User: <u><strong><strong>.com@localhost</strong></strong></u></p>  <p>Sql Version: 5.5.28-log</p>  <p>Current DB: **_com</p>  <p>Host Name: <strong>**</strong></p>  <p>Installation dir: /usr</p>  <p>System User: <u><strong><strong>.com@localhost</strong></strong></u></p>  <p>Compile OS: Linux</p>  <p>DB User: ‘<u>.com’@’localhost’</u></p>  <p>Data Bases: information_schema</p>  <p><strong>**</strong>_com</p>  <p>这里说一下, </p>  <p>库站是分离的,</p>  <p>在上面红色的地方, Ip尾数.. 这.. 又是另外一个同段服务器啊!!! 可刚才bing主站时明明查到这个站了! 换了? … </p>  <p>下划线的那个<strong><strong>.com是没见过的!! 不是之前遇到的任意一个!!</strong></strong></p>  <p>而且访问也无法打开, 查whois的注册人也是同一个邮箱.. 这是旧域名?</p>  <p>暂且先放下, 继续看.</p>  <p>Data bases 处只有**_com 这个域名是这个开服表的域名.. </p>  <p>Where is ucenter? Where is uc_members? Where is username, password, email, salt????</p>  <p>Wtf…蛋蛋.. 好久不见.. 你怎么又痛了? 你还好吗? </p>  <p>不过既然有这个表, 就证明这站有后台, 有独立的发布系统, 对了, 看看后台扫的如何了.</p>  <p>[havij同时在以龟速跑着表名]</p>  <p>好多403.. 但没有一个是后台.. 根据之前的url命名方式试着构建了几个个类似?do=admin, ?do=login的url, 可还都是失败..</p>  <p>这时想起刚才那个诡异域名, 把域名前的字母加上, 没有, <strong><strong>.com, 没有, </strong></strong>admin, 没有, admin<strong><strong>, 没有.. 擦, 生成个字典在跑一下, 把这些域名都加上.. 跑吧..</strong></strong></p>  <p>[havij同时在以龟速跑着system_user的列名]</p>  <p>——这里顺便提一下sqlmap.. 为什么我用他的速度是蜗牛速呢… 这么鄙视xp吗…——</p>  <p>啊哈哈哈, 后台跑出来了, 尼玛<a href="http://**" target="_blank" rel="external">http://**</a>.com/<strong><strong>guanliyuanlogin/ [这个</strong></strong>是那个db user的域名的字母, 以后成之为X.]</p>  <p>很好, 任你有多复杂, 也要被爆菊.</p>  <p>havij同时在扫后台的时候成功跑出adminuser和adminpass的数据, 密码还是md5收费数据, 说实话, 我挺喜欢md5收费数据的, 因为既然是收费的, 就证明是复杂的, 就证明是有用的. 恩, 就是这个逻辑.</p>  <p>登陆成功, 后台很简陋, 我就不截图了, 怕被对号入座.</p>  <p>但是呢.. 只有两个功能.. 管理, 添加…</p>  <p>而且.. 添加只有5行..游戏, 服务器, 开服时间, 游戏地址, 注册地址.. 连上传的地方都没有..更不提拿shell了…</p>  <p>蛋, 你理理我, 虽然让你很痛, 可你总也该习惯了吧. 不要不理我啊… 恩, 我知道, 你是在为爆菊做准备对吧.</p>  <p>看到亲爱的蛋蛋那么胸有成竹, 无形中给我增加了许多信心. 我知道, 他的筹码就是那个跑出来的密码. xD</p>  <p>开始艰辛的尝试了…</p>  <p>–此处成略无数字.–</p>  <p>蛋.. 你们懂得..</p>  <p>这尼玛有这样了.. 对了, 这个站又是另外一个同段IP了, 看看这服务器上还有什么站.</p>  <p>…..只有他….</p>  <p>恩…. 在查一下X的二级域名..</p>  <p>Inner.x.com</p>  <p>Plan.x.com</p>  <p>哈哈哈, inner是个内部公告的站点, dede的!!! </p>  <p>直接用刚才跑出来的那个后台尝试连接, 成功!! 登陆, 成功!!!</p>  <p>接下来就dede后台直接拿shell! 轻轻松松, 就不写了!</p>  <p>查看数据库配置文件, </p>  <p>$ dbhost = ‘192.168.1.9’;</p>  <p>$ dbname = ‘ Inner.x.com’;</p>  <p>$ dbuser = ‘ Inner.x.com’;</p>  <p>$ dbpwd = ‘ aduxNQCyRVxQRXh’;</p>  <p>$ dbprefix = ‘dede_’;</p>  <p>$ db_language = ‘gbk’;</p>  <p>在看下权限.</p>  <p><a href="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image012.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image012" border="0" alt="clip_image012" src="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image012_thumb.jpg" width="573" height="166"></a></p>  <p>…</p>  <p>2.6.32…</p>  <p>算了, 权限应该足以跨站了, 直接跨到开服表那站, 查看配置文件, 果然有主站配置, 而且还有个//后了的配置, dbname是Plan.x.com.. 这个又是什么呢?打开这个网站, </p>  <p>返回403, Ip指向的是另外一个同段服务器.. <strong>.*.</strong>.65…</p>  <p>这….</p>  <p>算了, 既然有ucenter的数据了, 直接完成任务就好了.</p>  <p>不过.. 问题又出现了.. 我不知道那人的网站ID.. 朋友也只知道他的游戏账户, 还像个随机生成的名字…</p>  <p>只能试试找这个名字了..</p>  <p><a href="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image014.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image014" border="0" alt="clip_image014" src="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image014_thumb.jpg" width="538" height="458"></a></p>  <p>果然没有… </p>  <p>有了, 让朋友去论坛骂他, 然后在游戏里告诉他, 不一会, 他果然去回帖了..</p>  <p>顺利查到邮箱,QQ,密码. 交给朋友, 搞定! 完美完成任务!</p>  <p><b>0x06.</b><b>扩大战果遇奇葩</b></p>  <p>任务完成了, 可习惯性的还是要继续扩大一下战果嘛.</p>  <p>对那个plan.x.com很好奇, 看了下旁站, 什么都没有, 就去扫了下端口. 是批量端口, 因为这很可能是内部计划或什么东西, 好奇啊.</p>  <p>扫的过程中在继续拿主站shell, dzx1.5.. 最近遇到的几个都没拿到, 希望这个1.5不是最新版本, 在uc_admin里的管理员账户密码破不出来, update了一下, 等下在改回来.</p>  <p>好运的是, 通过插件漏洞成功拿下shell!</p>  <p>这时<strong>.*.</strong>.65的端口扫出来了, 80,9527开放. 就是plan.x.com那站.</p>  <p>9527是什么..周星驰?? Web端口?? 有可能..</p>  <p>访问<a href="http://**.*.**.65:9527" target="_blank" rel="external">http://**.*.**.65:9527</a> 返回403. 啊哈, 果然是web端口, 访问http:// plan.x.com:9527/ 返回登陆界面!!!</p>  <p>这里就不截图了, 防对号入座.</p>  <p>用之前在数据库中发现的取消掉的那段//后的账户密码登陆数据库成功!</p>  <p>可.. admin_user里的密码都解不开.. update成123465的密文也登陆不了.. 这怎么加密的.. 也没shell, 库站也分离, 看不到login啊..</p>  <p>对了, 试着把这里的几个管理员的username在uc_members里找找, 看看密码能不能解出来..</p>  <p>一共6个管理员, 他妹的解出来4个, 可一个都登陆不上!!..</p>  <p>在看看数据库, 有个表居然叫login_logs… 我.. 点进去看了看… 瞎了.. 明文记录登陆密码…..</p>  <p>感觉where username=”那几个管理员的name”</p>  <p>每个都出来无数个密码, 是整站登陆记录.. 查我自己的也有.. 6G数据…可惜有太多太多重复了..</p>  <p>不过貌似得到了好多有用的密码, 论坛创始人账户也登陆上去了.</p>  <p>是了那么多密码, 居然只有一个能登陆上plan.x.com..</p>  <p>可.. 登陆进去后居然显示.. 请输入矩形图C6的数字. 密保卡!!!!!!!!!我操!!!!我说脏话了!!!!!!</p>  <p>冷静…</p>  <p>在看数据库, 看到有个奇怪的列名’plamsecurity’ 这.. 是密保卡吧.. 我记录下得到明文密码的账户的此列记录, 在update清空他, 再次登陆. 成功! 哈哈哈! 不过权限略小, 原来还有个admin_group_id列, 改为1, 退出重新登陆, 成功!</p>  <p>很华丽. 很强大的后台, 拿下shell, 本想脱掉login的库.. 可一备份就500time out, 本想分卷打包, 可总共才100w+会员, 要6G.. 我要下载要多久.. 去重复要多久.. 蛋又开始隐隐作痛…. </p>  <p><b>0x07.</b><b>总结</b></p>  <p>三个词, 耐心, 恒心, 细心. </p>  <p>成功就是靠的那些不起眼的地方.</p>  <p>没什么高深的地方, 小菜文, 第一次写过程, 见笑了.. </p>  <p></p> 9999@f4ck<p></p>
+
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/958.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/958.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/958.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/958.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/959.seo/">
+        ← 利用重复参数数组变量构造php免杀木马
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/957.seo/">
+        中国电信某IDC服务器的奇葩漏洞致服务器沦陷 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

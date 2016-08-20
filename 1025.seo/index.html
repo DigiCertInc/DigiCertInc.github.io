@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>本地快速搭建反向代理平台，实现sebug等高危漏洞验证 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-09-05T05:16:12.000Z" itemprop="datePublished">
+          2013-09-05
+      </time>
+    
+    
+    | 
+    <a href='/tag/反向代理/'>反向代理</a>
+    
+    
+</span>
+    <h1 class="post-title">本地快速搭建反向代理平台，实现sebug等高危漏洞验证</h1>
+    <section class="post-content">
+      <p>0x1,&#160; 惊闻某<a href="http://Ha.Cker.In/tag反向代理" target="_blank">反向代理</a>平台邀请码一码难求，苦比等了一晚上邀请码无果，大牛们都忙着脱裤，做为一名穷吊丝，只能靠自己的双手解决生理需要了</p>  <p>   <br>0x2 工具:破电脑一台，shell一个,反向代理程序1套(或者直接用apahce或者nginx),纸巾若干张，    <br>注:反向代理程序 用@vip推荐的<a href="http://code.google.com/p/7ghost/" target="_blank" rel="external">7ghost</a> ，或者<a href="http://code.google.com/p/php-dynamic-mirror/" target="_blank" rel="external">php-dynamic-mirror</a></p>  <p>   <br>0x3 本地搭建好代理程序 ,(本例采用7ghost为例),内网的一台192.168.1.200上搭建，过程简单，主要是要注意支持htaccess     <br><a href="http://img.cker.in/sebug_12AE4/clip_image002.jpg" target="_blank" rel="external"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="379" alt="clip_image002" src="http://img.cker.in/sebug_12AE4/clip_image002_thumb.jpg" width="660" border="0"></a>    <br>在7ghost页面替换成要扫描的网站 (废话！)，上图中的<a href="http://www.ge*u.cn/，所想要扫描的网址，马赛克没打好" target="_blank" rel="external">http://www.ge*u.cn/，所想要扫描的网址，马赛克没打好</a>    <br>0x4&#160; 修改本地host 192.168.1.200为shell的网址www.jpsdsd.com，然后安心的在sebug里面扫htt://www.jpsdsd.com即可,     <br><a href="http://img.cker.in/sebug_12AE4/clip_image004.jpg" target="_blank" rel="external"><img title="clip_image004" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="451" alt="clip_image004" src="http://img.cker.in/sebug_12AE4/clip_image004_thumb.jpg" width="660" border="0"></a>    <br><a href="http://img.cker.in/sebug_12AE4/clip_image005.jpg" target="_blank" rel="external"><img title="clip_image005" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="199" alt="clip_image005" src="http://img.cker.in/sebug_12AE4/clip_image005_thumb.jpg" width="663" border="0"></a>    <br>扫描的差不多了，提示高危漏洞，提示上传bugscan.txt验证到jpsdsd.com，打开你的菜刀直接传到真正的jpsdsd.com上去验证就行了    <br><a href="http://img.cker.in/sebug_12AE4/clip_image007.jpg" target="_blank" rel="external"><img title="clip_image007" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="318" alt="clip_image007" src="http://img.cker.in/sebug_12AE4/clip_image007_thumb.jpg" width="660" border="0"></a>    <br>然后，。就能查看高危漏洞了，，，    <br>ps：sebug扫描，实际上流量走的的本地的，并不是多台未知服务器对网站一阵狂扫,,,可以抓包看看    <br>2 ,在7ghost页面里，直接替换验证字符串不行，因为验证这步，是从sebug服务器出去的。</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1025.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1025.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1025.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1025.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/1026.seo/">
+        ← Base 64 Encoding 编码
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/1024.seo/">
+        给大家看看我使用的前无古人，后无来者的反调试方法 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

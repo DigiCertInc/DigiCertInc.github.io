@@ -45,27 +45,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-09-21T06:53:21.000Z" itemprop="datePublished">
-          2012-09-21
+      <time datetime="2012-09-28T01:59:48.000Z" itemprop="datePublished">
+          2012-09-28
       </time>
     
     
     | 
-    <a href='/tag/Wordpress/'>Wordpress</a>
+    <a href='/tag/包含漏洞/'>包含漏洞</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/844.seo/">Warning  scandir() has been disabled for security reasons in的解决方法</a></h2>
+      <h2 class="post-title"><a href="/868.seo/">php文件包含漏洞的解决方法</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        博客搬家后发现不能编辑主题了，错误如下：  Warning: scandir() has been disabled for security reasons in     原因是php禁用了scandir函数导致，我们去修改php.ini配置文件   在disable——functions后面 去掉scandir，保存后去把LNMP reload下   ./lnmp reload就ok了。
+        现在程序代码写的越来越千奇百怪，就一种文件包含的代码就能写出2种：require include   先说require 如果出错则终止输出，include 如果出错则继续执行。    如果一个网站的管理用户写在auth.php里，且auth.php被恶意删除了，如果用require则没有漏洞。    如果用include则产生漏洞，这是为什么?因为Include在遇到错误时会继续执行，这样用户密码就为空，就进入了后台。    再如果 
       
       </p>
       
       <p>
-          <a href="/844.seo/" class="excerpt-link">Read More...</a>
+          <a href="/868.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -74,27 +74,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-09-21T06:29:15.000Z" itemprop="datePublished">
-          2012-09-21
+      <time datetime="2012-09-28T01:07:32.000Z" itemprop="datePublished">
+          2012-09-28
       </time>
     
     
     | 
-    <a href='/tag/渗透/'>渗透</a>
+    <a href='/tag/支付漏洞/'>支付漏洞</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/841.seo/">一次郁闷的操0渗透 被跑单了</a></h2>
+      <h2 class="post-title"><a href="/865.seo/">支付漏洞的三种常见类型 imlonghao@wooyun</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>QQ:964323781</p>  <p>听说法克快一岁了呀 。祝法克 年年有今日 岁岁有今朝 有福同享有难同当 一日夫妻百日恩</p>  <p>算是个 单子站 把</p>  <p>浮尘基友 说有个单子可以做 3000呢</p>  <p>不知道此文章 可不可以弄到 纪念看里面去</p>  <p>目标站: <a href="http://www.oppein.com/">http://www.oppein.com/</a></p>  <p>看了下 NET的</p>  <p>我这个人那。不喜欢直接搞目标站。因为要是目标站都存在漏洞 那还是单子么。</p>  <p>当然 有一些是例外的</p>  <p><a href="http://img.cker.in/0_1394B/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/0_1394B/clip_image002_thumb.jpg" width="573" height="377" /></a></p>  <p>应该是有什么防火墙阻止ping之类的把。后来才知道 有麦咖啡。</p>  <p>Bing查找了下</p>  <p>旁注也有9个多把 是apche的</p>  <p>支持jsp 暗想：jsp拿下的话 权限应该很大</p>  <p>发现有disc nt的。但是没发现漏洞</p>  <p><a href="http://img.cker.in/0_1394B/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/0_1394B/clip_image003_thumb.jpg" width="601" height="644" /></a></p>  <p>后来发现 五六 个站</p>  <p>都是以这种形式出现的</p>  <p><a href="http://img.cker.in/0_1394B/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/0_1394B/clip_image004_thumb.jpg" width="601" height="364" /></a></p>  <p>Ip:XXX 后台</p>  <p><a href="http://img.cker.in/0_1394B/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/0_1394B/clip_image005_thumb.jpg" width="602" height="504" /></a></p>  <p>没发现什么可利用的信息</p>  <p>IP:xxxx 管理</p>  <p>IP:xxx 错误</p>  <p>IP:xxxx 注册</p>  <p>IP:xxxx 上传</p>  <p>IP:xxxx 登陆</p>  <p>操0 什么也没发现</p>  <p>于是扫了下端口</p>  <p>发现开放了80 3306 3389 21 8080</p>  <p>于是登陆3389看看。</p>  <p>Shift5下。哈哈 没出现什么东西</p>  <p>于是再次拿出Hscan 扫了下 IP段。</p>  <p>几分钟后。什么也没出现。关了</p>  <p>操蛋。旁注都是JSP的</p>  <p>傻逼了我</p>  <p>后来浮尘 发了个有ewebeditor编辑器</p>  <p>但是登陆的时候跳转到了后台 <a href="http://img.cker.in/0_1394B/clip_image007.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/0_1394B/clip_image007_thumb.jpg" width="573" height="276" /></a></p>  <p>然后就是各种弱口令。什么地了</p>  <p>但是也没成功</p>  <p>发现 旁注的后台</p>  <p><a href="http://www.zcfc.com/managerweb">http://www.zcfc.com/managerweb</a> 各种弱口令 社工 失败。</p>  <p>我艹</p>  <p>后来看了下这个站<a href="http://www.zcfc.com">http://www.zcfc.com</a> 刚好发现有注入</p>  <p>那边 浮尘 也发现了这个站的注入</p>  <p>&#160;<a href="http://img.cker.in/0_1394B/clip_image008.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/0_1394B/clip_image008_thumb.jpg" width="359" height="132" /></a></p>  <p>自己手工了下 and 1=1 and 1=2</p>  <p>正常 。错误。说明是有注入的</p>  <p>Order by 10 的时候 发现 net错误了</p>  <p>Order by 1 的时候 也错误了</p>  <p>这个时候 我明白了 用工具把。</p>  <p>于是把我发现的这个注入地址弄到havij上去</p>  <p><a href="http://www.zcfc.com/news_center.jsp?one_id=999999">http://www.zcfc.com/news_center.jsp?one_id=999999</a>.9</p>  <p>Target: <a href="http://www.zcfc.com/news_center.jsp?one_id=999999.9">http://www.zcfc.com/news_center.jsp?one_id=999999.9</a></p>  <p>Host IP: 116.254.253.50</p>  <p>Web Server: Microsoft-IIS/6.0</p>  <p>Powered-by: ASP.NET</p>  <p>DB Server: MySQL</p>  <p>Current DB: zhuxian</p>
+        <p>很久很久以前剑心大叔叫我写过这样一篇文章，当时还没放假，就没去搭理他，嘿嘿。最近，小E又来找我写关于支付漏洞的文章，好吧，写就写了，趁暑假还有一点余额，就写这篇文章和大家来谈谈支付漏洞。(写得不好,大牛勿怪)</p>  <p>———-</p>  <p>根据乌云上的案例，支付漏洞一般可以分为三类：一是在支付过程中直接发送含有需支付金额的数据包；二是没有对购买数量进行限制；三是程序的异常处理。下面就和大家说说这三种情况。</p>  <p>一：支付过程中直接发送含有需支付金额的数据包(常见)</p>  <p>危害指数：星星星星星</p>  <p>这种案例非常常见，主要针对支付宝等需要第三方支付的案例。开发人员往往会为了方便，直接在支付的关键步骤数据包中直接传递需要支付的金额，这种，只需要开个Fiddler2，甚至是直接通过审查元素就可以修改到需要支付的金额。我们来看一看乌云上的几个案例：</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-02272">顺丰宝业务逻辑漏洞(WooYun-2011-02272)</a> @空虚浪子心</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-07293">淘宝网某处存在严重支付漏洞(WooYun-2012-07293)</a> @imlonghao</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-07380">考试吧支付缺陷(WooYun-2012-07380)</a> @jxs</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-07528">263通信某处存在严重支付漏洞(WooYun-2012-07528)</a> @imlonghao</p>  <p>这里我就以淘宝网的那个支付漏洞来讲解一下，淘宝网手机充值这个地方的漏洞最为典型。</p>  <p><a href="http://img.cker.in/imlonghaowooyun_F072/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/imlonghaowooyun_F072/clip_image001_thumb.jpg" width="224" height="183" /></a></p>  <p>从这个发送的数据包中，我们可以发现开发人员直接将金额(seriesPrice)和购买短信的数量(seriesNum)一起发送，这是十分危险的操作。黑客可以通过修改seriesPrice和seriesNum的值，来达到1元购买10000条短信甚至是更多的短信数量。</p>
       
       </p>
       
       <p>
-          <a href="/841.seo/" class="excerpt-link">Read More...</a>
+          <a href="/865.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -103,27 +103,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-09-21T06:24:08.000Z" itemprop="datePublished">
-          2012-09-21
+      <time datetime="2012-09-27T22:19:34.000Z" itemprop="datePublished">
+          2012-09-28
       </time>
     
     
     | 
-    <a href='/tag/Webshell/'>Webshell</a>
+    <a href='/tag/12306/'>12306</a>,
+    
+    <a href='/tag/包含漏洞/'>包含漏洞</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/839.seo/">mdb解压缩VBS代码</a></h2>
+      <h2 class="post-title"><a href="/862.seo/">检测开发12306的公司：太极计算机股份有限公司</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        WebShell打包网站成MDB格式化后解压时用得到~  打包压缩代码.vbs  &#160;  Dim n, ws, fsoX, thePathSet ws = CreateObject(&quot;WScript.Shell&quot;)Set fsoX = CreateObject(&quot;Scripting.FileSystemObject&quot;)thePath = ws.Exec(&quot;cmd /c cd&qu
+        <p>国庆就要来了，返乡出行的高峰期来了，最近无论是身边还是网络上的都怨声载道啊，原因就是火车票，网上订票系统12306真是没话说了，大家都懂的！</p>  <p>于是最近大家都把气撒在了收1.99亿开发出这么个破网站的公司：“太极”身上，主页<a href="http://www.taiji.com.cn/">http://www.taiji.com.cn/</a></p>  <p>下面我就把过程写出来和大家分享。</p>  <p>打开主页的网址默认跳到了这个链接</p>  <p><a href="http://www.taiji.com.cn/coboportal/portal/compayindex.ptview">http://www.taiji.com.cn/coboportal/portal/compayindex.ptview</a></p>  <p>鼠标随便停在新闻链接上状态栏显示如下，</p>  <p><a href="http://img.cker.in/12306_C8D8/clip_image002.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/12306_C8D8/clip_image002_thumb.jpg" width="596" height="209" /></a></p>  <p><a href="http://www.taiji.com.cn/coboportal/portal/itservice.ptview?funcid=showGSWZInfoLink&amp;infoSortId=52802&amp;infoLinkId=13962&amp;viewJsp=gswz/newsevents/newsshowcontent.jsp">http://www.taiji.com.cn/coboportal/portal/itservice.ptview?funcid=showGSWZInfoLink&amp;infoSortId=52802&amp;infoLinkId=13962&amp;viewJsp=gswz/newsevents/newsshowcontent.jsp</a></p>  <p>试了试infoSortId=52802这里是木有注入的哦，不过看着viewjsp这个参数有点特别哦，后面直接接上相对路径真是jsp文件地址了，于是我们来试试包含漏洞或者任意文件下载漏洞~</p>  <p>构造如下地址：</p>  <p><a href="http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869%20&amp;viewJsp=index.jsp">http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869%20&amp;viewJsp=index.jsp</a></p>  <p>打开发现404如图：</p>  <p><a href="http://img.cker.in/12306_C8D8/clip_image004.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/12306_C8D8/clip_image004_thumb.jpg" width="596" height="338" /></a></p>  <p>继续构造，把viewJsp=index.jsp改为viewJsp=../index.jsp：</p>  <p><a href="http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869%20&amp;viewJsp=../index.jsp">http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869%20&amp;viewJsp=../index.jsp</a></p>
       
       </p>
       
       <p>
-          <a href="/839.seo/" class="excerpt-link">Read More...</a>
+          <a href="/862.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -132,31 +134,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-09-20T23:35:56.000Z" itemprop="datePublished">
-          2012-09-21
+      <time datetime="2012-09-27T22:12:45.000Z" itemprop="datePublished">
+          2012-09-28
       </time>
     
     
     | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/php/'>php</a>,
-    
-    <a href='/tag/手工注入/'>手工注入</a>
+    <a href='/tag/支付漏洞/'>支付漏洞</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/836.seo/">和我一起进行php渗透</a></h2>
+      <h2 class="post-title"><a href="/859.seo/">普联商城存在支付漏洞(已发乌云联系厂商修复)</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>作者:Maxil   <br />已经发表在黑客手册2008年第三期</p>  <p>最近一直比较关注<a href="http://ha.cker.in/tag/PHP" target="_blank">PHP</a>注射的东西.学习好几天了.也应该实战一下了.目标<a href="http://app.xxxx.com">http://app.xxxx.com</a> .一个市场调查的门户.找注射点嘛,还是要用我们可爱的搜索引擎.为什么可爱呢?一会就知道了.Go Go Go !!!!!</p>  <p>在google中搜索php?id= site:xxx.com.意思就是说搜索XXX网站中以php?id=的URL.嘿.还真让我找到一个. <a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> .打开吓我一条，它页面本身就存在错误直接出来了绝对路径.   <br /><a href="http://img.cker.in/php_DA62/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/php_DA62/clip_image001_thumb.jpg" width="1086" height="498" /></a></p>  <p>/data01/www/cati/article_literature.php 呵呵,人品爆发了..通过路径可以得知是台Linux主机.判断下是否可以进行注射.and 1=1返回正常,and 1=2返回错误..OK存在注射.然后我们判断数据库,不出意外应该是mysql.传说中的LMAP.环境(L=Linux M=Mysql A=Apache P=Php)   <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11/*">http://app.xxx.com/cati/article_literature.php?id=11/*</a> 在后面加上/<em>,返回正常则是Mysql.因为/</em>是Mysql的注释标记.</p>  <p><a href="http://img.cker.in/php_DA62/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/php_DA62/clip_image002_thumb.jpg" width="1086" height="498" /></a></p>  <p>返回正常,确定是Mysql的数据库.现在我们来检测下Mysql的版本.4.0以上支持union联合查询.一般都回是4.0已经.为什么.因为Mysql是开源的数据库不收费傻子才不更新呢.呵呵.   <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> and ord(mid(version(),1,1))&gt;51/<em> 如我所料.果然是4.0以上的.OK.我们来爆它的字段.    <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> order by 10</p>  <p><a href="http://img.cker.in/php_DA62/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/php_DA62/clip_image003_thumb.jpg" width="749" height="508" /></a></p>  <p>返回错误,说明字段小于10   <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> order by 9</p>  <p><a href="http://img.cker.in/php_DA62/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/php_DA62/clip_image004_thumb.jpg" width="1030" height="548" /></a></p>  <p>返回正常说明它有9个字段.OK.现在我们知道它的字段那我们就来爆它的管理员吧 呵呵.   <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> and 1=2 union select 1,2,3,4,5,6,7,8,9</p>  <p><a href="http://img.cker.in/php_DA62/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/php_DA62/clip_image005_thumb.jpg" width="848" height="337" /></a></p>  <p></p>
+        TP-Link官方商城支付漏洞：http://www.tp-linkshop.com.cn/  选购一台路由器吧     既然可以游客购买，就不注册了     提交订单信息      进入结算了，选择支付宝付款，其他支付方式未测试     这里到关键地方了，用Firefox的插件Tamper拦截表单，我们看到amount的值就是价格修改amount的值，我就改个一分钱测试：        点确定，跳到支付宝网站进入付款流程     我用
       
       </p>
       
       <p>
-          <a href="/836.seo/" class="excerpt-link">Read More...</a>
+          <a href="/859.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -165,34 +163,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-09-17T20:16:45.000Z" itemprop="datePublished">
-          2012-09-18
+      <time datetime="2012-09-27T11:33:02.000Z" itemprop="datePublished">
+          2012-09-27
       </time>
     
     
     | 
-    <a href='/tag/12306/'>12306</a>
+    <a href='/tag/burpsuite/'>burpsuite</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/834.seo/">10行代码开发完12306订票系统</a></h2>
+      <h2 class="post-title"><a href="/856.seo/">Burp suit截包上传 - 联想最后一个的站点沦陷</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        &lt;!doctype html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;铁路客户服务中心--客运服务&lt;/title&gt;
-    &lt;meta charset=&quot;utf-8&quot;&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;script&gt;alert('当前访问用户过多，请稍后重试！');&lt;script&gt
+        <p>老规矩了，是这个站点呢</p>  <p><a href="http://ask.lenovomobile.com/">http://ask.lenovomobile.com/</a></p>  <p>联想乐问吧，是咨询关于联想产品问题的地方吧！这次不牛B了。</p>  <p><a href="http://img.cker.in/Burpsuit_14F74/clip_image001.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Burpsuit_14F74/clip_image001_thumb.jpg" width="1066" height="662" /></a></p>  <p>2.我也来问个问题吧，这里只是测试呢！一不小心瞅到有个上传图片的地方呢！have a try！我上传一个正常图片看看先。</p>  <p><a href="http://img.cker.in/Burpsuit_14F74/clip_image002.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Burpsuit_14F74/clip_image002_thumb.jpg" width="1066" height="662" /></a></p>  <p>3.上传test.jpg吧，我最常用的头像，哈哈，内置菜刀一句话！点击上传咯</p>  <p></p>  <p><a href="http://img.cker.in/Burpsuit_14F74/clip_image003.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/Burpsuit_14F74/clip_image003_thumb.jpg" width="1035" height="556" /></a></p>  <p>4.上传的时候，顺便抓个包看下怎么个上传的，看到filename=&quot;test.jpg&quot;,这里是不是可以改下呢？</p>  <p><a href="http://img.cker.in/Burpsuit_14F74/clip_image004.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/Burpsuit_14F74/clip_image004_thumb.jpg" width="839" height="480" /></a></p>
       
       </p>
       
       <p>
-          <a href="/834.seo/" class="excerpt-link">Read More...</a>
+          <a href="/856.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -201,27 +192,31 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-09-16T05:56:40.000Z" itemprop="datePublished">
-          2012-09-16
+      <time datetime="2012-09-25T05:56:48.000Z" itemprop="datePublished">
+          2012-09-25
       </time>
     
     
     | 
-    <a href='/tag/渗透/'>渗透</a>
+    <a href='/tag/提权/'>提权</a>,
+    
+    <a href='/tag/内网渗透/'>内网渗透</a>,
+    
+    <a href='/tag/嗅探/'>嗅探</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/831.seo/">对王心凌的一次渗透过程</a></h2>
+      <h2 class="post-title"><a href="/852.seo/">对居然之家的一次内网渗透</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>From:www.3est.com&#160; <br />Author:Mars&#160; <br />前几天,听说Cyndi出新专辑了,哥好激动啊..听了几天Music.突然萌发了个思想！想了解更多的有关于她的资料.下面一出好戏即将上演！</p>  <p>总共有三个步骤 ：1.先分析 2.再踩点 3.最后渗透</p>  <p>拿到一个目标要先学会分析,首先Cyndi是位明星,所以利用搜索引擎是不可能搜索到什么有价值的信息.&#160; <br />一般明星在网络上都有自己的Fans基地,好吧.目标已经确定了！    <br />通过百度搜索到一个她留言过的Fans基地<a href="http://www.cyndifans.net/">www.CyndiFans.net</a>    <br />既然目标确定了,该执行第二步了.去ip.3est.com 反查询一下它所在的服务器上还有其他站点没！查询结果如下:&#160; <br /><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image001_thumb.jpg" width="449" height="259" /></a></p>  <p>大概看了下,基本都采用Dz7.0+Uchome+SiteSuper7.5 组合!&#160; <br />手里又没0day.所以没抱有太大希望.只好采用ARP方式来看看能获得什么有价值的信息,首先得先获得C段一台服务器权限,&#160; <br />拿出平时常用的Hscan 来扫描一下有C段没有Ftp弱口令.&#160; <br />悲剧了！竟然一个没扫出来.接着用IIS利用工具扫描下C段.记录装有IIS6.0的服务器IP&#160; <br />因为他的IP是xx.xx.xx.154 大多数情况是1或者129作为网关，叫前C段和后C段,154距离129比较,所以目标放在129-255之间！    <br />然后进入cn.bing.com输入ip:xx.xx.xx.xx 搜索下后C段装有IIS6.0的服务器IP 看看有什么站.一般各类型网站多的的就是虚拟主机,排除掉这些,&#160; <br />就剩下2台主机了..汗 真郁闷..那么集中精力看看其中一台xx人才网,wwwscan扫描下没扫描到有价值东西,进入网站转悠了半天,&#160; <br />在他的分站点了个图片属性,路径是ewe我猜想了下应该是Ewebeditor这个编辑器，输入ewe/admin/admin_login.asp 发现后台被删了,&#160; <br />数据库是默认的先下载下来看看有没有被人搞过,结果失望了.运气不怎么好..先休息下再搞了..去群里聊了会天    <br />过几个小时,来了精神.继续在它的网站转悠,我觉得问题最多的还是上传的地方,就注册了个会员.进入管理中心没有发现什么上传的位置,&#160; <br />接着又注册了个企业会员.发现了个上传企业照片的地方.把小马改成1.asp;.jpg格式结果上传成功了.没提示路径.用抓包工具看一下.&#160; <br />总算见到可爱的小马..拿到webshell之后,开始提权,结果那破服务器慢的要死.开个高速VPN,速度果然提升了.随便看了下感觉提权无望.&#160; <br />.基本组建都被卸载了.目录还不能查看.有SU不过是9.1版本没溢出漏洞.唉 权限配置的很死.看来管理员挺懂安全啊.看了下配置文件最后发现个sa,&#160; <br />哈哈 激动死了!直接加系统用户拿到服务器权限.然后更变态的事情发生了.进去看任务管理器竟然CPU100%总共运行72个进程..&#160; <br />我的天啊…这么破烂的服务器一ARP不就挂掉了.我一个一个把没用的进程结束掉.到30个进程了.在结束服务器就挂了.&#160; <br />然后打开我的电脑管理想看看这服务器是什么高级配置.结果点了属性Shell32.dl被禁,进C盘弹出拒绝访问..打开网页不让下载东西..&#160; <br />一系列的问题皆然发生！终于把Cain放到服务器了.还好不出我所预料.这个服务器网关是129. 哈哈只能扫到后C段的服务器Mac .&#160; <br />然后开始ARP 154这个主机,嗅探开始了.他服务器装有ARP防火墙软件把发送的数据给拦截了..&#160; <br />这时候想起玫瑰的ARP突破方法,结果试验了下没成功,后来配合幻境网盾用了下.成功欺骗突破防火墙.终于嗅探到数据了,&#160; <br />挺高兴的.结果5秒钟都没,Cain卡爆了！服务器挂了10分钟我才登录上.发现嗅探到的3万多个Http信息竟然都是盛大传奇的,&#160; <br />我纳闷了会,地址确实是盛大的!&#160; <br /><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image002_thumb.jpg" width="535" height="251" /></a></p>
+        <p>先上图：</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image001_thumb.jpg" width="508" height="287" /></a></p>  <p>本来是不想搞站的，专心学点编程，可是老是有人来找我帮忙什么的。。。搞完这个我想专心学点编程，俗话说不会编程的黑客不算是高富帅。。。所以说，你懂得。</p>  <p>进入正题</p>  <p>1. 主站摸索</p>  <p>2. 旁站摸索</p>  <p>3. 旁服摸索</p>  <p>4.</p>  <p>不开玩笑了。。</p>  <p>嫖叔尝试过主站服务器了，但是没有搞下来，我这人比较懒，当时也没有追随着嫖叔的脚步搞那个db权限的注射点，一来好久没搞注入了，二来对注入也无爱了。后来玩命有一天很激动的告诉我说拿到了旁服上的一个shell，叫我提权试试，我想了想，既然这是个企业站，注册资金据说有8100w，肯定很有钱，服务器肯定也是大大的有，放在内网的话还能内网渗透一下，于是就上了。</p>  <p>顺便说下，玩命搞到的那个shell是通过注射加后台上传拿到的，大家就别再搞了。</p>  <p>上了shell看了下，权限很大，几乎全盘浏览了，支持asp，aspx，php，翻了下看见了xampp，管理员还真懒，mysql估计就是系统权限运行的，而且我猜root密码还是默认为空。于是翻查数据库连接文件，管理员果然没让我失望</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image002_thumb.jpg" width="508" height="305" /></a></p>  <p>于是果断mysql导出udf提权，加了个系统权限的用户，上了rootki.asp（这玩意用系统帐号登录，权限为system，比较方便）</p>  <p>查了下远程桌面端口发现没改，ipconfig发现是双网卡，但都在内网，装了金山杀毒软件和金山管理软件（不记得是不是这个名字了）</p>  <p>上传lcx想转发端口的，可惜被杀了，试了下taskkill，ntsd都不能把杀毒的进程给杀完，最主要的杀毒进程杀不掉，没办法，找小陈做了个免杀，自己又是外网（怨念哪。。当初花150买了个90块钱的tplink路由器，结果发现不能把自己放到dmz去，端口映射也不行，被黑出翔了，如果我是外网的，可以做更多的事的，反弹到我这里，用metasploit进行内网渗透。。。嘿嘿，留口水了）于是上外网服务器操作了，那慢的叫我想死了。。。不过好歹有个桌面环境给我操作，不用一直命令行了。</p>  <p>既然是内网，当然是要内网搞一搞了，但是之前我在服务器上翻了下，发现了装有winwebmail，这玩意一开始查同服的时候就知道了，只不过貌似限制了ip登录，但是我控制了服务端，不怕限制ip登录，以后可以作为一个信息来源，先留着。</p>  <p>Cmd下执行各种命令对内网环境做一个基本的了解。</p>  <p>C:Documents and Settingsfucker&gt;net view /domain 查看有几个组</p>  <p>Domain————————————————————-</p>  <p>MYGROUP</p>  <p>WORKGROUP</p>  <p>命令成功完成。</p>  <p>C:Documents and Settingsfucker桌面Pwdump7&gt;netview（查询有关系的机器）</p>  <p>服务器名称 注释</p>  <p>————————————————————————</p>  <p>EFGP</p>  <p>IBM</p>  <p>IIBM</p>  <p>JR141&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; jr141</p>  <p>JR142</p>  <p>JURANZHIJIALEWU</p>  <p>JURZJCTI-9897F9</p>  <p>LEWU</p>  <p>OASERVER</p>  <p>POS27&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos27</p>  <p>POS28</p>  <p>POS29&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos29</p>  <p>POS30&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos30</p>  <p>USER-87C8B53A9C</p>  <p>命令成功完成。</p>  <p>C:Documents and Settingsfucker&gt;net view/domain:workgroup（查看workgroup组下的机器）</p>  <p>服务器名称 注释</p>  <p>——————————————————————</p>  <p>EFGP</p>  <p>IBM</p>  <p>JR141&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; jr141</p>  <p>JR142</p>  <p>JURANZHIJIALEWU</p>  <p>JURZJCTI-9897F9</p>  <p>LEWU</p>  <p>OASERVER</p>  <p>POS27&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos27</p>  <p>POS28</p>  <p>POS29&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos29</p>  <p>POS30&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos30</p>  <p>命令成功完成。</p>  <p>C:Documents and Settingsfucker&gt;net view/domain:mygroup（查询mygroup组下的机器）</p>  <p>服务器名称 注释</p>  <p>————————————————————————-</p>  <p>AP-3850-3&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Samba Server Version 3.0.33-0.17.el4</p>  <p>GP53&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Samba Server Version 3.0.33-3.28.el5</p>  <p>命令成功完成。-</p>  <p>其实这些东西查询出来</p>
       
       </p>
       
       <p>
-          <a href="/831.seo/" class="excerpt-link">Read More...</a>
+          <a href="/852.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -229,7 +224,7 @@
   
   <nav class="pagination" role="pagination">
     
-    <span class="page-number">Page 1 of 3</span>
+    <span class="page-number">Page 1 of 5</span>
     <a class="older-posts" href="/archives/2012/09/page/2/">Older Posts →</a>
   </nav>
 </main>

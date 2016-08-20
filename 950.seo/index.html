@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>最新FCKEditor ASP上传绕过漏洞 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-12-05T19:15:26.000Z" itemprop="datePublished">
+          2012-12-06
+      </time>
+    
+    
+    | 
+    <a href='/tag/fckeditor/'>fckeditor</a>
+    
+    
+</span>
+    <h1 class="post-title">最新FCKEditor ASP上传绕过漏洞</h1>
+    <section class="post-content">
+      <p></p><p>exploiut-db：</p>  <p><a href="http://ha.cker.in/tag/fckeditor" target="_blank">FCKEditor</a> ASP Version 2.6.8 File Upload Protection Bypass </p>  <p>- Title: FCKEditor 2.6.8 ASP Version File Upload Protection bypass    <br>- Credit goes to: Mostafa Azizi, Soroush Dalili     <br>- Link:<a href="http://sourceforge.net/projects/fckeditor/files/FCKeditor/" target="_blank" rel="external">http://sourceforge.net/projects/fckeditor/files/FCKeditor/</a>     <br>- Description:     <br>There is no validation on the extensions when FCKEditor 2.6.8 ASP version is     <br>dealing with the duplicate files. As a result, it is possible to bypass     <br>the protection and upload a file with any extension.     <br>- Reference: <a href="http://soroush.secproject.com/blog/2012/11/file-in-the-hole/" target="_blank" rel="external">http://soroush.secproject.com/blog/2012/11/file-in-the-hole/</a>     <br>- Solution: Please check the provided reference or the vendor website.     <br>- PoC:<a href="http://www.youtube.com/v/1VpxlJ5jLO8?version=3&amp;hl=en_US&amp;rel=0&amp;vq=hd720" target="_blank" rel="external">http://www.youtube.com/v/1VpxlJ5jLO8?version=3&amp;hl=en_US&amp;rel=0&amp;vq=hd720</a>     <br>&quot;     <br>Note: Quick patch for FCKEditor 2.6.8 File Upload Bypass:     <br>In “config.asp”, wherever you have:     <br>&#160;&#160;&#160;&#160;&#160; ConfigAllowedExtensions.Add&#160;&#160;&#160; “File”,”Extensions Here”     <br>Change it to:     <br>&#160;&#160;&#160;&#160;&#160; ConfigAllowedExtensions.Add&#160;&#160;&#160; “File”,”^(Extensions Here)$” </p>  <p>&#160;</p>  <p>&#160;</p>  <p>php测试无效    <br>asp/aspx测试成功：     <br>来到/FCKeditor/editor/filemanager/connectors/test.html     <br>因为结合了之前二次上传的漏洞，所以先上传任意内容的文件：asd.asp.txt </p>  <p><a href="http://ha.cker.in/tag/burpsuite" target="_blank">burpsuite</a>上传包并修改，repeater     <br>名字改为asd.asp%00txt&#160;&#160;&#160; 然后把%00专为URL编码上传后得到asd(1).asp</p>  <p>如图，<a href="http://ha.cker.in/tag/webshell" target="_blank">webshell</a>为：<a title="http://localhost/userfiles/file/asd(1).asp" href="http://localhost/userfiles/file/asd(1).asp" target="_blank" rel="external">http://localhost/userfiles/file/asd(1).asp</a></p>  <p><a href="http://img.cker.in/FCKEditorASP_9E47/image.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="image" border="0" alt="image" src="http://img.cker.in/FCKEditorASP_9E47/image_thumb.png" width="884" height="500"></a> </p>  <p>无需翻墙视频</p> <embed width="850" height="490" type="application/x-shockwave-flash" src="http://v6.tinypic.com/player.swf?file=29o5r48&amp;s=6"><br><font size="1"><a href="http://tinypic.com/player.php?v=29o5r48&amp;s=6" target="_blank" rel="external">Original Video</a></font><p></p><p></p>
+
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/950.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/950.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/950.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/950.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/951.seo/">
+        ← 深夜劫持雾隐技术小组
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/949.seo/">
+        链路劫持攻击一二三 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

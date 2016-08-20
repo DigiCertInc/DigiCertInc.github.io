@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>短信平台相关常见问题整理 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-12-13T19:05:04.000Z" itemprop="datePublished">
+          2012-12-14
+      </time>
+    
+    
+    | 
+    <a href='/tag/钓鱼/'>钓鱼</a>,
+    
+    <a href='/tag/爆破/'>爆破</a>,
+    
+    <a href='/tag/短信轰炸/'>短信轰炸</a>
+    
+    
+</span>
+    <h1 class="post-title">短信平台相关常见问题整理</h1>
+    <section class="post-content">
+      <p>在近期的渗透测试项目中，在短信平台相关功能都出现了一些问题，现对渗透过程中发现，及wooyun上出现的相关短信平台的几类问题做个整理。</p>  <p>一、短信发送无频率限制</p>  <p>通过wooyun上搜索可见，该类漏洞是最为常见的。</p>  <p>漏洞相关链接：</p>  <p>万网发验证信息，无限时。无限次数形成<a href="http://ha.cker.in/tag/短信轰炸" target="_blank">短信轰炸</a> <a href="http://www.wooyun.org/bugs/wooyun-2010-07592" target="_blank" rel="external">http://www.wooyun.org/bugs/wooyun-2010-07592</a>    <br>盛大网络短信ddos攻击漏洞 <a href="http://www.wooyun.org/bugs/wooyun-2010-02773" target="_blank" rel="external">http://www.wooyun.org/bugs/wooyun-2010-02773</a></p>  <p>漏洞成因： 对发送信息功能调用未做任何限制</p>  <p>漏洞危害：</p>  <p>1、可针对某用户短时间内发送大量垃圾短信，造成短信轰炸攻击；</p>  <p>2、对于企业，每发一条短信，都是需要向运营商交付一些费用，尽管比个人用户费用低，但是一旦被恶意利用大量发送后，造成较大的直接经济损失。</p>  <p>漏洞修补：</p>  <p>1、限定同一手机号在一时间段内发送次数，如每分钟发送1次，具体落实需结合用户体验综合考虑；</p>  <p>2、使用强壮的验证码机制。</p>  <p>补充：曾在测试中发现某客户的验证码有效期为2分钟，即2分钟内无需修改验证码直接成功回放请求包，同样可造成短信炸弹工具。因此，务必保证验证码的强壮型，并采用一次一用机制。</p>  <p>二、短信发送内容来自客户端</p>  <p>这类漏洞一般不直观，直接由用户输入来定义短信内容的问题确实没遇到过，这里的漏洞是把短信内容放在的POST表单中，从页面上无法发现，需要抓包分析才能看到。</p>  <p>相关漏洞：</p>  <p>（知道这漏洞是哪家的同学也请嘘，咱不讨论它是谁的，另漏洞已经修补了）</p>  <p>某系统可以在WEB页面上选择手机品牌和型号，填入手机号码可发送下载地址至手机，具体操作界面如下图：</p>  <p><a href="http://img.cker.in/9dedeb5ea29c_9BB4/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/9dedeb5ea29c_9BB4/clip_image001_thumb.jpg" width="593" height="327"></a></p><br><a id="more"></a><br><p></p>  <p>抓包查看该POST表单的内容</p>  <p><a href="http://img.cker.in/9dedeb5ea29c_9BB4/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/9dedeb5ea29c_9BB4/clip_image002_thumb.jpg" width="878" height="308"></a></p>  <p>正常情况下，用户收到的短信即为客户端提交的内容：“var1下载：var2”，var1和var2分别为手机品牌和手机型号。</p>  <p>例如“NOKIA   <br>N97下载：wap.abc.com.cn/abc.sisx”。</p>  <p>由于短信内容为客户端定义的，即修改var1=NULL，var2=“恭喜您中奖，请登陆XXX领取”。此时目标手机收到短信为：“下载：恭喜您中奖，请登陆XXX领取”。最终造成钓鱼攻击。</p>  <p>漏洞原因：</p>  <p>直接原因是客户端可控制短信内容。但更深层次去追究，实际上是开发人员追求性能和效率，把重要的操作分发给客户端去做，而忽视其中安全问题导致的，这也是开发人员考虑问题重心偏移和安全从业者不同的体现。类似，为追求性能而导致有意思的漏洞：sohu邮箱任意用户密码重置 <a href="http://www.wooyun.org/bugs/wooyun-2010-04728" target="_blank" rel="external">http://www.wooyun.org/bugs/wooyun-2010-04728</a></p>  <p>漏洞危害：</p>  <p>该类漏洞一般被用户<a href="http://ha.cker.in/tag/钓鱼" target="_blank">钓鱼</a>欺诈，直接受害者为最终用户，也使得企业方遭受名誉损失。</p>  <p>漏洞修补：</p>  <p>短信发送文字内容应由服务器来定义，客户端应触碰不到。可以制定为键-值对，客户端只能选择键，然后在服务端匹配到键相应的值，再把值内容发送给用户手机。</p>  <p>三、手机验证过程中pin码可爆破</p>  <p>这类问题常出现在“密码找回”、“绑定手机”等功能处。正常工作流程一般为在页面提交手机号，然后短信平台会发送一个pin码给手机，再将pin码提交回给服务器，完成身份认证或绑定。</p>  <p>相关漏洞：</p>  <p>微信任意用户密码修改漏洞 <a href="http://www.wooyun.org/bugs/wooyun-2010-011720" target="_blank" rel="external">http://www.wooyun.org/bugs/wooyun-2010-011720</a></p>  <p>该漏洞在爆破pin码阶段相当精彩，先赞一个。</p>  <p><a href="http://www.wooyun.org/whitehats/only_guest" target="_blank" rel="external">only_guest</a>大牛说了：</p>  <p><a href="http://img.cker.in/9dedeb5ea29c_9BB4/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/9dedeb5ea29c_9BB4/clip_image003_thumb.jpg" width="521" height="106"></a></p>  <p>因此，这类漏洞成因：</p>  <p>1、pin码太弱，短位的纯数字组合，极易爆破；</p>  <p>2、高频由同一源发类似请求包，这么像CC攻击了，服务器总该做点反应吧。</p>  <p>漏洞危害：</p>  <p>需根据实际功能来定，大则如漏洞标题，任意用户密码修改。且即便看似难以利用，在大牛手上将会用神奇的构思，来证明漏洞的危害。近期，<a href="http://www.wooyun.org/whitehats/pysolve" target="_blank" rel="external">pysolve</a>大牛就在做这样的事情。</p>  <p>漏洞修复：</p>  <p>使用长度和复杂性足够强壮的Pin码，防止被<a href="http://ha.cker.in/tag/爆破" target="_blank">爆破</a>。</p>  <p>四、短信平台自身的问题</p>  <p>先不论短信平台的应用层面的漏洞，我在测试过程中遇到的问题是：弱口令！直接登陆到短信平台。</p>  <p><a href="http://img.cker.in/9dedeb5ea29c_9BB4/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/9dedeb5ea29c_9BB4/clip_image004_thumb.jpg" width="969" height="325"></a></p>  <p>漏洞成因：</p>  <p>维护人员的安全意识问题。</p>  <p>该短信平台只能通过IP访问，未绑定URL。我知晓其存在是由于客户提供了资产列表。站在客户的视角，外部用户难以发现短信平台入口，因此并不重视其安全性。但后续我发现通过Google hack也是能找到这个短信平台的。且有数字浏览器如此强大的存在，怎么可能产生互联网孤岛呢？</p>  <p>另外短信平台一般是由第三方提供，企业做为使用者难以保证其安全性，因此也可能存在常规WEB应用漏洞。</p>  <p>漏洞危害：</p>  <p>短信平台的操作权限一旦被恶意攻击者获取，上述提及的几类漏洞危害都有可能导致。</p>  <p>漏洞修复：</p>  <p>站在企业的角度，对于这样一个第三方系统，进行代码审计、渗透测试，成本投入都略显过大，因此对于短信平台，建议使用最直接、最暴力也是我认为最合适的方案——制定合适的ACL，限定仅内网特定用户访问，如确实有外网用户需要使用系统，也需采用VPN接入。</p>  <p>总结：</p>  <p>以上四类问题是我遇到和见到的，但是，由于我能力和视野有限，考虑得肯定是不够全面的，也请有经验的大牛给予指点。<a href="http://www.freebuf.com/articles/web/6462.html#" target="_blank" rel="external">IIIIsh</a>@freebuf.com</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/955.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/955.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/955.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/955.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/956.seo/">
+        ← 马克思cms后台拿webshell方法
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/954.seo/">
+        沦陷学生之家，一次漂亮的渗透与源码分析 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

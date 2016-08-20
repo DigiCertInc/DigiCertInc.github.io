@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Tag: 密码 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-11-24T12:47:07.000Z" itemprop="datePublished">
+          2012-11-24
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>,
+    
+    <a href='/tag/小米/'>小米</a>,
+    
+    <a href='/tag/密码/'>密码</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/947.seo/">小米科技成功渗透进内部网络</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>By Jannock@wooyun</p>  <p>简要描述：</p>  <p>首先   <br /><a href="http://www.wooyun.org/bugs/wooyun-2010-03608">http://www.wooyun.org/bugs/wooyun-2010-03608</a>    <br />对这位兄弟表示羡慕嫉妒。正好今天有空，再一次对小米科技的网络进行<a href="http://ha.cker.in/tag/渗透测试" target="_blank">渗透测试</a>。    <br />说实话，发表这篇东西时，表示有点害怕，已经不是在想能不能获取手机的问题了。    <br />本次渗透只进行到进入内部网络与某官网服务器。本次<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a>很值得用统一<a href="http://ha.cker.in/tag/密码" target="_blank">密码</a>的人思考。</p>  <p>详细说明：</p>  <p>首先从某分站<a href="http://ha.cker.in/tag/SQL注入" target="_blank">注入</a>点开始    <br /><a href="http://xshare.api.xiaomi.com/xShare?do=list2&amp;choice=sms&amp;category=x%27%20and%201=2%20union%20select%201,2,3,host,user,password,7,8,9,0,1,2,3%20from%20mysql.user%23&amp;orderby=m_hot">http://xshare.api.xiaomi.com/xShare?do=list2&amp;choice=sms&amp;category=x%27%20and%201=2%20union%20select%201,2,3,host,user,password,7,8,9,0,1,2,3%20from%20mysql.user%23&amp;orderby=m_hot</a>    <br />些注入点表示已经通知过官方，但可以是已经弃用的部分网站，所以一直还没处理。于是<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a>就从此处开始。    <br />由于是root ,拿shell <a href="http://xshare.api.xiaomi.com/rso/1.php">http://xshare.api.xiaomi.com/rso/1.php</a></p>  <p><a href="http://img.cker.in/de675513837a_432C/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/de675513837a_432C/clip_image001_thumb.jpg" width="672" height="460" /></a></p>  <p>事实也证明，此服务器没什么用途，和官方<a href="http://ha.cker.in/tag/电商" target="_blank">电商</a>网络跟离差远。不过此处还是存在几个分站网站。    <br />连续数据库    <br />数据库中没什么可以关注的信息，最具重要的数据库是：ucenter ，当然，这个是弃用的数据库，用户数据不是最新，但是可以作为很好的渗透的<a href="http://ha.cker.in/tag/社工库" target="_blank">社工库</a>。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/947.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    
+    <span class="page-number">Page 1 of 1</span>
+    
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

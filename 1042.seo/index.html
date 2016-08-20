@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>攻击JavaWeb应用 7 -Server篇 1 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-10-21T21:04:30.000Z" itemprop="datePublished">
+          2013-10-22
+      </time>
+    
+    
+    | 
+    <a href='/tag/Webshell/'>Webshell</a>,
+    
+    <a href='/tag/getshell/'>getshell</a>,
+    
+    <a href='/tag/Java/'>Java</a>,
+    
+    <a href='/tag/Tomcat/'>Tomcat</a>,
+    
+    <a href='/tag/GlassFish/'>GlassFish</a>,
+    
+    <a href='/tag/WebLogic/'>WebLogic</a>,
+    
+    <a href='/tag/Resin/'>Resin</a>,
+    
+    <a href='/tag/Websphere/'>Websphere</a>
+    
+    
+</span>
+    <h1 class="post-title">攻击JavaWeb应用 7 -Server篇 1</h1>
+    <section class="post-content">
+      <p><a href="http://drops.wooyun.org/tips/604" target="_blank" rel="external">攻击JavaWeb应用[7]-Server篇[1]</a></p>  <p><a href="http://drops.wooyun.org/tips/604" target="_blank" rel="external">http://drops.wooyun.org/tips/604</a></p>  <h4>java应用服务器</h4>  <hr align="center" width="100%" size="2">  <p><a href="http://Ha.Cker.In/tag/Java" target="_blank">Java</a>应用服务器主要为应用程序提供运行环境，为组件提供服务。Java 的应用服务器很多，从功能上分为两类：JSP 服务器和 Java EE 服务器。</p>  <h5>常见的Server概述</h5>  <p>常见的Java服务器:<a href="http://Ha.Cker.In/tag/Tomcat" target="_blank">Tomcat</a>、<a href="http://Ha.Cker.In/tag/Weblogic" target="_blank">Weblogic</a>、<a href="http://Ha.Cker.In/tag/JBoss" target="_blank">JBoss</a>、<a href="http://Ha.Cker.In/tag/GlassFish" target="_blank">GlassFish</a>、Jetty、Resin、IBM Websphere、Bejy Tiger、Geronimo、Jonas、Jrun、Orion、TongWeb、BES Application Server、ColdFusion、Apusic Application Server、Sun Application Server 、Oracle9i/AS、Sun Java System Application Server。</p>  <p>Myeclipse比较方便的配置各式各样的Server，一般只要简单的选择下Server的目录就行了。</p>  <p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image001.png" target="_blank" rel="external"><img title="clip_image001" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="607" alt="clip_image001" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image001_thumb.png" width="628" border="0"></a></p>  <p>部署完成后启动进入各个Server的后台：</p><br><a id="more"></a><br><p></p>  <p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image002.png" target="_blank" rel="external"><img title="clip_image002" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="2154" alt="clip_image002" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image002_thumb.png" width="564" border="0"></a>￼</p>  <h5>构建WebShell war文件</h5>  <pre><code>1、打开Myeclipse新建Web项目</code></pre><br><br><pre><code>2、把jsp放到WebRoot目录下</code></pre><br><br><pre><code>3、导出项目为war文件</code></pre><br><br><p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image003.png" target="_blank" rel="external"><img title="clip_image003" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="1201" alt="clip_image003" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image003_thumb.png" width="628" border="0"></a>￼</p>
+
+<h4>Tomcat</h4>
+
+<hr align="center" width="100%" size="2">
+
+<p>Tomcat 服务器是一个免费的开放源代码的Web 应用服务器，属于轻量级应用服务器，在中小型系统和并发访问用户不是很多的场合下被普遍使用，是开发和调试JSP 程序的首选。</p>
+
+<h5>Tomcat版本</h5>
+
+<p>Tomcat主流版本:5-6-7，最新版Tomcat8刚发布不久。Tomcat5较之6-7在文件结构上有细微的差异，6-7-8没有大的差异。最新版的Tomcat8主要新增了：Servlet 3.1, JSP 2.3, EL 3.0 and Web Socket 1.0支持。</p>
+
+<p>版本详情说明：<a href="http://tomcat.apache.org/whichversion.html" target="_blank" rel="external">http://tomcat.apache.org/whichversion.html</a></p>
+
+<p>结构目录：</p>
+
+<p>Tomcat5：</p>
+
+<pre><code>Bin、common、conf、LICENSE、logs、NOTICE、RELEASE-NOTES、RUNNING.txt、Server、shared、Temp、webapps、work</code></pre>
+
+<p>Tomcat6-8：</p>
+
+<pre><code>Bin、conf、lib、LICENSE、logs、NOTICE、RELEASE-NOTES、RUNNING.txt、temp、webapps、work</code></pre>
+
+<p>关注conf和webapps目录即可。conf目录与非常重要的tomcat配置文件比如登录帐号所在的tomcat-users.xml；域名绑定目录、端口、数据源(部分情况)、SSL所在的server.xml；数据源配置所在的context.xml文件，以及容器初始化调用的web.xml。</p>
+
+<p>源码下载：</p>
+
+<p>Tomcat6：<a href="http://svn.apache.org/repos/asf/tomcat/tc6.0.x/tags/TOMCAT_6_0_18/" target="_blank" rel="external">http://svn.apache.org/repos/asf/tomcat/tc6.0.x/tags/TOMCAT_6_0_18/</a></p>
+
+<p>Tomcat7：<a href="http://svn.apache.org/repos/asf/tomcat/tc7.0.x/trunk/" target="_blank" rel="external">http://svn.apache.org/repos/asf/tomcat/tc7.0.x/trunk/</a></p>
+
+<h5>Tomcat默认配置</h5>
+
+<h6>1、tomcat-users.xml</h6>
+
+<p>Tomcat5默认配置了两个角色：tomcat、role1。其中帐号为both、tomcat、role1的默认密码都是tomcat。不过都不具备直接部署应用的权限，默认需要有manager权限才能够直接部署war包，Tomcat5默认需要安装Administration Web Application。Tomcat6默认没有配置任何用户以及角色，没办法用默认帐号登录。</p>
+
+<p>配置详解：<a href="http://tomcat.apache.org/tomcat-7.0-doc/manager-howto.html#Introduction" target="_blank" rel="external">http://tomcat.apache.org/tomcat-7.0-doc/manager-howto.html#Introduction</a></p>
+
+<h6>2、context.xml</h6>
+
+<p>Tomcat的上下文，一般情况下如果用Tomcat的自身的数据源多在这里配置。找到数据源即可用对应的帐号密码去连接数据库。</p>
+
+<pre><code>&lt;Context&gt;</code></pre>
+
+<pre><code>&#160;&#160;&#160; &lt;WatchedResource&gt;WEB-INF/web.xml&lt;/WatchedResource&gt;</code></pre>
+
+<pre><code>&#160;&#160;&#160; &lt;Resource name=&quot;jdbc/u3&quot; auth=&quot;Container&quot; type=&quot;javax.sql.DataSource&quot;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; maxActive=&quot;100&quot; maxIdle=&quot;30&quot; maxWait=&quot;10000&quot;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; username=&quot;xxxxx&quot; password=&quot;xxxx&quot; driverClassName=&quot;com.mysql.jdbc.Driver&quot;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; url=&quot;jdbc:mysql://192.168.0.xxx:3306/xxx?autoReconnect=true&quot;/&gt;</code></pre>
+
+<pre><code>&lt;/Context&gt;</code></pre>
+
+<h6>3、server.xml</h6>
+
+<p>Server这个配置文件价值非常高，通常的访问端口、域名绑定和数据源可以在这里找到，如果想知道找到域名对应的目录可以读取这个配置文件。如果有用Https，其配置也在这里面能够找到。</p>
+
+<h6>4、web.xml</h6>
+
+<p>web.xml之前讲MVC的时候有提到过，项目初始化的时候会去调用这个配置文件这个文件一般很少有人动但是不要忽略其重要性，修改web.xml可以做某些YD+BT的事情。</p>
+
+<h5>Tomcat获取WebShell</h5>
+
+<h6>Tomcat后台部署war获取WebShell</h6>
+
+<p>登录tomcat后台：<a href="http://xxx.com/manager/html，一般用" target="_blank" rel="external">http://xxx.com/manager/html，一般用</a><code>WAR file to deploy</code>就行了，<code>Deploy directory or WAR file located on server</code>这种很少用。</p>
+
+<p>1&gt;Deploy directory or WAR file located on server</p>
+
+<p>Web应用的URL入口、XML配置文件对应路径、WAR文件或者该Web应用相对于/webapps目录的文件路径，然后单击 按钮，即可发布该Web应用，发布后在Application列表中即可看到该Web应用的信息。这种方式只能发布位于/webapps目录下的Web应用。</p>
+
+<p>2&gt;WAR file to deploy</p>
+
+<p>选择需要发布的WAR文件，然后单击Deploy，即可发布该Web应用，发布后在Application列表中即可看到该Web应用的信息。这种方式可以发布位于任意目录下的Web应用。</p>
+
+<p>其中，第二种方式实际上是把需要发布的WAR文件自动复制到/webapps目录下，所以上述两种方式发布的Web应用都可以通过在浏览器地址栏中输入<a href="http://localhost:8080/Web进行访问。" target="_blank" rel="external">http://localhost:8080/Web进行访问。</a></p>
+
+<p>￼ <a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image004.png" target="_blank" rel="external"><img title="clip_image004" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="298" alt="clip_image004" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image004_thumb.png" width="574" border="0"></a></p>
+
+<pre><code>Tips:</code></pre>
+
+<pre><code>当访问xxxx.com</code><code>找不到默认管理地址怎么办?</code></pre>
+
+<pre><code>1:http://xxxx.com/manager/html </code><code>查看是否存在</code></pre>
+
+<pre><code>2:ping xxxx.com </code><code>获取其IP</code><code>地址，在访问：http://111.111.111.111/manager/html</code></pre>
+
+<pre><code>3:</code><code>遍历server.xml</code><code>配置读取配置</code></pre>
+
+<h5>Tomcat口令爆破</h5>
+
+<p>Tomcat登录比较容易爆破，但是之前说过默认不对其做任何配置的时候爆破是无效的。</p>
+
+<p>Tomcat的认证比较弱，Base64(用户名:密码)编码，请求：” /manager/html/”如果响应码不是401（未经授权：访问由于凭据无效被拒绝。）即登录成功。</p>
+
+<pre><code>conn.setRequestProperty(&quot;Authorization&quot;, &quot;Basic &quot; + new BASE64Encoder().encode((user + &quot;:&quot; + pass).getBytes()));</code></pre>
+
+<h5>Tomcat漏洞</h5>
+
+<p>Tomcat5-6-7安全性并不完美，总是被挖出各种稀奇古怪的安全漏洞。在CVE和Tomcat官网也有相应的漏洞信息详情。</p>
+
+<h6>怎样找到Tomcat的历史版本:</h6>
+
+<p><a href="http://archive.apache.org/dist/tomcat/" target="_blank" rel="external">http://archive.apache.org/dist/tomcat/</a></p>
+
+<h6>Tomcat历史版本漏洞?</h6>
+
+<p>Tomcat官网安全漏洞公布：</p>
+
+<p>Apache Tomcat - Apache Tomcat 5 漏洞： <a href="http://tomcat.apache.org/security-5.html" target="_blank" rel="external">http://tomcat.apache.org/security-5.html</a></p>
+
+<p>Apache Tomcat - Apache Tomcat 6 漏洞： <a href="http://tomcat.apache.org/security-6.html" target="_blank" rel="external">http://tomcat.apache.org/security-6.html</a></p>
+
+<p>Apache Tomcat - Apache Tomcat7 漏洞： <a href="http://tomcat.apache.org/security-7.html" target="_blank" rel="external">http://tomcat.apache.org/security-7.html</a></p>
+
+<p>CVE 通用漏洞与披露: <a href="http://cve.scap.org.cn/cve_list.php?keyword=tomcat&amp;action=search&amp;p=1" target="_blank" rel="external">http://cve.scap.org.cn/cve_list.php?keyword=tomcat&amp;action=search&amp;p=1</a></p>
+
+<p>Cvedetails ： <a href="http://www.cvedetails.com/product/887/Apache-Tomcat.html?vendor_id=45" target="_blank" rel="external">http://www.cvedetails.com/product/887/Apache-Tomcat.html?vendor_id=45</a> <a href="http://www.cvedetails.com/vulnerability-list/vendor_id-45/product_id-887/Apache-Tomcat.html" target="_blank" rel="external">http://www.cvedetails.com/vulnerability-list/vendor_id-45/product_id-887/Apache-Tomcat.html</a></p>
+
+<p>Sebug: <a href="http://sebug.net/appdir/Apache+Tomcat" target="_blank" rel="external">http://sebug.net/appdir/Apache+Tomcat</a></p>
+
+<h6>怎样发现Tomcat有那些漏洞?</h6>
+
+<p>1、通过默认的报错页面（404、500等）可以获取到Tomcat的具体版本，对照Tomcat漏洞。</p>
+
+<p>2、利用WVS之类的扫描工具可以自动探测出对应的版本及漏洞。</p>
+
+<h6>怎样快速确定是不是Tomcat?</h6>
+
+<p>请求响应为:Server:Apache-Coyote/1.1 就是tomcat了。</p>
+
+<h6>Tomcat稀奇古怪的漏洞：</h6>
+
+<p>Tomcat的安全问题被爆过非常多，漏洞统计图：</p>
+
+<p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image005.png" target="_blank" rel="external"><img title="clip_image005" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="283" alt="clip_image005" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image005_thumb.png" width="782" border="0"></a></p>
+
+<p>有一些有意思的漏洞，比如：Insecure default password CVE-2009-3548(影响版本: 6.0.0-6.0.20)</p>
+
+<p>The Windows installer defaults to a blank password for the administrative user. If this is not changed during the install process, then by default a user is created with the name admin, roles admin and manager and a blank password.在windows安装版admin默认空密码漏洞，其实是用户安装可能偷懒，没有设置密码…</p>
+
+<p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image006.png" target="_blank" rel="external"><img title="clip_image006" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="409" alt="clip_image006" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image006_thumb.png" width="523" border="0"></a></p>
+
+<p>这样的问题在tar.gz和zip包里面根本就不会存在。有些漏洞看似来势汹汹其实鸡肋得不行如：Unexpected file deletion in work directory CVE-2009-2902 都已经有deploy权限了，闹个啥。</p>
+
+<p>Tomcat非常严重的漏洞（打开Tomcat security-5、6、7.html找）：</p>
+
+<pre><code>Important: Session fixation CVE-2013-2067 (6.0.21-6.0.36) </code></pre>
+
+<pre><code>Important: Denial of service CVE-2012-3544 (6.0.0-6.0.36) </code></pre>
+
+<pre><code>Important: Denial of service CVE-2012-2733 (6.0.0-6.0.35) </code></pre>
+
+<pre><code>Important: Bypass of security constraints CVE-2012-3546 (6.0.0-6.0.35) </code></pre>
+
+<pre><code>Important: Bypass of CSRF prevention filter CVE-2012-4431 (6.0.30-6.0.35) </code></pre>
+
+<pre><code>Important: Denial of service CVE-2012-4534 (6.0.0-6.0.35) </code></pre>
+
+<pre><code>Important: Information disclosure CVE-2011-3375 (6.0.30-6.0.33) </code></pre>
+
+<pre><code>Important: Authentication bypass and information disclosure CVE-2011-3190 (6.0.0-6.0.33) (………………………………………………….) </code></pre>
+
+<pre><code>Important: Directory traversal CVE-2008-2938 (6.0.18) </code></pre>
+
+<pre><code>Important: Directory traversal CVE-2007-0450 (6.0.0-6.0.9)</code></pre>
+
+<p>如果英文亚历山大的同学，对应的漏洞信息一般都能够在中文的sebug找到。</p>
+
+<p>Sebug：</p>
+
+<p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image007.png" target="_blank" rel="external"><img title="clip_image007" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="660" alt="clip_image007" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image007_thumb.png" width="762" border="0"></a></p>
+
+<p>CVE 通用漏洞与披露：</p>
+
+<p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image008.png" target="_blank" rel="external"><img title="clip_image008" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="579" alt="clip_image008" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image008_thumb.png" width="773" border="0"></a></p>
+
+<h4>Resin</h4>
+
+<hr align="center" width="100%" size="2">
+
+<p>Resin是CAUCHO公司的产品，是一个非常流行的application server，对servlet和JSP提供了良好的支持，性能也比较优良，resin自身采用JAVA语言开发。</p>
+
+<p>Resin比较有趣的是默认支持PHP! Resin默认通过Quercus 动态的去解析PHP文件请求。（Resin3也支持，详情：<a href="http://zone.wooyun.org/content/2467" target="_blank" rel="external">http://zone.wooyun.org/content/2467</a>）</p>
+
+<h5>Resin版本</h5>
+
+<p>Resin主流的版本是Resin3和Resin4，在文件结构上并没有多大的变化。Resin的速度和效率非常高，但是不知怎么Resin似乎对Quercus 更新特别多。</p>
+
+<p>4.0.x版本更新详情：<a href="http://www.caucho.com/resin-4.0/changes/changes.xtp" target="_blank" rel="external">http://www.caucho.com/resin-4.0/changes/changes.xtp</a></p>
+
+<p>3.1.x版本更新详情：<a href="http://www.caucho.com/resin-3.1/changes/changes.xtp" target="_blank" rel="external">http://www.caucho.com/resin-3.1/changes/changes.xtp</a></p>
+
+<h5>Resin默认配置</h5>
+
+<h6>1、resin.conf和resin.xml</h6>
+
+<p>Tomcat和Rsin的核心配置文件都在conf目录下，Resin3.1.x 默认是resin.conf而4.0.x默认是resin.xml。resin.conf/resin.xml是Resin最主要配置文件，类似Tomcat的server.xml。</p>
+
+<h6>1&gt;数据源:</h6>
+
+<p>第一节的时候有谈到resin数据源就是位于这个文件，搜索database（位于server标签内）即可定位到具体的配置信息。</p>
+
+<h6>2&gt;域名绑定</h6>
+
+<p>搜索host即可定位到具体的域名配置，其中的root-directory是域名绑定的对应路径。很容易就能够找到域名绑定的目录了。</p>
+
+<pre><code>&lt;host id=&quot;javaweb.org&quot; root-directory=&quot;.&quot;&gt;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160; &lt;host-alias-regexp&gt;^([^/]*).javaweb.org&lt;/host-alias-regexp&gt;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160; &lt;web-app id=&quot;/&quot; root-directory=&quot;D:/web/xxxx/xxxx&quot;/&gt;</code></pre>
+
+<pre><code>&lt;/host&gt;</code></pre>
+
+<h5>Resin默认安全策略</h5>
+
+<h6>1&gt;管理后台访问权限</h6>
+
+<p>Resin比较BT的是默认仅允许本机访问管理后台，这是因为在resin.conf当中默认配置禁止了外部IP请求后台。</p>
+
+<pre><code>&lt;resin:set var=&quot;resin_admin_external&quot; value=&quot;false&quot;/&gt;</code></pre>
+
+<p>修改为true外部才能够访问。</p>
+
+<h6>2&gt;Resin后台管理密码</h6>
+
+<p>Resin的管理员密码需要手动配置，在resin.conf/resin.xml当中搜索management。即可找到不过需要注意的是Resin的密码默认是加密的，密文是在登录页自行生成。比如admin加密后的密文大概会是：yCGkvrQHY7K8qtlHsgJ6zg== 看起来仅是base64编码不过不只是admin默认的Base64编码是：YWRtaW4= Resin,翻了半天Resin终于在文档里面找到了：<a href="http://www.caucho.com/resin-3.1/doc/resin-security.xtp" target="_blank" rel="external">http://www.caucho.com/resin-3.1/doc/resin-security.xtp</a></p>
+
+<p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image009.png" target="_blank" rel="external"><img title="clip_image009" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="437" alt="clip_image009" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image009_thumb.png" width="1147" border="0"></a></p>
+
+<p>虽说是MD5+Base64加密但是怎么看都有点不对，下载Resin源码找到加密算法：</p>
+
+<pre><code>package com.caucho.server.security.PasswordDigest</code></pre>
+
+<p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image010.png" target="_blank" rel="external"><img title="clip_image010" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="1209" alt="clip_image010" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image010_thumb.png" width="613" border="0"></a></p>
+
+<p>这加密已经没法反解了，所以就算找到Resin的密码配置文件应该也没法破解登录密码。事实上Resin3的管理后台并没有其他Server（相对JBOSS和Weblogic）那么丰富。而Resin4的管理后台看上去更加有趣。</p>
+
+<p>Resin4的加密方式和Resin3还不一样改成了SSHA：</p>
+
+<pre><code>admin_user : admin</code></pre>
+
+<pre><code>admin_password : {SSHA}XwNZqf8vxNt5BJKIGyKT6WMBGxV5OeIi</code></pre>
+
+<p>详情：<a href="http://www.caucho.com/resin-4.0/admin/security.xtp" target="_blank" rel="external">http://www.caucho.com/resin-4.0/admin/security.xtp</a></p>
+
+<p>Resin3：</p>
+
+<p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image011.png" target="_blank" rel="external"><img title="clip_image011" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="510" alt="clip_image011" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image011_thumb.png" width="726" border="0"></a></p>
+
+<p>Resin4：</p>
+
+<p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image012.png" target="_blank" rel="external"><img title="clip_image012" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="695" alt="clip_image012" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image012_thumb.png" width="1035" border="0"></a></p>
+
+<h5>Resin获取<a href="http://Ha.Cker.In/tag/webshell" target="_blank">WebShell</a></h5>
+
+<p>As of Resin 4.0.0, it is now possible to deploy web applications remotely to a shared repository that is distributed across the cluster. This feature allows you to deploy once to any triad server and have the application be updated automatically across the entire cluster. When a new dynamic server joins the cluster, the triad will populate it with these applications as well.</p>
+
+<p>Web Deploy war文件大概是从4.0.0开始支持的，不过想要在Web deploy一个应用也不是一件简单的事情，首先得先进入后台。然后还得以Https方式访问。不过命令行下部署就没那没法麻烦。Resin3得手动配置web-app-deploy。 最简单的但又不爽办法就是想办法把war文件上传到resin-pro-3.1.13\webapps目录下，会自动部署（就算Resin已启动也会自动部署，不影响已部署的应用）。</p>
+
+<p>Resin3部署详情：<a href="http://www.caucho.com/resin-3.1/doc/webapp-deploy.xtp" target="_blank" rel="external">http://www.caucho.com/resin-3.1/doc/webapp-deploy.xtp</a></p>
+
+<p>Resin4部署War文件详情：<a href="http://www.caucho.com/resin-4.0/admin/deploy.xtp" target="_blank" rel="external">http://www.caucho.com/resin-4.0/admin/deploy.xtp</a></p>
+
+<p>Resin4进入后台后选择Deploy,不过还得用SSL方式请求。Resin要走一个”非加密通道”。</p>
+
+<p>To deploy an application remotely: log into the resin-admin console on any triad server. Make sure you are connecting over SSL, as this feature is not available over a non-encrypted channel. Browse to the &quot;webapp&quot; tab of the resin-admin server and at the bottom of the page, enter the virtual host, URL, and local .war file specifying the web application, then press &quot;Deploy&quot;. The application should now be deployed on the server. In a few moments, all the servers in the cluster will have the webapp.</p>
+
+<p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image013.png" target="_blank" rel="external"><img title="clip_image013" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="447" alt="clip_image013" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image013_thumb.png" width="1005" border="0"></a></p>
+
+<p>Resin4敢不敢再没节操点？默认HTTPS是没有开的。需要手动去打开:</p>
+
+<pre><code>conf</code></pre>
+
+<pre><code>esin.properties</code></pre>
+
+<pre><code># https : 8443</code></pre>
+
+<p>默认8443端口是关闭的，取消这一行的注释才能够使用HTTPS方式访问后台才能够Web Deploy war。</p>
+
+<p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image014.png" target="_blank" rel="external"><img title="clip_image014" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="807" alt="clip_image014" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image014_thumb.png" width="1032" border="0"></a></p>
+
+<p>部署成功访问: <a href="http://localhost:8080/GetShell/Customize.jsp" target="_blank" rel="external">http://localhost:8080/GetShell/Customize.jsp</a> 即可获取WebShell。</p>
+
+<h5>Resin漏洞</h5>
+
+<p><a href="http://Ha.Cker.In/tag/Resin" target="_blank">Resin</a>相对<a href="http://Ha.Cker.In/tag/Tomcat" target="_blank">Tomcat</a>的安全问题来说少了很多，Cvedetails上的Resin的漏洞统计图：</p>
+
+<p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image015.png" target="_blank" rel="external"><img title="clip_image015" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="228" alt="clip_image015" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image015_thumb.png" width="499" border="0"></a></p>
+
+<p>Cvedetails统计详情：<br>  <br><a href="http://www.cvedetails.com/product/993/Caucho-Technology-Resin.html?vendor_id=576" target="_blank" rel="external">http://www.cvedetails.com/product/993/Caucho-Technology-Resin.html?vendor_id=576</a></p>
+
+<p>Cvedetails漏洞详情：<br>  <br><a href="http://www.cvedetails.com/vulnerability-list/vendor_id-576/product_id-993/Caucho-Technology-Resin.html" target="_blank" rel="external">http://www.cvedetails.com/vulnerability-list/vendor_id-576/product_id-993/Caucho-Technology-Resin.html</a></p>
+
+<p>CVE&#160; 通用漏洞与披露：<br>  <br><a href="http://cve.scap.org.cn/cve_list.php?keyword=resin&amp;action=search&amp;p=1" target="_blank" rel="external">http://cve.scap.org.cn/cve_list.php?keyword=resin&amp;action=search&amp;p=1</a></p>
+
+<p>Resin3.1.3:</p>
+
+<p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image016.png" target="_blank" rel="external"><img title="clip_image016" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="225" alt="clip_image016" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image016_thumb.png" width="708" border="0"></a></p>
+
+<p>Fixed BugList: <a href="http://bugs.caucho.com/changelog_page.php" target="_blank" rel="external">http://bugs.caucho.com/changelog_page.php</a></p>
+
+<h4><a href="http://Ha.Cker.In/tag/Weblogic" target="_blank">Weblogic</a></h4>
+
+<hr align="center" width="100%" size="2">
+
+<p><a href="http://Ha.Cker.In/tag/Weblogic" target="_blank">WebLogic</a>是美国bea公司出品的一个application server确切的说是一个基于Javaee架构的中间件，BEA WebLogic是用于开发、集成、部署和管理大型分布式Web应用、网络应用和数据库应用的Java应用服务器。将Java的动态功能和Java Enterprise标准的安全性引入大型网络应用的开发、集成、部署和管理之中。</p>
+
+<h5><a href="http://Ha.Cker.In/tag/Weblogic" target="_blank">Weblogic</a>版本</h5>
+
+<p>Oracle简直就是企业应用软件终结者，收购了Sun那个土鳖、Mysql、BAE Weblogic等。BAE在2008初被收购后把BAE终结在Weblogic 10。明显的差异应该是从10.x开始到最新的12c。这里主要以Weblogic9.2和最新的Weblogic 12c为例。</p>
+
+<h5><a href="http://Ha.Cker.In/tag/Weblogic" target="_blank">Weblogic</a>默认配置</h5>
+
+<p><a href="http://Ha.Cker.In/tag/Weblogic" target="_blank">Weblogic</a>默认端口是7001，Weblogic10g-12c默认的管理后台是：<a href="http://localhost:7001/console" target="_blank" rel="external">http://localhost:7001/console</a></p>
+
+<p>Weblogic10 以下默认后台地址是：<a href="http://192.168.80.1:7001/console/login/LoginForm.jsp" target="_blank" rel="external">http://192.168.80.1:7001/console/login/LoginForm.jsp</a></p>
+
+<p>管理帐号是在建立Weblogic域的时候设置的。</p>
+
+<p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image017.png" target="_blank" rel="external"><img title="clip_image017" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="553" alt="clip_image017" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image017_thumb.png" width="983" border="0"></a></p>
+
+<p><a href="http://Ha.Cker.In/tag/Weblogic" target="_blank">Weblogic</a> 控制台：</p>
+
+<p><a href="http://wydrops-wordpress.stor.sinaapp.com/uploads/2013/09/java7-18.png" target="_blank" rel="external"><img title="clip_image019" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="1046" alt="clip_image019" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image019.jpg" width="790" border="0"></a></p>
+
+<p>Weblogic10以下默认管理帐号:weblogic密码：weblogic。关于Weblogic10++的故事还得从建域开始，默认安装完Weblogic后需要建立一个域。</p>
+
+<h5>WebLogic中的&quot;域&quot;?</h5>
+
+<p>域环境下可以多个 WebLogic Server或者WebLogic Server 群集。域是由单个管理服务器管理的 WebLogic Server实例的集合。 Weblogic10++域默认是安装完成后由用户创建。帐号密码也在创建域的时候设置，所以这里并不存在默认密码。当一个域创建完成后配置文件和Web应用在：Weblogic12user_projectsdomains”域名”。</p>
+
+<h5>Weblogic 默认安全策略</h5>
+
+<h5>1、Weblogic默认密码文件:</h5>
+
+<p>Weblogic 9采用的3DES（三重数据加密算法）加密方式，Weblogic 9默认的管理密码配置文件位于：</p>
+
+<pre><code>weblogic_9weblogic92samplesdomainswl_serverserversexamplesServersecurityoot.properties</code></pre>
+
+<h6>boot.properties：</h6>
+
+<pre><code># Generated by Configuration Wizard on Sun Sep 08 15:43:13 GMT 2013</code></pre>
+
+<pre><code>username={3DES}fy709SQ4pCHAFk+lIxiWfw==</code></pre>
+
+<pre><code>password={3DES}fy709SQ4pCHAFk+lIxiWfw==</code></pre>
+
+<p>Weblogic 12c采用了AES对称加密方式，但是AES的key并不在这文件里面。默认的管理密码文件存放于：</p>
+
+<pre><code>Weblogic12user_projectsdomainsase_domainserversAdminServersecurityoot.properties </code></pre>
+
+<p>(base_domain是默认的”域名”)。</p>
+
+<h6>boot.properties：</h6>
+
+<pre><code>boot.properties</code><code>：</code></pre>
+
+<pre><code># Generated by Configuration Wizard on Tue Jul 23 00:07:09 CST 2013</code></pre>
+
+<pre><code>username={AES}PsGXATVgbLsBrCA8hbaKjjA91yNDCK78Z84fGA/pTJE=</code></pre>
+
+<pre><code>password={AES}Z44CPAl39VlytFk1I5HUCEFyFZ1LlmwqAePuJCwrwjI=</code></pre>
+
+<p>怎样解密Weblogic密码?</p>
+
+<p>Weblogic 12c：</p>
+
+<pre><code>Weblogic12user_projectsdomainsase_domainsecuritySerializedSystemIni.dat</code></pre>
+
+<p>Weblogic 9：</p>
+
+<pre><code>weblogic_9weblogic92samplesdomainswl_serversecuritySerializedSystemIni.dat</code></pre>
+
+<p>解密详情：<a href="http://drops.wooyun.org/tips/349" target="_blank" rel="external">http://drops.wooyun.org/tips/349</a> 、<a href="http://www.blogjava.net/midea0978/archive/2006/09/07/68223.html" target="_blank" rel="external">http://www.blogjava.net/midea0978/archive/2006/09/07/68223.html</a></p>
+
+<h5>2、<a href="http://Ha.Cker.In/tag/Weblogic" target="_blank">Weblogic</a> 数据源(JNDI)</h5>
+
+<p>Weblogic如果有配置数据源，那么默认数据源配置文件应该在：</p>
+
+<pre><code>Weblogic12\user_projects\domains\base\_domain\config\config.xml</code></pre>
+
+<p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image020.png" target="_blank" rel="external"><img title="clip_image020" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="995" alt="clip_image020" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image020_thumb.png" width="1048" border="0"></a></p>
+
+<h5>Weblogic获取Webshell ￼</h5>
+
+<p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image021.png" target="_blank" rel="external"><img title="clip_image021" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="1031" alt="clip_image021" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image021_thumb.png" width="1003" border="0"></a></p>
+
+<p>Weblogic 9 GetShell： <a href="http://drops.wooyun.org/tips/402" target="_blank" rel="external">http://drops.wooyun.org/tips/402</a></p>
+
+<h4>Websphere</h4>
+
+<hr align="center" width="100%" size="2">
+
+<p>WebSphere 是 IBM 的软件平台。它包含了编写、运行和监视全天候的工业强度的随需应变 Web 应用程序和跨平台、跨产品解决方案所需要的整个中间件基础设施，如服务器、服务和工具。</p>
+
+<h5>Websphere版本</h5>
+
+<p>Websphere现在主流的版本是6-7-8，老版本的5.x部分老项目还在用。GetShell大致差不多。6、7测试都有“默认用户标识admin登录”，Websphere安装非常麻烦，所以没有像之前测试Resin、Tomcat那么细测。</p>
+
+<h5>Websphere默认配置</h5>
+
+<p>默认的管理后台地址（注意是HTTPS）： <a href="https://localhost:9043/ibm/console/logon.jsp" target="_blank" rel="external">https://localhost:9043/ibm/console/logon.jsp</a></p>
+
+<p>默认管理密码：</p>
+
+<pre><code>1</code><code>、admin (</code><code>测试websphere6-7</code><code>默认可以直接用admin</code><code>作为用户标识登录，无需密码) </code></pre>
+
+<pre><code>2</code><code>、websphere/ websphere</code></pre>
+
+<pre><code>3</code><code>、system/ manager</code></pre>
+
+<p>默认端口：</p>
+
+<pre><code>管理控制台端口 9060</code></pre>
+
+<pre><code>管理控制台安全端口 9043</code></pre>
+
+<pre><code>HTTP</code><code>传输端口 9080</code></pre>
+
+<pre><code>HTTPS</code><code>传输端口 9443</code></pre>
+
+<pre><code>引导程序端口 2809</code></pre>
+
+<pre><code>SIP</code><code>端口 5060</code></pre>
+
+<pre><code>SIP</code><code>安全端口 5061</code></pre>
+
+<pre><code>SOAP</code><code>连接器端口 8880</code></pre>
+
+<pre><code>SAS SSL ServerAuth</code><code>端口 9401</code></pre>
+
+<pre><code>CSIV2 ServerAuth </code><code>侦听器端口 9403</code></pre>
+
+<pre><code>CSIV2 MultiAuth </code><code>侦听器端口 9402</code></pre>
+
+<pre><code>ORB</code><code>侦听器端口 9100</code></pre>
+
+<pre><code>高可用性管理通讯端口(DCS) 9353</code></pre>
+
+<pre><code>服务集成端口 7276</code></pre>
+
+<pre><code>服务集成安全端口 7286</code></pre>
+
+<pre><code>服务集成器MQ</code><code>互操作性端口 5558</code></pre>
+
+<pre><code>服务集成器MQ</code><code>互操作性安全端口 5578</code></pre>
+
+<p>8.5安装的时候创建密码： ￼</p>
+
+<p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image022.png" target="_blank" rel="external"><img title="clip_image022" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="565" alt="clip_image022" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image022_thumb.png" width="718" border="0"></a></p>
+
+<p><a href="http://Ha.Cker.In/tag/Websphere" target="_blank">Websphere</a> 8.5启动信息：</p>
+
+<p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image023.png" target="_blank" rel="external"><img title="clip_image023" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="616" alt="clip_image023" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image023_thumb.png" width="1170" border="0"></a></p>
+
+<p><a href="http://Ha.Cker.In/tag/Websphere" target="_blank">Websphere</a> 8.5登录页面： <a href="https://localhost:9043/ibm/console/logon.jsp" target="_blank" rel="external">https://localhost:9043/ibm/console/logon.jsp</a></p>
+
+<p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image024.png" target="_blank" rel="external"><img title="clip_image024" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="681" alt="clip_image024" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image024_thumb.png" width="1123" border="0"></a></p>
+
+<p><a href="http://Ha.Cker.In/tag/Websphere" target="_blank">Websphere</a> 8.5 WEB控制台：</p>
+
+<p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image025.png" target="_blank" rel="external"><img title="clip_image025" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="695" alt="clip_image025" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image025_thumb.png" width="1130" border="0"></a></p>
+
+<p><a href="http://Ha.Cker.In/tag/Websphere" target="_blank">Websphere</a> 6-7默认控制台地址也是： <a href="http://localhost:9043/ibm/console，此处用admin登录即可。" target="_blank" rel="external">http://localhost:9043/ibm/console，此处用admin登录即可。</a></p>
+
+<p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image026.jpg" target="_blank" rel="external"><img title="clip_image026" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="359" alt="clip_image026" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image026_thumb.jpg" width="849" border="0"></a></p>
+
+<h5><a href="http://Ha.Cker.In/tag/Websphere" target="_blank">Websphere</a>&#160; <a href="http://Ha.Cker.In/tag/getshell" target="_blank">GetShell</a></h5>
+
+<p>本地只安装了8.5测试，<a href="http://Ha.Cker.In/tag/Websphere" target="_blank">Websphere</a> 安装的确非常坑非常麻烦。不过Google HACK到了其余两个版本Websphere 6和Websphere 7。测试发现Websphere <a href="http://Ha.Cker.In/tag/getshell" target="_blank">GetShell</a>一样很简单，只是比较麻烦，一般情况直接默认配置Next就行了。Websphere7和Websphere8 GetShell基本一模一样。</p>
+
+<h6><a href="http://Ha.Cker.In/tag/Websphere" target="_blank">Websphere</a> 6 <a href="http://Ha.Cker.In/tag/getshell" target="_blank">GetShell</a></h6>
+
+<p>需要注意的是Websphere6默认支持的Web应用是2.3(web.xml配置的web-app_2_3.dtd)直接上2.5是不行的，请勿霸王硬上弓。其次是在完成部署后记得保存啊亲，不然无法生效。</p>
+
+<p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image027.png" target="_blank" rel="external"><img title="clip_image027" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="1321" alt="clip_image027" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image027_thumb.png" width="1120" border="0"></a></p>
+
+<h6>Websphere8.5 GetShell</h6>
+
+<p>部署的时候记得写上下文名称哦，不让无法请求到Shell。</p>
+
+<p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image028.png" target="_blank" rel="external"><img title="clip_image028" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="1031" alt="clip_image028" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image028_thumb.png" width="1114" border="0"></a></p>
+
+<p>注意：</p>
+
+<p>如果在Deploy低版本的 <a href="http://Ha.Cker.In/tag/Websphere" target="_blank">Websphere</a> 的时候可能会提示web.xml错误，这里其实是因为支持的JavaEE版本限制，把war包里面的web.xml改成低版本就行了，如把app2.5改成2.3。</p>
+
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</code></pre>
+
+<pre><code>&lt;!DOCTYPE web-app PUBLIC &quot;-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN&quot; &quot;http://java.sun.com/dtd/web-app_2_3.dtd&quot;&gt;</code></pre>
+
+<pre><code>&lt;web-app&gt;</code></pre>
+
+<pre><code>&#160;&#160;&#160; &lt;welcome-file-list&gt;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;</code></pre>
+
+<pre><code>&#160;&#160;&#160; &lt;/welcome-file-list&gt;</code></pre>
+
+<pre><code>&lt;/web-app&gt;</code></pre>
+
+<h4><a href="http://Ha.Cker.In/tag/GlassFish" target="_blank">GlassFish</a></h4>
+
+<hr align="center" width="100%" size="2">
+
+<p><a href="http://Ha.Cker.In/tag/GlassFish" target="_blank">GlassFish</a> 是SUN的产品，但是作为一只优秀的土鳖SUN已经被Oracle收购了，GlassFish的性能优越对JavaEE的支持自然最好，最新的Servlet3.1仅GlassFish支持。</p>
+
+<h5><a href="http://Ha.Cker.In/tag/GlassFish" target="_blank">GlassFish</a> 版本</h5>
+
+<p>GlassFish版本比较低调，最高版本GlassFish4可在官网下载： <a href="http://glassfish.java.net/" target="_blank" rel="external">http://glassfish.java.net/</a> 。最新4.x版刚发布不久。所以主流版本应当还是v2-3,3应该更多。支持php(v3基于Quercus),jRuby on Rails 和 Phobos等多种语言。</p>
+
+<h5><a href="http://Ha.Cker.In/tag/GlassFish" target="_blank">GlassFish</a>默认配置</h5>
+
+<p>默认Web控制后台：</p>
+
+<p><a href="http://localhost:4848" target="_blank" rel="external">http://localhost:4848</a></p>
+
+<p>默认管理密码：<br>  <br><a href="http://Ha.Cker.In/tag/GlassFish" target="_blank">GlassFish</a> 2默认帐号admin密码adminadmin 。</p>
+
+<p><a href="http://Ha.Cker.In/tag/GlassFish" target="_blank">GlassFish</a> 3、4 如果管理员不设置帐号本地会自动登录，但是远程访问会提示配置错误。</p>
+
+<pre><code>Configuration Error </code></pre>
+
+<pre><code>Secure Admin must be enabled to access the DAS remotely.</code></pre>
+
+<p>默认端口：</p>
+
+<pre><code>使用Admin</code><code>的端口 4848</code><code>。</code></pre>
+
+<pre><code>使用HTTP Instance</code><code>的端口 8080</code><code>。</code></pre>
+
+<pre><code>使用JMS</code><code>的端口 7676</code><code>。</code></pre>
+
+<pre><code>使用IIOP</code><code>的端口 3700</code><code>。</code></pre>
+
+<pre><code>使用HTTP_SSL</code><code>的端口 8181</code><code>。</code></pre>
+
+<pre><code>使用IIOP_SSL</code><code>的端口 3820</code><code>。</code></pre>
+
+<pre><code>使用IIOP_MUTUALAUTH</code><code>的端口 3920</code><code>。</code></pre>
+
+<pre><code>使用JMX_ADMIN</code><code>的端口 8686</code><code>。</code></pre>
+
+<pre><code>使用OSGI_SHELL</code><code>的默认端口 6666</code><code>。</code></pre>
+
+<pre><code>使用JAVA_DEBUGGER</code><code>的默认端口 9009</code><code>。</code></pre>
+
+<p>默认数据源：</p>
+
+<p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image029.png" target="_blank" rel="external"><img title="clip_image029" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="711" alt="clip_image029" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image029_thumb.png" width="1187" border="0"></a></p>
+
+<h5>GlassFish GetShell ￼</h5>
+
+<p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image030.png" target="_blank" rel="external"><img title="clip_image030" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="634" alt="clip_image030" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image030_thumb.png" width="823" border="0"></a></p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1042.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1042.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1042.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1042.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/1043.seo/">
+        ← 攻击JavaWeb应用 8 -后门篇
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/1041.seo/">
+        攻击JavaWeb应用 6 -程序架构与代码审计 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

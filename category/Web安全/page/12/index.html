@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Category: Web安全 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-05-18T06:36:10.000Z" itemprop="datePublished">
+          2012-05-18
+      </time>
+    
+    
+    | 
+    <a href='/tag/SQL通用防注入系统asp版漏洞/'>SQL通用防注入系统asp版漏洞</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/428.seo/">SQL通用防注入系统asp版漏洞</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        今晚群里朋友叫看个站，有sql防注入，绕不过，但是有发现记录wrong的文件sqlin.asp。   既然做了记录，再查看了下它的记录文件    于是想着构造个asp一句话写进去，前面几种没加密的都失败了，于是写了个加密的   &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; ┼攠數畣整爠煥敵瑳∨≡┩愾&#160;&#160;&#160;&#160;&#
+      
+      </p>
+      
+      <p>
+          <a href="/428.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-05-04T07:03:33.000Z" itemprop="datePublished">
+          2012-05-04
+      </time>
+    
+    
+    | 
+    <a href='/tag/SQL-Injection/'>SQL Injection</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/419.seo/">拍客piikee竞拍网站源码全局sql injection</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>主题:拍客piikee竞拍网站源码全局sql injection   <br />作者:piaoye    <br />版权:3EST信息安全团队 (<a href="http://www.3est.com" target="_blank">www.3est.com</a>) </p>  <p>0x01 简介   <br />在乌云看以快拍拍网站充值BUG，就搜索了下这个网站，谷歌里有个类似的网站，程序注射一堆,然后就进去了。    <br />0x02 配置并编译    <br />php+mysql    <br />0x03 实战应用    <br />为什么说2B那？前台所有文件参数值都这样来的，大家看下这段代码</p>  <p>   <br />news_arc.php    <br />&lt;?php    <br />define(‘IN_JP’,true);    <br />require_once(&quot;./config/init.php&quot;); </p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160; $arcid = $_REQUEST[&quot;arcid&quot;];   <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; if($arcid!=&quot;&quot;){    <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; $qrynews2 = &quot;select <em> from news where id = &quot;.$arcid;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; $objnews2=$GLOBALS[‘db’]-&gt;get_one($qrynews2);&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; }else{    <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; $objnews2=&quot;&quot;;    <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; } </p>  <p>&#160; $qrycount = &quot;select w.id,r.username,w.won_date,p.name,a.auc_final_price,a.auctionID,p.picture1,p.price,(100-100</em>a.auc_final_price/p.price) as discount,a.auctionID from won_auctions w left join auction a on w.auction_id=a.auctionID left join products p on a.productID=p.productID inner join registration r on w.userid = r.id where w.userid&gt;=0 order by w.won_date desc limit 0,7 &quot;;&#160; <br />&#160; $obj1 = $GLOBALS[‘db’]-&gt;select($qrycount); </p>  <p>$smarty-&gt;assign(&quot;obj1&quot;,$obj1);   <br />$smarty-&gt;assign(&quot;objnews2&quot;,$objnews2);    <br />$smarty-&gt;display(‘news_arc.htm’);    <br />?&gt;    <br /></p>
+      
+      </p>
+      
+      <p>
+          <a href="/419.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-04-23T06:33:30.000Z" itemprop="datePublished">
+          2012-04-23
+      </time>
+    
+    
+    | 
+    <a href='/tag/记事狗/'>记事狗</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/405.seo/">记事狗设计缺陷导致可以删除网站任意图片</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+         路径处理不当导致注册用户可以删除网站上的任意图片 详细说明： 注册一个用户，登录后点击上传头像，比如地址为： http://www.badguest.cn /jishigou30s/index.php?mod=settings&amp;code=face 在最后面加上&amp;temp_face=././images/noavatar.gif 再访问，然后我的头像那块就会加载这个图片，直接点击下面的“确认”，头像木有修改成功，但是no
+      
+      </p>
+      
+      <p>
+          <a href="/405.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-04-18T08:58:13.000Z" itemprop="datePublished">
+          2012-04-18
+      </time>
+    
+    
+    | 
+    <a href='/tag/最土/'>最土</a>,
+    
+    <a href='/tag/团购/'>团购</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/390.seo/">最土团购最新sql注入漏洞利用及修复</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>近期最土团购程序3.0_20111207爆出一个高危漏洞，通过该漏洞利用方法，入侵者可以在10秒内获取最土团购网站的大量用户信息和订单信息等。<br>因为最土是团购类程序，数据库中保存有用户的邮箱和电话，甚至有用户的住址等，对网站用户来说，这些隐私信息一旦被别人获取，会带来很多的麻烦。<br>360安全工程师分析认为，“这是一次比较典型、也是非常经典的数组key变量污染漏洞。‘最土团购’建站程序的代码中，由于函数的过滤不严格，导致了黑客可以通过提交恶意代码，控制程序流程，来绕过登录时的判断，直接进入网站后台。下面附上具体的利用方法：  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.用opera浏览器打开网站的默认后台地址：manage/login.php  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.右键查看源代码。找到以下代码：  <p>&lt;div&gt;<br>&lt;label for=”manage-login”&gt;登录名&lt;/label&gt;<br>&lt;input type=”text” size=”30” name=”username” id=”manage-username” datatype=”require” require=”true” /&gt;<br>&lt;/div&gt;  <p>3.将其中的name=”username” 修改为：name=”username[=0x7c or manager=1#]”,点击浏览器上的应用保存。 </p>
+      
+      </p>
+      
+      <p>
+          <a href="/390.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-04-14T16:08:56.000Z" itemprop="datePublished">
+          2012-04-15
+      </time>
+    
+    
+    | 
+    <a href='/tag/FTP/'>FTP</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/388.seo/">通过注册表读ftp路径</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        这个漏洞貌似鸡肋，但是也有强大的用处。但是懂得怎么利用他，完全靠得自己，我只是给一个小小思路。进入主题！  重要注册表：HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\MSFtpsvc\Parameters\Virtual Roots\ControlSet002这个目录可以是ControlSet001 ControlSet003注明：不是用第三方软件分配出来的ftp用户，一定要是基于ii
+      
+      </p>
+      
+      <p>
+          <a href="/388.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-04-14T15:47:28.000Z" itemprop="datePublished">
+          2012-04-14
+      </time>
+    
+    
+    | 
+    <a href='/tag/Discuz-X2-5/'>Discuz!X2.5</a>,
+    
+    <a href='/tag/Discuz-X2升级/'>Discuz!X2升级</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/386.seo/">完美Discuz!X2 utf8升级为Discuz!X2.5 GBK记录</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><strong>首先说明：</strong>  <p>1、该教程不考虑插件问题，插件必须重新卸载再安装相应编码  <p>2、使用前最好先全站备份，这样出了问题也好恢复  <p>因为原论坛安装的是Discuz!X2 UTF8比较占用空间，而且官方正好有发布了Discuz!X2.5正式版，因此就想转成直接升级为Discuz!X2.5 GBK版。  <p>经过多次摸索并参考相关转换教程，终于找到这种转换方式的方法，实现完美转换了，下面给大家分享此经验。  <p><strong>具体教程如下：</strong>  <p>一、首先将Discuz!X2 UTF8转换为Discuz!X2 GBK  <p>1、备份已修改文件：  <p>这个主要是图片的修改，一般来说，备份以下文件即可：  <p>1.1、static/image/common/logo.png  <p>1.2、static/image/common/logo_sc.png  <p>1.3、static/image/common/logo_88_31.gif  <p>1.4、static/image/mobile/logo.gif  <p>1.5、favicon.ico  <p>1.6、.htaccess  <p>2、安装TOOLS：  <p>下载<a href="http://www.discuz.net/thread-2659440-1-1.html">Tools 1.9M for Discuz!X</a>，然后按照官方教程安装并使用。  <p>3、利用TOOLS进行转码：  <p>首先把论坛关闭，避免转换过程中影响会员使用；  <p>然后再进行转码，点击模块化那个大大的TOOLS，然后点击左边栏的：编码转换（如下图所示）  <p>然后点提交，等待转换完成，接下来就是最重要的修改部分了。  <p>4、修改并用新的GBK编码程序文件上传覆盖原UTF8文件：  <p>4.1、首先从官方下载最新的Discuz!X2 GBK<a href="http://download.comsenz.com/DiscuzX/2.0/Discuz_X2_SC_GBK.zip，并解压到默认的Discuz_X2_SC_GBK文件夹；">http://download.comsenz.com/DiscuzX/2.0/Discuz_X2_SC_GBK.zip，并解压到默认的Discuz_X2_SC_GBK文件夹；</a>  <p>4.2、接着把论坛中原UTF8版的三个文件下载并覆盖到对应的解压好Discuz_X2_SC_GBK文件夹中，如下图所示： </p>
+      
+      </p>
+      
+      <p>
+          <a href="/386.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    <a class="newer-posts" href="/category/Web安全/page/11/">← Newer Posts</a>
+    <span class="page-number">Page 12 of 15</span>
+    <a class="older-posts" href="/category/Web安全/page/13/">Older Posts →</a>
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

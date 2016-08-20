@@ -45,6 +45,41 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
+      <time datetime="2012-10-11T01:07:30.000Z" itemprop="datePublished">
+          2012-10-11
+      </time>
+    
+    
+    | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/Metasploit/'>Metasploit</a>,
+    
+    <a href='/tag/入侵/'>入侵</a>,
+    
+    <a href='/tag/Linux/'>Linux</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/886.seo/">Linux系统攻防对抗实践</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><b>一、实践目的</b><b></b></p>  <p>通过Linux系统攻防对抗实践，加深对Linux系统的认识，同时掌握Linux漏洞入侵和架设防御的初步方法。</p>  <p><b>二、实践内容</b><b></b></p>  <p>在Metasploit渗透攻击框架软件中寻找一个针对Linux系统服务的渗透攻击模块，在网络安全攻防实验环境中部署有漏洞的环境（如渗透利用第三方网络服务，需要找到并安装存在特定漏洞的版本），并使用metasploit进行攻击。</p>  <p>攻击方使用Metasploit渗透软件针对Linux <a name="baidusnap0"></a><b>Metasploitable</b>靶机实施网络攻击，防御方则在Metasploitatble上使用Tcpdump或Wireshark或Snort工具捕获攻击流，并分析出攻击者利用了哪个安全漏洞进行攻击，从官方网站上下载该安全漏洞补丁进行系统修补，双方合作给出攻防过程报告。</p>  <p><b>三、实验环境</b><b></b></p>  <p>为了完成本次实验，我们部署了如下的实验环境。</p>  <p>攻守双方使用两台笔记本电脑，并将它们直连成为一个局域网。在攻守双方的笔记本电脑上部 署Vmware Workstation软件，并分别建立攻击机、扫描机和防守机。其中攻方使用BackTrack4系统，并辅助使用WinXPattacker进行扫 描；守方使用Ubuntu 8.04－<b>Metasploitable</b>系统。</p>  <p>如下图，三台虚拟机使用Bridge方式联网，攻击机IP地址192.168.200.10，扫描机IP地址192.168.200.2；防守机IP地址192.168.200.11。</p>  <p><a href="http://www.91ri.org/wp-content/uploads/auto_save_image/2012/07/073740sCJ.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Linux_EFD9/clip_image001.png" width="738" height="352" /></a></p>  <p><b>四、攻防实践过程</b><b></b></p>  <p>攻守双方首先将虚拟机启动起来，配置好网络环境并测试网络通畅后，攻守双发分别进行接下来的操作。</p>  <p><b>攻方过程</b><b></b></p>  <p><b>漏洞扫描及结果分析</b><b></b></p>  <p>为了确认防守方系统漏洞，攻方在扫描机上使用X-Scan 3.3对防守机进行了一次全面漏洞扫描。</p>  <p><a href="http://www.91ri.org/wp-content/uploads/auto_save_image/2012/07/073741iO8.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Linux_EFD9/clip_image002.png" width="794" height="482" /></a></p>  <p>其中防守机开启的服务和具体的漏洞如下</p>
+      
+      </p>
+      
+      <p>
+          <a href="/886.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
       <time datetime="2012-06-21T13:34:37.000Z" itemprop="datePublished">
           2012-06-21
       </time>
@@ -210,47 +245,6 @@
       
       <p>
           <a href="/200.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-12-16T03:57:35.000Z" itemprop="datePublished">
-          2011-12-16
-      </time>
-    
-    
-    | 
-    <a href='/tag/Linux/'>Linux</a>,
-    
-    <a href='/tag/虚拟主机/'>虚拟主机</a>,
-    
-    <a href='/tag/管理系统/'>管理系统</a>,
-    
-    <a href='/tag/VPS/'>VPS</a>,
-    
-    <a href='/tag/CPanel/'>CPanel</a>,
-    
-    <a href='/tag/ZPanel/'>ZPanel</a>,
-    
-    <a href='/tag/Webmin/'>Webmin</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/197.seo/">Linux下的六个免费的虚拟主机管理系统</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>收费的虚拟主机控制面板（比如CPanel，DirectAdmin）由于价格昂贵，花钱买不划算。于是一直在苦苦寻找免费或者破解的类似于DirectAdmin的虚拟主机管理系统,没想到开源界已经产生了如此多优秀的免费的虚拟主机管理系统：ZPanel，web-cp，VHCS，virtualmin，PHPMyWebHosting，SysCP。另外还有Kloxo……</p>
-      
-      </p>
-      
-      <p>
-          <a href="/197.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>

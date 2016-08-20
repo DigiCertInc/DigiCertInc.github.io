@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>论升级的重要性,低版本squirrel mail的XSS利用实例 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-07-22T18:47:10.000Z" itemprop="datePublished">
+          2013-07-23
+      </time>
+    
+    
+    | 
+    <a href='/tag/xss/'>xss</a>,
+    
+    <a href='/tag/squirrel-mail/'>squirrel mail</a>
+    
+    
+</span>
+    <h1 class="post-title">论升级的重要性,低版本squirrel mail的XSS利用实例</h1>
+    <section class="post-content">
+      <p>低版本的sqmail有几个xss洞…但是没有exploit…这次通过实例补充一下   <br>求不要跨省…我还要读几年书呢    <br>详细说明：    <br>香港科技大学喜欢使用<a href="http://Ha.Cker.In/tag/squirrel mail" target="_blank">squirrel mail</a>作为webmail后端    <br>屡次标榜先进性却不思升级…这不就跪了么    <br>这次实战的洞有CVE-2008-2379    <br>和一个老洞…但是sqmail的最新版好像也没完全修好    <br>先看看科大用的sqmail版本    <br>logout以后任意访问一个需要login的页面就可以了    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201306/0714484951b23cf830d7e8a14a83dc9733d6b35b.jpg" target="_blank" rel="external"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="438" alt="clip_image002" src="http://img.cker.in/squirrelmailXSS_9766/clip_image002.jpg" width="620" border="0"></a>    <br>1.4.10a恩…    <br><a href="http://squirrelmail.org/security/" target="_blank" rel="external">http://squirrelmail.org/security/</a>    <br>来看看对应版本有什么洞…    <br>我注意到的是    <br>2008-12-04&#160;&#160;&#160;&#160;&#160;&#160;&#160; Cross site scripting in HTML filter&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1.4.0 - 1.4.16&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160;&#160;&#160;&#160;&#160; CVE-2008-2379    <br>这个洞…先搜一下网上有没有现成的exploit好了….    <br>…     <br>没有…那就自己研究    <br>先看一下patch    <br><a href="http://squirrelmail.svn.sourceforge.net/viewvc/squirrelmail/branches/SM-1_4-STABLE/squirrelmail/functions/mime.php?r1=13276&amp;r2=13338&amp;view=patch" target="_blank" rel="external">http://squirrelmail.svn.sourceforge.net/viewvc/squirrelmail/branches/SM-1_4-STABLE/squirrelmail/functions/mime.php?r1=13276&amp;r2=13338&amp;view=patch</a>    <br>然后抓源码下来研究一番</p><br><a id="more"></a><br><p>原来啊…洞在于在函数的一开始，把链接两边的quote去掉了   <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201306/07150017a7de38ea27416b6f1e77fb9bec455400.jpg" target="_blank" rel="external"><img title="clip_image004" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="367" alt="clip_image004" src="http://img.cker.in/squirrelmailXSS_9766/clip_image004.jpg" width="620" border="0"></a>    <br>但是在处理完以后，忘记加上quote了..    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201306/0715012171e314f732df35cda5817fdad4b30b5d.jpg" target="_blank" rel="external"><img title="clip_image006" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="390" alt="clip_image006" src="http://img.cker.in/squirrelmailXSS_9766/clip_image006.jpg" width="620" border="0"></a>    <br>但是啊….仔细研究这段源码…发现了一些棘手的事情    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201306/0715023269f002ab690b92411bf13db3259929cc.jpg" target="_blank" rel="external"><img title="clip_image008" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="234" alt="clip_image008" src="http://img.cker.in/squirrelmailXSS_9766/clip_image008.jpg" width="620" border="0"></a>    <br>开发者提前探测了一些危险字符，然后是一旦出现直接打入冷宫= =    <br>这里我想再要吐槽一下….尼玛过滤其他的字符我还能理解，过滤20空格,21感叹号,23井号,24美元符号,25百分号是要逆天么?    <br>你这样让一个正常的url也要悲剧啊…    <br>好了…那么也即…要在大多数已经用惯的分隔符不能使用之际，来构造<a href="http://Ha.Cker.In/tag/XSS" target="_blank">XSS</a>    <br>第一个任务…    <br>如何将tag name同tag attribute分隔开    <br>因为过滤空格等分隔符的原因    <br>&lt;img onload=xxx&gt;    <br>这样是不行的…    <br>但是啊…我表示曾经试出过一个奇葩的用法    <br>&lt;img/onload=xxx&gt;    <br>也即…用反斜杠是可以分隔tag name和tag attribute的    <br>而且经测试是通杀各大浏览器的    <br>其实呢…按照sqmail直接返回内容的尿性…到这里已经够了…    <br>因为直接script标签就搞定了…    <br>但是呢…我还想来试试用img标签怎么搞    <br>这就涉及到第二个问题…分隔tag attribute的方法    <br>这时候是不能用反斜杠分隔的，因为反斜杠会被认为在attribute里面    <br>这时候我另一个奇葩的发现又派出了用场…那就是，各大浏览器会把\127当成单引号来parse….    <br>于是可以有如下的代码    <br>&lt;img/src=<a href="http://www.wooyun.org/127/48/127onerror=/127console.log(/xss/)/127/&amp;gt" target="_blank" rel="external">http://www.wooyun.org/127/48/127onerror=/127console.log(/xss/)/127/&amp;gt</a>;    <br>然后这个洞的完整exploit就是    <br>&lt;a href=<a href="http://www.wooyun.org/bugs/&#39;http://test/?p=&gt;&lt;/a&gt;&lt;img/src=\127\48\127onerror=\127console.log(/xss/)\127/&amp;gt" target="_blank" rel="external">http://www.wooyun.org/bugs/&#39;http://test/?p=&gt;&lt;/a&gt;&lt;img/src=\127\48\127onerror=\127console.log(/xss/)\127/&amp;gt</a>;’ &gt;test&lt;/a&gt;    <br>效果最后再给    <br>然后接下来是一个老洞    <br>就是svg里面xlink:href插入javascript的问题    <br>不多说…直接上exploit    <br>&lt;svg xmlns=&quot;<a href="http://www.w3.org/2000/svg&amp;quot" target="_blank" rel="external">http://www.w3.org/2000/svg&amp;quot</a>; style=&quot;width:700px;height:400px;z-index:101;display:block;margin-top:-400px;&quot;&gt; &lt;a xmlns:xlink=&quot;<a href="http://www.w3.org/1999/xlink&amp;quot" target="_blank" rel="external">http://www.w3.org/1999/xlink&amp;quot</a>; xlink:actuate=&quot;onClick&quot; xlink:href=&quot;javascript:console.log(/xss/)&quot;&gt;&lt;rect width=&quot;1000&quot; height=&quot;1000&quot; fill=&quot;transparent&quot;/&gt;&lt;/a&gt; &lt;/svg&gt;    <br>为什么说新版的sqmail修了一半呢…    <br>这段exploit原意是用一个很大的可点击的透明rect覆盖几乎整个页面，让用户只要点击就会触发脚本    <br>新版的sqmail修正了用style覆盖页面的漏洞，但是没有修正xlink:href含有javasctipt的漏洞    <br>最后是这个版本的sqmail所有cookie包括session都不是http only的…所以xss是致命的    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201306/07151707d416f2bcfeeee5f89c741bae9fcd61e1.jpg" target="_blank" rel="external"><img title="clip_image010" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="382" alt="clip_image010" src="http://img.cker.in/squirrelmailXSS_9766/clip_image010.jpg" width="620" border="0"></a>    <br>然后赶紧实战一下    <br>send封email给自己    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201306/0715201051edca8c29b609ce108bcb78da680974.jpg" target="_blank" rel="external"><img title="clip_image012" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="292" alt="clip_image012" src="http://img.cker.in/squirrelmailXSS_9766/clip_image012.jpg" width="620" border="0"></a>    <br>查看邮件页面里赫然已有痕迹    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201306/07152324d48ae8901ff993e0329292a9f7c9ceae.jpg" target="_blank" rel="external"><img title="clip_image014" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="341" alt="clip_image014" src="http://img.cker.in/squirrelmailXSS_9766/clip_image014.jpg" width="620" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201306/07152414cad5952949bc223e38ca4b5b23436921.jpg" target="_blank" rel="external"><img title="clip_image016" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="233" alt="clip_image016" src="http://img.cker.in/squirrelmailXSS_9766/clip_image016.jpg" width="620" border="0"></a>    <br>然后那个onerror的已然执行    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201306/07152537aabd0b8451cb4b5b6c0fac3635f00749.jpg" target="_blank" rel="external"><img title="clip_image018" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="256" alt="clip_image018" src="http://img.cker.in/squirrelmailXSS_9766/clip_image018.jpg" width="620" border="0"></a>    <br>那个骗点击的工作正常    <br>所以啊…不升级伤不起啊    <br>漏洞证明：    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201306/07152324d48ae8901ff993e0329292a9f7c9ceae.jpg" target="_blank" rel="external"><img title="clip_image019" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="341" alt="clip_image019" src="http://img.cker.in/squirrelmailXSS_9766/clip_image019.jpg" width="620" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201306/07152414cad5952949bc223e38ca4b5b23436921.jpg" target="_blank" rel="external"><img title="clip_image020" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="233" alt="clip_image020" src="http://img.cker.in/squirrelmailXSS_9766/clip_image020.jpg" width="620" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201306/07152537aabd0b8451cb4b5b6c0fac3635f00749.jpg" target="_blank" rel="external"><img title="clip_image021" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="256" alt="clip_image021" src="http://img.cker.in/squirrelmailXSS_9766/clip_image021.jpg" width="620" border="0"></a>    <br>修复方案：    <br>升级啊升级    <br>然后那个xlink:href的小洞squirrel mail修一下?    <br>之前不是说好升级换代成Google Apps吗….怎么没动静了 要我说啊…科大赶紧换Google Apps嘛.</p>  <p align="right">转自乌云</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1015.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1015.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1015.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1015.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/1016.seo/">
+        ← PHP  将时间显示为 刚刚  n分钟 小时前 等
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/1014.seo/">
+        看我是如何利用zbbix渗透sogou&sohu内网的 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

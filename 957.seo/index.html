@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>中国电信某IDC服务器的奇葩漏洞致服务器沦陷 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-12-20T17:17:51.000Z" itemprop="datePublished">
+          2012-12-21
+      </time>
+    
+</span>
+    <h1 class="post-title">中国电信某IDC服务器的奇葩漏洞致服务器沦陷</h1>
+    <section class="post-content">
+      <p><em>转的wooyun</em></p>  <p>发现的比较的偶然~<a href="http://ha.cker.in/tag/入侵" target="_blank">入侵</a>的比较愕然~</p>  <p>1.偶然间发现的电信的比较奇葩SQL<a href="http://ha.cker.in/tag/SQL注入" target="_blank">注入</a><a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>（貌似是为监控客户网站的访问情况），该情况可能在电信IDC具有通用性，测试地址<a href="http://118.123.206.9/preuid.php?uid=2610023800" target="_blank" rel="external">http://118.123.206.9/preuid.php?uid=2610023800</a></p>  <p>Web Server: Apache/2.2.23 (Unix) PHP/5.4.7</p>  <p>Powered-by: PHP/5.4.7</p>  <p>DB Server: MySQL &gt;=5</p>  <p>Current User: root@localhost</p>  <p>Sql Version: 5.5.28-log</p>  <p>Current DB: analytics</p>  <p>System User: root@localhost</p>  <p>Host Name: localhost.localdomain</p>  <p>Installation dir: /usr</p>  <p>DB User &amp; Pass: root:<em>70A3DDDA7052B54160CE5B0BF385872C8E470224:localhost</em></p>  <p>root::localhost.localdomain</p>  <p>root::127.0.0.1</p>  <p>::localhost</p>  <p>::localhost.localdomain</p>  <p>remote:A4B6157319038724E3560894F7F932C8886EBFCF:%</p>  <p>root:<em>70A3DDDA7052B54160CE5B0BF385872C8E470224:%</em></p>  <p>hpflow:70A3DDDA7052B54160CE5B0BF385872C8E470224:118.123.206.9</p>  <p>web:<em>A4B6157319038724E3560894F7F932C8886EBFCF:%</em></p>  <p>hpflow:70A3DDDA7052B54160CE5B0BF385872C8E470224:118.123.206.7</p>  <p>Data Bases: information_schema</p>  <p>IDC</p>  <p>analytics</p>  <p>mysql</p>  <p>netflow</p>  <p>performance_schema</p>  <p>rec_web</p>  <p>report</p>  <p>report1</p>  <p>test</p>  <p>web</p>  <p>web_test</p>  <p>zj</p>  <p><a href="http://img.cker.in/IDC_812C/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/IDC_812C/clip_image001_thumb.jpg" width="1074" height="411"></a></p>  <p>前台没啥看的~</p><br><a id="more"></a><br><p></p>  <p><a href="http://img.cker.in/IDC_812C/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/IDC_812C/clip_image002_thumb.jpg" width="1195" height="635"></a></p>  <p>2.数据库权限还是root，好吧看来数据库允许web，remote用户外连，而且都是相同的<a href="http://ha.cker.in/tag/弱口令" target="_blank">弱口令</a>，ok~那就来telnet下看是否默认端口吧~~~    <br>bingo~还是root权限~</p>  <p><a href="http://img.cker.in/IDC_812C/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/IDC_812C/clip_image003_thumb.jpg" width="1131" height="438"></a></p>  <p>3.看看有啥好东西没~貌似监控了不少网站~</p>  <p><a href="http://img.cker.in/IDC_812C/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/IDC_812C/clip_image004_thumb.jpg" width="735" height="553"></a></p>  <p>4.好吧~既然这样了，不拿shell都对不起自己了~(<a href="http://ha.cker.in/tag/提权" target="_blank">提权</a>已经没啥意义了)</p>  <p><a href="http://img.cker.in/IDC_812C/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/IDC_812C/clip_image005_thumb.jpg" width="813" height="545"></a></p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/957.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/957.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/957.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/957.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/958.seo/">
+        ← 渗透某页游平台
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/956.seo/">
+        马克思cms后台拿webshell方法 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

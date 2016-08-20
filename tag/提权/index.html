@@ -45,6 +45,66 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
+      <time datetime="2013-06-24T21:13:01.000Z" itemprop="datePublished">
+          2013-06-25
+      </time>
+    
+    
+    | 
+    <a href='/tag/提权/'>提权</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1008.seo/">Windows提权时，自动查询补丁号的批处理</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        Windows提权时，自动查询补丁号的批处理     systeminfo&gt;a.txt&amp;(for %i in (KB2360937 KB2478960 KB2507938 KB2566454 KB2646524 KB2645640 KB2641653 KB944653 KB952004 KB971657 KB2620712 KB2393802 kb942831 KB2503665 KB2592799) do @type a
+      
+      </p>
+      
+      <p>
+          <a href="/1008.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-01-21T20:18:26.000Z" itemprop="datePublished">
+          2013-01-22
+      </time>
+    
+    
+    | 
+    <a href='/tag/提权/'>提权</a>,
+    
+    <a href='/tag/渗透/'>渗透</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/968.seo/">对某学校教务系统的一次渗透</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        目标:oa.school.com&#160; IP:192.168.100.100 OA系统 (域名ip均已经过处理)   目的：登陆该后台管理系统 进行某个目的     0x01    检测并提权     某商业oa程序 无0day 网上也没有相关漏洞信息 ， 无同服务器站点，简单的进行了 常规web漏洞扫描、目录扫描、手工探测、端口信息、简单的对各开放并可能利用的端口进行密码破解 未果    通过google搜索并整理相关二级域名 
+      
+      </p>
+      
+      <p>
+          <a href="/968.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
       <time datetime="2012-11-24T12:30:54.000Z" itemprop="datePublished">
           2012-11-24
       </time>
@@ -78,157 +138,101 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-31T02:22:26.000Z" itemprop="datePublished">
-          2012-08-31
-      </time>
-    
-    
-    | 
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/提权/'>提权</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/791.seo/">轮奸某黑客学校网站</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>摘自<a href="http://gov.com.im" target="_blank">流亡青年</a></p>  <p>写之前抱怨一下：Fuck,不知道被哪位大牛种马了，刚写好的文档，还有相关文件都没了，囸！</p>  <p>本来没准备搞他，但是前天帮1朋友搞他们学校网络中心时想起来<a href="http://gov.com.im/art_design/2011/1127/CmdH4ck.html">CmdH4ck</a>大黑阔在这个学校（CmdH4ck：吐司黑阔，曾一起参加过比赛，获得第一，RMB3K），于是便顺手检测下主站。    <br />打开主站，<a href="http://wwwxxx.edu.cn">http://wwwxxx.edu.cn</a>    <br />点开一个链接，asp的，加一个’试试，跳出了这个：</p>  <p><a href="http://gov.com.im/uploads/allimg/111127/102Q2G28-0.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/87797fec8afa_10233/clip_image001.png" width="465" height="143" /> </a></p>  <p>还好挂了个VPN，语言这么嚣张，难道是CmdH4ck修补的？   <br />先看看其他分站，主站一般都很安全，突然想起来Gucci那mjj的上次检测我学校时（主站他没拿下，拿的都是有注入和弱口令的一些学院网站），尼玛，他在每个目录都放一个他的Gucci.asp，我删的累死了，然后就去把他学校给xxoo了，不过我囸的是主站，没有恶意，挂了一个txt友情提醒。</p>  <p>走题了，继续，看到<a href="http://A.xxx.edu.cn，感觉页面有点熟悉，随手加了个admin,后台出来了：">http://A.xxx.edu.cn，感觉页面有点熟悉，随手加了个admin,后台出来了：</a></p>  <p><a href="http://gov.com.im/uploads/allimg/111127/102Q2N13-1.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/87797fec8afa_10233/clip_image002.png" width="532" height="174" /></a></p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Powereasy 2006.   <br />注册一个用户abc.asp，上传图片马，    <br />地址：<a href="http://xxx/user/Upload.asp?dialogtype=UserBlogPic&amp;size=5">http://xxx/user/Upload.asp?dialogtype=UserBlogPic&amp;size=5</a>    <br />抓包获得shell地址    <br />原理大家都懂，不解释了。</p>  <p>菜刀成功连接：</p>  <p><a href="http://gov.com.im/uploads/allimg/111127/102Q2K49-2.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/87797fec8afa_10233/clip_image003.png" width="551" height="277" /></a></p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; RP爆发了，这么老的洞竟然没补。。。</p>  <p>上大马，发现不支持aspx和php，不过还好组件在，可执行目录也多。端口扫了下，常见端口一个没开。服务器是一机多IP，从ipconfig的结果来看，主站www也在服务器上，不过当前的shell下还没权限跨目录到主站www目录下。只好提权了，传exp，被杀了，tasklist看到杀软竟然是趋势，感慨一句，CmdH4ck学校真有钱。。。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/791.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-08-19T10:26:26.000Z" itemprop="datePublished">
-          2012-08-19
-      </time>
-    
-    
-    | 
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/提权/'>提权</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/759.seo/">记入侵提权时一次绕过3389证书验证</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>一天，在源码站下载了一套《易天工作室通用企业型后台管理系统》源代码来读。check.asp页面中发现了一个问题，由于程序没有对输入内容进行过滤，我们可以输入万能密码登陆，直接进入后台。（难道这个就是传说的中企业后台漏洞？）</p>  <p>发现了这套程序的漏洞，那我们当然要利用此漏洞来拿服务器咯。Google hacking 了一下，来到了郑州大学某院系的页面。直接在URL后面加上admin，后台一下就跳出来了。让我们看看漏洞是否存在吧。在用户名和密码处都填’or’=’or’ ，然后把验证码写好，点登陆，果然进入了管理页面，说明漏洞真的存在哦。因为这套程序本身就有备份的功能，所以得到WEBSHELL就很简单了。</p>  <p>先把我们的ASP木马改成JPG格式上传，如图1在空间图片管理的最后1页或2页就可以看到我们的图片木马了。如图2然后右键，属性就可以得到上传的路径了。之后，在数据库备份里把我们的图片木马还原成ASP格式就可以了。（在备份的时候，如果路径填写错误会提示网页无法显示，如果出现这样的情况，可以检查下图片的路径是否填写正确。此套程序中也有ewebeditor，如果后台中备份的功能被删除了，可以试试用这个来拿webshell，因为很多管理员都忘记更改它的默认密码或数据库路径）。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/759.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-08-15T20:05:16.000Z" itemprop="datePublished">
-          2012-08-16
-      </time>
-    
-    
-    | 
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/提权/'>提权</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/755.seo/">对mcc.net.cn的一次检测</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>原文地址：法克论坛   <br />N久前的事情了 以前是独服的 现在旁站很多 检测原因:雅兰MJJ 在群里发的这个站，说没事大家去日它装逼。听说还是全国最大的MCC潮流社区。于是我就开始了邪恶之旅先踩点:网站是ASP的 IIS6.0 windows2003有个数据库雅兰下载来了不过得到的密</p>  <p>PS:N 久前的事情了 以前是独服的 现在旁站很多   <br /> 检测原因:雅兰MJJ 在群里发的这个站，说没事大家去日它装逼。听说还是全国最大的MCC潮流社区。    <br />于是我就开始了邪恶之旅    <br />先踩点:网站是ASP的 IIS6.0 windows2003    <br />有个数据库雅兰下载来了    <br />不过得到的密码是这个 +++++++++sadasc636++++    <br />哎 无果    <br />那就看旁站吧    <br /><a href="http://img.cker.in/mcc.net.cn_A915/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/mcc.net.cn_A915/clip_image001_thumb.jpg" width="806" height="554" /></a>    <br />有个论坛    <br />Bbs.mcc.net.cn    <br />论坛也是ASP的然后根据ICO 发现他是DVBBS 的程序    <br />版本未知</p>
-      
-      </p>
-      
-      <p>
-          <a href="/755.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-07-08T07:19:57.000Z" itemprop="datePublished">
-          2012-07-08
-      </time>
-    
-    
-    | 
-    <a href='/tag/一句话/'>一句话</a>,
-    
-    <a href='/tag/提权/'>提权</a>,
-    
-    <a href='/tag/phpmyadmin/'>phpmyadmin</a>,
-    
-    <a href='/tag/突破/'>突破</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/662.seo/">phpmyadmin导出一句话时，路径为中文的突破方法</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        摘自t00ls.net   执行如下SQL语句后导出文件即可   set character_set_client=’gbk’;    set character_set_connection=’gbk’;    set character_set_database=’gbk’;    set character_set_results=’gbk’;    set character_set_server=’gbk’;    selec
-      
-      </p>
-      
-      <p>
-          <a href="/662.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-25T08:32:36.000Z" itemprop="datePublished">
-          2012-06-25
+      <time datetime="2012-11-21T21:58:30.000Z" itemprop="datePublished">
+          2012-11-22
       </time>
     
     
     | 
     <a href='/tag/提权/'>提权</a>,
     
-    <a href='/tag/Zend/'>Zend</a>
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/输入法漏洞/'>输入法漏洞</a>,
+    
+    <a href='/tag/Windows-8/'>Windows 8</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/606.seo/">通过Zend目录权限不严获取执行权限</a></h2>
+      <h2 class="post-title"><a href="/941.seo/">经典提权漏洞再现 - Win8的远程桌面配合QQ拼音纯净版可以实现提权</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>服务器上很多都装了 Zend   <br />就算 C:\Program Files\ 设置过权限，安装Zend后，Zend 会自动配置目录的权限    <br />C:\Program Files\Zend\ZendOptimizer-3.3.0\ 下的目录权限为 Everyone 全权,这导致入侵者能写入文件。    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Zend_78D/clip_image001.jpg" width="615" height="607" />    <br />如果黑客入侵一个服务器，只支持 asp,或php,没有执行权限，执行组件也给禁用了，只有读写文件的权限(只要读写权限就够)。    <br />但 C:\Program Files\Zend\ZendOptimizer-3.3.0\lib 下有 ZendExtensionManager.dll 文件，    <br />而这个文件就算加载了，也能通过&quot;重命名&quot;得以修改。    <br />而黑客只要把这个DLL换成黑客的DLL，将能加载起来！    <br />在测试中发现，如果直接换上DLL，替换的DLL不能被Zend加载！    <br />转换思路，软件应该是加载相关DLL再查看相关接口!&#160;&#160; <br />Zend 加载 -&gt; 替换后的dll(文件名用 ZendExtensionManager.dll ) -&gt; 加载原DLL (这是原文件，把他改为名 ZendExtensionManager.dll.log 让自己的加载他)    <br />测试能成功加载！</p>
+        <p>没有哪个平台是百分之百安全的，虽然微软<a href="http://ha.cker.in/tag/Windows 8" target="_blank">Windows 8</a>在安全方面进行了很大改进，但是仍然不可避免地出现漏洞。<strong>国内博客</strong><strong><a href="http://www.cnblogs.com/maybreath/archive/2012/11/20/2778875.html">MayBreath</a></strong><strong>就在</strong><strong>Windows 8</strong><strong>上再现了曾经出现过的<a href="http://ha.cker.in/tag/输入法漏洞" target="_blank">输入法漏洞</a>，利用</strong><strong>QQ</strong><strong>拼音实现了<a href="http://ha.cker.in/tag/提权" target="_blank">提权</a>，具体来看一下</strong>：</p>  <p>发现这个漏洞的时候，笔者正在机房上课。正想用3389远程桌面去控制宿舍电脑的时候，因为重做系统忘记自己的IP地址，因此就随手扫描了一下IP段开3389端口的电脑。</p>  <p>没想到就随手扫描到一台Win8的系统，而且这个系统还装了QQ输入法Win8纯净版。</p>  <p>当时我就想起初中时候的那个极品五笔的漏洞，就随手测试了一下，没想到在时隔7、8年后的今天，号称非常安全的Win8系统居然还有如此大的<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>。这边就把<a href="http://ha.cker.in/tag/提权" target="_blank">提权</a>过程理一遍。</p>  <p>首先确认装有这个QQ拼音输入法：</p>  <p><a href="http://img.cker.in/Win8QQ_C37E/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Win8QQ_C37E/clip_image001_thumb.jpg" width="620" height="471" /></a></p>  <p>Ctrl+空格调出托盘，找到这个选项：</p>  <p><a href="http://img.cker.in/Win8QQ_C37E/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Win8QQ_C37E/clip_image002_thumb.jpg" width="620" height="462" /></a></p>  <p>顺利开启IE浏览器：</p>  <p><a href="http://img.cker.in/Win8QQ_C37E/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/Win8QQ_C37E/clip_image003_thumb.jpg" width="620" height="468" /></a></p>  <p>需要说明的是，<strong>IE</strong><strong>浏览器和</strong><strong>Win8</strong><strong>安全性确实是提高了非常多</strong>。随手在地址栏输入D:\ file://d: 这样的命令都无法打开文件夹，本以为只要随便上传一个bat批处理，写上提权用的命令，然后利用IE下载下来打开运行即可，没想到各种提示系统要求验证您的用户密码等，根本无法进行下载，可见<strong>常规方式真的行不通</strong>。</p>  <p>微软还是有在修复这些漏洞，但是经过笔者的诸多尝试，最终发现有一处漏洞尚未填补。</p><br>
       
       </p>
       
       <p>
-          <a href="/606.seo/" class="excerpt-link">Read More...</a>
+          <a href="/941.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-10-29T02:47:46.000Z" itemprop="datePublished">
+          2012-10-29
+      </time>
+    
+    
+    | 
+    <a href='/tag/提权/'>提权</a>,
+    
+    <a href='/tag/入侵/'>入侵</a>,
+    
+    <a href='/tag/0day/'>0day</a>,
+    
+    <a href='/tag/破解/'>破解</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/915.seo/">发几篇以前录制的视频教程</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        发几篇以前做的视频教程，比较没技术含量，都是以前无聊的时候录制的  放着也是放着 不如拿出来或许有需要的人可以看下 不要拍我就好…。。     一键破解无线路由WEP密码.rar      记一次提权拿服务器.rar      检测浙江互联星空[游戏分站].rar      入侵私服站拿服务器教程.rar      入侵北大青鸟拿服务器.rar      Fckeditor后台编辑器0day.rar      建站之星0day漏洞演示.
+      
+      </p>
+      
+      <p>
+          <a href="/915.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-09-25T05:56:48.000Z" itemprop="datePublished">
+          2012-09-25
+      </time>
+    
+    
+    | 
+    <a href='/tag/提权/'>提权</a>,
+    
+    <a href='/tag/内网渗透/'>内网渗透</a>,
+    
+    <a href='/tag/嗅探/'>嗅探</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/852.seo/">对居然之家的一次内网渗透</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>先上图：</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image001_thumb.jpg" width="508" height="287" /></a></p>  <p>本来是不想搞站的，专心学点编程，可是老是有人来找我帮忙什么的。。。搞完这个我想专心学点编程，俗话说不会编程的黑客不算是高富帅。。。所以说，你懂得。</p>  <p>进入正题</p>  <p>1. 主站摸索</p>  <p>2. 旁站摸索</p>  <p>3. 旁服摸索</p>  <p>4.</p>  <p>不开玩笑了。。</p>  <p>嫖叔尝试过主站服务器了，但是没有搞下来，我这人比较懒，当时也没有追随着嫖叔的脚步搞那个db权限的注射点，一来好久没搞注入了，二来对注入也无爱了。后来玩命有一天很激动的告诉我说拿到了旁服上的一个shell，叫我提权试试，我想了想，既然这是个企业站，注册资金据说有8100w，肯定很有钱，服务器肯定也是大大的有，放在内网的话还能内网渗透一下，于是就上了。</p>  <p>顺便说下，玩命搞到的那个shell是通过注射加后台上传拿到的，大家就别再搞了。</p>  <p>上了shell看了下，权限很大，几乎全盘浏览了，支持asp，aspx，php，翻了下看见了xampp，管理员还真懒，mysql估计就是系统权限运行的，而且我猜root密码还是默认为空。于是翻查数据库连接文件，管理员果然没让我失望</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image002_thumb.jpg" width="508" height="305" /></a></p>  <p>于是果断mysql导出udf提权，加了个系统权限的用户，上了rootki.asp（这玩意用系统帐号登录，权限为system，比较方便）</p>  <p>查了下远程桌面端口发现没改，ipconfig发现是双网卡，但都在内网，装了金山杀毒软件和金山管理软件（不记得是不是这个名字了）</p>  <p>上传lcx想转发端口的，可惜被杀了，试了下taskkill，ntsd都不能把杀毒的进程给杀完，最主要的杀毒进程杀不掉，没办法，找小陈做了个免杀，自己又是外网（怨念哪。。当初花150买了个90块钱的tplink路由器，结果发现不能把自己放到dmz去，端口映射也不行，被黑出翔了，如果我是外网的，可以做更多的事的，反弹到我这里，用metasploit进行内网渗透。。。嘿嘿，留口水了）于是上外网服务器操作了，那慢的叫我想死了。。。不过好歹有个桌面环境给我操作，不用一直命令行了。</p>  <p>既然是内网，当然是要内网搞一搞了，但是之前我在服务器上翻了下，发现了装有winwebmail，这玩意一开始查同服的时候就知道了，只不过貌似限制了ip登录，但是我控制了服务端，不怕限制ip登录，以后可以作为一个信息来源，先留着。</p>  <p>Cmd下执行各种命令对内网环境做一个基本的了解。</p>  <p>C:Documents and Settingsfucker&gt;net view /domain 查看有几个组</p>  <p>Domain————————————————————-</p>  <p>MYGROUP</p>  <p>WORKGROUP</p>  <p>命令成功完成。</p>  <p>C:Documents and Settingsfucker桌面Pwdump7&gt;netview（查询有关系的机器）</p>  <p>服务器名称 注释</p>  <p>————————————————————————</p>  <p>EFGP</p>  <p>IBM</p>  <p>IIBM</p>  <p>JR141&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; jr141</p>  <p>JR142</p>  <p>JURANZHIJIALEWU</p>  <p>JURZJCTI-9897F9</p>  <p>LEWU</p>  <p>OASERVER</p>  <p>POS27&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos27</p>  <p>POS28</p>  <p>POS29&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos29</p>  <p>POS30&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos30</p>  <p>USER-87C8B53A9C</p>  <p>命令成功完成。</p>  <p>C:Documents and Settingsfucker&gt;net view/domain:workgroup（查看workgroup组下的机器）</p>  <p>服务器名称 注释</p>  <p>——————————————————————</p>  <p>EFGP</p>  <p>IBM</p>  <p>JR141&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; jr141</p>  <p>JR142</p>  <p>JURANZHIJIALEWU</p>  <p>JURZJCTI-9897F9</p>  <p>LEWU</p>  <p>OASERVER</p>  <p>POS27&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos27</p>  <p>POS28</p>  <p>POS29&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos29</p>  <p>POS30&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos30</p>  <p>命令成功完成。</p>  <p>C:Documents and Settingsfucker&gt;net view/domain:mygroup（查询mygroup组下的机器）</p>  <p>服务器名称 注释</p>  <p>————————————————————————-</p>  <p>AP-3850-3&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Samba Server Version 3.0.33-0.17.el4</p>  <p>GP53&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Samba Server Version 3.0.33-3.28.el5</p>  <p>命令成功完成。-</p>  <p>其实这些东西查询出来</p>
+      
+      </p>
+      
+      <p>
+          <a href="/852.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>

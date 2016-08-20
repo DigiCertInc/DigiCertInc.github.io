@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Category: linux笔记 | Blog of Secer</title>
+  <title>Category: Linux笔记 | Blog of Secer</title>
   <meta name="description" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="MobileOptimized" content="320" />
@@ -74,27 +74,33 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-31T00:26:36.000Z" itemprop="datePublished">
-          2012-08-31
+      <time datetime="2013-09-05T23:43:58.000Z" itemprop="datePublished">
+          2013-09-06
       </time>
     
     
     | 
-    <a href='/tag/RedHat/'>RedHat</a>
+    <a href='/tag/Mongodb/'>Mongodb</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/788.seo/">redhat安装chrome</a></h2>
+      <h2 class="post-title"><a href="/1028.seo/">Python调用MongoDB使用心得</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        最近在学习linux，安装的是redhat，自带的firefox，由于不习惯firefox，想安装一个chrome，在网上找的安装方法，记录一下方便以后查找   1.创建一个文件/etc/yum.repos.d/google.repo   2.如果是32位的   [google-chrome]name=google-chrome - 32-bitbaseurl=http://dl.google.com/linux/chrome/rpm/
+        <p><p>本文是一个Python 使用<a href="http://Ha.Cker.In/tag/MongoDB" target="_blank">MongoDB</a>的简单教程，将使用pymongo对MongoDB进行的各种操作进行了简单的汇总，NoSQLFan进行了简单整理，使用Python的同学可以看一看。</p> <p>&nbsp;</p> <p>下载相应平台的版本，解压即可。为方便使用，将bin路径添加到系统path环境变量里。其中mongod是服务器，mongo是客户shell，然后创建数据文件目录：在c盘下创建data文件夹，里面创建db文件夹。</p> <p>基本使用：</p> <p><a href="http://img.cker.in/PythonMongoDB_DD32/1VL89KYXK12ZECOYV.jpg"><img title="`1(V)L89KY[XK[12ZECOY%V" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="159" alt="`1(V)L89KY[XK[12ZECOY%V" src="http://img.cker.in/PythonMongoDB_DD32/1VL89KYXK12ZECOYV_thumb.jpg" width="507" border="0"></a></p> <p>安装对应语言的Driver，Python 安装 pymongo</p><pre>$ easy_install pymongo</pre></p>
+<p><p>使用方法总结，摘自官方教程</p></p>
+<p><p>创建连接</p><pre>&gt;&gt;&gt; import pymongo<br>&gt;&gt;&gt; connection=pymongo.Connection(‘localhost’,27017)</pre></p>
+<p><p>切换数据库</p><pre>&gt;&gt;&gt; db = connection.test_database</pre></p>
+<p><p>获取collection</p><pre>&gt;&gt;&gt; collection = db.test_collection</pre></p>
+<p><p>db和collection都是延时创建的，在添加Document时才真正创建</p></p>
+<p><p>文档添加，_id自动创建</p><pre>&gt;&gt;&gt; import datetime<br>&gt;&gt;&gt; post = {“author”: “Mike”,<br>…         “text”: “My first blog post!”,<br>…         “tags”: [“mongodb”, “python”, “pymongo”],<br>…         “date”: datetime.datetime.utcnow()}<br>&gt;&gt;&gt; posts = db.posts<br>&gt;&gt;&gt; posts.insert(post)<br>ObjectId(‘…’)</pre><br>
       
       </p>
       
       <p>
-          <a href="/788.seo/" class="excerpt-link">Read More...</a>
+          <a href="/1028.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -103,27 +109,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-08T05:14:22.000Z" itemprop="datePublished">
-          2012-08-08
+      <time datetime="2013-08-13T01:17:02.000Z" itemprop="datePublished">
+          2013-08-13
       </time>
     
     
     | 
-    <a href='/tag/backtrack/'>backtrack</a>
+    <a href='/tag/Brew/'>Brew</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/736.seo/">BackTrack 5中启用SSH服务</a></h2>
+      <h2 class="post-title"><a href="/1021.seo/">让Mac也能拥有apt-get类似的功能--Brew</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        BackTrack 5启用SSHD服务后我们看到22端口已经开启，依然无法从远程连接    连接时会有提示：    Read from socket failed: Connection reset by peer     通过以下几步生成密钥对即可连接：     #/etc/init.d/ssh restart     #ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key     #ssh-k
+        之前一直怀念ubuntu下的apt-get，因为实在是方便，需要安装什么，一个命令搞定，相关的依赖包统统由apt-get维护。下载，编译，安装，那叫一个痛快。什么软件用着不爽，一个命令卸载！  brew主页对brew进行了详细的描述，不过我们更希望下载下来实战演练！  安装brew      使用brew安装软件    使用brew卸载软件    使用brew检索软件   1.安装brew：     curl -LsSf http://
       
       </p>
       
       <p>
-          <a href="/736.seo/" class="excerpt-link">Read More...</a>
+          <a href="/1021.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -132,32 +138,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-16T10:52:45.000Z" itemprop="datePublished">
-          2012-07-16
+      <time datetime="2013-06-27T22:13:43.000Z" itemprop="datePublished">
+          2013-06-28
       </time>
     
     
     | 
-    <a href='/tag/Nginx/'>Nginx</a>,
-    
-    <a href='/tag/mongrel/'>mongrel</a>,
-    
-    <a href='/tag/Rails/'>Rails</a>
+    <a href='/tag/Pureftpd/'>Pureftpd</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/704.seo/">使用Nginx+mongrel部署Rails应用</a></h2>
+      <h2 class="post-title"><a href="/1010.seo/">简单方法教您如何卸载PureFTPd</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><h4>安装<a href="http://ha.cker.in/tag/nginx" target="_blank">nginx</a></h4> <p>下载地址 <a href="http://nginx.org/en/download.html">http://nginx.org/en/download.html</a> <p>我下载的版本是 <a href="http://ha.cker.in/tag/nginx" target="_blank">nginx</a>-0.8.40.tar.gz <p>解压安装<pre>tar -zxvf nginx-0.8.40.tar.gz<br>cd nginx-0.8.40/<br>.configure<br>make<br>sudo make install<br></pre></p>
-<p>默认情况下安装目录是 /usr/local/nginx<br><h4>安装<a href="http://ha.cker.in/tag/mongrel" target="_blank">mongrel</a>和mongrel_cluster</h4><pre>sudo gem install mongrel mongrel_cluster</pre><br><p>由于用gem安装后mongrel_rails命令被放在 /var/lib/gems/1.8/bin/mongrel_rails，使用不方便，所以建议建立符号链接<pre>sudo ln -s /var/lib/gems/1.8/bin/mongrel_rails /usr/bin/mongrel_rails</pre><br><h4>部署Rails应用</h4><br><p>我的应用示例是redmine，一个用Rails做的项目管理工具。redmine安装路径是 /opt/redmine<br><p><b>配置nginx，添加一个server块，用于服务redmine</b><br><p>编辑 vi /usr/local/nginx/conf/nginx.conf，以下是添加的内容<pre>upstream mongrel {<br>  server 127.0.0.1:8000;<br>  server 127.0.0.1:8001;<br>}<br><br># rails server<br>server {<br>  listen 80;<br>  server_name redmine.moon.ossxp.com;<br>  root /opt/redmine/public; #注意这里一定要指向Rails应用的public目录<br>  index index.html index.htm;<br><br>  location / {<br>    proxy_pass <a href="http://mongrel">http://mongrel</a>;<br>    proxy_redirect off;<br>    proxy_set_header Host $host;<br>    proxy_set_header X-Real-IP $remote_addr;<br>    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;<br>  }<br>}</pre>
+        卸载LNMP中安装的PureFTPd：  使用SSH登录主机，  1、停止pureftpd进程，运行命令： /root/pureftpd stop  2、删除文件，运行命令：     rm -r usr/local/pureftpd&#160; rm -r home/wwwroot/ftp (管理程序的位置，请根据实际情况设置)&#160; rm /root/pureftpd&#160;    3、PureFTPd状态管理      /
       
       </p>
       
       <p>
-          <a href="/704.seo/" class="excerpt-link">Read More...</a>
+          <a href="/1010.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -166,27 +167,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-15T21:34:35.000Z" itemprop="datePublished">
-          2012-07-16
+      <time datetime="2013-06-27T22:11:54.000Z" itemprop="datePublished">
+          2013-06-28
       </time>
     
     
     | 
-    <a href='/tag/Nginx/'>Nginx</a>
+    <a href='/tag/fastestmirror/'>fastestmirror</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/699.seo/">Nginx编译选项</a></h2>
+      <h2 class="post-title"><a href="/1009.seo/">解决YUM下Loaded plugins  fastestmirror Determining fastest mirrors 的问题</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><h3>编译选项</h3>  <p>configure 脚本确定系统所具有一些特性，特别是 nginx 用来处理连接的方法。然后，它创建 Makefile 文件。</p>  <p>configure 支持下面的选项：</p>  <p><b>–prefix=</b>&lt;path&gt; - Nginx安装路径。如果没有指定，默认为 /usr/local/nginx。</p>  <p><b>–sbin-path=</b>&lt;path&gt; - Nginx可执行文件安装路径。只能安装时指定，如果没有指定，默认为&lt;prefix&gt;/sbin/nginx。</p>  <p><b>–conf-path=</b>&lt;path&gt; - 在没有给定-c选项下默认的nginx.conf的路径。如果没有指定，默认为&lt;prefix&gt;/conf/nginx.conf。</p>  <p><b>–pid-path=</b>&lt;path&gt; - 在nginx.conf中没有指定pid指令的情况下，默认的nginx.pid的路径。如果没有指定，默认为 &lt;prefix&gt;/logs/nginx.pid。</p>  <p><b>–lock-path=</b>&lt;path&gt; - nginx.lock文件的路径。</p>  <p><b>–error-log-path=</b>&lt;path&gt; - 在nginx.conf中没有指定error_log指令的情况下，默认的错误日志的路径。如果没有指定，默认为 &lt;prefix&gt;/logs/error.log。</p>  <p><b>–http-log-path=</b>&lt;path&gt; - 在nginx.conf中没有指定access_log指令的情况下，默认的访问日志的路径。如果没有指定，默认为 &lt;prefix&gt;/logs/access.log。</p>  <p><b>–user=</b>&lt;user&gt; - 在nginx.conf中没有指定user指令的情况下，默认的nginx使用的用户。如果没有指定，默认为 nobody。</p>  <p><b>–group=</b>&lt;group&gt; - 在nginx.conf中没有指定user指令的情况下，默认的nginx使用的组。如果没有指定，默认为 nobody。</p>  <p><b>–builddir=DIR</b> - 指定编译的目录</p>  <p><b>–with-rtsig_module</b> - 启用 rtsig 模块</p>  <p><b>–with-select_module</b> <b>–without-select_module</b> - Whether or not to enable the select module. This module is enabled by default if a more suitable method such as kqueue, epoll, rtsig or /dev/poll is not discovered by configure.</p>  <p>//允许或不允许开启SELECT模式，如果 configure 没有找到更合适的模式，比如：kqueue(sun os),epoll (linux kenel 2.6+), rtsig(实时信号)或者/dev/poll(一种类似select的模式，底层实现与SELECT基本相 同，都是采用轮训方法) SELECT模式将是默认安装模式</p>  <p><b>–with-poll_module</b> <b>–without-poll_module</b> - Whether or not to enable the poll module. This module is enabled by default if a more suitable method such as kqueue, epoll, rtsig or /dev/poll is not discovered by configure.</p>  <p><b>–with-http_ssl_module</b> - Enable ngx_http_ssl_module. Enables SSL support and the ability to handle HTTPS requests. Requires OpenSSL. On Debian, this is libssl-dev.</p>  <p>//开启HTTP SSL模块，使NGINX可以支持HTTPS请求。这个模块需要已经安装了OPENSSL，在DEBIAN上是libssl-dev</p>
+        Centos下   其大概意思是fastestmirror不能使用，fastestmirror是yum的一个加速插件，具体我也没有仔细了解过，可能是系统不支持或者缺少组建导致的。处理办法就是禁用这个插件，方法如下：    root@bt]# vi&#160; /etc/yum/pluginconf.d/fastestmirror.conf&#160;&#160;   [main]&#160;&#160; enabled=0&#160; 
       
       </p>
       
       <p>
-          <a href="/699.seo/" class="excerpt-link">Read More...</a>
+          <a href="/1009.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -195,38 +196,36 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-12T17:08:08.000Z" itemprop="datePublished">
-          2012-07-13
+      <time datetime="2013-05-27T01:04:03.000Z" itemprop="datePublished">
+          2013-05-27
       </time>
     
     
     | 
-    <a href='/tag/运维/'>运维</a>,
-    
-    <a href='/tag/YouTube/'>YouTube</a>
+    <a href='/tag/Apache/'>Apache</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/672.seo/">YouTube架构学习体会</a></h2>
+      <h2 class="post-title"><a href="/998.seo/">Windows下Apache用户认证配置及相关技巧</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>这几天一直在关注和学习一些大型网站的架构，希望有一天自己也能设计一个高并发、高容错的系统并能应用在实践上。今天在网上找架构相关的资料时，看到一个被和谐的视频网站YouTube的架构分析，看了以后觉得自己又向架构走近了一步，于是赶快拿出来与大家一起分享。 </p>  <p>YouTube发展迅速，每天超过1亿的视频点击量，但只有很少人在维护站点和确保伸缩性。这点和PlentyOfFish类似，少数人维护庞大系统。是什么原因呢？放心绝对不是靠人品，也不是靠寂寞，下面就来看看YouTube的整体技术架构吧。 </p>  <p>平台    <br />Apache     <br />Python     <br />Linux(SuSe)     <br />MySQL     <br />psyco，一个动态的Python到C的编译器     <br />lighttpd代替Apache做视频查看 </p>  <p>状态 </p>  <p>支持每天超过1亿的视频点击量    <br />成立于2005年2月     <br />于2006年3月达到每天3千万的视频点击量     <br />于2006年7月达到每天1亿的视频点击量     <br />2个系统管理员，2个伸缩性软件架构师     <br />2个软件开发工程师，2个网络工程师，1个DBA </p>  <p>Web服务器 </p>  <p>1，NetScaler用于负载均衡和静态内容缓存    <br />2，使用mod_fast_cgi运行Apache     <br />3，使用一个Python应用服务器来处理请求的路由     <br />4，应用服务器与多个数据库和其他信息源交互来获取数据和格式化html页面     <br />5，一般可以通过添加更多的机器来在Web层提高伸缩性     <br />6，Python的Web层代码通常不是性能瓶颈，大部分时间阻塞在RPC     <br />7，Python允许快速而灵活的开发和部署     <br />8，通常每个页面服务少于100毫秒的时间     <br />9，使用psyco(一个类似于JIT编译器的动态的Python到C的编译器)来优化内部循环     <br />10，对于像加密等密集型CPU活动，使用C扩展     <br />11，对于一些开销昂贵的块使用预先生成并缓存的html     <br />12，数据库里使用行级缓存     <br />13，缓存完整的Python对象     <br />14，有些数据被计算出来并发送给各个程序，所以这些值缓存在本地内存中。这是个使用不当的策略。 </p>  <p>应用服务器里最快的缓存将预先计算的值发送给所有服务器也花不了多少时间。只需弄一个代理来监听更改，预计算，然后发送。 </p>  <p>视频服务 </p>  <p>1，花费包括带宽，硬件和能源消耗    <br />2，每个视频由一个迷你集群来host，每个视频被超过一台机器持有     <br />3，使用一个集群意味着：     <br />&#160;&#160; -更多的硬盘来持有内容意味着更快的速度     <br />&#160;&#160; -failover。如果一台机器出故障了，另外的机器可以继续服务     <br />&#160;&#160; -在线备份     <br />4，使用lighttpd作为Web服务器来提供视频服务：     <br />&#160;&#160; -Apache开销太大     <br />&#160;&#160; -使用epoll来等待多个fds     <br />&#160;&#160; -从单进程配置转变为多进程配置来处理更多的连接     <br />5，大部分流行的内容移到CDN：     <br />&#160; -CDN在多个地方备份内容，这样内容离用户更近的机会就会更高     <br />&#160; -CDN机器经常内存不足，因为内容太流行以致很少有内容进出内存的颠簸     <br />6，不太流行的内容(每天1-20浏览次数)在许多colo站点使用YouTube服务器     <br />&#160; -长尾效应。一个视频可以有多个播放，但是许多视频正在播放。随机硬盘块被访问     <br />&#160; -在这种情况下缓存不会很好，所以花钱在更多的缓存上可能没太大意义。     <br />&#160; -调节RAID控制并注意其他低级问题     <br />&#160; -调节每台机器上的内存，不要太多也不要太少&#160; </p>  <p>视频服务关键点    <br />1，保持简单和廉价     <br />2，保持简单网络路径，在内容和用户间不要有太多设备     <br />3，使用常用硬件，昂贵的硬件很难找到帮助文档     <br />4，使用简单而常见的工具，使用构建在Linux里或之上的大部分工具     <br />5，很好的处理随机查找(SATA，tweaks) </p>  <p>缩略图服务 </p>  <p>1，做到高效令人惊奇的难    <br />2，每个视频大概4张缩略图，所以缩略图比视频多很多     <br />3，缩略图仅仅host在几个机器上     <br />4，持有一些小东西所遇到的问题：     <br />&#160;&#160; -OS级别的大量的硬盘查找和inode和页面缓存问题     <br />&#160;&#160; -单目录文件限制，特别是Ext3，后来移到多分层的结构。内核2.6的最近改进可能让 Ext3允许大目录，但在一个文件系统里存储大量文件不是个好主意     <br />&#160;&#160; -每秒大量的请求，因为Web页面可能在页面上显示60个缩略图     <br />&#160;&#160; -在这种高负载下Apache表现的非常糟糕     <br />&#160;&#160; -在Apache前端使用squid，这种方式工作了一段时间，但是由于负载继续增加而以失败告终。它让每秒300个请求变为20个     <br />&#160;&#160; -尝试使用lighttpd但是由于使用单线程它陷于困境。遇到多进程的问题，因为它们各自保持自己单独的缓存     <br />&#160;&#160; -如此多的图片以致一台新机器只能接管24小时     <br />&#160;&#160; -重启机器需要6-10小时来缓存     <br />5，为了解决所有这些问题YouTube开始使用Google的BigTable，一个分布式数据存储：     <br />&#160;&#160; -避免小文件问题，因为它将文件收集到一起     <br />&#160;&#160; -快，错误容忍     <br />&#160;&#160; -更低的延迟，因为它使用分布式多级缓存，该缓存与多个不同collocation站点工作     <br />&#160;&#160; -更多信息参考Google Architecture，GoogleTalk Architecture和BigTable </p>
+        Linux下同理。  Apache可以对某一目录下的文件进行安全认证，认证方式包括用户密码认证和IP过滤，下面我来一一说明。    首先要让Apache支持.htaccess才可使用认证控制，具体方法请参考：    如何让Apache支持.htaccess    然后编辑Apache2\conf\httpd.conf文件    标准密码认证方式      &lt;Directory &quot;D:\wwwroot&quot;&gt;O
       
       </p>
       
       <p>
-          <a href="/672.seo/" class="excerpt-link">Read More...</a>
+          <a href="/998.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
   </article>
   
   <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/category/linux笔记/">← Newer Posts</a>
-    <span class="page-number">Page 2 of 6</span>
-    <a class="older-posts" href="/category/linux笔记/page/3/">Older Posts →</a>
+    <a class="newer-posts" href="/category/Linux笔记/">← Newer Posts</a>
+    <span class="page-number">Page 2 of 8</span>
+    <a class="older-posts" href="/category/Linux笔记/page/3/">Older Posts →</a>
   </nav>
 </main>
 

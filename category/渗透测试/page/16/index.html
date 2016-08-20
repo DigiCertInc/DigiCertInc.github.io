@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Category: 渗透测试 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-05-18T07:34:47.000Z" itemprop="datePublished">
+          2012-05-18
+      </time>
+    
+    
+    | 
+    <a href='/tag/入侵/'>入侵</a>,
+    
+    <a href='/tag/田众和/'>田众和</a>,
+    
+    <a href='/tag/大黑阔/'>大黑阔</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/437.seo/">黑掉田众和全过程</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>第一次入侵</p>  <p>话说那个田众和炒的可谓沸沸扬扬，看了腾讯拍的采访，发现了许多可疑点，</p>  <p>视频字幕出现了雷人的一幕…（如图1）</p>  <p><a href="http://xider-wordpress.stor.sinaapp.com/uploads/2012/02/1.bmp"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="黑掉田众和" border="0" alt="黑掉田众和" src="http://img.cker.in/5a733781cedb_140B6/clip_image001.png" width="500" height="377" /></a>     <br />懂技术的人都知道田众和所说的其实是js、css、ajax，这三种网站建设中的前端语言，而字幕居然写成这样，可见制作视频的人从策划到编辑根本就没有 一个是懂得网络技术的人，因此田众和说什么对于这些不懂的视频制作人员来说都是可信的，因为他们不懂，他们的目标只是做出来一个网络热门话题，可奇怪的是 这个视频居然没有让田众和本人看一下吗？</p>  <p>小弟我看完这片子，感慨啊，12岁的小盆友，15天写出PE系统，这严重打击了我们这些学技术的叉子们….还说什么精通php，c语言。这孩子一看就是个忽悠…</p>  <p>看完片子后，立即打开那传说中的时代网络工作室，对，是php做的。嗯，也没什么低级注入，看到底部赫赫大字，网页程序by小田…我心想，难道我多疑了。这个是他写的？</p>  <p>不管，先扫一下后台再说…拿出我的6.5M的wwwscan，开始扫…..</p>  <p><a href="http://xider-wordpress.stor.sinaapp.com/uploads/2012/02/%E5%9B%BE%E7%89%872.bmp"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="黑掉田众和" border="0" alt="黑掉田众和" src="http://img.cker.in/5a733781cedb_140B6/clip_image002.png" width="561" height="370" /></a></p>  <p>这不是wp的目录吗（如图2）？赶紧去wp默认后台…</p>
+      
+      </p>
+      
+      <p>
+          <a href="/437.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2011-12-21T20:29:24.000Z" itemprop="datePublished">
+          2011-12-22
+      </time>
+    
+    
+    | 
+    <a href='/tag/Metasploit/'>Metasploit</a>,
+    
+    <a href='/tag/nmap/'>nmap</a>,
+    
+    <a href='/tag/Nessus/'>Nessus</a>,
+    
+    <a href='/tag/bt/'>bt</a>,
+    
+    <a href='/tag/bt5/'>bt5</a>,
+    
+    <a href='/tag/backtrack/'>backtrack</a>,
+    
+    <a href='/tag/autopwn/'>autopwn</a>,
+    
+    <a href='/tag/溢出/'>溢出</a>,
+    
+    <a href='/tag/dir溢出/'>dir溢出</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/241.seo/">Basic Metasploit framework autopwn attack</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        今天我们来看看溢出一台有漏洞的主机对于新手来说最基础也是最简单的一种方法，需要的工具有：     nmap    Nessus    Metasploit   当然你也可以用直接Backtrack 5的系统，因为以上工具都已集成在此系统中了。  首先Nmap的作用就是扫描目标主机开放的端口和服务，于是db_autopwn命令就针对开放的端口和开启的服务尝试运行溢出代码。而且它的扫描和溢出结果可以导入到更为细腻的审计工具Nessus中。 
+      
+      </p>
+      
+      <p>
+          <a href="/241.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2011-08-01T23:14:40.000Z" itemprop="datePublished">
+          2011-08-02
+      </time>
+    
+</span>
+      <h2 class="post-title"><a href="/55.seo/">转 代码审查：大家都应该做的事情</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        正如我在上一篇博客中提到的（现在可以明确地告诉大家），我已经离开Google了。虽然我已经收到了很多不错的offer，但是还没有决定去哪里。在这段时间里从技术角度上说我不受雇于任何人，虽然也许这会让我和（前）同事或者老板关系有点紧张，但我觉得应该写一些关于技术上的有趣的事情。 正如我在上一篇博客中提到的（现在可以明确地告诉大家），我已经离开Google了。虽然我已经收到了很多不错的offer，但是还没有决定去哪里。在这段时间里从技术角度
+      
+      </p>
+      
+      <p>
+          <a href="/55.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2011-07-19T19:49:04.000Z" itemprop="datePublished">
+          2011-07-20
+      </time>
+    
+    
+    | 
+    <a href='/tag/Penetration-test/'>Penetration test</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/52.seo/">转 商业非商业渗透测试工具汇总报告</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        　　负责网络安全性评估的管理员们能够从下列完全开源的软件及企业级工具中选择最适合自己的产品。  　　我曾为一位希望亲眼验证各类模拟攻击的过程以及随之而来的结果的客户进行过大量漏洞与渗透测试。在渗透测试员这个岗位上我已然工作了十年，而且我得说这是我最喜爱、也最易于进行的任务。侵入目标永远那么有趣——并且在可以方便地获取大量便利漏洞测试工具的今天，成功侵入也变得愈发简单。 　　总体而言，只要我们思路清晰、步骤明确，侵入某家企业其实并不困难。
+      
+      </p>
+      
+      <p>
+          <a href="/52.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    <a class="newer-posts" href="/category/渗透测试/page/15/">← Newer Posts</a>
+    <span class="page-number">Page 16 of 16</span>
+    
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>对国外黑客论坛 hackerstown.com 的一次测试 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-04-01T00:56:51.000Z" itemprop="datePublished">
+          2013-04-01
+      </time>
+    
+    
+    | 
+    <a href='/tag/一句话/'>一句话</a>,
+    
+    <a href='/tag/xss/'>xss</a>,
+    
+    <a href='/tag/SQL注入/'>SQL注入</a>
+    
+    
+</span>
+    <h1 class="post-title">对国外黑客论坛 hackerstown.com 的一次测试</h1>
+    <section class="post-content">
+      <p><a href="http://img.cker.in/hackerstown.com_ED8E/clip_image001.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/hackerstown.com_ED8E/clip_image001_thumb.jpg" width="396" height="144"></a></p>  <p>最近太忙了，一直没更新博客！先谈谈气候吧，尼玛南方冷死了！我现在是出门穿再多都哆嗦啊！</p>  <p>日，你什么时候来啊，我还是喜欢大热天吹电风扇，擦~ 大热天还可以裸睡，多爽！ </p>  <p>好吧，不扯谈了，对于为什么突然日这个站，其实还是前几天在看我网易博客的时候突然又看到之前一老外在&quot;<a href="http://ps.s.blog.163.com/blog/static/89878892201211311548478/" target="_blank" rel="external">About EvilShad0w Team</a>&quot; 这篇日志下留言并留了个地址，如图：</p>  <p><a href="http://img.cker.in/hackerstown.com_ED8E/clip_image003.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/hackerstown.com_ED8E/clip_image003_thumb.jpg" width="381" height="212"></a></p>  <p>前几天就看到这条评论，就点开了网址看见是个黑客论坛，版块内容还比较丰富，其中很多文章都还不错，突然试试入侵，于是先看他是什么程序吧。 通过分析论坛结构，确定为“MyBB”，于是通过之前收藏的一个国外exploit 公布站搜索了下这个程序，结果出来了很多 ，有<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>、信息泄露、<a href="http://ha.cker.in/tag/XSS" target="_blank">XSS</a>、远程代码执行。但一一试过，都无效。貌似已经打全补丁了。好吧，该我自己整合的字典上阵了！扫描完后发现路径都是一般常见的路径，我一一点击尝试访问都出现403 Forbidden，在访问其中 xxxx/的时候发现根路径泄露</p>  <p><a href="http://img.cker.in/hackerstown.com_ED8E/clip_image004.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/hackerstown.com_ED8E/clip_image004_thumb.jpg" width="336" height="51"></a></p>  <p>还有目录遍历，然后再点击三级目录发现上传页面，只能浏览当前目录，并且禁止了上传，只能重命名文件还有写txt文件， 尼玛！ 我通过一个小页面写入txt文件，但是无法重命名，这时候我发给Liuker一起看，我俩啥后缀都试过了就是不能解析，一定是做限制了，在写文件的时候尝试跳目录也没成功，突然想到上传 .htaccess 来解析 jpg类似正常后缀突破，但是测试了下失败！Liuker用他字典扫到两个根目录的无内容PHP页面，通过一句话后门破解也没成功。My God…………<a href="http://img.cker.in/hackerstown.com_ED8E/clip_image005.gif" target="_blank" rel="external"><img style="display: inline" title="clip_image005" alt="clip_image005" src="http://img.cker.in/hackerstown.com_ED8E/clip_image005_thumb.gif" width="19" height="19"></a></p>  <p>继续吧，翻了翻当前的目录，发现了有几个压缩文件。</p><br><a id="more"></a><br><p></p>  <p><a href="http://img.cker.in/hackerstown.com_ED8E/clip_image006.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/hackerstown.com_ED8E/clip_image006_thumb.jpg" width="575" height="183"></a></p>  <p>其中下载了一个100多MB的文件打开一看，尼玛新的。再下载另外一个1G的压缩包，擦！等了两个钟头才下完了，解压出来翻了翻根目录的文件，发现之前我们上传文件的那个页面是一个微型的第三方上传程序，管理员禁止了上传，还写了.htaccess 文件限制，其实我们想到的他也想到了……</p>  <p>继续翻根目录下的文件，发现一个php脚本中有上传文件功能，Yeah！写了个<a href="http://ha.cker.in/tag/一句话" target="_blank">一句话</a>，就这么搞定了！ 这次算运气算不错吧！</p>  <p><a href="http://img.cker.in/hackerstown.com_ED8E/clip_image007.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/hackerstown.com_ED8E/clip_image007_thumb.jpg" width="215" height="136"></a></p>  <p>不但拿了站，发现这个管理员安全意识也挺薄弱的，Gmail 我登入进去了，但是那家伙绑定了手机，作罢！但是我还是成功上了他的推特，开了个玩笑！</p>  <p><a href="http://img.cker.in/hackerstown.com_ED8E/clip_image008.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/hackerstown.com_ED8E/clip_image008_thumb.jpg" width="712" height="597"></a></p>  <p>剩下的你们懂的，脱了五千多个论坛账号，还不错，随便翻了翻大多都是国外黑客账号密码邮箱什么的，数据在这就不公开发布了，免得那些国外大黑阔社我黑我，5000多个黑阔 ！怕怕</p>  <p><a href="http://img.cker.in/hackerstown.com_ED8E/clip_image010.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image010" border="0" alt="clip_image010" src="http://img.cker.in/hackerstown.com_ED8E/clip_image010_thumb.jpg" width="422" height="444"></a></p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/987.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/987.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/987.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/987.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/988.seo/">
+        ← 入侵韩国某购物网并提权
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/986.seo/">
+        两个有意思的视频 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

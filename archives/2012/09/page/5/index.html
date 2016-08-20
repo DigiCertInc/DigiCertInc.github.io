@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Archives: 2012/9 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-09-03T08:59:18.000Z" itemprop="datePublished">
+          2012-09-03
+      </time>
+    
+    
+    | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/注入/'>注入</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/797.seo/">从分析代码学习挖掘漏洞人民网实例</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><a href="http://bbs.blackbap.org/forum.php?mod=viewthread&amp;tid=2537&amp;fromuid=4372">http://bbs.blackbap.org/forum.php?mod=viewthread&amp;tid=2537</a></p>  <p>作者注：   <br />近日看到论坛上有人发了个“全能大牛”的文章，颇有感慨。其实所谓的“全能”，是来自对基础知识的扎实根基。本文虽谈不上“全能”，也并非什么大做，仅为证明只要根基扎实，你也可以“全能”渗透。    <br />本文特意选用人民网(people.com.cn)中的某一服务器上Web站点作为讲解实例，详细讲述如何根据一个小漏洞逐步分析，扩大范围完成进一步渗透的。    <br />本文仅供研究和学习，不得用于非法用途，否则后果自负。    <br />出于隐私保护的目的，文章所有截图和url经过处理。    <br />本文版权所有，转载请注明出处：Silic Group Hacker Army [BlackBap.Org]    <br />作者：YoCo Smart    <br />来自：Silic Group    <br />站点：<a href="http://blackbap.org/">Http://blackbap.org</a>    <br />相信很多人已经厌倦了这个网络里弥漫的注入，弱口令，万能密码。那么有没有遇到过注入找不到后台，数据库为root或者sa账户却无法写入webshell，得到了后台却拿不到webshell，拿到了webshell却无法提权？？？？？    <br />本文所阐述的例子是：    <br />一台Linux服务器是用了Apache 2.2.10架设了php的网站，数据库为MySQL，网站使用了root账户，但是网站没有后台，也没有phpMyAdmin，服务器中存在一个注入点。因为gpc为on，所以无法写入webshell，但是可以读取服务器上一些已知路径的文件。    <br />那么我们就通过本文来讲一下，如何通过这个注入点，进行下一步渗透的。    <br />我们先来简单描述一下注入点(如果不懂php+MySQL的注入，请参见《<a href="http://bbs.blackbap.org/thread-2433-1-1.html">各色SQL注入文章汇总</a>》)    <br />注入点：</p>  <p><em>.people.com.cn/vote.php?id=3</p>  <p>这个注入点根据存在的文件名就知道，应该是一个投票页面，因为union只有一个字段，所以直接</p>  <p></em>.people.com.cn/vote.php?id=3+union+select+load_file(0x2f6574632f706173737764)+from+mysql.user</p>  <p>就能读到文件了。根据错误回显，得到网站路径为/usr/www。因为gpc设置on，所以</p>  <p>union select 一句话的hex into outfile ‘/usr/www/可写目录/webshell.php’</p>  <p>这样是得不到webshell的，查到MySQL.user中设置的host为%，但是这台服务器对外网实际并未开放3306端口，也无法外联。   <br />那么思路是什么呢？    <br />我们来试着读取网站文件的源码来查找一些其他的漏洞。    <br /></p>
+      
+      </p>
+      
+      <p>
+          <a href="/797.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    <a class="newer-posts" href="/archives/2012/09/page/4/">← Newer Posts</a>
+    <span class="page-number">Page 5 of 5</span>
+    
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

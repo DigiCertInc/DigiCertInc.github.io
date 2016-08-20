@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Tag: 漏洞 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-07-02T09:39:36.000Z" itemprop="datePublished">
+          2012-07-02
+      </time>
+    
+    
+    | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/ssh/'>ssh</a>,
+    
+    <a href='/tag/包含漏洞/'>包含漏洞</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/622.seo/">利用SSH来包含执行命令</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>转自<a href="http://www.ayhacker.net/ayblog/read.php?173">http://www.ayhacker.net/ayblog/read.php?173</a></p>
+<p>文章的总体思路就是：<br>使用<br>ssh ‘&lt;pre&gt;&lt;?echo system($_GET[‘cmd’]); exit;?&gt;’@10.10.11.33登入，然后会在<a href="http://ha.cker.in/tag/ssh" target="_blank">ssh</a>的登入日志里记录，再让存在<a href="http://ha.cker.in/tag/包含漏洞" target="_blank">包含漏洞</a>php去包含错误日志文件来达到目的。<br>包含正常的日志文件<br><img style="display: inline; border-width: 0px;" title="clip_image001" src="http://img.cker.in/SSH_C60/clip_image001.png" alt="clip_image001" width="819" height="322" border="0" /><br>使用特定的一句话木马作为帐号登入，产生含有一句话的日志文件<br><img style="display: inline; border-width: 0px;" title="clip_image002" src="http://img.cker.in/SSH_C60/clip_image002.png" alt="clip_image002" width="635" height="87" border="0" /><br>再次包含日志文件<br><img style="display: inline; border-width: 0px;" title="clip_image003" src="http://img.cker.in/SSH_C60/clip_image003.png" alt="clip_image003" width="1171" height="208" border="0" /><br>成功执行</p>
+      
+      </p>
+      
+      <p>
+          <a href="/622.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-07-02T07:59:05.000Z" itemprop="datePublished">
+          2012-07-02
+      </time>
+    
+    
+    | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/post/'>post</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/619.seo/">淘宝网某处存在严重支付漏洞</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>转自乌云<a href="http://www.wooyun.org/bugs/wooyun-2010-07293">http://www.wooyun.org/bugs/wooyun-2010-07293</a></p>  <p>漏洞详情</p>  <p>披露状态：</p>  <p>2012-05-18： 细节已通知厂商并且等待厂商处理中   <br />2012-05-18： 厂商已经确认，细节仅向厂商公开    <br />2012-05-28： 细节向核心白帽子及相关领域专家公开    <br />2012-06-07： 细节向普通白帽子公开    <br />2012-06-17： 细节向实习白帽子公开    <br />2012-07-02： 细节向公众公开</p>  <p>简要描述：</p>  <p>淘宝网某处存在支付漏洞，未使用SSL加密支付过程，同时，对支付过程相关代码的审计存在一定缺陷，导致漏洞产生。会导致允许用户对支付金额进行修改，给厂商带来很大的利益损失。</p>  <p>详细说明：</p>  <p>在阿里旺旺2012中，使用短信旺旺中心对短信条数进行充值，在该过程中，未使用SSL安全连接，同时存在支付漏洞。   <br />选择充值的金额后，下一步，使用<a href="http://ha.cker.in/tag/Fiddler" target="_blank">Fiddler</a>截取数据包，GBK编码，修改POST数据中的数据，seriesPrice为支付的金额，seriesNum为充值的条数，这两个地方理论上都可以进行修改，这里以修改seriesPrice为例。</p>  <p>漏洞证明：</p>  <p>充值前截图</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/bdc6a26da239_15137/clip_image001.jpg" width="532" height="443" /></p>
+      
+      </p>
+      
+      <p>
+          <a href="/619.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-28T07:52:56.000Z" itemprop="datePublished">
+          2012-06-28
+      </time>
+    
+    
+    | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/sinopass/'>sinopass</a>,
+    
+    <a href='/tag/后台/'>后台</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/614.seo/">sinopass后台管理系统漏洞</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        无意中发现：   关键词：inurl:About.asp?i_type=   自己尝试了一下&#160; 基本上都是的   后台：admin/login.asp&#160; 或者manage   拿shell方法:数据库备份&#160; 或者ewebeditor   有ewebeditor默认路径&#160; 默认数据库的&#160; 后台帐号密码可以注入&#160; 注入漏洞蛮多的 添加字段 a_name a_pass
+      
+      </p>
+      
+      <p>
+          <a href="/614.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-23T01:35:43.000Z" itemprop="datePublished">
+          2012-06-23
+      </time>
+    
+    
+    | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/溢出/'>溢出</a>,
+    
+    <a href='/tag/MS12-020/'>MS12-020</a>,
+    
+    <a href='/tag/Exploit/'>Exploit</a>,
+    
+    <a href='/tag/Vulnerability/'>Vulnerability</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/596.seo/">Microsoft RDP Vulnerability Exploit (CVE-2012-0002 ) 微软MS12-020漏洞视频演示</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>Microsoft RDP Vulnerability Exploit (CVE-2012-0002&#160; MS12-020)</p>  <p><embed src="http://player.youku.com/player.php/sid/XNDE3OTc4MjM2/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed></p>  <p>这是一个密报的漏洞，微软肯定是先推送补丁修复了（微软在北京时间2012-03-13号就推送了该补丁），然后才公开的报告。</p>  <p>不然，如果该<strong>ms12-20</strong>漏洞在地下流传，企业、政府、银行、军队等重要机构的大型服务器将无一幸免，完全沦陷！这会造成极其严重的后果！</p>  <p>（这也是为什么重要机构的大型服务器都根本不使用 Windows 系统，一方面是性能原因，另一方面是安全因素，还有一方面是国家安全与战争因素了，</p>  <p>米国政府的秘密机构手中掌握有大量此类零日漏洞，并且都是未公开的一旦发动战争，这些都是武器，平时则用来窃取敌对国家情报……）</p>  <p><strong>ms12-20</strong> 远程桌面(RDP)3389漏洞 exp 如何检查自己是否已安装更新补丁？</p>  <p>这个漏洞的更新补丁号为：KB2621440，用户可以自行在：控制面板 –&gt; 添加删除程序（记得勾选“显示更新”</p>  <p>），然后查找该编号，如果有则表示您已安装，可以不必担心了，或者使用命令：</p>  <blockquote>   <p>systeminfo|find /i &quot;KB2621440&quot;</p> </blockquote>
+      
+      </p>
+      
+      <p>
+          <a href="/596.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-20T12:17:35.000Z" itemprop="datePublished">
+          2012-06-20
+      </time>
+    
+    
+    | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/DJ/'>DJ</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/541.seo/">一种DJ站的漏洞</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>哈客首发 <a href="http://www.hake.cc">www.hake.cc</a>    <br />转载注明 哈客部落    <br />目标站 <a href="http://www.xufandj.com/">http://www.xufandj.com/</a>    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/DJ_3C06/clip_image002.jpg" width="604" height="374" />    <br />默认数据库地址    <br />/data/#Ylmv_Data.asa    <br />/data/#Ylmv_Data1.asa    <br />/data/#Ylmv_Data.mdb    <br />/data/#Ylmv_Data1.mdb    <br />下载到数据库之后 我们来找下管理帐号和密码</p>
+      
+      </p>
+      
+      <p>
+          <a href="/541.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2011-08-08T23:11:28.000Z" itemprop="datePublished">
+          2011-08-09
+      </time>
+    
+    
+    | 
+    <a href='/tag/漏洞/'>漏洞</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/63.seo/">FCK各版本突破</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        FCKeditor v2.43版本FCKeditor/editor/filemanager/browser/default/connectors/php/config.php    FCKeditor V2.6.6版本 fckeditor/editor/filemanager/connectors/asp/config.php查看编辑器版本    FCKeditor/whatsnew.html    &mdash;&mdash;&mda
+      
+      </p>
+      
+      <p>
+          <a href="/63.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    <a class="newer-posts" href="/tag/漏洞/page/3/">← Newer Posts</a>
+    <span class="page-number">Page 4 of 4</span>
+    
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

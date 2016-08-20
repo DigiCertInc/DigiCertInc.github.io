@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Category: Linux笔记 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2011-11-12T12:24:56.000Z" itemprop="datePublished">
+          2011-11-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/Linux/'>Linux</a>,
+    
+    <a href='/tag/集群/'>集群</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/182.seo/">集群 基础</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><p>1.请简要什么是集群技术？为什么要使用集群技术？</p>  <blockquote>   <p>集群是一组协同工作的服务实体，用以提供比单一服务实体<strong>更具扩展性和可用性</strong>的服务平台。</p> </blockquote>  <p>2.请说出你所知道的集群种类，和实现方案？</p>  <blockquote>   <p>目前Linux下的集群主要有三种类型 </p>    <p>1. HA (High Availability) </p>    <p>2. LB (Load Balancing) </p>    <p>3. HPC (High performance Computing) </p>    <p>○ DC (Distributed Computing) </p> </blockquote>  <blockquote>   <p>○ PC (Parallel Computing)</p> </blockquote>  <p></p>
+      
+      </p>
+      
+      <p>
+          <a href="/182.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2011-10-19T23:00:46.000Z" itemprop="datePublished">
+          2011-10-20
+      </time>
+    
+    
+    | 
+    <a href='/tag/Qubes/'>Qubes</a>,
+    
+    <a href='/tag/Xen/'>Xen</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/133.seo/">Qubes系统</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        由著名的波兰美女黑客Joanna Rutkowska发布的一个基于Xen和Linux的开源操作系统。  最低配置：     4GB内存    64位Intel或AMD处理器（又名x86_64的64又名AMD64）    英特尔GPU的强烈偏好（如果你有NVIDIA GPU，准备一些故障排除 ;我们没有测试ATI硬件）    10GB磁盘（请注意，它是可能的外部USB硬盘上安装的Qubes，所以，你可以尝试在不牺牲你当前的系统，它记住，但
+      
+      </p>
+      
+      <p>
+          <a href="/133.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2011-10-10T23:19:41.000Z" itemprop="datePublished">
+          2011-10-11
+      </time>
+    
+    
+    | 
+    <a href='/tag/CentOS/'>CentOS</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/121.seo/">Linux下多线程下载工具 - Axel</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>Axel 是 Linux 下一个不错的HTTP/FTP高速下载工具。支持多线程下载、断点续传，且可以从多个地址或者从一个地址的多个连接来下载同一个文件。适合网速不给力时多线程下载提高下载速度。比如在国内VPS或服务器上下载lnmp一键安装包用Axel就比wget快。 </p>  <p>CentOS安装Axel： </p>  <p>目前yum源上没有Axel，我们可以到<a href="http://pkgs.repoforge.org/axel/下载rpm包安装。">http://pkgs.repoforge.org/axel/下载rpm包安装。</a> </p>  <p>32位CentOS执行下面命令： </p>  <p>wget -c <a href="http://pkgs.repoforge.org/axel/axel-2.4-1.el5.rf.i386.rpm">http://pkgs.repoforge.org/axel/axel-2.4-1.el5.rf.i386.rpm</a>    <br />rpm -ivh axel-2.4-1.el5.rf.i386.rpm</p>
+      
+      </p>
+      
+      <p>
+          <a href="/121.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2011-10-08T21:42:44.000Z" itemprop="datePublished">
+          2011-10-09
+      </time>
+    
+    
+    | 
+    <a href='/tag/MeeGo/'>MeeGo</a>,
+    
+    <a href='/tag/双系统/'>双系统</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/117.seo/">安装MeeGo双系统</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>MeeGo的常规安装方法是从MeeGo官方网站下载MeeGo最新的镜像，然后用工具写到U盘中，将目标机器从此U盘启动，选择安装MeeGo，按默认方式MeeGo就会被安装到此目标机器中。如果目标机器原来有linux分区，则默认情况下linux分区将会被删除，重新按MeeGo默认方式分区；或者如果原来没有linux分区，有剩余空间，则会在剩余空间上按MeeGo默认方式分区。</p>  <p>&#160;&#160;&#160; 为了能体验不同版本的MeeGo系统，而手头上兼容MeeGo的机器有限的情况下，那如何办呢？有一种方式是主机安装一个系统，其他的系统用U盘直接启动。这种方法不方便的地方有两个：一个是需要为每个MeeGo系统准备一个U盘；二是U盘启动的系统安装的软件 写入的数据好像是不会保存的。现在的电脑一般都有比较大的硬盘，是有足够多的空间安装多个MeeGo系统的，显然只安装一个MeeGo系统是太浪费了。</p>  <p>&#160;&#160;&#160; 笔者的环境是这样的，在一台Lenovo S10-3t可旋转触屏的上网本上已经安装了MeeGo 1.1的Netbook版本，由于最新推出了MeeGo 1.2 tablet预览版，笔者想同时体验一下，需要在同一台上网本上再安装上Tablet系统。下载镜像，写入U盘，然后从U盘启动，在进入到处理分区的如下页面时，我们需要选择“Create custom layout”。   <br /><a href="http://software.intel.com/zh-cn/blogs/wordpress/wp-content/uploads/2011/03/Meego_install_02.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="wps_clip_image-14810" border="0" alt="wps_clip_image-14810" src="http://img.cker.in/MeeGo_BE46/wps_clip_image14810.png" width="244" height="184" /></a></p>
+      
+      </p>
+      
+      <p>
+          <a href="/117.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2011-10-08T21:23:00.000Z" itemprop="datePublished">
+          2011-10-09
+      </time>
+    
+    
+    | 
+    <a href='/tag/命令/'>命令</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/116.seo/">FTP 命令大全</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>在cmd中键入ftp，此时打开ftp.exe，输入 “?” 可以看到命令列表   <br />ftp&gt; ?    <br />命令可能是缩写的。&#160; 命令为:    <br />!&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; delete&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; literal&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; prompt&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; send    <br />?&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; debug&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; ls&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; put&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; status    <br />append&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; dir&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; mdelete&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pwd&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; trace    <br />ascii&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; disconnect&#160;&#160;&#160;&#160;&#160; mdir&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; quit&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; type    <br />bell&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; get&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; mget&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; quote&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; user    <br />binary&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; glob&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; mkdir&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; recv&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; verbose    <br />bye&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; hash&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; mls&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; remotehelp    <br />cd&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; help&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; mput&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; rename    <br />close&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; lcd&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; open&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; rmdir    <br />使用open命令连接到主机。 例如：    <br />ftp&gt; open 3389.eu    <br />连接到 3389.eu。    <br />220 Microsoft FTP Service    <br />用户(3389.eu:(none)):</p>
+      
+      </p>
+      
+      <p>
+          <a href="/116.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2011-09-07T17:06:58.000Z" itemprop="datePublished">
+          2011-09-08
+      </time>
+    
+    
+    | 
+    <a href='/tag/iphone/'>iphone</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/74.seo/">iphone 可以做为一个攻击平台了</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><p>今天看资料了解到，IPHONE出厂有默认密码，由于默认密码都不安全，所以就着手修改IPHONE ROOT默认密码，要先安装MobileTerminal，装好运行进入终端界面：  <p><a href="http://img1.51cto.com/attachment/201108/170310152.png"><img border="0" alt="" src="http://img1.51cto.com/attachment/201108/170310152.png"></a>  <p></p>
+      
+      </p>
+      
+      <p>
+          <a href="/74.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    <a class="newer-posts" href="/category/Linux笔记/page/6/">← Newer Posts</a>
+    <span class="page-number">Page 7 of 8</span>
+    <a class="older-posts" href="/category/Linux笔记/page/8/">Older Posts →</a>
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

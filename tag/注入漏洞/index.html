@@ -45,6 +45,101 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
+      <time datetime="2012-12-24T16:34:25.000Z" itemprop="datePublished">
+          2012-12-25
+      </time>
+    
+    
+    | 
+    <a href='/tag/注入漏洞/'>注入漏洞</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/960.seo/">AspCms_v1.5_20110517 SQL注射</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        my5t3ry@t00ls   前些天路过某个小站，用的AspCms这个系统，搜索了下，productbuy.asp这个文件存在注射，但是目标已经修补….下载了代码，很奇葩的是productbuy.asp这个文件官方虽然修补了网上提到的漏洞，但是就在同一个文件下面找到了注入漏洞。。。。。。。    废话不多说，看代码：  &lt;%if action = &quot;buy&quot; then    addOrder()else   
+      
+      </p>
+      
+      <p>
+          <a href="/960.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-11-10T02:37:58.000Z" itemprop="datePublished">
+          2012-11-10
+      </time>
+    
+    
+    | 
+    <a href='/tag/注入漏洞/'>注入漏洞</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/930.seo/">对最近dedecms注入的分析</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>那天<a href="http://www.wooyun.org/bugs/wooyun-2012-014076" target="_blank">乌云</a>上发了dedecms feed.back&#160; typeid的<a href="http://ha.cker.in/tag/注入漏洞" target="_blank">注入漏洞</a>，下午就被忽略然后修复了。作者没公布利用方法，然后第二天就有了这篇文章….     <br />该漏洞是cyg07在乌云提交的， 漏洞文件: plus\feedback.php。     <br />存在问题的代码:</p>  <p>…   <br />if($comtype == ‘comments’)    <br />&#160; {    <br />&#160; $arctitle = addslashes($title);    <br />&#160; if($msg!=’’)    <br />&#160; {//$typeid变量未做初始化    <br />&#160;&#160;&#160; $inquery = &quot;INSERT INTO <code>#@__feedback</code>(<code>aid</code>,<code>typeid</code>,<code>username</code>,<code>arctitle</code>,<code>ip</code>,<code>ischeck</code>,<code>dtime</code>, <code>mid</code>,<code>bad</code>,<code>good</code>,<code>ftype</code>,<code>face</code>,<code>msg</code>)    <br />&#160;&#160;&#160;&#160;&#160;&#160; VALUES (‘$aid’,’$typeid’,’$username’,’$arctitle’,’$ip’,’$ischeck’,’$dtime’, ‘{$cfg_ml-&gt;M_ID}’,’0’,’0’,’$feedbacktype’,’$face’,’$msg’); &quot;;    <br />&#160;&#160;&#160;&#160;&#160; echo $inquery;//调试，输出查询语句    <br />&#160;&#160;&#160; $rs = $dsql-&gt;ExecuteNoneQuery($inquery);    <br />&#160;&#160;&#160; if(!$rs)    <br />&#160;&#160;&#160; {    <br />&#160;&#160;&#160;&#160;&#160; ShowMsg(‘ 发表评论错误! ‘, ‘-1’);    <br />&#160;&#160;&#160;&#160;&#160; //echo $dsql-&gt;GetError();    <br />&#160;&#160;&#160;&#160;&#160; exit();    <br />&#160;&#160;&#160; }    <br />&#160; }    <br />&#160; }    <br />&#160; //引用回复    <br />&#160; elseif ($comtype == ‘reply’)    <br />&#160; {    <br />&#160; $row = $dsql-&gt;GetOne(&quot;SELECT <em> FROM <code>#@__feedback</code> WHERE id =’$fid’&quot;);    <br />&#160; $arctitle = $row[‘arctitle’];    <br />&#160; $aid =$row[‘aid’];    <br />&#160; $msg = $quotemsg.$msg;    <br />&#160; $msg = HtmlReplace($msg, 2);    <br />&#160; $inquery = &quot;INSERT INTO <code>#@__feedback</code>(<code>aid</code>,<code>typeid</code>,<code>username</code>,<code>arctitle</code>,<code>ip</code>,<code>ischeck</code>,<code>dtime</code>,<code>mid</code>,<code>bad</code>,<code>good</code>,<code>ftype</code>,<code>face</code>,<code>msg</code>)    <br />&#160;&#160;&#160;&#160;&#160; VALUES (‘$aid’,’$typeid’,’$username’,’$arctitle’,’$ip’,’$ischeck’,’$dtime’,’{$cfg_ml-&gt;M_ID}’,’0’,’0’,’$feedbacktype’,’$face’,’$msg’)&quot;;    <br />&#160; $dsql-&gt;ExecuteNoneQuery($inquery);    <br />}</p>  <p><a href="http://img.cker.in/dedecms_1057A/BS8JVDS2DT8HF1F38D2NQ.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="$BS8JVDS2DT8HF1F38[D2NQ" border="0" alt="$BS8JVDS2DT8HF1F38[D2NQ" src="http://img.cker.in/dedecms_1057A/BS8JVDS2DT8HF1F38D2NQ_thumb.jpg" width="1198" height="236" /></a></p>  <p>&#160;</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/930.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-11-05T06:38:54.000Z" itemprop="datePublished">
+          2012-11-05
+      </time>
+    
+    
+    | 
+    <a href='/tag/xss/'>xss</a>,
+    
+    <a href='/tag/注入/'>注入</a>,
+    
+    <a href='/tag/注入漏洞/'>注入漏洞</a>,
+    
+    <a href='/tag/上传漏洞/'>上传漏洞</a>,
+    
+    <a href='/tag/暴库/'>暴库</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/926.seo/">年终了，谈点个人入侵的经验〈转载〉</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        by 老君   这一年变化比较大，换了好几个工作，最终还是回到了安全的岗位，合乎自己的职业规划！    平时空闲时间经常找些站练练手，基本是新闻闹出轰动的站与一些知名的大站。2008年的成果还是颇丰的，从某某国内2大知名社区论坛到某某著名交友站到某某 2大读书站到某某mobile到某某政府站等大站，再到若干名不见经传的小站，都闪过的我的影踪。但我个人觉得没什么好炫耀的，于是没替换首页，没留下黑页，顶多是把源代码打包带回家（硬盘吃不消了，
+      
+      </p>
+      
+      <p>
+          <a href="/926.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
       <time datetime="2012-06-21T14:30:58.000Z" itemprop="datePublished">
           2012-06-21
       </time>

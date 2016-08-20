@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>入侵韩国某购物网并提权 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-04-01T01:00:24.000Z" itemprop="datePublished">
+          2013-04-01
+      </time>
+    
+    
+    | 
+    <a href='/tag/注入/'>注入</a>,
+    
+    <a href='/tag/iis解析漏洞/'>iis解析漏洞</a>
+    
+    
+</span>
+    <h1 class="post-title">入侵韩国某购物网并提权</h1>
+    <section class="post-content">
+      <p>文章作者:enjoyhack</p>  <p>昨天搞完泰国那个服务器后随便看了个韩国的的购物网站（看样子是像个购物网站，具体是不是我也不清楚，棒子的语言看不懂啊！！）。懂棒子语言的朋友不妨告诉下是什么类型的网站，呵呵。</p>  <p><a href="http://img.cker.in/d8f2e315c472_EEC3/clip_image002.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/d8f2e315c472_EEC3/clip_image002_thumb.jpg" width="604" height="354"></a></p>  <p>看样子还是和中国某些B2B商城系统类似，刚开始的时候顺便检测了下<a href="http://ha.cker.in/tag/注入" target="_blank">注入</a>，发现没法注入后便在网站随便逛了逛，看到有个新闻页后面有留言的地方。</p>  <p><a href="http://img.cker.in/d8f2e315c472_EEC3/clip_image004.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/d8f2e315c472_EEC3/clip_image004_thumb.jpg" width="604" height="264"></a></p>  <p>虽然语言不通，但是操作界面还是熟悉的，这里应该就可以上传图片了。</p>  <p><a href="http://img.cker.in/d8f2e315c472_EEC3/clip_image005.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/d8f2e315c472_EEC3/clip_image005_thumb.jpg" width="361" height="461"></a></p>  <p>直接传了个<a href="http://ha.cker.in/tag/IIS解析漏洞" target="_blank">IIS解析漏洞</a>利用的图片马上去。</p><br><a id="more"></a><br><p></p>  <p><a href="http://img.cker.in/d8f2e315c472_EEC3/clip_image006.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/d8f2e315c472_EEC3/clip_image006_thumb.jpg" width="594" height="399"></a></p>  <p>可以看到上传上去的图片并没有另外命名，我这里这个图片是因之前有上传一个同名的，所以现在多了个“[0]”。</p>  <p>接下来就是一句话连接拿webshell了，这步就不用多说了吧，我想大家都应该知道了，呵呵。</p>  <p><a href="http://img.cker.in/d8f2e315c472_EEC3/clip_image008.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/d8f2e315c472_EEC3/clip_image008_thumb.jpg" width="604" height="258"></a></p>  <p>shell 的权限依然很大，命令执行组件也没有删除，简单看了下服务器的信息，服务器安装有MSSQL，3389有开放。   <br>接下来就是找找看能不能找到SA密码了，在网站数据库链接文件中找到了一个。</p>  <p><a href="http://img.cker.in/d8f2e315c472_EEC3/clip_image010.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image010" border="0" alt="clip_image010" src="http://img.cker.in/d8f2e315c472_EEC3/clip_image010_thumb.jpg" width="604" height="130"></a></p>  <p>遗憾的是不是SA的，而且端口还改成了2433，为了验证下权限我还是拿这个账号到MSSQL提权的地方连接测试了下，预料之中的权限不够。</p>  <p>看到这账号密码挺复杂的，突然想到会不会sa也用这个密码呢？于是便在MSSQL连接处把账号修改成sa，点连接。   <br><a href="http://img.cker.in/d8f2e315c472_EEC3/clip_image011.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image011" border="0" alt="clip_image011" src="http://img.cker.in/d8f2e315c472_EEC3/clip_image011_thumb.jpg" width="613" height="203"></a></p>  <p>呵呵，够悲剧的了吧，接下来就是执行命令了，不过这里还有一点小插曲。</p>  <p><a href="http://img.cker.in/d8f2e315c472_EEC3/clip_image013.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image013" border="0" alt="clip_image013" src="http://img.cker.in/d8f2e315c472_EEC3/clip_image013_thumb.jpg" width="604" height="73"></a></p>  <p>执行命令的时候出现了错误，不过根据这个错误来看，中文错误意思应该是：Error Message:SQL Server 阻止了对组件 ‘xp_cmdshell’ 的 过程 ‘sys.xp_cmdshell’ 的访问，因为此组件已作为此服务器安全配置的一部分而被关闭。系统管理员可以通过使用 sp_configure 启用 ‘xp_cmdshell’。有关启用 ‘xp_cmdshell’ 的详细信息，请参阅 SQL Server 联机丛书中的 &quot;外围应用配置器&quot;。</p>  <p>这个错误看过我之前文章的朋友应该知道怎么解决，就是使用查询分析器远程连接SQL后执行几句SQL命令即可，但是由于目标服务器端口更改成2433，分离版的查询分析器不能自定义端口连接！！所以这里要使用SQLtoos的 SQLcommand功能一句一句的执行以下命令:</p>  <p>;EXEC sp_configure ‘show advanced options’, 1 –&#160; <br>;RECONFIGURE WITH OVERRIDE –&#160; <br>;EXEC sp_configure ‘xp_cmdshell’, 1 –&#160; <br>;RECONFIGURE WITH OVERRIDE –&#160; <br>;EXEC sp_configure&#160;&#160; ‘show advanced options’, 0 –</p>  <p>能执行DOS命令了后面就直接加用户上服务器了。   <br><a href="http://img.cker.in/d8f2e315c472_EEC3/clip_image015.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image015" border="0" alt="clip_image015" src="http://img.cker.in/d8f2e315c472_EEC3/clip_image015_thumb.jpg" width="604" height="449"></a></p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/988.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/988.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/988.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/988.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/989.seo/">
+        ← 易思ESPCMS企业网站管理系统V5.6.13.04.03的会员中心模块SQL注入漏洞
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/987.seo/">
+        对国外黑客论坛 hackerstown.com 的一次测试 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

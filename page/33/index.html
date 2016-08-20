@@ -45,30 +45,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-12T09:46:14.000Z" itemprop="datePublished">
-          2012-06-12
+      <time datetime="2012-11-12T18:28:19.000Z" itemprop="datePublished">
+          2012-11-13
       </time>
     
     
     | 
-    <a href='/tag/内网渗透/'>内网渗透</a>,
+    <a href='/tag/记事狗/'>记事狗</a>,
     
-    <a href='/tag/渗透/'>渗透</a>
+    <a href='/tag/微博/'>微博</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/483.seo/">win内网渗透实例</a></h2>
+      <h2 class="post-title"><a href="/932.seo/">记事狗微博 注入</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>作者：赤龙<br>最近在整理资料时发现一些渗透笔记，于是翻开看看，原来有一个老外的内部网还没有拿下。当时已经给内网的一台机器种植了木马，反正闲着没事就拿它来练练手吧。打开远程居然肉鸡还在，废话就不多说了，下面开始吧。<br>首先来看看已经控制的这台电脑在内网中充当什么角色，并收集一些常规的信息。执行ipconfig /all (如图1)</p>
-<p><img style="display: inline; border: 0px;" title="clip_image001" src="http://img.cker.in/win_18C1/clip_image001.png" alt="clip_image001" width="752" height="754" border="0" /><br>从这里我们可以看出，此计算机名为abimaq6，ip地址是172.16.16.139。子网掩码为255.255.240.0、网关172.16.16.1、DNS服务器分别是172.16.16.2和172.16.16.3。还有一个重要的就是这台机器处于域管理模式中，所在域为abimaq.local。<br>既然是域结构，再来获取一下域用户列表，执行net user /domain命令(如图2)。该命令可显示所有的域用户名单。看来域用户还真多。</p>
+        记事狗微博 注入  /modules/ajax/topic.mod.php  function Pic_ajax(){//echo 11;//echo base64_encode(serialize(array(‘a’=&gt;’0\’#’)));$options = array();$TopicListLogic = Load::logic(‘topic_list’, 1);$per_page_num = $this-&gt;Post
       
       </p>
       
       <p>
-          <a href="/483.seo/" class="excerpt-link">Read More...</a>
+          <a href="/932.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -77,33 +76,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-12T09:37:14.000Z" itemprop="datePublished">
-          2012-06-12
+      <time datetime="2012-11-11T22:11:21.000Z" itemprop="datePublished">
+          2012-11-12
       </time>
     
     
     | 
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/大黑阔/'>大黑阔</a>,
-    
-    <a href='/tag/黑站/'>黑站</a>,
-    
-    <a href='/tag/日站/'>日站</a>
+    <a href='/tag/内存不足/'>内存不足</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/481.seo/">历时5个月拿下PR7网站思路</a></h2>
+      <h2 class="post-title"><a href="/931.seo/">解决CentOS下yum不能使用的错误(thread.error  can't start new thread)</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>历时5个月拿下PR7网站思路</p>  <p>作者：xxbing </p>  <p>在腾讯2009年安全技术峰会上我曾经提出一个观点：墨菲定律：如果它能够被黑阔攻破，它就将被攻破。对于一个黑阔来说，他要黑一个企业，仅仅是时间上的问题，总之是成本上的问题，比如有个盗号集团在支持他，他说我给你一年时间你把这个企业黑了，搞定了就给你多少钱。一年时间我相信只要他有这个毅力，基本上在座的公司逃不过这一劫。</p>  <p>这个观点看似有点哗众取宠，但它确实是一个不争的事实。XXB同学就上演了5个月日掉PR7网站的LIVE秀。</p>  <p>我总结下教训：</p>  <p>UDEV补丁没打，估计其他几个内核补丁肯定也没打</p>  <p><a name="tpc">2</a>、主机安全需要有基线，PHP安全模式得打开    <br />3、被安装了ssh后门却蒙在鼓里    <br />这三点看似简单，但却知难行易；建立完善的主机入侵防御体系，技术对抗很重要，但技术对抗只是一个小问题。引用caoz的一段话：    <br />1.技术是为了解决问题，而不是制造问题。    <br />2.把握目标去应用技术，而不是为了技术去虚构目标。（包子注：技术狂人一般喜欢这么做，为了追求自己的满足感，成就感，虚构目标，虚构需求）    <br />3.用户需求（通常是潜在需求）决定技术和产品方向，技术反过来刺激需求的显现和增长。    <br />4.技术仍然非常重要，非常有价值，但是前提是，它要用到正确的方向上。    <br />【文中网址都已和谐！该站点网址用<a href="http://www.xxbing.com/">ha.cker.in</a>代替】    <br />美女同学要看言情小说，<a href="http://www.xxbing.com/">ha.cker.in</a> 的言情小说要收钱，于是就帮她找找“空子”！    <br />在<a href="http://tool.chinaz.com/">http://tool.chinaz.com/</a>查了一下<a href="http://www.xxbing.com/">ha.cker.in</a>信息，日IP访问量快达到40W了。很牛逼呀。全站采用php构架。nignx服务器。好了，废话结束。进入正题。    <br />首先我注册了一个账号，然后我登陆作者平台，申请成为作者需要提交自己的原创作品。于是我上baidu搜索了一本很多年前的小说，提交了几章，等待审核。    <br />几天后，成功的申请成为作者。经过1-2个小时的手工测试，成功的在管理作品处寻到一个注射点。    <br />类似： book.php?bookid=123    <br />我提交 book.php?bookid=123 and 1=1 [正常]    <br />book.php?bookid=124-1 [正常]    <br />book.php?bookid=123 and 1=2 [错误]提示权限不足。    <br />book.php?bookid=124 [错误]提示权限不足。    <br />可以判断这里是注射点了，为什么会提示权限不足，应该是每个bookid代表一本图书，有其他字段控制着作者信息，防止非法编辑他人作品。    <br />用order判断出有53个字段。    <br />book.php?bookid=123 and 1=2 union select 1,2,3,……,52,53# 提示：[错误]提示权限不足。    <br />绝对是其中某个位置的数字不正确，导致系统判断我编辑了其他人的图书。于是我把注射点丢到pangolin里面暴力跑字段。成功的跑出53个字段名出来。（一个字符一个字符的暴力猜解。跑了很久）    <br />然后提交： book.php?bookid=123 and 1=2 union select 字段名1,字段名1,字段名3,……,字段名52,字段名53# 成功显示正常页面。    <br />接着我把字段名1、字段名2等等，一个个替换成数字，这个过程中一直显示正常页面。终于到了字段名13的时候，出错了，提示权限不足。那就可以跑了。    <br />book.php?bookid=123 and 1=2 union select 1,2,3,…,字段名13,…,52,53# 正常页面，页面上出现我定义的数字。    <br />接下来就丢到WSI 5.1里面跑数据。很可惜，数据库里面只有一些作品内容，也有编辑用户表，所有编辑账号密码都有，但是找不到后台。    <br />于是我开始寻找绝对路径，也找了N久，后来被我在上传图片处找到。上传一张图片，系统会自动生成该图片的缩略图，我上传一个文本图片，处理的时候出错了。爆出了绝对路径。    <br />[/opt/data/www/xxx.cn/common/include/upfile.php]    <br />用load_file能读出来。顺藤摸瓜，成功读到Mysql账号密码。    <br />mysql账号： Myuser    <br />密码： (Myuser.pass)</p>
+        最近VPSyum升级的时候出现了thread.error: can’t start new thread的错误，原因就是因为内存太小了，以至于导致在寻找最快镜像的时候内存不足。    发生的原因在于fastestmirror，而禁用fastestmirror就可以解决这个问题，具体的解决办法是将fastestmirror.conf中的enabled=1改成enabled=0。   在登录SSH之后，编辑/etc/yum/pluginco
       
       </p>
       
       <p>
-          <a href="/481.seo/" class="excerpt-link">Read More...</a>
+          <a href="/931.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -112,29 +105,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-12T09:35:13.000Z" itemprop="datePublished">
-          2012-06-12
+      <time datetime="2012-11-10T02:37:58.000Z" itemprop="datePublished">
+          2012-11-10
       </time>
     
     
     | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/入侵/'>入侵</a>
+    <a href='/tag/注入漏洞/'>注入漏洞</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/478.seo/">社工+渗透某IDC服务器</a></h2>
+      <h2 class="post-title"><a href="/930.seo/">对最近dedecms注入的分析</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>作者：hu1s4</p>  <p>最近准备做个教育资源站，就打算在网上买个空间，ok百度下吧看看哪个好点</p>  <p>最后准备去这个站注册www.xxxxx.com</p>  <p>西部万维，西部IDC行业领跑，以最值得信赖的信誉为您提供服务器托管、服务器租用、域名注册、服务器租用、VPS、独立IP虚拟主机等服务</p>  <p>淘宝—网银—支付宝—支付成功！！</p>  <p>嘻嘻 邮箱收信了、</p>  <p>嘿嘿…空间到手了，进入FTP传个大马，因为我购买的是全能型空间，所以直接上传asp php asp.net jsp四类大马</p>  <p>查看，哎，权限bt啊，</p>  <p>（如果权限不bt，难道想被万人骑啊 hoho~~~）</p>  <p>试试看.net马吧</p>  <p>貌似权限比ASP的要大 可跳转</p>  <p>在C:\Program Files 发现了360还有星外的主机管理系统</p>  <p>一、提权之旅</p>  <p>在网上看了很多的星外提权文章，大概可以分为：</p>  <p>星外sa注册表位置在这里可以翻到sa的密码 不过需要破解</p>  <p>HKEY_LOCAL_MACHINE\SYSTEM\LIWEIWENSOFT\INSTALLFREEADMIN\11</p>  <p>C:\Documents and Settings\All Users\Application Data\Microsoft\Media Index\ 星外可写目录</p>  <p>还有一些就不列举了经过测试没有一个可行 ……峰回路转</p>  <p>正我郁闷的时候看到了Global.asa，激动的打开一看既然是sa用户</p>  <p>呵呵提权没问题了吧，不过却：</p>  <p>SQL Server 阻止了对组件 ‘xp_cmdshell’ 的过程’sys.xp_cmdshell’ 的访问</p>  <p>组件删除了，没关系我们恢复</p>  <p>dbcc addextendedproc (&quot;sp_oacreate&quot;,&quot;odsole70.dll&quot;)&#160; <br />dbcc addextendedproc (&quot;xp_cmdshell&quot;,&quot;xplog70.dll&quot;)</p>  <p>恢复好了，执行下命令在创建用户加入管理，，OK搞定</p>  <p>远程连接的时候悲剧了既然限制了管理用户组的权限。哎</p>  <p>继续想其他办法，在网上看了一篇文章</p>  <p>知道星外的ftp是自带的，我们可以通过IIS配置来读取用户密码</p>  <p>打开aspx的IIS间谍功能，既然没有禁止，教大家一个禁止aspx查看IIS配置的方法</p>  <p>找到C:\WINDOWS\system32\activeds.tlb这个文件，取消users权限即可，别人就不能查看你的IIS了</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/IDC_15DB/clip_image001.png" width="558" height="233" /></p>  <p>大家看到上面的比较了红色的FREE….</p>  <p>Freehostrunat这个用户是安装星外时建立的后面的密码并不是什么加密方式其实就是明文密码</p>  <p>我们可以直接远程登陆,在内网的话就转发</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/IDC_15DB/clip_image002.png" width="513" height="375" /></p>  <p>好了，成功拿下服务器…. 继续渗透….</p>
+        <p>那天<a href="http://www.wooyun.org/bugs/wooyun-2012-014076" target="_blank">乌云</a>上发了dedecms feed.back&#160; typeid的<a href="http://ha.cker.in/tag/注入漏洞" target="_blank">注入漏洞</a>，下午就被忽略然后修复了。作者没公布利用方法，然后第二天就有了这篇文章….     <br />该漏洞是cyg07在乌云提交的， 漏洞文件: plus\feedback.php。     <br />存在问题的代码:</p>  <p>…   <br />if($comtype == ‘comments’)    <br />&#160; {    <br />&#160; $arctitle = addslashes($title);    <br />&#160; if($msg!=’’)    <br />&#160; {//$typeid变量未做初始化    <br />&#160;&#160;&#160; $inquery = &quot;INSERT INTO <code>#@__feedback</code>(<code>aid</code>,<code>typeid</code>,<code>username</code>,<code>arctitle</code>,<code>ip</code>,<code>ischeck</code>,<code>dtime</code>, <code>mid</code>,<code>bad</code>,<code>good</code>,<code>ftype</code>,<code>face</code>,<code>msg</code>)    <br />&#160;&#160;&#160;&#160;&#160;&#160; VALUES (‘$aid’,’$typeid’,’$username’,’$arctitle’,’$ip’,’$ischeck’,’$dtime’, ‘{$cfg_ml-&gt;M_ID}’,’0’,’0’,’$feedbacktype’,’$face’,’$msg’); &quot;;    <br />&#160;&#160;&#160;&#160;&#160; echo $inquery;//调试，输出查询语句    <br />&#160;&#160;&#160; $rs = $dsql-&gt;ExecuteNoneQuery($inquery);    <br />&#160;&#160;&#160; if(!$rs)    <br />&#160;&#160;&#160; {    <br />&#160;&#160;&#160;&#160;&#160; ShowMsg(‘ 发表评论错误! ‘, ‘-1’);    <br />&#160;&#160;&#160;&#160;&#160; //echo $dsql-&gt;GetError();    <br />&#160;&#160;&#160;&#160;&#160; exit();    <br />&#160;&#160;&#160; }    <br />&#160; }    <br />&#160; }    <br />&#160; //引用回复    <br />&#160; elseif ($comtype == ‘reply’)    <br />&#160; {    <br />&#160; $row = $dsql-&gt;GetOne(&quot;SELECT <em> FROM <code>#@__feedback</code> WHERE id =’$fid’&quot;);    <br />&#160; $arctitle = $row[‘arctitle’];    <br />&#160; $aid =$row[‘aid’];    <br />&#160; $msg = $quotemsg.$msg;    <br />&#160; $msg = HtmlReplace($msg, 2);    <br />&#160; $inquery = &quot;INSERT INTO <code>#@__feedback</code>(<code>aid</code>,<code>typeid</code>,<code>username</code>,<code>arctitle</code>,<code>ip</code>,<code>ischeck</code>,<code>dtime</code>,<code>mid</code>,<code>bad</code>,<code>good</code>,<code>ftype</code>,<code>face</code>,<code>msg</code>)    <br />&#160;&#160;&#160;&#160;&#160; VALUES (‘$aid’,’$typeid’,’$username’,’$arctitle’,’$ip’,’$ischeck’,’$dtime’,’{$cfg_ml-&gt;M_ID}’,’0’,’0’,’$feedbacktype’,’$face’,’$msg’)&quot;;    <br />&#160; $dsql-&gt;ExecuteNoneQuery($inquery);    <br />}</p>  <p><a href="http://img.cker.in/dedecms_1057A/BS8JVDS2DT8HF1F38D2NQ.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="$BS8JVDS2DT8HF1F38[D2NQ" border="0" alt="$BS8JVDS2DT8HF1F38[D2NQ" src="http://img.cker.in/dedecms_1057A/BS8JVDS2DT8HF1F38D2NQ_thumb.jpg" width="1198" height="236" /></a></p>  <p>&#160;</p><br>
       
       </p>
       
       <p>
-          <a href="/478.seo/" class="excerpt-link">Read More...</a>
+          <a href="/930.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -143,27 +134,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-12T09:29:54.000Z" itemprop="datePublished">
-          2012-06-12
+      <time datetime="2012-11-09T01:17:23.000Z" itemprop="datePublished">
+          2012-11-09
       </time>
     
     
     | 
-    <a href='/tag/渗透/'>渗透</a>
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/Android/'>Android</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/476.seo/">某官网的渗透笔记</a></h2>
+      <h2 class="post-title"><a href="/929.seo/">对Android最新fakesms漏洞的分析</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        某官网的渗透笔记，挖掘的某0DAY拿到webshell，USER权限，联通外网，提权SYSTEM的EXP无效，看来打的补丁很全，服务器用的是微软FTP,MSSQL，没啥突破口。路过其他盘，发现一个小有年份的BKF文件，貌似这个是用于系统的恢复和还原的.复制到WEB 目录下回来。装个虚拟机还原BKF文件。虚拟机就变成目标主机的系统了。没有密码登陆不进去了。插入WINPE光盘，替换sethc.exe ，做个shift后门，按5次shift进
+        <p>近期<a href="http://ha.cker.in/tag/Android" target="_blank">Android</a>爆出SMS smishing vuln, 首先来源于<a href="http://www.csc.ncsu.edu/faculty/jiang/smishing.html">http://www.csc.ncsu.edu/faculty/jiang/smishing.html</a>， 然后<a href="https://github.com/thomascannon/android-sms-spoof">github上给出了poc</a>,具体来说是任意一个app在没有write_sms权限下可以伪造任意发件人的任意短信。</p>  <p>影响平台可上至Android 1.6下至4.1。由于很多以android2.3为主的手机已经不能再升级，此漏洞的危害不可小视。一个攻击场景是malicious app首先向ISP发送一条申请业务的短信，然后伪造ISP发送一条用户需要确认的短信。当用户确认时就中招了。</p>  <p>两张截图：</p>  <p><a href="http://blog.flanker017.me/wp-content/uploads/2012/11/device-2012-11-08-020802.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Androidfakesms_F312/clip_image002.png" width="244" height="420" /> </a><a href="http://blog.flanker017.me/wp-content/uploads/2012/11/device-2012-11-08-020818.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/Androidfakesms_F312/clip_image004.png" width="244" height="420" /></a></p><br>
       
       </p>
       
       <p>
-          <a href="/476.seo/" class="excerpt-link">Read More...</a>
+          <a href="/929.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -172,27 +165,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-12T09:27:34.000Z" itemprop="datePublished">
-          2012-06-12
+      <time datetime="2012-11-06T22:14:19.000Z" itemprop="datePublished">
+          2012-11-07
       </time>
     
     
     | 
-    <a href='/tag/内网渗透/'>内网渗透</a>
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/代码审计/'>代码审计</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/473.seo/">渗透某大型内网入侵过程</a></h2>
+      <h2 class="post-title"><a href="/928.seo/">Metinfo 代码审计</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        本文阐述：文章从网站入侵到内网渗透提权，作者给大家带来了一篇精彩的内网渗透文章。读后此文你能清晰的认识到内网入侵的细节技术。   由于平时比较忙，用了很久的VPN肉鸡飞掉了，近来正好有时间于是打开google搜索upfile.asp开始找肉鸡，来了台湾某XX站，，为了不必要的麻烦，我隐藏了敏感内容。直接到传asp提示错误，那么直接传了gif以后，查看上传路径发现自己重命名了，如果没有重命名的话在IIS6下百分之90以上可以拿shell了
+        <p>文:&#160; 西毒</p>  <p>欢迎大家到<a href="https://forum.90sec.org/&amp;#160">https://forum.90sec.org/&amp;#160</a>; &amp;&amp; <a href="http://www.linux520.com/bbs/">http://www.linux520.com/bbs/</a></p>  <p>0x01 前沿</p>  <p>&#160;&#160; MetInfo企业网站管理系统：采用PHP+Mysql架构，全站内置了SEO搜索引擎优化机制，支持用户自定义界面语言(全球各种语言)，拥有企业网站常用的模块功能（企业简介模块、新闻模块、产品模块、下载模块、图片模块、招聘模块、在线留言、反馈系统、在线交流、友情链接、网站地图、会员与权限管理）。强大灵活的后台管理功能、静态页面生成功能、个性化模块添加功能、不同栏目自定义FLASH样式功能等可为企业打造出大气漂亮且具有营销力的精品网站。</p>  <p>这套程序之前爆出来一个远程执行代码的<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>之后，就没什么人去挖掘了。整套程序还是很多人用的，下图是查出来的结果</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Metinfo_C76E/clip_image001_thumb.jpg" width="502" height="184" /></a></p>  <p>整个对这套cms审计花了我几天的时间，下面一一道来。</p>  <p>0x02 注入一</p>  <p>此次代码审计是官网最新版</p>  <p>在message/access.php中13行</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Metinfo_C76E/clip_image002_thumb.jpg" width="578" height="245" /></a></p>  <p>大家应该看到了，这个$id是没过滤的，这里的$id是怎么来的呢？请看include/common.inc.php中</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/Metinfo_C76E/clip_image003_thumb.jpg" width="578" height="207" /></a></p><br>
       
       </p>
       
       <p>
-          <a href="/473.seo/" class="excerpt-link">Read More...</a>
+          <a href="/928.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -201,29 +196,57 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-12T09:17:58.000Z" itemprop="datePublished">
-          2012-06-12
+      <time datetime="2012-11-06T01:47:32.000Z" itemprop="datePublished">
+          2012-11-06
       </time>
     
     
     | 
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/dis9/'>dis9</a>
+    <a href='/tag/解密/'>解密</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/470.seo/">入侵泰国政府网站</a></h2>
+      <h2 class="post-title"><a href="/927.seo/">转~ 东京大学加密招生海报解密过程（警告：Geek范，内含妹子）</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>看了一个泰国政府的网站被伊朗的黑客挂页，上面写着   <br />“Your Box 0wn3z By Behrooz_Ice - Q7x -Sha2ow -Virangar -Ali_Eagle -iman_taktaz - Satanic2000”    <br />“We Love Iran”    <br />“Ashiyane Digital Security Team”    <br />这样的话云云。    <br />下面我就讲讲怎么捅了他们的PP(<a href="http://203.154.183.18/ash_hack.htm">http://203.154.183.18/ash_hack.htm</a>)    <br />网站服务器ip为：203.154.183.18上面一共有大约一百多个xx.cad.go.th(泰国<a href="http://gov.com.im/art_design/2012/0419/%E5%85%A5%E4%BE%B5%E6%B3%B0%E5%9B%BD%E6%94%BF%E5%BA%9C%E7%BD%91%E7%AB%99.html">政府</a>域名后缀)的网站    <br />包括主域名：<a href="http://www.cad.go.th/">www.cad.go.th</a>(<a href="http://www.cad.go.th/webadmin/">www.cad.go.th/webadmin/</a>)    <br />我先是看了看上面站的构架，基本上都是一个模板出来的，似乎有点脚本问题，不过不从这边下手。直接访问ip可以看到一个管理后台</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/24a24e5761a3_1231/clip_image001.png" width="474" height="238" /></p>
+        <p>我东京帝国大学，远没你想得那么简单，这就是日本技术宅的极致。</p>  <p>作为校友，请允许我使用熟谙且常用的傲娇文风(读者可按照《龙樱》中的形象自动补脑)，为母校写篇招生软文，弊校校训：“以质取胜，以质取量，培养国家领导人和各阶层中坚力量”。所以永不扩招，名额有限，速度申请啊亲。   <br /><a href="http://img.cker.in/Geek_F978/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="photo-media" border="0" alt="clip_image001" src="http://img.cker.in/Geek_F978/clip_image001_thumb.jpg" width="600" height="840" /></a>    <br />这个是去年东京大学情報理工学系研究科的招生海报，我看到人人网和微博都疯狂转载。情报还理工！就要求你有超凡的情报分析能力和工科背景。就比如楼主其实叫余则润成，美国威廉姆斯中专毕业之后来到日本读博士，专业Mechanic机械师，拿着中日双份工资，碟中谍5。9月10日我第一个任务做掉出钱购岛的日本金融大臣松下忠洋<a href="http://rrurl.cn/4y9dbx">http://www.baidu.com/s?wd=%CB%C9%CF%C2%D6%D2%D1%F3</a>。曾在金三角完美训练，做的很干净，像自杀。9月13日第二个任务将新上任的大使西宫伸一<a href="http://rrurl.cn/h7dwp0">http://www.baidu.com/s?wd=%CE%F7%B9%AC%C9%EC%D2%BB</a>。我会继续当普通学生在这里好好学情报，请忘掉我的名字，如果非要记得我，请叫我城市猎人。</p>  <p>此图一出，宾大和CMU都难与之争锋。高校IT男屌纷纷跪舔，各种遐想和意淫，我们东大的软妹子一副古色古香的打扮，娴静而端庄，这样的的学妹，你有吗？当大家对着可爱的妹子胡思乱想时，不知你是否想过，前面的那一串二进制01串并非是用脸滚键盘出来的装饰品，而是别有深意呢？一曲肝肠断，天涯何处觅知音，我们只写给懂的人看。正如本太君常年写的日志，可以读成单纯的温情小故事，也可以读出高端黑，全看读者姿势水平。</p>  <p>实际上，这此图精髓之处并非作为背景的妹子，而恰恰是前面的这个0101一大串二进制数字，看到棒棒和洞洞你激动了吗？我想很多青年早已猜到里面含有信息——搞计算机的没妹子，而且不是1就是0。啊哈，玩笑过后我们就来看看这个0101到底是什么意思。</p>  <p>首先用ocr软件将图片上的数字转化为文本，数字串总共26行，除最后一行98个数字外其它每行110个数字，共计2848个数字。神马？你说你是人工抄写的？卧槽，连光学字符识别都不会用，您还是留在清华保研吧。</p>  <pre>00011111100010110000100000000000000000000000000000000000000000000000001000000011011011010101000011001011010011<br>10110000100100000000010100001111010101001100011110100001010101101010110101100000001110000000000011010100001101<br>10000101000100010011011010001110001000010110001100010011000110101100010011000011010010011010011000001101100010<br>11100000011010011010101001010111100001110100010011011001110101100000001011000011110111010010111101110010111000<br>11010110000001010010011000101110111111000000000011111111110000111000111101110000111000011110001100010110010011<br>01000011001000100110010011110011001001110010111001111101111001111010010011011110111110111001111101111111010111<br>11000111111000000001101100001000011110110010000001100001010100101011010010011010110011000010010010000010000010<br>10010100100001100011011000110010000110001101010110010001010101111001000101010010101100001100111100010011110111<br>10000101001010111110010000000001010000111010010001100010101101100001100110100010010011011110111111010010001000<br>01000110000111001011100001001100101110010000101010000101111100011100111101001111101110011011010110100000001011<br>10111101011101010110010010110000011011000010101111011010111010000111101101001110010110010110111001000111011011<br>11111110000100111110111110011110111100001100110111000001110100001001001001000001010100101100011010000101100011<br>00010011010110110000110011100110101001001100101001000111110000010110000000100010011011010101011100111000000100<br>11101011110110011001010101011001011010110111011111111010110000111010100100100110001111101011000010011100110110<br>10101001111011010101000111110000011110100011110110100001010101110111010101001110010001110101000101000101000001<br>01010010110001101011010110001100000111001001010000011000100110000110001000110010111111100101101010011110011101<br>10011110011000111100101110000101010101000110101101111010001000111001110100100001111110011111010101000110010101<br>00110010001111111011111000000100111001111001110101010001101110011000100100010110010111010011111000101100001011<br>11100010100010011000110110111010011001001001111011010010111000001111000011100100100100010011101011010001110010<br>01100101001101100001101100110000111111010010101000011010011000000111110100011000100001101010010110100110110110<br>01010001010000101001110011010110000101110001111010000101001011100100110100001001000001101000110101111110001010<br>01010000100100011000011000110110110111110100000010011110111001100000010011100100100101100010000010111111100101<br>10110110111000100000100010100000100001100001001110011101001000101000000110001110011000011101111100101000111101<br>01000011010010100100011000001000010001111011110001101010100110001111110100001101110100100001101101100010101101<br>11000010111011101011111111011110010000100010100101101101100100110101111000001101110010100000011100110101011000<br>01111011110010100000000010110111111110101010100011000010011100000110111110000000010000000000000000</pre><br><br><p>首先第一个想法肯定是ASCII编码，由于不知道是big-endian还是little-endian就两个都试一次，结果看不出来是什么有意义的字符串。考虑到可能用凯撒密码加密过，去掉非拉丁字母后反解出26个可能的文本，也都没有什么意义。看来不是ASCII编码。</p>
+
+<p>考虑到2848长度是8的倍数，也可能是二进制文件，所以也big-endian和little-endian地读出来并写成二进制文件。<br>  <br />而big-endian的那个输出是一个gz压缩包。实际上，看不出来的话，也可以把文件头的3个字节丢google。如果你直接用Linux中的file命令看岂不是显得咱技术含量太低太傻瓜化？</p>
+
+<p><a href="http://img.cker.in/Geek_F978/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="photo-media" border="0" alt="clip_image002" src="http://img.cker.in/Geek_F978/clip_image002_thumb.jpg" width="600" height="522" /></a><br><br>  <br />改名为bin.gz，解压得到一个叫做bin的文件。内容：</p>
+
+<p>\CA\FE\BA\BE\00\00\002\00!<br>  <br />\00\00<br><br>  <br />\00\00\00<br><br>  <br />\00\00<br><br>  <br />\00\00\00\00\00&lt;init&gt;\00</p>
+
+<p><hr align="left" size="1" width="33%" />()V\00</p>
+<p><hr align="left" size="1" /> Code\00</p>
+<p><hr align="left" size="1" /> main\00([Ljava/lang/String;)V\00 StackMapTable</p>
+<p><br />\00\00 \00</p>
+<p><br />\00\00\00)w-aurlwtcniewo./-t.kjhltiypioe.o/kvru.fae\00</p>
+<p><br />\00\00\00‑</p>
+<p><br />\00­\00 \00i\00java/lang/Object\00java/lang/System\00</p>
+<p><hr align="left" size="1" width="33%" /> out\00Ljava/io/PrintStream;\00java/lang/String\00charAt\00</p>
+<p><hr align="left" size="1" /> (I)C\00java/io/PrintStream\00print\00</p>
+<p><hr align="left" size="1" /> (C)V\00 \00\00\00\00\00\00\00[1]\00\00\00\00 \00\00</p>
+<p><br />\00\00\00\00\00\00\00\00*\B7\00\B1\00\00\00\00\00 \00</p>
+<p><br />\00</p>
+<p><br />\00\00</p>
+<p><br />\00\00\00=\00</p>
+<p><hr align="left" size="1" /> \00</p>
+<p><hr align="left" size="1" width="33%" /> \00\00\00!</p>
+<p><hr align="left" size="1" width="33%" /> =)\A2\00\B2\00[1]</p>
+<p><hr align="left" size="1" width="33%" /> h)p\B6\00</p>
+<p><hr align="left" size="1" /> \B6\00\84[1]\A7\FF\E5\B1\00\00\00\00 \00\00\00</p>
+<p><br />\00[1]\FD\00[1]\00\F9\00\00\00\00</p>
+<p>熟悉java的同学应该一眼就能看出(额也许熟悉java的也不一定能)这是个编译过的class文件（看不懂的也可以用jd-gui反编译），改名为bin.class，运行提示Exception in thread &quot;main&quot; java.lang.NoClassDefFoundError: bin (wrong name: i)再改名为i.class，运行得到<a href="http://rrurl.cn/o5gwn0">www.i.u-tokyo.ac.jp/fun/hikari-loveletter</a> 点开能在此帝国大学的官方网站里找到妹子写真哦~</p>
+
+<p>另外还有版权信息的文本解密： 0x11c开始，sjis编码 <a href="http://rrurl.cn/o5gwn0"><br>    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/Geek_F978/clip_image003.jpg" width="636" height="510" /><br><br>    <br /></a>恭喜！能看到这一步，你已经有不提交任何材料直接给面试的资格了，但是离最终录取还有下面一段路程。<a href="http://img.cker.in/Geek_F978/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="photo-media" border="0" alt="clip_image004" src="http://img.cker.in/Geek_F978/clip_image004_thumb.jpg" width="600" height="468" /></a></p><br>
       
       </p>
       
       <p>
-          <a href="/470.seo/" class="excerpt-link">Read More...</a>
+          <a href="/927.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -231,7 +254,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/page/32/">← Newer Posts</a>
-    <span class="page-number">Page 33 of 57</span>
+    <span class="page-number">Page 33 of 81</span>
     <a class="older-posts" href="/page/34/">Older Posts →</a>
   </nav>
 </main>

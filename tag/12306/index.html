@@ -45,6 +45,37 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
+      <time datetime="2012-09-27T22:19:34.000Z" itemprop="datePublished">
+          2012-09-28
+      </time>
+    
+    
+    | 
+    <a href='/tag/12306/'>12306</a>,
+    
+    <a href='/tag/包含漏洞/'>包含漏洞</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/862.seo/">检测开发12306的公司：太极计算机股份有限公司</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>国庆就要来了，返乡出行的高峰期来了，最近无论是身边还是网络上的都怨声载道啊，原因就是火车票，网上订票系统12306真是没话说了，大家都懂的！</p>  <p>于是最近大家都把气撒在了收1.99亿开发出这么个破网站的公司：“太极”身上，主页<a href="http://www.taiji.com.cn/">http://www.taiji.com.cn/</a></p>  <p>下面我就把过程写出来和大家分享。</p>  <p>打开主页的网址默认跳到了这个链接</p>  <p><a href="http://www.taiji.com.cn/coboportal/portal/compayindex.ptview">http://www.taiji.com.cn/coboportal/portal/compayindex.ptview</a></p>  <p>鼠标随便停在新闻链接上状态栏显示如下，</p>  <p><a href="http://img.cker.in/12306_C8D8/clip_image002.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/12306_C8D8/clip_image002_thumb.jpg" width="596" height="209" /></a></p>  <p><a href="http://www.taiji.com.cn/coboportal/portal/itservice.ptview?funcid=showGSWZInfoLink&amp;infoSortId=52802&amp;infoLinkId=13962&amp;viewJsp=gswz/newsevents/newsshowcontent.jsp">http://www.taiji.com.cn/coboportal/portal/itservice.ptview?funcid=showGSWZInfoLink&amp;infoSortId=52802&amp;infoLinkId=13962&amp;viewJsp=gswz/newsevents/newsshowcontent.jsp</a></p>  <p>试了试infoSortId=52802这里是木有注入的哦，不过看着viewjsp这个参数有点特别哦，后面直接接上相对路径真是jsp文件地址了，于是我们来试试包含漏洞或者任意文件下载漏洞~</p>  <p>构造如下地址：</p>  <p><a href="http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869%20&amp;viewJsp=index.jsp">http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869%20&amp;viewJsp=index.jsp</a></p>  <p>打开发现404如图：</p>  <p><a href="http://img.cker.in/12306_C8D8/clip_image004.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/12306_C8D8/clip_image004_thumb.jpg" width="596" height="338" /></a></p>  <p>继续构造，把viewJsp=index.jsp改为viewJsp=../index.jsp：</p>  <p><a href="http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869%20&amp;viewJsp=../index.jsp">http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869%20&amp;viewJsp=../index.jsp</a></p>
+      
+      </p>
+      
+      <p>
+          <a href="/862.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
       <time datetime="2012-09-17T20:16:45.000Z" itemprop="datePublished">
           2012-09-18
       </time>

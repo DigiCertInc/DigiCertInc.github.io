@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Burpsuit暴力破解某运营商手机邮箱密码 已发乌云 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-11-24T09:06:39.000Z" itemprop="datePublished">
+          2012-11-24
+      </time>
+    
+    
+    | 
+    <a href='/tag/暴力破解/'>暴力破解</a>,
+    
+    <a href='/tag/burpsuit/'>burpsuit</a>
+    
+    
+</span>
+    <h1 class="post-title">Burpsuit暴力破解某运营商手机邮箱密码 已发乌云</h1>
+    <section class="post-content">
+      <p>一篇教新手使用神器Burpsuit的暴力破解的教程，因为是新手入门所以写的尽量详细易懂，我也是菜鸟同学，希望投稿能通过了和大家一起交流。~~好吧，其实我是来搞基的！</p>  <p>找回密码时会给手机发送六位数字验证码，纯数字大家都懂的 可以暴力破解</p>  <p>于是我就祭出神器Burpsuit试试看，一试果然可以暴力破解，没有加任何限制，破出来验证码拿去改密码进邮箱，对于把重要信息存在邮箱上的用户来说密码已经形同虚设了，一点安全性都没有，所以说危害还是很严重的。</p>  <p>由于是拿自己的手机测试的，所以验证码是24<em>**</em>，我直接用240000-250000的字典跑了下，成功了后又用000000-999999的字典跑，两次测试证明漏洞确实存在。</p>  <p>详细过程：</p>  <p>找回密码页面</p>  <p>来到mail.wo.com.cn找回密码，打开Burpsuit设置好代理并OFF截包</p>  <p><a href="http://img.cker.in/Burpsuit_E96/clip_image002.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Burpsuit_E96/clip_image002_thumb.jpg" width="596" height="490"></a></p>  <p>输入一个简单的新密码，短信验证码随便填，我这里填123456，提示验证码错误，然后来到神器的history看刚才的POST请求包</p>  <p><a href="http://img.cker.in/Burpsuit_E96/clip_image004.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/Burpsuit_E96/clip_image004_thumb.jpg" width="596" height="614"></a></p>  <p>嗯，就是这个包，序号是4611</p>  <p>我们选中，然后点send intruder发送到爆破</p><br><a id="more"></a><br><p></p>  <p><a href="http://img.cker.in/Burpsuit_E96/clip_image005.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/Burpsuit_E96/clip_image005_thumb.png" width="392" height="507"></a></p>  <p>然后看到标签栏的intruder亮了</p>  <p><a href="http://img.cker.in/Burpsuit_E96/clip_image006.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/Burpsuit_E96/clip_image006_thumb.png" width="330" height="89"></a></p>  <p>来到intruder</p>  <p><a href="http://img.cker.in/Burpsuit_E96/clip_image007.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/Burpsuit_E96/clip_image007_thumb.png" width="297" height="226"></a></p>  <p>Target可以不用管，position和payloads、Options都有需要修改的地方：</p>  <p><a href="http://img.cker.in/Burpsuit_E96/clip_image009.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image009" border="0" alt="clip_image009" src="http://img.cker.in/Burpsuit_E96/clip_image009_thumb.jpg" width="596" height="354"></a></p>  <p>首先position是定位变量，提交的数据有许多的参数，Burpsuit默认把所有的参数值都通过符号§给括起来了，我们只需要括起来验证码的那个参数就可以，所以全选，点clear§，然后选中验证码123456点击add§，修改好结果如图</p>  <p><a href="http://img.cker.in/Burpsuit_E96/clip_image011.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image011" border="0" alt="clip_image011" src="http://img.cker.in/Burpsuit_E96/clip_image011_thumb.jpg" width="596" height="321"></a></p>  <p>Payloads标签下需要粘贴我们的字典，用字典生成器生成000000-999999纯数字，复制，粘贴（paste）</p>  <p><a href="http://img.cker.in/Burpsuit_E96/clip_image012.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image012" border="0" alt="clip_image012" src="http://img.cker.in/Burpsuit_E96/clip_image012_thumb.png" width="524" height="349"></a></p>  <p>Options里需要填写返回错误时的标识字符串，也可以不填，我就写个错误</p>  <p><a href="http://img.cker.in/Burpsuit_E96/clip_image013.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image013" border="0" alt="clip_image013" src="http://img.cker.in/Burpsuit_E96/clip_image013_thumb.png" width="520" height="576"></a></p>  <p>填完了所有信息，点击菜单栏intruder里start开始爆破吧</p>  <p><a href="http://img.cker.in/Burpsuit_E96/clip_image014.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image014" border="0" alt="clip_image014" src="http://img.cker.in/Burpsuit_E96/clip_image014_thumb.png" width="303" height="258"></a></p>  <p>剩下的交给机器跑了，我们先去打会儿坐……</p>  <p>许久，结果出来了</p>  <p>根据返回包的长度很容易分辨爆破结果</p>  <p><a href="http://img.cker.in/Burpsuit_E96/clip_image016.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image016" border="0" alt="clip_image016" src="http://img.cker.in/Burpsuit_E96/clip_image016_thumb.jpg" width="596" height="530"></a></p>  <p>248173就是我收到的验证码</p>  <p><a href="http://img.cker.in/Burpsuit_E96/clip_image018.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image018" border="0" alt="clip_image018" src="http://img.cker.in/Burpsuit_E96/clip_image018_thumb.jpg" width="596" height="517"></a></p>  <p>，拿验证码去改密码吧。。修改成功</p>  <p><a href="http://img.cker.in/Burpsuit_E96/clip_image019.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image019" border="0" alt="clip_image019" src="http://img.cker.in/Burpsuit_E96/clip_image019_thumb.png" width="522" height="353"></a></p>  <p>修复方案</p>  <p>增加验证码超时验证，登录错误次数限制机制 防止恶意的破解。</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/945.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/945.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/945.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/945.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/946.seo/">
+        ← 友情检测张柏芝官方网站全过程
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/943.seo/">
+        黑客利用漏洞盗取巨款 买张点卡就能送你20万 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

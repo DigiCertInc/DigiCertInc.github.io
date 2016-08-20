@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>PHP漏洞之session会话劫持 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-05-14T00:13:05.000Z" itemprop="datePublished">
+          2013-05-14
+      </time>
+    
+    
+    | 
+    <a href='/tag/Session劫持/'>Session劫持</a>
+    
+    
+</span>
+    <h1 class="post-title">PHP漏洞之session会话劫持</h1>
+    <section class="post-content">
+      <p>本文主要介绍针对PHP网站<a href="http://Ha.Cker.In/tag/Session劫持" target="_blank">Session劫持</a>。session劫持是一种比较复杂的攻击方法。大部分互联网上的电脑多存在被攻击的危险。这是一种劫持tcp协议的方法，所以几乎所有的局域网，都存在被劫持可能。</p>  <p>服务端和客户端之间是通过session(会话)来连接沟通。当客户端的浏览器连接到服务器后，服务器就会建立一个该用户的session。每个用 户的session都是独立的，并且由服务器来维护。每个用户的session是由一个独特的字符串来识别，成为session id。用户发出请求时，所发送的http表头内包含session id 的值。服务器使用http表头内的session id来识别时哪个用户提交的请求。</p>  <p>session保存的是每个用户的个人数据，一般的web应用程序会使用session来保存通过验证的用户账号和密码。在转换不同的网页时，如果 需要验证用户身份，就是用session内所保存的账号和密码来比较。session的生命周期从用户连上服务器后开始，在用户关掉浏览器或是注销时用户 session_destroy函数删除session数据时结束。如果用户在20分钟内没有使用计算机的动作，session也会自动结束。</p>  <p>php处理session的应用架构    <br><img title="clip_image001[4]" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="466" alt="clip_image001[4]" src="http://ha.cker.in/usr/uploads/2013/05/3858525608.jpg" width="389" border="0"></p>  <p>会话劫持</p>  <p>会话劫持是指攻击者利用各种手段来获取目标用户的session id。一旦获取到session id，那么攻击者可以利用目标用户的身份来登录网站，获取目标用户的操作权限。</p>  <p>攻击者获取目标用户session id的方法:    <br>1）暴力破解:尝试各种session id，直到破解为止。     <br>2）计算:如果session id使用非随机的方式产生，那么就有可能计算出来     <br>3）窃取:使用网络截获，xss攻击等方法获得</p>  <p>会话劫持的攻击步骤</p>  <p><img title="" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; margin-left: 0px; margin-right: 0px; border-right-width: 0px" height="354" alt="" src="http://ha.cker.in/usr/uploads/2013/05/857104028.jpg" width="396" border="0"></p><br><a id="more"></a><br><p></p>  <p>实例：</p>  <p>//login.php</p>  <div>   <pre>session_start();<br><br>if (isset($_POST[&quot;login&quot;]))<br><br>{<br><br>$link = mysql_connect(&quot;localhost&quot;, &quot;root&quot;, &quot;root&quot;)<br><br>or die(&quot;无法建立MySQL数据库连接：&quot; . mysql_error());<br><br>mysql_select_db(&quot;cms&quot;) or die(&quot;无法选择MySQL数据库&quot;);<br><br>if (!get_magic_quotes_gpc())<br><br>{<br><br>$query = &quot;select <em> from member where username=’&quot; . addslashes($_POST[&quot;username&quot;]) .<br><br>&quot;’ and password=’&quot; . addslashes($_POST[&quot;password&quot;]) . &quot;’&quot;;<br><br>}<br><br>else<br><br>{<br><br>$query = &quot;select </em> from member where username=’&quot; . $_POST[&quot;username&quot;] .<br><br>&quot;’ and password=’&quot; . $_POST[&quot;password&quot;] . &quot;’&quot;;<br><br>}<br><br>$result = mysql_query($query)<br><br>or die(&quot;执行MySQL查询语句失败：&quot; . mysql_error());<br><br>$match_count = mysql_num_rows($result);<br><br>if ($match_count)<br><br>{<br><br>$_SESSION[&quot;username&quot;] = $_POST[&quot;username&quot;];<br><br>$_SESSION[&quot;password&quot;] = $_POST[&quot;password&quot;];<br><br>$_SESSION[&quot;book&quot;] = 1;<br><br>mysql_free_result($result);<br><br>mysql_close($link);<br><br>header(&quot;Location: <a href="http://localhost/index.php?user=&amp;quot" target="_blank" rel="external">http://localhost/index.php?user=&amp;quot</a>; .<br><br>$_POST[&quot;username&quot;]);<br><br>}</pre><br></div><br><br><br><br><br><p>//index.php<br>  <br></p>
+
+<div><br>  <pre>session_start();// 打开Session </pre><br></div>
+
+<p><br></p>
+<p>访客的 Session ID 是：echo session_id();<br>  <br>访客：echo htmlspecialchars($_GET[&quot;user&quot;], ENT_QUOTES);<br><br>  <br>book商品的数量：echo htmlspecialchars($_SESSION[&quot;book&quot;], ENT_QUOTES);<br><br>  <br>如果登录成功，使用<br><br>  <br>$_SESSION[&quot;username&quot;] 保存账号<br><br>  <br>$_SESSION[&quot;password&quot;] 保存密码<br><br>  <br>#_SESSION[&quot;book&quot;] 保存购买商品数目</p>
+
+<p>开始攻击</p>
+
+<p>//attack.php</p>
+
+<div><br>  <pre>session_start();// 打开Session<br><br>echo &quot;目标用户的Session ID是：&quot; . session_id() . &quot;&quot;;<br><br>echo &quot;目标用户的username是：&quot; . $_SESSION[&quot;username&quot;] . &quot;&quot;;<br><br>echo &quot;目标用户的password是：&quot; . $_SESSION[&quot;password&quot;] . &quot;&quot;;<br><br>// 将book的数量设置为2000<br><br>$_SESSION[&quot;book&quot;] = 2000;</pre><br></div>
+
+<p><br></p>
+<p>提交 <a href="http://www.91ri.org/" target="_blank" rel="external">http://www.91ri.org/</a> attack.php?PHPSESSID=5a6kqe7cufhstuhcmhgr9nsg45 此ID为获取到的客户session id,刷新客户页面以后客户购买的商品变成了2000<br>  <br>session固定攻击<br><br>  <br>黑客可以使用把session id发给用户的方式，来完成攻击 <a href="http://localhost/index.php?user=dodo&amp;PHPSESSID=1234" target="_blank" rel="external">http://localhost/index.php?user=dodo&amp;PHPSESSID=1234</a> 把此链接发送给dodo这个用户显示<br><br>  <br>然后攻击者再访问 <a href="http://localhost/attack.php?PHPSESSID=1234" target="_blank" rel="external">http://localhost/attack.php?PHPSESSID=1234</a> 后，客户页面刷新，发现商品数量已经成了2000</p>
+
+<p>防范方法<br>  <br>1）定期更改session id<br><br>  <br>函数 bool session_regenerate_id([bool delete_old_session])<br><br>  <br>delete_old_session为true，则删除旧的session文件；为false，则保留旧的session，默认false，可选<br><br>  <br>在index.php开头加上<br><br>  <br>session_start();<br><br>  <br>session_regenerate_id(TRUE);<br><br>  <br>这样每次从新加载都会产生一个新的session id</p>
+
+<p>2）更改session的名称<br>  <br>session的默认名称是PHPSESSID,此变量会保存在cookie中，如果黑客不抓包分析，就不能猜到这个名称，阻挡部分攻击session_start();<br><br>  <br>session_name(“mysessionid”);</p>
+
+<p>3）关闭透明化session id<br>  <br>透明化session id指当浏览器中的http请求没有使用cookies来制定session id时，sessioin id使用链接来传递；打开php.ini，编辑session.use_trans_sid = 0<br><br>  <br>代码中<br><br>  <br>int_set(“session.use_trans_sid”, 0);<br><br>  <br>session_start();</p>
+
+<p>4）只从cookie检查session id<br>  <br>session.use_cookies = 1 表示使用cookies存放session id<br><br>  <br>session.use_only_cookies = 1 表示只使用cookies存放session id，这可以避免session固定攻击<br><br>  <br>代码中<br><br>  <br>int_set(“session.use_cookies”, 1);<br><br>  <br>int_set(“session.use_only_cookies”, 1); p&gt;</p>
+
+<p>5）使用URL传递隐藏参数<br>  <br>session_start();<br><br>  <br>$seid = md5(uniqid(rand()), TRUE));<br><br>  <br>$_SESSION[&quot;seid&quot;] = $seid;<br><br>  <br>攻击者虽然能获取session数据，但是无法得知$seid的值，只要检查seid的值，就可以确认当前页面是否是web程序自己调用的。</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/995.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/995.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/995.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/995.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/996.seo/">
+        ← 情色网站启示：请尊重你不懂的领域
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/992.seo/">
+        推荐29个Chrome拓展插件 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

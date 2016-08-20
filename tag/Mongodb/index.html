@@ -73,6 +73,70 @@
     </section>
   </article>
   
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-09-05T23:43:58.000Z" itemprop="datePublished">
+          2013-09-06
+      </time>
+    
+    
+    | 
+    <a href='/tag/Mongodb/'>Mongodb</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1028.seo/">Python调用MongoDB使用心得</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><p>本文是一个Python 使用<a href="http://Ha.Cker.In/tag/MongoDB" target="_blank">MongoDB</a>的简单教程，将使用pymongo对MongoDB进行的各种操作进行了简单的汇总，NoSQLFan进行了简单整理，使用Python的同学可以看一看。</p> <p>&nbsp;</p> <p>下载相应平台的版本，解压即可。为方便使用，将bin路径添加到系统path环境变量里。其中mongod是服务器，mongo是客户shell，然后创建数据文件目录：在c盘下创建data文件夹，里面创建db文件夹。</p> <p>基本使用：</p> <p><a href="http://img.cker.in/PythonMongoDB_DD32/1VL89KYXK12ZECOYV.jpg"><img title="`1(V)L89KY[XK[12ZECOY%V" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="159" alt="`1(V)L89KY[XK[12ZECOY%V" src="http://img.cker.in/PythonMongoDB_DD32/1VL89KYXK12ZECOYV_thumb.jpg" width="507" border="0"></a></p> <p>安装对应语言的Driver，Python 安装 pymongo</p><pre>$ easy_install pymongo</pre></p>
+<p><p>使用方法总结，摘自官方教程</p></p>
+<p><p>创建连接</p><pre>&gt;&gt;&gt; import pymongo<br>&gt;&gt;&gt; connection=pymongo.Connection(‘localhost’,27017)</pre></p>
+<p><p>切换数据库</p><pre>&gt;&gt;&gt; db = connection.test_database</pre></p>
+<p><p>获取collection</p><pre>&gt;&gt;&gt; collection = db.test_collection</pre></p>
+<p><p>db和collection都是延时创建的，在添加Document时才真正创建</p></p>
+<p><p>文档添加，_id自动创建</p><pre>&gt;&gt;&gt; import datetime<br>&gt;&gt;&gt; post = {“author”: “Mike”,<br>…         “text”: “My first blog post!”,<br>…         “tags”: [“mongodb”, “python”, “pymongo”],<br>…         “date”: datetime.datetime.utcnow()}<br>&gt;&gt;&gt; posts = db.posts<br>&gt;&gt;&gt; posts.insert(post)<br>ObjectId(‘…’)</pre><br>
+      
+      </p>
+      
+      <p>
+          <a href="/1028.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-01-16T03:11:42.000Z" itemprop="datePublished">
+          2013-01-16
+      </time>
+    
+    
+    | 
+    <a href='/tag/Mongodb/'>Mongodb</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/966.seo/">Mongodb学习手册</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><p><a href="http://ha.cker.in/tag/Mongodb" target="_blank">Mongodb</a>学习手册</p>  <p>启动mongodb服务进程：</p>  <p><a href="http://ha.cker.in/tag/Mongodb" target="_blank">MongoDB</a>默认的数据库文件的位置是/data/db，但是它不会自动的生产目录，所以如果采用默认的文件位置的话，我们需要自己先建立该目录，如下：</p>  <p>$ sudo mkdir -p /data/db/ </p>  <p>$ sudo chown <code>id -u</code> /data/db </p>  <p>接下来可以启动 mongodb的服务了：</p>  <p>$ ./mongod </p>  <p>我们也可以用-dbpath选项来指定自己的数据库位置，如下：</p>  <p>$ ./mongod -dbpath ../../data/db</p>  <p>启动成功以后，会有如下界面显示：</p>  <p>[tsaip@ossesbwas bin]$ Mon May 30 12:17:16 [initandlisten] MongoDB starting : </p>  <p>pid=3662 port=27017 dbpath=../../data/db 64-bit</p>  <p>Mon May 30 12:17:16 [initandlisten] db version v1.8.2-rc2, pdfile version 4.5 </p>  <p>Mon May 30 12:17:16 [initandlisten] git version: </p>  <p>373038f53049071fddb5404698c8bebf99e3b51f </p>  <p>Mon May 30 12:17:16 [initandlisten] build sys info: Linux bs-linux64.10gen.cc </p>  <p>2.6.21.7-2.ec2.v1.2.fc8xen #1 SMP Fri Nov 20 17:48:28 EST 2009 x86_64 </p>  <p>BOOST_LIB_VERSION=1_41 </p>  <p>Mon May 30 12:17:16 [initandlisten] waiting for connections on port 27017 </p>  <p>Mon May 30 12:17:16 [websvr] web admin interface listening on port 28017</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/966.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
   <nav class="pagination" role="pagination">
     
     <span class="page-number">Page 1 of 1</span>

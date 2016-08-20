@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Base 64 Encoding 编码 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-09-05T05:17:52.000Z" itemprop="datePublished">
+          2013-09-05
+      </time>
+    
+</span>
+    <h1 class="post-title">Base 64 Encoding 编码</h1>
+    <section class="post-content">
+      <p> Base 64 Encoding有什么用？举个简单的例子，你使用SMTP协议 （Simple Mail Transfer Protocol 简单邮件传输协议）来发送邮件。因为这个协议是基于文本的协议，所以如果邮件中包含一幅图片，我们知道图片的存储格式是二进制数据（binary data），而非文本格式，我们必须将二进制的数据编码成文本格式，这时候Base 64 Encoding就派上用场了。</p>  <p> （一）编码原理</p>  <p>Base 64 Encoding 的编码原理是将每三个字节（byte）转换为四个字符，每个字符占6 bit。</p>  <p><a href="http://images.cnblogs.com/cnblogs_com/jfzhu/201212/201212100007219276.png" target="_blank" rel="external"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="168" alt="clip_image001" src="http://img.cker.in/Base64Encoding_12B67/clip_image001.png" width="623" border="0"></a></p>  <p>6 bit一共有64种组合方式，也就是说该编码共需要使用至少64种字符（后面我们还会介绍一个特殊字符 =）。Base 64 Encoding使用了从 A 到 Z、a 到 z、0 到 9、以及 + 和 / 这些字符（即[A-Za-z0-9+/]）。</p>  <p><a href="http://images.cnblogs.com/cnblogs_com/jfzhu/201212/201212100007251912.png" target="_blank" rel="external"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="460" alt="clip_image002" src="http://img.cker.in/Base64Encoding_12B67/clip_image002.png" width="383" border="0"></a></p>  <p> 假设我们有三个字节的数据，byte[] {1, 2, 3}，用二进制表示为：</p>  <p>00000001 | 00000010 | 00000011</p>  <p> 依据上面的原理，使用Basee 64 Encoding编码后结果应该为：</p>  <p>000000 | 010000 | 001000 | 000011</p>  <p> 转换为十进制为 0 | 16 | 8 | 3，对照上面的表，编码后的文本为 AQID</p>  <p> 既然Base 64 Encoding将每三个字节转换为四个字符，那如果一幅图片的字节数不能被3整除该怎么办？</p>  <p> 如果剩余一个字节，该字节同样被转换为四个字符。第一个6 bit转换成一个字符，接下来2 bit转换成一个字符（注意这里是向右添加0），最后添加两个=字符。</p>  <p><a href="http://images.cnblogs.com/cnblogs_com/jfzhu/201212/201212100007283533.png" target="_blank" rel="external"><img title="clip_image003" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="173" alt="clip_image003" src="http://img.cker.in/Base64Encoding_12B67/clip_image003.png" width="351" border="0"></a></p>  <p> 假设我们有四个字节的数据，byte[] {1, 2, 3, 4}，用二进制表示为：</p>  <p>00000001 | 00000010 | 00000011 | 00000100</p>  <p> 依据上面的原理，使用Basee 64 Encoding编码后结果应该为：</p>  <p>000000 | 010000 | 001000 | 000011 | 000001 | 000000</p>  <p> 转换为十进制为 0 | 16 | 8 | 3 | 1 | 0，对照上面的表，编码后的文本为 AQIDBA==</p>  <p> 如果不能被3整除，而余下两个字节，编码方式类似剩余一个字节，同样是转换成四个字符，最后一个字符用=。</p>  <p><a href="http://images.cnblogs.com/cnblogs_com/jfzhu/201212/201212100007315711.png" target="_blank" rel="external"><img title="clip_image004" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="164" alt="clip_image004" src="http://img.cker.in/Base64Encoding_12B67/clip_image004.png" width="471" border="0"></a></p>  <p> 假设我们有五个字节的数据，byte[] {1, 2, 3, 4, 5}，用二进制表示为：</p>  <p>00000001 | 00000010 | 00000011 | 00000100 | 00000101</p>  <p> 依据上面的原理，使用Basee 64 Encoding编码后结果应该为：</p>  <p>000000 | 010000 | 001000 | 000011 | 000001 | 000000 | 010100</p>  <p> 转换为十进制为 0 | 16 | 8 | 3 | 1 | 0 | 20，对照上面的表，编码后的文本为 AQIDBAU=</p>  <p> （二）在.Net中的实现</p>  <p> 在.Net中，将二进制数据编码为文本可以使用public static string ToBase64String(byte[] inArray)方法；从文本文件转换回二进制数据可以使用public static byte[] FromBase64String(string s)方法。</p>  <p> 下面验证一下上面讲解的例子，分别将三组数据 byte[] {1, 2, 3}，byte[] {1, 2, 3, 4}，byte[] {1, 2, 3, 4, 5} 进行编码，并检验编码后的文本是否分别为AQID，AQIDBA==，AQIDBAU=。</p>  <p>byte[] binary1 = new byte[] { 1, 2, 3 }; </p>  <p>string encoded1 = Convert.ToBase64String(binary1); </p>  <p>byte[] decoded1 = Convert.FromBase64String(encoded1); </p>  <p>Console.WriteLine(&quot;Encoded string: {0}, Decoded binary is equal to orignial binary? {1}&quot;</p>  <p>, encoded1, binary1.SequenceEqual(decoded1));</p>  <p>byte[] binary2 = new byte[] { 1, 2, 3, 4}; </p>  <p>string encoded2 = Convert.ToBase64String(binary2); </p>  <p>byte[] decoded2 = Convert.FromBase64String(encoded2); </p>  <p>Console.WriteLine(&quot;Encoded string: {0}, Decoded binary is equal to orignial binary? {1}&quot;</p>  <p>, encoded2, binary2.SequenceEqual(decoded2));</p>  <p>byte[] binary3 = new byte[] { 1, 2, 3, 4, 5}; </p>  <p>string encoded3 = Convert.ToBase64String(binary3); </p>  <p>byte[] decoded3 = Convert.FromBase64String(encoded3); </p>  <p>Console.WriteLine(&quot;Encoded string: {0}, Decoded binary is equal to orignial binary? {1}&quot;</p>  <p>, encoded3, binary3.SequenceEqual(decoded3)); </p>  <p> 输出结果为：</p>  <p>Encoded string: AQID, Decoded binary is equal to orignial binary? True&#160; <br>Encoded string: AQIDBA==, Decoded binary is equal to orignial binary? True&#160; <br>Encoded string: AQIDBAU=, Decoded binary is equal to orignial binary? True</p>  <p> 总结：本文介绍了为何要使用编码，以及Base 64 Encoding编码的原理，最后还介绍了Base 64 Encoding在.Net中的实现。</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1026.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1026.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1026.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1026.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/1027.seo/">
+        ← 从爆破shell到内网渗透(有亮点)
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/1025.seo/">
+        本地快速搭建反向代理平台，实现sebug等高危漏洞验证 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

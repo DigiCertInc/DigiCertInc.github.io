@@ -45,185 +45,180 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-10-17T06:50:58.000Z" itemprop="datePublished">
-          2011-10-17
+      <time datetime="2012-11-12T20:00:51.000Z" itemprop="datePublished">
+          2012-11-13
       </time>
     
     
     | 
-    <a href='/tag/Crack/'>Crack</a>
+    <a href='/tag/DedeCMS/'>DedeCMS</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/127.seo/">浅析加盐散列</a></h2>
+      <h2 class="post-title"><a href="/933.seo/">dedecms最新注入</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>浅析加盐散列   <br />作者:young    <br />0x00 简介    <br />本文介绍了存储用户密码的方式及其相关内容（破解、安全性分析、应用实践），介绍了加盐散列这种安全的存储用户密码的方式。    <br />这是一个简单的选题，个人水平有限，经验较浅。    <br />本文可总结为：使用8Byte随机salt+hash保存密码更为安全有效。若你对这方面已较了解，请飞过。如有好的建议，欢迎交流讨论。    <br />0x01 前话背景    <br />事情是这样，你搞到了某站的库。一般可以是扔CMD5之类网站直接拿密码了。让我把这个地方无聊的描述一次。    <br />某站用md5将你的密码hash后并存储，验证密码时，将你输入的密码进行hash并和数据库中存储的hash值对比。像下面这样。    <br />数据库中存储md5(pw)    <br />验证时取出md5(pw)，比对md5(pw) == md5(input_pw)    <br />为什么使用hash存储呢，考虑使用明文存储的话，存储密码的数据库被他人得到后，那个人也就获得了所有用户密码。使用hash存储后，他人只能得到密码的hash值。若想得到密码原文，只能尝试对可能的值依次进行hash运算并比对。    <br />后来有了彩虹表，简单的说彩虹表采用预计算(pre computed)、空间-时间折中，这样想找到hash值对应的密码时只需要查找彩虹表即可。在很短的时间内即可获得hash对应密码（几秒至几分钟），单纯的hash存储密码就变得不安全了。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/127.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-10-11T05:48:47.000Z" itemprop="datePublished">
-          2011-10-11
-      </time>
-    
-    
-    | 
-    <a href='/tag/日志分析/'>日志分析</a>,
-    
-    <a href='/tag/Windows/'>Windows</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/124.seo/">限制访问系统日志</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        Windows系统日志很重要，为了安全，可设置管理员身份的用户方可访问   如何使用注册表限制访问系统日志    首先展开子键     打开注册表编辑器，在窗口左侧依次单击展开[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlset\Services\Eventlog\System]子键    再修改键值     在右侧窗口中找到并双击“RestrictGuestAcces”键值项，在打开的对话框中设置键
-      
-      </p>
-      
-      <p>
-          <a href="/124.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-10-08T20:22:54.000Z" itemprop="datePublished">
-          2011-10-09
-      </time>
-    
-    
-    | 
-    <a href='/tag/日志分析/'>日志分析</a>,
-    
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/网络安全/'>网络安全</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/92.seo/">根据日志逆向分析攻击者入侵思路及查找0day</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>转自：<a href="http://www.t00ls.net/">http://www.t00ls.net/</a></p>  <p>作者：daokers （金刀客）</p>  <p>博客：<a href="http://www.daokers.com">http://www.daokers.com</a></p>  <p>刀客城：<a href="http://www.daokers.cn">http://www.daokers.cn</a></p>  <blockquote>   <p>通过分析攻击者留下的日志，比较详细滴还原了攻击者踩点、渗透、尝试突破的经过，对攻与防的手段和事后响应漏洞修复都有介绍。受益匪浅。</p> </blockquote>  <p>详细过程：    <br />攻击者对我服务器的4个网站进行了大量的检测，最后决定把目标选为<a href="http://www.target.org/">www.target.org</a>。之后开始寻找注入点，时间大约是从2010-06-06 17:01:13左右开始，先后测试了这些带有参数的网址dc/toupiao.asp B1=投票&amp;B2=结果’ and ‘7’=’7</p>
-      
-      </p>
-      
-      <p>
-          <a href="/92.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-08-25T20:42:47.000Z" itemprop="datePublished">
-          2011-08-26
-      </time>
-    
-    
-    | 
-    <a href='/tag/安全/'>安全</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/73.seo/">博客安全系列之WordPress</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        最近WORDPRESS一直很不安全..0DAY漏洞经常有~所以就需要对程序进行安全设置==========================================================第一步:设置可执行。将wp-content,wp-includes,wp-admin/css.wp-admin/images,wp-admin /import,wp-admin/includes,wp-admin/js,wp-admin/
-      
-      </p>
-      
-      <p>
-          <a href="/73.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-08-08T22:47:40.000Z" itemprop="datePublished">
-          2011-08-09
-      </time>
-    
-    
-    | 
-    <a href='/tag/VLAN/'>VLAN</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/62.seo/">VLAN学习笔记大全</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><p><b>为什么需要</b><b>VLAN</b>  <p><b>什么是</b><b>VLAN</b><b>？</b><b></b>  <p>VLAN（Virtual LAN），翻译成中文是“虚拟局域网”。LAN可以是由少数几台家用计算机构成的网络，也可以是数以百计的计算机构成的企业网络。VLAN所指的LAN特指使用路由器分割的网络——也就是广播域。  <p>在此让我们先复习一下广播域的概念。广播域，指的是广播帧（目标MAC地址全部为1）所能传递到的范围，亦即能够直接通信的范围。严格地说，并不仅仅是广播帧，多播帧（Multicast Frame）和目标不明的单播帧（Unknown Unicast Frame）也能在同一个广播域中畅行无阻。  <p>本来，二层交换机只能构建单一的广播域，不过使用VLAN功能后，它能够将网络分割成多个广播域。  <p><b>未分割广播域时……</b>  <p>那么，为什么需要分割广播域呢？那是因为，如果仅有一个广播域，有可能会影响到网络整体的传输性能。具体原因，请参看附图加深理解。  <p><a href="http://img.cker.in/VLAN_C990/image0054.gif"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="image005[4]" border="0" alt="image005[4]" src="http://img.cker.in/VLAN_C990/image0054_thumb.gif" width="240" height="203"></a>  <p>图中，是一个由5台二层交换机（交换机1～5）连接了大量客户机构成的网络。假设这时，计算机A需要与计算机B通信。在基于以太网的通信中，必须在数据帧中指定目标MAC地址才能正常通信，因此计算机A必须先广播“ARP请求（ARP Request）信息”，来尝试获取计算机B的MAC地址。  <p>交换机1收到广播帧（ARP请求）后，会将它转发给除接收端口外的其他所有端口，也就是Flooding了。接着，交换机2收到广播帧后也会Flooding。交换机3、4、5也还会Flooding。最终ARP请求会被转发到同一网络中的所有客户机上。  <p><a href="http://img.cker.in/VLAN_C990/image006.gif"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="image006" border="0" alt="image006" src="http://img.cker.in/VLAN_C990/image006_thumb.gif" width="240" height="206"></a>  <p>请大家注意一下，这个ARP请求原本是为了获得计算机B的MAC地址而发出的。也就是说：只要计算机B能收到就万事大吉了。可是事实上，数据帧却传遍整个网络，导致所有的计算机都收到了它。如此一来，一方面广播信息消耗了网络整体的带宽，另一方面，收到广播信息的计算机还要消耗一部分CPU时间来对它进行处理。造成了网络带宽和CPU运算能力的大量无谓消耗。  <p><b>广播信息是那么经常发出的吗？</b>  <p>读到这里，您也许会问：广播信息真是那么频繁出现的吗？  <p>答案是：是的！实际上广播帧会非常频繁地出现。利用TCP/IP协议栈通信时，除了前面出现的ARP外，还有可能需要发出DHCP、RIP等很多其他类型的广播信息。  <p>ARP广播，是在需要与其他主机通信时发出的。当客户机请求DHCP服务器分配IP地址时  <p>，就必须发出DHCP的广播。而使用RIP作为路由协议时，每隔30秒路由器都会对邻近的其他路由器广播一次路由信息。RIP以外的其他路由协议使用多播传输路由信息，这也会被交换机转发（Flooding）。除了TCP/IP以外，NetBEUI、IPX和Apple Talk等协议也经常需要用到广播。例如在Windows下双击打开“网络计算机”时就会发出广播（多播）信息。（Windows XP除外……）  <p>总之，广播就在我们身边。下面是一些常见的广播通信：  <p>l ARP请求：建立IP地址和MAC地址的映射关系。  <p>l RIP：一种路由协议。  <p>l DHCP：用于自动设定IP地址的协议。  <p>l NetBEUI：Windows下使用的网络协议。  <p>l IPX：Novell Netware使用的网络协议。  <p>l Apple Talk：苹果公司的Macintosh计算机使用的网络协议。  <p>如果整个网络只有一个广播域，那么一旦发出广播信息，就会传遍整个网络，并且对网络中的主机带来额外的负担。因此，在设计LAN时，需要注意如何才能有效地分割广播域。  <p>广播域的分割与VLAN的必要性  <p>分割广播域时，一般都必须使用到路由器。使用路由器后，可以以路由器上的网络接口（LAN Interface）为单位分割广播域。  <p>但是，通常情况下路由器上不会有太多的网络接口，其数目多在1～4个左右。随着宽带连接的普及，宽带路由器（或者叫IP共享器）变得较为常见，但是需要注意的是，它们上面虽然带着多个（一般为4个左右）连接LAN一侧的网络接口，但那实际上是路由器内置的交换机，并不能分割广播域。  <p>况且使用路由器分割广播域的话，所能分割的个数完全取决于路由器的网络接口个数，使得用户无法自由地根据实际需要分割广播域。  <p>与路由器相比，二层交换机一般带有多个网络接口。因此如果能使用它分割广播域，那么无疑运用上的灵活性会大大提高。  <p>用于在二层交换机上分割广播域的技术，就是VLAN。通过利用VLAN，我们可以自由设计广播域的构成，提高网络设计的自由度。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/62.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-07-06T23:10:24.000Z" itemprop="datePublished">
-          2011-07-07
-      </time>
-    
-    
-    | 
-    <a href='/tag/黑客/'>黑客</a>,
-    
-    <a href='/tag/黑帽/'>黑帽</a>,
-    
-    <a href='/tag/ATM/'>ATM</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/31.seo/">BalckHat2010 Barnaby Jack演示ATM自动吐钱</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        BalckHat2010 Barnaby Jack演示ATM自动吐钱 
+        6月份dedecms修补的漏洞是一个原理    plus/guestbook.inc.php   require(dirname(FILE).’/../../include/common.inc.php’);require_once(DEDEINC.&quot;/filter.inc.php&quot;); plus/guestbook.inc.php 
 
+require_once(dirname(__FILE__).'/guestbo
       
       </p>
       
       <p>
-          <a href="/31.seo/" class="excerpt-link">Read More...</a>
+          <a href="/933.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-11-12T18:28:19.000Z" itemprop="datePublished">
+          2012-11-13
+      </time>
+    
+    
+    | 
+    <a href='/tag/记事狗/'>记事狗</a>,
+    
+    <a href='/tag/微博/'>微博</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/932.seo/">记事狗微博 注入</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        记事狗微博 注入  /modules/ajax/topic.mod.php  function Pic_ajax(){//echo 11;//echo base64_encode(serialize(array(‘a’=&gt;’0\’#’)));$options = array();$TopicListLogic = Load::logic(‘topic_list’, 1);$per_page_num = $this-&gt;Post
+      
+      </p>
+      
+      <p>
+          <a href="/932.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-11-10T02:37:58.000Z" itemprop="datePublished">
+          2012-11-10
+      </time>
+    
+    
+    | 
+    <a href='/tag/注入漏洞/'>注入漏洞</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/930.seo/">对最近dedecms注入的分析</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>那天<a href="http://www.wooyun.org/bugs/wooyun-2012-014076" target="_blank">乌云</a>上发了dedecms feed.back&#160; typeid的<a href="http://ha.cker.in/tag/注入漏洞" target="_blank">注入漏洞</a>，下午就被忽略然后修复了。作者没公布利用方法，然后第二天就有了这篇文章….     <br />该漏洞是cyg07在乌云提交的， 漏洞文件: plus\feedback.php。     <br />存在问题的代码:</p>  <p>…   <br />if($comtype == ‘comments’)    <br />&#160; {    <br />&#160; $arctitle = addslashes($title);    <br />&#160; if($msg!=’’)    <br />&#160; {//$typeid变量未做初始化    <br />&#160;&#160;&#160; $inquery = &quot;INSERT INTO <code>#@__feedback</code>(<code>aid</code>,<code>typeid</code>,<code>username</code>,<code>arctitle</code>,<code>ip</code>,<code>ischeck</code>,<code>dtime</code>, <code>mid</code>,<code>bad</code>,<code>good</code>,<code>ftype</code>,<code>face</code>,<code>msg</code>)    <br />&#160;&#160;&#160;&#160;&#160;&#160; VALUES (‘$aid’,’$typeid’,’$username’,’$arctitle’,’$ip’,’$ischeck’,’$dtime’, ‘{$cfg_ml-&gt;M_ID}’,’0’,’0’,’$feedbacktype’,’$face’,’$msg’); &quot;;    <br />&#160;&#160;&#160;&#160;&#160; echo $inquery;//调试，输出查询语句    <br />&#160;&#160;&#160; $rs = $dsql-&gt;ExecuteNoneQuery($inquery);    <br />&#160;&#160;&#160; if(!$rs)    <br />&#160;&#160;&#160; {    <br />&#160;&#160;&#160;&#160;&#160; ShowMsg(‘ 发表评论错误! ‘, ‘-1’);    <br />&#160;&#160;&#160;&#160;&#160; //echo $dsql-&gt;GetError();    <br />&#160;&#160;&#160;&#160;&#160; exit();    <br />&#160;&#160;&#160; }    <br />&#160; }    <br />&#160; }    <br />&#160; //引用回复    <br />&#160; elseif ($comtype == ‘reply’)    <br />&#160; {    <br />&#160; $row = $dsql-&gt;GetOne(&quot;SELECT <em> FROM <code>#@__feedback</code> WHERE id =’$fid’&quot;);    <br />&#160; $arctitle = $row[‘arctitle’];    <br />&#160; $aid =$row[‘aid’];    <br />&#160; $msg = $quotemsg.$msg;    <br />&#160; $msg = HtmlReplace($msg, 2);    <br />&#160; $inquery = &quot;INSERT INTO <code>#@__feedback</code>(<code>aid</code>,<code>typeid</code>,<code>username</code>,<code>arctitle</code>,<code>ip</code>,<code>ischeck</code>,<code>dtime</code>,<code>mid</code>,<code>bad</code>,<code>good</code>,<code>ftype</code>,<code>face</code>,<code>msg</code>)    <br />&#160;&#160;&#160;&#160;&#160; VALUES (‘$aid’,’$typeid’,’$username’,’$arctitle’,’$ip’,’$ischeck’,’$dtime’,’{$cfg_ml-&gt;M_ID}’,’0’,’0’,’$feedbacktype’,’$face’,’$msg’)&quot;;    <br />&#160; $dsql-&gt;ExecuteNoneQuery($inquery);    <br />}</p>  <p><a href="http://img.cker.in/dedecms_1057A/BS8JVDS2DT8HF1F38D2NQ.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="$BS8JVDS2DT8HF1F38[D2NQ" border="0" alt="$BS8JVDS2DT8HF1F38[D2NQ" src="http://img.cker.in/dedecms_1057A/BS8JVDS2DT8HF1F38D2NQ_thumb.jpg" width="1198" height="236" /></a></p>  <p>&#160;</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/930.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-11-06T22:14:19.000Z" itemprop="datePublished">
+          2012-11-07
+      </time>
+    
+    
+    | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/代码审计/'>代码审计</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/928.seo/">Metinfo 代码审计</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>文:&#160; 西毒</p>  <p>欢迎大家到<a href="https://forum.90sec.org/&amp;#160">https://forum.90sec.org/&amp;#160</a>; &amp;&amp; <a href="http://www.linux520.com/bbs/">http://www.linux520.com/bbs/</a></p>  <p>0x01 前沿</p>  <p>&#160;&#160; MetInfo企业网站管理系统：采用PHP+Mysql架构，全站内置了SEO搜索引擎优化机制，支持用户自定义界面语言(全球各种语言)，拥有企业网站常用的模块功能（企业简介模块、新闻模块、产品模块、下载模块、图片模块、招聘模块、在线留言、反馈系统、在线交流、友情链接、网站地图、会员与权限管理）。强大灵活的后台管理功能、静态页面生成功能、个性化模块添加功能、不同栏目自定义FLASH样式功能等可为企业打造出大气漂亮且具有营销力的精品网站。</p>  <p>这套程序之前爆出来一个远程执行代码的<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>之后，就没什么人去挖掘了。整套程序还是很多人用的，下图是查出来的结果</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Metinfo_C76E/clip_image001_thumb.jpg" width="502" height="184" /></a></p>  <p>整个对这套cms审计花了我几天的时间，下面一一道来。</p>  <p>0x02 注入一</p>  <p>此次代码审计是官网最新版</p>  <p>在message/access.php中13行</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Metinfo_C76E/clip_image002_thumb.jpg" width="578" height="245" /></a></p>  <p>大家应该看到了，这个$id是没过滤的，这里的$id是怎么来的呢？请看include/common.inc.php中</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/Metinfo_C76E/clip_image003_thumb.jpg" width="578" height="207" /></a></p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/928.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-10-28T22:03:14.000Z" itemprop="datePublished">
+          2012-10-29
+      </time>
+    
+    
+    | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/代码执行/'>代码执行</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/914.seo/">akcms代码执行漏洞</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>by <a href="http://www.moonhack.org/daimashenji/468.html">MoonHack</a></p>  <p>上周挖出的akcms的后台模版getshell感觉没什么新意，然后又仔细看了看代码，发现了一个比较有“前途”的洞，<a href="http://ha.cker.in/tag/代码执行" target="_blank">代码执行</a>漏洞，而且出问题函数是作者提供给建站用户进行二次开发时使用的，也就是说这个问题放大的程度也会要大些。</p>  <p>0×01、原理分析</p>  <p>漏洞问题主要存在于include\common.func.php文件中的ak_if函数，先看下代码</p>  <p><a href="http://img.cker.in/akcms_C569/clip_image001.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/akcms_C569/clip_image001_thumb.png" width="600" height="246" /></a></p>  <p>eval函数参数中的变量$variable未作任何的处理变插入到了函数中。ak_if这个函数的主要用途是，提供给建站用户一个简单的逻辑判断功能的接口。对比一下4.1版本中的这段代码</p>  <p><a href="http://img.cker.in/akcms_C569/clip_image002.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/akcms_C569/clip_image002_thumb.png" width="546" height="160" /></a></p>  <p>可以发现，相差了eval函数调用的语句。在4.1.4之前的版本中，这个函数并没有调用eval函数，但是在4.1.4中，作者为了增加ak_if对复杂逻辑的判断，添加了这条语句。</p>  <p>这导致了，如果用户对于$variable变量可控，将会执行任意php代码。</p>  <p>0×02、漏洞验证</p>  <p>为了重现漏洞，我下载了作者基于akcms2.4.2的blog系统，在\cache\templates\%%7D^7D3^7D3A5C77%%comments.htm.php模板中调用了这个函数</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/914.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-09-28T01:59:48.000Z" itemprop="datePublished">
+          2012-09-28
+      </time>
+    
+    
+    | 
+    <a href='/tag/包含漏洞/'>包含漏洞</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/868.seo/">php文件包含漏洞的解决方法</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        现在程序代码写的越来越千奇百怪，就一种文件包含的代码就能写出2种：require include   先说require 如果出错则终止输出，include 如果出错则继续执行。    如果一个网站的管理用户写在auth.php里，且auth.php被恶意删除了，如果用require则没有漏洞。    如果用include则产生漏洞，这是为什么?因为Include在遇到错误时会继续执行，这样用户密码就为空，就进入了后台。    再如果 
+      
+      </p>
+      
+      <p>
+          <a href="/868.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -231,8 +226,8 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/category/Web安全/page/7/">← Newer Posts</a>
-    <span class="page-number">Page 8 of 8</span>
-    
+    <span class="page-number">Page 8 of 15</span>
+    <a class="older-posts" href="/category/Web安全/page/9/">Older Posts →</a>
   </nav>
 </main>
 

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Windows下Apache用户认证配置及相关技巧 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-05-27T01:04:03.000Z" itemprop="datePublished">
+          2013-05-27
+      </time>
+    
+    
+    | 
+    <a href='/tag/Apache/'>Apache</a>
+    
+    
+</span>
+    <h1 class="post-title">Windows下Apache用户认证配置及相关技巧</h1>
+    <section class="post-content">
+      <p><a href="http://Ha.Cker.In/tag/Linux" target="_blank">Linux</a>下同理。</p>  <p><a href="http://Ha.Cker.In/tag/Apache" target="_blank">Apache</a>可以对某一目录下的文件进行安全认证，认证方式包括用户密码认证和IP过滤，下面我来一一说明。    <br>首先要让Apache支持.htaccess才可使用认证控制，具体方法请参考：    <br>如何让Apache支持.htaccess    <br>然后编辑Apache2\conf\httpd.conf文件    <br>标准密码认证方式 </p>  <div>   <pre><span style="color: #0000ff">&lt;</span><span style="color: #800000">Directory</span> &quot;<span style="color: #ff0000">D</span>:\<span style="color: #ff0000">wwwroot</span>&quot;<span style="color: #0000ff">&gt;</span><br>Options Indexes FollowSymLinks<br>allowoverride authconfig<br>order allow,deny　<br>allow from all　<br><span style="color: #0000ff">&lt;/</span><span style="color: #800000">Directory</span><span style="color: #0000ff">&gt;</span><br>… </pre><br></div><br><br><br><br><br><p>解释：<br>  <br>“D:\wwwroot”为需要安全认证目标，请根据需要自行修改，可以设置为站点根目录，也可设置为站内子目录（比如管理目录）增强安全性<br><br>  <br>allowoverride authconfig 认证语句<br><br>  <br>此段代码的作用是对&quot;D:\wwwroot”进行安全认证<br><br>  <br>在需要认证目录下建立 .htaccess 文件，在Windows下建立 .htaccess 文件有一个小技巧，正常情况下Windows文件命名规则是不允许建立“ .” 开头的文件，咱们可以编辑好之后另存为.htaccess文件，加入下列内容 </p>
+
+<div><br>  <pre>AuthName &quot;Login&quot;<br>AuthType basic<br>AuthUserFile &quot;D:\user.txt&quot;<br>require valid-user </pre><br></div>
+
+<p><br></p>
+<p>用户密码信息保存在&quot;D:\user.txt&quot;，不要将它放在网站目录，以防被下载。<br>  <br>下面我们来用Apache2\bin\htpasswd.exe 来生成密码，例如： </p>
+
+<div><br>  <pre>D:\Apache2\bin&gt;htpasswd -cmdps d:\user.txt secer<br>New password: <strong><em><br>Re-type new password: </em></strong><br>Adding password for user secer </pre><br></div>
+
+<p><br></p>
+<p>建立名为 secer 的用户 密码是123<br>  <br>可以建立多个帐户<br><br>  <br>至此，我们已经完成对&quot;D:\wwwroot&quot;目录的密码认证设置，所有登录&quot;D:\wwwroot&quot;目录的用户都要求输出用户名和密码，针对任何地址。<br><br>  <br>下面举一个IP过滤认证的例子： </p>
+
+<div><br>  <pre><span style="color: #0000ff">&lt;</span><span style="color: #800000">Directory</span> &quot;<span style="color: #ff0000">D</span>:\<span style="color: #ff0000">wwwroot</span>&quot;<span style="color: #0000ff">&gt;</span><br>Options Indexes FollowSymLinks<br>allowoverride authconfig<br>Order deny,allow    #顺序为先拒绝，后允许<br>Deny from all   #拒绝所有<br>Allow from 192.168.90.12    #允许某IP、IP段访问<br>Allow from  localhost   #允许本机访问<br>AuthName &quot;Login&quot;<br>AuthType basic<br>AuthUserFile &quot;D:\user.txt&quot;<br>require valid-user<br><span style="color: #0000ff">&lt;/</span><span style="color: #800000">Directory</span><span style="color: #0000ff">&gt;</span> </pre><br><br>  <pre>&#160;</pre><br><br>  <pre><a href="http://img.cker.in/WindowsApache_EF5D/image.png" target="_blank" rel="external"><img title="image" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="524" alt="image" src="http://img.cker.in/WindowsApache_EF5D/image_thumb.png" width="854" border="0"></a> </pre><br></div>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/998.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/998.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/998.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/998.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/999.seo/">
+        ← XSS盲打成功案例
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/997.seo/">
+        渗透Linux服务器过程中，临时社工进行openfire解密 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Archives: 2013 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-04-01T00:56:51.000Z" itemprop="datePublished">
+          2013-04-01
+      </time>
+    
+    
+    | 
+    <a href='/tag/一句话/'>一句话</a>,
+    
+    <a href='/tag/xss/'>xss</a>,
+    
+    <a href='/tag/SQL注入/'>SQL注入</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/987.seo/">对国外黑客论坛 hackerstown.com 的一次测试</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><a href="http://img.cker.in/hackerstown.com_ED8E/clip_image001.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/hackerstown.com_ED8E/clip_image001_thumb.jpg" width="396" height="144" /></a></p>  <p>最近太忙了，一直没更新博客！先谈谈气候吧，尼玛南方冷死了！我现在是出门穿再多都哆嗦啊！</p>  <p>日，你什么时候来啊，我还是喜欢大热天吹电风扇，擦~ 大热天还可以裸睡，多爽！ </p>  <p>好吧，不扯谈了，对于为什么突然日这个站，其实还是前几天在看我网易博客的时候突然又看到之前一老外在&quot;<a href="http://ps.s.blog.163.com/blog/static/89878892201211311548478/">About EvilShad0w Team</a>&quot; 这篇日志下留言并留了个地址，如图：</p>  <p><a href="http://img.cker.in/hackerstown.com_ED8E/clip_image003.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/hackerstown.com_ED8E/clip_image003_thumb.jpg" width="381" height="212" /></a></p>  <p>前几天就看到这条评论，就点开了网址看见是个黑客论坛，版块内容还比较丰富，其中很多文章都还不错，突然试试入侵，于是先看他是什么程序吧。 通过分析论坛结构，确定为“MyBB”，于是通过之前收藏的一个国外exploit 公布站搜索了下这个程序，结果出来了很多 ，有<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>、信息泄露、<a href="http://ha.cker.in/tag/XSS" target="_blank">XSS</a>、远程代码执行。但一一试过，都无效。貌似已经打全补丁了。好吧，该我自己整合的字典上阵了！扫描完后发现路径都是一般常见的路径，我一一点击尝试访问都出现403 Forbidden，在访问其中 xxxx/的时候发现根路径泄露</p>  <p><a href="http://img.cker.in/hackerstown.com_ED8E/clip_image004.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/hackerstown.com_ED8E/clip_image004_thumb.jpg" width="336" height="51" /></a></p>  <p>还有目录遍历，然后再点击三级目录发现上传页面，只能浏览当前目录，并且禁止了上传，只能重命名文件还有写txt文件， 尼玛！ 我通过一个小页面写入txt文件，但是无法重命名，这时候我发给Liuker一起看，我俩啥后缀都试过了就是不能解析，一定是做限制了，在写文件的时候尝试跳目录也没成功，突然想到上传 .htaccess 来解析 jpg类似正常后缀突破，但是测试了下失败！Liuker用他字典扫到两个根目录的无内容PHP页面，通过一句话后门破解也没成功。My God…………<a href="http://img.cker.in/hackerstown.com_ED8E/clip_image005.gif"><img style="display: inline" title="clip_image005" alt="clip_image005" src="http://img.cker.in/hackerstown.com_ED8E/clip_image005_thumb.gif" width="19" height="19" /></a></p>  <p>继续吧，翻了翻当前的目录，发现了有几个压缩文件。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/987.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-03-29T20:57:23.000Z" itemprop="datePublished">
+          2013-03-30
+      </time>
+    
+</span>
+      <h2 class="post-title"><a href="/986.seo/">两个有意思的视频</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        卢正雨嘻哈三部曲之绝世神功    &#160;  神视觉!!动作连贯、一气呵成、故事完整!! 
+
+      
+      </p>
+      
+      <p>
+          <a href="/986.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-03-28T22:41:37.000Z" itemprop="datePublished">
+          2013-03-29
+      </time>
+    
+    
+    | 
+    <a href='/tag/盐/'>盐</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/985.seo/">盐</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        盐（Salt），在密码学中，是指通过在密码任意固定位置插入特定的字符串，让散列后的结果和使用原始密码的散列结果不相符，这种过程称之为“加盐”。  安全因素  通常情况下，当字段经过散列处理（如MD5），会生成一段散列值，而散列后的值一般是无法通过特定算法得到原始字段的。但是某些情况，比如一个大型的彩虹表，通过在表中搜索该MD5值，很有可能在极短的时间内找到该散列值对应的真实字段内容。  加盐后的散列值，可以极大的降低由于用户数据被盗而带
+      
+      </p>
+      
+      <p>
+          <a href="/985.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-03-27T21:01:28.000Z" itemprop="datePublished">
+          2013-03-28
+      </time>
+    
+    
+    | 
+    <a href='/tag/支付宝/'>支付宝</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/983.seo/">抓取谷歌搜索结果里的支付宝帐号</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        支付宝转账信息能够被谷歌抓取，大量用户隐私信息被泄露。    练习php写了个提取支付宝帐号的程序     &lt;?php/ Build:2013-3-28
+
+ Author:Secer Encoding:UTF-8
+
+ http://www.googlestable.com/search?q=site:shenghuo.alipay.com+%E8%BD%AC%E8%B4%A6%E7%BB%93%E6%9E%9C&amp;hl=zh
+      
+      </p>
+      
+      <p>
+          <a href="/983.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-03-27T06:49:01.000Z" itemprop="datePublished">
+          2013-03-27
+      </time>
+    
+    
+    | 
+    <a href='/tag/社会工程学/'>社会工程学</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/982.seo/">社会工程学之诱饵攻击真实案列</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        近日，安全公司Trustwave的SpiderLabs实验室做了一系列社会工程学的实验，使用了社工种经典的手法，证明这些手法仍然非常有效，利用人的好奇心获得了需要的信息。  详细过程：  首先SpiderLabs收集了目标公司员工名单信息，包含姓名、住址等，然后决定使用让用户更新自己的杀毒软件的方法进行攻击。  SpiderLabs提供了一个社工中攻击的经典模板，并与U盘或CD光盘一起寄送给目标用户，模板内容如下：  亲爱的员工XX（直
+      
+      </p>
+      
+      <p>
+          <a href="/982.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-03-25T05:08:39.000Z" itemprop="datePublished">
+          2013-03-25
+      </time>
+    
+</span>
+      <h2 class="post-title"><a href="/981.seo/">中国黑客传说：游走在黑暗中的精灵</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>声明：本文内容禁止讲给16岁以下的小朋友听，以免吓坏小朋友。出于保护当事人的原因，禁止任何人在任何时候以任何理由向我打听其人其事，我不会做出任何回复。我不对本文的真实性负责。本文禁止任何媒体转载，但允许个人转载至微博或个人博客！</p>  <p>本文中所有的人物都将匿名，请不要去猜测他是谁，也请不要试图寻找他，这只会给你我都带来不必要的麻烦。如果你竟然强大到能够以势压人，那么我的回答只会有一个：“我在微信里胡乱吹牛B的，这你也信？”，所以请不要浪费你我的时间。</p>  <p>—— 我是膜拜的分割线 ——</p>  <p>他是我所认识的最强大的地下黑客之一，在本文中我姑且称他为V。</p>  <p>之所以是之一，是因为我还认识另外一个叫A的黑客，A宣称自己成功入侵了包括Google、Facebook、Twitter等你几乎能叫得上名字的所有大型互联网公司。</p>  <p>而V要低调的多。</p>  <p>我认为V已经是地下黑客世界中的王者，虽然他从不肯告诉我他入侵的那些公司的名字，但我仍然会毫不犹豫的将他列为当今世界上最强大的黑客之一。</p>  <p>V至今仍恪守着古老的黑客守则，就如同中世纪的骑士们执着于骑士精神一般。他从不在任何公众场合谈论入侵了什么网站，入侵后也从不删除数据或是进行破坏，他也不会用入侵获得的成果来牟利。</p>  <p>V只是一个人，他的身后没有任何的机构或组织，因此才更加的难能可贵。</p>  <p><a href="http://img.cker.in/b639c95ee231_1260A/clip_image001.jpg"></a></p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/981.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    <a class="newer-posts" href="/archives/2013/page/12/">← Newer Posts</a>
+    <span class="page-number">Page 13 of 16</span>
+    <a class="older-posts" href="/archives/2013/page/14/">Older Posts →</a>
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

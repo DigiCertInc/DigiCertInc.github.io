@@ -45,159 +45,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-12T10:28:08.000Z" itemprop="datePublished">
-          2012-06-12
+      <time datetime="2012-08-31T02:22:26.000Z" itemprop="datePublished">
+          2012-08-31
       </time>
     
     
     | 
-    <a href='/tag/渗透测试/'>渗透测试</a>,
-    
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/backtrack/'>backtrack</a>,
-    
-    <a href='/tag/VoIP渗透测试/'>VoIP渗透测试</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/507.seo/">VoIP渗透测试</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>VoIP or voice over IP (Internet protocol) is a transmission mode designed for use in voice and multimedia communications. As IP (Internet protocol)-based networks like the Internet seem to be most successful communications infrastructure, the traditional telephone network is currently being replaced VoIP. Nowadays, its clear improvements and advantages over the old systems make it a popular substitute, with a number of advantages. Among them:</p>  <p>The low cost of VoIP as compared to a traditional telephone network. There are any number of services available free of cost (like Skype) that allow you to communicate over distances long or short, PC-to-PC and free of cost.</p>  <p>VoIP is portable. Portability and mobility is another advantage of VoIP over traditional telephone; you only need an Internet connection for communication.</p>  <p>VoIP service includes a number of different advanced features not normally available with traditional telephone service, including call forwarding, conference call, caller ID, virtual numbers and more.</p>  <p>The advantages are many but this is not our main topic of discussion. (Likewise, there are a number of disadvantages, too: VoIP services depend on Internet connection speed; voice quality depends on the performance of your computer, and so forth). So what is our point in discussing this? What we examine here will be the security aspect of VoIP. In this article, we will review:</p>  <p>An overview of VoIP </p>  <p>What is Asterisk? (and what are the functionalities) </p>  <p>What is Trixbox? </p>  <p>VoIP hacking (Penetration testing on an asterisk based network)</p>  <p>With so many aforementioned advantages, VoIP is gaining popularity among both organizations and private users alike. But what about the security issues? As should be entirely predictable, any new technology immediately presents opportunities for those seeking to cause mischief. This is confirmed by reports I’m sure you’ve heard about: not just the phone hacking scandal in Britain, but the hacking in which thieves easily steal confidential information from a victim because their network was not secure.</p>  <p>If you are a pen tester or ethical hacker, then you have an idea about the importance of penetration testing in VoIP, because most of the important communications going on today occur on VoIP and securing confidential information is therefore critical. We will do some practical penetration testing on a VoIP-based network, but first of all I will show you how to build it.</p>  <p>Asterisk is an open-source software that can turn your computer into a communications server. There’s an asterisk software for PBX (private branch exchange) that allows you to make calls and transfer your data.</p>  <p>Trixbox is a wonderful software (or PBX: private branch exchange), based on the asterisk project. It was formally known as but in October 2006 it was renamed Trixbox. The difference between trixbox with other PBX is that trixbox is based on IP (Internet protocol) and has been designed for small and medium sized businesses. There are mainly two version of trixbox available: one is Trixbox CE (a free and open source), while the other – called Trixbox Pro – is one that you will need to purchase.</p>  <p>Protocols &amp; Ports</p>  <p>You must have an idea about the protocols and their ports before attempting to launch actual penetration testing on a VoIP network.</p>  <p>SIP (or session initiation protocol) has been defined by Internet Engineering Task Force (IETF) as the protocol for VoIP communication (in other words: a signaling protocol). SIP uses port 5060 and 5061 for both TCP and UDP.</p>  <p>SDP or session description protocol is for multimedia communications, while MGCP (media gateway control protocol) uses port number 2427 and 2727 for UDP.</p>  <p>RTP (real-time transfer protocol) defines the packets to deliver videos and audios on IP based network like VoIP. RTCP (RTP control protocol) is just like RTP, and it is used to structure the packets that are defined by RTP.</p>  <p>IAX (Inter-Asterisk eXchange) is an important protocol used in the asterisk system and is supported by a different soft-phone and PBX. IAX2 is the second version of IAX and works on the UDP port number 4569.</p>  <p>VoIP Penetration Testing</p>  <p>The process of penetration testing on a VoIP network is generally the same as the penetration testing on any other network. All we need to do is to follow the general guidelines, starting with information gathering, as we would with any form of penetration testing. We will do the same on VoIP network.</p>
-      
-      </p>
-      
-      <p>
-          <a href="/507.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T10:07:55.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/内网渗透/'>内网渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/499.seo/">渗透某知名游戏代理商内网全程</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>平常入侵只是写个手记给自己看，这篇烂文也是改自我上次和朋友入侵游戏代理商时的手记，这也是我第一次写入侵类的文章，仅为大家提供一条思路，希望大家喜欢。   <br />一、起因    <br />这天刚一上Q，经常说自己是黑客的“神X月”（他不让我说他网名）就叫我和他一起搞一个游戏官方站，原因是他的一个朋友要他帮忙盗这个游戏的号，神X月没办法，就只好去搞官方拿数据库了。听了他的话我爆汗了1分钟，然后就和他开始了渗透。    <br />二、郁闷的开始    <br />大家都知道，游戏官方站几乎是没有漏洞的。神X月给了我这个游戏的官方网址<em>e.<em>**</em></em>o.com，是个二级域名，网站是asp.net页面，如图1所示。    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/3538ffbe3561_1DD5/clip_image001.jpg" width="579" height="245" />    <br />一级域名是一个游戏代理商，如图2所示。    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/3538ffbe3561_1DD5/clip_image002.jpg" width="579" height="157" />    <br />手工检测了一下，没有明显的注入漏洞，再用了几个工具扫都扫不出注入点，注入这条路断了～～郁闷中…..    <br />忽然，想到了asp.net可能有爆路径的漏洞，不管怎样，获得多一点信息总是好的，于是马上测试了一下，无功而返，然后再用几个比较老的asp.net漏洞检测工具对其进行了检测，照样是无功而返。继续郁闷…..问了下神X月的进展如何，他说没一点进展，唉，看来是没搞了～～    <br />三、成功初现    <br />在我准备放弃的时候，突然看到上传玩家照片的功能，如图3所示。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/499.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T10:03:10.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/内网渗透/'>内网渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/495.seo/">渗透某高校内网服务器</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>前言：今天没事搜索资料的时候来到了这个网站，出于个人信息安全爱好就对他做一番检测!   <br /> 今天我们渗透的对象是www.TEST.com IP: 218.6.x.193在IP138上查询信息如下：    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/74ae0491df9c_1CBF/clip_image002.jpg" width="355" height="224" />    <br /> 经过我的简单踩点，发现新闻中心 教学研究 招生就业等主要内容都无法打开，提示数据库连接出错。具体是什么原因我也不清楚，可能是管理的错误操作，也可以是黑客大牛进去做的破坏。仅只有一个板块可以打开<a href="http://218.6.X.193:800/scr2006/">http://218.6.X.193:800/scr2006/</a> ，留给我们发挥的余地很小!分析连接WEB端口是800，很有可能是内网映射出来的。暂只做个估计。我们先检测下这个天空网络教室看有可以利用的没，在我的记忆中是有脚本上传漏洞的漏洞文件是 HTMLEDITOR/GETFILE.ASP 这个文件参数过滤不严格，我们可以上传ASA CER HTR等脚本木马。我们提交路径显示“对不起，访问被拒绝”管理可能修补了，我们再提交HTMLEDITOR/GETFILE1.ASP很多管理在打补丁的时候喜欢备份一个文件，害怕有时候出错。我们提交看下 无法找到。找到默认的管理后台尝试社工管理员密码。失败。现在SQL注射也是很火的。Root/ShowImage.asp 天空的这个文件好像也爆过啦注射漏洞，我们提交个 ’号提示“请不好提交非法字符”，郁闷加了防注射代码。尝试使用COOKIES注射失败。看来漏洞修改得很好。习惯性的在那个文件名字后面加个1也就是Root/ShowImage1.asp，发现文件存在，看来是管理修补的时候，备份的忘记删除了。哈哈。这也是我的个人的小技巧。我们知道天空很多程序很多都是使用MSSQL数据库的.然后我们带上参数提交，继续加个’号。马上出现经典的错误，提交AND USER&gt;0 判断连接数据库用户.    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/74ae0491df9c_1CBF/clip_image004.jpg" width="405" height="253" />    <br /> 权限不小啊!继续提交;exec master.dbo.xp_cmdshell ‘net user’–，提示我们下载文件。看来是执行成功了。XP_CMDSHELL是没有删除的。手工搞着累，马上拿出大牛ZWELL写的注射器注射，这个<a href="http://soft.77169.com/">软件</a>很好用，特别是命令执行的功能，很强大。输入VER查看系统版本，显示Microsoft Windows [版本 5.2.3790] 2003的服务器，通过读注册表的键值 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\Wds\rdpwd\Tds\tcp] 端口是3389 NETSTAT -AN查看ZH终端也是开放了的，不过他是内网。不能直接连接，用啊D写了一个有下载功能的VBS脚本在C盘。尝试下载我们的LCX端口转发工具。注射器执行的效果不是很理想，半天没反应。这条路不太好走，尝试使用注射工具的上环功能上传也很慢，卡死了几次。于是我们转换思路。那我们就拿一个WEBSHELL再说吧!用啊D列目录，最终目标锁定在D:\Easiware\SkyClass2006\Asp\Root这个目录，SA权限无所不能，用啊D写了一个一句话木马的服务端在该目录下，用客户端连接成功得到一个WBESHELL。后门用的我哥职业色狼的.如图2    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/74ae0491df9c_1CBF/clip_image006.jpg" width="406" height="315" />    <br /> 简单查看服务器信息，装有SU6.4 MSSQL 瑞星杀毒软件 360安全卫士 FSO WS组件可以使用，C-F盘全部可以浏览访问。渗透中发现，使用注射器执行命令效果很不理想。于是我就翻阅数据库的连接文件找连接MSSQL数据库的账号密码。通过仔细查找D:\Easiware\SkyClass2006\Asp\Global.asa这个文件是连接文件。结果发现用户不是SA。如图：    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/74ae0491df9c_1CBF/clip_image008.jpg" width="418" height="224" />    <br /> 虽然不是SA，但是他一样是管理的权限。一样可以EXEC COMMAN!打开查询分析器输入数据库相关连接信息，提示无法连接。马上在命令提示符中：TELNET 218.6.X.193 1433 提示无法打开，看来1433并没有映射到外网。那我们就在WEBSHELL上本地连接吧!马上上传一个asp版sql在线管理后门,这个后门很好用。我简单的说下用法吧，先输入密码登陆，再点击重新设置数据源。在这里我们输入数据库的名称和账号密码，数据库服务器就保持(local)不变，因为我们就是本地连接他的。输入完后我们点击提交，如果数据库名密码账号等信息正确就会出现设置成功的字样。    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image010" border="0" alt="clip_image010" src="http://img.cker.in/74ae0491df9c_1CBF/clip_image010.jpg" width="404" height="266" /></p>
-      
-      </p>
-      
-      <p>
-          <a href="/495.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T09:55:42.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/Nginx/'>Nginx</a>,
-    
-    <a href='/tag/web渗透测试/'>web渗透测试</a>,
-    
-    <a href='/tag/反向代理/'>反向代理</a>,
-    
-    <a href='/tag/squid/'>squid</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/493.seo/">反向代理在Web渗透测试中的运用</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>反向代理在Web渗透测试中的运用 </p>  <p>作者：不走的钟 </p>  <p>来源：<a href="http://www.007hack.com/?p=770">http://www.007hack.com/?p=770</a></p>  <p> 在一次Web渗透测试中，目标是M国的一个Win+Apache+PHP+MYSQL的网站，独立服务器，对外仅开80端口，网站前端的业务系统比较简单，经过几天的测试也没有找到漏洞，甚至连XSS都没有发现，也未找到网站后台，在收集信息的时候已经排除了C段入侵的可行性（选择C段入侵的时候，需要对目标、网络、路由和国家区域进行分析和判断，如果不经思考和判断地去入侵C段服务器，当你费尽心思拿到某台服务器权限时，往往发现毫无半点用处，特别又是在国外，ARP基本上都没什么希望，当然内网渗透中又是另一回事。） </p>  <p> 也许在渗透测试遇到这种情况时大多会选择放弃，在绝望的时候，我将目标临时转移到该网站域名注册商，因为拥有域名注册商网站权限，至少可以修改目标网站的域名解析。一般情况入侵域名注册网站难度比较大，但并不是没有希望，在09年的时候，国内很多域名注册商的网站都存在漏洞。渗透那个域名注册商网站，过程比较繁杂，也没有新的技术点，靠的就是细心和耐心，但最终还是获取到目标网站域名的管理账号和密码，那么此时我们已知和已有的条件如下: </p>  <p> 目标域名：www.007hack.com(当然不是真的，文章来源007安全)   <br /> 网站IP:1.1.1.1 </p>  <p> 环境：Win+Apache+PHP+MYSQL </p>  <p> 已有权限：域名解析权限，可以将www.007hack.com解析到任何一个IP上 </p>  <p> 特别说明下，目标网站使用的服务器，并不是在域名注册商租用的，而是放置在公司机房中，所以通过域名注册商网站，是不能管理到Web源码的，只能进行域名解析。 </p>  <p> 当拥有域名解析权限后，如何才获取目标网站的权限呢？ </p>  <p> A：构造一个和目标非常相似的网站？然后将域名解析到构造的网站？ </p>  <p> B：使用iis重定向？ </p>  <p>这些方法都非常容易被发现，并且也无法获取到权限，所以遇到这种场景的时候我们可以使用反向代理，也是本文的重点。了解反向代理之前，我做一个关于HTTP 代理的简单介绍， 代理常用的是普通代理和反向代理： </p>  <p>普通代理：为用户（客户端）提供代理，需要在客户端设置，比如在客户端浏览器中设置代理服务器IP和端口，完成配置后，用户可以通过代理服务器访问互联网，代理服务器相当于中间人的作用。根据代理服务器配置不同，又可以将普通代理分为，几种不同安全级别的代理，代理软件比较多，不同的厂商有不同的称谓和分级，一般情况都包括以下三个级别，透明代理、普通匿名代理和高匿名代理。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/493.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T09:54:04.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>,
+    <a href='/tag/提权/'>提权</a>,
     
     <a href='/tag/入侵/'>入侵</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/490.seo/">回忆对某企业内网的一次渗透</a></h2>
+      <h2 class="post-title"><a href="/791.seo/">轮奸某黑客学校网站</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>回忆对某企业内网的一次渗透做了好多次企业内网渗透的项目,这里还是写下把.</p>  <p>先是谈合同 谈预算 谈价格 这些不多介绍</p>  <p>然后签订保密协议这个也不多说了,最后才是评估以及加固..</p>  <p>进入正题</p>  <p>图片上重要信息或涉密信息均涂掉了,有些突变未上传..</p>  <p>————————————————————————-</p>  <p>首先要踩点,收集信息,这是第一步也是蛮重要的一步个人觉得.</p>  <p>目标信息:</p>  <p>主域名:www.xxxx.com </p>  <p>子域名;OA.xxxx.com</p>  <p>无服务器版本 win2003</p>  <p>脚本语言:ASPX</p>  <p>知道这个以后就开始搞了</p>  <p>然后开始找入住,翻遍全站没发现,找注入大家都会不解释,你懂的.</p>  <p>然后扫目录..</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/befcd4dc8bb9_1A90/clip_image001.gif" width="533" height="447" /></p>  <p>一个一个的翻,找到了洞洞..</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/befcd4dc8bb9_1A90/clip_image003.png" width="508" height="361" /></p>
+        <p>摘自<a href="http://gov.com.im" target="_blank">流亡青年</a></p>  <p>写之前抱怨一下：Fuck,不知道被哪位大牛种马了，刚写好的文档，还有相关文件都没了，囸！</p>  <p>本来没准备搞他，但是前天帮1朋友搞他们学校网络中心时想起来<a href="http://gov.com.im/art_design/2011/1127/CmdH4ck.html">CmdH4ck</a>大黑阔在这个学校（CmdH4ck：吐司黑阔，曾一起参加过比赛，获得第一，RMB3K），于是便顺手检测下主站。    <br />打开主站，<a href="http://wwwxxx.edu.cn">http://wwwxxx.edu.cn</a>    <br />点开一个链接，asp的，加一个’试试，跳出了这个：</p>  <p><a href="http://gov.com.im/uploads/allimg/111127/102Q2G28-0.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/87797fec8afa_10233/clip_image001.png" width="465" height="143" /> </a></p>  <p>还好挂了个VPN，语言这么嚣张，难道是CmdH4ck修补的？   <br />先看看其他分站，主站一般都很安全，突然想起来Gucci那mjj的上次检测我学校时（主站他没拿下，拿的都是有注入和弱口令的一些学院网站），尼玛，他在每个目录都放一个他的Gucci.asp，我删的累死了，然后就去把他学校给xxoo了，不过我囸的是主站，没有恶意，挂了一个txt友情提醒。</p>  <p>走题了，继续，看到<a href="http://A.xxx.edu.cn，感觉页面有点熟悉，随手加了个admin,后台出来了：">http://A.xxx.edu.cn，感觉页面有点熟悉，随手加了个admin,后台出来了：</a></p>  <p><a href="http://gov.com.im/uploads/allimg/111127/102Q2N13-1.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/87797fec8afa_10233/clip_image002.png" width="532" height="174" /></a></p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Powereasy 2006.   <br />注册一个用户abc.asp，上传图片马，    <br />地址：<a href="http://xxx/user/Upload.asp?dialogtype=UserBlogPic&amp;size=5">http://xxx/user/Upload.asp?dialogtype=UserBlogPic&amp;size=5</a>    <br />抓包获得shell地址    <br />原理大家都懂，不解释了。</p>  <p>菜刀成功连接：</p>  <p><a href="http://gov.com.im/uploads/allimg/111127/102Q2K49-2.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/87797fec8afa_10233/clip_image003.png" width="551" height="277" /></a></p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; RP爆发了，这么老的洞竟然没补。。。</p>  <p>上大马，发现不支持aspx和php，不过还好组件在，可执行目录也多。端口扫了下，常见端口一个没开。服务器是一机多IP，从ipconfig的结果来看，主站www也在服务器上，不过当前的shell下还没权限跨目录到主站www目录下。只好提权了，传exp，被杀了，tasklist看到杀软竟然是趋势，感慨一句，CmdH4ck学校真有钱。。。</p>
       
       </p>
       
       <p>
-          <a href="/490.seo/" class="excerpt-link">Read More...</a>
+          <a href="/791.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -206,27 +76,155 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-12T09:48:04.000Z" itemprop="datePublished">
-          2012-06-12
+      <time datetime="2012-08-30T22:11:19.000Z" itemprop="datePublished">
+          2012-08-31
       </time>
     
     
     | 
-    <a href='/tag/入侵/'>入侵</a>
+    <a href='/tag/渗透测试/'>渗透测试</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/486.seo/">入侵某网游服务器小记</a></h2>
+      <h2 class="post-title"><a href="/782.seo/">对某非主流外贸网站的渗透测试</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>没什么技术性,只是想说明现状&#160; </p>  <p>现在想弄钱的入侵者，似乎热衷于入侵网络游戏服务器，盗出游戏服务器程序或是数据库。国内的网络游戏企业，都应该招受过此损失，有暴露出来的，有没暴露出来的。但游戏企业对安全问题理解都十分片面，狭隘!&#160; </p>  <p> 当然，不只是网络游戏企业。近一两年来，入侵者乐此不疲，各种商业数据的偷盗在国内几乎快形成一种&quot;圈内产业&quot;。不论是技术性还是行事组织性都与早年不可同日而语。需求与供应在这里似乎有着完美结合。再看看各地公安网监部门，媒体似乎每天都有报道关于某地公安抓获某黑客的事件。但却似乎没有一起真正成熟的案件。抓到的都是小鱼，大鱼都在偷着乐。原因有没发现没报案的，也有网监部门的技术问题。还有就是官僚主义，公安部门发布所谓的“战果”也乐此不疲。&#160; </p>  <p> 话不说远了，转入正题。&#160; </p>  <p> 一个好友在国内某网络游戏企业工作，让我帮忙测试他们游戏服务器群的安全性。加上我这段时间闲得无聊，也就答应了。&#160; </p>  <p> 我先下载了游戏客户端程序，得到到了几个游戏服务器的地址。&#160; <br /> 游戏帐号在WEB网站上也可以注册，看来游戏中央数据库的调用WEB网站也可以。&#160; <br /> 先仔细的检查了一下WEB网站，大部分是PHP+MYSQL的。代码写得还不错，几乎找不到什么突破口。再看看MYSQL，禁止远程连接。查看了其他游戏服务器，都是LINUX系统，都只是开了OPENSSH和游戏服务器程序端口。只有WEB网站多个80，而又没什么可利用的地方。&#160; </p>  <p> 看上去安全做得不错，但这是种幻象！&#160; </p>  <p> 随后仔细分析了下游戏客户端程序，我打开SnifferPro以便记录下客户端程序和服务器的所有通信。发现客户端程序有个自动更新功能，我Sniff到是通过FTP去下载更新文件的。但我扫描所有游戏服务器时没发现这个FTP端口啊（8888）。仔细看了一下，原来这个端口连接延时十分长。所以扫描器没发现这个端口。&#160; </p>  <p> 意外的从更新过程中，竟然Sniff到一个固定的更新程序的FTP帐户。检查了FTP服务器是ProFTPd，我没直接用这个帐户去溢出ProFtpd。因为这台服务器开了SSH，我直接拿帐户去登陆SSH，获得一个权限极低的shell。&#160; </p>  <p>就像一块布，一但撕开一丁点口子，只要稍一加力，整块布都会随之撕开!&#160; </p>  <p>在系统中寻觅了半天，终于寻找到一个有权限去写的tmp目录。查看了内核版本，用kernel do_brk()的问题溢出提升权限获得了rootshell，没去装rkt，因为只是帮忙测试.&#160; </p>
+        <p>首先粗略的看了下网站的整体结构、</p>  <p><a href="http://yezi.us/wp-content/uploads/2012/06/%E5%9B%BE%E7%89%8711.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/62a0b800d9f9_C76C/clip_image001.png" width="320" height="191" /></a></p>  <p>发现不是那种5分钟就能叼下的垃圾企业站。</p>  <p>旁站看了下都是同一个程序做的</p>  <p><a href="http://yezi.us/wp-content/uploads/2012/06/%E5%9B%BE%E7%89%872.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/62a0b800d9f9_C76C/clip_image002.png" width="320" height="112" /></a></p>  <p>C 段我就懒的看了，因为像这种站所在机房你能ARP到数据的几率比中国足球队进世界杯还难。</p>  <p>话又说回来了。去年做外贸的时候公司用的貌似就是这套程序，当时只是粗略的看了下这套程序，没看出啥严重的漏洞。</p>  <p>最近公司无事，找以前同事拿来这套程序源码看了下。</p>  <p>发现如下安全问题：</p>  <p>New.asp 中</p>  <div class="codearea linewrap">   <pre class="alt"><span style="color: #333333">&lt;!–#include file=&quot;top.asp&quot;–&gt;</span></pre><br><br>  <pre><span style="color: #333333">&lt;%</span></pre><br><br>  <pre class="alt"><span style="color: #333333">page=clng(request(&quot;page&quot;))</span></pre><br><br>  <pre><span style="color: #333333">Set rs=Server.CreateObject(&quot;ADODB.RecordSet&quot;)</span></pre><br><br>  <pre class="alt"><span style="color: #333333">sql=&quot;select * from member_news where type=’&quot;&amp;request(&quot;type&quot;)&amp;&quot;’ order by order0 desc&quot;</span></pre><br><br>  <pre><span style="color: #333333">rs.Open sql,conn,1,1</span></pre><br><br>  <pre class="alt"><span style="color: #333333">if rs.eof and rs.bof then</span></pre><br><br>  <pre><span style="color: #333333">  response.Write(&quot;No news!&quot;)</span></pre><br><br>  <pre class="alt"><span style="color: #333333">else</span></pre><br><br>  <pre><span style="color: #333333">%&gt;</span></pre><br><br>  <pre class="alt"><span style="color: #333333"></span></pre><br></div><br><style type="text/css"><br><br>.codearea{ color:black;  background-color:white;  line-height:18px;  border:1px solid #4f81bd;  margin:0;  width:auto !important;  width:100%;  overflow:auto;  text-align:left;  font-size:12px;  font-family: “Courier New”,”Consolas”,”Fixedsys”,”BitStream Vera Sans Mono”, courier,monospace,serif}<br>.codearea pre{ color:black; line-height:18px;  padding:0 0 0 12px !important; margin:0em;  background-color:#fff !important}<br>.linewrap pre{white-space:pre-wrap;  white-space:-moz-pre-wrap;  white-space:-pre-wrap;  white-space:-o-pre-wrap;  word-wrap:break-word;  word-break:normal}<br>.codearea pre.alt{ background-color:#f7f7ff !important}<br>.codearea .lnum{color:#4f81bd;line-height:18px}</style>
       
       </p>
       
       <p>
-          <a href="/486.seo/" class="excerpt-link">Read More...</a>
+          <a href="/782.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-08-30T22:01:40.000Z" itemprop="datePublished">
+          2012-08-31
+      </time>
+    
+    
+    | 
+    <a href='/tag/C段/'>C段</a>,
+    
+    <a href='/tag/渗透/'>渗透</a>,
+    
+    <a href='/tag/社工/'>社工</a>,
+    
+    <a href='/tag/嗅探/'>嗅探</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/779.seo/">友谊的 招呼 -对母校的亲密检测</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>我记得在校的时候某校的领导以及老师来到我们学校参观，虽然我见到对方学校的领导我会非常有礼貌的打招呼，一次回到家里的时候，出于友谊，决定为此国家重点级的学校进行友情的“招呼”！</p>  <p>国家级重点级，相对震精的学校，最近我在看《黑客与画家》，里面第一篇的内容是“为什么书呆子不受欢迎”，有段作者是说公立的学校的老师就像监狱里的狱卒，除了防止你打架做坏事之外，都不会管你！我就得说得非常好！作为国家级重点级的学校，这也是更加的！好了，不说题外话了，这篇文章是以前“招呼”的了！所以现在写下来，给大家参考下，虽然不是很好，但是各位也不要喷我吧！</p>  <p>我重申一次，我确实是个贱人</p>  <p>0x00</p>  <p>作为国家级的重点学校，我听说他的服务器是ZF给的，买了200W左右，当然我也参观过，虽然外表看不出来，我想那个网管老师也不会吹牛B吧，就是这样才出于好奇心，才弄得！</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/df99b5f14772_C386/clip_image002_thumb.jpg" width="574" height="286" /></a></p>  <p>为了防止被万人骑，所以部分过滤了！</p>  <p>手握神器，开始动工！这次的“招呼”任务我会在win下进行，当然如果需要的情况下，我会使用win+linux交互渗透！</p>  <p>0x01</p>  <p>踩点。</p>  <p>作为一个国家级的重点学校，我相信安全也是非常好的！起码也是服务器独立域名，内网等吧！收集下信息，我会采用某社工神器这个软件我非常喜欢</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/df99b5f14772_C386/clip_image004_thumb.jpg" width="573" height="358" /></a></p>  <p>说下他的用途吧，适用大型<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a>适用</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image006.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/df99b5f14772_C386/clip_image006_thumb.jpg" width="128" height="478" /></a></p>  <p>有各种信息的收集，不懂E文的朋友，可能会比较亏哦！这个工具其实已经融入了bt5系列了，呵呵，说下现在收集到的情况吧。Win03+iis6.0+内网+C段一个站，无CDN，asp+php+aspx，<a href="http://ha.cker.in/tag/C段" target="_blank">C段</a>的站是asp+aspx+win03+iis6.0+内网！招聘站一个，三台服务器的管理都是同一人，说下怎么收集的吧！首先google语法。Site:url inurl:asp|php|aspx|jsp。还有根据报错等清楚是iis，我就比较懒，火狐插件直接获得</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image008.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/df99b5f14772_C386/clip_image008_thumb.jpg" width="445" height="275" /></a></p>  <p>对两台服务器进行了扫描端口与分析工作，在win下，我会选择用superscan，如果在linux下我会选择更为精准的nmap！superscan比较简单，因为在gui，直接填入IP和所需的端口就行了，如果在linux下的nmap格式就是：namp –v –a ip</p>  <p>得到的端口有：</p>  <p>21 ftp</p>  <p>80 www</p>  <p>面对以上者两个端口，可以参考的攻击思路如下：</p>  <p>21—爆破模式，或者社工，嗅探等。</p>  <p>80—iis写权限，以及脚本渗透。</p>  <p>有些人问，不是有php和aspx吗？！应该会扫描到1433和3306的啊！很简单，以为他不允许对外访问，或者内网，他就扫描不出了啊。</p>  <p>扫描了整站目录以及文件，有二级目录上的站。暂时没发现主站的后台，另一个分站是教师系统，我见过那些老师是在上面进行公告浏览以及发布什么规定的地方。</p>
+      
+      </p>
+      
+      <p>
+          <a href="/779.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-08-30T11:31:12.000Z" itemprop="datePublished">
+          2012-08-30
+      </time>
+    
+    
+    | 
+    <a href='/tag/xss/'>xss</a>,
+    
+    <a href='/tag/会话劫持/'>会话劫持</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/774.seo/">利用XSS跨站漏洞入侵百度投诉中心用xss平台沦陷百度投诉中心后台</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>简要描述：</p>  <p>天天看wooyun上piapiapia弹窗弹的好欢乐，但是真正利用的没几个，也导致了一些人，一些厂商，一些白帽子对XSS危害的蔑视，如果<a href="http://ha.cker.in/tag/xss" target="_blank">XSS</a>的利用回想当年NBSI一样简单化，也许结果就不同了。</p>  <p>用事实说话。</p>  <p>详细说明：</p>  <p>我们要知道的一个事实是，很多大型互联网企业，其前台防护都很到位，但是没有人会挑保护最好的地方下手，对于前台来说，他的后台就是一个容易被忽视的地方，虽然我们不知道后台程序的构造，但是我们可以根据一些功能的性质来大胆推测，比如互联网公司安全短板–客服反馈系统。</p>  <p>目标地址：<a href="http://tousu.baidu.com">http://tousu.baidu.com</a></p>  <p>漏洞证明：</p>  <p>找到一个产品的投诉页面，比如文库，想这种功能比较简单的表单，我们直接提交&quot;&gt;&lt;xss code&gt;&lt;这样的代码猜测</p>  <p><a href="http://img.cker.in/XSSxss_314A/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/XSSxss_314A/clip_image001_thumb.jpg" width="601" height="624" /></a></p>  <p>提交后如果运气好的话。。。。。</p>  <p><a href="http://lcx.cc/File.asp?md5=8b2edef82787fe6c4c9f09e981d113a6"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/XSSxss_314A/clip_image003.jpg" width="819" height="532" /></a></p>  <p>访问了一下后台地址，居然是外网可访问的，利用得到的cookie进行<a href="http://ha.cker.in/tag/会话劫持" target="_blank">会话劫持</a></p>
+      
+      </p>
+      
+      <p>
+          <a href="/774.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-08-30T11:24:47.000Z" itemprop="datePublished">
+          2012-08-30
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>,
+    
+    <a href='/tag/爆路径/'>爆路径</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/772.seo/">记一次不同寻常的网站渗透测试过程，上传基于time（）</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        发现注入点：   http://www.xxx.com/xx.php?id=xxxx    直接sqlmap脱库，发现有admin表，内容是显示的是账号admin密码admin，这时心里高兴了下，没加密。可是，曲折的在后面呢 ！管理后台很容易找到，直接上admin admin 可是，显示密码不对，怎么回事？？    在看看数据库，翻遍数据库，账号密码也就这一个admin admin，（事实上也是这么回事） ，看看它登陆页面的源码吧，注入
+      
+      </p>
+      
+      <p>
+          <a href="/772.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-08-30T11:19:37.000Z" itemprop="datePublished">
+          2012-08-30
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>,
+    
+    <a href='/tag/漏洞/'>漏洞</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/769.seo/">网易某系统未授权访问致内网被渗透</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><b>网易某系统未授权访问致内网被<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a></b></p>  <p>网易某系统未授权访问，导致可访问部分内部系统，或可<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a>至内网。     <br />测试从这里开始，<a href="http://123.125.50.162:3000。">http://123.125.50.162:3000。</a>     <br />系统是Jenkins（软件测试），没有设置登录验证。     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image0014.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001[4]" border="0" alt="clip_image001[4]" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image0014_thumb.jpg" width="858" height="348" /></a>     <br />在设置邮箱处，破解了邮箱密码。     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image0024.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002[4]" border="0" alt="clip_image002[4]" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image0024_thumb.jpg" width="885" height="384" /></a>     <br />此账号可登录部分网易内部系统，如Bugzilla，QA，OA，论坛等。     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image0034.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image003[4]" border="0" alt="clip_image003[4]" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image0034_thumb.jpg" width="866" height="382" /></a>     <br />登录Bugzilla后，可将自己加为管理员，拥有系统管理权限，Bug涉及所有的邮箱系统。0.0     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image0044.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004[4]" border="0" alt="clip_image004[4]" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image0044_thumb.jpg" width="867" height="369" /></a>     <br />软件测试部的OA系统。除了测试需要，别的东西都没动啊。     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image0054.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image005[4]" border="0" alt="clip_image005[4]" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image0054_thumb.jpg" width="875" height="398" /></a>     <br />公司内部论坛。DZ7.0的，没WAP模块。     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image0064.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image006[4]" border="0" alt="clip_image006[4]" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image0064_thumb.jpg" width="849" height="370" /></a>     <br />因为是邮箱账号，所以邮件里有一些测试机的用户名和密码信息，包括218.107.63.245，218.107.63.248等。     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image007.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image007_thumb.jpg" width="877" height="561" /></a>     <br />修复方案：     <br />1. Jenkins增加用户验证。     <br />2. 推荐使用动态口令。</p>  <p>&#160;</p>
+      
+      </p>
+      
+      <p>
+          <a href="/769.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -234,7 +232,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/category/渗透测试/page/8/">← Newer Posts</a>
-    <span class="page-number">Page 9 of 11</span>
+    <span class="page-number">Page 9 of 16</span>
     <a class="older-posts" href="/category/渗透测试/page/10/">Older Posts →</a>
   </nav>
 </main>

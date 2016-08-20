@@ -45,6 +45,64 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
+      <time datetime="2012-11-22T04:46:22.000Z" itemprop="datePublished">
+          2012-11-22
+      </time>
+    
+    
+    | 
+    <a href='/tag/php/'>php</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/942.seo/">服务器变量$_SERVER详解</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        服务器变量$_SERVER 详解：   1、$_SESSION[‘PHP_SELF’] – 获取当前正在执行脚本的文件名   2、$_SERVER[‘SERVER_PROTOCOL’] – 请求页面时通信协议的名称和版本。例如，“HTTP/1.0”。   3、$_SERVER[‘REQUEST_TIME’] – 请求开始时的时间戳。从 PHP 5.1.0 起有效。和time函数效果一样。   4、$_SERVER[‘argv’] – 传
+      
+      </p>
+      
+      <p>
+          <a href="/942.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-11-01T06:24:53.000Z" itemprop="datePublished">
+          2012-11-01
+      </time>
+    
+    
+    | 
+    <a href='/tag/php/'>php</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/920.seo/">PHP提高编程效率的方法</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>用单引号代替双引号来包含字符串，这样做会更快一些。因为PHP会在双引号包围的字符串中搜寻变量，单引号则不会，注意：只有echo能这么做，它是一种可以把多个字符串当作参数的“函数”（译注：PHP手册中说echo是语言结构，不是真正的函数，故把函数加上了双引号）。   <br />1、如果能将类的方法定义成static，就尽量定义成static，它的速度会提升将近4倍。    <br />2、$row[’id’] 的速度是$row[id]的7倍。    <br />3、echo 比 print 快，并且使用echo的多重参数（译注：指用逗号而不是句点）代替字符串连接，比如echo $str1,$str2。    <br />4、在执行for循环之前确定最大循环数，不要每循环一次都计算最大值，最好运用foreach代替。    <br />5、注销那些不用的变量尤其是大数组，以便释放内存。    <br />6、尽量避免使用<strong>get，</strong>set，__autoload。    <br />7、require_once()代价昂贵。    <br />8、include文件时尽量使用绝对路径，因为它避免了PHP去include_path里查找文件的速度，解析操作系统路径所需的时间会更少。    <br />9、如果你想知道脚本开始执行（译注：即服务器端收到客户端请求）的时刻，使用$_SERVER[‘REQUEST_TIME’]要好于time()。    <br />10、函数代替正则表达式完成相同功能。    <br /></p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/920.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
       <time datetime="2012-09-20T23:35:56.000Z" itemprop="datePublished">
           2012-09-21
       </time>

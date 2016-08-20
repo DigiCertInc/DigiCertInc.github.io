@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Archives: 2013 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-10-21T18:10:58.000Z" itemprop="datePublished">
+          2013-10-22
+      </time>
+    
+    
+    | 
+    <a href='/tag/xss/'>xss</a>,
+    
+    <a href='/tag/CSRF/'>CSRF</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1037.seo/">攻击JavaWeb应用 2 -CS交互安全</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><a href="http://drops.wooyun.org/tips/164">攻击JavaWeb应用[2]-CS交互安全</a></p>  <p><a href="http://drops.wooyun.org/tips/164">http://drops.wooyun.org/tips/164</a></p>  <h5>注:本节意在让大家了解客户端和服务器端的一个交互的过程,我个人不喜欢xss,对xss知之甚少所以只能简要的讲解下。这一节主要包含HttpServletRequest、HttpServletResponse、session、cookie、HttpOnly和xss，文章是年前几天写的本应该是有续集的但年后就没什么时间去接着续写了。由于工作并非安全行业，所以写的并不算专业希望大家能够理解。后面的章节可能会有Java里的SQL注入、Servlet容器相关、Java的框架问题、eclipse代码审计等。</h5>  <h5>0x00 Request &amp; Response(请求与响应)</h5>  <hr align="center" width="100%" size="2" />  <p>请求和响应在Web开发当中没有语言之分不管是ASP、PHP、ASPX还是JAVAEE也好，Web服务的核心应该是一样的。</p>  <p>在我看来Web开发最为核心也是最为基础的东西就是Request和Response！我们的Web应用最终都是面向用户的，而请求和响应完成了客户端和服务器端的交互。   <br />服务器的工作主要是围绕着客户端的请求与响应的。</p>  <p>如下图我们通过Tamper data拦截请求后可以从请求头中清晰的看到发出请求的客户端请求的地址为：localhost。</p>  <p>浏览器为FireFox，操作系统为Win7等信息，这些是客户端的请求行为，也就是Request。</p>  <p><a href="http://img.cker.in/JavaWeb2CS_8BCE/clip_image001.png"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="444" alt="clip_image001" src="http://img.cker.in/JavaWeb2CS_8BCE/clip_image001_thumb.png" width="1142" border="0" /></a></p>  <p>当客户端发送一个Http请求到达服务器端之后，服务器端会接受到客户端提交的请求信息(HttpServletRequest)，然后进行处理并返回处理结(HttpServletResopnse)。</p>  <p>下图演示了服务器接收到客户端发送的请求头里面包含的信息：</p>  <p><a href="http://img.cker.in/JavaWeb2CS_8BCE/clip_image002.png"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="549" alt="clip_image002" src="http://img.cker.in/JavaWeb2CS_8BCE/clip_image002_thumb.png" width="655" border="0" /></a></p>  <p>页面输出的内容为：</p>  <pre><code>host=localhost</code></pre><br><br><pre><code>user-agent=Mozilla/5.0 (Windows NT 6.1; rv:18.0) Gecko/20100101 Firefox/18.0</code><code> </code></pre><br><br><pre><code>accept=text/html,application/xhtml+xml,application/xml;q=0.9,<em>/</em>;q=0.8</code><code> </code></pre><br><br><pre><code>accept-language=zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3</code><code> </code></pre><br><br><pre><code>accept-encoding=gzip, deflate</code><code> </code></pre><br><br><pre><code>connection=keep-alive</code></pre><br><br><h6>请求头信息伪造XSS</h6><br><br><p>关于伪造问题我是这样理解的：发送Http请求是客户端的主动行为，服务器端通过ServerSocket监听并按照Http协议去解析客户端的请求行为。</p>
+
+<p>所以请求头当中的信息可能并不一定遵循标准Http协议。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/1037.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-10-21T17:56:42.000Z" itemprop="datePublished">
+          2013-10-22
+      </time>
+    
+    
+    | 
+    <a href='/tag/Java/'>Java</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1036.seo/">攻击JavaWeb应用 1 -JavaEE 基础</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><a href="http://drops.wooyun.org/tips/163">攻击JavaWeb应用[1]-JavaEE 基础</a></p>  <p><a href="http://drops.wooyun.org/tips/163">http://drops.wooyun.org/tips/163</a></p>  <h5>0x00 JavaEE 基础</h5>  <hr align="center" width="100%" size="2" />  <p>JSP: 全名为java server page，其根本是一个简化的<a href="http://baike.baidu.com/view/25169.htm">Servlet</a>。</p>  <p>Servlet：Servlet是一种服务器端的Java应用程序，可以生成动态的Web页面。</p>  <p>JavaEE: JavaEE是J2EE新的名称。改名目的是让大家清楚J2EE只是Java企业应用。</p>  <p>什么叫Jsp什么叫Java我真的非常让大家搞清楚！拜托别一上来就来一句：“前几天我搞了一个jsp的服务器，可难吭了。”。</p>  <p>请大家分清楚什么是jsp什么是JavaEE! <a href="http://Ha.Cker.In/tag/Java" target="_blank">Java</a>平台结构图：</p>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image001.jpg"><img title="clip_image001" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="437" alt="clip_image001" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image001_thumb.jpg" width="715" border="0" /></a></p>  <p>可以看到Java平台非常的庞大，而开发者的分化为：</p>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image002.jpg"><img title="clip_image002" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="777" alt="clip_image002" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image002_thumb.jpg" width="519" border="0" /></a></p>  <p>列举这两个图的原因就是让你知道你看到的JSP不过是冰山一角，Jsp技术不过是Java初级开发人员必备的技术而已。</p>  <p>我今天要讲的就是Java树的最下面的两层了，也是初级工程师需要掌握的东西。</p>  <p>Web请求与相应简要的流程：</p>  <p><a href="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image003.gif"><img title="clip_image003" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="241" alt="clip_image003" src="http://img.cker.in/JavaWeb1JavaEE_8A34/clip_image003_thumb.gif" width="418" border="0" /></a></p>  <p>这是一个典型的就是客户端发送一个HTTP请求到服务器端，服务器端接收到请求并处理、响应的一个过程。</p>  <p>如果请求的是JSP，tomcat会把我们的JSP编译成Servlet也就是一个普通的Java类。</p>  <p>其实JSP是Servlet的一种特殊形式，每个JSP页面就是一个Servlet实例。Servlet又是一个普通的Java类它编译后就是一个普通的class文件。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/1036.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-10-17T19:19:21.000Z" itemprop="datePublished">
+          2013-10-18
+      </time>
+    
+    
+    | 
+    <a href='/tag/xss/'>xss</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1035.seo/">转载 我是如何在谷歌财经发现一个XSS漏洞，并且拿到了5千美元奖励</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        7月30日看到 Michele Spagnuolo 发的博文称“他在 Google Finance 上发现并提交了一个 XSS 漏洞，谷歌安全团队确认并修复了该漏洞。Michele 因此拿到了 5K 美元奖励。” 以下是 Michele 博文的译文。  这个问题出现在Google Finance中(google.com/finance)。它能欺骗Javascript的走势图应用（源文件为/finance/f/sfe-opt.js)，让其
+      
+      </p>
+      
+      <p>
+          <a href="/1035.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-10-10T20:14:34.000Z" itemprop="datePublished">
+          2013-10-11
+      </time>
+    
+    
+    | 
+    <a href='/tag/Wordpress/'>Wordpress</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1034.seo/">WordPress Woopra插件任意文件上传+远程代码执行</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        照例e文装逼  WordPress Woopra Remote Code Execution：http://www.wordpress-secure.org/index.php/wordpress-woopra-remote-code-execution/  &#160;  此漏洞对Woopra 1.4.3.1以上版本无效。  插件下载地址：  http://downloads.wordpress.org/plugin/woopra.1
+      
+      </p>
+      
+      <p>
+          <a href="/1034.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-10-09T22:54:40.000Z" itemprop="datePublished">
+          2013-10-10
+      </time>
+    
+    
+    | 
+    <a href='/tag/Tipask/'>Tipask</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1033.seo/">tipask问答系统2.0 ajaxsearch二次编码注入漏洞</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        Tipask问答系统是一款开放源码的PHP仿百度知道程序。以国人的使用习惯为设计理念，采用MVC构架，系统具有速度快，SEO友好，界面操作简洁明快等特点。    但是Tipask中存在二次编码问题，所以导致绕过系统过滤造成注入。  详细说明：    在程序入口/model/tipask.class.php init_request()中：          $this-&gt;get = taddslashes($this-&gt; g
+      
+      </p>
+      
+      <p>
+          <a href="/1033.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-10-09T22:34:36.000Z" itemprop="datePublished">
+          2013-10-10
+      </time>
+    
+    
+    | 
+    <a href='/tag/xampp/'>xampp</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1032.seo/">XAMPP 1.8.1本地文件写入漏洞</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+           最近爆出个漏洞 http://sebug.net/vuldb/ssvid-61054  先ctrl+c 段e文装逼  XAMPP 1.8.1 Local Write Access VulnerabilityFrom: ISecAuditors Security Advisories &lt;advisories () isecauditors com&gt;Date: Thu, 26 Sep 2013 12:55:50 +0200
+      
+      </p>
+      
+      <p>
+          <a href="/1032.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    <a class="newer-posts" href="/archives/2013/page/4/">← Newer Posts</a>
+    <span class="page-number">Page 5 of 16</span>
+    <a class="older-posts" href="/archives/2013/page/6/">Older Posts →</a>
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

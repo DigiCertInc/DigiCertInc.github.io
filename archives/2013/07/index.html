@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Archives: 2013/7 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-07-25T18:14:31.000Z" itemprop="datePublished">
+          2013-07-26
+      </time>
+    
+</span>
+      <h2 class="post-title"><a href="/1016.seo/">PHP  将时间显示为 刚刚  n分钟 小时前 等</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        在很多场合为了显示出信息的及时性，一般会将时间显示成“刚刚”，“5分钟前”，“3小时前”等，而不是直接将时间打印出来。比如微博，SNS类应用就最长用到这个功能。而一般存储在数据库中的时间格式为 Unix时间戳，所以这里记录一个将 Unix时间戳 转化为时间轴显示的PHP函数。   函数比较简单，直接看代码就很好懂了。      &lt;?phpdate_default_timezone_set(‘PRC’);$date = &quot;
+      
+      </p>
+      
+      <p>
+          <a href="/1016.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-07-22T18:47:10.000Z" itemprop="datePublished">
+          2013-07-23
+      </time>
+    
+    
+    | 
+    <a href='/tag/xss/'>xss</a>,
+    
+    <a href='/tag/squirrel-mail/'>squirrel mail</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1015.seo/">论升级的重要性,低版本squirrel mail的XSS利用实例</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>低版本的sqmail有几个xss洞…但是没有exploit…这次通过实例补充一下   <br />求不要跨省…我还要读几年书呢    <br />详细说明：    <br />香港科技大学喜欢使用<a href="http://Ha.Cker.In/tag/squirrel mail" target="_blank">squirrel mail</a>作为webmail后端    <br />屡次标榜先进性却不思升级…这不就跪了么    <br />这次实战的洞有CVE-2008-2379    <br />和一个老洞…但是sqmail的最新版好像也没完全修好    <br />先看看科大用的sqmail版本    <br />logout以后任意访问一个需要login的页面就可以了    <br /><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201306/0714484951b23cf830d7e8a14a83dc9733d6b35b.jpg"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="438" alt="clip_image002" src="http://img.cker.in/squirrelmailXSS_9766/clip_image002.jpg" width="620" border="0" /></a>    <br />1.4.10a恩…    <br /><a href="http://squirrelmail.org/security/">http://squirrelmail.org/security/</a>    <br />来看看对应版本有什么洞…    <br />我注意到的是    <br />2008-12-04&#160;&#160;&#160;&#160;&#160;&#160;&#160; Cross site scripting in HTML filter&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1.4.0 - 1.4.16&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160;&#160;&#160;&#160;&#160; CVE-2008-2379    <br />这个洞…先搜一下网上有没有现成的exploit好了….    <br />…     <br />没有…那就自己研究    <br />先看一下patch    <br /><a href="http://squirrelmail.svn.sourceforge.net/viewvc/squirrelmail/branches/SM-1_4-STABLE/squirrelmail/functions/mime.php?r1=13276&amp;r2=13338&amp;view=patch">http://squirrelmail.svn.sourceforge.net/viewvc/squirrelmail/branches/SM-1_4-STABLE/squirrelmail/functions/mime.php?r1=13276&amp;r2=13338&amp;view=patch</a>    <br />然后抓源码下来研究一番</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/1015.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-07-09T02:18:46.000Z" itemprop="datePublished">
+          2013-07-09
+      </time>
+    
+    
+    | 
+    <a href='/tag/zabbix/'>zabbix</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1014.seo/">看我是如何利用zbbix渗透sogou&sohu内网的</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>手机搜狗好像不是很好用唉；   <br />在乌云浏览搜狗历史漏洞的时候得到220.<em>.</em>.<em>其中的一个ip    <br />具体是那个漏洞记不住了。    <br />对220.</em>.<em>.0/26进行 8080端口扫描，没有啥重大发现    <br />对220.</em>.<em>.0/26进行 80端口扫描，有重大发现了    <br /><a href="http://220">http://220</a>.</em>.<em>.</em>/zabbix/    <br />再往下</p>  <p>&#160;</p>  <p><a href="http://220.181.*.128/zabbix/">http://220.181.*.128/zabbix/</a>   <br />默认口令：admin/zabbix    <br /><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/091757388a1afd9667de6dd56019a79f6802fea6.jpg"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="311" alt="clip_image002" src="http://img.cker.in/zbbixsogousohu_10160/clip_image002.jpg" width="620" border="0" /></a>    <br />没多少机器，目测是个测试的<a href="http://Ha.Cker.In/tag/zabbix" target="_blank">zabbix</a>？    <br />随便找了个机器 添加了一个items直接使用system.run 跑了一个命令，没有数据返回，确定zabbix agent没有开启system.run 模块    <br />不过zabbix还有一个Scripts的功能，可以对zabbix server 执行任意命令</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/1014.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-07-09T02:13:12.000Z" itemprop="datePublished">
+          2013-07-09
+      </time>
+    
+</span>
+      <h2 class="post-title"><a href="/1013.seo/">如何渗透PayPal(贝宝)用户交易记录系统</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><b>*</b>本文由以色列Break Security公司CEO兼创始人Nir Goldshlager撰写，并由IDF实验室志愿者张俊翻译。</p>  <p>今天我来介绍一下我之前是如何攻入PayPal记录系统的，这个BUG已经被反馈给了Paypal安全团队并立即得到了修补。</p>  <p>利用这个漏洞，攻击者可以完全访问PayPal的用户交易记录。在这些记录里，你可以找到如下的用户信息：</p>  <p>· 购物地址</p>  <p>· 电子邮箱</p>  <p>· 电话号码</p>  <p>· 商品名称</p>  <p>· 购买数量</p>  <p>· 用户全名</p>  <p>· 交易号</p>  <p>· 发票号</p>  <p>· 交易主体</p>  <p>· 账户名</p>  <p>· Paypal参考编号</p>  <p>等等……</p>  <p>首先，在PayPal的用户界面，这里有一个“交易记录”的选项：</p>  <p><a href="http://blog.idf.cn/wp-content/uploads/2013/06/reportsopton.jpg"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="400" alt="clip_image002" src="http://img.cker.in/PayPal_FFFA/clip_image002.jpg" width="753" border="0" /></a></p>  <p>通常，用户可以通过这个选项来访问自己购买过的商品记录。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/1013.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-07-03T22:30:53.000Z" itemprop="datePublished">
+          2013-07-04
+      </time>
+    
+    
+    | 
+    <a href='/tag/一句话/'>一句话</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1012.seo/">利用php.ini隐藏一句话</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        利用php中的一个自动在文件中增加页眉和页脚的功能，隐藏一句话。   在站点的某一目录（如：根目录）下编辑文件php脚本文件，名称为：info.php，内容如下   &lt;?php    Phpinfo();    ?&gt;    在本地打开如：http://127.0.0.1/info.php    检查系统使用的配置文件      找到并编辑该配置文件   如下行：    auto_prepend_file =test.php&
+      
+      </p>
+      
+      <p>
+          <a href="/1012.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-07-03T20:36:03.000Z" itemprop="datePublished">
+          2013-07-04
+      </time>
+    
+</span>
+      <h2 class="post-title"><a href="/1011.seo/">修改root密码--当你把密码忘记之后！（简易教程）</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        越狱后的iphone默认root密码是alpine，这个连地球之外的火星人都知道了，有点安全意识的人一般会第一时间更改它。   问题来了，有人很久没用root密码，忘了，怎么办？重刷？不必！   工具：依然是强大的iFile。   Cydia里添加威锋源，搜索ifile安装   root密码文件存放地方：/etc/master.passwd   用iFile的文本编辑功能打开master.passwd   你会找到类似这样的一行字符——
+      
+      </p>
+      
+      <p>
+          <a href="/1011.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    
+    <span class="page-number">Page 1 of 1</span>
+    
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

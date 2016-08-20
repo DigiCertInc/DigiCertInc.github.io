@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>从爆破shell到内网渗透(有亮点) | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-09-05T05:23:38.000Z" itemprop="datePublished">
+          2013-09-05
+      </time>
+    
+</span>
+    <h1 class="post-title">从爆破shell到内网渗透(有亮点)</h1>
+    <section class="post-content">
+      <p>最近比较忙，<a href="http://Ha.Cker.In/tag/渗透" target="_blank">渗透</a>经验少，手里一时也没有什么有含量的文章。下面是近期的一次渗透经历，先发在这，管理能给过不。</p>  <p>群里发了个一句话，<a href="http://www.xxx.cn/UploadFiles/201342155011266.asa" target="_blank" rel="external">http://www.xxx.cn/UploadFiles/201342155011266.asa</a></p>  <p>让爆破一下。</p>  <p><a href="http://img.cker.in/shell_12C39/clip_image001.png" target="_blank" rel="external"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="244" alt="clip_image001" src="http://img.cker.in/shell_12C39/clip_image001_thumb.png" width="563" border="0"></a></p>  <p>看来是个图片插马，通过台上传的。</p>  <p>爆破一句话，BurpSuite搞定</p>  <p><a href="http://img.cker.in/shell_12C39/clip_image003.jpg" target="_blank" rel="external"><img title="clip_image003" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="530" alt="clip_image003" src="http://img.cker.in/shell_12C39/clip_image003_thumb.jpg" width="620" border="0"></a></p>  <p>密码居然是‘x’。。。</p>  <p>下午有课，晚上接着搞，既然有了shell，试试提权什么的。</p>  <p>上传大马，发现上传不了，基本上目录都不可写了，UploadFiles目录也是，看来可能管理员加固了(后来提权之后发现果然该用户对该目录权限只有读取了)。命令也执行不了。</p>  <p>到C:\Program Files\MySQL下载User表user.MYD，打开得到root的HASH</p>  <p>localhost</p>  <p>root<em>6BB4837EB74329105EE4568DDA7DC67ED2CA2AD9</em></p>  <p>cmd5查了下123456，但是通过菜刀连接失败，好像3306端口没开(后来发现其实开了，估计被墙了)</p>  <p>是星外站，还有很多站点。一个个找找。找到个aspx站点，查看web.config，居然是sa，密码也是sa，通过菜刀连接，成功，可以执行命令。</p>  <p>EXEC master..xp_cmdshell ‘net userxxxxxx xxxxxx123123 /add’</p>  <p>EXEC master..xp_cmdshell ‘net localgroupadministrators xxxxxx /add’</p>  <p>3389登录成功。有360安全卫士和Symantec，添加用户居然没有拦截，人品好的原因？</p>  <p>既然是星外的站，读取下freehost密码吧，用它登录更保险一些。拿出星外杀器，读到密码。</p>  <p>C:\Documents and Settings\lnwjcomcn\桌面&gt;exehack.exe-i</p>  <p>FreeHost ID：724</p>  <p>C:\Documents and Settings\lnwjcomcn\桌面&gt;exehack.exe-u 724</p>  <p>UserName:freehostrunat</p>  <p>Password:c8a810ab197a1321ee4b37fcaa3ccd29!7</p><br><a id="more"></a><br><p></p>  <p><a href="http://img.cker.in/shell_12C39/clip_image004.png" target="_blank" rel="external"><img title="clip_image004" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="258" alt="clip_image004" src="http://img.cker.in/shell_12C39/clip_image004_thumb.png" width="496" border="0"></a></p>  <p>OK，直接<a href="http://Ha.Cker.In/tag/3389" target="_blank">3389</a>登录就可以了。</p>  <p>既然提权了，没理由不看看内网。看下ip，的确是内网环境。</p>  <p><a href="http://img.cker.in/shell_12C39/clip_image006.png" target="_blank" rel="external"><img title="clip_image006" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="262" alt="clip_image006" src="http://img.cker.in/shell_12C39/clip_image006_thumb.png" width="620" border="0"></a></p>  <p>看看网络连接</p>  <p><a href="http://img.cker.in/shell_12C39/clip_image008.jpg" target="_blank" rel="external"><img title="clip_image008" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="220" alt="clip_image008" src="http://img.cker.in/shell_12C39/clip_image008_thumb.jpg" width="620" border="0"></a></p>  <p>有个内网的192.168.2.25和它连接。</p>  <p>一般来说，内网其实是很薄弱的，处于内网环境中，管理员通常会降低安全意识。比如相对外网，内网一般不用考虑防火墙，最多拿下DMZ后架设个代理做跳板。之后就是内网渗透那一套，ipc$、HASH注入之类。</p>  <p>另外，密码也是一个较弱的环节。即使密码很复杂，但是管理员为方便记忆和管理，一般内网环境的密码是有规律的。</p>  <p>首先先wce抓下密码吧。由于是虚拟主机，用户比较多。经过分辨，管理员除了一个freehost外，还有个webmasters36，密码是挺复杂的，呵呵。</p>  <p>UserName: webmasters36</p>  <p>LogonDomain: CAYS</p>  <p>password: caysserverPassX036wl</p>  <p>好了，再联系一下本机内网IP，192.168.2.34，可以推测一下密码了，应该是和IP相关联的。</p>  <p>内网必备PsExec，朝着192.168.2.25啪啪啪打过去</p>  <p>额，居然不对。</p>  <p><a href="http://img.cker.in/shell_12C39/clip_image010.png" target="_blank" rel="external"><img title="clip_image010" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="188" alt="clip_image010" src="http://img.cker.in/shell_12C39/clip_image010_thumb.png" width="620" border="0"></a></p>  <p>好吧换成25试试，啪啪啪，成功返回一个shell。</p>  <p>看下25的3389已经开了，直接登录。</p>  <p><a href="http://img.cker.in/shell_12C39/clip_image012.png" target="_blank" rel="external"><img title="clip_image012" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="198" alt="clip_image012" src="http://img.cker.in/shell_12C39/clip_image012_thumb.png" width="620" border="0"></a></p>  <p>再看一下网络连接：</p>  <p><a href="http://img.cker.in/shell_12C39/clip_image014.jpg" target="_blank" rel="external"><img title="clip_image014" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="194" alt="clip_image014" src="http://img.cker.in/shell_12C39/clip_image014_thumb.jpg" width="620" border="0"></a></p>  <p>嗯，这几台同样PsExec打过去，3389连接，全部沦陷。</p>  <p><a href="http://img.cker.in/shell_12C39/clip_image016.jpg" target="_blank" rel="external"><img title="clip_image016" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="389" alt="clip_image016" src="http://img.cker.in/shell_12C39/clip_image016_thumb.jpg" width="620" border="0"></a></p>  <p>另外发现一个奇怪现象，这边出口IP 218.X.X.X(联通)，进入内网，到192.168.2.12，再出去，IP居然变成了59.X.X.X(电信)，居然还有这样的环境，谁给科普下。</p>  <p>内网有个车模站点，好多漂亮妹子….</p>  <p><a href="http://img.cker.in/shell_12C39/clip_image018.jpg" target="_blank" rel="external"><img title="clip_image018" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="292" alt="clip_image018" src="http://img.cker.in/shell_12C39/clip_image018_thumb.jpg" width="620" border="0"></a></p>  <p><a href="http://img.cker.in/shell_12C39/clip_image019.png" target="_blank" rel="external"><img title="clip_image019" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="523" alt="clip_image019" src="http://img.cker.in/shell_12C39/clip_image019_thumb.png" width="460" border="0"></a></p>  <p>↑↑&#160; 亮点在此</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1027.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1027.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1027.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1027.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/1028.seo/">
+        ← Python调用MongoDB使用心得
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/1026.seo/">
+        Base 64 Encoding 编码 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>抓取谷歌搜索结果里的支付宝帐号 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-03-27T21:01:28.000Z" itemprop="datePublished">
+          2013-03-28
+      </time>
+    
+    
+    | 
+    <a href='/tag/支付宝/'>支付宝</a>
+    
+    
+</span>
+    <h1 class="post-title">抓取谷歌搜索结果里的支付宝帐号</h1>
+    <section class="post-content">
+      <p><a href="http://ha.cker.in/tag/支付宝" target="_blank">支付宝</a>转账信息能够被谷歌抓取，大量用户隐私信息被泄露。</p>  <p><a href="http://img.cker.in/990f68a4e037_B61A/clip_image002.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/990f68a4e037_B61A/clip_image002_thumb.jpg" width="580" height="452"></a></p>  <p>练习php写了个提取支付宝帐号的程序</p>  <div>   <pre>&lt;?php<br><br>/<em> Build:2013-3-28
+
+</em> Author:Secer<br><br><em> Encoding:UTF-8
+
+</em><br><br><em> <a href="http://www.googlestable.com/search?q=site:shenghuo.alipay.com+%E8%BD%AC%E8%B4%A6%E7%BB%93%E6%9E%9C&amp;hl=zh-CN&amp;newwindow=1&amp;ei=qJtTUYG1KcaHkwXNooHYBw&amp;start=10&amp;sa=N" target="_blank" rel="external">http://www.googlestable.com/search?q=site:shenghuo.alipay.com+%E8%BD%AC%E8%B4%A6%E7%BB%93%E6%9E%9C&amp;hl=zh-CN&amp;newwindow=1&amp;ei=qJtTUYG1KcaHkwXNooHYBw&amp;start=10&amp;sa=N</a>
+
+</em> 抓取谷歌采集支付宝<br><br><em><br><br>Useage php.exe 9getgoogle.php
+
+</em>/<br><br>header(&quot;Content-type: text/html; charset=utf-8&quot;);<br><br>$filename = ‘<a href="http://www.googlestable.com/search?num=100&amp;hl=zh-CN&amp;tbo=d&amp;site=&amp;source=hp&amp;q=site%3Ashenghuo.alipay.com+%E8%BD%AC%E8%B4%A6%E7%BB%93%E6%9E%9C&amp;btnG=Google+%E6%90%9C%E7%B4%A2" target="_blank" rel="external">http://www.googlestable.com/search?num=100&amp;hl=zh-CN&amp;tbo=d&amp;site=&amp;source=hp&amp;q=site%3Ashenghuo.alipay.com+%E8%BD%AC%E8%B4%A6%E7%BB%93%E6%9E%9C&amp;btnG=Google+%E6%90%9C%E7%B4%A2</a>‘;<br><br>// $filename = ‘<a href="http://www.googlestable.com/search?q=site:shenghuo.alipay.com+%E8%BD%AC%E8%B4%A6%E7%BB%93%E6%9E%9C&amp;num=100&amp;hl=zh-CN&amp;newwindow=1&amp;ei=lrFTUbSBMMfNkQWH0YAI&amp;start=100&amp;sa=N" target="_blank" rel="external">http://www.googlestable.com/search?q=site:shenghuo.alipay.com+%E8%BD%AC%E8%B4%A6%E7%BB%93%E6%9E%9C&amp;num=100&amp;hl=zh-CN&amp;newwindow=1&amp;ei=lrFTUbSBMMfNkQWH0YAI&amp;start=100&amp;sa=N</a>‘;<br><br>// $filename = ‘<a href="http://www.googlestable.com/search?q=site:shenghuo.alipay.com+%E8%BD%AC%E8%B4%A6%E7%BB%93%E6%9E%9C&amp;num=100&amp;hl=zh-CN&amp;newwindow=1&amp;ei=ybFTUbjRC8fbkAX5joBI&amp;start=200&amp;sa=N" target="_blank" rel="external">http://www.googlestable.com/search?q=site:shenghuo.alipay.com+%E8%BD%AC%E8%B4%A6%E7%BB%93%E6%9E%9C&amp;num=100&amp;hl=zh-CN&amp;newwindow=1&amp;ei=ybFTUbjRC8fbkAX5joBI&amp;start=200&amp;sa=N</a>‘;<br><br>//将对方的GBK编码转为utf-8后进行匹配<br><br>$result = iconv(&quot;gbk&quot;, &quot;utf-8//IGNORE&quot;,$result);<br><br>$pat_send = &quot;/付款账户：, ([\w\d.@]+). /&quot;;<br><br>$pat_recv = &quot;/收款账户：, ([\w\d.@]+). /&quot;;<br><br><br><br>preg_match_all($pat_send,$result,$arr1);<br><br>preg_match_all($pat_recv,$result,$arr2);<br><br>for($i=0 ; $i &lt; count($arr1[1]) ;$i++)<br><br>{<br><br>echo $arr[1][$i];<br><br>$fp = fopen(&quot;alipay.txt&quot;, ‘a’);<br><br>fwrite($fp, $arr1[1][$i].&quot;\r\n&quot;);<br><br>fclose($fp);<br><br>}<br><br>for($i=0 ; $i &lt; count($arr2[1]) ;$i++)<br><br>{<br><br>echo $arr[1][$i];<br><br>$fp = fopen(&quot;alipay.txt&quot;, ‘a’);<br><br>fwrite($fp, $arr2[1][$i].&quot;\r\n&quot;);<br><br>fclose($fp);<br><br>}<br><br>?&gt;</pre><br></div><br><br><p>&#160;</p>
+
+<p>结果生成到文件alipay.txt。</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/983.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/983.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/983.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/983.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/985.seo/">
+        ← 盐
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/982.seo/">
+        社会工程学之诱饵攻击真实案列 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

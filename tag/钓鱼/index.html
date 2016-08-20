@@ -45,6 +45,70 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
+      <time datetime="2012-12-13T19:05:04.000Z" itemprop="datePublished">
+          2012-12-14
+      </time>
+    
+    
+    | 
+    <a href='/tag/钓鱼/'>钓鱼</a>,
+    
+    <a href='/tag/爆破/'>爆破</a>,
+    
+    <a href='/tag/短信轰炸/'>短信轰炸</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/955.seo/">短信平台相关常见问题整理</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>在近期的渗透测试项目中，在短信平台相关功能都出现了一些问题，现对渗透过程中发现，及wooyun上出现的相关短信平台的几类问题做个整理。</p>  <p>一、短信发送无频率限制</p>  <p>通过wooyun上搜索可见，该类漏洞是最为常见的。</p>  <p>漏洞相关链接：</p>  <p>万网发验证信息，无限时。无限次数形成<a href="http://ha.cker.in/tag/短信轰炸" target="_blank">短信轰炸</a> <a href="http://www.wooyun.org/bugs/wooyun-2010-07592">http://www.wooyun.org/bugs/wooyun-2010-07592</a>    <br />盛大网络短信ddos攻击漏洞 <a href="http://www.wooyun.org/bugs/wooyun-2010-02773">http://www.wooyun.org/bugs/wooyun-2010-02773</a></p>  <p>漏洞成因： 对发送信息功能调用未做任何限制</p>  <p>漏洞危害：</p>  <p>1、可针对某用户短时间内发送大量垃圾短信，造成短信轰炸攻击；</p>  <p>2、对于企业，每发一条短信，都是需要向运营商交付一些费用，尽管比个人用户费用低，但是一旦被恶意利用大量发送后，造成较大的直接经济损失。</p>  <p>漏洞修补：</p>  <p>1、限定同一手机号在一时间段内发送次数，如每分钟发送1次，具体落实需结合用户体验综合考虑；</p>  <p>2、使用强壮的验证码机制。</p>  <p>补充：曾在测试中发现某客户的验证码有效期为2分钟，即2分钟内无需修改验证码直接成功回放请求包，同样可造成短信炸弹工具。因此，务必保证验证码的强壮型，并采用一次一用机制。</p>  <p>二、短信发送内容来自客户端</p>  <p>这类漏洞一般不直观，直接由用户输入来定义短信内容的问题确实没遇到过，这里的漏洞是把短信内容放在的POST表单中，从页面上无法发现，需要抓包分析才能看到。</p>  <p>相关漏洞：</p>  <p>（知道这漏洞是哪家的同学也请嘘，咱不讨论它是谁的，另漏洞已经修补了）</p>  <p>某系统可以在WEB页面上选择手机品牌和型号，填入手机号码可发送下载地址至手机，具体操作界面如下图：</p>  <p><a href="http://img.cker.in/9dedeb5ea29c_9BB4/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/9dedeb5ea29c_9BB4/clip_image001_thumb.jpg" width="593" height="327" /></a></p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/955.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-12-10T00:14:53.000Z" itemprop="datePublished">
+          2012-12-10
+      </time>
+    
+    
+    | 
+    <a href='/tag/xss/'>xss</a>,
+    
+    <a href='/tag/钓鱼/'>钓鱼</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/953.seo/">当Discuz!遇上xsser.me：基础认证钓鱼</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>简要描述：</p>  <p>利用的是xsser.me的基础认证<a href="http://ha.cker.in/tag/钓鱼" target="_blank">钓鱼</a>，并成功钓到用户数据</p>  <p>详细说明：</p>  <p>当在Discuz中回帖，插入一张很奇葩的图片时，可能就会导致用户被盗号。</p>  <p><a href="http://xsser.me/authtest.php?id=Ayuk1y&amp;info=Please+Login+In++@360.cn">http://xsser.me/authtest.php?id=Ayuk1y&amp;info=Please+Login+In++@360.cn</a>   <br />例如上面那个地址，可以用图片来引用之，然后回帖，当用户看到这张图片的时候，就会触发提示登陆框。    <br />这个地址是一个401头    <br />HTTP/1.1 401 Unauthorized    <br />当输入密码后，会重定向到收集数据的页面，接着，你们密码就被盗了。    <br />我为什么认为这个是一个漏洞：    <br />1、用户网站大多都是提醒用户不要再站外输入自己的账号密码，但是，现在将代码插入到网站内部，用户有认为这是在网站内部，所以就输入了自己的密码。    <br />2、经过试验，成功钓到了用户的数据    <br />3、不仅仅是Discuz，需要网站都支持引用一张网络图片，并没有对图片的HTTP头进行检验。基础认证钓鱼很容易蔓延开来。。    <br />4、之前的钓鱼过程是：黑客设立钓鱼页——通过短信息等传播这个地址——用户访问——用户受骗    <br />而现在是：黑客在帖子中插入钓鱼信息——用户访问——用户受骗    <br />显然，就少了一个非常繁琐的步骤。    <br />例如，在一个论坛中，我将那个图片插在签名中，然后几乎每个帖子都去回复，然后，用户基本上就是去到哪里都能看到我的框框。。。。-,-然后后果你猜？！    <br />（部分浏览器不支持）</p>  <p>漏洞证明：</p>  <p>以360论坛和吾爱破解论坛做了个试验。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/953.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
       <time datetime="2012-07-08T07:06:36.000Z" itemprop="datePublished">
           2012-07-08
       </time>

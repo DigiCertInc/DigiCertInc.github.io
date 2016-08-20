@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Category: 工具视频 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-11-27T22:31:45.000Z" itemprop="datePublished">
+          2013-11-28
+      </time>
+    
+    
+    | 
+    <a href='/tag/TheMole/'>TheMole</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1058.seo/">自动SQL注入工具 &ndash; 鼹鼠v 0.3</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+           鼹鼠是一个自动SQL注入漏洞检测工具。只有在网站上提供了一个脆弱的URL和一个有效的字符串它可以检测注入和利用它，无论是使用工会法或布尔查询为基础的技术。  产品特点  支持使用MySQL，SQL Server中，Postgres的和Oracle数据库的注射。  命令行界面。不同的命令触发不同的动作。  自动完成命令，命令参数和数据库，表和列名。  支持过滤器，以便使用通用的过滤器绕过某些IPS / IDS的规则，并轻松地创建新的
+      
+      </p>
+      
+      <p>
+          <a href="/1058.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-11-25T22:32:33.000Z" itemprop="datePublished">
+          2013-11-26
+      </time>
+    
+    
+    | 
+    <a href='/tag/cobaltstrike/'>cobaltstrike</a>,
+    
+    <a href='/tag/meterpreter/'>meterpreter</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1057.seo/">关于 windows 2008如何安装Cobalt Strike 的一些想法</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>第一次在freebuf上发文章，也不知道规矩是啥，就随便写写好了。看了<a href="http://www.freebuf.com/articles/others-articles/18096.html">windows 2008如何安装Cobalt Strike</a> ，觉得自己也有很多想法想说说，首先安装使用这块其实没文章里说的那么麻烦的，在win2k8上启动msfrpc，直接几行就行：</p>  <p>@echo off</p>  <p>CALL &quot;D:/metasploit\scripts\setenv.bat&quot;</p>  <p>cd D:\metasploit\apps\pro\msf3\</p>  <p>ruby msfrpcd -U msf -P msf -S -f</p>  <p>在windows上所谓的破解cobaltstrike，也没那么麻烦，一个bat搞定：</p>  <p>@echo off</p>  <p>del C:\Users\Administrator.cobaltstrike.prop</p>  <p>java -XX:+AggressiveHeap -XX:+UseParallelGC -jar D:\tools\cobaltstrike-trial\cobaltstrike.jar</p>  <p>这样永远都是21天试用。</p>  <p>关于 <a href="http://ha.cker.in/tag/cobaltstrike" target="_blank">cobaltstrike</a>(以下简称CS) ,它不仅仅是一个图形界面化了的MSF，更重要的是它带来的附加功能和团队协作能力，官网(<a href="http://www.advancedpentest.com/)有详细的视频教程,作者语速适中,听力没问题的应该能听懂吧?如果有需要我可以考虑做几个中文的教程.另外,作者(">http://www.advancedpentest.com/)有详细的视频教程,作者语速适中,听力没问题的应该能听懂吧?如果有需要我可以考虑做几个中文的教程.另外,作者(</a><a href="http://www.hick.org/%7Eraffi">Raphael Mudge</a>,blog地址:<a href="http://blog.strategiccyber.com">http://blog.strategiccyber.com</a>) 的博客上也有大量相关技术资料，仔细品读会有不少收获的。</p>  <p><b>最重要的是,强烈建议不要在windows下用CS连接本地MSFRPC，我跟作者沟通过，windows下可能会出现些莫名其妙的问题,最好是在kali下运行，很稳定，功能也都可以用。而最重要的一点是,CS支持team合作模式,也就是说它有个teamserver程序,可以通过msfrpc把MSF当成一个服务端,支持多个人远程登录到CS的teamserver端,协同渗透.而这个teamserver只支持linux,so,do you get it?(当然,如果你使用的是teamserver模式的话,那CS客户端运行在linux或者windows上就都可以了)</b></p>  <p><a href="http://img.cker.in/windows2008CobaltStrike_CC45/clip_image001_3.jpg" rel="lightbox"><img title="t1.jpg" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="377" alt="clip_image001" src="http://img.cker.in/windows2008CobaltStrike_CC45/clip_image001.jpg" width="694" border="0" /></a></p>  <p><a href="http://img.cker.in/windows2008CobaltStrike_CC45/clip_image0011.jpg" rel="lightbox"><img title="t1.jpg" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="377" alt="clip_image001[1]" src="http://img.cker.in/windows2008CobaltStrike_CC45/clip_image0011_thumb.jpg" width="694" border="0" /></a></p>  <p><a href="http://img.cker.in/windows2008CobaltStrike_CC45/clip_image002.gif" rel="lightbox"><img title="t2.jpg" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="5" alt="clip_image002" src="http://img.cker.in/windows2008CobaltStrike_CC45/clip_image002_thumb.gif" width="5" border="0" /></a></p>  <p><a href="http://img.cker.in/windows2008CobaltStrike_CC45/clip_image003.jpg" rel="lightbox"><img title="t2.jpg" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="196" alt="clip_image003" src="http://img.cker.in/windows2008CobaltStrike_CC45/clip_image003_thumb.jpg" width="324" border="0" /></a></p>  <p><img title="t3.jpg" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="370" alt="clip_image004" src="http://img.cker.in/windows2008CobaltStrike_CC45/clip_image004.jpg" width="694" border="0" /></p>  <p><a href="http://img.cker.in/windows2008CobaltStrike_CC45/clip_image0041.jpg" rel="lightbox"><img title="t3.jpg" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="370" alt="clip_image004[1]" src="http://img.cker.in/windows2008CobaltStrike_CC45/clip_image0041_thumb.jpg" width="694" border="0" /></a></p>  <p>关于beacon，</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/1057.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-04-16T08:22:59.000Z" itemprop="datePublished">
+          2013-04-16
+      </time>
+    
+    
+    | 
+    <a href='/tag/Chrome/'>Chrome</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/992.seo/">推荐29个Chrome拓展插件</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>一直用<a href="http://ha.cker.in/tag/Chrome" target="_blank">Chrome</a>浏览器，神马IE、Opera、360XXX…… 全都抛弃 ！</p>  <p>29个提高效率的插件，其中我最喜欢的插件是Stash！</p>  <p>&#160;</p>  <p>      <a href="https://chrome.google.com/webstore/detail/kdadialhpiikehpdeejjeiikopddkjem">1.Any.Do （任务管理，GTD）</a></p>  <p><a href="http://img.cker.in/06a921bffb4a_207/clip_image002.png"><img title="clip_image002" style="border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; margin: 0px; border-left: 0px; display: inline; padding-right: 0px" border="0" alt="clip_image002" src="http://img.cker.in/06a921bffb4a_207/clip_image002_thumb.png" width="262" height="484" /></a></p>  <p>十分简洁的一款GTD拓展，在IOS和android上均有app，可同步。</p>  <p><a href="https://chrome.google.com/webstore/detail/fawave/aicelmgbddfgmpieedjiggifabdpcnln">2.Fawave（社交应用:微博、人人、twitter、等管理）</a></p>  <p><a href="http://img.cker.in/06a921bffb4a_207/clip_image003.jpg"><img title="clip_image003" style="border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; margin: 0px; border-left: 0px; display: inline; padding-right: 0px" border="0" alt="clip_image003" src="http://img.cker.in/06a921bffb4a_207/clip_image003_thumb.jpg" width="469" height="484" /></a></p>  <p><a href="http://userscripts.org/scripts/show/120679">3.Adblock（广告屏蔽）</a></p>  <p><a href="http://img.cker.in/06a921bffb4a_207/clip_image004.png"><img title="clip_image004" style="border-top: 0px; border-right: 0px; background-image: none; border-bottom: 0px; padding-top: 0px; padding-left: 0px; margin: 0px; border-left: 0px; display: inline; padding-right: 0px" border="0" alt="clip_image004" src="http://img.cker.in/06a921bffb4a_207/clip_image004_thumb.png" width="298" height="272" /></a></p>  <p>屏蔽各种乱七八糟的广告，支持自定义页面广告屏蔽。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/992.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-23T01:35:43.000Z" itemprop="datePublished">
+          2012-06-23
+      </time>
+    
+    
+    | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/溢出/'>溢出</a>,
+    
+    <a href='/tag/MS12-020/'>MS12-020</a>,
+    
+    <a href='/tag/Exploit/'>Exploit</a>,
+    
+    <a href='/tag/Vulnerability/'>Vulnerability</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/596.seo/">Microsoft RDP Vulnerability Exploit (CVE-2012-0002 ) 微软MS12-020漏洞视频演示</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>Microsoft RDP Vulnerability Exploit (CVE-2012-0002&#160; MS12-020)</p>  <p><embed src="http://player.youku.com/player.php/sid/XNDE3OTc4MjM2/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed></p>  <p>这是一个密报的漏洞，微软肯定是先推送补丁修复了（微软在北京时间2012-03-13号就推送了该补丁），然后才公开的报告。</p>  <p>不然，如果该<strong>ms12-20</strong>漏洞在地下流传，企业、政府、银行、军队等重要机构的大型服务器将无一幸免，完全沦陷！这会造成极其严重的后果！</p>  <p>（这也是为什么重要机构的大型服务器都根本不使用 Windows 系统，一方面是性能原因，另一方面是安全因素，还有一方面是国家安全与战争因素了，</p>  <p>米国政府的秘密机构手中掌握有大量此类零日漏洞，并且都是未公开的一旦发动战争，这些都是武器，平时则用来窃取敌对国家情报……）</p>  <p><strong>ms12-20</strong> 远程桌面(RDP)3389漏洞 exp 如何检查自己是否已安装更新补丁？</p>  <p>这个漏洞的更新补丁号为：KB2621440，用户可以自行在：控制面板 –&gt; 添加删除程序（记得勾选“显示更新”</p>  <p>），然后查找该编号，如果有则表示您已安装，可以不必担心了，或者使用命令：</p>  <blockquote>   <p>systeminfo|find /i &quot;KB2621440&quot;</p> </blockquote>
+      
+      </p>
+      
+      <p>
+          <a href="/596.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-21T14:26:53.000Z" itemprop="datePublished">
+          2012-06-21
+      </time>
+    
+    
+    | 
+    <a href='/tag/Wordpress/'>Wordpress</a>,
+    
+    <a href='/tag/暴力破解/'>暴力破解</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/582.seo/">wp密码暴力破解</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        #!/bin/bash     #by leo108      #使用方式：./wp-pwd.sh 用户名 字典 登录页面 线程数      #例如: ./wp-pwd.sh leo 1.txt http://xxx.com/wp-login.php 15     user=$1      zidian=$2      url=$3      thread=$4      function guess {      &#160;&#16
+      
+      </p>
+      
+      <p>
+          <a href="/582.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-16T07:54:20.000Z" itemprop="datePublished">
+          2012-06-16
+      </time>
+    
+    
+    | 
+    <a href='/tag/Metasploit/'>Metasploit</a>,
+    
+    <a href='/tag/Armitage/'>Armitage</a>,
+    
+    <a href='/tag/Metasploit和armitage整合/'>Metasploit和armitage整合</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/530.seo/">Metasploit和armitage整合教程</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><a href="http://ha.cker.in/tag/Metasploit" target="_blank">Metasploit</a>不用过多介绍，是一个很强大的入侵工具集，但由于界面多基于命令行模式，自身UI并非那么友好，可能对部分人使用上带来一定困难。而armitage是针对metaspolit开发的一套基于java，metaspolit的扩展程序，实际是类似metaspolit的图形化，让使用上更加直观便利。    <br />下面是具体的安装步骤，使用情况待摸熟后再来介绍，如有不足和错误之处望指正heyihome.blog.51cto.com    <br />一、 准备工作    <br />1、 下载最新metasploit framework 3.5 <a href="http://www.metasploit.com/">http://www.metasploit.com/</a>    <br />2、 下载armitage <a href="http://www.fastandeasyhacking.com">http://www.fastandeasyhacking.com</a>    <br />3、 下载jar 1.6+以上版本<a href="https://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/ViewFilteredProducts-SingleVariationTypeFilter">https://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/ViewFilteredProducts-SingleVariationTypeFilter</a>    <br />本文是在windows下安装，故只按windows来说明，linux大同小异。</p>
+      
+      </p>
+      
+      <p>
+          <a href="/530.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    
+    <span class="page-number">Page 1 of 2</span>
+    <a class="older-posts" href="/category/工具视频/page/2/">Older Posts →</a>
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

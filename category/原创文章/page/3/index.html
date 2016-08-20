@@ -136,27 +136,31 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-09-09T06:24:45.000Z" itemprop="datePublished">
-          2012-09-09
+      <time datetime="2013-03-27T21:01:28.000Z" itemprop="datePublished">
+          2013-03-28
       </time>
     
     
     | 
-    <a href='/tag/银行/'>银行</a>
+    <a href='/tag/支付宝/'>支付宝</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/813.seo/">路过杭州某银行查询机</a></h2>
+      <h2 class="post-title"><a href="/983.seo/">抓取谷歌搜索结果里的支付宝帐号</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        我就是进去办办业务取号等的时候看到台查询机，顺手一下，什么都没做…  Win2000的系统啊 真老了     后面探头好多还有工作人员，赶紧抓拍完了收工~
+        支付宝转账信息能够被谷歌抓取，大量用户隐私信息被泄露。    练习php写了个提取支付宝帐号的程序     &lt;?php/ Build:2013-3-28
+
+ Author:Secer Encoding:UTF-8
+
+ http://www.googlestable.com/search?q=site:shenghuo.alipay.com+%E8%BD%AC%E8%B4%A6%E7%BB%93%E6%9E%9C&amp;hl=zh
       
       </p>
       
       <p>
-          <a href="/813.seo/" class="excerpt-link">Read More...</a>
+          <a href="/983.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -165,29 +169,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-31T03:18:49.000Z" itemprop="datePublished">
-          2012-08-31
+      <time datetime="2013-01-24T18:24:49.000Z" itemprop="datePublished">
+          2013-01-25
       </time>
     
     
     | 
-    <a href='/tag/Metasploit/'>Metasploit</a>,
+    <a href='/tag/漏洞/'>漏洞</a>,
     
-    <a href='/tag/0day/'>0day</a>
+    <a href='/tag/Wordpress/'>Wordpress</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/794.seo/">Metasploit利用CVE-2012-4681 java 0day入侵Windows</a></h2>
+      <h2 class="post-title"><a href="/971.seo/">WordPress Zingiri Forums arbitrary file disclosure</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><p>作者：Secer</p>  <p>博客：<a href="http://Ha.cker.in" target="_blank">http://Ha.cker.in</a></p>  <p>Q Q：278641414</p>  <p>新手教程，仅为交流和进步，大牛勿喷。</p>  <p>最近java爆<a href="http://ha.cker.in/tag/0day" target="_blank">0day</a>了，很多新手童鞋不知道怎么利用，下面把我自己的研究成果抛砖引玉给大家，见笑了。</p>  <p>0x01 肉鸡环境安装</p>  <p>Java的<a href="http://ha.cker.in/tag/0day" target="_blank">0day</a>，首先当然要在XP测试机里面安装Jre环境，Jre下载地址在这<a href="http://jdk7.java.net/download.html">http://jdk7.java.net/download.html</a>或者<a href="http://www.xdowns.com/soft/6/56/2011/Soft_75169.html">http://www.xdowns.com/soft/6/56/2011/Soft_75169.html</a></p>  <p>我下的是Java Runtime Environment (JRE) 7.0 Update 6 windows-i586.exe如图1：</p>  <p><a href="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image001.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image001_thumb.png" width="576" height="51" /></a></p>  <p>图1</p>  <p>安装直接下一步即可，如图2：</p>  <p><a href="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image002.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image002_thumb.png" width="531" height="420" /></a></p>  <p>图2</p>  <p>安装完成后运行java –version命令看是否可以显示版本，如果显示了即表示安装成功！同时下图看到XP测试机IP为192.168.1.107，如图3：</p>  <p><a href="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image004.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image004_thumb.jpg" width="596" height="321" /></a></p>  <p>图3</p>  <p>同时运行Backtrack 5 虚拟机，Backtrack的IP为192.168.1.106，和测试机在同一局域网，运行<a href="http://ha.cker.in/tag/Metasploit" target="_blank">Metasploit</a>如图4：</p>  <p><a href="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image006.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image006_thumb.jpg" width="596" height="373" /></a></p>  <p>图4</p>  <p>0x02 给<a href="http://ha.cker.in/tag/Metasploit" target="_blank">Metasploit</a>添加模块</p>  <p>我的bt5里的<a href="http://ha.cker.in/tag/Metasploit" target="_blank">Metasploit</a>没有更新，默认当然是没有Java <a href="http://ha.cker.in/tag/0day" target="_blank">0day</a>利用模块的，图5中可以看到684个Exploits：</p>  <p><a href="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image008.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image008_thumb.jpg" width="596" height="216" /></a></p>  <p>图5</p>  <p>下面我们来给<a href="http://ha.cker.in/tag/Metasploit" target="_blank">Metasploit</a>添加利用java漏洞必要的模块，可以到<a href="http://dev.metasploit.com/redmine/projects/framework/repository/revisions/52ca1083c22de7022baf7dca8a1756909f803341">这里</a>下载查看相关模块，如图6：</p>  <p><a href="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image009.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image009" border="0" alt="clip_image009" src="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image009_thumb.png" width="256" height="340" /></a></p>  <p>图6</p>  <p>下载Exploit.class、Exploit.java、java_jre17_exec.rb三个文件分别放到/opt/framework3/msf3目录下如图6所示对应的目录中，添加好了之后运行reload_all重新加载各模块，看到Metasploit里多了一个Exploit现在是685如图8：</p>
+        WordPress Forums插件’url’参数任意文件泄露漏洞的利用  参考：  WordPress Zingiri Forums arbitrary file disclosure    http://ceriksen.com/2013/01/12/wordpress-zingiri-forums-arbitrary-file-disclosure/  Secunia Advisory SA50833    http://secu
       
       </p>
       
       <p>
-          <a href="/794.seo/" class="excerpt-link">Read More...</a>
+          <a href="/971.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -196,75 +200,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-08T20:57:54.000Z" itemprop="datePublished">
-          2012-08-09
+      <time datetime="2013-01-21T20:31:01.000Z" itemprop="datePublished">
+          2013-01-22
       </time>
     
     
     | 
-    <a href='/tag/Apache/'>Apache</a>,
-    
-    <a href='/tag/Mysql/'>Mysql</a>,
-    
-    <a href='/tag/php/'>php</a>,
-    
-    <a href='/tag/Linux-Mint/'>Linux Mint</a>,
-    
-    <a href='/tag/LNMP/'>LNMP</a>
+    <a href='/tag/xss/'>xss</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/742.seo/">LinuxMint安装Lamp</a></h2>
+      <h2 class="post-title"><a href="/969.seo/">WordPress WP SlimStat 插件&quot;s&quot;脚本注入漏洞</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <h5><a href="http://ha.cker.in/tag/LinuxMint" target="_blank">LinuxMint</a>安装Apache2 Web服务</h5>  <p>VPS 默认有安装Apache2，但如果你删除了，就需要重新安装；如果没有删除，执行下面的命令会退出来，不会对系统产生任何影响。</p>  <p>输入如下命令安装</p>  <pre>sudo apt-get install apache2</pre><br><br><p>正常情况下会给出如下提示，说明Apache2默认已经安装好了：</p><br><br><pre><br />$sudo apt-get install apache2<br>Reading package lists… Done<br>Building dependency tree… Done<br>apache2 is already the newest version.<br>0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.</pre><br><a name=".E5.BC.80.E5.90.AF_Apache2_.E7.9A.84.E4.BC.AA.E9.9D.99.E6.80.81"></a><br><br><h5>开启 Apache2 的伪静态</h5>
-
-<p>如果希望开启Apache2 伪静态 rewrite 支持，输入如下命令安装</p>
-
-<pre>#a2enmod rewrite</pre>
-
-<p>正常情况下会给出如下提示，说明已经安装成功：</p>
-
-<pre>#a2enmod rewrite
-Module rewrite installed; run /etc/init.d/apache2 force-reload to enable.</pre>
-
-<p>提示需要重新加载Apache2的配置，由于下一步是安装mysql，所以暂时不用重启。</p>
-
-<p>或出现如下提示，表示已经开启了 rewrite</p>
-
-<pre># a2enmod rewrite
-Mudule rewrite already enabled</pre>
-<a name=".E5.AE.89.E8.A3.85_mysql_.E6.95.B0.E6.8D.AE.E5.BA.93.E6.9C.8D.E5.8A.A1"></a>
-
-<h5><strong>安装 mysql 数据库服务</strong></h5>
-
-<p>安装mysql前，#1的vps需要先关闭apache2，因为mysql的安装会初始化数据，占了很大内存，如果apache2不关闭，有可能导致安装mysql失败。</p>
-
-<p>1 输入如下命令关闭 apache2</p>
-
-<pre>$sudo service apache2 stop
-如果输入正确，会提示如下信息，表示apache2已经停止</pre>
-
-<pre><a href="http://img.cker.in/LinuxMintLnmpLamp_35CE/image.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="image" border="0" alt="image" src="http://img.cker.in/LinuxMintLnmpLamp_35CE/image_thumb.png" width="659" height="101" /></a> </pre>
-
-<p>2 输入如下命令安装mysql</p>
-
-<pre>$apt-get install mysql-server</pre>
-
-<p>如果输入正确，会提示如下信息：</p>
-
-<p><a href="http://img.cker.in/LinuxMintLnmpLamp_35CE/image_3.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="image" border="0" alt="image" src="http://img.cker.in/LinuxMintLnmpLamp_35CE/image_thumb_3.png" width="773" height="731" /></a> </p>
-
-<p>等待中……</p>
-
-<p>继续安装 会提示输入 mysql 的 root 用户密码，你可以输入密码后回车，也可以不输入任何密码直接回车。 （不输入密码不会影响到Mysql的安全性，因为Mysql仅仅用于本地监听，但不输入密码会导致后续phpmyadmin无法运行）</p>
+        WordPress WP SlimStat是实时Web分析插件。 WordPress WP SlimStat 2.8.4及之前版本没有正确过滤wp-content/plugins/wp-slimstat/admin/view/panel1.php内index.php的 &quot;s&quot; 参数值，可被利用插入任意HTML和脚本代码。  &#160;  查看版本：wordpress\wp-content\plugins\wp-sl
       
       </p>
       
       <p>
-          <a href="/742.seo/" class="excerpt-link">Read More...</a>
+          <a href="/969.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -272,7 +228,7 @@ Mudule rewrite already enabled</pre>
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/category/原创文章/page/2/">← Newer Posts</a>
-    <span class="page-number">Page 3 of 5</span>
+    <span class="page-number">Page 3 of 7</span>
     <a class="older-posts" href="/category/原创文章/page/4/">Older Posts →</a>
   </nav>
 </main>

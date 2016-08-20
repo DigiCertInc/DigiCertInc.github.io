@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>一个小漏洞可渗透TCL内网 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-06-16T23:07:32.000Z" itemprop="datePublished">
+          2013-06-17
+      </time>
+    
+    
+    | 
+    <a href='/tag/SQL注射/'>SQL注射</a>
+    
+    
+</span>
+    <h1 class="post-title">一个小漏洞可渗透TCL内网</h1>
+    <section class="post-content">
+      <p>一个被忽略的<a href="http://Ha.Cker.In/tag/SQL注射" target="_blank">SQL注射</a>漏洞    <br><a href="http://fc.tcl.com/cn/search.aspx?k=1&#39;;select%20*%20from%20sysobjects%20where%20@@version%3E0;--" target="_blank" rel="external">http://fc.tcl.com/cn/search.aspx?k=1&#39;;select%20*%20from%20sysobjects%20where%20@@version%3E0;--</a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02112853813026afea42dbdf0c9e674cf7472fa5.png" target="_blank" rel="external"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="228" alt="clip_image002" src="http://img.cker.in/TCL_D3A7/clip_image002.jpg" width="620" border="0"></a>    <br>测试其它工具均失效，就穿山甲成功了。但是暴数据的时候穿山甲又挂了    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02112948b4e1ef9f8941e48663bf774b01050b60.png" target="_blank" rel="external"><img title="clip_image003" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="328" alt="clip_image003" src="http://img.cker.in/TCL_D3A7/clip_image003.jpg" width="626" border="0"></a>    <br>无所谓，自己搞了试试吧。    <br><a href="http://fc.tcl.com/cn/search.aspx?k=1&#39;;select" target="_blank" rel="external">http://fc.tcl.com/cn/search.aspx?k=1&#39;;select</a> top 1 password from AdminUsers where password&gt;0;–    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/021130570afa58b14a5cb54c4d59f000d8c5ccd3.png" target="_blank" rel="external"><img title="clip_image005" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="162" alt="clip_image005" src="http://img.cker.in/TCL_D3A7/clip_image005.jpg" width="620" border="0"></a>    <br>最后获取到后台的账号密码：Admin/0101。</p><br><a id="more"></a><br><p>后台拿shell：   <br>在可上传附件的地方上传了，然后在前台找文章，就知道附件路径了：    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02113135091ff0399277b70626494aeefc8f813b.png" target="_blank" rel="external"><img title="clip_image006" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="171" alt="clip_image006" src="http://img.cker.in/TCL_D3A7/clip_image006.jpg" width="452" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02113159eec21c2179b6df1bdaaa5768761e7489.png" target="_blank" rel="external"><img title="clip_image008" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="286" alt="clip_image008" src="http://img.cker.in/TCL_D3A7/clip_image008.jpg" width="620" border="0"></a>    <br>Shell到手。找了下sa的密码，然后各种转发啊，抓用户密码啊，就不提了，虽然有3哥。    <br>服务器上也发现了前辈的足迹。    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/021132423c7458ea58a68eade20bfaaf10533f87.png" target="_blank" rel="external"><img title="clip_image009" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="343" alt="clip_image009" src="http://img.cker.in/TCL_D3A7/clip_image009.jpg" width="330" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/021132495f27e9d35efc060bbd9e753e6ebfe341.png" target="_blank" rel="external"><img title="clip_image010" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="256" alt="clip_image010" src="http://img.cker.in/TCL_D3A7/clip_image010.jpg" width="294" border="0"></a>    <br>为了避免“干扰”，删除了几个已经“遗留”的小shell，和对upload文件夹进行了一下限制（其实有sa，这些都是浮云，懒得改sa了）：    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02113306f2c4a6f8d850b02cec98501ccefd50de.png" target="_blank" rel="external"><img title="clip_image011" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="441" alt="clip_image011" src="http://img.cker.in/TCL_D3A7/clip_image011.jpg" width="480" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02113324bb6b27aef4748a59d693c10d5d446441.png" target="_blank" rel="external"><img title="clip_image012" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="75" alt="clip_image012" src="http://img.cker.in/TCL_D3A7/clip_image012.jpg" width="448" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02113336f82bd4027f3c877b6635a5b2936725a0.png" target="_blank" rel="external"><img title="clip_image014" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="86" alt="clip_image014" src="http://img.cker.in/TCL_D3A7/clip_image014.jpg" width="620" border="0"></a>    <br></p>  <p>下面讲进入<a href="http://Ha.Cker.In/tag/内网" target="_blank">内网</a>获取到的信息    <br>先看看和WEB服务器同段内有什么主机，以下是相关信息：    <br>\DATA&#160;&#160;&#160;&#160;&#160;&#160;&#160; 10.0.16.42    <br>\PRINTERS10.0.16.8    <br>\WWW&#160;&#160;&#160;&#160;&#160;&#160;&#160; 10.0.16.10    <br>\公司客户部10.0.16.18    <br>\共享服务器10.0.16.31    <br>\征信系统10.0.16.33    <br>\扫描&#160;&#160;&#160;&#160;&#160;&#160;&#160; 10.0.16.45    <br>\现金管理部10.0.16.12    <br>\计划财务部&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 10.0.16.11    <br>\金融机构部10.0.16.13    <br>\风险管理部&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; HP-1008MFP Server&#160;&#160;&#160;&#160;&#160;&#160;&#160; 10.0.16.15    <br>再扫描了一下：    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/021134464a17297ebe6876b2f7e44de9601d5739.png" target="_blank" rel="external"><img title="clip_image015" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="345" alt="clip_image015" src="http://img.cker.in/TCL_D3A7/clip_image015.jpg" width="505" border="0"></a>    <br>查看下ie的历史记录：    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02113552f65c7102530e313bfcd000d4b32ad8e6.png" target="_blank" rel="external"><img title="clip_image016" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="224" alt="clip_image016" src="http://img.cker.in/TCL_D3A7/clip_image016.jpg" width="437" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02113612c1370067bbbb602ce16b45f439cb970b.png" target="_blank" rel="external"><img title="clip_image017" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="232" alt="clip_image017" src="http://img.cker.in/TCL_D3A7/clip_image017.jpg" width="373" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/021136276841c4dfc506d26f7683eca3cad3805e.png" target="_blank" rel="external"><img title="clip_image019" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="481" alt="clip_image019" src="http://img.cker.in/TCL_D3A7/clip_image019.jpg" width="620" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/0211364569eac5ddda8df72c9f4c464fc7c027f7.png" target="_blank" rel="external"><img title="clip_image020" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="417" alt="clip_image020" src="http://img.cker.in/TCL_D3A7/clip_image020.jpg" width="595" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/021136589fac73416b50ebf93e7f85e5ea96b761.png" target="_blank" rel="external"><img title="clip_image022" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="240" alt="clip_image022" src="http://img.cker.in/TCL_D3A7/clip_image022.jpg" width="620" border="0"></a>    <br>东西还是不少的    <br>10.0.16.31的administrator账户没有密码可以直接做点坏事：    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02113719580a7171705713e87ebc72be599ebc4e.png" target="_blank" rel="external"><img title="clip_image023" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="82" alt="clip_image023" src="http://img.cker.in/TCL_D3A7/clip_image023.jpg" width="595" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02113731f3424259db9d2185565a0e12371d5ac0.png" target="_blank" rel="external"><img title="clip_image025" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="408" alt="clip_image025" src="http://img.cker.in/TCL_D3A7/clip_image025.jpg" width="620" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/0211375757e861bfc1f0ef16a9393280617474f4.png" target="_blank" rel="external"><img title="clip_image027" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="321" alt="clip_image027" src="http://img.cker.in/TCL_D3A7/clip_image027.jpg" width="620" border="0"></a>    <br>开启3389，添加用户，登录成功：    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/0211380950fed1b30a1916c26eb4f698d5e991e5.png" target="_blank" rel="external"><img title="clip_image029" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="330" alt="clip_image029" src="http://img.cker.in/TCL_D3A7/clip_image029.jpg" width="620" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/0211383054d31b7e11c2c6cd24c64e49cac71517.png" target="_blank" rel="external"><img title="clip_image031" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="479" alt="clip_image031" src="http://img.cker.in/TCL_D3A7/clip_image031.jpg" width="620" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/0211384091eebe1fffce7d5e7415c2b3d4a6dc4f.png" target="_blank" rel="external"><img title="clip_image033" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="335" alt="clip_image033" src="http://img.cker.in/TCL_D3A7/clip_image033.jpg" width="620" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/021138556d4aa04af2ced1b29a867678fe6ee787.png" target="_blank" rel="external"><img title="clip_image035" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="321" alt="clip_image035" src="http://img.cker.in/TCL_D3A7/clip_image035.jpg" width="620" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02113920be407e414b3b24c4e24dcd8f1a2cbb9d.png" target="_blank" rel="external"><img title="clip_image037" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="460" alt="clip_image037" src="http://img.cker.in/TCL_D3A7/clip_image037.jpg" width="620" border="0"></a>    <br>10.0.0.65集团财务预警分析系统    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/021139491bc6644b12ce090ac66ec478fa433f94.png" target="_blank" rel="external"><img title="clip_image039" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="337" alt="clip_image039" src="http://img.cker.in/TCL_D3A7/clip_image039.jpg" width="620" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02114009695a5c78137716003c7c9263e0003d2f.png" target="_blank" rel="external"><img title="clip_image041" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="379" alt="clip_image041" src="http://img.cker.in/TCL_D3A7/clip_image041.jpg" width="620" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02114028a9fe041a36237badfa823e619710980c.png" target="_blank" rel="external"><img title="clip_image043" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="511" alt="clip_image043" src="http://img.cker.in/TCL_D3A7/clip_image043.jpg" width="620" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/021140373537e8c66cd4cec4283e3ba1fd23bcf0.png" target="_blank" rel="external"><img title="clip_image045" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="364" alt="clip_image045" src="http://img.cker.in/TCL_D3A7/clip_image045.jpg" width="620" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02115044e1f7b87e68cdd8b8812216dd70065405.png" target="_blank" rel="external"><img title="clip_image046" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="574" alt="clip_image046" src="http://img.cker.in/TCL_D3A7/clip_image046.jpg" width="638" border="0"></a>    <br>报表系统用户名密码相同    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/0211411228e604986c852bb0c86961af6e244af5.png" target="_blank" rel="external"><img title="clip_image048" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="450" alt="clip_image048" src="http://img.cker.in/TCL_D3A7/clip_image048.jpg" width="620" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02114131f30454e701a71c229d03192dde2f72aa.png" target="_blank" rel="external"><img title="clip_image050" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="443" alt="clip_image050" src="http://img.cker.in/TCL_D3A7/clip_image050.jpg" width="620" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02114156347e23669d343b2276b72902eb5d30c7.png" target="_blank" rel="external"><img title="clip_image051" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="250" alt="clip_image051" src="http://img.cker.in/TCL_D3A7/clip_image051.jpg" width="553" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02114206d11ecfa8db7cd8fbdf20ad49629d2140.png" target="_blank" rel="external"><img title="clip_image052" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="108" alt="clip_image052" src="http://img.cker.in/TCL_D3A7/clip_image052.jpg" width="285" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02114215b30a9dc185432158903a5c61a615efe4.png" target="_blank" rel="external"><img title="clip_image053" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="277" alt="clip_image053" src="http://img.cker.in/TCL_D3A7/clip_image053.jpg" width="498" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02114226ce26cac3bcf994e85b7509c9626fa59f.png" target="_blank" rel="external"><img title="clip_image055" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="484" alt="clip_image055" src="http://img.cker.in/TCL_D3A7/clip_image055.jpg" width="620" border="0"></a>    <br>.40这台机器还存在mssql&#160; sa/123456的弱口令,FTP 也存在弱口令。    <br>84为匿名FTP    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/021143067eea8bd4f48395dc8309dc045ddfcc24.png" target="_blank" rel="external"><img title="clip_image056" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="445" alt="clip_image056" src="http://img.cker.in/TCL_D3A7/clip_image056.jpg" width="583" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02114326b6fa4ed3715782ec95e9403603805313.png" target="_blank" rel="external"><img title="clip_image057" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="241" alt="clip_image057" src="http://img.cker.in/TCL_D3A7/clip_image057.jpg" width="526" border="0"></a>    <br>10.92.2.30 mssql Sa/sa    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02114348d62bd022a8e5af5fc5e3da752242d0b3.png" target="_blank" rel="external"><img title="clip_image058" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="398" alt="clip_image058" src="http://img.cker.in/TCL_D3A7/clip_image058.jpg" width="631" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/021144091ce83596d288ada365a442e57b7cf325.png" target="_blank" rel="external"><img title="clip_image060" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="482" alt="clip_image060" src="http://img.cker.in/TCL_D3A7/clip_image060.jpg" width="620" border="0"></a>    <br>域控服务器？不知道干啥用的哦    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/021144287e4cf72b9edac5a2b8d79335d7f7772c.png" target="_blank" rel="external"><img title="clip_image062" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="483" alt="clip_image062" src="http://img.cker.in/TCL_D3A7/clip_image062.jpg" width="620" border="0"></a>    <br>内网的杀毒软件就是摆设一样：    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/021144489eda7629c5d456e6304e9f17a80f2743.png" target="_blank" rel="external"><img title="clip_image064" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="444" alt="clip_image064" src="http://img.cker.in/TCL_D3A7/clip_image064.jpg" width="620" border="0"></a>    <br>10.92.2.7存在mysql的弱口令 root/空密码    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/021145116050d7157c0ce75f531d841717bf2809.png" target="_blank" rel="external"><img title="clip_image065" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="370" alt="clip_image065" src="http://img.cker.in/TCL_D3A7/clip_image065.jpg" width="516" border="0"></a>    <br>10.92.3.70的FTP弱口令：    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02114532f65ded864d3199c741127a3329a3f6a6.png" target="_blank" rel="external"><img title="clip_image066" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="464" alt="clip_image066" src="http://img.cker.in/TCL_D3A7/clip_image066.jpg" width="488" border="0"></a>    <br>10.120.99.x网段：    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/02114555ae1e006b5e869f1bd019c17cd0886df3.png" target="_blank" rel="external"><img title="clip_image068" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="227" alt="clip_image068" src="http://img.cker.in/TCL_D3A7/clip_image068.jpg" width="620" border="0"></a>    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/021146129759bb96712971828bc0459958c83ce4.png" target="_blank" rel="external"><img title="clip_image069" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="247" alt="clip_image069" src="http://img.cker.in/TCL_D3A7/clip_image069.jpg" width="302" border="0"></a>    <br>大部分PUT不了。也做一个提醒。    <br>还有匿名FTP自行发现。    <br>10.92.8.x网段    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/0211464057d600e476a3a45e5a0bc17931adee23.png" target="_blank" rel="external"><img title="clip_image070" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="244" alt="clip_image070" src="http://img.cker.in/TCL_D3A7/clip_image070.jpg" width="524" border="0"></a>    <br>不看了……    <br>另外好多台都是打印机啊……    <br>比如<a href="http://10.0.16.11" target="_blank" rel="external">http://10.0.16.11</a>    <br><a href="http://10.0.16.16" target="_blank" rel="external">http://10.0.16.16</a>    <br><a href="http://10.0.16.21" target="_blank" rel="external">http://10.0.16.21</a> 等。    <br>10.0.16.16存在匿名ftp    <br>10.0.16.18有FTP弱口令Admin/admin    <br>10.0.16.22存在匿名ftp    <br>很多机器都有IPC空会话………………    <br>大概意思就是这样。</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1004.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1004.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1004.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1004.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/1005.seo/">
+        ← 浅谈安全宝等云端WAF的绕过思路
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/1003.seo/">
+        TNTHK小组内部版webshell密码破解解析 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Category: 手机安全 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-11-24T09:06:39.000Z" itemprop="datePublished">
+          2012-11-24
+      </time>
+    
+    
+    | 
+    <a href='/tag/暴力破解/'>暴力破解</a>,
+    
+    <a href='/tag/burpsuit/'>burpsuit</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/945.seo/">Burpsuit暴力破解某运营商手机邮箱密码 已发乌云</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>一篇教新手使用神器Burpsuit的暴力破解的教程，因为是新手入门所以写的尽量详细易懂，我也是菜鸟同学，希望投稿能通过了和大家一起交流。~~好吧，其实我是来搞基的！</p>  <p>找回密码时会给手机发送六位数字验证码，纯数字大家都懂的 可以暴力破解</p>  <p>于是我就祭出神器Burpsuit试试看，一试果然可以暴力破解，没有加任何限制，破出来验证码拿去改密码进邮箱，对于把重要信息存在邮箱上的用户来说密码已经形同虚设了，一点安全性都没有，所以说危害还是很严重的。</p>  <p>由于是拿自己的手机测试的，所以验证码是24<em>**</em>，我直接用240000-250000的字典跑了下，成功了后又用000000-999999的字典跑，两次测试证明漏洞确实存在。</p>  <p>详细过程：</p>  <p>找回密码页面</p>  <p>来到mail.wo.com.cn找回密码，打开Burpsuit设置好代理并OFF截包</p>  <p><a href="http://img.cker.in/Burpsuit_E96/clip_image002.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Burpsuit_E96/clip_image002_thumb.jpg" width="596" height="490" /></a></p>  <p>输入一个简单的新密码，短信验证码随便填，我这里填123456，提示验证码错误，然后来到神器的history看刚才的POST请求包</p>  <p><a href="http://img.cker.in/Burpsuit_E96/clip_image004.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/Burpsuit_E96/clip_image004_thumb.jpg" width="596" height="614" /></a></p>  <p>嗯，就是这个包，序号是4611</p>  <p>我们选中，然后点send intruder发送到爆破</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/945.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-11-17T03:39:40.000Z" itemprop="datePublished">
+          2012-11-17
+      </time>
+    
+    
+    | 
+    <a href='/tag/XSS漏洞/'>XSS漏洞</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/937.seo/">汽车之家Andriod客户端反馈意见XSS漏洞</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><b><u>风萧萧</u></b><b><u>@wooyun.org</u></b></p>  <p>简要描述：</p>  <p>汽车之家Andriod客户端反馈意见<a href="http://ha.cker.in/tag/XSS漏洞" target="_blank">XSS漏洞</a>    <br />杀进了汽车之家反馈后台，对一大群数据无爱    <br />亲，cookies里的_Admin是什么东西？    <br />盲打的，居然汽车之家还不是厂商~~    <br />中秋节/国庆节快乐！</p>  <p>详细说明：</p>  <p>1.下载汽车之家android的手机客户端，本人苦逼屌丝党，木有钱买车看看总行的！</p>  <p><a href="http://img.cker.in/AndriodXSS_1144F/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/AndriodXSS_1144F/clip_image001_thumb.jpg" width="500" height="820" /></a></p>  <p>2.点击【更多】-&gt;【意见反馈】，可插入XSS代码，进行后台feedback盲打！</p>  <p><a href="http://img.cker.in/AndriodXSS_1144F/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/AndriodXSS_1144F/clip_image002_thumb.jpg" width="500" height="820" /></a></p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/937.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-11-09T01:17:23.000Z" itemprop="datePublished">
+          2012-11-09
+      </time>
+    
+    
+    | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/Android/'>Android</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/929.seo/">对Android最新fakesms漏洞的分析</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>近期<a href="http://ha.cker.in/tag/Android" target="_blank">Android</a>爆出SMS smishing vuln, 首先来源于<a href="http://www.csc.ncsu.edu/faculty/jiang/smishing.html">http://www.csc.ncsu.edu/faculty/jiang/smishing.html</a>， 然后<a href="https://github.com/thomascannon/android-sms-spoof">github上给出了poc</a>,具体来说是任意一个app在没有write_sms权限下可以伪造任意发件人的任意短信。</p>  <p>影响平台可上至Android 1.6下至4.1。由于很多以android2.3为主的手机已经不能再升级，此漏洞的危害不可小视。一个攻击场景是malicious app首先向ISP发送一条申请业务的短信，然后伪造ISP发送一条用户需要确认的短信。当用户确认时就中招了。</p>  <p>两张截图：</p>  <p><a href="http://blog.flanker017.me/wp-content/uploads/2012/11/device-2012-11-08-020802.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Androidfakesms_F312/clip_image002.png" width="244" height="420" /> </a><a href="http://blog.flanker017.me/wp-content/uploads/2012/11/device-2012-11-08-020818.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/Androidfakesms_F312/clip_image004.png" width="244" height="420" /></a></p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/929.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-04-13T09:18:19.000Z" itemprop="datePublished">
+          2012-04-13
+      </time>
+    
+    
+    | 
+    <a href='/tag/N900/'>N900</a>,
+    
+    <a href='/tag/WEP/'>WEP</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/381.seo/">N900 crack WEP</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>0x1：工具： <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.基于linux <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.网卡支持注入 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.有X terminal <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4.已经安装aircrack-ng <p>0x2：破解目标 <p><a href="http://img.cker.in/N900crackWEP_DD/image.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/N900crackWEP_DD/image_thumb.png" width="244" height="148"></a></p> <p>0x3： <p>ifconfig wlan0 down <p>iwconfig wlan0 mode monitor <p><a href="http://img.cker.in/N900crackWEP_DD/clip_image001.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/N900crackWEP_DD/clip_image001_thumb.png" width="244" height="148"></a><br>0x4：macchanger –mac 00:11:22:33:44:55 wlan0 <p>&nbsp;&nbsp;&nbsp;&nbsp; ifconfig wlan0 up <p>用macchanger工具改Mac地址，防止被别人发现和方便输入 一举两得。（N900默认没有macchanger工具 要自己下载安装 你可以再源里下载或者手动下载）</p><a href="http://img.cker.in/N900crackWEP_DD/image_3.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/N900crackWEP_DD/image_thumb_3.png" width="244" height="148"></a>  <p></p> <p></p> <p></p> <p>0x5： airodump-ng wlan0 抓包 <p><a href="http://img.cker.in/N900crackWEP_DD/clip_image0014.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001[4]" border="0" alt="clip_image001[4]" src="http://img.cker.in/N900crackWEP_DD/clip_image0014_thumb.png" width="244" height="148"></a></p>
+      
+      </p>
+      
+      <p>
+          <a href="/381.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2011-12-23T21:28:26.000Z" itemprop="datePublished">
+          2011-12-24
+      </time>
+    
+    
+    | 
+    <a href='/tag/dpkg/'>dpkg</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/251.seo/">用dpkg安装提示以下错误用dpkg安装提示以下错误，怎么解决啊？ dpkg status database area is locked by another process</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        用dpkg安装提示以下错误，怎么解决啊？  dpkg:status database area is locked by another process  数据库被占用   你把程序管理器关了    直接X掉可能还会在后台运行    root    killall apt-worker    再dpkg –i  。。~
+      
+      </p>
+      
+      <p>
+          <a href="/251.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    <a class="newer-posts" href="/category/手机安全/">← Newer Posts</a>
+    <span class="page-number">Page 2 of 2</span>
+    
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

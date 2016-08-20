@@ -45,29 +45,31 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-21T10:16:39.000Z" itemprop="datePublished">
-          2012-06-21
+      <time datetime="2012-09-20T23:35:56.000Z" itemprop="datePublished">
+          2012-09-21
       </time>
     
     
     | 
-    <a href='/tag/入侵/'>入侵</a>,
+    <a href='/tag/渗透/'>渗透</a>,
     
-    <a href='/tag/中央民族大学/'>中央民族大学</a>
+    <a href='/tag/php/'>php</a>,
+    
+    <a href='/tag/手工注入/'>手工注入</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/551.seo/">入侵中央民族大学主站服务器</a></h2>
+      <h2 class="post-title"><a href="/836.seo/">和我一起进行php渗透</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>作者：晓华[岁月联盟]</p>  <p>此文谨献给我亲爱的爸爸妈妈和热情的黑手读者！</p>  <p>来到大学快二个月了，感觉很好，认识了很多朋友，在这里结识了我的好兄弟夜枫。我学的是信息安全专业，感觉国内对这块投入很少，再加上有些网络系统管理员的安全意识比较低，总是认为我安装了最厉害的杀毒软件和严密的防火墙，并且把它们升级到最新版本，天天自动升级病毒库。恶意攻击可以避免，其实不是这样的。网络技术飞速的发展，网络安全技术和黑客攻击技术也在同步的发展，都是相互推动的，在做好了完整的安全防护外，我们还需要对系统的关键部分进行模拟的入侵测试，以找出系统存在的安全隐患并加以修复。人的意识最重要，别总是把希望寄托与强悍的杀毒软件和坚固的防火墙。</p>  <p>下面我将给新手朋友介绍下MYSQL5+PHP环境下的入侵技术。目标就拿中央民族大学主站作为入侵演示，之前朋友叫我检测下该站安全。现在用PHP做站的越来越多，PHP运行效率高，消耗系统资源比较低。再加上MYSQL是免费的数据库。PHP+MYSQL组合是黄金搭档，它们的安全问题也尤为重要。下面就简单介绍下基本入侵思路和MYSQL5注射的技巧。</p>  <p>既然是安全检测，肯定要用到网络安全扫描器进行系统信息收集。通过PING命令很轻松的得到该站IP地址，扫描软件我就用尖刀端口扫描器，速度快的它可以提高我们的入侵效率。扫描结果如下图1：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/663349f87027_1FC5/clip_image002.jpg" width="686" height="381" /></p>  <p>目标机器只对外开放了三个端口。溢出漏洞就别想了，这里就只留给我们二个端口可以突破，暴力破解终端密码？貌似我还没见人那样做哈。我们还是选择直接从80端口渗透进去吧！不知道目标站点的脚本程序安全怎么样。打开主站，是PHP的页面。后台数据库很可能是MYSQL，主机限制了3306端口对外开放，管理员对敏感端口的基本安全意识还是有的嘛！</p>
+        <p>作者:Maxil   <br />已经发表在黑客手册2008年第三期</p>  <p>最近一直比较关注<a href="http://ha.cker.in/tag/PHP" target="_blank">PHP</a>注射的东西.学习好几天了.也应该实战一下了.目标<a href="http://app.xxxx.com">http://app.xxxx.com</a> .一个市场调查的门户.找注射点嘛,还是要用我们可爱的搜索引擎.为什么可爱呢?一会就知道了.Go Go Go !!!!!</p>  <p>在google中搜索php?id= site:xxx.com.意思就是说搜索XXX网站中以php?id=的URL.嘿.还真让我找到一个. <a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> .打开吓我一条，它页面本身就存在错误直接出来了绝对路径.   <br /><a href="http://img.cker.in/php_DA62/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/php_DA62/clip_image001_thumb.jpg" width="1086" height="498" /></a></p>  <p>/data01/www/cati/article_literature.php 呵呵,人品爆发了..通过路径可以得知是台Linux主机.判断下是否可以进行注射.and 1=1返回正常,and 1=2返回错误..OK存在注射.然后我们判断数据库,不出意外应该是mysql.传说中的LMAP.环境(L=Linux M=Mysql A=Apache P=Php)   <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11/*">http://app.xxx.com/cati/article_literature.php?id=11/*</a> 在后面加上/<em>,返回正常则是Mysql.因为/</em>是Mysql的注释标记.</p>  <p><a href="http://img.cker.in/php_DA62/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/php_DA62/clip_image002_thumb.jpg" width="1086" height="498" /></a></p>  <p>返回正常,确定是Mysql的数据库.现在我们来检测下Mysql的版本.4.0以上支持union联合查询.一般都回是4.0已经.为什么.因为Mysql是开源的数据库不收费傻子才不更新呢.呵呵.   <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> and ord(mid(version(),1,1))&gt;51/<em> 如我所料.果然是4.0以上的.OK.我们来爆它的字段.    <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> order by 10</p>  <p><a href="http://img.cker.in/php_DA62/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/php_DA62/clip_image003_thumb.jpg" width="749" height="508" /></a></p>  <p>返回错误,说明字段小于10   <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> order by 9</p>  <p><a href="http://img.cker.in/php_DA62/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/php_DA62/clip_image004_thumb.jpg" width="1030" height="548" /></a></p>  <p>返回正常说明它有9个字段.OK.现在我们知道它的字段那我们就来爆它的管理员吧 呵呵.   <br /><a href="http://app.xxx.com/cati/article_literature.php?id=11">http://app.xxx.com/cati/article_literature.php?id=11</a> and 1=2 union select 1,2,3,4,5,6,7,8,9</p>  <p><a href="http://img.cker.in/php_DA62/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/php_DA62/clip_image005_thumb.jpg" width="848" height="337" /></a></p>  <p></p>
       
       </p>
       
       <p>
-          <a href="/551.seo/" class="excerpt-link">Read More...</a>
+          <a href="/836.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -76,31 +78,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-20T12:33:41.000Z" itemprop="datePublished">
-          2012-06-20
+      <time datetime="2012-09-16T05:56:40.000Z" itemprop="datePublished">
+          2012-09-16
       </time>
     
     
     | 
-    <a href='/tag/iis解析漏洞/'>iis解析漏洞</a>,
-    
-    <a href='/tag/PowerEasy/'>PowerEasy</a>,
-    
-    <a href='/tag/动易/'>动易</a>
+    <a href='/tag/渗透/'>渗透</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/544.seo/">动易net版本后台拿shell</a></h2>
+      <h2 class="post-title"><a href="/831.seo/">对王心凌的一次渗透过程</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        根据我的最近的制作网站！发现动易的net开发的源码！那个模板里面可以直接上传iis解析漏洞的木马！未做任何的过滤！   比如我们传到博客模板！    传完的木马位置在    Template\xx政府模板方案\博客模板\木马.asp;l.html    似乎所有的这些net开发的！    系统设置》模板标签管理》模板管理    大家可以去尝试下！呵呵！文章稍微有点水！但是重点说出来了！    
+        <p>From:www.3est.com&#160; <br />Author:Mars&#160; <br />前几天,听说Cyndi出新专辑了,哥好激动啊..听了几天Music.突然萌发了个思想！想了解更多的有关于她的资料.下面一出好戏即将上演！</p>  <p>总共有三个步骤 ：1.先分析 2.再踩点 3.最后渗透</p>  <p>拿到一个目标要先学会分析,首先Cyndi是位明星,所以利用搜索引擎是不可能搜索到什么有价值的信息.&#160; <br />一般明星在网络上都有自己的Fans基地,好吧.目标已经确定了！    <br />通过百度搜索到一个她留言过的Fans基地<a href="http://www.cyndifans.net/">www.CyndiFans.net</a>    <br />既然目标确定了,该执行第二步了.去ip.3est.com 反查询一下它所在的服务器上还有其他站点没！查询结果如下:&#160; <br /><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image001_thumb.jpg" width="449" height="259" /></a></p>  <p>大概看了下,基本都采用Dz7.0+Uchome+SiteSuper7.5 组合!&#160; <br />手里又没0day.所以没抱有太大希望.只好采用ARP方式来看看能获得什么有价值的信息,首先得先获得C段一台服务器权限,&#160; <br />拿出平时常用的Hscan 来扫描一下有C段没有Ftp弱口令.&#160; <br />悲剧了！竟然一个没扫出来.接着用IIS利用工具扫描下C段.记录装有IIS6.0的服务器IP&#160; <br />因为他的IP是xx.xx.xx.154 大多数情况是1或者129作为网关，叫前C段和后C段,154距离129比较,所以目标放在129-255之间！    <br />然后进入cn.bing.com输入ip:xx.xx.xx.xx 搜索下后C段装有IIS6.0的服务器IP 看看有什么站.一般各类型网站多的的就是虚拟主机,排除掉这些,&#160; <br />就剩下2台主机了..汗 真郁闷..那么集中精力看看其中一台xx人才网,wwwscan扫描下没扫描到有价值东西,进入网站转悠了半天,&#160; <br />在他的分站点了个图片属性,路径是ewe我猜想了下应该是Ewebeditor这个编辑器，输入ewe/admin/admin_login.asp 发现后台被删了,&#160; <br />数据库是默认的先下载下来看看有没有被人搞过,结果失望了.运气不怎么好..先休息下再搞了..去群里聊了会天    <br />过几个小时,来了精神.继续在它的网站转悠,我觉得问题最多的还是上传的地方,就注册了个会员.进入管理中心没有发现什么上传的位置,&#160; <br />接着又注册了个企业会员.发现了个上传企业照片的地方.把小马改成1.asp;.jpg格式结果上传成功了.没提示路径.用抓包工具看一下.&#160; <br />总算见到可爱的小马..拿到webshell之后,开始提权,结果那破服务器慢的要死.开个高速VPN,速度果然提升了.随便看了下感觉提权无望.&#160; <br />.基本组建都被卸载了.目录还不能查看.有SU不过是9.1版本没溢出漏洞.唉 权限配置的很死.看来管理员挺懂安全啊.看了下配置文件最后发现个sa,&#160; <br />哈哈 激动死了!直接加系统用户拿到服务器权限.然后更变态的事情发生了.进去看任务管理器竟然CPU100%总共运行72个进程..&#160; <br />我的天啊…这么破烂的服务器一ARP不就挂掉了.我一个一个把没用的进程结束掉.到30个进程了.在结束服务器就挂了.&#160; <br />然后打开我的电脑管理想看看这服务器是什么高级配置.结果点了属性Shell32.dl被禁,进C盘弹出拒绝访问..打开网页不让下载东西..&#160; <br />一系列的问题皆然发生！终于把Cain放到服务器了.还好不出我所预料.这个服务器网关是129. 哈哈只能扫到后C段的服务器Mac .&#160; <br />然后开始ARP 154这个主机,嗅探开始了.他服务器装有ARP防火墙软件把发送的数据给拦截了..&#160; <br />这时候想起玫瑰的ARP突破方法,结果试验了下没成功,后来配合幻境网盾用了下.成功欺骗突破防火墙.终于嗅探到数据了,&#160; <br />挺高兴的.结果5秒钟都没,Cain卡爆了！服务器挂了10分钟我才登录上.发现嗅探到的3万多个Http信息竟然都是盛大传奇的,&#160; <br />我纳闷了会,地址确实是盛大的!&#160; <br /><a href="http://img.cker.in/8de43b4b81c0_133BA/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/8de43b4b81c0_133BA/clip_image002_thumb.jpg" width="535" height="251" /></a></p>
       
       </p>
       
       <p>
-          <a href="/544.seo/" class="excerpt-link">Read More...</a>
+          <a href="/831.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -109,120 +107,118 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-20T12:17:35.000Z" itemprop="datePublished">
-          2012-06-20
+      <time datetime="2012-09-13T06:33:38.000Z" itemprop="datePublished">
+          2012-09-13
+      </time>
+    
+    
+    | 
+    <a href='/tag/检测/'>检测</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/825.seo/">友情检测-www.zhaoym.com-详细过程</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>作者：『&quot;Change_Era&quot;』</p>  <p>Q Q： 445452791</p>  <p>今天闲着蛋疼,突然想开个卖源码的站来赚大洋,可惜自己不会玩PHP于是乎,看到个漂亮的站(以下简称:目标站),于是邪恶的我,开始动手,打开<a href="http://www.zhaoym.com/admin">www.zhaoym.com/admin</a> 看了一下是ecshop系统,</p>  <p><a href="http://img.cker.in/www.zhaoym.com_13C36/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/www.zhaoym.com_13C36/clip_image002_thumb.jpg" width="573" height="296" /></a>本人小菜木有此系统0day,于是乎,旁站去看看,发现旁站多多。。。。</p>  <p><a href="http://img.cker.in/www.zhaoym.com_13C36/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/www.zhaoym.com_13C36/clip_image004_thumb.jpg" width="574" height="342" /></a></p>  <p>看<a href="http://www.hfinvestment.com">www.hfinvestment.com</a> 这个域名不顺眼,于是直接检测它吧,</p>  <p>发现FCK编辑器, <a href="http://www.hfinvestment.com/fckeditor/_samples/default.html">http://www.hfinvestment.com/fckeditor/_samples/default.html</a></p>  <p>选择插入图像,</p>  <p><a href="http://img.cker.in/www.zhaoym.com_13C36/clip_image006.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/www.zhaoym.com_13C36/clip_image006_thumb.jpg" width="573" height="332" /></a></p>
+      
+      </p>
+      
+      <p>
+          <a href="/825.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-09-03T09:14:46.000Z" itemprop="datePublished">
+          2012-09-03
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>,
+    
+    <a href='/tag/漏洞/'>漏洞</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/804.seo/">某官网的渗透笔记</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        原文：http://26836659.blogcn.com/articles/%E6%9F%90%E5%AE%98%E7%BD%91%E7%9A%84%E6%B8%97%E9%80%8F%E7%AC%94%E8%AE%B0.html某官网的渗透笔记，挖掘的某0DAY拿到webshell，USER权限，联通外网，提权SYSTEM的EXP无效，看来打的补丁很全，服务器用的是微软FTP,MSSQL，没啥突破口。路过其他盘，发现一个小有年份的B
+      
+      </p>
+      
+      <p>
+          <a href="/804.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-09-03T09:00:39.000Z" itemprop="datePublished">
+          2012-09-03
+      </time>
+    
+    
+    | 
+    <a href='/tag/检测/'>检测</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/799.seo/">授权友情检测51cto</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        应51cto公司人员邀请   本小组shell2me对51cto.com整站进行一个黑盒安全测试    只进行友情检测，不对51cto旗下任何网站进行破坏性行为    51cto将提供其公司纪念奖品，以及感谢信，作为发现漏洞奖励    启动时间为2011年12月23日 21：30   shell2me参与友情检测人员名单(排名不分先后)：     Jesus     Jacks     神刀     星轨     Mix、小拽     
+      
+      </p>
+      
+      <p>
+          <a href="/799.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-09-03T08:59:18.000Z" itemprop="datePublished">
+          2012-09-03
       </time>
     
     
     | 
     <a href='/tag/漏洞/'>漏洞</a>,
     
-    <a href='/tag/DJ/'>DJ</a>
+    <a href='/tag/注入/'>注入</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/541.seo/">一种DJ站的漏洞</a></h2>
+      <h2 class="post-title"><a href="/797.seo/">从分析代码学习挖掘漏洞人民网实例</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>哈客首发 <a href="http://www.hake.cc">www.hake.cc</a>    <br />转载注明 哈客部落    <br />目标站 <a href="http://www.xufandj.com/">http://www.xufandj.com/</a>    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/DJ_3C06/clip_image002.jpg" width="604" height="374" />    <br />默认数据库地址    <br />/data/#Ylmv_Data.asa    <br />/data/#Ylmv_Data1.asa    <br />/data/#Ylmv_Data.mdb    <br />/data/#Ylmv_Data1.mdb    <br />下载到数据库之后 我们来找下管理帐号和密码</p>
+        <p><a href="http://bbs.blackbap.org/forum.php?mod=viewthread&amp;tid=2537&amp;fromuid=4372">http://bbs.blackbap.org/forum.php?mod=viewthread&amp;tid=2537</a></p>  <p>作者注：   <br />近日看到论坛上有人发了个“全能大牛”的文章，颇有感慨。其实所谓的“全能”，是来自对基础知识的扎实根基。本文虽谈不上“全能”，也并非什么大做，仅为证明只要根基扎实，你也可以“全能”渗透。    <br />本文特意选用人民网(people.com.cn)中的某一服务器上Web站点作为讲解实例，详细讲述如何根据一个小漏洞逐步分析，扩大范围完成进一步渗透的。    <br />本文仅供研究和学习，不得用于非法用途，否则后果自负。    <br />出于隐私保护的目的，文章所有截图和url经过处理。    <br />本文版权所有，转载请注明出处：Silic Group Hacker Army [BlackBap.Org]    <br />作者：YoCo Smart    <br />来自：Silic Group    <br />站点：<a href="http://blackbap.org/">Http://blackbap.org</a>    <br />相信很多人已经厌倦了这个网络里弥漫的注入，弱口令，万能密码。那么有没有遇到过注入找不到后台，数据库为root或者sa账户却无法写入webshell，得到了后台却拿不到webshell，拿到了webshell却无法提权？？？？？    <br />本文所阐述的例子是：    <br />一台Linux服务器是用了Apache 2.2.10架设了php的网站，数据库为MySQL，网站使用了root账户，但是网站没有后台，也没有phpMyAdmin，服务器中存在一个注入点。因为gpc为on，所以无法写入webshell，但是可以读取服务器上一些已知路径的文件。    <br />那么我们就通过本文来讲一下，如何通过这个注入点，进行下一步渗透的。    <br />我们先来简单描述一下注入点(如果不懂php+MySQL的注入，请参见《<a href="http://bbs.blackbap.org/thread-2433-1-1.html">各色SQL注入文章汇总</a>》)    <br />注入点：</p>  <p><em>.people.com.cn/vote.php?id=3</p>  <p>这个注入点根据存在的文件名就知道，应该是一个投票页面，因为union只有一个字段，所以直接</p>  <p></em>.people.com.cn/vote.php?id=3+union+select+load_file(0x2f6574632f706173737764)+from+mysql.user</p>  <p>就能读到文件了。根据错误回显，得到网站路径为/usr/www。因为gpc设置on，所以</p>  <p>union select 一句话的hex into outfile ‘/usr/www/可写目录/webshell.php’</p>  <p>这样是得不到webshell的，查到MySQL.user中设置的host为%，但是这台服务器对外网实际并未开放3306端口，也无法外联。   <br />那么思路是什么呢？    <br />我们来试着读取网站文件的源码来查找一些其他的漏洞。    <br /></p>
       
       </p>
       
       <p>
-          <a href="/541.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-20T12:09:25.000Z" itemprop="datePublished">
-          2012-06-20
-      </time>
-    
-    
-    | 
-    <a href='/tag/监控拦截系统/'>监控拦截系统</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/536.seo/">顶着监控拦截系统渗透某县信息网站</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        话说某日虐天兄扔一个网站过来说要我和谐下、我打开一看、晕 信息网站 、不是CMS    随便看了一下、这个网站貌似有监控拦截系统       这种监控拦截系统最恶劣了、啥都拦截、什么一句话木马 大马小马通吃 BT的很    无奈用google看看吧？应该是个注入     屁颠屁颠的打开了 试一下能注入不？悲剧！拦截了    依然google 找找后台吧      intext:管理员 intext:密码 等等也是一样、有的是出来一堆没有
-      
-      </p>
-      
-      <p>
-          <a href="/536.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-14T04:41:27.000Z" itemprop="datePublished">
-          2012-06-14
-      </time>
-    
-    
-    | 
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/snmp/'>snmp</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/522.seo/">snmp弱口令在一次常规入侵中的应用</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>常常见到论坛里面或qq里面有人问snmp的若口令怎么利用，其实网上已经有了一些关于snmp弱口令的介绍，无奈的是，我还没有看到谁做过教程，刚好这次入侵过程中snmp弱口令给了我很大的启发，于是就把他写了下来，希望给大家一些启发。</p>  <p>最近看到某个主页做得很烂，似乎很长时间没有做过维护了，不巧他的网速很快，于是我有了把他做成肉鸡的念头。首先当然是刺探信息了，开了x-scan,扫了一会儿，结果出来了：</p>  <p>主机地址</p>  <p>端口/服务</p>  <p>服务漏洞</p>  <p>202.<em>.</em>.<em> ftp (21/tcp) 发现安全提示</p>  <p>202.</em>.<em>.</em> telnet (23/tcp) 发现安全提示</p>  <p>202.<em>.</em>.<em> unknown (1080/tcp) 发现安全提示</p>  <p>202.</em>.<em>.</em> www (80/tcp) 发现安全漏洞</p>  <p>202.<em>.</em>.<em> unknown (3389/tcp) 发现安全提示</p>  <p>202.</em>.<em>.</em> snmp (161/udp) 发现安全漏洞</p>  <p>漏洞 snmp (161/udp) Snmp口令: &quot;public&quot;</p>
-      
-      </p>
-      
-      <p>
-          <a href="/522.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-13T09:06:02.000Z" itemprop="datePublished">
-          2012-06-13
-      </time>
-    
-    
-    | 
-    <a href='/tag/oracle注入/'>oracle注入</a>,
-    
-    <a href='/tag/渗透实例/'>渗透实例</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/516.seo/">对著名快递公司的一次艰难的oracle注入</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>作者：rebeyond</p>  <p>● 轻车熟路    <br />一个对新飞鸿有意见的亲密朋友找我说能不能把这个公司的网站给搞了，我一听公司，心想，企业站都是垃圾，好搞，便痛快答应（人品真好！），呵呵，但是后来才发现没我想像的那么简单。站面如图</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/oracle_F4A/image.png" width="314" height="366" /> </p>
-      
-      </p>
-      
-      <p>
-          <a href="/516.seo/" class="excerpt-link">Read More...</a>
+          <a href="/797.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -230,7 +226,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/category/渗透测试/page/7/">← Newer Posts</a>
-    <span class="page-number">Page 8 of 11</span>
+    <span class="page-number">Page 8 of 16</span>
     <a class="older-posts" href="/category/渗透测试/page/9/">Older Posts →</a>
   </nav>
 </main>

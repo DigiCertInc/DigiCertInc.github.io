@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>自制分布式漏洞扫描工具 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2014-10-22T00:46:49.000Z" itemprop="datePublished">
+          2014-10-22
+      </time>
+    
+    
+    | 
+    <a href='/tag/burpsuite/'>burpsuite</a>
+    
+    
+</span>
+    <h1 class="post-title">自制分布式漏洞扫描工具</h1>
+    <section class="post-content">
+      <p><b>1.</b><b>前言</b></p>  <p>在渗透测试和安全扫描工作中，发现越来越多站点部署了应用防护系统或异常流量监控系统，其中包括：WEB应用防火墙（软件WAF、硬件WAF、云WAF）、入侵检测系统、入侵防御系统、访问监控系统等。很多防护系统不仅可实时检测攻击和拦截，并且具备自动阻断功能。当系统检测到某些IP在特定时间段内产生大量攻击行为时会开启阻断功能，阻断该IP在一定时间内的任何访问。</p>  <p>常见应用防护系统和异常流量监控系统的阻断策略主要有以下几种：</p>  <p>- 单IP访问频率</p>  <p>- 单IP+URL访问频率</p>  <p>- 单IP+COOKIE特定时间段内攻击次数</p>  <p>- 单IP造成可疑或攻击行为频率</p>  <p>- 单IP特定时间段内触发HTTP404状态次数</p>  <p>- 识别扫描器暴力扫描行为（扫描器指纹）</p>  <p><b>2.&#160; </b><b>分布式漏洞扫描</b></p>  <p><b>2.1</b><b>分布式漏洞扫描基本思路</b></p>  <p>通过自开发的“代理分发程序”，将扫描器发送的大量测试请求以自轮询的方式分发给成千上万台HTTP代理服务器或webshell http proxy。通过该方法把扫描器的大量测试请求平均负载到多台中间代理服务器上，这样防护系统通过判断访问频率和攻击频率的方式都无法触发阻断策略，可达到自动化扫描的目的。同时，通过在中间加一层BURP的过滤，可将各个扫描器的特殊指纹擦除，防护系统更加难以判断攻击行为。</p>  <p>分布式漏洞扫描的整体框架图如下：</p>  <p><a href="http://img.cker.in/e630dbc0d03f_121A/clip_image0011.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001[1]" border="0" alt="clip_image001[1]" src="http://img.cker.in/e630dbc0d03f_121A/clip_image0011_thumb.jpg" width="694" height="406"></a></p>  <p><b>2.2</b><b>常见扫描器及漏洞检测工具</b></p>  <p>漏洞扫描器根据功能和特点分为多种类型，主要总结为以下几类：</p>  <p><b>#</b><b>全能应用漏洞扫描器</b></p>  <p>- AcunetixWeb Vulnerability Scanner</p>  <p>- IBMAppscan</p>  <p>- HPWebInspect</p>  <p>- Netsparker</p>  <p>- Nussus</p>  <p>- W3af</p>  <p>- <a href="http://ha.cker.in/tag/BurpSuite" target="_blank">BurpSuite</a></p>  <p>- N-Stalker</p>  <p>等</p>  <p><b>#</b><b>特定漏洞工具</b></p>  <p>- Sqlmap</p>  <p>- Havij</p>  <p>- Pangolin</p>  <p>- Safe3</p>  <p>等</p>  <p><b>#</b><b>目录猜解工具</b></p>  <p>- DirBuster</p>  <p>- wwwscan</p>  <p>- wscan</p>  <p>等</p>  <p><b>2.3</b><b>扫描器指纹擦除</b></p>  <p>利用BURP擦除漏洞扫描器指纹</p>  <p>利用BURP的请求修订功能可将数据流中的扫描器指纹信息进行擦除，排除明显的扫描行为特征。</p>  <p>开启Burp，进入“Proxy——&gt;Options”中的“Match and Replace”功能将扫描器指纹信息消除，扫描器指纹信息大多包含Http头部字段、http参数值、COOKIE特殊参数等如下图：</p>  <p><a href="http://img.cker.in/e630dbc0d03f_121A/clip_image002.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/e630dbc0d03f_121A/clip_image002_thumb.jpg" width="694" height="187"></a></p>  <p><a href="http://img.cker.in/e630dbc0d03f_121A/clip_image0021.jpg" rel="external" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002[1]" border="0" alt="clip_image002[1]" src="http://img.cker.in/e630dbc0d03f_121A/clip_image0021_thumb.jpg" width="694" height="187"></a></p>  <p>以下总结部分常见应用漏洞扫描器的指纹：</p>  <p><b>AcunetixWeb Vulnerability Scanner</b><b>指纹特征</b></p>  <p><b>特征一：</b></p>  <p>请求的HTTP头部字段包含以下几种自定义字段名：</p>  <p>Acunetix-Aspect</p>  <p>Acunetix-Aspect-Password</p>  <p>Acunetix-Aspect-Queries</p>  <p><b>特征二：</b></p>  <p>请求的参数值中包含字符串特征：</p>  <p>acunetix_wvs_security_test</p>  <p><b>特征三：</b></p>  <p>请求的URI地址包含字符串特征：</p>  <p>/acunetix-wvs-test-for-some-inexistent-file</p>  <p><b>特征四：</b></p>  <p>请求的COOKIE参数名包含字符串特征：</p>  <p>acunetixCookie</p>  <p><b>HPWebInspect</b><b>指纹特征</b></p>  <p><b>特征一：</b></p>  <p>请求的HTTP头部字段包含以下几种自定义字段名：</p>  <p>X-WIPP</p>  <p>X-RequestManager-Memo</p>  <p>X-Request-Memo</p>  <p>X-Scan-Memo</p>  <p><b>特征二：</b></p>  <p>请求COOKIE参数名包含特征：</p>  <p>CustomCookie</p>  <p><b>Netsparker</b><b>指纹特征</b></p>  <p><b>特征一：</b></p>  <p>请求中的参数值包含字符串：</p>  <p>netsparker</p>  <p><b>2.4HTTP</b><b>代理分发程序</b></p>  <p>HTTP代理分发程序用于将来自漏洞扫描器的大量测试请求和流量平均的引流到多个代理IP地址或者webshell的代理IP，通过将大量的扫描流量分散到大量代理IP上，可规避防护及监控系统的阻断策略，从而顺利实施扫描测试。</p>  <p>抓取大量代理服务器IP地址，并提取出针对目标站点可访问的代理地址形成“有效代理列表”。分发程序从“有效代理列表”中依次提取代理地址，每发送一个测试请求即切换代理IP，并进行轮询分发。</p>  <p><b>3.&#160; </b><b>总结</b></p>  <p>利用大量的开放匿名代理IP可实现很多功能，突破各种基于统计的防护设施.例如：</p>  <p>突破撞库防护；</p>  <p>突破暴力破解防护；</p>  <p>突破地址猜解防护；</p>  <p>突破指纹猜解防护；</p>  <p>等等</p>  <p>引用黑防的一句恒久远永流传的话——在攻与防的对立统一中寻求突破。欢迎交流攻防战术。</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1096.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1096.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1096.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1096.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/1098.seo/">
+        ← CRLF Injection漏洞的利用与实例分析
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/1095.seo/">
+        解决：对 PInvoke 函数的调用导致堆栈不对称问题 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

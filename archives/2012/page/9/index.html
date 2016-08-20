@@ -45,29 +45,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-12T17:08:08.000Z" itemprop="datePublished">
-          2012-07-13
+      <time datetime="2012-10-23T18:22:17.000Z" itemprop="datePublished">
+          2012-10-24
       </time>
     
     
     | 
-    <a href='/tag/运维/'>运维</a>,
+    <a href='/tag/渗透/'>渗透</a>,
     
-    <a href='/tag/YouTube/'>YouTube</a>
+    <a href='/tag/嗅探/'>嗅探</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/672.seo/">YouTube架构学习体会</a></h2>
+      <h2 class="post-title"><a href="/910.seo/">Linux下渗透嗅探术</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>这几天一直在关注和学习一些大型网站的架构，希望有一天自己也能设计一个高并发、高容错的系统并能应用在实践上。今天在网上找架构相关的资料时，看到一个被和谐的视频网站YouTube的架构分析，看了以后觉得自己又向架构走近了一步，于是赶快拿出来与大家一起分享。 </p>  <p>YouTube发展迅速，每天超过1亿的视频点击量，但只有很少人在维护站点和确保伸缩性。这点和PlentyOfFish类似，少数人维护庞大系统。是什么原因呢？放心绝对不是靠人品，也不是靠寂寞，下面就来看看YouTube的整体技术架构吧。 </p>  <p>平台    <br />Apache     <br />Python     <br />Linux(SuSe)     <br />MySQL     <br />psyco，一个动态的Python到C的编译器     <br />lighttpd代替Apache做视频查看 </p>  <p>状态 </p>  <p>支持每天超过1亿的视频点击量    <br />成立于2005年2月     <br />于2006年3月达到每天3千万的视频点击量     <br />于2006年7月达到每天1亿的视频点击量     <br />2个系统管理员，2个伸缩性软件架构师     <br />2个软件开发工程师，2个网络工程师，1个DBA </p>  <p>Web服务器 </p>  <p>1，NetScaler用于负载均衡和静态内容缓存    <br />2，使用mod_fast_cgi运行Apache     <br />3，使用一个Python应用服务器来处理请求的路由     <br />4，应用服务器与多个数据库和其他信息源交互来获取数据和格式化html页面     <br />5，一般可以通过添加更多的机器来在Web层提高伸缩性     <br />6，Python的Web层代码通常不是性能瓶颈，大部分时间阻塞在RPC     <br />7，Python允许快速而灵活的开发和部署     <br />8，通常每个页面服务少于100毫秒的时间     <br />9，使用psyco(一个类似于JIT编译器的动态的Python到C的编译器)来优化内部循环     <br />10，对于像加密等密集型CPU活动，使用C扩展     <br />11，对于一些开销昂贵的块使用预先生成并缓存的html     <br />12，数据库里使用行级缓存     <br />13，缓存完整的Python对象     <br />14，有些数据被计算出来并发送给各个程序，所以这些值缓存在本地内存中。这是个使用不当的策略。 </p>  <p>应用服务器里最快的缓存将预先计算的值发送给所有服务器也花不了多少时间。只需弄一个代理来监听更改，预计算，然后发送。 </p>  <p>视频服务 </p>  <p>1，花费包括带宽，硬件和能源消耗    <br />2，每个视频由一个迷你集群来host，每个视频被超过一台机器持有     <br />3，使用一个集群意味着：     <br />&#160;&#160; -更多的硬盘来持有内容意味着更快的速度     <br />&#160;&#160; -failover。如果一台机器出故障了，另外的机器可以继续服务     <br />&#160;&#160; -在线备份     <br />4，使用lighttpd作为Web服务器来提供视频服务：     <br />&#160;&#160; -Apache开销太大     <br />&#160;&#160; -使用epoll来等待多个fds     <br />&#160;&#160; -从单进程配置转变为多进程配置来处理更多的连接     <br />5，大部分流行的内容移到CDN：     <br />&#160; -CDN在多个地方备份内容，这样内容离用户更近的机会就会更高     <br />&#160; -CDN机器经常内存不足，因为内容太流行以致很少有内容进出内存的颠簸     <br />6，不太流行的内容(每天1-20浏览次数)在许多colo站点使用YouTube服务器     <br />&#160; -长尾效应。一个视频可以有多个播放，但是许多视频正在播放。随机硬盘块被访问     <br />&#160; -在这种情况下缓存不会很好，所以花钱在更多的缓存上可能没太大意义。     <br />&#160; -调节RAID控制并注意其他低级问题     <br />&#160; -调节每台机器上的内存，不要太多也不要太少&#160; </p>  <p>视频服务关键点    <br />1，保持简单和廉价     <br />2，保持简单网络路径，在内容和用户间不要有太多设备     <br />3，使用常用硬件，昂贵的硬件很难找到帮助文档     <br />4，使用简单而常见的工具，使用构建在Linux里或之上的大部分工具     <br />5，很好的处理随机查找(SATA，tweaks) </p>  <p>缩略图服务 </p>  <p>1，做到高效令人惊奇的难    <br />2，每个视频大概4张缩略图，所以缩略图比视频多很多     <br />3，缩略图仅仅host在几个机器上     <br />4，持有一些小东西所遇到的问题：     <br />&#160;&#160; -OS级别的大量的硬盘查找和inode和页面缓存问题     <br />&#160;&#160; -单目录文件限制，特别是Ext3，后来移到多分层的结构。内核2.6的最近改进可能让 Ext3允许大目录，但在一个文件系统里存储大量文件不是个好主意     <br />&#160;&#160; -每秒大量的请求，因为Web页面可能在页面上显示60个缩略图     <br />&#160;&#160; -在这种高负载下Apache表现的非常糟糕     <br />&#160;&#160; -在Apache前端使用squid，这种方式工作了一段时间，但是由于负载继续增加而以失败告终。它让每秒300个请求变为20个     <br />&#160;&#160; -尝试使用lighttpd但是由于使用单线程它陷于困境。遇到多进程的问题，因为它们各自保持自己单独的缓存     <br />&#160;&#160; -如此多的图片以致一台新机器只能接管24小时     <br />&#160;&#160; -重启机器需要6-10小时来缓存     <br />5，为了解决所有这些问题YouTube开始使用Google的BigTable，一个分布式数据存储：     <br />&#160;&#160; -避免小文件问题，因为它将文件收集到一起     <br />&#160;&#160; -快，错误容忍     <br />&#160;&#160; -更低的延迟，因为它使用分布式多级缓存，该缓存与多个不同collocation站点工作     <br />&#160;&#160; -更多信息参考Google Architecture，GoogleTalk Architecture和BigTable </p>
+        <p>作者：Beach,饭   <br />此文已发表&lt;黑客防线&gt;转载注明作者    <br />内网渗透在攻击层面，其实更趋向于社工和常规漏洞检测的结合，为了了解网内防护措施的设置是通过一步步的刺探和经验积累，有时判断出错，也能进入误区。但是如果能在网内进行嗅探，则能事半功倍，处于一个对网内设置完全透明的状态。本文将从一个注点引发的突破，到控制整个内网的全过程来跟大家讨论，内网的渗透嗅探术和安全防护一些内容。    <br />在寻找突破时，更多的是从应用服务来，而应用服务最直观的信息采集，就是端口扫描，不同的应用，开放的服务不一样。所以，在对网络进行信息收集时，大概分为这样两步： 端口探测，程序指纹分析。在端口探测方面，个人喜欢用SuperScan来快速对网段里的应用进行判断，如图：    <br /><a href="http://img.cker.in/Linux_8FCF/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Linux_8FCF/clip_image002_thumb.jpg" width="615" height="471" /></a></p>  <p>在掌握端口信息后，就要对服务应用程序的指纹进行分析，主要包括版本号、已知的漏洞信息、常规配置信息、针对此应用流行的攻击方法等。本文试着对网内一台提供WEB服务的主机作为突破口，提交一个畸形的请求，如图：   <br /><a href="http://img.cker.in/Linux_8FCF/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/Linux_8FCF/clip_image004_thumb.jpg" width="478" height="574" /></a></p><br>
       
       </p>
       
       <p>
-          <a href="/672.seo/" class="excerpt-link">Read More...</a>
+          <a href="/910.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -76,27 +76,22 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-08T16:45:39.000Z" itemprop="datePublished">
-          2012-07-09
+      <time datetime="2012-10-22T21:48:53.000Z" itemprop="datePublished">
+          2012-10-23
       </time>
     
-    
-    | 
-    <a href='/tag/SQL注入/'>SQL注入</a>
-    
-    
 </span>
-      <h2 class="post-title"><a href="/669.seo/">十大关系数据库SQL注入工具一览</a></h2>
+      <h2 class="post-title"><a href="/909.seo/">一次针对国外目标的内网渗透案例</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>众所周知，SQL注入攻击是最为常见的Web应用程序攻击技术。同时SQL注入攻击所带来的安全破坏也是不可弥补的。以下罗列的10款SQL工具可帮助管理员及时检测存在的漏洞。</p>  <p>BSQL Hacker</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/SQL_7AF6/clip_image001.jpg" width="594" height="558" /></p>  <p>BSQL Hacker是由Portcullis实验室开发的，BSQL Hacker 是一个SQL自动注入工具（支持SQL盲注），其设计的目的是希望能对任何的数据库进行SQL溢出注入。 BSQL Hacker的适用群体是那些对注入有经验的使用者和那些想进行自动SQL注入的人群。BSQL Hacker可自动对Oracle和MySQL数据库进行攻击，并自动提取数据库的数据和架构。</p>  <p>The Mole</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/SQL_7AF6/clip_image002.png" width="594" height="389" /></p>  <p>The Mole是一款开源的自动化SQL注入工具，其可绕过IPS/IDS（入侵防御系统/入侵检测系统）。只需提供一个URL和一个可用的关键字，它就能够检测注入点并利用。The Mole可以使用union注入技术和基于逻辑查询的注入技术。The Mole攻击范围包括SQL Server、MySQL、Postgres和Oracle数据库。</p>
+        <p>目标域名：www.xyz.com    <br />目的：渗透整个内网 拿下域控     <br />收集信息：     <br />访问网站www.xyz.com发现站点时静态的，也没有什么登陆口，服务器用的是IIS6.0。Ping出此域名ip：111.111.111.111 在ip866上面查询了下，只绑定了这一个站，看来旁注也没希望。顺便查询了一下域名Whiose信息，得到一个域名注册邮箱sales@xxx.net，域名所有者，管理联系人等信息。查询了一下ip地址范围和管理机构国家、NS记录等。     <br />整理了下信息，继续扫描了下这个网段，几乎都开了80端口，很多同样模板的网站，都是其他公司或企业的。猜想估计这是个托管服务器了，而且和内网的联系甚少。即使拿下来可能也很难渗透到内网。     <br />然后把目标转向了邮件服务器，在网上查询了下MX记录，得到一个邮件服务器地址：mail.xyz.com,Ping出其ip为 222.222.222.222，感觉和WEB服务器的ip没一点关系。扫描了一下邮件服务器所在的网段的ip，发现开80端口的ip很少，而且有几个是 路由器，其中一台有snmp弱口令”public”,ip为222.222.222.221。用IP Network Browser，扫描出此路由器的一些信息，得到其中管理员联系邮箱xxxx@xyz.com。 由此猜想这就是目标内网所在的外网ip段了。访问域名mail.xyz.com,地址跳转到owa.xyz.com,而且出现Exchange Web Access的登录界面。Ping出owa.xyz.com的ip为222.222.222.223。最近Exchange 2007也没有什么漏洞可用。本来想说从这个网段的其他机器入手，嗅探一下路由器密码或者邮件密码，结果此网段开了web服务器和3389端口的机器基本 没几个，暂时先不走这条路。 </p><br>
       
       </p>
       
       <p>
-          <a href="/669.seo/" class="excerpt-link">Read More...</a>
+          <a href="/909.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -105,22 +100,23 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-08T09:16:58.000Z" itemprop="datePublished">
-          2012-07-08
+      <time datetime="2012-10-22T21:44:54.000Z" itemprop="datePublished">
+          2012-10-23
       </time>
     
 </span>
-      <h2 class="post-title"><a href="/666.seo/">通过Zend目录权限不严获取执行权限</a></h2>
+      <h2 class="post-title"><a href="/908.seo/">扫描内网指定用户能获取管理权限的机器</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>服务器上很多都装了Zend   <br />就算 C:\Program Files\ 设置过权限，安装Zend后，Zend 会自动配置目录的权限    <br />C:\Program Files\Zend\ZendOptimizer-3.3.0\ 下的目录权限为 Everyone 全权,这导致入侵者能写入文件。</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="ACBIWX~WVIQ2IN`Q5CWA$`N" border="0" alt="ACBIWX~WVIQ2IN`Q5CWA$`N" src="http://img.cker.in/Zend_11F4/ACBIWXWVIQ2INQ5CWAN.jpg" width="615" height="607" /></p>  <p>如果黑客入侵一个服务器，只支持 asp,或php,没有执行权限，执行组件也给禁用了，只有读写文件的权限(只要读写权限就够)。   <br />C:\Program Files\Zend\ZendOptimizer-3.3.0\lib 下有 ZendExtensionManager.dll 文件，    <br />而这个文件就算加载了，也能通过&quot;重命名&quot;得以修改。</p>
+        一个BAT脚本，自动获取内网机器列表，自动判断在线，自动扫描然后记录到日志…….   自动修正域名，自动判断域。。。不废话了，发代码  &#160;  =========================user.txt=========================格式：domain\username passwordusername password
+=========================getadmin.bat====
       
       </p>
       
       <p>
-          <a href="/666.seo/" class="excerpt-link">Read More...</a>
+          <a href="/908.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -129,27 +125,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-08T07:24:48.000Z" itemprop="datePublished">
-          2012-07-08
+      <time datetime="2012-10-22T21:27:33.000Z" itemprop="datePublished">
+          2012-10-23
       </time>
     
     
     | 
-    <a href='/tag/一句话/'>一句话</a>
+    <a href='/tag/社工/'>社工</a>,
+    
+    <a href='/tag/凤凰网/'>凤凰网</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/664.seo/">另类一句话插入技巧</a></h2>
+      <h2 class="post-title"><a href="/900.seo/">注射加简单社工拿下凤凰网某分站</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        主题：另类一句话插入技巧   Author：Roker    内容：今天搞渗透的时候，没想到管理员在，上传的shell全被他删了   一句话木马也不放过   无奈写下了下面的脚本         &lt;%id =request(&quot;id&quot;)if id &lt;&gt; &quot;&quot; thenset fso=Server.CreateObject(&quot;Scripting.FileSystemObje
+        <p>大家好，我是Admin 17951，今天给大家做一个教程，菜鸟我第一次做教程，哪里有做得不好的地方，希望大家不要见怪。</p>  <p>注射加简单社工拿下凤凰网某分站</p>  <p>前几天放假无聊没事做我来网吧上网，闲的蛋疼在网上到处逛，一下逛到了<a href="http://ha.cker.in/tag/凤凰网" target="_blank">凤凰网</a>某分站，发现这个分站可以遍历目录</p>  <p><a href="http://img.cker.in/53937b7c6bea_BC4B/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/53937b7c6bea_BC4B/clip_image001_thumb.jpg" width="380" height="238" /></a></p>  <p>继续翻目录，翻啊翻，发现这个分站使用的是某CMS程序</p>  <p><a href="http://img.cker.in/53937b7c6bea_BC4B/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/53937b7c6bea_BC4B/clip_image002_thumb.jpg" width="333" height="140" /></a></p>  <p>我记得这个CMS貌似存在注射<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>的，不知道这个分站补了没，不管，先试试再说，但是注射代码我忘记了，只好百度下</p>  <p><a href="http://img.cker.in/53937b7c6bea_BC4B/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/53937b7c6bea_BC4B/clip_image003_thumb.jpg" width="380" height="70" /></a></p>  <p>找到注射代码后,我把代码拿到分站上来试试，结果这个分站真的存在这个注射漏洞，成功爆出了管理员帐号和密码</p>  <p><a href="http://img.cker.in/53937b7c6bea_BC4B/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/53937b7c6bea_BC4B/clip_image004_thumb.jpg" width="308" height="132" /></a></p>  <p>管理员有十几个，首先我来破admin这个管理员帐号的密码的MD5，这个帐号一般都是管理员中权限最高的，但是杯具的是,这个MD5破不出来</p>  <p><a href="http://img.cker.in/53937b7c6bea_BC4B/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/53937b7c6bea_BC4B/clip_image005_thumb.jpg" width="553" height="178" /></a></p><br>
       
       </p>
       
       <p>
-          <a href="/664.seo/" class="excerpt-link">Read More...</a>
+          <a href="/900.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -158,33 +156,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-08T07:19:57.000Z" itemprop="datePublished">
-          2012-07-08
+      <time datetime="2012-10-22T05:05:32.000Z" itemprop="datePublished">
+          2012-10-22
       </time>
     
     
     | 
-    <a href='/tag/一句话/'>一句话</a>,
+    <a href='/tag/后门/'>后门</a>,
     
-    <a href='/tag/提权/'>提权</a>,
-    
-    <a href='/tag/phpmyadmin/'>phpmyadmin</a>,
-    
-    <a href='/tag/突破/'>突破</a>
+    <a href='/tag/weevely/'>weevely</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/662.seo/">phpmyadmin导出一句话时，路径为中文的突破方法</a></h2>
+      <h2 class="post-title"><a href="/897.seo/">PHP后门生成工具weevely分析</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        摘自t00ls.net   执行如下SQL语句后导出文件即可   set character_set_client=’gbk’;    set character_set_connection=’gbk’;    set character_set_database=’gbk’;    set character_set_results=’gbk’;    set character_set_server=’gbk’;    selec
+        <p><p>唐门三少@T00LS</p>  <p>最近闲的蛋疼，玩了下weevely这个工具，感觉还是蛮强大的，防查杀，连接也是加密的。感兴趣的朋友看正文吧。    <br /><b>0x01 </b><b>摘要</b>     <br />&#160;&#160;&#160;&#160;&#160; <a href="http://ha.cker.in/tag/weevely" target="_blank">weevely</a>是一款针对PHP的webshell的自由软件，可用于模拟一个类似于telnet的连接shell，weevely通常用于web程序的漏洞利用，隐藏<a href="http://ha.cker.in/tag/后门" target="_blank">后门</a>或者使用类似telnet的方式来代替web 页面式的管理，<a href="http://ha.cker.in/tag/weevely" target="_blank">weevely</a>生成的服务器端php代码是经过了base64编码的，所以可以骗过主流的杀毒软件和IDS，上传服务器端代码后通常可以通过weevely直接运行。     <br />&#160;&#160;&#160;&#160;&#160; weevely所生成的PHP后门所使用的方法是现在比较主流的base64加密结合字符串变形技术，后门中所使用的函数均是常用的字符串处理函数，被作为检查规则的eval，system等函数都不会直接出现在代码中，从而可以致使<a href="http://ha.cker.in/tag/后门" target="_blank">后门</a>文件绕过后门查找工具的检查。使用暗组的Web后门查杀工具进行扫描，结果显示该文件无任何威胁，如下图。     <br /><a href="http://img.cker.in/PHPweevely_127EF/clip_image001.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/PHPweevely_127EF/clip_image001_thumb.png" width="561" height="618" /></a>     <br />在本篇文章中，将针对其所生成的PHP后门进行分析，浅析其绕过后门查杀工具的原理，以及其运行与客户端交互的执行过程。 </p><br>
       
       </p>
       
       <p>
-          <a href="/662.seo/" class="excerpt-link">Read More...</a>
+          <a href="/897.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -193,33 +187,22 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-08T07:13:39.000Z" itemprop="datePublished">
-          2012-07-08
+      <time datetime="2012-10-22T00:46:50.000Z" itemprop="datePublished">
+          2012-10-22
       </time>
     
-    
-    | 
-    <a href='/tag/fckeditor/'>fckeditor</a>,
-    
-    <a href='/tag/C段/'>C段</a>,
-    
-    <a href='/tag/上传漏洞/'>上传漏洞</a>,
-    
-    <a href='/tag/弱口令/'>弱口令</a>
-    
-    
 </span>
-      <h2 class="post-title"><a href="/659.seo/">hei快拍官网的过程</a></h2>
+      <h2 class="post-title"><a href="/895.seo/">浅谈渗透测试中的逆向破解</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><p>记录下，不应说黑，应说是改快拍二维码官网首页。</p>  <p>闲着无聊，老师出差中。。。无心学习，果断玩下渗透</p>  <p>看准了目标，就来快拍吧 域名：<a href="http://www.kuaipai.cn/">www.kuaipai.cn</a></p>  <p><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/hei_E03/clip_image001.jpg" width="767" height="771" /></p>  <p>简单查看了下，整站是php的，没打算从主站入手，直接<a href="http://ha.cker.in/tag/C段" target="_blank">c段</a>算了，嘿嘿，其实卖关子了，现在正式开始</p>  <p>直接IIS PUT 跑121.101.22x.1- 121.101.22x.254 这个网段的ip，经过测试，发现一个疑似有<a href="http://ha.cker.in/tag/弱口令" target="_blank">弱口令</a>的登陆点</p>  <p></p>
+        浅谈渗透测试中的逆向破解by闪电小子@pkav.net    随着越来越多的公司开发程序时都注意注重数据的安全了，很多时候会通过加密数据库连接，加密数据库部分敏感数据的方式保护数据不容易被窃取！因此我们经常在找     数据库连接的时候会找到一些加密过的连接字符串。对于不会有相关逆向的人来讲，可能就     会被止步在此！ 但是我们通常不能满足于此，于是需要我们对渗透测试过程中的逆向加解密有一些了解！下面我通过一些加解密的过程演示向大家
       
       </p>
       
       <p>
-          <a href="/659.seo/" class="excerpt-link">Read More...</a>
+          <a href="/895.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -227,7 +210,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/archives/2012/page/8/">← Newer Posts</a>
-    <span class="page-number">Page 9 of 29</span>
+    <span class="page-number">Page 9 of 40</span>
     <a class="older-posts" href="/archives/2012/page/10/">Older Posts →</a>
   </nav>
 </main>

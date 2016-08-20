@@ -107,6 +107,39 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
+      <time datetime="2012-11-02T23:24:07.000Z" itemprop="datePublished">
+          2012-11-03
+      </time>
+    
+    
+    | 
+    <a href='/tag/Discuz/'>Discuz</a>,
+    
+    <a href='/tag/渗透检测/'>渗透检测</a>,
+    
+    <a href='/tag/X-Forwarded-For/'>X-Forwarded-For</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/924.seo/">记一次对Discuz官方论坛的渗透检测</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>前言: 此次检测纯属偶然, 源于Errorera同学一直想拿下腾讯, 然后找腾讯换ipad玩, 结果搞着搞着就把目标对准Discuz了, 反正<a href="http://ha.cker.in/tag/Discuz" target="_blank">Discuz</a>也属于腾讯业务,    <br />估计搞下也能换ipad, Errorera同学怀着这样的美好愿望就开搞了!    <br />此文所有图片均由Errorera同学提供, 本来我想等我把文章写了他再提交的, 可丫太着急要ipad了, 所以瞒着我直接提交了!! 所以现在所有漏洞都已经修补,&#160; <br />导致我想截图都截不了了… 还好他已经写了一篇文章, 我就将就直接修改下拿上来吧~    <br />过程Top1: Dev.<a href="http://ha.cker.in/tag/Discuz" target="_blank">Discuz</a>.Org注射: (此过程前几日已在土司发了部分内容, 之后自己删除, 原因后面会提到)    <br />下午我正在卖衣服, 突然Errorera就在群里说找到突破口了, 原来Dev.Discuz.Org这个站是Discuz的开发者论坛, 但是却很二逼的直接把”<a href="http://ha.cker.in/tag/X-Forwarded-For" target="_blank">X-Forwarded-For</a>”直接带入了数据库, 且无任何过滤, so..注射就这样产生了~ 首先直接打开是显示登录页面:    <br /><a href="http://img.cker.in/Discuz_D755/clip_image002.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Discuz_D755/clip_image002_thumb.png" width="620" height="385" /></a>    <br />然后再修改下X-Forwarded-For的值为111′, 再刷新下页面Mysql就报错了:    <br /><a href="http://img.cker.in/Discuz_D755/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/Discuz_D755/clip_image004_thumb.jpg" width="620" height="140" /></a>    <br />既然存在注射, 那首先想的肯定是怎么获取到我们想要的信息了, 用户数据库? 亦或是ROOT密码? 还是直接into_Outfile呢 = =? 不过这都是废话, 要是这么简单搞定的话也就没后话了~    <br />首先看这Mysql信息肯定是使用的DISCUZ来构建的, 但是具体是什么版本就不知道了, 所以我就先猜了下字段数, 想用常规方法爆出东西, 最后确定字段数为5, 然后就顺手union了, 殊不知过滤了逗号, 顿时傻逼…..    <br />以上图没截到, 所以就一笔带过吧~ 随后多次测试, 使用了网上提到的JOIN方法成功突破:</p>  <p>127’ UNION SELECT <em> FROM ((SELECT 1)a JOIN (SELECT 2)b JOIN (SELECT 3)c JOIN (SELECT 4)d JOIN (SELECT 5)e)#</p>  <p>UNION SELECT </em> FROM ((SELECT 1)a JOIN (SELECT 2)b实际上也就相当于UNION SELECT 1,2   <br />正当我以为会出现熟悉的1 2 3 4 5的时候, 却直接登录进去了….    <br /><a href="http://img.cker.in/Discuz_D755/clip_image006.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/Discuz_D755/clip_image006_thumb.jpg" width="620" height="222" /></a>    <br />这dz是什么版本也不知道, 更不知道他的具体写法, 目测的话应该是在判断登录与未登录的时候出现的问题, 可能在判断的时候用到了mysql查询, 然后把登陆成功用户状态的登录状态写入数据库, 当然以上只是猜想, 具体是咋回事暂且不清楚o(∩_∩)o~ 不过这里只是看上去登录进去了, 提示不欢迎我 = =.. 于是我又刷新了下, 就立马笑了<del></p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/924.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
       <time datetime="2012-04-09T20:07:14.000Z" itemprop="datePublished">
           2012-04-10
       </time>

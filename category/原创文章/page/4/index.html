@@ -45,31 +45,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-18T00:15:35.000Z" itemprop="datePublished">
-          2012-07-18
+      <time datetime="2012-12-05T19:15:26.000Z" itemprop="datePublished">
+          2012-12-06
       </time>
     
     
     | 
-    <a href='/tag/Wordpress/'>Wordpress</a>,
-    
-    <a href='/tag/漏洞/'>漏洞</a>,
-    
-    <a href='/tag/爆路径/'>爆路径</a>
+    <a href='/tag/fckeditor/'>fckeditor</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/717.seo/">Wordpress爆路径漏洞</a></h2>
+      <h2 class="post-title"><a href="/950.seo/">最新FCKEditor ASP上传绕过漏洞</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>1337爆出个Wordpress全版本爆路径漏洞，某大黑一来就想溢出我，把我给吓尿了……我求求你不要溢出我的小站，各位大黑阔手下留情刀下留人管下留撸。。</p>  <p>全版本<a href="http://ha.cker.in/wp-includes/registration-functions.php">http://ha.cker.in/wp-includes/registration-functions.php</a></p>  <p>&#160;</p>  <p>我也发几个，Wordpress爆路径</p>  <p>&#160;&#160;&#160; /wp-includes/rss.php   <br />&#160;&#160;&#160; /wp-includes/rss-functions.php    <br />&#160;&#160;&#160; /wp-includes/shortcodes.php    <br />&#160;&#160;&#160; wp-includes/taxonomy.php    <br />&#160;&#160;&#160; /wp-includes/script-loader.php</p>  <p>例子   <br /><a href="http://www.wordpress-fr.net/wp-includes/rss.php">http://www.wordpress-fr.net/wp-includes/rss.php</a>    <br /><a href="http://www.jinxiaoblog.com/wp-includes/rss.php">http://www.jinxiaoblog.com/wp-includes/rss.php</a>    <br /><a href="http://www.vibethemes.com/wp-includes/rss.php">http://www.vibethemes.com/wp-includes/rss.php</a>    <br /><a href="http://www.wordpress-fr.net/wp-includes/shortcodes.php">http://www.wordpress-fr.net/wp-includes/shortcodes.php</a>    <br /><a href="http://www.wordpress-fr.net/wp-includes/script-loader.php">http://www.wordpress-fr.net/wp-includes/script-loader.php</a></p>  <p>&#160;</p>  <p>随便测试了几个大牛. 基本都中枪.   <br /></p>  <p><a href="http://blog.gentilkiwi.com/wp-includes/rss.php">http://blog.gentilkiwi.com/wp-includes/rss.php</a>    <br /><a href="http://www.0x50sec.org/wp-includes/rss-functions.php">http://www.0x50sec.org/wp-includes/rss-functions.php</a>    <br /><a href="http://www.dis9.com/wp-includes/shortcodes.php">http://www.dis9.com/wp-includes/shortcodes.php</a>    <br /><a href="http://madman.in/wp-includes/script-loader.php">http://madman.in/wp-includes/script-loader.php</a>    <br /><a href="http://www.tzsec.net/wp-includes/taxonomy.php">http://www.tzsec.net/wp-includes/taxonomy.php</a>    <br /><a href="http://www.secreader.com/wp-includes/rss.php">http://www.secreader.com/wp-includes/rss.php</a></p>
+        exploiut-db：  FCKEditor ASP Version 2.6.8 File Upload Protection Bypass   - Title: FCKEditor 2.6.8 ASP Version File Upload Protection bypass    - Credit goes to: Mostafa Azizi, Soroush Dalili     - Link:http://sourceforg
       
       </p>
       
       <p>
-          <a href="/717.seo/" class="excerpt-link">Read More...</a>
+          <a href="/950.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -78,157 +74,153 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-12T22:45:54.000Z" itemprop="datePublished">
-          2012-07-13
+      <time datetime="2012-10-29T02:47:46.000Z" itemprop="datePublished">
+          2012-10-29
       </time>
     
     
     | 
-    <a href='/tag/Wordpress博客搬家/'>Wordpress博客搬家</a>
+    <a href='/tag/提权/'>提权</a>,
     
-    
-</span>
-      <h2 class="post-title"><a href="/692.seo/">Wordpress博客搬家 （新手教程）</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><a href="http://ha.cker.in/tag/Wordpress博客搬家" target="_blank">Wordpress博客搬家</a>，过程记录下：</p>  <p>本来是在VPSA[假设IP: 5.5.5.5]上的，现在挂到VPSB[假设IP: 74.63.209.153]上了，</p>  <p><em>1.Web文件同步</em></p>  <p>VPSA现在的web目录是/var/<a href="http://ha.cker.in" target="_blank">3389</a>.eu/，VPSB目标web目录是/var/ha.cker.in/web/，</p>  <p>首先Linux同步命令将VPSA的Wordpress博客的文件图片等同步到VPSB的相应目录去：</p>  <p><strong>rsync -vzrtopg –progress –exclude-from=/var/</strong><a href="http://ha.cker.in" target="_blank"><strong>3389</strong></a><strong>.eu/wp-content/cache/ /var/</strong><a href="http://ha.cker.in" target="_blank"><strong>3389</strong></a><strong>.eu/ -e ssh </strong><a href="mailto:www@:/var/ha.cker.in/web/"><strong>www@74.63.209.153:/var/ha.cker.in/web/</strong></a></p>  <p>其中这句：–exclude-from=/var/<a href="http://ha.cker.in" target="_blank">3389</a>.eu/wp-content/cache/ 是排除掉cache目录，因为里面缓存文件太多了就不同步过去了；<a href="mailto:www@:/var/ha.cker.in/web/">www@74.63.209.153:/var/ha.cker.in/web/</a>这一句是我们将借住VPSB上的用户www完成文件传输操作，然后是VPSB的IP+冒号+目标Web目录。输完命令回车输入www的密码即开始同步。</p>  <p><em>2.数据库备份</em></p>  <p>登录phpmyadmin导出博客数据，自己拖自己的库- -，苦逼啊。。选中自己的数据库：</p>  <p><a href="http://img.cker.in/Wordpress_CF37/image.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/Wordpress_CF37/image_thumb.png" width="554" height="75" /></a> </p>
-      
-      </p>
-      
-      <p>
-          <a href="/692.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-23T00:43:02.000Z" itemprop="datePublished">
-          2012-06-23
-      </time>
-    
-    
-    | 
-    <a href='/tag/RedHat/'>RedHat</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/593.seo/">RedHat替换CentOS的源和汉化</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        替换CentOS的源  源文件备份：  cd/etc/yum.respo.d/;mv rhel-debuginfo.repo rhel-debuginfo.repo.bak;  vi rhel-debuginfo.repo     [base]name=centos-5 - Basebaseurl=http://centos.ustc.edu.cn/centos/5/os/i386/# the other site: http://ce
-      
-      </p>
-      
-      <p>
-          <a href="/593.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T08:31:46.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/Metasploit/'>Metasploit</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/449.seo/">metasploit装不上</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        在非英文版Windows系统上安装Metasploit会出现此类错误：  —————————    Error     —————————     There has been an error.     Error running D:\T00ls\metasploit/postgresql/bin/psql.exe -U postgres -p 7337 -h localhost -c &quot;ALTER USER postgr
-      
-      </p>
-      
-      <p>
-          <a href="/449.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-04-10T12:50:29.000Z" itemprop="datePublished">
-          2012-04-10
-      </time>
-    
-    
-    | 
-    <a href='/tag/Mysql/'>Mysql</a>,
-    
-    <a href='/tag/CentOS/'>CentOS</a>,
-    
-    <a href='/tag/Nginx/'>Nginx</a>,
-    
-    <a href='/tag/php/'>php</a>,
-    
-    <a href='/tag/LNMP/'>LNMP</a>,
-    
-    <a href='/tag/Php-fpm/'>Php-fpm</a>,
-    
-    <a href='/tag/RedHat/'>RedHat</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/369.seo/">CentOS 6.2   RedHat EL 5.4 yum安装配置lnmp服务器(Nginx+PHP+MySQL)</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><p><a href="http://img.cker.in/CentOS6.2RedHatEL5.4yumlnmpNginxPHPMySQL_43ED/image.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/CentOS6.2RedHatEL5.4yumlnmpNginxPHPMySQL_43ED/image_thumb.png" width="244" height="159"></a> </p> <p><strong>准备篇：</strong> <p><strong>1</strong><strong>、配置防火墙，开启80端口、3306端口</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong> vi /etc/sysconfig/iptables<br></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT（允许80端口通过防火墙）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -A INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT（允许3306端口通过防火墙）<br><strong>特别提示：很多网友把这两条规则添加到防火墙配置的最后一行，导致防火墙启动失败，正确的应该是添加到默认的22端口这条规则的下面</strong><br>添加好之后防火墙规则如下所示：<br>#########################################################<br># Firewall configuration written by system-config-firewall<br># Manual customization of this file is not recommended.<br><em>filter<br>:INPUT ACCEPT [0:0]<br>:FORWARD ACCEPT [0:0]<br>:OUTPUT ACCEPT [0:0]<br>-A INPUT -m state –state ESTABLISHED,RELATED -j ACCEPT<br>-A INPUT -p icmp -j ACCEPT<br>-A INPUT -i lo -j ACCEPT<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 22 -j ACCEPT<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT<br>-A INPUT -j REJECT –reject-with icmp-host-prohibited<br>-A FORWARD -j REJECT –reject-with icmp-host-prohibited<br>COMMIT<br>######################################################### <p><strong>/etc/init.d/iptables restart</strong>&nbsp; #最后重启防火墙使配置生效</p>
-      
-      </p>
-      
-      <p>
-          <a href="/369.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-10-20T19:42:35.000Z" itemprop="datePublished">
-          2011-10-21
-      </time>
-    
-    
-    | 
     <a href='/tag/入侵/'>入侵</a>,
     
-    <a href='/tag/idc/'>idc</a>
+    <a href='/tag/0day/'>0day</a>,
+    
+    <a href='/tag/破解/'>破解</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/137.seo/">idc机房被入侵后分析修复报告</a></h2>
+      <h2 class="post-title"><a href="/915.seo/">发几篇以前录制的视频教程</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>12号是一台服务器，37，今天中午到了之后发现同网段的40 、41 、35&#160; 也被黑了，黑客通过1433（SQLServer）、139（Netbios）、135（IPC）、445（SMB）、1521（Oracle）、8080（Tomcat）弱口令和漏洞的扫描</p>  <p><a href="http://img.cker.in/idc_A134/wps_clip_image321.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="wps_clip_image-321" border="0" alt="wps_clip_image-321" src="http://img.cker.in/idc_A134/wps_clip_image321_thumb.png" width="214" height="198" /></a></p>  <p>还有个1433批量抓鸡的工具：阴影1433Vip解封版.rar</p>  <p><a href="http://img.cker.in/idc_A134/image.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/idc_A134/image_thumb.png" width="244" height="137" /></a> </p>
+        发几篇以前做的视频教程，比较没技术含量，都是以前无聊的时候录制的  放着也是放着 不如拿出来或许有需要的人可以看下 不要拍我就好…。。     一键破解无线路由WEP密码.rar      记一次提权拿服务器.rar      检测浙江互联星空[游戏分站].rar      入侵私服站拿服务器教程.rar      入侵北大青鸟拿服务器.rar      Fckeditor后台编辑器0day.rar      建站之星0day漏洞演示.
       
       </p>
       
       <p>
-          <a href="/137.seo/" class="excerpt-link">Read More...</a>
+          <a href="/915.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-09-27T22:19:34.000Z" itemprop="datePublished">
+          2012-09-28
+      </time>
+    
+    
+    | 
+    <a href='/tag/12306/'>12306</a>,
+    
+    <a href='/tag/包含漏洞/'>包含漏洞</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/862.seo/">检测开发12306的公司：太极计算机股份有限公司</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>国庆就要来了，返乡出行的高峰期来了，最近无论是身边还是网络上的都怨声载道啊，原因就是火车票，网上订票系统12306真是没话说了，大家都懂的！</p>  <p>于是最近大家都把气撒在了收1.99亿开发出这么个破网站的公司：“太极”身上，主页<a href="http://www.taiji.com.cn/">http://www.taiji.com.cn/</a></p>  <p>下面我就把过程写出来和大家分享。</p>  <p>打开主页的网址默认跳到了这个链接</p>  <p><a href="http://www.taiji.com.cn/coboportal/portal/compayindex.ptview">http://www.taiji.com.cn/coboportal/portal/compayindex.ptview</a></p>  <p>鼠标随便停在新闻链接上状态栏显示如下，</p>  <p><a href="http://img.cker.in/12306_C8D8/clip_image002.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/12306_C8D8/clip_image002_thumb.jpg" width="596" height="209" /></a></p>  <p><a href="http://www.taiji.com.cn/coboportal/portal/itservice.ptview?funcid=showGSWZInfoLink&amp;infoSortId=52802&amp;infoLinkId=13962&amp;viewJsp=gswz/newsevents/newsshowcontent.jsp">http://www.taiji.com.cn/coboportal/portal/itservice.ptview?funcid=showGSWZInfoLink&amp;infoSortId=52802&amp;infoLinkId=13962&amp;viewJsp=gswz/newsevents/newsshowcontent.jsp</a></p>  <p>试了试infoSortId=52802这里是木有注入的哦，不过看着viewjsp这个参数有点特别哦，后面直接接上相对路径真是jsp文件地址了，于是我们来试试包含漏洞或者任意文件下载漏洞~</p>  <p>构造如下地址：</p>  <p><a href="http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869%20&amp;viewJsp=index.jsp">http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869%20&amp;viewJsp=index.jsp</a></p>  <p>打开发现404如图：</p>  <p><a href="http://img.cker.in/12306_C8D8/clip_image004.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/12306_C8D8/clip_image004_thumb.jpg" width="596" height="338" /></a></p>  <p>继续构造，把viewJsp=index.jsp改为viewJsp=../index.jsp：</p>  <p><a href="http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869%20&amp;viewJsp=../index.jsp">http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869%20&amp;viewJsp=../index.jsp</a></p>
+      
+      </p>
+      
+      <p>
+          <a href="/862.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-09-27T22:12:45.000Z" itemprop="datePublished">
+          2012-09-28
+      </time>
+    
+    
+    | 
+    <a href='/tag/支付漏洞/'>支付漏洞</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/859.seo/">普联商城存在支付漏洞(已发乌云联系厂商修复)</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        TP-Link官方商城支付漏洞：http://www.tp-linkshop.com.cn/  选购一台路由器吧     既然可以游客购买，就不注册了     提交订单信息      进入结算了，选择支付宝付款，其他支付方式未测试     这里到关键地方了，用Firefox的插件Tamper拦截表单，我们看到amount的值就是价格修改amount的值，我就改个一分钱测试：        点确定，跳到支付宝网站进入付款流程     我用
+      
+      </p>
+      
+      <p>
+          <a href="/859.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-09-09T06:24:45.000Z" itemprop="datePublished">
+          2012-09-09
+      </time>
+    
+    
+    | 
+    <a href='/tag/银行/'>银行</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/813.seo/">路过杭州某银行查询机</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        我就是进去办办业务取号等的时候看到台查询机，顺手一下，什么都没做…  Win2000的系统啊 真老了     后面探头好多还有工作人员，赶紧抓拍完了收工~
+      
+      </p>
+      
+      <p>
+          <a href="/813.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-08-31T03:18:49.000Z" itemprop="datePublished">
+          2012-08-31
+      </time>
+    
+    
+    | 
+    <a href='/tag/Metasploit/'>Metasploit</a>,
+    
+    <a href='/tag/0day/'>0day</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/794.seo/">Metasploit利用CVE-2012-4681 java 0day入侵Windows</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><p>作者：Secer</p>  <p>博客：<a href="http://Ha.cker.in" target="_blank">http://Ha.cker.in</a></p>  <p>Q Q：278641414</p>  <p>新手教程，仅为交流和进步，大牛勿喷。</p>  <p>最近java爆<a href="http://ha.cker.in/tag/0day" target="_blank">0day</a>了，很多新手童鞋不知道怎么利用，下面把我自己的研究成果抛砖引玉给大家，见笑了。</p>  <p>0x01 肉鸡环境安装</p>  <p>Java的<a href="http://ha.cker.in/tag/0day" target="_blank">0day</a>，首先当然要在XP测试机里面安装Jre环境，Jre下载地址在这<a href="http://jdk7.java.net/download.html">http://jdk7.java.net/download.html</a>或者<a href="http://www.xdowns.com/soft/6/56/2011/Soft_75169.html">http://www.xdowns.com/soft/6/56/2011/Soft_75169.html</a></p>  <p>我下的是Java Runtime Environment (JRE) 7.0 Update 6 windows-i586.exe如图1：</p>  <p><a href="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image001.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image001_thumb.png" width="576" height="51" /></a></p>  <p>图1</p>  <p>安装直接下一步即可，如图2：</p>  <p><a href="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image002.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image002_thumb.png" width="531" height="420" /></a></p>  <p>图2</p>  <p>安装完成后运行java –version命令看是否可以显示版本，如果显示了即表示安装成功！同时下图看到XP测试机IP为192.168.1.107，如图3：</p>  <p><a href="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image004.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image004_thumb.jpg" width="596" height="321" /></a></p>  <p>图3</p>  <p>同时运行Backtrack 5 虚拟机，Backtrack的IP为192.168.1.106，和测试机在同一局域网，运行<a href="http://ha.cker.in/tag/Metasploit" target="_blank">Metasploit</a>如图4：</p>  <p><a href="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image006.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image006_thumb.jpg" width="596" height="373" /></a></p>  <p>图4</p>  <p>0x02 给<a href="http://ha.cker.in/tag/Metasploit" target="_blank">Metasploit</a>添加模块</p>  <p>我的bt5里的<a href="http://ha.cker.in/tag/Metasploit" target="_blank">Metasploit</a>没有更新，默认当然是没有Java <a href="http://ha.cker.in/tag/0day" target="_blank">0day</a>利用模块的，图5中可以看到684个Exploits：</p>  <p><a href="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image008.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image008_thumb.jpg" width="596" height="216" /></a></p>  <p>图5</p>  <p>下面我们来给<a href="http://ha.cker.in/tag/Metasploit" target="_blank">Metasploit</a>添加利用java漏洞必要的模块，可以到<a href="http://dev.metasploit.com/redmine/projects/framework/repository/revisions/52ca1083c22de7022baf7dca8a1756909f803341">这里</a>下载查看相关模块，如图6：</p>  <p><a href="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image009.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image009" border="0" alt="clip_image009" src="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image009_thumb.png" width="256" height="340" /></a></p>  <p>图6</p>  <p>下载Exploit.class、Exploit.java、java_jre17_exec.rb三个文件分别放到/opt/framework3/msf3目录下如图6所示对应的目录中，添加好了之后运行reload_all重新加载各模块，看到Metasploit里多了一个Exploit现在是685如图8：</p>
+      
+      </p>
+      
+      <p>
+          <a href="/794.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -236,7 +228,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/category/原创文章/page/3/">← Newer Posts</a>
-    <span class="page-number">Page 4 of 5</span>
+    <span class="page-number">Page 4 of 7</span>
     <a class="older-posts" href="/category/原创文章/page/5/">Older Posts →</a>
   </nav>
 </main>

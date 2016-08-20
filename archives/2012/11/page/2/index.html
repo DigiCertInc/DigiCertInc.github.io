@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Archives: 2012/11 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-11-21T21:58:30.000Z" itemprop="datePublished">
+          2012-11-22
+      </time>
+    
+    
+    | 
+    <a href='/tag/提权/'>提权</a>,
+    
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/输入法漏洞/'>输入法漏洞</a>,
+    
+    <a href='/tag/Windows-8/'>Windows 8</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/941.seo/">经典提权漏洞再现 - Win8的远程桌面配合QQ拼音纯净版可以实现提权</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>没有哪个平台是百分之百安全的，虽然微软<a href="http://ha.cker.in/tag/Windows 8" target="_blank">Windows 8</a>在安全方面进行了很大改进，但是仍然不可避免地出现漏洞。<strong>国内博客</strong><strong><a href="http://www.cnblogs.com/maybreath/archive/2012/11/20/2778875.html">MayBreath</a></strong><strong>就在</strong><strong>Windows 8</strong><strong>上再现了曾经出现过的<a href="http://ha.cker.in/tag/输入法漏洞" target="_blank">输入法漏洞</a>，利用</strong><strong>QQ</strong><strong>拼音实现了<a href="http://ha.cker.in/tag/提权" target="_blank">提权</a>，具体来看一下</strong>：</p>  <p>发现这个漏洞的时候，笔者正在机房上课。正想用3389远程桌面去控制宿舍电脑的时候，因为重做系统忘记自己的IP地址，因此就随手扫描了一下IP段开3389端口的电脑。</p>  <p>没想到就随手扫描到一台Win8的系统，而且这个系统还装了QQ输入法Win8纯净版。</p>  <p>当时我就想起初中时候的那个极品五笔的漏洞，就随手测试了一下，没想到在时隔7、8年后的今天，号称非常安全的Win8系统居然还有如此大的<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>。这边就把<a href="http://ha.cker.in/tag/提权" target="_blank">提权</a>过程理一遍。</p>  <p>首先确认装有这个QQ拼音输入法：</p>  <p><a href="http://img.cker.in/Win8QQ_C37E/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Win8QQ_C37E/clip_image001_thumb.jpg" width="620" height="471" /></a></p>  <p>Ctrl+空格调出托盘，找到这个选项：</p>  <p><a href="http://img.cker.in/Win8QQ_C37E/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Win8QQ_C37E/clip_image002_thumb.jpg" width="620" height="462" /></a></p>  <p>顺利开启IE浏览器：</p>  <p><a href="http://img.cker.in/Win8QQ_C37E/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/Win8QQ_C37E/clip_image003_thumb.jpg" width="620" height="468" /></a></p>  <p>需要说明的是，<strong>IE</strong><strong>浏览器和</strong><strong>Win8</strong><strong>安全性确实是提高了非常多</strong>。随手在地址栏输入D:\ file://d: 这样的命令都无法打开文件夹，本以为只要随便上传一个bat批处理，写上提权用的命令，然后利用IE下载下来打开运行即可，没想到各种提示系统要求验证您的用户密码等，根本无法进行下载，可见<strong>常规方式真的行不通</strong>。</p>  <p>微软还是有在修复这些漏洞，但是经过笔者的诸多尝试，最终发现有一处漏洞尚未填补。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/941.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-11-19T08:40:25.000Z" itemprop="datePublished">
+          2012-11-19
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/939.seo/">对某餐饮管理服务有限公司网络渗透</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>某日与朋友一起去某西餐厅吃饭，餐厅人员向我们介绍说关注他们企业的微博就可以参加他们的免费抽奖，回来后上了他们官方网站看了一下，果然用DZ论坛搭建了个幸运抽奖大转盘插件，抽了好几次都是消费券，运气背啊。看他们网站美工做的不错，不知道安全咋样。仔细看了下他们的网站主站不知道是什么PHP的CMS系统、论坛是DZ-X2.5   <br />.主站看了半天没有发现可利用的地方，又没有可用的论坛0day。</p>  <p><a href="http://img.cker.in/170410a41f50_92E/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/170410a41f50_92E/clip_image001_thumb.jpg" width="578" height="331" /></a></p>  <p>山不转水转，不能在一棵树上吊死，既然网站没有可利用，不妨从服务器上下手，或许有意想不到的收获。ip138.com中解析到的网站IP是我们城市电信IP，初步断定服务器要么托管到电信机房的，要么是在自己公司的机房内的(看他们网站上说有十多家分店，应该用的独立服务器)，直接用X-SCAN扫描IP 服务器开了21、3389 、1433等端口，这下有戏了随便破解出一个账号密码就有机会了，事实是残酷的，扫描完我所有的字典，也没有猜解出来。暴力破解不行。咋们社工吧，用他们的企业名字+电话号码组合了一下字典，还是无获而终，入侵陷入了僵局了。</p>  <p>山重水复疑无路，柳暗花明又一村。有新思路了，一般这样中高档的餐厅，有免费的wifi提供的，可以通过wifi连接到他们店铺的内网，再探索有用的价值。第二天，提着一个本子、叫了一份果汁，问服务员要了密码，迫不及待的连接上wifi 首先用这个wifi密码依次登陆ftp、远程终端、MSSQL均提示密码错误，这也在我意料之内。打开X-SAN扫描了一下网段，就我自己的一台存活主机，应该是网段隔离了吧。管理人员的安全意识还是不错的啊。喝了口果汁，看到服务员在操作点单系统、凑前瞄了一眼，XX餐饮系统，顺手百度了一下，下载一个试用版的安装看有没有可利用的<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>，苍天不负有心人，发现这套餐饮系统用的是ODBC数据源连接MSSQL数据库的意思就是连接数据库的密码是保存在软件中得或者配置文件中的。看到一个新建数据库的SQL脚本打开一看，密码、用户名、数据库名一目了然。</p>  <p><a href="http://img.cker.in/170410a41f50_92E/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/170410a41f50_92E/clip_image002_thumb.jpg" width="578" height="167" /></a></p>  <p>果断的用查询分析器连接网站IP、哈哈人品终于爆发了，连接成功,还是sysadmin权限乘热打铁利用XP_CMDSHELL执行net user命令，添加用户成功。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/939.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-11-19T02:17:05.000Z" itemprop="datePublished">
+          2012-11-19
+      </time>
+    
+    
+    | 
+    <a href='/tag/短信炸弹/'>短信炸弹</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/938.seo/">短信炸弹</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        写了个短信炸弹。。  地址：点我吧  可以拿去玩玩。指不定什么时候失效了。
+      
+      </p>
+      
+      <p>
+          <a href="/938.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-11-17T03:39:40.000Z" itemprop="datePublished">
+          2012-11-17
+      </time>
+    
+    
+    | 
+    <a href='/tag/XSS漏洞/'>XSS漏洞</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/937.seo/">汽车之家Andriod客户端反馈意见XSS漏洞</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><b><u>风萧萧</u></b><b><u>@wooyun.org</u></b></p>  <p>简要描述：</p>  <p>汽车之家Andriod客户端反馈意见<a href="http://ha.cker.in/tag/XSS漏洞" target="_blank">XSS漏洞</a>    <br />杀进了汽车之家反馈后台，对一大群数据无爱    <br />亲，cookies里的_Admin是什么东西？    <br />盲打的，居然汽车之家还不是厂商~~    <br />中秋节/国庆节快乐！</p>  <p>详细说明：</p>  <p>1.下载汽车之家android的手机客户端，本人苦逼屌丝党，木有钱买车看看总行的！</p>  <p><a href="http://img.cker.in/AndriodXSS_1144F/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/AndriodXSS_1144F/clip_image001_thumb.jpg" width="500" height="820" /></a></p>  <p>2.点击【更多】-&gt;【意见反馈】，可插入XSS代码，进行后台feedback盲打！</p>  <p><a href="http://img.cker.in/AndriodXSS_1144F/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/AndriodXSS_1144F/clip_image002_thumb.jpg" width="500" height="820" /></a></p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/937.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-11-16T11:19:00.000Z" itemprop="datePublished">
+          2012-11-16
+      </time>
+    
+    
+    | 
+    <a href='/tag/xss/'>xss</a>,
+    
+    <a href='/tag/XSS盲打/'>XSS盲打</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/936.seo/">XSS盲打德克萨斯扑克</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        主题:XSS盲打德克萨斯扑克     作者:piaoye     版权:3EST信息安全团队 (www.3est.com)    0x00 概述    XSS盲打德克萨斯扑克一家公司的..N多dicuzs、phpwind社区、ssn社区人人网等都在玩这个应用。。据说年盈利上亿啊啊啊啊啊啊。。。。    0x01 简介    利用xss打入后台盗取cookie。。普及为主，内容可能有点罗嗦，包涵    0x02 配置并编译    一个xs
+      
+      </p>
+      
+      <p>
+          <a href="/936.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-11-16T06:25:11.000Z" itemprop="datePublished">
+          2012-11-16
+      </time>
+    
+    
+    | 
+    <a href='/tag/xss/'>xss</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/935.seo/">csdn论坛存在xss漏洞与利用技巧</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>csdn某处存在反射型<a href="http://ha.cker.in/tag/xss" target="_blank">xss</a>..刚才发了一个，这个是另外一种情况的，我把两个都写在这，那个没写详细，所以管理看到的话把刚那个删了吧。</p>  <p>详细说明：</p>  <p>漏洞页面时csdn的搜索 <a href="http://so.csdn.net/search?">http://so.csdn.net/search?</a> 存在两处不同的xss漏洞   <br />搜索的链接是</p>  <p><a href="http://so.csdn.net/search？utf8=%E2%9C%93&amp;t=&amp;q=xxx&amp;commit=%E6%90%9C+%E7%B4%A2&amp;sort=">http://so.csdn.net/search？utf8=%E2%9C%93&amp;t=&amp;q=xxx&amp;commit=%E6%90%9C+%E7%B4%A2&amp;sort=</a></p>  <p>这里xxx是我们输入的内容。那么查看源文件来搜索这个字符串。我这里字符串为“aaa”   <br />1,第一处。    <br />在这个页面的几乎每个链接中，都有一个onclick动作，这个动作在点击搜索结果的标题中发生。看代码</p>  <p>&lt;a href=&quot;<a href="http://blog.csdn.net/walterhj/article/details/6070450&amp;quot">http://blog.csdn.net/walterhj/article/details/6070450&amp;quot</a>; onclick=&quot;click_log(‘blog’,’aaa’,’6070450’)&quot; target=&quot;_blank&quot;&gt;Simware结合Cisco ACS的&lt;span class=&quot;keyword&quot;&gt;AAA&lt;/span&gt;实验&lt;/a&gt;</p>  <p>然后可以试探把</p>  <p>onclick=&quot;click_log(‘blog’,’aaa’,’6070450’)&quot;</p>  <p>里的单引号和括号闭合，再写上我们自己的动作，这样用户点击搜索结果的时候就中招了。   <br />构造参数</p>  <p>aaaa’);alert(/xss/)//</p>  <p>然后得到链接</p>  <p><a href="http://so.csdn.net/search?utf8=%E2%9C%93&amp;t=&amp;q=aaaaaa&#39;)%3balert(%2fxss%2f)//&amp;commit=%E6%90%9C+%E7%B4%A2&amp;sort=">http://so.csdn.net/search?utf8=%E2%9C%93&amp;t=&amp;q=aaaaaa&#39;)%3balert(%2fxss%2f)//&amp;commit=%E6%90%9C+%E7%B4%A2&amp;sort=</a></p>  <p>。点击这个页面的任意搜索结果就可以弹出框框了。</p>  <p><a href="http://img.cker.in/csdnxss_13ADF/image.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/csdnxss_13ADF/image_thumb.png" width="948" height="634" /></a> </p>  <p>经尝试cookie也可以正常弹出。而且执行完onclick后会自动跳转到用户想要的结果处。当然我</p>  <p>们可以把搜索请求的字符串弄长一些，把搜索框里的特殊字符给挤到后面让用户看不见，这样就可以神不知鬼不觉了。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/935.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    <a class="newer-posts" href="/archives/2012/11/">← Newer Posts</a>
+    <span class="page-number">Page 2 of 5</span>
+    <a class="older-posts" href="/archives/2012/11/page/3/">Older Posts →</a>
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

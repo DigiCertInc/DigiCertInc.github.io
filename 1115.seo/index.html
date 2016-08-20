@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>转]多种针对某亚洲金融机构的恶意软件分析 | Blog of Secer</title>
+  <title>转 多种针对某亚洲金融机构的恶意软件分析 | Blog of Secer</title>
   <meta name="description" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="MobileOptimized" content="320" />
@@ -49,7 +49,7 @@
       </time>
     
 </span>
-    <h1 class="post-title">转]多种针对某亚洲金融机构的恶意软件分析</h1>
+    <h1 class="post-title">转 多种针对某亚洲金融机构的恶意软件分析</h1>
     <section class="post-content">
       <p>source：<a href="http://www.cyphort.com/multiple-malwares-used-to-target-an-asian-financial-institution/" target="_blank" rel="external">http://www.cyphort.com/multiple-malwares-used-to-target-an-asian-financial-institution/</a></p>  <h3>0x00 前言</h3>  <hr align="center" size="0" width="100%" noshade="noshade">  <p>近来, Cyphort Labs已收到多种针对于亚洲某金融机构的恶意软件,由于某进行中的研究,我们将匿名该公司.</p>  <p>来源已经表明,攻击的起始入口为其中一名雇员打开了某收到的鱼叉式钓鱼邮件,攻击涉及到了多种后门和用于窃取信息的木马。一些恶意软件具有反沙盒属性且含有对抗heuristic signatures（一般被反病毒公司使用）的保护.多种恶意软件样本也展示了某种一般性的主题,例如:将自身安装到<code>%ProgramFiles%</code>或<code>%UserProfile%</code>文件夹（取决于用户是否有admin特权）中.此外,多数的恶意软件样本是用<code>Borland Delphi</code>编译的,它们带有已加密的字符串和API字符串（被混淆或被分为多个字符串）作为保护以对抗heuristic signatures技术.除了某个样本外,其它样本都没被加壳。</p>  <p>以文件的创建日期为根据,它的出现早于2015年2月,并已持续了三个多月</p>  <p><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001[5]" border="0" alt="clip_image001[5]" src="http://img.cker.in/a7cd34ff4b09_C78D/clip_image0015.png" width="277" height="240"></p>  <p>在该攻击中使用的样本概要</p>  <p>技术分析</p>  <p><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002[4]" border="0" alt="clip_image002[4]" src="http://img.cker.in/a7cd34ff4b09_C78D/clip_image0024.jpg" width="1212" height="1172"></p>  <p><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image003[4]" border="0" alt="clip_image003[4]" src="http://img.cker.in/a7cd34ff4b09_C78D/clip_image0034.jpg" width="1240" height="242"></p>  <h3>0x01 技术分析</h3>  <hr align="center" size="0" width="100%" noshade="noshade">  <h4>GoogleUpdate.exe</h4>  <p>今天,流行的恶意软件中，文件的文件结构通常并不像我们看到的那样.为什么？因为在今天,多数AV产品部署了基于启发式的检测技术（检测加壳样本和某些具有非常规文件结构的样本）.该恶意软件没被加壳且区段类似于某正常文件.</p>  <p>被加密的字符串只在被使用前解密.恶意软件通常将其API字符串分为多个字符串.这也为了躲避heuristic signatures（检测字符串和可疑APIs）.</p>  <p><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004[4]" border="0" alt="clip_image004[4]" src="http://img.cker.in/a7cd34ff4b09_C78D/clip_image0044.png" width="341" height="145"></p>  <p>如果用户有admin特权，则它将其自身副本移动到%Pr0gramFiles%文件夹中.如果不是则不移动 如果具有admin特权:</p>  <pre>%ProgramFilesDir%\Windows NT\Accessories\nt\GoogleUpdate.exe</pre><br><br><p>如果不具有admin特权:</p>
 

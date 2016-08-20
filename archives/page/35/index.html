@@ -45,22 +45,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-12T08:32:25.000Z" itemprop="datePublished">
-          2012-06-12
+      <time datetime="2012-11-01T03:28:08.000Z" itemprop="datePublished">
+          2012-11-01
       </time>
     
+    
+    | 
+    <a href='/tag/突破安全狗/'>突破安全狗</a>
+    
+    
 </span>
-      <h2 class="post-title"><a href="/452.seo/">反向代理在Web渗透测试中的运用</a></h2>
+      <h2 class="post-title"><a href="/919.seo/">日一骗子站，最新大小马突破安全狗并提权</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>作者：不走的钟 </p>  <p>来源：<a href="http://www.007hack.com/?p=770">http://www.007hack.com/?p=770</a></p>  <p>在一次Web渗透测试中，目标是M国的一个Win+Apache+PHP+MYSQL的网站，独立服务器，对外仅开80端口，网站前端的业务系统比较简单，经过几天的测试也没有找到漏洞，甚至连XSS都没有发现，也未找到网站后台，在收集信息的时候已经排除了C段入侵的可行性（选择C段入侵的时候，需要对目标、网络、路由和国家区域进行分析和判断，如果不经思考和判断地去入侵C段服务器，当你费尽心思拿到某台服务器权限时，往往发现毫无半点用处，特别又是在国外，ARP基本上都没什么希望，当然内网渗透中又是另一回事。） </p>  <p>也许在渗透测试遇到这种情况时大多会选择放弃，在绝望的时候，我将目标临时转移到该网站域名注册商，因为拥有域名注册商网站权限，至少可以修改目标网站的域名解析。一般情况入侵域名注册网站难度比较大，但并不是没有希望，在09年的时候，国内很多域名注册商的网站都存在漏洞。渗透那个域名注册商网站，过程比较繁杂，也没有新的技术点，靠的就是细心和耐心，但最终还是获取到目标网站域名的管理账号和密码，那么此时我们已知和已有的条件如下: </p>  <p>目标域名：<a href="http://ha.cker.in">ha.cker.in</a>(当然不是真的，文章来源007安全)     <br />网站IP:1.1.1.1 </p>  <p>环境：Win+Apache+PHP+MYSQL </p>  <p>已有权限：域名解析权限，可以将<a href="http://ha.cker.in">ha.cker.in</a>解析到任何一个IP上 </p>  <p>特别说明下，目标网站使用的服务器，并不是在域名注册商租用的，而是放置在公司机房中，所以通过域名注册商网站，是不能管理到Web源码的，只能进行域名解析。 </p>  <p>当拥有域名解析权限后，如何才获取目标网站的权限呢？ </p>  <p>A：构造一个和目标非常相似的网站？然后将域名解析到构造的网站？ </p>  <p>B：使用iis重定向？ </p>
+        作者：老树  起因：  有一朋友在网上购买了一台手机，等了十多天也没有收到货，才发现被骗了，于是有了下文。  过程：  头晕晕的，文笔不好，因为服务器关了，图就没了，大家将就着看，不喜欢的勿扰。谢谢！  用wvs扫了一下目录，发现了是ewebeditor，用默认密码admin888进入了后台，拿shell就不说了，样式添加asa拿到了shell，这个简单就不说了。  用菜刀连接不了，上传大马也不行。。。  换了一个过安全狗的一句话，&l
       
       </p>
       
       <p>
-          <a href="/452.seo/" class="excerpt-link">Read More...</a>
+          <a href="/919.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -69,27 +74,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-12T08:31:46.000Z" itemprop="datePublished">
-          2012-06-12
+      <time datetime="2012-10-31T21:05:01.000Z" itemprop="datePublished">
+          2012-11-01
       </time>
     
     
     | 
-    <a href='/tag/Metasploit/'>Metasploit</a>
+    <a href='/tag/共享session/'>共享session</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/449.seo/">metasploit装不上</a></h2>
+      <h2 class="post-title"><a href="/918.seo/">php实现多服务器共享session的方法</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        在非英文版Windows系统上安装Metasploit会出现此类错误：  —————————    Error     —————————     There has been an error.     Error running D:\T00ls\metasploit/postgresql/bin/psql.exe -U postgres -p 7337 -h localhost -c &quot;ALTER USER postgr
+         PHP里的SESSION默认是用文件来保存的，如session.save_path=/tmp,则是将session数据保存在/tmp目录下，如果并发用户量很大，在这个目录下就会存在大量类似sess_xxxxxx的session文件，导致性能下降，不少朋友可能都没有注意到php.ini里面Session设置部分中有这样一项：   ; session.save_path = “N; MODE; /path”     这项设置提供给我们可以
       
       </p>
       
       <p>
-          <a href="/449.seo/" class="excerpt-link">Read More...</a>
+          <a href="/918.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -98,31 +103,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-02T10:39:53.000Z" itemprop="datePublished">
-          2012-06-02
+      <time datetime="2012-10-31T17:58:10.000Z" itemprop="datePublished">
+          2012-11-01
       </time>
     
     
     | 
-    <a href='/tag/病毒/'>病毒</a>,
+    <a href='/tag/电商/'>电商</a>,
     
-    <a href='/tag/loader/'>loader</a>,
-    
-    <a href='/tag/黑盒分析/'>黑盒分析</a>
+    <a href='/tag/淘宝购物/'>淘宝购物</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/445.seo/">第三方loader简单分析</a></h2>
+      <h2 class="post-title"><a href="/917.seo/">楼主朋友发现一个非常高端的淘宝店铺骗局</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><p>原帖：</p>  <p>第三方loader简单分析   <br /><a href="http://bbs.blackbap.org/forum.php?mod=viewthread&amp;tid=2612&amp;fromuid=4372">http://bbs.blackbap.org/forum.php?mod=viewthread&amp;tid=2612&amp;fromuid=4372</a></p>  <p>今天就给各位大牛带来个病毒的黑盒分析吧，了解最新的病毒走向。</p>  <p>样本信息</p>  <p>File Name: 3.exe</p>  <p>File MD5: 280C68A4D66EDB9A31B021441A871BBA   <br />今天这个病毒比较有意思，利用的是暴风影音的文件。</p>  <p>现在病毒流行一种新的玩法：第三方loader</p>  <p>问：什么是第三方loader呢？</p>  <p><strong>简单来说，比如启动正常的xxx.exe白文件，它会去加载一个xxx.dll白文件。</strong></p>  <p><strong>然而xxx.exe白文件去加载xxx.dll白文件的时候没有去做安全校验。。。。</strong></p>  <p><strong>病毒作者就开始邪恶了，把xxx.dll替换成一个自己写的dll文件。</strong></p>  <p>那么病毒就被加载起来了，对于现在杀软的防御机制来看，拦截的效果不太理想。</p>  <p></p>
+        <p>首先说下，通俗点楼主是做网站的，今天css森林群里大白发现了一家<a href="http://ha.cker.in/tag/淘宝购物" target="_blank">淘宝</a>店铺利用装修实现虚假产品销售情况的骗局。楼主看了下代码确认是骗子，于是准备直播更新骗局的实现原理，希望大家警觉不要上当。为了和谐的购物，大家转起啊！！</p>  <p>情况如下，你们知道这个框出来的地方是假的吗！</p>  <p><a href="http://img.cker.in/09a46c93da9f_8B4A/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/09a46c93da9f_8B4A/clip_image001_thumb.jpg" width="520" height="470" /></a></p>  <p>首先介绍下店铺装修的基础，简单的说一个网页是由html和css以及一些js效果呈现出来的，html如人的骨骼，css就是外表装饰，js控制页面的效果，类似神经。而淘宝店铺装修就是用css来控制页面的显示效果。这个骗局用到的是css里的background属性，意思就是为一个区域设置一个背景图，这是骗局实现的关键所在，页面虚假的东西都是有背景图片呈现的。</p>  <p>先来看第一处，30天销售数量   <br /><a href="http://img.cker.in/09a46c93da9f_8B4A/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/09a46c93da9f_8B4A/clip_image002_thumb.jpg" width="496" height="358" /></a></p>  <p>从左下角的html中可以看出，实际销售量是0，但是右下角店铺利用css把0右移一点，左边空出的地方用了一个背景图58构成了580件的销售量。</p>  <p>第二处，购物须知，被改成了“优质商家 7天无理由退换”</p>  <p><a href="http://img.cker.in/09a46c93da9f_8B4A/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/09a46c93da9f_8B4A/clip_image003_thumb.jpg" width="519" height="378" /></a></p><br>
       
       </p>
       
       <p>
-          <a href="/445.seo/" class="excerpt-link">Read More...</a>
+          <a href="/917.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -131,27 +134,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-05-31T06:37:23.000Z" itemprop="datePublished">
-          2012-05-31
+      <time datetime="2012-10-30T21:41:03.000Z" itemprop="datePublished">
+          2012-10-31
       </time>
     
     
     | 
-    <a href='/tag/免杀/'>免杀</a>
+    <a href='/tag/SecureRDP/'>SecureRDP</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/443.seo/">怎么学免杀,免杀方法：脱壳免杀技术大纲</a></h2>
+      <h2 class="post-title"><a href="/916.seo/">调戏突破SecureRDP对远程桌面连接的限制</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>1.基础的汇编语言 2.修改工具(不指那些傻瓜式软件).如:</p>  <p> OllyDbg . PEditor. C32ASM . MYCCL复合特征码定位器.UE .OC. 资源编辑器等.还有一些查壳 脱壳软件(如PEID RL脱壳机等) . 以下是常用的几种免杀方法及工具: ||J=7{4wh</p>  <p> 一. 要使一个木马免杀，首先要准备一个不加壳的木马，这点非常重要，否则免杀操作就不能进行下去。</p>  <p> 二.然后我们要木马的内存免杀，从上面分析可以看出，目前的内存查杀，只有瑞星最强，其它杀毒软件内存查杀现在还不起作用所以我们只针对瑞星的内存查杀，要进行内存特征码的定位和修改，才能内存免杀。</p>  <p> 三.对符其它的杀毒软件，比如江民，金山，诺顿,卡巴.我们可以采用下面的方法,或这些方面的组合使用.</p>  <p> 1&gt;.入口点加1免杀法.</p>  <p> 2&gt;.变化入口地址免杀法</p>  <p> 3&gt;.加花指令法免杀法</p>  <p> 4&gt;.加壳或加伪装壳免杀法.</p>  <p> 5&gt;.打乱壳的头文件免杀法.</p>  <p> 6&gt;.修改文件特征码免杀法.</p>  <p> 第三部分:免杀技术实例演示部分</p>  <p> 一.入口点加1免杀法:</p>  <p> 1.用到工具Editor</p>  <p> 2.特点:非常简单实用,但有时还会被卡巴查杀.</p>  <p> 3.操作要点:用PEditor打开无壳木马程序,把原入口点加1即可.</p>  <p> 二.变化入口地址免杀法:</p>  <p> 1.用到工具:OllyDbg,PEditor</p>  <p> 2.特点:操作也比较容易,而且免杀效果比入口点加1点要佳.</p>  <p> 3.操作要点:用OD载入无壳的木马程序,把入口点的前二句移到零区域去执行,然后又跳回到入口点的下面第三句继续执行.最后用PEditor把入口点改成零区域的地址.</p>
+        <p>缘起自某群某孩纸遇到的一案例！</p>  <p>连接远程桌面的时候服务器出现如下提示：</p>  <p>You are not allowed to access to this Terminal Server. Please contact your administrator for more information. Secured by SecureRDP.</p>  <p>仔细一看不是远程管理组的问题，而是<a href="http://ha.cker.in/tag/SecureRDP" target="_blank">SecureRDP</a>这个软件搞的鬼，网上一搜，    <br />好家伙，这个软件的功能如下：</p>  <p><a href="http://ha.cker.in/tag/SecureRDP" target="_blank">secureRDP</a>是一款用户登录服务器管理软件。防止非法用户试图暴力破解用户密码；可以过滤IP/MAC地址、计算机名等。具体有以下功能：     <br />1.连接限制 允许按照登陆时间，IP地址，主机名，MAC地址，Client版本等信息作连接</p>  <p><a href="http://pkav.net/wp-content/uploads/2012/10/1.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/SecureRDP_BF77/clip_image002.jpg" width="660" height="506" /></a></p>  <p>看来是对客户端的连接做了限制了，现在流行的D盾和安全狗都有这样的功能！   <br />着实第一次见这个软件，好奇心也来了，也想顺便帮这位童鞋一把，下了软件    <br />虚拟机装好，配置好限制ip，一看软件目录，依然只有这几个文件，那么他的配置要么    <br />是写入其他目录了，要么写到注册表里面啦！</p>  <p><a href="http://pkav.net/wp-content/uploads/2012/10/2.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/SecureRDP_BF77/clip_image003.png" width="389" height="542" /></a></p>  <p>想想之前调试的某狗。Od打开，加载软件   <br />Aspack壳无视之，运行起软件，直接下好注册表API断点RegOpenKeyExA，直接保存配置    <br />断点断下了，注册表的路径显示出来了    <br />HKEY_LOCAL_MACHINE\Software\Terminalsoft\WTSFilter</p>  <p><a href="http://img.cker.in/SecureRDP_BF77/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/SecureRDP_BF77/clip_image005_thumb.jpg" width="660" height="439" /></a></p>  <p>跑到注册表里面一看，果然是这个   <br />邪恶的直接把WTSFilter项给删除了</p>  <p><a href="http://img.cker.in/SecureRDP_BF77/clip_image007.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/SecureRDP_BF77/clip_image007_thumb.jpg" width="660" height="522" /></a></p>  <p><a href="http://img.cker.in/SecureRDP_BF77/clip_image009.jpg" target="_blank"></a></p><br>
       
       </p>
       
       <p>
-          <a href="/443.seo/" class="excerpt-link">Read More...</a>
+          <a href="/916.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -160,64 +163,64 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-05-30T04:28:18.000Z" itemprop="datePublished">
-          2012-05-30
+      <time datetime="2012-10-29T02:47:46.000Z" itemprop="datePublished">
+          2012-10-29
       </time>
     
     
     | 
-    <a href='/tag/iphone/'>iphone</a>,
+    <a href='/tag/提权/'>提权</a>,
     
-    <a href='/tag/IPad/'>IPad</a>,
-    
-    <a href='/tag/反弹后门/'>反弹后门</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/440.seo/">在IPhone IPad上建立反弹后门</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="273L}ZR[0HZMFQHR5KC]{YL" border="0" alt="273L}ZR[0HZMFQHR5KC]{YL" src="http://img.cker.in/IPhoneIPad_11FCE/273LZR0HZMFQHR5KCYL.jpg" width="572" height="270" /></p>  <p><strong>小编:sbd是一款小型后门，且具有较强大的加密功能，是居家旅行杀人越货谋财害命之必备佳品（安全测试工具请勿非法使用），</strong><strong>下载地址</strong>: <a href="http://packetstormsecurity.org/files/download/34401/sbd-1.36.tar.gz">http://packetstormsecurity.org/files/download/34401/sbd-1.36.tar.gz</a></p>  <p>在一次安全渗透测试中，我通过ssh暴力破解拿到了一台iphone4(已越狱)的权限。于是我成功的SSH连接上这台设备，安装了一个持久的TCP反弹后门（<a href="http://packetstormsecurity.org/files/download/34401/sbd-1.36.tar.gz">sbd-1.36</a> by Michel Blomgren）</p>  <p>接下来来详细说明所有的步骤：</p>  <p>1. 安装iphone-gcc:</p>  <pre><br /><font color="#00ff40">iphone4:~ root# uname -an<br>Darwin iphone4 11.0.0 Darwin Kernel Version 11.0.0: Tue Nov 1 20:33:58 PDT 2011; root:xnu-1878.4.46~1/RELEASE_ARM_S5L8930X iPhone3,1 arm N90AP Darwin<br><br>iphone4:~ root# apt-get update<br>Get:1 <a href="http://repo.biteyourapple.net">http://repo.biteyourapple.net</a> ./ Release.gpg [490B]<br>Hit <a href="http://cydia.zodttd.com">http://cydia.zodttd.com</a> stable Release.gpg<br>Hit <a href="http://apt.saurik.com">http://apt.saurik.com</a> ios/675.00 Release.gpg<br>Hit <a href="http://repo.insanelyi.com">http://repo.insanelyi.com</a> ./ Release.gpg<br>…<br><br></font></pre>
-      
-      </p>
-      
-      <p>
-          <a href="/440.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-05-18T07:34:47.000Z" itemprop="datePublished">
-          2012-05-18
-      </time>
-    
-    
-    | 
     <a href='/tag/入侵/'>入侵</a>,
     
-    <a href='/tag/田众和/'>田众和</a>,
+    <a href='/tag/0day/'>0day</a>,
     
-    <a href='/tag/大黑阔/'>大黑阔</a>
+    <a href='/tag/破解/'>破解</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/437.seo/">黑掉田众和全过程</a></h2>
+      <h2 class="post-title"><a href="/915.seo/">发几篇以前录制的视频教程</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>第一次入侵</p>  <p>话说那个田众和炒的可谓沸沸扬扬，看了腾讯拍的采访，发现了许多可疑点，</p>  <p>视频字幕出现了雷人的一幕…（如图1）</p>  <p><a href="http://xider-wordpress.stor.sinaapp.com/uploads/2012/02/1.bmp"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="黑掉田众和" border="0" alt="黑掉田众和" src="http://img.cker.in/5a733781cedb_140B6/clip_image001.png" width="500" height="377" /></a>     <br />懂技术的人都知道田众和所说的其实是js、css、ajax，这三种网站建设中的前端语言，而字幕居然写成这样，可见制作视频的人从策划到编辑根本就没有 一个是懂得网络技术的人，因此田众和说什么对于这些不懂的视频制作人员来说都是可信的，因为他们不懂，他们的目标只是做出来一个网络热门话题，可奇怪的是 这个视频居然没有让田众和本人看一下吗？</p>  <p>小弟我看完这片子，感慨啊，12岁的小盆友，15天写出PE系统，这严重打击了我们这些学技术的叉子们….还说什么精通php，c语言。这孩子一看就是个忽悠…</p>  <p>看完片子后，立即打开那传说中的时代网络工作室，对，是php做的。嗯，也没什么低级注入，看到底部赫赫大字，网页程序by小田…我心想，难道我多疑了。这个是他写的？</p>  <p>不管，先扫一下后台再说…拿出我的6.5M的wwwscan，开始扫…..</p>  <p><a href="http://xider-wordpress.stor.sinaapp.com/uploads/2012/02/%E5%9B%BE%E7%89%872.bmp"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="黑掉田众和" border="0" alt="黑掉田众和" src="http://img.cker.in/5a733781cedb_140B6/clip_image002.png" width="561" height="370" /></a></p>  <p>这不是wp的目录吗（如图2）？赶紧去wp默认后台…</p>
+        发几篇以前做的视频教程，比较没技术含量，都是以前无聊的时候录制的  放着也是放着 不如拿出来或许有需要的人可以看下 不要拍我就好…。。     一键破解无线路由WEP密码.rar      记一次提权拿服务器.rar      检测浙江互联星空[游戏分站].rar      入侵私服站拿服务器教程.rar      入侵北大青鸟拿服务器.rar      Fckeditor后台编辑器0day.rar      建站之星0day漏洞演示.
       
       </p>
       
       <p>
-          <a href="/437.seo/" class="excerpt-link">Read More...</a>
+          <a href="/915.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-10-28T22:03:14.000Z" itemprop="datePublished">
+          2012-10-29
+      </time>
+    
+    
+    | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/代码执行/'>代码执行</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/914.seo/">akcms代码执行漏洞</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>by <a href="http://www.moonhack.org/daimashenji/468.html">MoonHack</a></p>  <p>上周挖出的akcms的后台模版getshell感觉没什么新意，然后又仔细看了看代码，发现了一个比较有“前途”的洞，<a href="http://ha.cker.in/tag/代码执行" target="_blank">代码执行</a>漏洞，而且出问题函数是作者提供给建站用户进行二次开发时使用的，也就是说这个问题放大的程度也会要大些。</p>  <p>0×01、原理分析</p>  <p>漏洞问题主要存在于include\common.func.php文件中的ak_if函数，先看下代码</p>  <p><a href="http://img.cker.in/akcms_C569/clip_image001.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/akcms_C569/clip_image001_thumb.png" width="600" height="246" /></a></p>  <p>eval函数参数中的变量$variable未作任何的处理变插入到了函数中。ak_if这个函数的主要用途是，提供给建站用户一个简单的逻辑判断功能的接口。对比一下4.1版本中的这段代码</p>  <p><a href="http://img.cker.in/akcms_C569/clip_image002.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/akcms_C569/clip_image002_thumb.png" width="546" height="160" /></a></p>  <p>可以发现，相差了eval函数调用的语句。在4.1.4之前的版本中，这个函数并没有调用eval函数，但是在4.1.4中，作者为了增加ak_if对复杂逻辑的判断，添加了这条语句。</p>  <p>这导致了，如果用户对于$variable变量可控，将会执行任意php代码。</p>  <p>0×02、漏洞验证</p>  <p>为了重现漏洞，我下载了作者基于akcms2.4.2的blog系统，在\cache\templates\%%7D^7D3^7D3A5C77%%comments.htm.php模板中调用了这个函数</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/914.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -225,7 +228,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/archives/page/34/">← Newer Posts</a>
-    <span class="page-number">Page 35 of 57</span>
+    <span class="page-number">Page 35 of 81</span>
     <a class="older-posts" href="/archives/page/36/">Older Posts →</a>
   </nav>
 </main>

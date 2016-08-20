@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>调戏突破SecureRDP对远程桌面连接的限制 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-10-30T21:41:03.000Z" itemprop="datePublished">
+          2012-10-31
+      </time>
+    
+    
+    | 
+    <a href='/tag/SecureRDP/'>SecureRDP</a>
+    
+    
+</span>
+    <h1 class="post-title">调戏突破SecureRDP对远程桌面连接的限制</h1>
+    <section class="post-content">
+      <p>缘起自某群某孩纸遇到的一案例！</p>  <p>连接远程桌面的时候服务器出现如下提示：</p>  <p>You are not allowed to access to this Terminal Server. Please contact your administrator for more information. Secured by SecureRDP.</p>  <p>仔细一看不是远程管理组的问题，而是<a href="http://ha.cker.in/tag/SecureRDP" target="_blank">SecureRDP</a>这个软件搞的鬼，网上一搜，    <br>好家伙，这个软件的功能如下：</p>  <p><a href="http://ha.cker.in/tag/SecureRDP" target="_blank">secureRDP</a>是一款用户登录服务器管理软件。防止非法用户试图暴力破解用户密码；可以过滤IP/MAC地址、计算机名等。具体有以下功能：     <br>1.连接限制 允许按照登陆时间，IP地址，主机名，MAC地址，Client版本等信息作连接</p>  <p><a href="http://pkav.net/wp-content/uploads/2012/10/1.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/SecureRDP_BF77/clip_image002.jpg" width="660" height="506"></a></p>  <p>看来是对客户端的连接做了限制了，现在流行的D盾和安全狗都有这样的功能！   <br>着实第一次见这个软件，好奇心也来了，也想顺便帮这位童鞋一把，下了软件    <br>虚拟机装好，配置好限制ip，一看软件目录，依然只有这几个文件，那么他的配置要么    <br>是写入其他目录了，要么写到注册表里面啦！</p>  <p><a href="http://pkav.net/wp-content/uploads/2012/10/2.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/SecureRDP_BF77/clip_image003.png" width="389" height="542"></a></p>  <p>想想之前调试的某狗。Od打开，加载软件   <br>Aspack壳无视之，运行起软件，直接下好注册表API断点RegOpenKeyExA，直接保存配置    <br>断点断下了，注册表的路径显示出来了    <br>HKEY_LOCAL_MACHINE\Software\Terminalsoft\WTSFilter</p>  <p><a href="http://img.cker.in/SecureRDP_BF77/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/SecureRDP_BF77/clip_image005_thumb.jpg" width="660" height="439"></a></p>  <p>跑到注册表里面一看，果然是这个   <br>邪恶的直接把WTSFilter项给删除了</p>  <p><a href="http://img.cker.in/SecureRDP_BF77/clip_image007.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/SecureRDP_BF77/clip_image007_thumb.jpg" width="660" height="522"></a></p>  <p><a href="http://img.cker.in/SecureRDP_BF77/clip_image009.jpg" target="_blank"></a></p><br><a id="more"></a><br><p><a href="http://img.cker.in/SecureRDP_BF77/clip_image009.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image009" border="0" alt="clip_image009" src="http://img.cker.in/SecureRDP_BF77/clip_image009_thumb.jpg" width="660" height="506"></a></p>  <p>看在删除之前我是配置把自己的ip除外了的。提示不允许连接！</p>  <p>把注册表项删除以后，已经没有任何的限制了！</p>  <p><a href="http://img.cker.in/SecureRDP_BF77/clip_image011.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image011" border="0" alt="clip_image011" src="http://img.cker.in/SecureRDP_BF77/clip_image011_thumb.jpg" width="660" height="402"></a></p>  <p>思路已经很清楚了。直接干掉那个注册表项，就能搞定啦！</p>  <p>我先是在shell上读取了这个注册表的值，的确存在的。   <br>读取注册表值：    <br>reg query “HKEY_LOCAL_MACHINE\Software\Terminalsoft\WTSFilter” /v tsdata</p>  <p>备份导出注册表项：   <br>Cmd /c “regedit /e d:\freehost\jiqiren\web\Editor\js\wts.reg “HKEY_LOCAL_MACHINE\Software\Terminalsoft\WTSFilter”&quot;</p>  <p>然后就是删除注册表项：   <br>reg delete “HKEY_LOCAL_MACHINE\Software\Terminalsoft\WTSFilter” /va /f</p>  <p><a href="http://img.cker.in/SecureRDP_BF77/clip_image013.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image013" border="0" alt="clip_image013" src="http://img.cker.in/SecureRDP_BF77/clip_image013_thumb.jpg" width="660" height="273"></a>    <br>好吧，此时连接目标服务器，发现限制已经么有啦！</p>  <p><a href="http://img.cker.in/SecureRDP_BF77/clip_image015.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image015" border="0" alt="clip_image015" src="http://img.cker.in/SecureRDP_BF77/clip_image015_thumb.jpg" width="660" height="506"></a>    <br>服务器已经提权，登录之后，恢复注册表项，看他的配置，发现对计算机名进行了限制！</p>  <p><a href="http://img.cker.in/SecureRDP_BF77/clip_image017.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image017" border="0" alt="clip_image017" src="http://img.cker.in/SecureRDP_BF77/clip_image017_thumb.jpg" width="660" height="399"></a></p>  <p>这次好玩的过程就结束啦。成功的kill掉了它的限制！</p>  <p>最后总结：</p>  <p>1.开始没看清提示，以为是组策略或者是远程组的关系！</p>  <p>2.发现软件时，直接kill掉进程是没用的，实现的手法还待探索！</p>  <p>3.其实这些个小安全软件做的还真是不太“安全”！</p>  <p>By：闪电小子/PKAV.Net</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/916.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/916.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/916.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/916.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/917.seo/">
+        ← 楼主朋友发现一个非常高端的淘宝店铺骗局
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/915.seo/">
+        发几篇以前录制的视频教程 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

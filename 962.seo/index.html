@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>代码审计：ECShop V2.7.3 GBK release1106注入0day及修复 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-12-30T00:54:50.000Z" itemprop="datePublished">
+          2012-12-30
+      </time>
+    
+</span>
+    <h1 class="post-title">代码审计：ECShop V2.7.3 GBK release1106注入0day及修复</h1>
+    <section class="post-content">
+      <p>C0deplay Team&#160;&#160;&#160; j8g </p>  <p>看代码</p>  <pre>/<em> 修改个人资料的处理 </em>/<br><br>elseif ($action == ‘act_edit_profile’)<br><br>{<br><br>    include_once(ROOT_PATH . ‘includes/lib_transaction.php’);<br><br>    $birthday = trim($_POST[‘birthdayYear’]) .’-’. trim($_POST[‘birthdayMonth’]) .’-’.<br><br>    trim($_POST[‘birthdayDay’]);<br><br>    $email = trim($_POST[‘email’]);<br><br>    $other[‘msn’] = $msn = isset($_POST[‘extend_field1’]) ? trim($_POST[‘extend_field1’]) : ”;<br><br>    $other[‘qq’] = $qq = isset($_POST[‘extend_field2’]) ? trim($_POST[‘extend_field2’]) : ”;<br><br>    $other[‘office_phone’] = $office_phone = isset($_POST[‘extend_field3’]) ? trim($_POST[‘extend_field3’]) : ”;<br><br>    $other[‘home_phone’] = $home_phone = isset($_POST[‘extend_field4’]) ? trim($_POST[‘extend_field4’]) : ”;<br><br>    $other[‘mobile_phone’] = $mobile_phone = isset($_POST[‘extend_field5’]) ? trim($_POST[‘extend_field5’]) : ”;<br><br>    $sel_question = empty($_POST[‘sel_question’]) ? ” : $_POST[‘sel_question’];<br><br>    $passwd_answer = isset($_POST[‘passwd_answer’]) ? trim($_POST[‘passwd_answer’]) : ”;<br><br>    /<em> 更新用户扩展字段的数据 </em>/<br><br>    $sql = ‘SELECT id FROM ‘ . $ecs-&gt;table(‘reg_fields’) . ‘ WHERE type = 0 AND display = 1 ORDER BY dis_order, id’;   //读出所有扩展字段的id<br><br>    $fields_arr = $db-&gt;getAll($sql);<br><br>    foreach ($fields_arr AS $val)       //循环更新扩展用户信息<br><br>    {<br><br>        $extend_field_index = ‘extend_field’ . $val[‘id’];<br><br>        if(isset($_POST[$extend_field_index]))<br><br>        {<br><br>            $temp_field_content = strlen($_POST[$extend_field_index]) &gt; 100 ? mb_substr(htmlspecialchars($_POST[$extend_field_index]), 0, 99) : htmlspecialchars($_POST[$extend_field_index]);<br><br>            $sql = ‘SELECT <em> FROM ‘ . $ecs-&gt;table(‘reg_extend_info’) . ”  WHERE reg_field_id = ‘$val[id]‘ AND user_id = ‘$user_id’”;<br><br>            if ($db-&gt;getOne($sql))      //如果之前没有记录，则插入<br><br>            {<br><br>                $sql = ‘UPDATE ‘ . $ecs-&gt;table(‘reg_extend_info’) . ” SET content = ‘$temp_field_content’ WHERE reg_field_id = ‘$val[id]‘ AND user_id = ‘$user_id’”;<br><br>            }<br><br>            else<br><br>            {<br><br>                $sql = ‘INSERT INTO ‘. $ecs-&gt;table(‘reg_extend_info’) . ” (<code>user_id</code>, <code>reg_field_id</code>, <code>content</code>) VALUES (‘$user_id’, ‘$val[id]‘, ‘$temp_field_content’)”;<br><br>            }<br><br>            $db-&gt;query($sql);<br><br>        }<br><br>    }<br><br>    /</em> 写入密码提示问题和答案 */<br><br>    if (!empty($passwd_answer) &amp;&amp; !empty($sel_question))<br><br>    {<br><br>        $sql = ‘UPDATE ‘ . $ecs-&gt;table(‘users’) . ” SET <code>passwd_question</code>=’$sel_question’, <code>passwd_answer</code>=’$passwd_answer’  WHERE <code>user_id</code>=’” . $_SESSION[‘user_id’] . “‘”;<br><br>                echo $sql;<br><br>        $db-&gt;query($sql);<br><br>    }</pre><br><br><p>上图</p>
+
+<p><a href="http://img.cker.in/ECShopV2.7.3GBKrelease11060day_ED75/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/ECShopV2.7.3GBKrelease11060day_ED75/clip_image001_thumb.jpg" width="707" height="367"></a></p>
+
+<p><a href="http://img.cker.in/ECShopV2.7.3GBKrelease11060day_ED75/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/ECShopV2.7.3GBKrelease11060day_ED75/clip_image002_thumb.jpg" width="637" height="354"></a></p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/962.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/962.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/962.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/962.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/963.seo/">
+        ← 正确重置MySQL密码
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/961.seo/">
+        Raspberry Pi下跑aircrack和reaver破解路由器PIN码 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

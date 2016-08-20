@@ -45,6 +45,59 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
+      <time datetime="2014-10-07T12:18:27.000Z" itemprop="datePublished">
+          2014-10-07
+      </time>
+    
+</span>
+      <h2 class="post-title"><a href="/1095.seo/">解决：对 PInvoke 函数的调用导致堆栈不对称问题</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        在使用托管代码调用非托管代码时，发生“对PInvoke函数“UseTwiHikVisionDllTest!UseTwiHikVisionDllTest.TwiHikVision::GetFirstPic”的调用导致堆栈不对称。原因可能是托管的PInvoke 签名与非托管的目标签名不匹配。请检查 PInvoke 签名的调用约定和参数与非托管的目标签名是否匹配。”  解决方法：  添加属性: CallingConvention=Callin
+      
+      </p>
+      
+      <p>
+          <a href="/1095.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2014-08-31T16:30:53.000Z" itemprop="datePublished">
+          2014-09-01
+      </time>
+    
+    
+    | 
+    <a href='/tag/iOS-Hacking-Course/'>iOS Hacking Course</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1094.seo/">iOS Hacking Course</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        http://hackingdemystified.com/ios-course/
+      
+      </p>
+      
+      <p>
+          <a href="/1094.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
       <time datetime="2014-08-30T03:39:42.000Z" itemprop="datePublished">
           2014-08-30
       </time>
@@ -172,73 +225,9 @@
     </section>
   </article>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2014-07-03T01:53:48.000Z" itemprop="datePublished">
-          2014-07-03
-      </time>
-    
-    
-    | 
-    <a href='/tag/SQL注入/'>SQL注入</a>,
-    
-    <a href='/tag/安全狗/'>安全狗</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1089.seo/">全方位绕过安全狗</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><b>一、前言</b><b></b></p>  <p><a href="http://ha.cker.in/tag/安全狗" target="_blank">安全狗</a>是一款大家熟悉的服务器安全加固产品，据称已经拥有50W的用户量。最近经过一些研究，发现<a href="http://ha.cker.in/tag/安全狗" target="_blank">安全狗</a>的一些防护功能，例如<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>、文件上传、防webshell等都可以被绕过，下面为大家一一介绍。</p>  <p><b>二、测试环境</b><b></b></p>  <p>本次测试环境为</p>  <p>中文版Win2003 SP2+PHP 5.3.28+Mysql 5.1.72</p>  <p>网站安全狗IIS版3.2.08417</p>  <p><b>三、SQL注入绕过</b><b></b></p>  <p>我们先写一个存在SQL注入漏洞的php：</p>  <p>&lt;?</p>  <p>$uid = $_REQUEST[‘id’];</p>  <p>if(!$conn = @mysql_connect(&quot;localhost&quot;, &quot;root&quot;, &quot;123456&quot;))</p>  <p>die(‘&lt;font size=+1&gt;An Error Occured&lt;/font&gt;&lt;hr&gt;unable to connect to the database.’);</p>  <p>if(!@mysql_select_db(&quot;supe&quot;,$conn))</p>  <p>die(&quot;&lt;font size=+1&gt;An Error Occured&lt;/font&gt;&lt;hr&gt;unable to find it at database on your MySQL server.&quot;);</p>  <p>$text = &quot;select <em> from supe_members where uid=&quot;.$uid;</p>  <p>$rs = mysql_query ($text,$conn);</p>  <p>while($rom = mysql_fetch_array($rs))</p>  <p>{</p>  <p>&#160;&#160;&#160; echo $rom[&quot;username&quot;];</p>  <p>}</p>  <p>?&gt;</p>  <p>我用的是supesite的库，可以看到这里是有明显<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>漏洞的，当没有安全狗的时候可以成功注入：</p>  <p><a href="http://img.cker.in/de86e6665f70_D948/clip_image001.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="injsuc.png" border="0" alt="全方位绕过安全狗" src="http://img.cker.in/de86e6665f70_D948/clip_image001_thumb.jpg" width="694" height="332" /></a></p>  <p>当安装安全狗之后，注入语句会被拦截：</p>  <p><a href="http://img.cker.in/de86e6665f70_D948/clip_image002.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="injfail.png" border="0" alt="全方位绕过安全狗" src="http://img.cker.in/de86e6665f70_D948/clip_image002_thumb.jpg" width="694" height="312" /></a></p>  <p>经过测试发现，安全狗这块的匹配正则应该是\s+and这类的，所以只要想办法去掉空格，用普通注释/**/是不行的，安全狗也防了这块。但是对内联注释/</em>!and<em>/这种不知道为什么安全狗没有拦截。</p>  <p>用下面语句成功绕过SQL注入过滤：</p>  <p><a href="http://192.168.200.115/inj.php?id=1/">http://192.168.200.115/inj.php?id=1/</a></em>!and<em>/1=2/</em>!union<em>//</em>!select*/1,2,version(),4,5,6,7,8,9,10,11,12,13,14,15,16,17</p>  <p><a href="http://img.cker.in/de86e6665f70_D948/clip_image003.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="injbypass.png" border="0" alt="全方位绕过安全狗" src="http://img.cker.in/de86e6665f70_D948/clip_image003_thumb.jpg" width="694" height="350" /></a></p>  <p>有人说只有POST才可以，但是我测试最新版本的安全狗GET注入也是可以用这种方法绕过的。</p>  <p><b>四、文件上传绕过</b><b></b></p>  <p>安全狗的防上传也是做在WEB层，即分析HTTP协议来防止上传，按照yuange说的安全是一个条件语句，这显然是不符合安全规范的，只检查HTTP并不能保证文件系统层上的问题。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1089.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2014-07-02T12:34:32.000Z" itemprop="datePublished">
-          2014-07-02
-      </time>
-    
-    
-    | 
-    <a href='/tag/SQL注入/'>SQL注入</a>,
-    
-    <a href='/tag/Discuz/'>Discuz</a>,
-    
-    <a href='/tag/Acunetix-Web-Vulnerability-Scanner/'>Acunetix Web Vulnerability Scanner</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1088.seo/">编写自己的Acunetix WVS漏洞脚本详细教程</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        AWVS提供了自定义的脚本编程接口，可是网上的资料很少，只有官方的几篇介绍和参考手册，最近研究了一下怎么编写AWVS的漏洞脚本来写一篇简单性的文章，大家有兴趣的可以交流 。  本文以8.0为例，首先呢安装好Acunetix Web Vulnerability Scanner 8（该破解的破解，该付费的付费），然后我们需要WVS公开的小小的SDK，下载地址：http://www.acunetix.com/download/tools/WV
-      
-      </p>
-      
-      <p>
-          <a href="/1088.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/archives/page/6/">← Newer Posts</a>
-    <span class="page-number">Page 7 of 57</span>
+    <span class="page-number">Page 7 of 81</span>
     <a class="older-posts" href="/archives/page/8/">Older Posts →</a>
   </nav>
 </main>

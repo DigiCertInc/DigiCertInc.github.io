@@ -45,6 +45,101 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
+      <time datetime="2012-06-12T09:48:04.000Z" itemprop="datePublished">
+          2012-06-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/入侵/'>入侵</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/486.seo/">入侵某网游服务器小记</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>没什么技术性,只是想说明现状&#160; </p>  <p>现在想弄钱的入侵者，似乎热衷于入侵网络游戏服务器，盗出游戏服务器程序或是数据库。国内的网络游戏企业，都应该招受过此损失，有暴露出来的，有没暴露出来的。但游戏企业对安全问题理解都十分片面，狭隘!&#160; </p>  <p> 当然，不只是网络游戏企业。近一两年来，入侵者乐此不疲，各种商业数据的偷盗在国内几乎快形成一种&quot;圈内产业&quot;。不论是技术性还是行事组织性都与早年不可同日而语。需求与供应在这里似乎有着完美结合。再看看各地公安网监部门，媒体似乎每天都有报道关于某地公安抓获某黑客的事件。但却似乎没有一起真正成熟的案件。抓到的都是小鱼，大鱼都在偷着乐。原因有没发现没报案的，也有网监部门的技术问题。还有就是官僚主义，公安部门发布所谓的“战果”也乐此不疲。&#160; </p>  <p> 话不说远了，转入正题。&#160; </p>  <p> 一个好友在国内某网络游戏企业工作，让我帮忙测试他们游戏服务器群的安全性。加上我这段时间闲得无聊，也就答应了。&#160; </p>  <p> 我先下载了游戏客户端程序，得到到了几个游戏服务器的地址。&#160; <br /> 游戏帐号在WEB网站上也可以注册，看来游戏中央数据库的调用WEB网站也可以。&#160; <br /> 先仔细的检查了一下WEB网站，大部分是PHP+MYSQL的。代码写得还不错，几乎找不到什么突破口。再看看MYSQL，禁止远程连接。查看了其他游戏服务器，都是LINUX系统，都只是开了OPENSSH和游戏服务器程序端口。只有WEB网站多个80，而又没什么可利用的地方。&#160; </p>  <p> 看上去安全做得不错，但这是种幻象！&#160; </p>  <p> 随后仔细分析了下游戏客户端程序，我打开SnifferPro以便记录下客户端程序和服务器的所有通信。发现客户端程序有个自动更新功能，我Sniff到是通过FTP去下载更新文件的。但我扫描所有游戏服务器时没发现这个FTP端口啊（8888）。仔细看了一下，原来这个端口连接延时十分长。所以扫描器没发现这个端口。&#160; </p>  <p> 意外的从更新过程中，竟然Sniff到一个固定的更新程序的FTP帐户。检查了FTP服务器是ProFTPd，我没直接用这个帐户去溢出ProFtpd。因为这台服务器开了SSH，我直接拿帐户去登陆SSH，获得一个权限极低的shell。&#160; </p>  <p>就像一块布，一但撕开一丁点口子，只要稍一加力，整块布都会随之撕开!&#160; </p>  <p>在系统中寻觅了半天，终于寻找到一个有权限去写的tmp目录。查看了内核版本，用kernel do_brk()的问题溢出提升权限获得了rootshell，没去装rkt，因为只是帮忙测试.&#160; </p>
+      
+      </p>
+      
+      <p>
+          <a href="/486.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-12T09:37:14.000Z" itemprop="datePublished">
+          2012-06-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/入侵/'>入侵</a>,
+    
+    <a href='/tag/大黑阔/'>大黑阔</a>,
+    
+    <a href='/tag/黑站/'>黑站</a>,
+    
+    <a href='/tag/日站/'>日站</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/481.seo/">历时5个月拿下PR7网站思路</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>历时5个月拿下PR7网站思路</p>  <p>作者：xxbing </p>  <p>在腾讯2009年安全技术峰会上我曾经提出一个观点：墨菲定律：如果它能够被黑阔攻破，它就将被攻破。对于一个黑阔来说，他要黑一个企业，仅仅是时间上的问题，总之是成本上的问题，比如有个盗号集团在支持他，他说我给你一年时间你把这个企业黑了，搞定了就给你多少钱。一年时间我相信只要他有这个毅力，基本上在座的公司逃不过这一劫。</p>  <p>这个观点看似有点哗众取宠，但它确实是一个不争的事实。XXB同学就上演了5个月日掉PR7网站的LIVE秀。</p>  <p>我总结下教训：</p>  <p>UDEV补丁没打，估计其他几个内核补丁肯定也没打</p>  <p><a name="tpc">2</a>、主机安全需要有基线，PHP安全模式得打开    <br />3、被安装了ssh后门却蒙在鼓里    <br />这三点看似简单，但却知难行易；建立完善的主机入侵防御体系，技术对抗很重要，但技术对抗只是一个小问题。引用caoz的一段话：    <br />1.技术是为了解决问题，而不是制造问题。    <br />2.把握目标去应用技术，而不是为了技术去虚构目标。（包子注：技术狂人一般喜欢这么做，为了追求自己的满足感，成就感，虚构目标，虚构需求）    <br />3.用户需求（通常是潜在需求）决定技术和产品方向，技术反过来刺激需求的显现和增长。    <br />4.技术仍然非常重要，非常有价值，但是前提是，它要用到正确的方向上。    <br />【文中网址都已和谐！该站点网址用<a href="http://www.xxbing.com/">ha.cker.in</a>代替】    <br />美女同学要看言情小说，<a href="http://www.xxbing.com/">ha.cker.in</a> 的言情小说要收钱，于是就帮她找找“空子”！    <br />在<a href="http://tool.chinaz.com/">http://tool.chinaz.com/</a>查了一下<a href="http://www.xxbing.com/">ha.cker.in</a>信息，日IP访问量快达到40W了。很牛逼呀。全站采用php构架。nignx服务器。好了，废话结束。进入正题。    <br />首先我注册了一个账号，然后我登陆作者平台，申请成为作者需要提交自己的原创作品。于是我上baidu搜索了一本很多年前的小说，提交了几章，等待审核。    <br />几天后，成功的申请成为作者。经过1-2个小时的手工测试，成功的在管理作品处寻到一个注射点。    <br />类似： book.php?bookid=123    <br />我提交 book.php?bookid=123 and 1=1 [正常]    <br />book.php?bookid=124-1 [正常]    <br />book.php?bookid=123 and 1=2 [错误]提示权限不足。    <br />book.php?bookid=124 [错误]提示权限不足。    <br />可以判断这里是注射点了，为什么会提示权限不足，应该是每个bookid代表一本图书，有其他字段控制着作者信息，防止非法编辑他人作品。    <br />用order判断出有53个字段。    <br />book.php?bookid=123 and 1=2 union select 1,2,3,……,52,53# 提示：[错误]提示权限不足。    <br />绝对是其中某个位置的数字不正确，导致系统判断我编辑了其他人的图书。于是我把注射点丢到pangolin里面暴力跑字段。成功的跑出53个字段名出来。（一个字符一个字符的暴力猜解。跑了很久）    <br />然后提交： book.php?bookid=123 and 1=2 union select 字段名1,字段名1,字段名3,……,字段名52,字段名53# 成功显示正常页面。    <br />接着我把字段名1、字段名2等等，一个个替换成数字，这个过程中一直显示正常页面。终于到了字段名13的时候，出错了，提示权限不足。那就可以跑了。    <br />book.php?bookid=123 and 1=2 union select 1,2,3,…,字段名13,…,52,53# 正常页面，页面上出现我定义的数字。    <br />接下来就丢到WSI 5.1里面跑数据。很可惜，数据库里面只有一些作品内容，也有编辑用户表，所有编辑账号密码都有，但是找不到后台。    <br />于是我开始寻找绝对路径，也找了N久，后来被我在上传图片处找到。上传一张图片，系统会自动生成该图片的缩略图，我上传一个文本图片，处理的时候出错了。爆出了绝对路径。    <br />[/opt/data/www/xxx.cn/common/include/upfile.php]    <br />用load_file能读出来。顺藤摸瓜，成功读到Mysql账号密码。    <br />mysql账号： Myuser    <br />密码： (Myuser.pass)</p>
+      
+      </p>
+      
+      <p>
+          <a href="/481.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-12T09:35:13.000Z" itemprop="datePublished">
+          2012-06-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>,
+    
+    <a href='/tag/入侵/'>入侵</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/478.seo/">社工+渗透某IDC服务器</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>作者：hu1s4</p>  <p>最近准备做个教育资源站，就打算在网上买个空间，ok百度下吧看看哪个好点</p>  <p>最后准备去这个站注册www.xxxxx.com</p>  <p>西部万维，西部IDC行业领跑，以最值得信赖的信誉为您提供服务器托管、服务器租用、域名注册、服务器租用、VPS、独立IP虚拟主机等服务</p>  <p>淘宝—网银—支付宝—支付成功！！</p>  <p>嘻嘻 邮箱收信了、</p>  <p>嘿嘿…空间到手了，进入FTP传个大马，因为我购买的是全能型空间，所以直接上传asp php asp.net jsp四类大马</p>  <p>查看，哎，权限bt啊，</p>  <p>（如果权限不bt，难道想被万人骑啊 hoho~~~）</p>  <p>试试看.net马吧</p>  <p>貌似权限比ASP的要大 可跳转</p>  <p>在C:\Program Files 发现了360还有星外的主机管理系统</p>  <p>一、提权之旅</p>  <p>在网上看了很多的星外提权文章，大概可以分为：</p>  <p>星外sa注册表位置在这里可以翻到sa的密码 不过需要破解</p>  <p>HKEY_LOCAL_MACHINE\SYSTEM\LIWEIWENSOFT\INSTALLFREEADMIN\11</p>  <p>C:\Documents and Settings\All Users\Application Data\Microsoft\Media Index\ 星外可写目录</p>  <p>还有一些就不列举了经过测试没有一个可行 ……峰回路转</p>  <p>正我郁闷的时候看到了Global.asa，激动的打开一看既然是sa用户</p>  <p>呵呵提权没问题了吧，不过却：</p>  <p>SQL Server 阻止了对组件 ‘xp_cmdshell’ 的过程’sys.xp_cmdshell’ 的访问</p>  <p>组件删除了，没关系我们恢复</p>  <p>dbcc addextendedproc (&quot;sp_oacreate&quot;,&quot;odsole70.dll&quot;)&#160; <br />dbcc addextendedproc (&quot;xp_cmdshell&quot;,&quot;xplog70.dll&quot;)</p>  <p>恢复好了，执行下命令在创建用户加入管理，，OK搞定</p>  <p>远程连接的时候悲剧了既然限制了管理用户组的权限。哎</p>  <p>继续想其他办法，在网上看了一篇文章</p>  <p>知道星外的ftp是自带的，我们可以通过IIS配置来读取用户密码</p>  <p>打开aspx的IIS间谍功能，既然没有禁止，教大家一个禁止aspx查看IIS配置的方法</p>  <p>找到C:\WINDOWS\system32\activeds.tlb这个文件，取消users权限即可，别人就不能查看你的IIS了</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/IDC_15DB/clip_image001.png" width="558" height="233" /></p>  <p>大家看到上面的比较了红色的FREE….</p>  <p>Freehostrunat这个用户是安装星外时建立的后面的密码并不是什么加密方式其实就是明文密码</p>  <p>我们可以直接远程登陆,在内网的话就转发</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/IDC_15DB/clip_image002.png" width="513" height="375" /></p>  <p>好了，成功拿下服务器…. 继续渗透….</p>
+      
+      </p>
+      
+      <p>
+          <a href="/478.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
       <time datetime="2012-06-12T09:17:58.000Z" itemprop="datePublished">
           2012-06-12
       </time>
@@ -137,76 +232,10 @@
     </section>
   </article>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-10-17T18:39:10.000Z" itemprop="datePublished">
-          2011-10-18
-      </time>
-    
-    
-    | 
-    <a href='/tag/Mysql/'>Mysql</a>,
-    
-    <a href='/tag/入侵/'>入侵</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/129.seo/">入侵国外站思路总结</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><blockquote>   <p>转自3EST <a href="http://www.3est.com/6049/">http://www.3est.com/6049/</a></p> </blockquote>  <p>主题:入侵国外站思路总结   <br />作者:zhenker    <br />微博:<a href="http://t.qq.com/zhenker1">http://t.qq.com/zhenker1</a>    <br />版权:3EST信息安全团队 (<a href="http://www.3est.com/">www.3est.com</a>)    <br />好久没写东西 ，搞韩国站有些日子了，本人小菜写点搞国外站思路，许多人看着国外站就烦，1网速不给力，2 字看不懂，这些都是浮云，只要自己淡定。    <br />（这里省略掉扫服务器端口 弱口令漏洞，一般国外用的linux,不过可以尝试扫下3306的弱口令，跟ssh弱口令）    <br />1.    <br />一般开始就是寻注入，主站无注入，看旁站的注入。注入多做解释。但是国外MYSQL注入不是普通注入，大家先把MYSQL高级注入法都学好。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/129.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-10-08T20:22:54.000Z" itemprop="datePublished">
-          2011-10-09
-      </time>
-    
-    
-    | 
-    <a href='/tag/日志分析/'>日志分析</a>,
-    
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/网络安全/'>网络安全</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/92.seo/">根据日志逆向分析攻击者入侵思路及查找0day</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>转自：<a href="http://www.t00ls.net/">http://www.t00ls.net/</a></p>  <p>作者：daokers （金刀客）</p>  <p>博客：<a href="http://www.daokers.com">http://www.daokers.com</a></p>  <p>刀客城：<a href="http://www.daokers.cn">http://www.daokers.cn</a></p>  <blockquote>   <p>通过分析攻击者留下的日志，比较详细滴还原了攻击者踩点、渗透、尝试突破的经过，对攻与防的手段和事后响应漏洞修复都有介绍。受益匪浅。</p> </blockquote>  <p>详细过程：    <br />攻击者对我服务器的4个网站进行了大量的检测，最后决定把目标选为<a href="http://www.target.org/">www.target.org</a>。之后开始寻找注入点，时间大约是从2010-06-06 17:01:13左右开始，先后测试了这些带有参数的网址dc/toupiao.asp B1=投票&amp;B2=结果’ and ‘7’=’7</p>
-      
-      </p>
-      
-      <p>
-          <a href="/92.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/tag/入侵/page/2/">← Newer Posts</a>
-    <span class="page-number">Page 3 of 3</span>
-    
+    <span class="page-number">Page 3 of 4</span>
+    <a class="older-posts" href="/tag/入侵/page/4/">Older Posts →</a>
   </nav>
 </main>
 

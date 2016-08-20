@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Tag: SecureRDP | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-10-30T21:41:03.000Z" itemprop="datePublished">
+          2012-10-31
+      </time>
+    
+    
+    | 
+    <a href='/tag/SecureRDP/'>SecureRDP</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/916.seo/">调戏突破SecureRDP对远程桌面连接的限制</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>缘起自某群某孩纸遇到的一案例！</p>  <p>连接远程桌面的时候服务器出现如下提示：</p>  <p>You are not allowed to access to this Terminal Server. Please contact your administrator for more information. Secured by SecureRDP.</p>  <p>仔细一看不是远程管理组的问题，而是<a href="http://ha.cker.in/tag/SecureRDP" target="_blank">SecureRDP</a>这个软件搞的鬼，网上一搜，    <br />好家伙，这个软件的功能如下：</p>  <p><a href="http://ha.cker.in/tag/SecureRDP" target="_blank">secureRDP</a>是一款用户登录服务器管理软件。防止非法用户试图暴力破解用户密码；可以过滤IP/MAC地址、计算机名等。具体有以下功能：     <br />1.连接限制 允许按照登陆时间，IP地址，主机名，MAC地址，Client版本等信息作连接</p>  <p><a href="http://pkav.net/wp-content/uploads/2012/10/1.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/SecureRDP_BF77/clip_image002.jpg" width="660" height="506" /></a></p>  <p>看来是对客户端的连接做了限制了，现在流行的D盾和安全狗都有这样的功能！   <br />着实第一次见这个软件，好奇心也来了，也想顺便帮这位童鞋一把，下了软件    <br />虚拟机装好，配置好限制ip，一看软件目录，依然只有这几个文件，那么他的配置要么    <br />是写入其他目录了，要么写到注册表里面啦！</p>  <p><a href="http://pkav.net/wp-content/uploads/2012/10/2.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/SecureRDP_BF77/clip_image003.png" width="389" height="542" /></a></p>  <p>想想之前调试的某狗。Od打开，加载软件   <br />Aspack壳无视之，运行起软件，直接下好注册表API断点RegOpenKeyExA，直接保存配置    <br />断点断下了，注册表的路径显示出来了    <br />HKEY_LOCAL_MACHINE\Software\Terminalsoft\WTSFilter</p>  <p><a href="http://img.cker.in/SecureRDP_BF77/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/SecureRDP_BF77/clip_image005_thumb.jpg" width="660" height="439" /></a></p>  <p>跑到注册表里面一看，果然是这个   <br />邪恶的直接把WTSFilter项给删除了</p>  <p><a href="http://img.cker.in/SecureRDP_BF77/clip_image007.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/SecureRDP_BF77/clip_image007_thumb.jpg" width="660" height="522" /></a></p>  <p><a href="http://img.cker.in/SecureRDP_BF77/clip_image009.jpg" target="_blank"></a></p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/916.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    
+    <span class="page-number">Page 1 of 1</span>
+    
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

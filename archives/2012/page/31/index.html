@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Archives: 2012 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-12T09:08:10.000Z" itemprop="datePublished">
+          2012-06-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/Snort/'>Snort</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/463.seo/">Snort 中文手册</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><h3>Snort 中文手册</h3>  <blockquote><strong>摘要</strong>    <br />snort有三种工作模式：嗅探器、数据包记录器、网络入侵检测系统。嗅探器模式仅仅是从网络上读取数据包并作为连续不断的流显示在终端上。数据包记录器 模式把数据包记录到硬盘上。网路入侵检测模式是最复杂的，而且是可配置的。我们可以让snort分析网络数据流以匹配用户定义的一些规则，并根据检测结果 采取一定的动作。(2003-12-11 16:39:12)</blockquote>  <hr size="4" width="98%" noshade="noshade" />  <h3>Snort 用户手册</h3>  <h4>第一章 snort简介</h4>  <p>&#160;&#160;&#160; snort有三种工作模式：嗅探器、数据包记录器、网络入侵检测系统。嗅探器模式仅仅是从网络上读取数据包并作为连续不断的流显示在终端上。数据包记录器 模式把数据包记录到硬盘上。网路入侵检测模式是最复杂的，而且是可配置的。我们可以让snort分析网络数据流以匹配用户定义的一些规则，并根据检测结果 采取一定的动作。</p>  <p>嗅探器</p>  <p>&#160;&#160;&#160; 所谓的嗅探器模式就是snort从网络上读出数据包然后显示在你的控制台上。首先，我们从最基本的用法入手。如果你只要把TCP/IP包头信息打印在屏幕上，只需要输入下面的命令：</p>  <p> ./snort -v</p>  <p>&#160;&#160;&#160; 使用这个命令将使snort只输出IP和TCP/UDP/ICMP的包头信息。如果你要看到应用层的数据，可以使用：</p>  <p>&#160;&#160;&#160; ./snort -vd</p>  <p>&#160;&#160;&#160; 这条命令使snort在输出包头信息的同时显示包的数据信息。如果你还要显示数据链路层的信息，就使用下面的命令：</p>  <p> ./snort -vde</p>  <p>&#160;&#160;&#160; 注意这些选项开关还可以分开写或者任意结合在一块。例如：下面的命令就和上面最后的一条命令等价：</p>  <p> ./snort -d -v –e</p>  <p>数据包记录器</p>  <p>&#160;&#160;&#160; 如果要把所有的包记录到硬盘上，你需要指定一个日志目录，snort就会自动记录数据包：</p>  <p>&#160;&#160;&#160; ./snort -dev -l ./log</p>  <p>&#160;&#160;&#160; 当然，./log目录必须存在，否则snort就会报告错误信息并退出。当snort在这种模式下运行，它会记录所有看到的包将其放到一个目录中，这个目录以数据包目的主机的IP地址命名，例如：192.168.10.1</p>  <p> 如果你只指定了-l命令开关，而没有设置目录名，snort有时会使用远程主机的IP地址作为目录，有时会使用本地主机IP地址作为目录名。为了只对本地网络进行日志，你需要给出本地网络：</p>  <p> ./snort -dev -l ./log -h 192.168.1.0/24</p>  <p>&#160;&#160;&#160; 这个命令告诉snort把进入C类网络192.168.1的所有包的数据链路、TCP/IP以及应用层的数据记录到目录./log中。</p>  <p>&#160;&#160;&#160; 如果你的网络速度很快，或者你想使日志更加紧凑以便以后的分析，那么应该使用二进制的日志文件格式。所谓的二进制日志文件格式就是tcpdump程序使用的格式。使用下面的命令可以把所有的包记录到一个单一的二进制文件中：</p>  <p> ./snort -l ./log -b</p>  <p>&#160;&#160;&#160; 注意此处的命令行和上面的有很大的不同。我们勿需指定本地网络，因为所有的东西都被记录到一个单一的文件。你也不必冗余模式或者使用-d、-e功能选项，因为数据包中的所有内容都会被记录到日志文件中。</p>  <p>&#160;&#160;&#160; 你可以使用任何支持tcpdump二进制格式的嗅探器程序从这个文件中读出数据包，例如： tcpdump或者Ethereal。使用-r功能开关，也能使snort读出包的数据。snort在所有运行模式下都能够处理tcpdump格式的文件。例如：如果你想在嗅探器模式下把一个tcpdump格式的二进制文件中的包打印到屏幕上，可以输入下面的命令：</p>  <p>&#160;&#160;&#160; ./snort -dv -r packet.log</p>  <p>&#160;&#160;&#160; 在日志包和入侵检测模式下，通过BPF(BSD Packet Filter)接口，你可以使用许多方式维护日志文件中的数据。例如，你只想从日志文件中提取ICMP包，只需要输入下面的命令行：</p>  <p>&#160;&#160;&#160; ./snort -dvr packet.log icmp</p>  <h5>网络入侵检测系统</h5>  <p>&#160;&#160;&#160; snort最重要的用途还是作为网络入侵检测系统(NIDS)，使用下面命令行可以启动这种模式：</p>  <p>&#160;&#160;&#160; ./snort -dev -l ./log -h 192.168.1.0/24 -c snort.conf</p>  <p>&#160;&#160;&#160; snort.conf是规则集文件。snort会对每个包和规则集进行匹配，发现这样的包就采取相应的行动。如果你不指定输出目录，snort就输出到/var/log/snort目录。</p>  <p>&#160;&#160;&#160; 注意：如果你想长期使用snort作为自己的入侵检测系统，最好不要使用-v选项。因为使用这个选项，使snort向屏幕上输出一些信息，会大大降低snort的处理速度，从而在向显示器输出的过程中丢弃一些包。</p>  <p>&#160;&#160;&#160; 此外，在绝大多数情况下，也没有必要记录数据链路层的包头，所以-e选项也可以不用：</p>  <p>&#160;&#160;&#160; ./snort -d -h 192.168.1.0/24 -l ./log -c snort.conf</p>  <p>&#160;&#160;&#160; 这是使用snort作为网络入侵检测系统最基本的形式，日志符合规则的包，以ASCII形式保存在有层次的目录结构中。</p>  <h5>网络入侵检测模式下的输出选项</h5>  <p>&#160;&#160;&#160; 在NIDS模式下，有很多的方式来配置snort的输出。在默认情况下，snort以ASCII格式记录日志，使用full报警机制。如果使用full报警机制，snort会在包头之后打印报警消息。如果你不需</p>  <p>要日志包，可以使用-N选项。</p>
+      
+      </p>
+      
+      <p>
+          <a href="/463.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-12T09:05:14.000Z" itemprop="datePublished">
+          2012-06-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/460.seo/">一次超级蛋疼的渗透</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>一次超级蛋疼的渗透</p>  <p>作者：kylin   <br />首发：<a href="http://www.dis9.com/">www.dis9.com</a>    <br />前几天俺认识了一个刷钻的我是我是我是傻逼，后来在我的威逼利诱下，他放弃了刷钻行业，并且他交出了他所在的平台的帐号密码。登陆后发现里面有钱钱~不过只有18.25元，于是我果断的截图并涂掉了中间的小数点。当我把截图发在九区基友群里，一群我是我是我是傻逼就激动了。于是，俺和羽翼决定日掉这个猥琐的平台。    <br />俺们就直接c段了…..    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/a402d8dbaecf_F27/clip_image001.png" width="512" height="388" />    <br />两个人分工，我从前面开搞。反正是c段，找到最简单就行。但是我们无比蛋疼蛋疼无比，几乎每个ip上都是同一类型的站一堆，而且是各种系统各种环境。最开始的时候羽翼发现了一个ecshop 2.7.2，按理说是有洞洞可用的，不过俺是失败了，没办法，俺是菜鸟啊~    <br />经过一段时间查找，俺们盯上了一个IP，上面的站点都是一套叫“医药无忧”的程序，asp+mssql。    <br />发现注入：<a href="http://www.qzyy.net.cn/news_detail_all.asp?id=19180">http://www.qzyy.net.cn/news_detail_all.asp?id=19180</a>作为懒人俺们就直接上工具了，但是某些工具还是不给力，最后出动了safe3的注入检测工具才弄到MD5。</p>
+      
+      </p>
+      
+      <p>
+          <a href="/460.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-12T09:03:46.000Z" itemprop="datePublished">
+          2012-06-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/SQLmap/'>SQLmap</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/458.seo/">SQLmap工具介绍及其使用</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        1、首先安装python2.5。   2、然后进入sqlmap的目录，执行sqlmap   详细用法   1、sqlmap -u 注入点   2、sqlmap -g &quot;关键词“ //这是通过google搜索注入，现在还不可以，不知道是什么原因，可以直接修改为百度    3、    python sqlmap.py -u &quot;http://192.168.1.47/page.php?id=1&amp;cat=2&quot
+      
+      </p>
+      
+      <p>
+          <a href="/458.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-12T08:40:50.000Z" itemprop="datePublished">
+          2012-06-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/Brup-Suite/'>Brup Suite</a>,
+    
+    <a href='/tag/Web漏洞扫描/'>Web漏洞扫描</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/455.seo/">Brup Suite应用分享之Web漏洞扫描</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><p>Brup suite 是利用本地代理结果所传送的数据包，运行之前需要安装JAVA环境，当然网上转来转去的天花乱坠的教程很多，可是有用的地方很少，而有些人还在网上去卖这些工具的使用教程，实在无法忍受。</p>  <p>关于Brup suite 我准备分别对数据包截获修改，网站扫描，网站爆破，注入检测做分开讲解。</p>  <p>本次就来说一下Brup suite强悍的扫描功能。</p>  <p>首先，来设置下代理</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/BrupSuiteWeb_950/clip_image002.jpg" width="557" height="357" /></p>  <p>此端口可以随意设置，不影响其他通信就OK</p>  <p>接着，我们用本地浏览器通过此代理进行网络访问。</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/BrupSuiteWeb_950/clip_image003.png" width="420" height="381" /></p>
+      
+      </p>
+      
+      <p>
+          <a href="/455.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-12T08:31:46.000Z" itemprop="datePublished">
+          2012-06-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/Metasploit/'>Metasploit</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/449.seo/">metasploit装不上</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        在非英文版Windows系统上安装Metasploit会出现此类错误：  —————————    Error     —————————     There has been an error.     Error running D:\T00ls\metasploit/postgresql/bin/psql.exe -U postgres -p 7337 -h localhost -c &quot;ALTER USER postgr
+      
+      </p>
+      
+      <p>
+          <a href="/449.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-02T10:39:53.000Z" itemprop="datePublished">
+          2012-06-02
+      </time>
+    
+    
+    | 
+    <a href='/tag/病毒/'>病毒</a>,
+    
+    <a href='/tag/loader/'>loader</a>,
+    
+    <a href='/tag/黑盒分析/'>黑盒分析</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/445.seo/">第三方loader简单分析</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><p>原帖：</p>  <p>第三方loader简单分析   <br /><a href="http://bbs.blackbap.org/forum.php?mod=viewthread&amp;tid=2612&amp;fromuid=4372">http://bbs.blackbap.org/forum.php?mod=viewthread&amp;tid=2612&amp;fromuid=4372</a></p>  <p>今天就给各位大牛带来个病毒的黑盒分析吧，了解最新的病毒走向。</p>  <p>样本信息</p>  <p>File Name: 3.exe</p>  <p>File MD5: 280C68A4D66EDB9A31B021441A871BBA   <br />今天这个病毒比较有意思，利用的是暴风影音的文件。</p>  <p>现在病毒流行一种新的玩法：第三方loader</p>  <p>问：什么是第三方loader呢？</p>  <p><strong>简单来说，比如启动正常的xxx.exe白文件，它会去加载一个xxx.dll白文件。</strong></p>  <p><strong>然而xxx.exe白文件去加载xxx.dll白文件的时候没有去做安全校验。。。。</strong></p>  <p><strong>病毒作者就开始邪恶了，把xxx.dll替换成一个自己写的dll文件。</strong></p>  <p>那么病毒就被加载起来了，对于现在杀软的防御机制来看，拦截的效果不太理想。</p>  <p></p>
+      
+      </p>
+      
+      <p>
+          <a href="/445.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    <a class="newer-posts" href="/archives/2012/page/30/">← Newer Posts</a>
+    <span class="page-number">Page 31 of 40</span>
+    <a class="older-posts" href="/archives/2012/page/32/">Older Posts →</a>
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

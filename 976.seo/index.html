@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>针对QQ空间游戏-猜歌王的辅助研究 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-03-03T20:41:15.000Z" itemprop="datePublished">
+          2013-03-04
+      </time>
+    
+    
+    | 
+    <a href='/tag/FLASH游戏/'>FLASH游戏</a>
+    
+    
+</span>
+    <h1 class="post-title">针对QQ空间游戏-猜歌王的辅助研究</h1>
+    <section class="post-content">
+      <p> 元旦期间舍友迷恋上了QQ空间的一个游戏应用-猜歌王，玩得不亦乐乎。突然有一次，上铺告诉遇到一个人，猜歌都特别快，特别准，很明显用了外挂。   <br> 上面是背景。    <br> 对于这个游戏我的第一思路是模拟，对声音进行采样，提取特征，然后与歌曲库中歌曲对比，理论上是可行的，比如有一款APP叫做SoundHound……但是游戏辅助必然不是通过这种手段。    <br> 换个思路，根据经验，歌曲片段应该需要先缓存到本地，于是考虑拦截HTTP封包，对比歌曲库的地址来获取每首歌的歌名，于是乎，打开了火狐的Web控制台，希望能获得有用的东西。    <br>[15:30:45.941] GET <a href="http://app100645222.imgcache.qzoneapp.com/app100645222/mp3/355/7355_4.mp3" target="_blank" rel="external">http://app100645222.imgcache.qzoneapp.com/app100645222/mp3/355/7355_4.mp3</a> [HTTP/1.1 200 OK 440ms]    <br>[15:30:45.943] GET <a href="http://app100645222.imgcache.qzoneapp.com/app100645222/mp3/902/1079902_1.mp3" target="_blank" rel="external">http://app100645222.imgcache.qzoneapp.com/app100645222/mp3/902/1079902_1.mp3</a> [HTTP/1.1 200 OK 466ms]    <br>[15:30:45.945] GET <a href="http://app100645222.imgcache.qzoneapp.com/app100645222/mp3/478/718478_3.mp3" target="_blank" rel="external">http://app100645222.imgcache.qzoneapp.com/app100645222/mp3/478/718478_3.mp3</a> [HTTP/1.1 200 OK 524ms]    <br>[15:30:45.947] GET <a href="http://app100645222.imgcache.qzoneapp.com/app100645222/mp3/179/101179_1.mp3" target="_blank" rel="external">http://app100645222.imgcache.qzoneapp.com/app100645222/mp3/179/101179_1.mp3</a> [HTTP/1.1 200 OK 389ms]    <br>[15:30:45.949] GET <a href="http://app100645222.imgcache.qzoneapp.com/app100645222/mp3/783/727783_1.mp3" target="_blank" rel="external">http://app100645222.imgcache.qzoneapp.com/app100645222/mp3/783/727783_1.mp3</a> [HTTP/1.1 200 OK 463ms]    <br> 看到这样子的记录以后，大概有了眉目，但是仍然存在一个问题，需要采集大量的地址与歌曲名或者歌手的对应信息。无意间一个POST数据引起了我的注意。    <br>请求网址:    <br>&#160;&#160;&#160; <a href="http://app100645222.qzone.qzoneapp.com/contest/create.ngi" target="_blank" rel="external">http://app100645222.qzone.qzoneapp.com/contest/create.ngi</a>    <br>请求方法:    <br>&#160;&#160;&#160; POST    <br>查看其相应数据，一切大白于天下。    <br>响应头    <br><strong>*</strong>省略<strong>*</strong>    <br>响应主体</p>  <p>JSON格式化后：</p>  <p>&#160;</p>  <div>   <pre>{<br>    &quot;<span style="color: #8b0000">data</span>&quot;: {<br>        &quot;<span style="color: #8b0000">songs</span>&quot;: [<br>            {<br>                &quot;<span style="color: #8b0000">id</span>&quot;: &quot;<span style="color: #8b0000">V2550379</span>&quot;,<br>                &quot;<span style="color: #8b0000">part</span>&quot;: 4,<br>                &quot;<span style="color: #8b0000">mode</span>&quot;: 1,<br>                &quot;<span style="color: #8b0000">answer</span>&quot;: 2,<br>                &quot;<span style="color: #8b0000">opts</span>&quot;: [<br>                    &quot;<span style="color: #8b0000">我要给你</span>&quot;,<br>                    &quot;<span style="color: #8b0000">霸王命</span>&quot;,<br>                    &quot;<span style="color: #8b0000">爱上你不是我的错</span>&quot;,<br>                    &quot;<span style="color: #8b0000">365天</span>&quot;<br>                ],<br>                &quot;<span style="color: #8b0000">name</span>&quot;: &quot;<span style="color: #8b0000">爱上你不是我的错</span>&quot;,<br>                &quot;<span style="color: #8b0000">singer</span>&quot;: &quot;<span style="color: #8b0000">多亮</span>&quot;,<br>                &quot;<span style="color: #8b0000">album_id</span>&quot;: &quot;<span style="color: #8b0000">198946</span>&quot;,<br>                &quot;<span style="color: #8b0000">album_name</span>&quot;: &quot;<span style="color: #8b0000">多原话</span>&quot;,<br>                &quot;<span style="color: #8b0000">url</span>&quot;: &quot;<span style="color: #8b0000"><a href="http://app100645222.imgcache.qzoneapp.com/app100645222/mp3/379/V2550379_4.mp3" target="_blank" rel="external">http://app100645222.imgcache.qzoneapp.com/app100645222/mp3/379/V2550379_4.mp3</a></span>&quot;,<br>                &quot;<span style="color: #8b0000">url_aux</span>&quot;: &quot;<span style="color: #8b0000"><a href="http://cdn.vanchu.net/app100645222/mp3/379/V2550379_4.mp3" target="_blank" rel="external">http://cdn.vanchu.net/app100645222/mp3/379/V2550379_4.mp3</a></span>&quot;<br>            },<br>            {<br>                &quot;<span style="color: #8b0000">id</span>&quot;: &quot;<span style="color: #8b0000">V2472634</span>&quot;,<br>                &quot;<span style="color: #8b0000">part</span>&quot;: 6,<br>                &quot;<span style="color: #8b0000">mode</span>&quot;: 0,<br>                &quot;<span style="color: #8b0000">answer</span>&quot;: 0,<br>                &quot;<span style="color: #8b0000">opts</span>&quot;: [<br>                    &quot;<span style="color: #8b0000">侧田</span>&quot;,<br>                    &quot;<span style="color: #8b0000">胡歌</span>&quot;,<br>                    &quot;<span style="color: #8b0000">俞灏明</span>&quot;,<br>                    &quot;<span style="color: #8b0000">蔡旻佑</span>&quot;<br>                ],<br>                &quot;<span style="color: #8b0000">name</span>&quot;: &quot;<span style="color: #8b0000">很想很想说再见</span>&quot;,<br>                &quot;<span style="color: #8b0000">singer</span>&quot;: &quot;<span style="color: #8b0000">侧田</span>&quot;,<br>                &quot;<span style="color: #8b0000">album_id</span>&quot;: &quot;<span style="color: #8b0000">191434</span>&quot;,<br>                &quot;<span style="color: #8b0000">album_name</span>&quot;: &quot;<span style="color: #8b0000">2012年12月新歌速递</span>&quot;,<br>                &quot;<span style="color: #8b0000">url</span>&quot;: &quot;<span style="color: #8b0000"><a href="http://app100645222.imgcache.qzoneapp.com/app100645222/mp3/634/V2472634_6.mp3" target="_blank" rel="external">http://app100645222.imgcache.qzoneapp.com/app100645222/mp3/634/V2472634_6.mp3</a></span>&quot;,<br>                &quot;<span style="color: #8b0000">url_aux</span>&quot;: &quot;<span style="color: #8b0000"><a href="http://cdn.vanchu.net/app100645222/mp3/634/V2472634_6.mp3" target="_blank" rel="external">http://cdn.vanchu.net/app100645222/mp3/634/V2472634_6.mp3</a></span>&quot;<br>            },<br>            {<br>                &quot;<span style="color: #8b0000">id</span>&quot;: &quot;<span style="color: #8b0000">V2550675</span>&quot;,<br>                &quot;<span style="color: #8b0000">part</span>&quot;: 1,<br>                &quot;<span style="color: #8b0000">mode</span>&quot;: 1,<br>                &quot;<span style="color: #8b0000">answer</span>&quot;: 0,<br>                &quot;<span style="color: #8b0000">opts</span>&quot;: [<br>                    &quot;<span style="color: #8b0000">SUPER GIRL 爱无畏</span>&quot;,<br>                    &quot;<span style="color: #8b0000">无脸人</span>&quot;,<br>                    &quot;<span style="color: #8b0000">我们都能幸福着</span>&quot;,<br>                    &quot;<span style="color: #8b0000">呼呼</span>&quot;<br>                ],<br>                &quot;<span style="color: #8b0000">name</span>&quot;: &quot;<span style="color: #8b0000">SUPER GIRL 爱无畏</span>&quot;,<br>                &quot;<span style="color: #8b0000">singer</span>&quot;: &quot;<span style="color: #8b0000">萧亚轩</span>&quot;,<br>                &quot;<span style="color: #8b0000">album_id</span>&quot;: &quot;<span style="color: #8b0000">198991</span>&quot;,<br>                &quot;<span style="color: #8b0000">album_name</span>&quot;: &quot;<span style="color: #8b0000">SUPER GIRL 爱无畏</span>&quot;,<br>                &quot;<span style="color: #8b0000">url</span>&quot;: &quot;<span style="color: #8b0000"><a href="http://app100645222.imgcache.qzoneapp.com/app100645222/mp3/675/V2550675_1.mp3" target="_blank" rel="external">http://app100645222.imgcache.qzoneapp.com/app100645222/mp3/675/V2550675_1.mp3</a></span>&quot;,<br>                &quot;<span style="color: #8b0000">url_aux</span>&quot;: &quot;<span style="color: #8b0000"><a href="http://cdn.vanchu.net/app100645222/mp3/675/V2550675_1.mp3" target="_blank" rel="external">http://cdn.vanchu.net/app100645222/mp3/675/V2550675_1.mp3</a></span>&quot;<br>            },<br>            {<br>                &quot;<span style="color: #8b0000">id</span>&quot;: &quot;<span style="color: #8b0000">V2634923</span>&quot;,<br>                &quot;<span style="color: #8b0000">part</span>&quot;: 2,<br>                &quot;<span style="color: #8b0000">mode</span>&quot;: 1,<br>                &quot;<span style="color: #8b0000">answer</span>&quot;: 2,<br>                &quot;<span style="color: #8b0000">opts</span>&quot;: [<br>                    &quot;<span style="color: #8b0000">霸王命</span>&quot;,<br>                    &quot;<span style="color: #8b0000">十二生肖</span>&quot;,<br>                    &quot;<span style="color: #8b0000">天机(feat.五月天阿信）</span>&quot;,<br>                    &quot;<span style="color: #8b0000">忘了我也不错</span>&quot;<br>                ],<br>                &quot;<span style="color: #8b0000">name</span>&quot;: &quot;<span style="color: #8b0000">天机(feat.五月天阿信）</span>&quot;,<br>                &quot;<span style="color: #8b0000">singer</span>&quot;: &quot;<span style="color: #8b0000">MP魔幻力量</span>&quot;,<br>                &quot;<span style="color: #8b0000">album_id</span>&quot;: &quot;<span style="color: #8b0000">205656</span>&quot;,<br>                &quot;<span style="color: #8b0000">album_name</span>&quot;: &quot;<span style="color: #8b0000">射手</span>&quot;,<br>                &quot;<span style="color: #8b0000">url</span>&quot;: &quot;<span style="color: #8b0000"><a href="http://app100645222.imgcache.qzoneapp.com/app100645222/mp3/923/V2634923_2.mp3" target="_blank" rel="external">http://app100645222.imgcache.qzoneapp.com/app100645222/mp3/923/V2634923_2.mp3</a></span>&quot;,<br>                &quot;<span style="color: #8b0000">url_aux</span>&quot;: &quot;<span style="color: #8b0000"><a href="http://cdn.vanchu.net/app100645222/mp3/923/V2634923_2.mp3" target="_blank" rel="external">http://cdn.vanchu.net/app100645222/mp3/923/V2634923_2.mp3</a></span>&quot;<br>            },<br>            {<br>                &quot;<span style="color: #8b0000">id</span>&quot;: &quot;<span style="color: #8b0000">V2550447</span>&quot;,<br>                &quot;<span style="color: #8b0000">part</span>&quot;: 3,<br>                &quot;<span style="color: #8b0000">mode</span>&quot;: 0,<br>                &quot;<span style="color: #8b0000">answer</span>&quot;: 2,<br>                &quot;<span style="color: #8b0000">opts</span>&quot;: [<br>                    &quot;<span style="color: #8b0000">萧亚轩</span>&quot;,<br>                    &quot;<span style="color: #8b0000">A-Lin</span>&quot;,<br>                    &quot;<span style="color: #8b0000">Popu Lady</span>&quot;,<br>                    &quot;<span style="color: #8b0000">魏晨</span>&quot;<br>                ],<br>                &quot;<span style="color: #8b0000">name</span>&quot;: &quot;<span style="color: #8b0000">一直一直爱</span>&quot;,<br>                &quot;<span style="color: #8b0000">singer</span>&quot;: &quot;<span style="color: #8b0000">Popu Lady</span>&quot;,<br>                &quot;<span style="color: #8b0000">album_id</span>&quot;: &quot;<span style="color: #8b0000">198961</span>&quot;,<br>                &quot;<span style="color: #8b0000">album_name</span>&quot;: &quot;<span style="color: #8b0000">一直一直爱</span>&quot;,<br>                &quot;<span style="color: #8b0000">url</span>&quot;: &quot;<span style="color: #8b0000"><a href="http://app100645222.imgcache.qzoneapp.com/app100645222/mp3/447/V2550447_3.mp3" target="_blank" rel="external">http://app100645222.imgcache.qzoneapp.com/app100645222/mp3/447/V2550447_3.mp3</a></span>&quot;,<br>                &quot;<span style="color: #8b0000">url_aux</span>&quot;: &quot;<span style="color: #8b0000"><a href="http://cdn.vanchu.net/app100645222/mp3/447/V2550447_3.mp3" target="_blank" rel="external">http://cdn.vanchu.net/app100645222/mp3/447/V2550447_3.mp3</a></span>&quot;<br>            }<br>        ],<br>        &quot;<span style="color: #8b0000">status</span>&quot;: {<br>            &quot;<span style="color: #8b0000">stamina</span>&quot;: 1,<br>            &quot;<span style="color: #8b0000">staminaElapsedTime</span>&quot;: 3012<br>        }<br>    },<br>    &quot;<span style="color: #8b0000">ret</span>&quot;: 0,<br>    &quot;<span style="color: #8b0000">ver</span>&quot;: &quot;<span style="color: #8b0000">75</span>&quot;,<br>    &quot;<span style="color: #8b0000">t</span>&quot;: 1357102078<br>}</pre><br></div><br><br><br><br><br><p> 响应主体是JSON格式，其中使用了Unicode编码。<br>  <br> 将JSON格式数据视图化，可以看得很清楚了。<br><br>  <br><a href="http://img.cker.in/QQ_B254/clip_image002.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/QQ_B254/clip_image002_thumb.jpg" width="537" height="313"></a></p>
+
+<p>WebBrowser控件有 BeforeNavigate2 事件<br>  <br>BeforeNavigate2(Sender: TObject; const pDisp: IDispatch; var URL, Flags, TargetFrameName, PostData, Headers: OleVariant; var Cancel: WordBool);<br><br>  <br> 但是经过试验，不能够拦截网页中Flash控件的POST。<br><br>  <br> 利用HOOK对进程进行拦截，对数据包的JSON数据进行解析（注意GZIP压缩），然后获取answer值，0,1,2,3分别对应opts的四个选项。<br><br>  <br> 至此游戏辅助的原型基本呈现。<br><br>  <br> 题外话：经试验，QQ空间多个猜歌应用均存在相同漏洞。</p>
+
+<p>上传的图像</p>
+
+<p><a href="http://bbs.pediy.com/attachment.php?attachmentid=75002&amp;d=1357103319" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/QQ_B254/clip_image003.png" width="537" height="313"></a></p>
+
+<p>转自看雪<a href="http://bbs.pediy.com/showthread.php?t=160579" target="_blank" rel="external">http://bbs.pediy.com/showthread.php?t=160579</a></p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/976.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/976.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/976.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/976.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/977.seo/">
+        ← 淘宝站内信xss直接实现定向攻击
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/975.seo/">
+        谁是 一流的人才 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>盐 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-03-28T22:41:37.000Z" itemprop="datePublished">
+          2013-03-29
+      </time>
+    
+    
+    | 
+    <a href='/tag/盐/'>盐</a>
+    
+    
+</span>
+    <h1 class="post-title">盐</h1>
+    <section class="post-content">
+      <p><b><a href="http://ha.cker.in/tag/加盐" target="_blank">盐</a></b>（Salt），在密码学中，是指通过在密码任意固定位置插入特定的字符串，让散列后的结果和使用原始密码的散列结果不相符，这种过程称之为“<a href="http://ha.cker.in/tag/加盐" target="_blank">加盐</a>”。</p>  <p>安全因素</p>  <p>通常情况下，当字段经过散列处理（如<a href="http://zh.wikipedia.org/wiki/MD5" target="_blank" rel="external">MD5</a>），会生成一段散列值，而散列后的值一般是无法通过特定算法得到原始字段的。但是某些情况，比如一个大型的彩虹表，通过在表中搜索该MD5值，很有可能在极短的时间内找到该散列值对应的真实字段内容。</p>  <p>加盐后的散列值，可以极大的降低由于用户数据被盗而带来的密码泄漏风险，即使通过彩虹表寻找到了散列后的数值所对应的原始内容，但是由于经过了加盐，插入的字符串扰乱了真正的密码，使得获得真实密码的概率大大降低。</p>  <p>实现原理</p>  <p>加盐的实现过程通常是在需要散列的字段的特定位置增加特定的字符，打乱原始的字串，使其生成的散列结果产生变化。比如，用户使用了一个密码：</p>  <p>x7faqgjw</p>  <p>经过MD5散列后，可以得出结果：</p>  <p>455e0e5c2bc109deae749e7ce0cdd397</p>  <p>但是由于用户密码位数不足，短密码的散列结果很容易被彩虹表破解，因此，在用户的密码末尾添加特定字串（绿色字体为加盐的字段）：</p>  <p>x7faqgjwabcdefghijklmnopqrstuvwxyz</p>  <p>因此，加盐后的密码位数更长了，散列的结果也发生了变化：</p>  <p>4a1690d5eb6c126ef68606dda68c2f79</p>  <p>以上就是加盐过程的简单描述，在实际使用过程中，还需要通过特定位数插入、倒序或多种方法对原始密码进行固定的加盐处理，使得散列的结果更加不容易被破解或轻易得到原始密码，比如（绿色字体为加盐字串）：</p>  <p>x7afabqgcjw</p>  <p>代码样本</p>  <p><b>PHP</b></p>  <p>//这是一个简单的、在输入内容之後加入“HaCkerIn “并进行散列的PHP代码。</p>  <p><b>&lt;?php</b></p>  <p><b>function</b> hash($a) {</p>  <p>$salt=&quot;HaCkerIn&quot;; <i>//</i><i>定义一个加盐字段</i><i>(</i>HaCkerIn<i>)</i><i>，一旦设定并使用，将不可更动。</i></p>  <p>$b=$a.$salt; <i>//</i><i>把密码和加盐字段连接。</i></p>  <p>$b=md5($b); <i>//</i><i>执行</i><i>MD5</i><i>散列。</i></p>  <p>return $b; <i>//</i><i>返回散列。</i></p>  <p>}</p>  <p><b>?&gt;</b></p>  <p>参考文献</p>  <p>· Essential PHP Security:&#160; 98. <a href="http://zh.wikipedia.org/wiki/%E5%9B%BD%E9%99%85%E6%A0%87%E5%87%86%E4%B9%A6%E5%8F%B7" target="_blank" rel="external">ISBN</a> <a href="http://zh.wikipedia.org/wiki/Special:%E7%BD%91%E7%BB%9C%E4%B9%A6%E6%BA%90/978-0596006563" target="_blank" rel="external">978-0596006563</a>.</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/985.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/985.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/985.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/985.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/986.seo/">
+        ← 两个有意思的视频
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/983.seo/">
+        抓取谷歌搜索结果里的支付宝帐号 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

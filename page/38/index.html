@@ -45,29 +45,33 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-04-14T15:47:28.000Z" itemprop="datePublished">
-          2012-04-14
+      <time datetime="2012-10-11T01:07:30.000Z" itemprop="datePublished">
+          2012-10-11
       </time>
     
     
     | 
-    <a href='/tag/Discuz-X2-5/'>Discuz!X2.5</a>,
+    <a href='/tag/漏洞/'>漏洞</a>,
     
-    <a href='/tag/Discuz-X2升级/'>Discuz!X2升级</a>
+    <a href='/tag/Metasploit/'>Metasploit</a>,
+    
+    <a href='/tag/入侵/'>入侵</a>,
+    
+    <a href='/tag/Linux/'>Linux</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/386.seo/">完美Discuz!X2 utf8升级为Discuz!X2.5 GBK记录</a></h2>
+      <h2 class="post-title"><a href="/886.seo/">Linux系统攻防对抗实践</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><strong>首先说明：</strong>  <p>1、该教程不考虑插件问题，插件必须重新卸载再安装相应编码  <p>2、使用前最好先全站备份，这样出了问题也好恢复  <p>因为原论坛安装的是Discuz!X2 UTF8比较占用空间，而且官方正好有发布了Discuz!X2.5正式版，因此就想转成直接升级为Discuz!X2.5 GBK版。  <p>经过多次摸索并参考相关转换教程，终于找到这种转换方式的方法，实现完美转换了，下面给大家分享此经验。  <p><strong>具体教程如下：</strong>  <p>一、首先将Discuz!X2 UTF8转换为Discuz!X2 GBK  <p>1、备份已修改文件：  <p>这个主要是图片的修改，一般来说，备份以下文件即可：  <p>1.1、static/image/common/logo.png  <p>1.2、static/image/common/logo_sc.png  <p>1.3、static/image/common/logo_88_31.gif  <p>1.4、static/image/mobile/logo.gif  <p>1.5、favicon.ico  <p>1.6、.htaccess  <p>2、安装TOOLS：  <p>下载<a href="http://www.discuz.net/thread-2659440-1-1.html">Tools 1.9M for Discuz!X</a>，然后按照官方教程安装并使用。  <p>3、利用TOOLS进行转码：  <p>首先把论坛关闭，避免转换过程中影响会员使用；  <p>然后再进行转码，点击模块化那个大大的TOOLS，然后点击左边栏的：编码转换（如下图所示）  <p>然后点提交，等待转换完成，接下来就是最重要的修改部分了。  <p>4、修改并用新的GBK编码程序文件上传覆盖原UTF8文件：  <p>4.1、首先从官方下载最新的Discuz!X2 GBK<a href="http://download.comsenz.com/DiscuzX/2.0/Discuz_X2_SC_GBK.zip，并解压到默认的Discuz_X2_SC_GBK文件夹；">http://download.comsenz.com/DiscuzX/2.0/Discuz_X2_SC_GBK.zip，并解压到默认的Discuz_X2_SC_GBK文件夹；</a>  <p>4.2、接着把论坛中原UTF8版的三个文件下载并覆盖到对应的解压好Discuz_X2_SC_GBK文件夹中，如下图所示： </p>
+        <p><b>一、实践目的</b><b></b></p>  <p>通过Linux系统攻防对抗实践，加深对Linux系统的认识，同时掌握Linux漏洞入侵和架设防御的初步方法。</p>  <p><b>二、实践内容</b><b></b></p>  <p>在Metasploit渗透攻击框架软件中寻找一个针对Linux系统服务的渗透攻击模块，在网络安全攻防实验环境中部署有漏洞的环境（如渗透利用第三方网络服务，需要找到并安装存在特定漏洞的版本），并使用metasploit进行攻击。</p>  <p>攻击方使用Metasploit渗透软件针对Linux <a name="baidusnap0"></a><b>Metasploitable</b>靶机实施网络攻击，防御方则在Metasploitatble上使用Tcpdump或Wireshark或Snort工具捕获攻击流，并分析出攻击者利用了哪个安全漏洞进行攻击，从官方网站上下载该安全漏洞补丁进行系统修补，双方合作给出攻防过程报告。</p>  <p><b>三、实验环境</b><b></b></p>  <p>为了完成本次实验，我们部署了如下的实验环境。</p>  <p>攻守双方使用两台笔记本电脑，并将它们直连成为一个局域网。在攻守双方的笔记本电脑上部 署Vmware Workstation软件，并分别建立攻击机、扫描机和防守机。其中攻方使用BackTrack4系统，并辅助使用WinXPattacker进行扫 描；守方使用Ubuntu 8.04－<b>Metasploitable</b>系统。</p>  <p>如下图，三台虚拟机使用Bridge方式联网，攻击机IP地址192.168.200.10，扫描机IP地址192.168.200.2；防守机IP地址192.168.200.11。</p>  <p><a href="http://www.91ri.org/wp-content/uploads/auto_save_image/2012/07/073740sCJ.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Linux_EFD9/clip_image001.png" width="738" height="352" /></a></p>  <p><b>四、攻防实践过程</b><b></b></p>  <p>攻守双方首先将虚拟机启动起来，配置好网络环境并测试网络通畅后，攻守双发分别进行接下来的操作。</p>  <p><b>攻方过程</b><b></b></p>  <p><b>漏洞扫描及结果分析</b><b></b></p>  <p>为了确认防守方系统漏洞，攻方在扫描机上使用X-Scan 3.3对防守机进行了一次全面漏洞扫描。</p>  <p><a href="http://www.91ri.org/wp-content/uploads/auto_save_image/2012/07/073741iO8.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Linux_EFD9/clip_image002.png" width="794" height="482" /></a></p>  <p>其中防守机开启的服务和具体的漏洞如下</p>
       
       </p>
       
       <p>
-          <a href="/386.seo/" class="excerpt-link">Read More...</a>
+          <a href="/886.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -76,31 +80,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-04-14T10:44:42.000Z" itemprop="datePublished">
-          2012-04-14
+      <time datetime="2012-10-09T20:08:43.000Z" itemprop="datePublished">
+          2012-10-10
       </time>
     
     
     | 
-    <a href='/tag/GEA翻墙/'>GEA翻墙</a>,
-    
-    <a href='/tag/免费代理/'>免费代理</a>,
-    
-    <a href='/tag/免费翻墙/'>免费翻墙</a>
+    <a href='/tag/入侵/'>入侵</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/384.seo/">利用Google app engine 自建代理并翻墙</a></h2>
+      <h2 class="post-title"><a href="/883.seo/">友情检测格力官方网站</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>是不是一直在找免费、稳定、告诉一劳永逸的翻墙方法，<br>VPN、SSH各种都试过了？<br>今天介绍的是利用Google app engine 自建代理并翻墙，其优点有三：1，稳定，虽然偶尔也被墙，但不是很多。2，速度快，利用google的服务器，观看Youtube完全没问题,就不要说google+ facebook, twitter等了，3，使用的广泛性，较为容易上手且同样适合教育网使用。可以说，在免费的各种方法中，这是我使用过最快最稳定的方法（当然，除了同样师出同门的GAE+wallproxy)。 <p>仅需三大步： 在开始之前，我们需要一个google账号（可以使用Gmail账号），注册网址是<a href="http://appengine.google.com">http://appengine.google.com</a></p> <p>顺利登录后，点击Creat an Application</p> <p><a href="http://img.cker.in/Googleappengine_B4F/image.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/Googleappengine_B4F/image_thumb.png" width="244" height="69"></a> </p>
+        <p>今天在群里无意中看到有人说格力的官方网站是否能日。。    <br />闲着没事就去看了下格力的网站 后来的结果自然是理想的 ☺     <br />直接上神器 扫后台敏感目录先</p>  <p><a href="http://img.cker.in/013925e42ec9_1412F/clip_image001.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/013925e42ec9_1412F/clip_image001_thumb.jpg" width="293" height="403" /></a></p>  <p><a href="http://img.cker.in/013925e42ec9_1412F/clip_image002.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/013925e42ec9_1412F/clip_image002_thumb.jpg" width="293" height="403" /></a></p>
       
       </p>
       
       <p>
-          <a href="/384.seo/" class="excerpt-link">Read More...</a>
+          <a href="/883.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -109,29 +109,23 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-04-13T09:18:19.000Z" itemprop="datePublished">
-          2012-04-13
+      <time datetime="2012-10-02T18:48:34.000Z" itemprop="datePublished">
+          2012-10-03
       </time>
     
-    
-    | 
-    <a href='/tag/N900/'>N900</a>,
-    
-    <a href='/tag/WEP/'>WEP</a>
-    
-    
 </span>
-      <h2 class="post-title"><a href="/381.seo/">N900 crack WEP</a></h2>
+      <h2 class="post-title"><a href="/871.seo/">N900 client test</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>0x1：工具： <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1.基于linux <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.网卡支持注入 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.有X terminal <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4.已经安装aircrack-ng <p>0x2：破解目标 <p><a href="http://img.cker.in/N900crackWEP_DD/image.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/N900crackWEP_DD/image_thumb.png" width="244" height="148"></a></p> <p>0x3： <p>ifconfig wlan0 down <p>iwconfig wlan0 mode monitor <p><a href="http://img.cker.in/N900crackWEP_DD/clip_image001.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/N900crackWEP_DD/clip_image001_thumb.png" width="244" height="148"></a><br>0x4：macchanger –mac 00:11:22:33:44:55 wlan0 <p>&nbsp;&nbsp;&nbsp;&nbsp; ifconfig wlan0 up <p>用macchanger工具改Mac地址，防止被别人发现和方便输入 一举两得。（N900默认没有macchanger工具 要自己下载安装 你可以再源里下载或者手动下载）</p><a href="http://img.cker.in/N900crackWEP_DD/image_3.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/N900crackWEP_DD/image_thumb_3.png" width="244" height="148"></a>  <p></p> <p></p> <p></p> <p>0x5： airodump-ng wlan0 抓包 <p><a href="http://img.cker.in/N900crackWEP_DD/clip_image0014.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001[4]" border="0" alt="clip_image001[4]" src="http://img.cker.in/N900crackWEP_DD/clip_image0014_thumb.png" width="244" height="148"></a></p>
+        国庆了要找工作…
+
       
       </p>
       
       <p>
-          <a href="/381.seo/" class="excerpt-link">Read More...</a>
+          <a href="/871.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -140,29 +134,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-04-12T01:55:04.000Z" itemprop="datePublished">
-          2012-04-12
+      <time datetime="2012-09-28T01:59:48.000Z" itemprop="datePublished">
+          2012-09-28
       </time>
     
     
     | 
-    <a href='/tag/Godaddy/'>Godaddy</a>,
-    
-    <a href='/tag/优惠码/'>优惠码</a>
+    <a href='/tag/包含漏洞/'>包含漏洞</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/374.seo/">Godaddy优惠码 2美元注册 支持.com, .us, .mobi, .biz, .net, .org, .ca, .co.uk and .in域名</a></h2>
+      <h2 class="post-title"><a href="/868.seo/">php文件包含漏洞的解决方法</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        &nbsp; 新注册.com, .us, .mobi, .biz, .net, .org, .ca, .co.uk and .in域名只需要2美元（2+0.18）； 截止日期：一共10000枚 支付方式：信用卡（一张卡一个，如果你多张可多个）   优惠码如下GOODDEAL
+        现在程序代码写的越来越千奇百怪，就一种文件包含的代码就能写出2种：require include   先说require 如果出错则终止输出，include 如果出错则继续执行。    如果一个网站的管理用户写在auth.php里，且auth.php被恶意删除了，如果用require则没有漏洞。    如果用include则产生漏洞，这是为什么?因为Include在遇到错误时会继续执行，这样用户密码就为空，就进入了后台。    再如果 
       
       </p>
       
       <p>
-          <a href="/374.seo/" class="excerpt-link">Read More...</a>
+          <a href="/868.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -171,31 +163,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-04-10T14:33:59.000Z" itemprop="datePublished">
-          2012-04-10
+      <time datetime="2012-09-28T01:07:32.000Z" itemprop="datePublished">
+          2012-09-28
       </time>
     
     
     | 
-    <a href='/tag/Linux/'>Linux</a>,
-    
-    <a href='/tag/压力测试/'>压力测试</a>,
-    
-    <a href='/tag/siege/'>siege</a>
+    <a href='/tag/支付漏洞/'>支付漏洞</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/372.seo/">linux下的压力测试工具之siege</a></h2>
+      <h2 class="post-title"><a href="/865.seo/">支付漏洞的三种常见类型 imlonghao@wooyun</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>siege是一款http压力测试软件 </p> <p>debian和ubuntu用户可以通过如下命令来安装siege：  <p><strong>apt-get install siege</strong>  <p>我们可以用siege来测试我们的网站和服务器性能。  <p>siege -r 100 -c 10 <a href="http://baidu.com/index.php">http://baidu.com/index.php</a>  <p>-r 是 repeat , -r 100是重复100次测试  <p>-c 10是表示模拟10个用户同时并发连接  <p>最后面是要测试的URL地址。 </p>
+        <p>很久很久以前剑心大叔叫我写过这样一篇文章，当时还没放假，就没去搭理他，嘿嘿。最近，小E又来找我写关于支付漏洞的文章，好吧，写就写了，趁暑假还有一点余额，就写这篇文章和大家来谈谈支付漏洞。(写得不好,大牛勿怪)</p>  <p>———-</p>  <p>根据乌云上的案例，支付漏洞一般可以分为三类：一是在支付过程中直接发送含有需支付金额的数据包；二是没有对购买数量进行限制；三是程序的异常处理。下面就和大家说说这三种情况。</p>  <p>一：支付过程中直接发送含有需支付金额的数据包(常见)</p>  <p>危害指数：星星星星星</p>  <p>这种案例非常常见，主要针对支付宝等需要第三方支付的案例。开发人员往往会为了方便，直接在支付的关键步骤数据包中直接传递需要支付的金额，这种，只需要开个Fiddler2，甚至是直接通过审查元素就可以修改到需要支付的金额。我们来看一看乌云上的几个案例：</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-02272">顺丰宝业务逻辑漏洞(WooYun-2011-02272)</a> @空虚浪子心</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-07293">淘宝网某处存在严重支付漏洞(WooYun-2012-07293)</a> @imlonghao</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-07380">考试吧支付缺陷(WooYun-2012-07380)</a> @jxs</p>  <p><a href="http://www.wooyun.org/bugs/wooyun-2010-07528">263通信某处存在严重支付漏洞(WooYun-2012-07528)</a> @imlonghao</p>  <p>这里我就以淘宝网的那个支付漏洞来讲解一下，淘宝网手机充值这个地方的漏洞最为典型。</p>  <p><a href="http://img.cker.in/imlonghaowooyun_F072/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/imlonghaowooyun_F072/clip_image001_thumb.jpg" width="224" height="183" /></a></p>  <p>从这个发送的数据包中，我们可以发现开发人员直接将金额(seriesPrice)和购买短信的数量(seriesNum)一起发送，这是十分危险的操作。黑客可以通过修改seriesPrice和seriesNum的值，来达到1元购买10000条短信甚至是更多的短信数量。</p>
       
       </p>
       
       <p>
-          <a href="/372.seo/" class="excerpt-link">Read More...</a>
+          <a href="/865.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -204,39 +192,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-04-10T12:50:29.000Z" itemprop="datePublished">
-          2012-04-10
+      <time datetime="2012-09-27T22:19:34.000Z" itemprop="datePublished">
+          2012-09-28
       </time>
     
     
     | 
-    <a href='/tag/Mysql/'>Mysql</a>,
+    <a href='/tag/12306/'>12306</a>,
     
-    <a href='/tag/CentOS/'>CentOS</a>,
-    
-    <a href='/tag/Nginx/'>Nginx</a>,
-    
-    <a href='/tag/php/'>php</a>,
-    
-    <a href='/tag/LNMP/'>LNMP</a>,
-    
-    <a href='/tag/Php-fpm/'>Php-fpm</a>,
-    
-    <a href='/tag/RedHat/'>RedHat</a>
+    <a href='/tag/包含漏洞/'>包含漏洞</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/369.seo/">CentOS 6.2   RedHat EL 5.4 yum安装配置lnmp服务器(Nginx+PHP+MySQL)</a></h2>
+      <h2 class="post-title"><a href="/862.seo/">检测开发12306的公司：太极计算机股份有限公司</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><p><a href="http://img.cker.in/CentOS6.2RedHatEL5.4yumlnmpNginxPHPMySQL_43ED/image.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/CentOS6.2RedHatEL5.4yumlnmpNginxPHPMySQL_43ED/image_thumb.png" width="244" height="159"></a> </p> <p><strong>准备篇：</strong> <p><strong>1</strong><strong>、配置防火墙，开启80端口、3306端口</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong> vi /etc/sysconfig/iptables<br></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT（允许80端口通过防火墙）<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -A INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT（允许3306端口通过防火墙）<br><strong>特别提示：很多网友把这两条规则添加到防火墙配置的最后一行，导致防火墙启动失败，正确的应该是添加到默认的22端口这条规则的下面</strong><br>添加好之后防火墙规则如下所示：<br>#########################################################<br># Firewall configuration written by system-config-firewall<br># Manual customization of this file is not recommended.<br><em>filter<br>:INPUT ACCEPT [0:0]<br>:FORWARD ACCEPT [0:0]<br>:OUTPUT ACCEPT [0:0]<br>-A INPUT -m state –state ESTABLISHED,RELATED -j ACCEPT<br>-A INPUT -p icmp -j ACCEPT<br>-A INPUT -i lo -j ACCEPT<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 22 -j ACCEPT<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 80 -j ACCEPT<br>-A INPUT -m state –state NEW -m tcp -p tcp –dport 3306 -j ACCEPT<br>-A INPUT -j REJECT –reject-with icmp-host-prohibited<br>-A FORWARD -j REJECT –reject-with icmp-host-prohibited<br>COMMIT<br>######################################################### <p><strong>/etc/init.d/iptables restart</strong>&nbsp; #最后重启防火墙使配置生效</p>
+        <p>国庆就要来了，返乡出行的高峰期来了，最近无论是身边还是网络上的都怨声载道啊，原因就是火车票，网上订票系统12306真是没话说了，大家都懂的！</p>  <p>于是最近大家都把气撒在了收1.99亿开发出这么个破网站的公司：“太极”身上，主页<a href="http://www.taiji.com.cn/">http://www.taiji.com.cn/</a></p>  <p>下面我就把过程写出来和大家分享。</p>  <p>打开主页的网址默认跳到了这个链接</p>  <p><a href="http://www.taiji.com.cn/coboportal/portal/compayindex.ptview">http://www.taiji.com.cn/coboportal/portal/compayindex.ptview</a></p>  <p>鼠标随便停在新闻链接上状态栏显示如下，</p>  <p><a href="http://img.cker.in/12306_C8D8/clip_image002.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/12306_C8D8/clip_image002_thumb.jpg" width="596" height="209" /></a></p>  <p><a href="http://www.taiji.com.cn/coboportal/portal/itservice.ptview?funcid=showGSWZInfoLink&amp;infoSortId=52802&amp;infoLinkId=13962&amp;viewJsp=gswz/newsevents/newsshowcontent.jsp">http://www.taiji.com.cn/coboportal/portal/itservice.ptview?funcid=showGSWZInfoLink&amp;infoSortId=52802&amp;infoLinkId=13962&amp;viewJsp=gswz/newsevents/newsshowcontent.jsp</a></p>  <p>试了试infoSortId=52802这里是木有注入的哦，不过看着viewjsp这个参数有点特别哦，后面直接接上相对路径真是jsp文件地址了，于是我们来试试包含漏洞或者任意文件下载漏洞~</p>  <p>构造如下地址：</p>  <p><a href="http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869%20&amp;viewJsp=index.jsp">http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869%20&amp;viewJsp=index.jsp</a></p>  <p>打开发现404如图：</p>  <p><a href="http://img.cker.in/12306_C8D8/clip_image004.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/12306_C8D8/clip_image004_thumb.jpg" width="596" height="338" /></a></p>  <p>继续构造，把viewJsp=index.jsp改为viewJsp=../index.jsp：</p>  <p><a href="http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869%20&amp;viewJsp=../index.jsp">http://www.taiji.com.cn/coboportal/portal/innovation.ptview?funcid=showGSWZInfoLink&amp;infoSortId=53921&amp;infoLinkId=13869%20&amp;viewJsp=../index.jsp</a></p>
       
       </p>
       
       <p>
-          <a href="/369.seo/" class="excerpt-link">Read More...</a>
+          <a href="/862.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -244,7 +222,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/page/37/">← Newer Posts</a>
-    <span class="page-number">Page 38 of 57</span>
+    <span class="page-number">Page 38 of 81</span>
     <a class="older-posts" href="/page/39/">Older Posts →</a>
   </nav>
 </main>

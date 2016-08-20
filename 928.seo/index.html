@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Metinfo 代码审计 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-11-06T22:14:19.000Z" itemprop="datePublished">
+          2012-11-07
+      </time>
+    
+    
+    | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/代码审计/'>代码审计</a>
+    
+    
+</span>
+    <h1 class="post-title">Metinfo 代码审计</h1>
+    <section class="post-content">
+      <p>文:&#160; 西毒</p>  <p>欢迎大家到<a href="https://forum.90sec.org/&amp;#160" target="_blank" rel="external">https://forum.90sec.org/&amp;#160</a>; &amp;&amp; <a href="http://www.linux520.com/bbs/" target="_blank" rel="external">http://www.linux520.com/bbs/</a></p>  <p>0x01 前沿</p>  <p>&#160;&#160; MetInfo企业网站管理系统：采用PHP+Mysql架构，全站内置了SEO搜索引擎优化机制，支持用户自定义界面语言(全球各种语言)，拥有企业网站常用的模块功能（企业简介模块、新闻模块、产品模块、下载模块、图片模块、招聘模块、在线留言、反馈系统、在线交流、友情链接、网站地图、会员与权限管理）。强大灵活的后台管理功能、静态页面生成功能、个性化模块添加功能、不同栏目自定义FLASH样式功能等可为企业打造出大气漂亮且具有营销力的精品网站。</p>  <p>这套程序之前爆出来一个远程执行代码的<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>之后，就没什么人去挖掘了。整套程序还是很多人用的，下图是查出来的结果</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Metinfo_C76E/clip_image001_thumb.jpg" width="502" height="184"></a></p>  <p>整个对这套cms审计花了我几天的时间，下面一一道来。</p>  <p>0x02 注入一</p>  <p>此次代码审计是官网最新版</p>  <p>在message/access.php中13行</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Metinfo_C76E/clip_image002_thumb.jpg" width="578" height="245"></a></p>  <p>大家应该看到了，这个$id是没过滤的，这里的$id是怎么来的呢？请看include/common.inc.php中</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/Metinfo_C76E/clip_image003_thumb.jpg" width="578" height="207"></a></p><br><a id="more"></a><br><p></p>  <p>这个daddslashes()这个函数在global.func.php中</p>  <p>其实对传进来的值进行转义</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/Metinfo_C76E/clip_image004_thumb.jpg" width="578" height="332"></a></p>  <p>所以这里可以无视了…</p>  <p>注入如下图所示</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/Metinfo_C76E/clip_image005_thumb.jpg" width="578" height="160"></a></p>  <p>次漏洞影响2.0以上所有版本，在3.0中加入了一个防注入函数，但是可以绕过注入的</p>  <p>0x03 注入二</p>  <p>在about/show.php中8行</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image006.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/Metinfo_C76E/clip_image006_thumb.jpg" width="578" height="201"></a></p>  <p>这里明显的也一样，但是这里是盲注，看看之后的？ 这里的$show如果不存在或者是$show数组中isshow不存在就返回到错误页面，所以这是一个盲注了</p>  <p>注入结果如图</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image007.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/Metinfo_C76E/clip_image007_thumb.jpg" width="541" height="213"></a></p>  <p>同样是可以获取我们的信息的…如果是手工来判断就很累了…</p>  <p>0x04 注入三</p>  <p>在member/feedback.php中的16行</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image008.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/Metinfo_C76E/clip_image008_thumb.jpg" width="578" height="107"></a></p>  <p>这里的$serch_sql中的变量$met_fd_class是可控的</p>  <p>我们跟踪一下$serch_sql这个变量</p>  <p>在26行我们发现</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image009.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image009" border="0" alt="clip_image009" src="http://img.cker.in/Metinfo_C76E/clip_image009_thumb.jpg" width="578" height="87"></a></p>  <p>执行了。所以同样存在上面的问题了</p>  <p>但是这里的前提是要登录状态，因为他验证了权限的问题</p>  <p>在feedback.php开头就包含了权限验证的</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image010.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image010" border="0" alt="clip_image010" src="http://img.cker.in/Metinfo_C76E/clip_image010_thumb.jpg" width="523" height="183"></a></p>  <p>所以这里的注入必须是你注册一个用户，然后登录进行注入，注入结果如图</p>  <p>给出注入语句吧，首先必须闭合前面的）号，然后注释掉后面的语句</p>  <p>Exp:</p>  <p><a href="http://localhost/member/feedback.php?&amp;met_fd_classname=1&amp;met_fd_class=99999)union" target="_blank" rel="external">http://localhost/member/feedback.php?&amp;met_fd_classname=1&amp;met_fd_class=99999)union</a> select 1,2,3,4,5,user(),7,8,9,10– a</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image011.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image011" border="0" alt="clip_image011" src="http://img.cker.in/Metinfo_C76E/clip_image011_thumb.jpg" width="558" height="213"></a></p>  <p>0x05 注入四</p>  <p>这里是个鸡肋注入了..</p>  <p>既然是危险还是爆出来吧</p>  <p>在job/save.php 的73行，存在insert注入</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image012.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image012" border="0" alt="clip_image012" src="http://img.cker.in/Metinfo_C76E/clip_image012_thumb.jpg" width="578" height="86"></a></p>  <p>这里的$jobid，是可控的，怎么可控不可控我就不说了，自己测试吧</p>  <p>为什么说它鸡肋呢？ 一，这是一个insert语句，如果我们将jobid,后面的参数加进去，然后再注释掉组后的，如我们将$id = (select password from admin where id=1)#这样的语句插进去呢？ 事实，是可以成功的，但是成功插入管理员的md5，但是得读出来吧，组后发现该met_cv这个表唯一读出来的就是时间，但是时间这个字段又不能插.所以直接插就没办法了，所以这里还是鸡肋的。</p>  <p>0x06 注入五</p>  <p>在member/cv_editor.php中的53行存在一个update注入</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image013.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image013" border="0" alt="clip_image013" src="http://img.cker.in/Metinfo_C76E/clip_image013_thumb.jpg" width="578" height="146"></a></p>  <p>同样的问题了，我就不扯淡了</p>  <p>鸡肋</p>  <p>0x07 注入六</p>  <p>在member/fdeditor.php中的109行</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image014.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image014" border="0" alt="clip_image014" src="http://img.cker.in/Metinfo_C76E/clip_image014_thumb.jpg" width="578" height="136"></a></p>  <p>同样验证了权限问题，必须注册用户然后注入的，工具是没办法了</p>  <p>注入如图</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image015.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image015" border="0" alt="clip_image015" src="http://img.cker.in/Metinfo_C76E/clip_image015_thumb.jpg" width="578" height="320"></a></p>  <p>其中的各个细节，怎么测试的，我就不写了，实在是太累了，整个代码审计过程当中，需要对一些传进来的参数一步步来测试，也并不是那么容易一下就确定哪里有问题的。所以珍惜别人劳动成果。(转摘请注明作者 <a href="http://hi.baidu.com/sethc5/blog" target="_blank" rel="external">http://hi.baidu.com/sethc5/blog</a>)</p>  <p>0x08 文件包含</p>  <p>在member/index.php中的8行</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image016.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image016" border="0" alt="clip_image016" src="http://img.cker.in/Metinfo_C76E/clip_image016_thumb.jpg" width="552" height="233"></a></p>  <p>这里的$metid是外部传过来的，可控</p>  <p>如果不存在metid这个变量就将index赋给它</p>  <p>如果存在并不等于index的时候就包含$metid,’.php’这个文件，所以我们可以构造一个文件让它来包含</p>  <p>包含方式如下：</p>  <p>一、在gpc为off的情况下截断，如图</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image017.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image017" border="0" alt="clip_image017" src="http://img.cker.in/Metinfo_C76E/clip_image017_thumb.jpg" width="531" height="246"></a></p>  <p>二、是超长字符截断了</p>  <p>此种情况并不受gpc影响</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image018.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image018" border="0" alt="clip_image018" src="http://img.cker.in/Metinfo_C76E/clip_image018_thumb.jpg" width="481" height="333"></a></p>  <p>0x09 密码重置漏洞</p>  <p>在member/getpassword.php中</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image019.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image019" border="0" alt="clip_image019" src="http://img.cker.in/Metinfo_C76E/clip_image019_thumb.jpg" width="578" height="231"></a></p>  <p>看到这里重置密码的代码</p>  <p>首先他先将用户名+密码的md5 ，然后对其md5赋给一个变量x</p>  <p>然后再将用户名.x连接，然后base64加密下，然后赋值给string,然后将这个string作为</p>  <p>找回密码的url，大家发现这里有问题没？</p>  <p>假设我们注入得到该cms的md5，然后解密不了？然后怎么办？没办法了吧，</p>  <p>如果我们通过这个url重置管理员密码呢？是不是可行了？因为要的用户名和密码的md5都具备，所以我们就可以重置密码了？</p>  <p>想想开发这个重置的功能的程序员，你应该多考虑一下这个问题了啦…..</p>  <p>下面我就给出这个exp</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image020.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image020" border="0" alt="clip_image020" src="http://img.cker.in/Metinfo_C76E/clip_image020_thumb.jpg" width="578" height="219"></a></p>  <p>运行如下图</p>  <p>0x10 后台getshell</p>  <p>后台getshell其实有3种方法，我一一道来</p>  <p>方法一：</p>  <p>直接在这里添加php</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image021.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image021" border="0" alt="clip_image021" src="http://img.cker.in/Metinfo_C76E/clip_image021_thumb.jpg" width="578" height="219"></a></p>  <p>然后再上传文件管理这里上传php的shell即可</p>  <p>方法二：</p>  <p>在上图位置添加asa文件，在前台上传asa文件，这里鸡肋的地方就是iis下利用了，</p>  <p>产生漏洞原因如图</p>  <p>在job/uploadfile_save.php中</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image022.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image022" border="0" alt="clip_image022" src="http://img.cker.in/Metinfo_C76E/clip_image022_thumb.jpg" width="578" height="322"></a></p>  <p>这里的对一些常见的后缀名进行了处理</p>  <p>所以我们前台在应聘的链接里面可以直接上传asa了</p>  <p>方法三：</p>  <p>在后台这里添加新模板</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image023.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image023" border="0" alt="clip_image023" src="http://img.cker.in/Metinfo_C76E/clip_image023_thumb.jpg" width="507" height="377"></a></p>  <p>将我们的php马打包成zip格式，然后上传</p>  <p>最后我们的马会解压到templates这个模板文件夹中</p>  <p>如图</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image024.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image024" border="0" alt="clip_image024" src="http://img.cker.in/Metinfo_C76E/clip_image024_thumb.jpg" width="315" height="278"></a></p>  <p>访问</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image025.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image025" border="0" alt="clip_image025" src="http://img.cker.in/Metinfo_C76E/clip_image025_thumb.jpg" width="491" height="280"></a></p>  <p>0x11 总结</p>  <p>整套cms我花了几天的时间来研究，只对前台进行挖掘，后台的话挖了也没多大价值。整体收获不少，0day，我就这么放出来了，如果有基友想一起学习的话，还是加群吧！</p>  <p>62512676</p>  <p>接下来我放出重置密码的exp,此exp只用于研究学习之用，通过此exp去非法入侵，与本人无关.</p>  <p>此exp只针对注射出来的管理员和密码（密码解不出来），然后密码会修改为x0h4ck3r</p>  <p>运行结果如图</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image026.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image026" border="0" alt="clip_image026" src="http://img.cker.in/Metinfo_C76E/clip_image026_thumb.jpg" width="578" height="229"></a></p>  <p> exp的话，你们到<a href="https://forum.90sec.org/&amp;#160" target="_blank" rel="external">https://forum.90sec.org/&amp;#160</a>; &amp;&amp; <a href="http://www.linux520.com/bbs/" target="_blank" rel="external">http://www.linux520.com/bbs/</a></p>  <p>去获取吧</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/928.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/928.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/928.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/928.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/929.seo/">
+        ← 对Android最新fakesms漏洞的分析
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/927.seo/">
+        转~ 东京大学加密招生海报解密过程（警告：Geek范，内含妹子） →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

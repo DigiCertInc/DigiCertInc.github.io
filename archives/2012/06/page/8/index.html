@@ -45,35 +45,6 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-12T10:03:10.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/内网渗透/'>内网渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/495.seo/">渗透某高校内网服务器</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>前言：今天没事搜索资料的时候来到了这个网站，出于个人信息安全爱好就对他做一番检测!   <br /> 今天我们渗透的对象是www.TEST.com IP: 218.6.x.193在IP138上查询信息如下：    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/74ae0491df9c_1CBF/clip_image002.jpg" width="355" height="224" />    <br /> 经过我的简单踩点，发现新闻中心 教学研究 招生就业等主要内容都无法打开，提示数据库连接出错。具体是什么原因我也不清楚，可能是管理的错误操作，也可以是黑客大牛进去做的破坏。仅只有一个板块可以打开<a href="http://218.6.X.193:800/scr2006/">http://218.6.X.193:800/scr2006/</a> ，留给我们发挥的余地很小!分析连接WEB端口是800，很有可能是内网映射出来的。暂只做个估计。我们先检测下这个天空网络教室看有可以利用的没，在我的记忆中是有脚本上传漏洞的漏洞文件是 HTMLEDITOR/GETFILE.ASP 这个文件参数过滤不严格，我们可以上传ASA CER HTR等脚本木马。我们提交路径显示“对不起，访问被拒绝”管理可能修补了，我们再提交HTMLEDITOR/GETFILE1.ASP很多管理在打补丁的时候喜欢备份一个文件，害怕有时候出错。我们提交看下 无法找到。找到默认的管理后台尝试社工管理员密码。失败。现在SQL注射也是很火的。Root/ShowImage.asp 天空的这个文件好像也爆过啦注射漏洞，我们提交个 ’号提示“请不好提交非法字符”，郁闷加了防注射代码。尝试使用COOKIES注射失败。看来漏洞修改得很好。习惯性的在那个文件名字后面加个1也就是Root/ShowImage1.asp，发现文件存在，看来是管理修补的时候，备份的忘记删除了。哈哈。这也是我的个人的小技巧。我们知道天空很多程序很多都是使用MSSQL数据库的.然后我们带上参数提交，继续加个’号。马上出现经典的错误，提交AND USER&gt;0 判断连接数据库用户.    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/74ae0491df9c_1CBF/clip_image004.jpg" width="405" height="253" />    <br /> 权限不小啊!继续提交;exec master.dbo.xp_cmdshell ‘net user’–，提示我们下载文件。看来是执行成功了。XP_CMDSHELL是没有删除的。手工搞着累，马上拿出大牛ZWELL写的注射器注射，这个<a href="http://soft.77169.com/">软件</a>很好用，特别是命令执行的功能，很强大。输入VER查看系统版本，显示Microsoft Windows [版本 5.2.3790] 2003的服务器，通过读注册表的键值 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\Wds\rdpwd\Tds\tcp] 端口是3389 NETSTAT -AN查看ZH终端也是开放了的，不过他是内网。不能直接连接，用啊D写了一个有下载功能的VBS脚本在C盘。尝试下载我们的LCX端口转发工具。注射器执行的效果不是很理想，半天没反应。这条路不太好走，尝试使用注射工具的上环功能上传也很慢，卡死了几次。于是我们转换思路。那我们就拿一个WEBSHELL再说吧!用啊D列目录，最终目标锁定在D:\Easiware\SkyClass2006\Asp\Root这个目录，SA权限无所不能，用啊D写了一个一句话木马的服务端在该目录下，用客户端连接成功得到一个WBESHELL。后门用的我哥职业色狼的.如图2    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/74ae0491df9c_1CBF/clip_image006.jpg" width="406" height="315" />    <br /> 简单查看服务器信息，装有SU6.4 MSSQL 瑞星杀毒软件 360安全卫士 FSO WS组件可以使用，C-F盘全部可以浏览访问。渗透中发现，使用注射器执行命令效果很不理想。于是我就翻阅数据库的连接文件找连接MSSQL数据库的账号密码。通过仔细查找D:\Easiware\SkyClass2006\Asp\Global.asa这个文件是连接文件。结果发现用户不是SA。如图：    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/74ae0491df9c_1CBF/clip_image008.jpg" width="418" height="224" />    <br /> 虽然不是SA，但是他一样是管理的权限。一样可以EXEC COMMAN!打开查询分析器输入数据库相关连接信息，提示无法连接。马上在命令提示符中：TELNET 218.6.X.193 1433 提示无法打开，看来1433并没有映射到外网。那我们就在WEBSHELL上本地连接吧!马上上传一个asp版sql在线管理后门,这个后门很好用。我简单的说下用法吧，先输入密码登陆，再点击重新设置数据源。在这里我们输入数据库的名称和账号密码，数据库服务器就保持(local)不变，因为我们就是本地连接他的。输入完后我们点击提交，如果数据库名密码账号等信息正确就会出现设置成功的字样。    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image010" border="0" alt="clip_image010" src="http://img.cker.in/74ae0491df9c_1CBF/clip_image010.jpg" width="404" height="266" /></p>
-      
-      </p>
-      
-      <p>
-          <a href="/495.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
       <time datetime="2012-06-12T09:55:42.000Z" itemprop="datePublished">
           2012-06-12
       </time>
@@ -82,11 +53,11 @@
     | 
     <a href='/tag/渗透/'>渗透</a>,
     
+    <a href='/tag/反向代理/'>反向代理</a>,
+    
     <a href='/tag/Nginx/'>Nginx</a>,
     
     <a href='/tag/web渗透测试/'>web渗透测试</a>,
-    
-    <a href='/tag/反向代理/'>反向代理</a>,
     
     <a href='/tag/squid/'>squid</a>
     
@@ -177,9 +148,9 @@
     
     
     | 
-    <a href='/tag/内网渗透/'>内网渗透</a>,
+    <a href='/tag/渗透/'>渗透</a>,
     
-    <a href='/tag/渗透/'>渗透</a>
+    <a href='/tag/内网渗透/'>内网渗透</a>
     
     
 </span>
@@ -235,9 +206,40 @@
     </section>
   </article>
   
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-12T09:35:13.000Z" itemprop="datePublished">
+          2012-06-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>,
+    
+    <a href='/tag/入侵/'>入侵</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/478.seo/">社工+渗透某IDC服务器</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>作者：hu1s4</p>  <p>最近准备做个教育资源站，就打算在网上买个空间，ok百度下吧看看哪个好点</p>  <p>最后准备去这个站注册www.xxxxx.com</p>  <p>西部万维，西部IDC行业领跑，以最值得信赖的信誉为您提供服务器托管、服务器租用、域名注册、服务器租用、VPS、独立IP虚拟主机等服务</p>  <p>淘宝—网银—支付宝—支付成功！！</p>  <p>嘻嘻 邮箱收信了、</p>  <p>嘿嘿…空间到手了，进入FTP传个大马，因为我购买的是全能型空间，所以直接上传asp php asp.net jsp四类大马</p>  <p>查看，哎，权限bt啊，</p>  <p>（如果权限不bt，难道想被万人骑啊 hoho~~~）</p>  <p>试试看.net马吧</p>  <p>貌似权限比ASP的要大 可跳转</p>  <p>在C:\Program Files 发现了360还有星外的主机管理系统</p>  <p>一、提权之旅</p>  <p>在网上看了很多的星外提权文章，大概可以分为：</p>  <p>星外sa注册表位置在这里可以翻到sa的密码 不过需要破解</p>  <p>HKEY_LOCAL_MACHINE\SYSTEM\LIWEIWENSOFT\INSTALLFREEADMIN\11</p>  <p>C:\Documents and Settings\All Users\Application Data\Microsoft\Media Index\ 星外可写目录</p>  <p>还有一些就不列举了经过测试没有一个可行 ……峰回路转</p>  <p>正我郁闷的时候看到了Global.asa，激动的打开一看既然是sa用户</p>  <p>呵呵提权没问题了吧，不过却：</p>  <p>SQL Server 阻止了对组件 ‘xp_cmdshell’ 的过程’sys.xp_cmdshell’ 的访问</p>  <p>组件删除了，没关系我们恢复</p>  <p>dbcc addextendedproc (&quot;sp_oacreate&quot;,&quot;odsole70.dll&quot;)&#160; <br />dbcc addextendedproc (&quot;xp_cmdshell&quot;,&quot;xplog70.dll&quot;)</p>  <p>恢复好了，执行下命令在创建用户加入管理，，OK搞定</p>  <p>远程连接的时候悲剧了既然限制了管理用户组的权限。哎</p>  <p>继续想其他办法，在网上看了一篇文章</p>  <p>知道星外的ftp是自带的，我们可以通过IIS配置来读取用户密码</p>  <p>打开aspx的IIS间谍功能，既然没有禁止，教大家一个禁止aspx查看IIS配置的方法</p>  <p>找到C:\WINDOWS\system32\activeds.tlb这个文件，取消users权限即可，别人就不能查看你的IIS了</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/IDC_15DB/clip_image001.png" width="558" height="233" /></p>  <p>大家看到上面的比较了红色的FREE….</p>  <p>Freehostrunat这个用户是安装星外时建立的后面的密码并不是什么加密方式其实就是明文密码</p>  <p>我们可以直接远程登陆,在内网的话就转发</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/IDC_15DB/clip_image002.png" width="513" height="375" /></p>  <p>好了，成功拿下服务器…. 继续渗透….</p>
+      
+      </p>
+      
+      <p>
+          <a href="/478.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/archives/2012/06/page/7/">← Newer Posts</a>
-    <span class="page-number">Page 8 of 11</span>
+    <span class="page-number">Page 8 of 10</span>
     <a class="older-posts" href="/archives/2012/06/page/9/">Older Posts →</a>
   </nav>
 </main>

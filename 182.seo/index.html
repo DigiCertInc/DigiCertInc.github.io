@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>集群]基础 | Blog of Secer</title>
+  <title>集群 基础 | Blog of Secer</title>
   <meta name="description" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="MobileOptimized" content="320" />
@@ -56,7 +56,7 @@
     
     
 </span>
-    <h1 class="post-title">集群]基础</h1>
+    <h1 class="post-title">集群 基础</h1>
     <section class="post-content">
       <p></p><p>1.请简要什么是集群技术？为什么要使用集群技术？</p>  <blockquote>   <p>集群是一组协同工作的服务实体，用以提供比单一服务实体<strong>更具扩展性和可用性</strong>的服务平台。</p> </blockquote>  <p>2.请说出你所知道的集群种类，和实现方案？</p>  <blockquote>   <p>目前Linux下的集群主要有三种类型 </p>    <p>1. HA (High Availability) </p>    <p>2. LB (Load Balancing) </p>    <p>3. HPC (High performance Computing) </p>    <p>○ DC (Distributed Computing) </p> </blockquote>  <blockquote>   <p>○ PC (Parallel Computing)</p> </blockquote>  <p></p><a id="more"></a><p>高性能计算集群（High Performance Compute clustering）（如 Beowulf）使用多个机器来为需要大量计算能力的任务提供更强大的计算能力。RHEL没有内嵌这类集群的解决方案。 </p>  <p>高可用性集群（High-availability clustering）使用多个机器来为某个服务或某组服务提供额外的可靠性。 </p>  <p>负载均衡集群（Load-balance clustering）使用特殊的路由技术来给一组服务器分配任务。 </p>  <p>RedHat提供了后两种集群技术的解决方案。使用一组程序来监视该系统和集群中的服务的健康状况。</p>  <p>虽然集群系统并不能解决所有的系统问题，但是它能够帮助系统管理员最大限度地利用现有的资源。并不是所有的程序都适用于集群系统，但是常见的系统应用如HTTP服务，FTP服务，数据库服务都可以利用集群系统来增强它们的功能。</p>  <p>3.什么时候需要用LB集群？</p>  <blockquote>   <p>公共WEB服务、FTP服务、数据库服务等高负载服务中。</p> </blockquote>  <p>4.什么时候需要使用HA集群？</p>  <blockquote>   <p>Ha集群主要用于文件服务，WEB服务，数据库服务等关键应用中</p> </blockquote>  <p>5.Linux下实现LB集群的项目是？</p>  <blockquote>   <p>目前在LINUX系统下使用最为广泛的LB集群系统为LVS</p></blockquote><p></p>
 

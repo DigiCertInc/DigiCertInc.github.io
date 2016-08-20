@@ -45,6 +45,37 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
+      <time datetime="2013-01-21T23:26:11.000Z" itemprop="datePublished">
+          2013-01-22
+      </time>
+    
+    
+    | 
+    <a href='/tag/Anonymous/'>Anonymous</a>,
+    
+    <a href='/tag/匿名者/'>匿名者</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/970.seo/">黑客组织Anonymous疯狂入侵中国站点思路分析</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>关于<a href="http://ha.cker.in/tag/匿名者" target="_blank">匿名者</a>组织的疯狂拿站和统一黑页显示时间的行为，相信大家已经见怪不怪了，但是当匿名者组织开始侵略中国网站的时候，相信大家都坐不住了。首先，个人感觉反击的意义何在，或者说究竟有没有意义，笔者不是哲学家，思想家，不做过多探讨。但是，知己知彼确实是必要的。笔者对前一段时间，国内地方GOV被疯狂秒杀的一次行动做了一次没什么技术含量的分析和猜想。</p>  <p>（以下敏感域名用WWW.XXX.COM略过）</p>  <p>首先，笔者登陆了FACEBOOK找寻了一些热议的话题：</p>  <p>（以下为GOOGLE翻译，英文不好，只好找谷大哥帮忙）</p>  <p>1.中国3000+政务工作网站 匿名者成功获取权限</p>  <p>2.匿名者再次攻击亚洲各国，宣传独立自由 在网络中</p>  <p>3.亚洲强国网络安全成为匿名者的击打目标。</p>  <p>以上是通过匿名者为关键字模糊搜索的热议转载，基本每个热议都指向匿名者发布新闻和预告信的推特，笔者只好继续翻阅防火长城登陆推特，观看了一些匿名者发布针对亚洲和其他洲的攻击成果发布，评论中充斥着各种赞扬与羡慕，当然不乏我国人士（最大的悲剧），当然，也有进行技术分析的人，有一条评论中带有这样一个域名：</p>  <p>www.xxseo.com（化名）</p>  <p>接着，笔者C段了一下：</p>  <p>IP：</p>  <p>XXX.XXX.XXX.200</p>  <p>XXX.XXX.XXX.201</p>  <p>XXX.XXX.XXX.202</p>  <p>XXX.XXX.XXX.203</p>  <p>XXX.XXX.XXX.204</p>  <p>XXX.XXX.XXX.205</p>  <p>``````````````````````````````</p>  <p>以上IP全部指向中国某省级机房</p>  <p>OK，就这个IP段开始旁站扫描，得到无数四级域名：</p>  <p>XXX.host1068.xxxseo.com.cn</p>  <p>XXX.host1079.xxxseo.com.cn</p>  <p>XXX.host1081.xxxseo.com.cn</p>  <p>XXX.host1083.xxxseo.com.cn</p>  <p>XXX.host1093.xxxseo.com.cn</p>  <p>XXX.host1099.xxxseo.com.cn</p>  <p>·····························</p>  <p>相信看到这里，大家应该明白了些什么，当然笔者还是打开验证了下</p>  <p>无一例外，全部是政务网站，各地GOV。</p>  <p>XXX.host1099.xxxseo.com.cn</p>  <p>都是IDC机房托管的分配四级域名，实际绑定是WWW.XXX.GOV.CN</p>  <p>笔者继续扫描旁站，并导出所有URL（四级域名）</p>  <p>将导出的列表批量经行绑定域名反查，得到实际绑定域名结果列表。</p>  <p>在工具经行这些自动化扫描导出的时候，笔者继续做着准备，将匿名者在推特发布的攻击我国站点的列表下载了一份，可以不是文本，图片质量又狂差，只能美图秀秀去个雾（不会PS的伤不起），勉强看清了URL。</p>  <p>准备工作做完，手上有两份列表，一份是扫描旁站得出的IDC C段的GOV站点 URL列表。另一份是匿名者发布的攻击我国站点公开列表。</p>  <p>然后笔者比对了一下，相信结果大家都猜到了。</p>  <p>IDC下的163个GOV站点，有112个在匿名者攻击列表中，当然匿名者公布了3000+个。</p>  <p>好的，对匿名者每次行动的印象让我立即从庞大组织的集体攻击，变成了组织性的批量拿站。</p>  <p>这个时候，笔者又有了另一个猜想，即使是批量攻击，整个C段也是要花时间的，于是笔者爬行了5个网站的目录，BINGO，全中，居然是一模一样的目录结构，好的，原来是一个公司的业务啊！统一的建站系统，统一的OA系统，统一的邮件系统，统一的VPN登陆远程办公系统，好吧，你赢了！</p>  <p><a href="http://img.cker.in/Anonymous_D8D1/clip_image001.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Anonymous_D8D1/clip_image001_thumb.jpg" width="504" height="344" /></a></p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/970.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
       <time datetime="2012-07-16T14:38:53.000Z" itemprop="datePublished">
           2012-07-16
       </time>

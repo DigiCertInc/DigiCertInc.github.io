@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>浅谈安全宝等云端WAF的绕过思路 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-06-17T23:38:08.000Z" itemprop="datePublished">
+          2013-06-18
+      </time>
+    
+    
+    | 
+    <a href='/tag/WAF/'>WAF</a>,
+    
+    <a href='/tag/安全宝/'>安全宝</a>,
+    
+    <a href='/tag/白帽子/'>白帽子</a>
+    
+    
+</span>
+    <h1 class="post-title">浅谈安全宝等云端WAF的绕过思路</h1>
+    <section class="post-content">
+      <p>最近一直在搞些web安全，还是有一些收获的。其实我不是黑客，我真的只是<a href="http://Ha.Cker.In/tag/白帽子" target="_blank">白帽子</a>。今天，准备渗透一个站，用了几个传统的注入方式，发现一直在弹出安全宝的拦截信息。让我很不爽，先来介绍一下安全宝。</p>  <p><b>什么安全宝</b></p>  <p><a href="http://Ha.Cker.In/tag/安全宝" target="_blank">安全宝</a>是创新工场的孵化产品，是一个基于云端的WAF(Web Application Firewall)。国内也有一些产品，比如加速乐、360等。这类产品其实是相当于网站的CDN，所有流量通过它进行转发。但是这些服务其实往往无法真正达到标准CDN的服务标准，之间我也试用过加速乐这个产品，但是实际下来，不如直接访问我本站。且不谈CDN的加速功能，另一个功能其实是可以对网站的实际IP进行隐藏。</p>  <p><a href="http://img.cker.in/WAF_DBCD/clip_image001.jpg" target="_blank" rel="external"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="545" alt="clip_image001" src="http://img.cker.in/WAF_DBCD/clip_image001_thumb.jpg" width="589" border="0"></a></p>  <p>传统访问：<b> 用户访问域名–&gt;解析IP–&gt;访问目标主机</b></p>  <p>然而CDN的访问就麻烦了许多，最简单的模式：<b>用户访问域名–&gt;CDN转发–&gt;真实IP–&gt;目标主机</b>。很显然，真实的IP被保护了。其实这只是最简单的，在实际使用中，CDN的转发是多级转发的，找到最快的节点，让实际访问变快。</p>  <p>所以云端的<a href="http://Ha.Cker.In/tag/Waf" target="_blank">Waf</a>，实际上是在CDN转发环节做了文章。我们在传统测试使用的规则就十分鸡肋了，之前网上也有绕过思路，该类文章只是针对现有规则上加入了一些字符，从而绕过了这些步骤。因此，要想真正绕过就要寻找他的真实IP，然后我们通过hosts文件，强制解析域名，XX宝也就灰飞烟灭了。那么如何寻找真实IP呢？</p>  <p><b>寻找真实IP</b></p>  <p>(这一过程，我结合了乌云等网站上的内容，外加一些我总结的，成功率还是很高的)</p>  <p>1、寻找二级域名。通常由于CDN流量费巨大，或者因为内容涉密等原因，一些二级域名许多网站没有做CDN服务。比如bbs.&#160; blog. oa.&#160; mail. 通过这些子域名，可以快速拿到真实IP。</p>  <p>2、通过搜索引擎，找到一些<a href="http://zz.2cto.com/" target="_blank" rel="external">站长</a>工具的网页，那上面会记录其没有CDN 时的IP地址。很有可能是真实地址。还有就是这个淫荡的地址&#160; <a href="http://webscan.360.cn/index/checkwebsite/?url=" target="_blank" rel="external">http://webscan.360.cn/index/checkwebsite/?url=</a></p>  <p>3、直接ping根域名，许多网站让根域名放任自流，因此此方法也十分奏效</p>  <p>4、找phpinfo文件，通过wwwscan等，如果字典强大的话，的确可以找到phpinfo的文件。这个文件许多网站都有，其实本站也是有的。不过你是扫不到的。</p>  <p>5、淫荡的email ：许多网站在注册的时候都会给你发邮件，这时候我们查看email 的源代码，就会找到真实IP。</p>  <p>6、使用国外DNS nslookup ，一些网站只对中国用户进行CDN服务，所以我们用国外的访问这些网站，CDN就会自动回源，找到真实IP </p>  <p>7、骗IP 这个自己发挥。</p>  <p>注意，修改完hosts之后可能并不能当场生效，可能因为缓存。所以清除一下dns缓存 cmd下，ipconfig /flushdns</p>  <p><a href="http://img.cker.in/WAF_DBCD/clip_image002.jpg" target="_blank" rel="external"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="568" alt="clip_image002" src="http://img.cker.in/WAF_DBCD/clip_image002_thumb.jpg" width="720" border="0"></a></p>  <p>来源：卓非博客</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1005.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1005.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1005.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1005.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/1006.seo/">
+        ← Dedecms最新注入漏洞分析 download.php
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/1004.seo/">
+        一个小漏洞可渗透TCL内网 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

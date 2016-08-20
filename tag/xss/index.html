@@ -84,9 +84,9 @@
     
     
     | 
-    <a href='/tag/SQL注入/'>SQL注入</a>,
-    
     <a href='/tag/xss/'>xss</a>,
+    
+    <a href='/tag/SQL注入/'>SQL注入</a>,
     
     <a href='/tag/移动APP漏洞/'>移动APP漏洞</a>,
     
@@ -175,29 +175,35 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-30T11:31:12.000Z" itemprop="datePublished">
-          2012-08-30
+      <time datetime="2013-10-21T20:52:58.000Z" itemprop="datePublished">
+          2013-10-22
       </time>
     
     
     | 
     <a href='/tag/xss/'>xss</a>,
     
-    <a href='/tag/会话劫持/'>会话劫持</a>
+    <a href='/tag/Java/'>Java</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/774.seo/">利用XSS跨站漏洞入侵百度投诉中心用xss平台沦陷百度投诉中心后台</a></h2>
+      <h2 class="post-title"><a href="/1041.seo/">攻击JavaWeb应用 6 -程序架构与代码审计</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>简要描述：</p>  <p>天天看wooyun上piapiapia弹窗弹的好欢乐，但是真正利用的没几个，也导致了一些人，一些厂商，一些白帽子对XSS危害的蔑视，如果<a href="http://ha.cker.in/tag/xss" target="_blank">XSS</a>的利用回想当年NBSI一样简单化，也许结果就不同了。</p>  <p>用事实说话。</p>  <p>详细说明：</p>  <p>我们要知道的一个事实是，很多大型互联网企业，其前台防护都很到位，但是没有人会挑保护最好的地方下手，对于前台来说，他的后台就是一个容易被忽视的地方，虽然我们不知道后台程序的构造，但是我们可以根据一些功能的性质来大胆推测，比如互联网公司安全短板–客服反馈系统。</p>  <p>目标地址：<a href="http://tousu.baidu.com">http://tousu.baidu.com</a></p>  <p>漏洞证明：</p>  <p>找到一个产品的投诉页面，比如文库，想这种功能比较简单的表单，我们直接提交&quot;&gt;&lt;xss code&gt;&lt;这样的代码猜测</p>  <p><a href="http://img.cker.in/XSSxss_314A/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/XSSxss_314A/clip_image001_thumb.jpg" width="601" height="624" /></a></p>  <p>提交后如果运气好的话。。。。。</p>  <p><a href="http://lcx.cc/File.asp?md5=8b2edef82787fe6c4c9f09e981d113a6"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/XSSxss_314A/clip_image003.jpg" width="819" height="532" /></a></p>  <p>访问了一下后台地址，居然是外网可访问的，利用得到的cookie进行<a href="http://ha.cker.in/tag/会话劫持" target="_blank">会话劫持</a></p>
+        <p><a href="http://drops.wooyun.org/tips/429">攻击JavaWeb应用[6]-程序架构与代码审计</a></p>  <p><a href="http://drops.wooyun.org/tips/429">http://drops.wooyun.org/tips/429</a></p>  <h6>注：</h6>  <p>不管多么强大的系统总会有那么些安全问题，影响小的可能仅仅只会影响用户体验，危害性大点的可能会让攻击者获取到服务器权限。这一节重点是怎样去找到并利用问题去获取一些有意思的东西。</p>  <h6>Before:</h6>  <p>有MM的地方就有江湖，有程序的地方就有漏洞。现在已经不是SQL注入漫天的年代了，Java的一些优秀的开源框架让其项目坚固了不少。在一个中大型的Web应用漏洞的似乎永远都存在，只是在于影响的大小、发现的难易等问题。有很多比较隐晦的漏洞需要在了解业务逻辑甚至是查看源代码才能揪出来。JavaWeb跟PHP和ASP很大的不同在于其安全性相对来说更高。但是具体体现在什么地方？JavaWeb开发会有那些问题？这些正是我们今天讨论的话题。</p>  <h4>JavaWeb开发概念</h4>  <hr align="center" width="100%" size="2" />  <h5><a href="http://Ha.Cker.In/tag/Java" target="_blank">Java</a>分层思想</h5>  <p>通过前面几章的介绍相信已经有不少的朋友对Jsp、Servlet有一定了解了。上一节讲MVC的有说的JSP+Servlet构成了性能好但开发效率并不高的Model2。在JavaWeb开发当中一般会分出很多的层去做不同的业务。</p>  <h6>常见的分层</h6>  <pre><code>1、展现层(View 视图) </code></pre><br><br><pre><code>2、控制层（Controller 控制层） </code></pre><br><br><pre><code>3、服务层（Service） </code></pre><br><br><pre><code>4、实体层（entity 实体对象、VO(value object) 值对象 、模型层（bean）。</code></pre><br><br><pre><code>5、业务逻辑层BO(business object) </code></pre><br><br><pre><code>6、持久层（dao- Data Access Object 数据访问层、PO(persistant object) 持久对象）</code></pre><br><br><h5>依赖关系</h5><br><br><p>在了解一个项目之前至少要知道它的主要业务是什么主要的业务逻辑和容易出现问题的环节。其次是了解项目的结构和项目当中的类依赖。再次才是去根据业务模块去读对应的代码。从功能去关联业务代码入手往往比逮着段代码就看效率高无数倍。</p>
+
+<p>前几天在Iteye看到一款不错的生成项目依赖图的工具- Structure101，试用了下Structure101感觉挺不错的，不过是收费的而且价格昂贵。用Structure101生成Jeebbs的项目架构图：</p>
+
+<p><a href="http://img.cker.in/JavaWeb6_9C8E/clip_image001.png"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="635" alt="clip_image001" src="http://img.cker.in/JavaWeb6_9C8E/clip_image001_thumb.png" width="982" border="0" /></a></p>
+
+<p>Structure101导入jeebss架构图-包调用： </p><br>
       
       </p>
       
       <p>
-          <a href="/774.seo/" class="excerpt-link">Read More...</a>
+          <a href="/1041.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -206,31 +212,31 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-28T10:26:14.000Z" itemprop="datePublished">
-          2012-07-28
+      <time datetime="2013-10-21T18:10:58.000Z" itemprop="datePublished">
+          2013-10-22
       </time>
     
     
     | 
-    <a href='/tag/渗透测试/'>渗透测试</a>,
-    
     <a href='/tag/xss/'>xss</a>,
     
-    <a href='/tag/漏洞/'>漏洞</a>
+    <a href='/tag/CSRF/'>CSRF</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/729.seo/">xss简单渗透测试</a></h2>
+      <h2 class="post-title"><a href="/1037.seo/">攻击JavaWeb应用 2 -CS交互安全</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        转载。  Author: jianxin [80sec]   EMail: jianxin#80sec.com    Site: http://www.80sec.com    Date: 2008-12-24     From: http://www.80sec.com/release/xss-how-to-root.txt    [ 目录 ]    0×00 前言 b    0×01 xss渗透测试基本思路    0×02 一次黑盒
+        <p><a href="http://drops.wooyun.org/tips/164">攻击JavaWeb应用[2]-CS交互安全</a></p>  <p><a href="http://drops.wooyun.org/tips/164">http://drops.wooyun.org/tips/164</a></p>  <h5>注:本节意在让大家了解客户端和服务器端的一个交互的过程,我个人不喜欢xss,对xss知之甚少所以只能简要的讲解下。这一节主要包含HttpServletRequest、HttpServletResponse、session、cookie、HttpOnly和xss，文章是年前几天写的本应该是有续集的但年后就没什么时间去接着续写了。由于工作并非安全行业，所以写的并不算专业希望大家能够理解。后面的章节可能会有Java里的SQL注入、Servlet容器相关、Java的框架问题、eclipse代码审计等。</h5>  <h5>0x00 Request &amp; Response(请求与响应)</h5>  <hr align="center" width="100%" size="2" />  <p>请求和响应在Web开发当中没有语言之分不管是ASP、PHP、ASPX还是JAVAEE也好，Web服务的核心应该是一样的。</p>  <p>在我看来Web开发最为核心也是最为基础的东西就是Request和Response！我们的Web应用最终都是面向用户的，而请求和响应完成了客户端和服务器端的交互。   <br />服务器的工作主要是围绕着客户端的请求与响应的。</p>  <p>如下图我们通过Tamper data拦截请求后可以从请求头中清晰的看到发出请求的客户端请求的地址为：localhost。</p>  <p>浏览器为FireFox，操作系统为Win7等信息，这些是客户端的请求行为，也就是Request。</p>  <p><a href="http://img.cker.in/JavaWeb2CS_8BCE/clip_image001.png"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="444" alt="clip_image001" src="http://img.cker.in/JavaWeb2CS_8BCE/clip_image001_thumb.png" width="1142" border="0" /></a></p>  <p>当客户端发送一个Http请求到达服务器端之后，服务器端会接受到客户端提交的请求信息(HttpServletRequest)，然后进行处理并返回处理结(HttpServletResopnse)。</p>  <p>下图演示了服务器接收到客户端发送的请求头里面包含的信息：</p>  <p><a href="http://img.cker.in/JavaWeb2CS_8BCE/clip_image002.png"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="549" alt="clip_image002" src="http://img.cker.in/JavaWeb2CS_8BCE/clip_image002_thumb.png" width="655" border="0" /></a></p>  <p>页面输出的内容为：</p>  <pre><code>host=localhost</code></pre><br><br><pre><code>user-agent=Mozilla/5.0 (Windows NT 6.1; rv:18.0) Gecko/20100101 Firefox/18.0</code><code> </code></pre><br><br><pre><code>accept=text/html,application/xhtml+xml,application/xml;q=0.9,<em>/</em>;q=0.8</code><code> </code></pre><br><br><pre><code>accept-language=zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3</code><code> </code></pre><br><br><pre><code>accept-encoding=gzip, deflate</code><code> </code></pre><br><br><pre><code>connection=keep-alive</code></pre><br><br><h6>请求头信息伪造XSS</h6><br><br><p>关于伪造问题我是这样理解的：发送Http请求是客户端的主动行为，服务器端通过ServerSocket监听并按照Http协议去解析客户端的请求行为。</p>
+
+<p>所以请求头当中的信息可能并不一定遵循标准Http协议。</p><br>
       
       </p>
       
       <p>
-          <a href="/729.seo/" class="excerpt-link">Read More...</a>
+          <a href="/1037.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -238,7 +244,7 @@
   
   <nav class="pagination" role="pagination">
     
-    <span class="page-number">Page 1 of 2</span>
+    <span class="page-number">Page 1 of 4</span>
     <a class="older-posts" href="/tag/xss/page/2/">Older Posts →</a>
   </nav>
 </main>

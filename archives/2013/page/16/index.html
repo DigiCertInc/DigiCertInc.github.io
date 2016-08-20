@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Archives: 2013 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-01-21T20:18:26.000Z" itemprop="datePublished">
+          2013-01-22
+      </time>
+    
+    
+    | 
+    <a href='/tag/提权/'>提权</a>,
+    
+    <a href='/tag/渗透/'>渗透</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/968.seo/">对某学校教务系统的一次渗透</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        目标:oa.school.com&#160; IP:192.168.100.100 OA系统 (域名ip均已经过处理)   目的：登陆该后台管理系统 进行某个目的     0x01    检测并提权     某商业oa程序 无0day 网上也没有相关漏洞信息 ， 无同服务器站点，简单的进行了 常规web漏洞扫描、目录扫描、手工探测、端口信息、简单的对各开放并可能利用的端口进行密码破解 未果    通过google搜索并整理相关二级域名 
+      
+      </p>
+      
+      <p>
+          <a href="/968.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-01-17T21:26:23.000Z" itemprop="datePublished">
+          2013-01-18
+      </time>
+    
+    
+    | 
+    <a href='/tag/360浏览器抢票专版/'>360浏览器抢票专版</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/967.seo/">360浏览器抢票专版</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        360浏览器抢票专版  &#160;  360浏览器抢票专版下载  360浏览器抢票专版听说很好用？
+      
+      </p>
+      
+      <p>
+          <a href="/967.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-01-16T03:11:42.000Z" itemprop="datePublished">
+          2013-01-16
+      </time>
+    
+    
+    | 
+    <a href='/tag/Mongodb/'>Mongodb</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/966.seo/">Mongodb学习手册</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><p><a href="http://ha.cker.in/tag/Mongodb" target="_blank">Mongodb</a>学习手册</p>  <p>启动mongodb服务进程：</p>  <p><a href="http://ha.cker.in/tag/Mongodb" target="_blank">MongoDB</a>默认的数据库文件的位置是/data/db，但是它不会自动的生产目录，所以如果采用默认的文件位置的话，我们需要自己先建立该目录，如下：</p>  <p>$ sudo mkdir -p /data/db/ </p>  <p>$ sudo chown <code>id -u</code> /data/db </p>  <p>接下来可以启动 mongodb的服务了：</p>  <p>$ ./mongod </p>  <p>我们也可以用-dbpath选项来指定自己的数据库位置，如下：</p>  <p>$ ./mongod -dbpath ../../data/db</p>  <p>启动成功以后，会有如下界面显示：</p>  <p>[tsaip@ossesbwas bin]$ Mon May 30 12:17:16 [initandlisten] MongoDB starting : </p>  <p>pid=3662 port=27017 dbpath=../../data/db 64-bit</p>  <p>Mon May 30 12:17:16 [initandlisten] db version v1.8.2-rc2, pdfile version 4.5 </p>  <p>Mon May 30 12:17:16 [initandlisten] git version: </p>  <p>373038f53049071fddb5404698c8bebf99e3b51f </p>  <p>Mon May 30 12:17:16 [initandlisten] build sys info: Linux bs-linux64.10gen.cc </p>  <p>2.6.21.7-2.ec2.v1.2.fc8xen #1 SMP Fri Nov 20 17:48:28 EST 2009 x86_64 </p>  <p>BOOST_LIB_VERSION=1_41 </p>  <p>Mon May 30 12:17:16 [initandlisten] waiting for connections on port 27017 </p>  <p>Mon May 30 12:17:16 [websvr] web admin interface listening on port 28017</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/966.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-01-14T23:23:22.000Z" itemprop="datePublished">
+          2013-01-15
+      </time>
+    
+    
+    | 
+    <a href='/tag/Pureftpd/'>Pureftpd</a>,
+    
+    <a href='/tag/CentOS/'>CentOS</a>,
+    
+    <a href='/tag/vsftpd/'>vsftpd</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/965.seo/">Pureftpd的卸载和CentOS vsftpd安装配置</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        Pureftpd挂了，重装了几次没效果，没办法web管理还是方便，现在只有让它下岗了！换上vsftpd  &#160;  Pureftpd的卸载  1、停止pureftpd进程，运行命令： /root/pureftpd stop  2、删除文件，运行命令：  rm -r usr/local/pureftpd  rm -r home/wwwroot/ftp (管理程序的位置，请根据实际情况设置)   rm /root/pureftpd  
+      
+      </p>
+      
+      <p>
+          <a href="/965.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-01-14T23:07:50.000Z" itemprop="datePublished">
+          2013-01-15
+      </time>
+    
+</span>
+      <h2 class="post-title"><a href="/964.seo/">为什么还有人雇佣糟糕的程序员？</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        有一种言论是好的程序员的效率是差的程序员的10倍，那为什么那些差的程序员还能找到工作并且能一直做下去呢？我最近阅读了 DZone 上面的 Troy Hunt 的文章“Measuring code quality with NDepend” 。先不管 NDepend，Troy 分享了一个关于专业性的有趣的观点：  我一直想不通为什么软件行业的专业性的差异会如此巨大。对比医生或者飞行员，好的医生和不好的医生差别不会很大，而飞行员的差别应该更
+      
+      </p>
+      
+      <p>
+          <a href="/964.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-01-10T02:08:25.000Z" itemprop="datePublished">
+          2013-01-10
+      </time>
+    
+    
+    | 
+    <a href='/tag/Mysql/'>Mysql</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/963.seo/">正确重置MySQL密码</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        如果你忘记了MySQL密码，如何重置它呢?   下面是错误答案：    首先停止MySQL服务，然后使用skip-grant-tables参数启动它：     shell&gt; /etc/init.d/mysql stop     shell&gt; mysqld_safe –skip-grant-tables &amp;     此时无需授权就可以进入到MySQL命令行，使用SQL重置MySQL密码：   UPDATE mysql.
+      
+      </p>
+      
+      <p>
+          <a href="/963.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    <a class="newer-posts" href="/archives/2013/page/15/">← Newer Posts</a>
+    <span class="page-number">Page 16 of 16</span>
+    
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

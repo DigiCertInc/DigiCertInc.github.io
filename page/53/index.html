@@ -45,29 +45,31 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-08-03T22:03:26.000Z" itemprop="datePublished">
-          2011-08-04
+      <time datetime="2012-06-21T10:23:56.000Z" itemprop="datePublished">
+          2012-06-21
       </time>
     
     
     | 
-    <a href='/tag/Linux/'>Linux</a>,
+    <a href='/tag/N点虚拟主机提权实例/'>N点虚拟主机提权实例</a>,
     
-    <a href='/tag/运维/'>运维</a>
+    <a href='/tag/fckeditor/'>fckeditor</a>,
+    
+    <a href='/tag/IISPY/'>IISPY</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/58.seo/">Linux运维的一些常见问题及解决方法</a></h2>
+      <h2 class="post-title"><a href="/554.seo/">N点虚拟主机提权实例</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        今晚有空把最近运维中遇到的一些问题及解决方法总结下，写的比较匆忙，可能有些问题和错误，请各位看官指正。——————————————————————————————————————————1.shell脚本死活不执行问题：某天研发某同事找我说帮他看看他写的shell脚本，死活不执行，报错。我看了下，脚本很简单，也没有常规性的错误，报“: bad interpreter: No such file or&nbsp; directory”错。
+        <p>首先说一下，这台服务器是我日错了。本来不是这个服务器，拿到webshell以后发现不是我要找的服务器，然后。。   <br />不管怎么说，先提权再说，谁会嫌自己服务器多(其实我真的嫌手上多的，谁来帮我打理维护啊。。。好吧，我说笑的)。    <br />作者：YoCo Smart    <br />来自：<a href="http://blackbap.org/">Silic Group Hacker Army</a>    <br /><a href="http://blackbap.org/">http://BlackBap.Org</a>    <br />一开始看的时候我就知道是一台虚拟主机，而且应该支持php,asp,aspx    <br />这个站首先我找到了一个FCKeditor，这个FCK编辑器没有FileManager文件夹，于是我构造了/fckeditor/editor/fckeditor.html?toolbar=default这个路径    <br />点击浏览服务器出现：/admin/<a href="http://ha.cker.in/tag/fckeditor" target="_blank">fckeditor</a>/dialog/select_images.php?f=form1.imgsrc&amp;imgstick=big    <br />这样一个地址，居然不是browser，估计版本更高级了吧    <br />好在服务器是IIS，比较省力的就传上去IIS解析漏洞的<a href="http://ha.cker.in/tag/webshell" target="_blank">webshell</a>了（这个版本的FCK创建文件夹时禁止输入点“.”，但是可以抓包或者本地表单POST创建，方法很多）    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/N_2187/clip_image002.png" width="604" height="461" />    <br />目录不出意外的没有设置严，Porgrams目录可读，而且MYSQL的data目录也在里面（MySQL的data目录有可能在其他目录，比方说某磁盘根目录，Documents目录或者2008的Users目录等）    <br />D:/Program Files/MySQL/MySQL Server 5.0/data/mysql/user.MYD    <br />这个文件读出来却是这样的：</p>
       
       </p>
       
       <p>
-          <a href="/58.seo/" class="excerpt-link">Read More...</a>
+          <a href="/554.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -76,53 +78,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-08-03T06:19:27.000Z" itemprop="datePublished">
-          2011-08-03
-      </time>
-    
-</span>
-      <h2 class="post-title"><a href="/57.seo/">2011最新 杰森&middot;斯坦森《闪电 私法制裁》DVD中英双字</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        闪电/私法制裁(台)  下载地址 http://urlu.tk/LqnEb
-      
-      </p>
-      
-      <p>
-          <a href="/57.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-08-02T23:14:06.000Z" itemprop="datePublished">
-          2011-08-03
+      <time datetime="2012-06-21T10:16:39.000Z" itemprop="datePublished">
+          2012-06-21
       </time>
     
     
     | 
-    <a href='/tag/Linux/'>Linux</a>,
+    <a href='/tag/入侵/'>入侵</a>,
     
-    <a href='/tag/Remote/'>Remote</a>
+    <a href='/tag/中央民族大学/'>中央民族大学</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/56.seo/">Linux系统中如何实现远程控制</a></h2>
+      <h2 class="post-title"><a href="/551.seo/">入侵中央民族大学主站服务器</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        看着办公室里的同事大李每天下班时间一到就早早打卡回家，在温暖的家中通过远程控制软件来继续工作，还在冷冰冰的办公室里加班的小张暗暗下了决心：不行，我也要早早回家，美美吃上一顿再加班！不过Linux下面可以实现远程控制吗？ 　　“当然可以了！像我一样用VNC不就成了？”大李拍拍小张的肩膀，“兄弟一场，我就来教教你吧！” 　　VNC(Virtual Network Computing)是一套著名的远程控制软件，它由两个部分组成。一部分是客户端
+        <p>作者：晓华[岁月联盟]</p>  <p>此文谨献给我亲爱的爸爸妈妈和热情的黑手读者！</p>  <p>来到大学快二个月了，感觉很好，认识了很多朋友，在这里结识了我的好兄弟夜枫。我学的是信息安全专业，感觉国内对这块投入很少，再加上有些网络系统管理员的安全意识比较低，总是认为我安装了最厉害的杀毒软件和严密的防火墙，并且把它们升级到最新版本，天天自动升级病毒库。恶意攻击可以避免，其实不是这样的。网络技术飞速的发展，网络安全技术和黑客攻击技术也在同步的发展，都是相互推动的，在做好了完整的安全防护外，我们还需要对系统的关键部分进行模拟的入侵测试，以找出系统存在的安全隐患并加以修复。人的意识最重要，别总是把希望寄托与强悍的杀毒软件和坚固的防火墙。</p>  <p>下面我将给新手朋友介绍下MYSQL5+PHP环境下的入侵技术。目标就拿中央民族大学主站作为入侵演示，之前朋友叫我检测下该站安全。现在用PHP做站的越来越多，PHP运行效率高，消耗系统资源比较低。再加上MYSQL是免费的数据库。PHP+MYSQL组合是黄金搭档，它们的安全问题也尤为重要。下面就简单介绍下基本入侵思路和MYSQL5注射的技巧。</p>  <p>既然是安全检测，肯定要用到网络安全扫描器进行系统信息收集。通过PING命令很轻松的得到该站IP地址，扫描软件我就用尖刀端口扫描器，速度快的它可以提高我们的入侵效率。扫描结果如下图1：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/663349f87027_1FC5/clip_image002.jpg" width="686" height="381" /></p>  <p>目标机器只对外开放了三个端口。溢出漏洞就别想了，这里就只留给我们二个端口可以突破，暴力破解终端密码？貌似我还没见人那样做哈。我们还是选择直接从80端口渗透进去吧！不知道目标站点的脚本程序安全怎么样。打开主站，是PHP的页面。后台数据库很可能是MYSQL，主机限制了3306端口对外开放，管理员对敏感端口的基本安全意识还是有的嘛！</p>
       
       </p>
       
       <p>
-          <a href="/56.seo/" class="excerpt-link">Read More...</a>
+          <a href="/551.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -131,75 +109,126 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-08-01T23:14:40.000Z" itemprop="datePublished">
-          2011-08-02
-      </time>
-    
-</span>
-      <h2 class="post-title"><a href="/55.seo/">转]代码审查：大家都应该做的事情</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        正如我在上一篇博客中提到的（现在可以明确地告诉大家），我已经离开Google了。虽然我已经收到了很多不错的offer，但是还没有决定去哪里。在这段时间里从技术角度上说我不受雇于任何人，虽然也许这会让我和（前）同事或者老板关系有点紧张，但我觉得应该写一些关于技术上的有趣的事情。 正如我在上一篇博客中提到的（现在可以明确地告诉大家），我已经离开Google了。虽然我已经收到了很多不错的offer，但是还没有决定去哪里。在这段时间里从技术角度
-      
-      </p>
-      
-      <p>
-          <a href="/55.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-07-29T20:19:32.000Z" itemprop="datePublished">
-          2011-07-30
-      </time>
-    
-</span>
-      <h2 class="post-title"><a href="/54.seo/">病毒分析在线沙盘 & 恶意行为分析工具SysAnalyzer</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        病毒分析在线沙盘：1. Anubis- Analyzing Unknown Binarieshttp://analysis.seclab.tuwien.ac.at/index.php2. CWSandbox - Automatic Behavior Analysis of Malwarehttp://www.cwsandbox.org/?page=submit3. Joebox - a secure Sandbox Applicatio
-      
-      </p>
-      
-      <p>
-          <a href="/54.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-07-27T19:50:53.000Z" itemprop="datePublished">
-          2011-07-28
+      <time datetime="2012-06-21T07:44:56.000Z" itemprop="datePublished">
+          2012-06-21
       </time>
     
     
     | 
-    <a href='/tag/Crack/'>Crack</a>
+    <a href='/tag/安全加固/'>安全加固</a>,
+    
+    <a href='/tag/WIN2003/'>WIN2003</a>,
+    
+    <a href='/tag/服务器维护/'>服务器维护</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/53.seo/">破解迅雷离线下载绝不是意淫</a></h2>
+      <h2 class="post-title"><a href="/549.seo/">WIN2003服务器维护安全加固方案</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>迅雷改了免费体验离线功能，但有时间限制下面我教大家用CE修改实际那限制破解离线功能<br>首先要登录迅雷账号，然后点激活加速会出现 <p><a href="http://img.cker.in/df446915b991_9FFB/image.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/df446915b991_9FFB/image_thumb.png" width="244" height="239"></a> </p>
+        <p>一：因为IIS(即Internet Information Server)的方便性和易用性，使它成为最受欢迎的Web服务器软件之一。但是，IIS的安全性却一直令人担忧。如何利用IIS建立一个安全的Web服务器，是很多人关心的话题。要创建一个安全可靠的Web服务器，必须要实现Windows 2003和IIS的双重安全，因为IIS的用户同时也是Windows 2003的用户，并且IIS目录的权限依赖Windows的NTFS文件系统的权限控制，所以保护IIS安全的第一步就是确保Windows 2000操作系统的安全，所以要对服务器进行安全加固，以免遭到黑客的攻击，造成严重的后果。 </p>  <p>二．我们通过一下几个方面对您的系统进行安全加固： </p>  <p>1． 系统的安全加固：我们通过配置目录权限，系统安全策略，协议栈加强，系统服务和访问控制加固您的系统，整体提高服务器的安全性。 </p>  <p>2． IIS手工加固：手工加固iis可以有效的提高iweb站点的安全性，合理分配用户权限，配置相应的安全策略，有效的防止iis用户溢出提权。 </p>  <p>3． 系统应用程序加固，提供应用程序的安全性，例如sql的安全配置以及服务器应用软件的安全加固。 </p>
       
       </p>
       
       <p>
-          <a href="/53.seo/" class="excerpt-link">Read More...</a>
+          <a href="/549.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-20T12:38:02.000Z" itemprop="datePublished">
+          2012-06-20
+      </time>
+    
+    
+    | 
+    <a href='/tag/黑客/'>黑客</a>,
+    
+    <a href='/tag/银行信息/'>银行信息</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/547.seo/">一位黑客的告别之作：79家银行信息被 裸奔  下载地址</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>近日，一个名为Reckz0r的黑客在其Twitter上发了这么一条推特：“在过去的3个月里，我一直潜伏在79家银行的网络里。也许人们都以为我黑的是VISA &amp; Mastercard，但事实上，我黑的是银行里的客户数据。”</p>  <p>目前，Reckz0r已经获取了这些银行客户的大量数据，其中包括他们的名字、邮件地址、家庭住址和电话号码。而就在今天，好多人可以在AnonFiles.com的网站上下到这些数据。Reckz0r表示目前只有部分的信用卡信息被泄露出去， 因为数量数量实在太庞大。据荷兰媒体报道，这次被泄露出去的文件有113页，500亿字节。</p>  <p>作为Anonymous和“UGNazi”的前成员，Reckz0r在Pastebin网站上发表了一篇文章，在文中他表示此次的攻击完全不是为了获取信 息，他只是想在结束自己的黑客生涯之前再玩上一把。</p>  <p>与此同时，他还对被其黑过的受害者表示道歉；“在过去，我已经进行了50多次的大型黑客活动，泄露了大 量的重要信息，如果您是其中的一个受害者，我在这里表示道歉。而此次的黑客是我的告别之作。以后，我不再是个黑客了，而是一个良民了。”</p>
+      
+      </p>
+      
+      <p>
+          <a href="/547.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-20T12:33:41.000Z" itemprop="datePublished">
+          2012-06-20
+      </time>
+    
+    
+    | 
+    <a href='/tag/iis解析漏洞/'>iis解析漏洞</a>,
+    
+    <a href='/tag/PowerEasy/'>PowerEasy</a>,
+    
+    <a href='/tag/动易/'>动易</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/544.seo/">动易net版本后台拿shell</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        根据我的最近的制作网站！发现动易的net开发的源码！那个模板里面可以直接上传iis解析漏洞的木马！未做任何的过滤！   比如我们传到博客模板！    传完的木马位置在    Template\xx政府模板方案\博客模板\木马.asp;l.html    似乎所有的这些net开发的！    系统设置》模板标签管理》模板管理    大家可以去尝试下！呵呵！文章稍微有点水！但是重点说出来了！    
+      
+      </p>
+      
+      <p>
+          <a href="/544.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-20T12:17:35.000Z" itemprop="datePublished">
+          2012-06-20
+      </time>
+    
+    
+    | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/DJ/'>DJ</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/541.seo/">一种DJ站的漏洞</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>哈客首发 <a href="http://www.hake.cc">www.hake.cc</a>    <br />转载注明 哈客部落    <br />目标站 <a href="http://www.xufandj.com/">http://www.xufandj.com/</a>    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/DJ_3C06/clip_image002.jpg" width="604" height="374" />    <br />默认数据库地址    <br />/data/#Ylmv_Data.asa    <br />/data/#Ylmv_Data1.asa    <br />/data/#Ylmv_Data.mdb    <br />/data/#Ylmv_Data1.mdb    <br />下载到数据库之后 我们来找下管理帐号和密码</p>
+      
+      </p>
+      
+      <p>
+          <a href="/541.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -207,7 +236,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/page/52/">← Newer Posts</a>
-    <span class="page-number">Page 53 of 57</span>
+    <span class="page-number">Page 53 of 81</span>
     <a class="older-posts" href="/page/54/">Older Posts →</a>
   </nav>
 </main>

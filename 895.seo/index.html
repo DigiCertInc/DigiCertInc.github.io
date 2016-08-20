@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>浅谈渗透测试中的逆向破解 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-10-22T00:46:50.000Z" itemprop="datePublished">
+          2012-10-22
+      </time>
+    
+</span>
+    <h1 class="post-title">浅谈渗透测试中的逆向破解</h1>
+    <section class="post-content">
+      <p>浅谈渗透测试中的逆向破解by闪电小子@pkav.net    <br>随着越来越多的公司开发程序时都注意注重数据的安全了，很多时候会通过加密数据库连接，加密数据库部分敏感数据的方式保护数据不容易被窃取！因此我们经常在找     <br>数据库连接的时候会找到一些加密过的连接字符串。对于不会有相关逆向的人来讲，可能就     <br>会被止步在此！ 但是我们通常不能满足于此，于是需要我们对渗透测试过程中的逆向加解密有一些了解！下面我通过一些加解密的过程演示向大家展示下，是怎么样加密和怎么样解密的。 </p>  <p>数据库连接字符串加密（主要讲解在aspx中的加解密）    <br>加密方式的多样化：     <br>（1）Des加密（非对称加密）     <br>&#160;</p>  <pre>&lt;add name=&quot;<span style="color: #8b0000">democonn</span>&quot; connectionString=&quot;<span style="color: #8b0000">server=localhost;database=test;uid=sa;pwd=sa;</span>&quot;/&gt;<br>    &lt;add name=&quot;<span style="color: #8b0000">democonndes</span>&quot; connectionString=&quot;<span style="color: #8b0000">fuWgz5qsA006DEV+G6ciq1XqAQEBs87717v8xEO7S8C1G3/WzkQPLQYyHlfsPSGb</span>&quot;/&gt;</pre><br><br><p>（2）aspnet_regiis(.net Framework为数据库连接字符串提供的一种加密方式，只能在加密的机器上解密) </p>
+
+<pre>&lt;connectionStrings&gt;
+    &lt;add name=&quot;<span style="color: #8b0000">mytest</span>&quot; connectionString=&quot;<span style="color: #8b0000">server=.;database=aa;uid=sa;pwd=sa</span>&quot; /&gt;
+  &lt;/connectionStrings&gt; 
+
+connectionStrings configProtectionProvider=&quot;<span style="color: #8b0000">DataProtectionConfigurationProvider</span>&quot;&gt;
+    &lt;EncryptedData&gt;
+      &lt;CipherData&gt;
+        &lt;CipherValue&gt;AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA707rIERs8UWYhXZ/HFdMyAQAAAACAAAAAAAQZgAAAAEAACAAAADWoU5ljs4hJ7Ef5VQlwdeusntlsEw5VE3jRwjUs8ppZwAAAAAOgAAAAAIAACAAAAD3pefR/v1idprTmrcDiGrv3htLpBZah1ZW5ORQSF9yWgABAACXjJ9Xzlt5Fy9KtlLFotWj0yelCGUj7x44mBiO3SIqkKbh4FUIUgPxnclnSh/6GODgAxu7W0nIixHdLTiXcsGUoeJ08TKpTf0XoBD2zFc2jz5tD3H+a193cYnIt82k/x3AB4CriuVhzMPwA1X/Vl8DoP+eknzCUSYGQKFFcYFKilVzLI+RSg79NNTjpTH2c/V8XRAW3gQtwyPxRmzoDiSEiCmZPSUkAYaK1gBnFEFe9rh8t/cztFMr2wreuP/mkVHO4j72qwnOO8CJBzL4e79MEaow/OPGzj9RlESUQqcCJUHFcN4iBQbSnqg3xNfEWthRCYFfmDxkHTlnYS1Agr+aQAAAAIXFPclgiHzy7XwL8b7HSZLXfNuEHJkSS7ZQuTwQpb2B3jq1F21oPSW5f4s4eOy6TtTN14El3FgWs/PjPVD03e0=&lt;/CipherValue&gt;
+      &lt;/CipherData&gt;
+    &lt;/EncryptedData&gt;
+  &lt;/connectionStrings&gt; </pre>
+
+<p>数据加密<br>  <br>&#160; 数据库某些敏感数据的加密，比如密码等字段的加密，通常是md5，也可以是自己写的加密方式，通常自己写的加密方式。我们就要通过分析加密算法，写出解密的算法来解密；<br><br>  <br>通常aspx程序中用的最多的加密就是des，一般程序里也会带有解密算法，这个时候就可以直接调用解密算法的方式来进行解密；<br><br>  <br>Java类的加密；<br><br>  <br>Java程序在通过编译之后源码中的.java就会对应编译成.class文件。此时这类文件<br><br>  <br>已经被加密了；直接打开是面目全非的；此时我们就可以通过反编译软件来进行逆向反编译；</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/895.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/895.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/895.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/895.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/897.seo/">
+        ← PHP后门生成工具weevely分析
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/893.seo/">
+        wordpress下岗了 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

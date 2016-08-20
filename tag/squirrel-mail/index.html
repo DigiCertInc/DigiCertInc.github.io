@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Tag: squirrel mail | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-07-22T18:47:10.000Z" itemprop="datePublished">
+          2013-07-23
+      </time>
+    
+    
+    | 
+    <a href='/tag/xss/'>xss</a>,
+    
+    <a href='/tag/squirrel-mail/'>squirrel mail</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1015.seo/">论升级的重要性,低版本squirrel mail的XSS利用实例</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>低版本的sqmail有几个xss洞…但是没有exploit…这次通过实例补充一下   <br />求不要跨省…我还要读几年书呢    <br />详细说明：    <br />香港科技大学喜欢使用<a href="http://Ha.Cker.In/tag/squirrel mail" target="_blank">squirrel mail</a>作为webmail后端    <br />屡次标榜先进性却不思升级…这不就跪了么    <br />这次实战的洞有CVE-2008-2379    <br />和一个老洞…但是sqmail的最新版好像也没完全修好    <br />先看看科大用的sqmail版本    <br />logout以后任意访问一个需要login的页面就可以了    <br /><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201306/0714484951b23cf830d7e8a14a83dc9733d6b35b.jpg"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="438" alt="clip_image002" src="http://img.cker.in/squirrelmailXSS_9766/clip_image002.jpg" width="620" border="0" /></a>    <br />1.4.10a恩…    <br /><a href="http://squirrelmail.org/security/">http://squirrelmail.org/security/</a>    <br />来看看对应版本有什么洞…    <br />我注意到的是    <br />2008-12-04&#160;&#160;&#160;&#160;&#160;&#160;&#160; Cross site scripting in HTML filter&#160;&#160;&#160;&#160;&#160;&#160;&#160; 1.4.0 - 1.4.16&#160;&#160;&#160;&#160;&#160;&#160;&#160; 0&#160;&#160;&#160;&#160;&#160;&#160;&#160; CVE-2008-2379    <br />这个洞…先搜一下网上有没有现成的exploit好了….    <br />…     <br />没有…那就自己研究    <br />先看一下patch    <br /><a href="http://squirrelmail.svn.sourceforge.net/viewvc/squirrelmail/branches/SM-1_4-STABLE/squirrelmail/functions/mime.php?r1=13276&amp;r2=13338&amp;view=patch">http://squirrelmail.svn.sourceforge.net/viewvc/squirrelmail/branches/SM-1_4-STABLE/squirrelmail/functions/mime.php?r1=13276&amp;r2=13338&amp;view=patch</a>    <br />然后抓源码下来研究一番</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/1015.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    
+    <span class="page-number">Page 1 of 1</span>
+    
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

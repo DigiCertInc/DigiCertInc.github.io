@@ -74,23 +74,83 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-30T22:01:40.000Z" itemprop="datePublished">
-          2012-08-31
+      <time datetime="2012-12-24T16:30:05.000Z" itemprop="datePublished">
+          2012-12-25
+      </time>
+    
+    
+    | 
+    <a href='/tag/社工/'>社工</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/958.seo/">渗透某页游平台</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><p>作者：9999@f4ck</p>  <p>0x01.起因—为了部落</p>  <p>0x02.踩点—硬柿子</p>  <p>0x03.主站碰壁—鼻青脸肿</p>  <p>0x04.分站进行时—未战即降</p>  <p>0x05.僵局中闪现突破口—完成任务</p>  <p>0x06.扩大战果遇奇葩—步步为营</p>  <p>0x07.总结—耐心,恒心,细心</p>  <p><b>0x01. </b><b>起因..</b></p>  <p>一个朋友玩这个平台的某游戏, 跟以后生骂起来了, 找我帮忙搞出这人资料.. </p>  <p><b>0x02. </b><b>踩点</b></p>  <p>先随便看了看, 小收集一下资料.</p>  <p>主站连接全为phtml文件, 同IP有N个平台, 全是这家公司开的, 还有个开服表的站, 推送新开服内容全是其旗下平台的.. 恩.. 这个策略不错..</p>  <p>有个论坛, 每个平台指向的论坛地址不同, logo不同, 但是整合了ucenter的, 所以数据是相同的, dz x1.5架设, 同段不同服, [IP尾数差两位]</p>  <p>所有论坛地址加ucenter自动跳转同一个域名ucenter.<strong><strong>.com</p>  <p>恩, 目测创始站. Google下site:</strong></strong>.com inurl:php|asp|aspx|jsp, 出来的都是论坛, 语句改为site:www.<strong><strong>.com inurl:php|asp|aspx|jsp 噢. </p>  <p>Aucun document ne correspond aux termes de recherche spécifiés (<b>site:</strong></strong>.com inurl:php|asp|aspx|jsp</b>). 什么都没有..</p>  <p>主站于其他平台为同一服务器.</p>  <p>Hscan扫两个ip皆只开了80端口. http banner返回nginx, </p>  <p><a href="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image002.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image002_thumb.jpg" width="279" height="137" /></a></p>  <p>测试文件尾名phtml phtmL, php pHp 确定都是<a href="http://ha.cker.in/tag/Linux" target="_blank">linux</a>服务器, </p>  <p>因未返回<a href="http://ha.cker.in/tag/nginx" target="_blank">nginx</a>版本, 继续测试<a href="http://ha.cker.in/tag/nginx" target="_blank">nginx</a>解析漏洞/.php, %00.php都失败. [两台服务器都测试了]</p>  <p>扫后台蛋都没扫出来.. 蛋开始隐隐作痛了..</p>  <p><b>0x03. </b><b>主站碰壁</b></p>  <p>在继续看主站.. </p>  <p>新闻和公共的连接方式都是</p>  <p><a href="http://www.****.com/index/news/gonggao/1103.phtm">http://www.****.com/index/news/gonggao/1103.phtm</a></p>  <p><a href="http://www.****.com/index/news/news/4103.phtm">http://www.****.com/index/news/news/4103.phtm</a></p>  <p>这样的, 像是htacsse rewrite了.</p>  <p>打开</p>  <p><a href="http://www.****.com/index/news">http://www.****.com/index/news</a></p>  <p><a href="http://www.****.com/index/">http://www.****.com/index/</a></p>  <p>都返回404, htacsse重定向没得跑了.</p>  <p>继续测试</p>  <p><a href="http://www.****.com/index/news/gonggao/1103-1.phtm">http://www.****.com/index/news/gonggao/1103-1.phtm</a></p>  <p>失败, cookie值中无可利用方向.</p>  <p>查看二级域名, 看看能不能有个admin.<strong><em>.com之类的后台管理地址. 唉.. 只有www和bbs..</p>  <p>在看看论坛吧, 顺便开始尝试<a href="http://ha.cker.in/tag/社工" target="_blank">社工</a>..进入公告发布板块看看管理员账户名, 同时</p>  <p><a href="http://whois.domaintools.com/*">http://whois.domaintools.com/*</a></em></strong>.com 一下看看注册域名和管理域名的人的资料.</p>  <p>都是domain@<em>**</em>.com …而且</p>  <p>Email Search: [这是这个email的图片]is associated with about <b>23 domains</b></p>  <p>23个域名.. 估计其他那些平台也都是这个邮箱注册的了..</p>  <p>在确定一下,随便查了几个其他平台的域名资料.. 果然都是这个邮箱…</p>  <p>资料填写也都是公司地址, 电话为座机, 和官网上的联系我们的号码是同样的.</p>  <p>蛋.. 你肿么了..</p>  <p><b>0x04.</b><b>分站进行时</b></p>  <p>公告板块翻了10几页, 发布公告人有13个以上.. ID都是GM0001-GM0024, ID都是20W+的.. 身份是编辑.. 用户组也改了名, 鼠标放到编辑二字上, 连接地址为home.php?mod=spacecp&amp;ac=usergroup&amp;gid=22 哦.. 因为dz从低级用户到管理员的groupID总共就10几个, 印象中.. 所以应该新建的用户组.. 不知权限如何.. 但估计很小..</p>  <p>点击名字查看资料却没有权限, 也懒得注册号去看, 因为应该还是没有权限的.. </p>  <p>这里就给个小tip, 也不是什么漏洞, 算是代码过滤不严谨吧. 是前段时间无意中发现的,.</p>  <p>———————————–Tip开始———————————–</p>  <p>Dz很多版本, 具体没有测试, 就是未注册用户和普通用户是没有权限查看其他用户资料的.</p>  <p>就拿官网举例吧, 公告发布人有个<a href="http://www.discuz.net/thread-2744369-1-1.html"></a><cite>Cnteacher</cite>, ID是859, groupID也是1,即管理员权限. 想进入空间看资料, <a href="http://www.discuz.net/home.php?mod=space&amp;uid=859">http://www.discuz.net/home.php?mod=space&amp;uid=859</a>, 却显示’请先登录后才能继续浏览’</p>  <p><a href="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image004.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/5b3594a0bd5d_E4BD/clip_image004_thumb.jpg" width="573" height="498" /></a></p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/958.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-10-22T21:27:33.000Z" itemprop="datePublished">
+          2012-10-23
       </time>
     
     
     | 
     <a href='/tag/社工/'>社工</a>,
     
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/嗅探/'>嗅探</a>,
-    
-    <a href='/tag/C段/'>C段</a>
+    <a href='/tag/凤凰网/'>凤凰网</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/779.seo/">友谊的"招呼"-对母校的亲密检测</a></h2>
+      <h2 class="post-title"><a href="/900.seo/">注射加简单社工拿下凤凰网某分站</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>大家好，我是Admin 17951，今天给大家做一个教程，菜鸟我第一次做教程，哪里有做得不好的地方，希望大家不要见怪。</p>  <p>注射加简单社工拿下凤凰网某分站</p>  <p>前几天放假无聊没事做我来网吧上网，闲的蛋疼在网上到处逛，一下逛到了<a href="http://ha.cker.in/tag/凤凰网" target="_blank">凤凰网</a>某分站，发现这个分站可以遍历目录</p>  <p><a href="http://img.cker.in/53937b7c6bea_BC4B/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/53937b7c6bea_BC4B/clip_image001_thumb.jpg" width="380" height="238" /></a></p>  <p>继续翻目录，翻啊翻，发现这个分站使用的是某CMS程序</p>  <p><a href="http://img.cker.in/53937b7c6bea_BC4B/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/53937b7c6bea_BC4B/clip_image002_thumb.jpg" width="333" height="140" /></a></p>  <p>我记得这个CMS貌似存在注射<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>的，不知道这个分站补了没，不管，先试试再说，但是注射代码我忘记了，只好百度下</p>  <p><a href="http://img.cker.in/53937b7c6bea_BC4B/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/53937b7c6bea_BC4B/clip_image003_thumb.jpg" width="380" height="70" /></a></p>  <p>找到注射代码后,我把代码拿到分站上来试试，结果这个分站真的存在这个注射漏洞，成功爆出了管理员帐号和密码</p>  <p><a href="http://img.cker.in/53937b7c6bea_BC4B/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/53937b7c6bea_BC4B/clip_image004_thumb.jpg" width="308" height="132" /></a></p>  <p>管理员有十几个，首先我来破admin这个管理员帐号的密码的MD5，这个帐号一般都是管理员中权限最高的，但是杯具的是,这个MD5破不出来</p>  <p><a href="http://img.cker.in/53937b7c6bea_BC4B/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/53937b7c6bea_BC4B/clip_image005_thumb.jpg" width="553" height="178" /></a></p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/900.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-08-30T22:01:40.000Z" itemprop="datePublished">
+          2012-08-31
+      </time>
+    
+    
+    | 
+    <a href='/tag/C段/'>C段</a>,
+    
+    <a href='/tag/渗透/'>渗透</a>,
+    
+    <a href='/tag/社工/'>社工</a>,
+    
+    <a href='/tag/嗅探/'>嗅探</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/779.seo/">友谊的 招呼 -对母校的亲密检测</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
@@ -115,6 +175,8 @@
     
     
     | 
+    <a href='/tag/C段/'>C段</a>,
+    
     <a href='/tag/社工/'>社工</a>,
     
     <a href='/tag/入侵/'>入侵</a>,
@@ -127,9 +189,7 @@
     
     <a href='/tag/抓鸡/'>抓鸡</a>,
     
-    <a href='/tag/嗅探/'>嗅探</a>,
-    
-    <a href='/tag/C段/'>C段</a>
+    <a href='/tag/嗅探/'>嗅探</a>
     
     
 </span>

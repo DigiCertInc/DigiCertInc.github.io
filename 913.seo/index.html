@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>MACCMS PHP版突破安全狗后台拿webshell | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-10-28T20:46:06.000Z" itemprop="datePublished">
+          2012-10-29
+      </time>
+    
+    
+    | 
+    <a href='/tag/Webshell/'>Webshell</a>,
+    
+    <a href='/tag/突破安全狗/'>突破安全狗</a>
+    
+    
+</span>
+    <h1 class="post-title">MACCMS PHP版突破安全狗后台拿webshell</h1>
+    <section class="post-content">
+      <p>昨天碰上的，记录一下过程，没什么含量，类似的文章肯定有，如有雷同肯定巧合（语文不太好，大家将就着看）：   <br>条件：    <br>1、电影站是maccms php版本的。    <br>2、服务器安装了<a href="http://ha.cker.in/tag/突破安全狗" target="_blank">安全狗</a>。    <br>3、有后台帐号密码。    <br>当然了首先第一步百度一下，有没有相关文章。发现了先前有大牛发了一个上传的漏洞测试失败，估计是官方已修复。    <br>进后台，发现可以编辑模板，如下图：    <br><a href="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image001_thumb.jpg" width="967" height="655"></a>    <br>路径是：    <br><a href="http://0855.tv/admin/admin_templates.php?action=edit&amp;file=../template/default/html/art.html" target="_blank" rel="external">http://0855.tv/admin/admin_templates.php?action=edit&amp;file=../template/default/html/art.html</a>    <br>然后IE里构造一下：    <br><a href="http://0855.tv/admin/admin_templates.php?action=edit&amp;file=index.php" target="_blank" rel="external">http://0855.tv/admin/admin_templates.php?action=edit&amp;file=index.php</a>    <br>得到：    <br><a href="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image002_thumb.jpg" width="743" height="590"></a>    <br>这个可比那个 ShopEx后台历遍目录 猛多了，不但可以看到内容，还可以编辑。    <br>这样的话，基本上就可以拿<a href="http://ha.cker.in/tag/webshell" target="_blank">webshell</a>了。含量不高。为了不破坏程序，我打算在admin/version.php    <br>这个文件中写入后门。</p><br><a id="more"></a><br><p><a href="http://0855.tv/admin/admin_templates.php?action=edit&amp;file=../admin/version.php" target="_blank" rel="external">http://0855.tv/admin/admin_templates.php?action=edit&amp;file=../admin/version.php</a>    <br>如图：    <br><a href="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image003_thumb.jpg" width="703" height="396"></a>    <br>点保存    <br><a href="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image004_thumb.jpg" width="400" height="187"></a>    <br>访问：<a href="http://0855.tv/admin/version.php" target="_blank" rel="external">http://0855.tv/admin/version.php</a> 安全狗提示拦截：    <br><a href="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image005_thumb.jpg" width="773" height="303"></a>    <br>百度一下过安全狗的PHP大马，有很多，下面这个是本人常用的：    <br><a href="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image006.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image006_thumb.jpg" width="397" height="185"></a></p>  <p>当然了你也可以加上容错，然后这样写：   <br>效果是一样的。用PHP一句话客户端访问（用菜刀之类貌似会出错）：    <br><a href="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image007.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image007_thumb.jpg" width="806" height="328"></a>    <br>成功写入文件。    <br>这样的话我们就可以用文件包含来突破安全狗了（这个貌似地球人都知道。神马？你不知道？百度一下啊，亲）。    <br>asp的就不多说了，这里说一下PHP的写法：    <br>先写入一个大马，以txt为后缀（如：dama.txt）,再在同目录写入一个php文件，名称随意，内容如下。    <br><a href="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image008.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/MACCMSPHPwebshell_B328/clip_image008_thumb.jpg" width="876" height="491"></a>    <br>这样，webshellll就到手了，有木有啊，亲？    <br>感谢冷血同志提供网站及后台。​</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/913.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/913.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/913.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/913.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/914.seo/">
+        ← akcms代码执行漏洞
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/912.seo/">
+        burpsuite之免费购买虚拟空间之沦陷IDC服务商 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

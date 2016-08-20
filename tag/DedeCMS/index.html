@@ -45,6 +45,70 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
+      <time datetime="2013-05-31T11:41:04.000Z" itemprop="datePublished">
+          2013-05-31
+      </time>
+    
+    
+    | 
+    <a href='/tag/DedeCMS/'>DedeCMS</a>,
+    
+    <a href='/tag/defcon/'>defcon</a>,
+    
+    <a href='/tag/LFI/'>LFI</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1002.seo/">php LFI读php文件源码以及直接post webshell</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>最近在忙<a href="http://Ha.Cker.In/tag/defcon" target="_blank">defcon</a>的题目集训 其中有一套题目里 有个老外写的writeup中提到了LFI的另一种小技巧</p>  <p>原文请参考 <a href="http://ddxhunter.wordpress.com/2010/03/10/lfis-exploitation-techniques/">http://ddxhunter.wordpress.com/2010/03/10/lfis-exploitation-techniques/</a></p>  <p>PS: 该技巧并不是新的技术 神牛肯定已经用得觉得无聊了 所以当路过就行了 =_,=~ </p>  <p>我等小菜仅仅当做自己知识的补充~ （默默蹲墙角ing~）</p>  <p>假设如下一个场景   <table cellspacing="0" cellpadding="0" border="0"><tbody>       <tr>         <td>&#160;</td>          <td width="667">           <p>(1) <a href="http://vulnerable/fileincl/example1.php?page=intro.php">http://vulnerable/fileincl/example1.php?page=intro.php</a>（该php文件包含LFI漏洞)&#160; </p>            <p>(2) 但是你没有地方可以upload你的webshell代码</p>            <p>(3) LFI只能读取到非php文件的源码（因为无法解析执行 只能被爆菊花）</p>            <p>(4) 如果你能读取到config.php之类文件 或许可以直接拿到数据库账号远程入侵进去</p>            <p>【现在的问题是】 LFI如何读取到php文件的源码?</p>         </td>       </tr>     </tbody></table> </p>  <p>于是给大家做个演示 如果我正常用<a href="http://Ha.Cker.In/tag/LFI" target="_blank">LFI</a>去读/sqli/db.php文件 是无法读取它的源码 它会被当做php文件被执行    <table cellspacing="0" cellpadding="0" border="0"><tbody>       <tr>         <td>&#160;</td>          <td width="667">           <p><a href="http://vulnerable/fileincl/example1.php?page=../sqli/db.php">http://vulnerable/fileincl/example1.php?page=../sqli/db.php</a></p>         </td>       </tr>     </tbody></table> </p>  <p><a href="http://img.cker.in/phpLFIphppostwebshell_30FD/clip_image001.jpg"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="201" alt="clip_image001" src="http://img.cker.in/phpLFIphppostwebshell_30FD/clip_image001_thumb.jpg" width="656" border="0" /></a></p>  <p>但是如果我用老外文章里说提到的方法 就能把指定php文件的源码以base64方式编码并被显示出来   <table cellspacing="0" cellpadding="0" border="0"><tbody>       <tr>         <td>&#160;</td>          <td width="667">           <p><a href="http://vulnerable/fileincl/example1.php?page=php://filter/read=convert.base64-encode/resource=../sqli/db.php">http://vulnerable/fileincl/example1.php?page=php://filter/read=convert.base64-encode/resource=../sqli/db.php</a></p>         </td>       </tr>     </tbody></table> </p>  <p><a href="http://img.cker.in/phpLFIphppostwebshell_30FD/clip_image003.jpg"><img title="clip_image003" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="180" alt="clip_image003" src="http://img.cker.in/phpLFIphppostwebshell_30FD/clip_image003_thumb.jpg" width="778" border="0" /></a></p>  <p>/sqli/db.php源码base64编码后的内容显示如下   <table cellspacing="0" cellpadding="0" border="0"><tbody>       <tr>         <td>           <p>1</p>         </td>          <td width="667">           <p>PD9waHAgCiAgJGxuayA9IG15c3FsX2Nvbm5lY3QoImxvY2FsaG9zdCIsICJwZW50ZXN0ZXJsYWIiLCAicGVudGVzdGVybGFiIik7CiAgJGRiID0gbXlzcWxfc2VsZWN0X2RiKCdleGVyY2lzZXMnLCAkbG5rKTsKPz4K</p>         </td>       </tr>     </tbody></table> </p>  <p>然后我们再去进行base64解码 解码后/sqli/db.php文件的源码一览无遗</p>  <p><a href="http://img.cker.in/phpLFIphppostwebshell_30FD/clip_image004.jpg"><img title="clip_image004" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="394" alt="clip_image004" src="http://img.cker.in/phpLFIphppostwebshell_30FD/clip_image004_thumb.jpg" width="598" border="0" /></a></p>  <p>看上去好像很厉害的样子…… 但是 =_,=||~ 再继续看下文~</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/1002.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-11-12T20:00:51.000Z" itemprop="datePublished">
+          2012-11-13
+      </time>
+    
+    
+    | 
+    <a href='/tag/DedeCMS/'>DedeCMS</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/933.seo/">dedecms最新注入</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        6月份dedecms修补的漏洞是一个原理    plus/guestbook.inc.php   require(dirname(FILE).’/../../include/common.inc.php’);require_once(DEDEINC.&quot;/filter.inc.php&quot;); plus/guestbook.inc.php 
+
+require_once(dirname(__FILE__).'/guestbo
+      
+      </p>
+      
+      <p>
+          <a href="/933.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
       <time datetime="2011-10-11T18:40:04.000Z" itemprop="datePublished">
           2011-10-12
       </time>

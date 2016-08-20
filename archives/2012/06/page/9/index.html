@@ -45,66 +45,6 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-12T09:35:13.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/入侵/'>入侵</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/478.seo/">社工+渗透某IDC服务器</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>作者：hu1s4</p>  <p>最近准备做个教育资源站，就打算在网上买个空间，ok百度下吧看看哪个好点</p>  <p>最后准备去这个站注册www.xxxxx.com</p>  <p>西部万维，西部IDC行业领跑，以最值得信赖的信誉为您提供服务器托管、服务器租用、域名注册、服务器租用、VPS、独立IP虚拟主机等服务</p>  <p>淘宝—网银—支付宝—支付成功！！</p>  <p>嘻嘻 邮箱收信了、</p>  <p>嘿嘿…空间到手了，进入FTP传个大马，因为我购买的是全能型空间，所以直接上传asp php asp.net jsp四类大马</p>  <p>查看，哎，权限bt啊，</p>  <p>（如果权限不bt，难道想被万人骑啊 hoho~~~）</p>  <p>试试看.net马吧</p>  <p>貌似权限比ASP的要大 可跳转</p>  <p>在C:\Program Files 发现了360还有星外的主机管理系统</p>  <p>一、提权之旅</p>  <p>在网上看了很多的星外提权文章，大概可以分为：</p>  <p>星外sa注册表位置在这里可以翻到sa的密码 不过需要破解</p>  <p>HKEY_LOCAL_MACHINE\SYSTEM\LIWEIWENSOFT\INSTALLFREEADMIN\11</p>  <p>C:\Documents and Settings\All Users\Application Data\Microsoft\Media Index\ 星外可写目录</p>  <p>还有一些就不列举了经过测试没有一个可行 ……峰回路转</p>  <p>正我郁闷的时候看到了Global.asa，激动的打开一看既然是sa用户</p>  <p>呵呵提权没问题了吧，不过却：</p>  <p>SQL Server 阻止了对组件 ‘xp_cmdshell’ 的过程’sys.xp_cmdshell’ 的访问</p>  <p>组件删除了，没关系我们恢复</p>  <p>dbcc addextendedproc (&quot;sp_oacreate&quot;,&quot;odsole70.dll&quot;)&#160; <br />dbcc addextendedproc (&quot;xp_cmdshell&quot;,&quot;xplog70.dll&quot;)</p>  <p>恢复好了，执行下命令在创建用户加入管理，，OK搞定</p>  <p>远程连接的时候悲剧了既然限制了管理用户组的权限。哎</p>  <p>继续想其他办法，在网上看了一篇文章</p>  <p>知道星外的ftp是自带的，我们可以通过IIS配置来读取用户密码</p>  <p>打开aspx的IIS间谍功能，既然没有禁止，教大家一个禁止aspx查看IIS配置的方法</p>  <p>找到C:\WINDOWS\system32\activeds.tlb这个文件，取消users权限即可，别人就不能查看你的IIS了</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/IDC_15DB/clip_image001.png" width="558" height="233" /></p>  <p>大家看到上面的比较了红色的FREE….</p>  <p>Freehostrunat这个用户是安装星外时建立的后面的密码并不是什么加密方式其实就是明文密码</p>  <p>我们可以直接远程登陆,在内网的话就转发</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/IDC_15DB/clip_image002.png" width="513" height="375" /></p>  <p>好了，成功拿下服务器…. 继续渗透….</p>
-      
-      </p>
-      
-      <p>
-          <a href="/478.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-06-12T09:29:54.000Z" itemprop="datePublished">
-          2012-06-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/476.seo/">某官网的渗透笔记</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        某官网的渗透笔记，挖掘的某0DAY拿到webshell，USER权限，联通外网，提权SYSTEM的EXP无效，看来打的补丁很全，服务器用的是微软FTP,MSSQL，没啥突破口。路过其他盘，发现一个小有年份的BKF文件，貌似这个是用于系统的恢复和还原的.复制到WEB 目录下回来。装个虚拟机还原BKF文件。虚拟机就变成目标主机的系统了。没有密码登陆不进去了。插入WINPE光盘，替换sethc.exe ，做个shift后门，按5次shift进
-      
-      </p>
-      
-      <p>
-          <a href="/476.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
       <time datetime="2012-06-12T09:27:34.000Z" itemprop="datePublished">
           2012-06-12
       </time>
@@ -202,9 +142,9 @@
     
     
     | 
-    <a href='/tag/内网渗透/'>内网渗透</a>,
+    <a href='/tag/渗透/'>渗透</a>,
     
-    <a href='/tag/渗透/'>渗透</a>
+    <a href='/tag/内网渗透/'>内网渗透</a>
     
     
 </span>
@@ -224,9 +164,67 @@
     </section>
   </article>
   
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-12T09:08:10.000Z" itemprop="datePublished">
+          2012-06-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/Snort/'>Snort</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/463.seo/">Snort 中文手册</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><h3>Snort 中文手册</h3>  <blockquote><strong>摘要</strong>    <br />snort有三种工作模式：嗅探器、数据包记录器、网络入侵检测系统。嗅探器模式仅仅是从网络上读取数据包并作为连续不断的流显示在终端上。数据包记录器 模式把数据包记录到硬盘上。网路入侵检测模式是最复杂的，而且是可配置的。我们可以让snort分析网络数据流以匹配用户定义的一些规则，并根据检测结果 采取一定的动作。(2003-12-11 16:39:12)</blockquote>  <hr size="4" width="98%" noshade="noshade" />  <h3>Snort 用户手册</h3>  <h4>第一章 snort简介</h4>  <p>&#160;&#160;&#160; snort有三种工作模式：嗅探器、数据包记录器、网络入侵检测系统。嗅探器模式仅仅是从网络上读取数据包并作为连续不断的流显示在终端上。数据包记录器 模式把数据包记录到硬盘上。网路入侵检测模式是最复杂的，而且是可配置的。我们可以让snort分析网络数据流以匹配用户定义的一些规则，并根据检测结果 采取一定的动作。</p>  <p>嗅探器</p>  <p>&#160;&#160;&#160; 所谓的嗅探器模式就是snort从网络上读出数据包然后显示在你的控制台上。首先，我们从最基本的用法入手。如果你只要把TCP/IP包头信息打印在屏幕上，只需要输入下面的命令：</p>  <p> ./snort -v</p>  <p>&#160;&#160;&#160; 使用这个命令将使snort只输出IP和TCP/UDP/ICMP的包头信息。如果你要看到应用层的数据，可以使用：</p>  <p>&#160;&#160;&#160; ./snort -vd</p>  <p>&#160;&#160;&#160; 这条命令使snort在输出包头信息的同时显示包的数据信息。如果你还要显示数据链路层的信息，就使用下面的命令：</p>  <p> ./snort -vde</p>  <p>&#160;&#160;&#160; 注意这些选项开关还可以分开写或者任意结合在一块。例如：下面的命令就和上面最后的一条命令等价：</p>  <p> ./snort -d -v –e</p>  <p>数据包记录器</p>  <p>&#160;&#160;&#160; 如果要把所有的包记录到硬盘上，你需要指定一个日志目录，snort就会自动记录数据包：</p>  <p>&#160;&#160;&#160; ./snort -dev -l ./log</p>  <p>&#160;&#160;&#160; 当然，./log目录必须存在，否则snort就会报告错误信息并退出。当snort在这种模式下运行，它会记录所有看到的包将其放到一个目录中，这个目录以数据包目的主机的IP地址命名，例如：192.168.10.1</p>  <p> 如果你只指定了-l命令开关，而没有设置目录名，snort有时会使用远程主机的IP地址作为目录，有时会使用本地主机IP地址作为目录名。为了只对本地网络进行日志，你需要给出本地网络：</p>  <p> ./snort -dev -l ./log -h 192.168.1.0/24</p>  <p>&#160;&#160;&#160; 这个命令告诉snort把进入C类网络192.168.1的所有包的数据链路、TCP/IP以及应用层的数据记录到目录./log中。</p>  <p>&#160;&#160;&#160; 如果你的网络速度很快，或者你想使日志更加紧凑以便以后的分析，那么应该使用二进制的日志文件格式。所谓的二进制日志文件格式就是tcpdump程序使用的格式。使用下面的命令可以把所有的包记录到一个单一的二进制文件中：</p>  <p> ./snort -l ./log -b</p>  <p>&#160;&#160;&#160; 注意此处的命令行和上面的有很大的不同。我们勿需指定本地网络，因为所有的东西都被记录到一个单一的文件。你也不必冗余模式或者使用-d、-e功能选项，因为数据包中的所有内容都会被记录到日志文件中。</p>  <p>&#160;&#160;&#160; 你可以使用任何支持tcpdump二进制格式的嗅探器程序从这个文件中读出数据包，例如： tcpdump或者Ethereal。使用-r功能开关，也能使snort读出包的数据。snort在所有运行模式下都能够处理tcpdump格式的文件。例如：如果你想在嗅探器模式下把一个tcpdump格式的二进制文件中的包打印到屏幕上，可以输入下面的命令：</p>  <p>&#160;&#160;&#160; ./snort -dv -r packet.log</p>  <p>&#160;&#160;&#160; 在日志包和入侵检测模式下，通过BPF(BSD Packet Filter)接口，你可以使用许多方式维护日志文件中的数据。例如，你只想从日志文件中提取ICMP包，只需要输入下面的命令行：</p>  <p>&#160;&#160;&#160; ./snort -dvr packet.log icmp</p>  <h5>网络入侵检测系统</h5>  <p>&#160;&#160;&#160; snort最重要的用途还是作为网络入侵检测系统(NIDS)，使用下面命令行可以启动这种模式：</p>  <p>&#160;&#160;&#160; ./snort -dev -l ./log -h 192.168.1.0/24 -c snort.conf</p>  <p>&#160;&#160;&#160; snort.conf是规则集文件。snort会对每个包和规则集进行匹配，发现这样的包就采取相应的行动。如果你不指定输出目录，snort就输出到/var/log/snort目录。</p>  <p>&#160;&#160;&#160; 注意：如果你想长期使用snort作为自己的入侵检测系统，最好不要使用-v选项。因为使用这个选项，使snort向屏幕上输出一些信息，会大大降低snort的处理速度，从而在向显示器输出的过程中丢弃一些包。</p>  <p>&#160;&#160;&#160; 此外，在绝大多数情况下，也没有必要记录数据链路层的包头，所以-e选项也可以不用：</p>  <p>&#160;&#160;&#160; ./snort -d -h 192.168.1.0/24 -l ./log -c snort.conf</p>  <p>&#160;&#160;&#160; 这是使用snort作为网络入侵检测系统最基本的形式，日志符合规则的包，以ASCII形式保存在有层次的目录结构中。</p>  <h5>网络入侵检测模式下的输出选项</h5>  <p>&#160;&#160;&#160; 在NIDS模式下，有很多的方式来配置snort的输出。在默认情况下，snort以ASCII格式记录日志，使用full报警机制。如果使用full报警机制，snort会在包头之后打印报警消息。如果你不需</p>  <p>要日志包，可以使用-N选项。</p>
+      
+      </p>
+      
+      <p>
+          <a href="/463.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-12T09:05:14.000Z" itemprop="datePublished">
+          2012-06-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/460.seo/">一次超级蛋疼的渗透</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>一次超级蛋疼的渗透</p>  <p>作者：kylin   <br />首发：<a href="http://www.dis9.com/">www.dis9.com</a>    <br />前几天俺认识了一个刷钻的我是我是我是傻逼，后来在我的威逼利诱下，他放弃了刷钻行业，并且他交出了他所在的平台的帐号密码。登陆后发现里面有钱钱~不过只有18.25元，于是我果断的截图并涂掉了中间的小数点。当我把截图发在九区基友群里，一群我是我是我是傻逼就激动了。于是，俺和羽翼决定日掉这个猥琐的平台。    <br />俺们就直接c段了…..    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/a402d8dbaecf_F27/clip_image001.png" width="512" height="388" />    <br />两个人分工，我从前面开搞。反正是c段，找到最简单就行。但是我们无比蛋疼蛋疼无比，几乎每个ip上都是同一类型的站一堆，而且是各种系统各种环境。最开始的时候羽翼发现了一个ecshop 2.7.2，按理说是有洞洞可用的，不过俺是失败了，没办法，俺是菜鸟啊~    <br />经过一段时间查找，俺们盯上了一个IP，上面的站点都是一套叫“医药无忧”的程序，asp+mssql。    <br />发现注入：<a href="http://www.qzyy.net.cn/news_detail_all.asp?id=19180">http://www.qzyy.net.cn/news_detail_all.asp?id=19180</a>作为懒人俺们就直接上工具了，但是某些工具还是不给力，最后出动了safe3的注入检测工具才弄到MD5。</p>
+      
+      </p>
+      
+      <p>
+          <a href="/460.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/archives/2012/06/page/8/">← Newer Posts</a>
-    <span class="page-number">Page 9 of 11</span>
+    <span class="page-number">Page 9 of 10</span>
     <a class="older-posts" href="/archives/2012/06/page/10/">Older Posts →</a>
   </nav>
 </main>

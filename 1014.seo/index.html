@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>看我是如何利用zbbix渗透sogou&amp;sohu内网的 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-07-09T02:18:46.000Z" itemprop="datePublished">
+          2013-07-09
+      </time>
+    
+    
+    | 
+    <a href='/tag/zabbix/'>zabbix</a>
+    
+    
+</span>
+    <h1 class="post-title">看我是如何利用zbbix渗透sogou&sohu内网的</h1>
+    <section class="post-content">
+      <p>手机搜狗好像不是很好用唉；   <br>在乌云浏览搜狗历史漏洞的时候得到220.<em>.</em>.<em>其中的一个ip    <br>具体是那个漏洞记不住了。    <br>对220.</em>.<em>.0/26进行 8080端口扫描，没有啥重大发现    <br>对220.</em>.<em>.0/26进行 80端口扫描，有重大发现了    <br><a href="http://220" target="_blank" rel="external">http://220</a>.</em>.<em>.</em>/zabbix/    <br>再往下</p>  <p>&#160;</p>  <p><a href="http://220.181.*.128/zabbix/" target="_blank" rel="external">http://220.181.*.128/zabbix/</a>   <br>默认口令：admin/zabbix    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/091757388a1afd9667de6dd56019a79f6802fea6.jpg" target="_blank" rel="external"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="311" alt="clip_image002" src="http://img.cker.in/zbbixsogousohu_10160/clip_image002.jpg" width="620" border="0"></a>    <br>没多少机器，目测是个测试的<a href="http://Ha.Cker.In/tag/zabbix" target="_blank">zabbix</a>？    <br>随便找了个机器 添加了一个items直接使用system.run 跑了一个命令，没有数据返回，确定zabbix agent没有开启system.run 模块    <br>不过zabbix还有一个Scripts的功能，可以对zabbix server 执行任意命令</p><br><a id="more"></a><br><p>把默认命令改一下   <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/09175758cfdb79d5d20abe329d525f6f5cdb51d5.jpg" target="_blank" rel="external"><img title="clip_image004" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="328" alt="clip_image004" src="http://img.cker.in/zbbixsogousohu_10160/clip_image004.jpg" width="620" border="0"></a>    <br>调用这个命令得 到 Monitoring–Triggers这个地方    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/091758505821264128d0516a92142ebb690c6ce5.jpg" target="_blank" rel="external"><img title="clip_image006" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="389" alt="clip_image006" src="http://img.cker.in/zbbixsogousohu_10160/clip_image006.jpg" width="620" border="0"></a>    <br>可以执行任意命令，也就有shell了；    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/09175903f5e9e5eef6979d592a8d61b34802dadf.jpg" target="_blank" rel="external"><img title="clip_image008" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="367" alt="clip_image008" src="http://img.cker.in/zbbixsogousohu_10160/clip_image008.jpg" width="620" border="0"></a>    <br>有外网，有内网，接下来，内网渗透你都懂的，启了一个8080的socks5代理    <br>有了代理之后开始挖掘内网信息和漏洞    <br>找到一些弱口令和一个有点意思的后台    <br><a href="http://t.com/dx/wooyun_referer_pic.php?url=http://www.wooyun.org/upload/201305/09180112917aed56f92846bf412e5b59f96c024d.jpg" target="_blank" rel="external"><img title="clip_image010" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="444" alt="clip_image010" src="http://img.cker.in/zbbixsogousohu_10160/clip_image010.jpg" width="620" border="0"></a>    <br>那两个ftp保存了一些有用的密码，比如pub.<strong><strong><em>**</em></strong></strong>.cn 你们这个ftp服务器是一个域成员服务器，漏洞一堆。    <br>内网漏洞太多了，我不列了    <br>到此为止</p>  <p>摘自<a href="http://www.wooyun.org/whitehats/X,D" target="_blank" rel="external">X,D</a>@乌云</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1014.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1014.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1014.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1014.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/1015.seo/">
+        ← 论升级的重要性,低版本squirrel mail的XSS利用实例
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/1013.seo/">
+        如何渗透PayPal(贝宝)用户交易记录系统 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

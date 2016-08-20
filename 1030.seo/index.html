@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>H3C技术论坛pma漏洞导致主站沦陷 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-10-07T18:30:19.000Z" itemprop="datePublished">
+          2013-10-08
+      </time>
+    
+    
+    | 
+    <a href='/tag/H3C/'>H3C</a>
+    
+    
+</span>
+    <h1 class="post-title">H3C技术论坛pma漏洞导致主站沦陷</h1>
+    <section class="post-content">
+      <p><a href="http://Ha.Cker.In/tag/H3C" target="_blank">H3C</a>技术论坛pma漏洞导致主站沦陷（内部绝密信息，大量用户资料泄漏）</p>  <p>这几天突然对华三的认证起了兴趣，于是去官方论坛下资料。。</p>  <p><a href="http://www.wooyun.org/upload/201308/230318007445a28f8296546fcdd051a9c030d705.jpg" target="_blank" rel="external"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="310" alt="clip_image002" src="http://img.cker.in/H3Cpma_92C6/clip_image002.jpg" width="620" border="0"></a></p>  <p>下载资料还要JB。。。。   <br>Dz X2，习惯性访问个目录看看，居然。。。</p>  <p><a href="http://www.wooyun.org/upload/201308/23031925924c068d62b84aa6e00bbf7e5492c32c.jpg" target="_blank" rel="external"><img title="clip_image004" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="626" alt="clip_image004" src="http://img.cker.in/H3Cpma_92C6/clip_image004.jpg" width="620" border="0"></a></p>  <p>尼玛兴趣来了，看来我的华三币有门了。扫了扫，根目录有个phpmyadmin，还有个有意思的目录：   <br><a href="http://forum.h3c.com/phpmyadmin/setup/" target="_blank" rel="external">http://forum.h3c.com/phpmyadmin/setup/</a></p><br><a id="more"></a><br><p></p>  <p><a href="http://www.wooyun.org/upload/201308/230322363174e21683b01737e0a9cc7a8fc29c20.jpg" target="_blank" rel="external"><img title="clip_image006" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="286" alt="clip_image006" src="http://img.cker.in/H3Cpma_92C6/clip_image006.jpg" width="620" border="0"></a></p>  <p>貌似没什么用，看到可以建配置文件，点击：“新建服务器”</p>  <p><a href="http://www.wooyun.org/upload/201308/23032512d59d34bd99fcc573be58496869ae1dec.jpg" target="_blank" rel="external"><img title="clip_image008" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="334" alt="clip_image008" src="http://img.cker.in/H3Cpma_92C6/clip_image008.jpg" width="620" border="0"></a></p>  <p>随便填点内容，保存，提示无法保存配置文件。。</p>  <p><a href="http://www.wooyun.org/upload/201308/23032612f25d4123f3ba1176bbc6a71c664c1b5e.jpg" target="_blank" rel="external"><img title="clip_image010" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="127" alt="clip_image010" src="http://img.cker.in/H3Cpma_92C6/clip_image010.jpg" width="620" border="0"></a></p>  <p>看到有个显示配置文件，点击了下，奇葩的事情来了。。。</p>  <p><a href="http://www.wooyun.org/upload/201308/230329214500c9a851c8fc9779cce910817b552c.jpg" target="_blank" rel="external"><img title="clip_image012" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="371" alt="clip_image012" src="http://img.cker.in/H3Cpma_92C6/clip_image012.jpg" width="620" border="0"></a></p>  <p>不知道这是不是phpmyadmin的问题，不过接下来就更好玩了，成功登录phpmyadmin，拿个shell看看权限。呵呵。</p>  <p><a href="http://www.wooyun.org/upload/201308/2303310777ce74ae0253b978689fe6bfb0670088.jpg" target="_blank" rel="external"><img title="clip_image014" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="150" alt="clip_image014" src="http://img.cker.in/H3Cpma_92C6/clip_image014.jpg" width="620" border="0"></a></p>  <p>省去不少事，看看域。   <br>net view /domain    <br>111     <br>8042-MS     <br>CLEANROOM     <br>H3C     <br>H3C-OP     <br>H3CROOT     <br>IXIA     <br>MGTGROUP     <br>MSHOME     <br>MYGROUP     <br>RDBJ     <br>SC-OS     <br>SRV     <br>SYSADMIN     <br>TC-ZHJD     <br>TEST     <br>VRP5     <br>WORK     <br>WORKGROUP     <br>WORRGROUP     <br>YR     <br>ZBB     <br>上神器读用户密码：———–    <br>y08594 YJCSXDL@<strong><em>    <br>backup Tkong0</em></strong>    <br>Administrator -Xcbbs<em>*</em>    <br>—————————-    <br>内网：    <br>172.25.15.116    <br>255.255.255.0    <br>172.25.15.1    <br>—————————-    <br>本来想结束的。。结果在C段又看到了个好玩的：</p>  <p><a href="http://www.wooyun.org/upload/201308/2303362556f43c6a3df6d4709baabb36776f9f51.jpg" target="_blank" rel="external"><img title="clip_image016" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="149" alt="clip_image016" src="http://img.cker.in/H3Cpma_92C6/clip_image016.jpg" width="620" border="0"></a></p>  <p>在弹出的登陆窗口中输入以下登陆信息：   <br>URL(L): <a href="https://rds.h3c.com/tarantella" target="_blank" rel="external">https://rds.h3c.com/tarantella</a>    <br>用户名(U): x12345（您的H3C域账号）    <br>密码(P): xxxxxx（您的H3C域密码）    <br>和3389差不多的东东，本想转发太麻烦，这下有了利器。。结合刚才那几个域账号，杀内网。。</p>  <p><a href="http://www.wooyun.org/upload/201308/230339133f3094487cbc782451443dd8cef4c6cd.jpg" target="_blank" rel="external"><img title="clip_image018" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="276" alt="clip_image018" src="http://img.cker.in/H3Cpma_92C6/clip_image018.jpg" width="620" border="0"></a></p>  <p><a href="http://www.wooyun.org/upload/201308/2303410578dab3433d0860d7dae8a38660daeef2.jpg" target="_blank" rel="external"><img title="clip_image020" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="535" alt="clip_image020" src="http://img.cker.in/H3Cpma_92C6/clip_image020.jpg" width="620" border="0"></a></p>  <p>资料超全面。</p>  <p><a href="http://www.wooyun.org/upload/201308/23034440390a6e895e1464e61c3a59cef86b92e6.jpg" target="_blank" rel="external"><img title="clip_image022" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="518" alt="clip_image022" src="http://img.cker.in/H3Cpma_92C6/clip_image022.jpg" width="620" border="0"></a></p>  <p><a href="http://www.wooyun.org/upload/201308/2304080350abdd9275f0b4d56241431b4006410b.jpg" target="_blank" rel="external"><img title="clip_image024" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="325" alt="clip_image024" src="http://img.cker.in/H3Cpma_92C6/clip_image024.jpg" width="620" border="0"></a></p>  <p><a href="http://www.wooyun.org/upload/201308/230409132ce4f1e04087232df368be86ef5fe748.jpg" target="_blank" rel="external"><img title="clip_image026" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="160" alt="clip_image026" src="http://img.cker.in/H3Cpma_92C6/clip_image026.jpg" width="620" border="0"></a></p>  <p><a href="http://www.wooyun.org/upload/201308/23034611d0082b24c4741e0ba02ebe48437e1b12.jpg" target="_blank" rel="external"><img title="clip_image028" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="342" alt="clip_image028" src="http://img.cker.in/H3Cpma_92C6/clip_image028.jpg" width="620" border="0"></a></p>  <p>负载均衡。。</p>  <p><a href="http://www.wooyun.org/upload/201308/230348309551ea66caf7bffca95cf188fbb1a386.jpg" target="_blank" rel="external"><img title="clip_image030" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="524" alt="clip_image030" src="http://img.cker.in/H3Cpma_92C6/clip_image030.jpg" width="620" border="0"></a></p>  <p>域账号直接登录中文主站服务器。还有各种应用服务器，数据库服务器，储存。。。。。。。   <br>还有HK主站，英文主站均沦陷。。。。。</p>  <p><a href="http://www.wooyun.org/upload/201308/230350324c5fd5ffedc759bc29d41f34babd6022.jpg" target="_blank" rel="external"><img title="clip_image032" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="380" alt="clip_image032" src="http://img.cker.in/H3Cpma_92C6/clip_image032.jpg" width="620" border="0"></a></p>  <p><a href="http://www.wooyun.org/upload/201308/2303511369598326fc22b1470107121461cf15c0.jpg" target="_blank" rel="external"><img title="clip_image034" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="1084" alt="clip_image034" src="http://img.cker.in/H3Cpma_92C6/clip_image034.jpg" width="620" border="0"></a></p>  <p><a href="http://www.wooyun.org/upload/201308/230403527d060da044492183fb34e4426c33345a.jpg" target="_blank" rel="external"><img title="clip_image036" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="392" alt="clip_image036" src="http://img.cker.in/H3Cpma_92C6/clip_image036.jpg" width="620" border="0"></a></p>  <p>最后留个图作纪念。（文件已删）   <br>到此结束，点到为止。未做任何修改。问题实在太多，不一一列举。拒绝跨省。</p>  <p>漏洞证明：</p>  <p><a href="http://www.wooyun.org/upload/201308/2303525243c82638f308ba49f6f0d9dad0abfec1.jpg" target="_blank" rel="external"><img title="clip_image037" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="380" alt="clip_image037" src="http://img.cker.in/H3Cpma_92C6/clip_image037.jpg" width="620" border="0"></a></p>  <p><a href="http://www.wooyun.org/upload/201308/2303532304493e860fc6874f7fd2975cb209a7d5.jpg" target="_blank" rel="external"><img title="clip_image039" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="404" alt="clip_image039" src="http://img.cker.in/H3Cpma_92C6/clip_image039.jpg" width="620" border="0"></a></p>  <p><a href="http://www.wooyun.org/upload/201308/23035353a95e0f8eb8cd874d22f2414b213b01bf.jpg" target="_blank" rel="external"><img title="clip_image040" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="524" alt="clip_image040" src="http://img.cker.in/H3Cpma_92C6/clip_image040.jpg" width="620" border="0"></a></p>  <p>作者： <a href="http://www.wooyun.org/whitehats/nick被注册" target="_blank" rel="external">nick被注册</a></p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1030.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1030.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1030.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1030.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/1031.seo/">
+        ← 四大传奇-中国网络黑客组织
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/1029.seo/">
+        一份Archmake.COM的渗透测试报告 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

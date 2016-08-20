@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>给大家看看我使用的前无古人，后无来者的反调试方法 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-09-05T05:01:08.000Z" itemprop="datePublished">
+          2013-09-05
+      </time>
+    
+</span>
+    <h1 class="post-title">给大家看看我使用的前无古人，后无来者的反调试方法</h1>
+    <section class="post-content">
+      <p>转自看雪，仅供娱乐</p>  <p>前言：本反调试方法不同于以往的反调试方法。   <br>&#160;&#160;&#160; 以往的反调试均以摧残调试人员的意志为基本点，目前比较强大的 VMP 与 TMD 之类的也是运用这种方法，这种方法的弊端就是对于意志坚强、好奇心强或者抖 M（就是你给他一巴掌他还发自内心感觉到爽的这一种人）来说，是无效的。目前均能有破解 VMP，TMD 的牛○人士，也证明了这种反调试的瓶颈。本文介绍的反调试方法均是以前其他人没有使用过的、不同于常理的、非常有效的另类反调试方法。这些反调试方法充分体现了以人为……，不透剧了，往下看你就清楚了！    <br>方法一：心理摧残法（Heart Break）/ 跳跃消息（Jump Message）    <br>&#160;&#160;&#160; 此方法对于那些心灵脆弱的人尤为有效，具体方法也很简单：</p>  <p>代码:</p>  <pre>00401000 | EB 12&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; JMP SHORT 00401014<br>00401002 | 46 75 63 ..&#160;&#160;&#160;&#160; ASCII &quot;Fuck your sister&quot;<br>00401012 | 2E 00&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; ASCII &quot;.&quot;,0<br>00401014 | B8 02104000&#160;&#160;&#160;&#160; MOV EAX,00401002<br>00401019 | C3&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; RETN</pre><br><br><p>&#160;&#160;&#160; 在调试人员的必经之路上加一个 Jump 指令，然后空出的地方你就可以写上一些能够刺痛调试着心灵的并且他能看得懂的话语。俗话说的好：“人生不如意之事十有八九”，你绝对能找到他心灵上的弱点，用你学过的语文上的知识写出一段话，深深刺痛他的心灵。调试含有本反调试技术的程序的人轻则痛哭流涕，重则自杀身亡（到时候别把我供出来），效果非同凡响！<br>  <br>方法二：挑逗法（Come on baby）/ 空函数法（Empty Function）<br><br>  <br>&#160;&#160;&#160; 当你进入一个 Call，发现里面只有 Retn 指令时，你会是什么样的心情？</p>
+
+<p>代码:</p>
+
+<pre>00401000 | C3&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; RETN
+00401001 | CC&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; INT3
+..........................................
+00401010 | E8 EBFFFFFF&#160;&#160;&#160;&#160;&#160;&#160; CALL 00401000
+00401015 | E8 BE010000&#160;&#160;&#160;&#160;&#160;&#160; CALL 004011D8
+0040101A | 33C0&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; XOR EAX,EAX
+0040101C | C3&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; RETN</pre>
+
+<p>&#160;&#160;&#160; 你可以自己写一个程序，向 PE 文件里面写入很多很多这样的空函数，使得调试者不清楚哪些函数里面有内容，哪些函数里面是空的。本反调试方法可以极大地摧残调试者进入 Call 的欲望，重者可能会产生 Call 恐惧症。<br>  <br>方法三：无聊透顶法（Not Interesting）/ 大量跳转法（Multi-Jump）<br><br>  <br>&#160;&#160;&#160; 本方法在一处地方大量使用跳转指令，就是像下面这种样子就可以了（给人一种想跳就跳，不想跳就退出的感觉）：</p>
+
+<p>代码:</p>
+
+<pre>00401000 | EB 1A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; JMP SHORT 0040101C
+00401002 | EB 1A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; JMP SHORT 0040101E
+00401004 | EB 06&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; JMP SHORT 0040100C
+00401006 | EB 0A&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; JMP SHORT 00401012
+00401008 | EB 1E&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; JMP SHORT 00401028
+0040100A | EB F6&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; JMP SHORT 00401002
+0040100C | EB 14&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; JMP SHORT 00401022
+0040100E | EB F8&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; JMP SHORT 00401008
+00401010 | EB F2&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; JMP SHORT 00401004
+00401012 | EB FA&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; JMP SHORT 0040100E
+00401014 | EB 0E&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; JMP SHORT 00401024
+00401016 | EB 08&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; JMP SHORT 00401020
+00401018 | EB F6&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; JMP SHORT 00401010
+0040101A | EB FA&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; JMP SHORT 00401016
+0040101C | EB F6&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; JMP SHORT 00401014
+0040101E | EB 06&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; JMP SHORT 00401026
+00401020 | EB E4&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; JMP SHORT 00401006
+00401022 | EB E6&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; JMP SHORT 0040100A
+00401024 | EB F4&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; JMP SHORT 0040101A
+00401026 | EB 02&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; JMP SHORT 0040102A
+00401028 | EB EE&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; JMP SHORT 00401018</pre>
+
+<p>&#160;&#160;&#160; 这种方法比较强大，单步步过的能使人反胃，比较厉害的人还可以使用 Call/Pop、Push/Retn、JB(&lt;-JNAE) 等指令进行跳转。本反调试适合对付那种兴趣浓厚的人，能使他们兴冷淡，最终放弃对程序的分析！<br>  <br>方法四：血液流尽法（No More Blood）/ 萌杀法（Moe-Kill）<br><br>  <br>&#160;&#160;&#160; 这种方法适用于在发现调试器后，弹出一个对话框，对话框上绘制一幅非常萌的图片：<br><br>  <br><img title="名称:  斜眼笑.PNG&#10;查看次数: 1&#10;文件大小:  80.8 KB" alt="名称:  斜眼笑.PNG&#10;查看次数: 1&#10;文件大小:  80.8 KB" src="http://bbs.pediy.com/attachment.php?attachmentid=82298&amp;thumb=1&amp;d=1378015320" border="0"><br><br>  <br>&#160;&#160;&#160; 等调试人员看到这个之后，鼻血连绵，最终会导致全身血液供氧不足而付出生命的代价。其实你还可以把这个换成吓死人的图片，普通的人在没有心理准备的情况下基本上结果都是会去医院的。调试人员还可能把胆吓破，这是一个极其凶残的反调试，慎用！<br><br>  <br>方法五：震瞎狗耳法（Ear Destruct）/ 音乐卡带法（Music Cut）<br><br>  <br>&#160;&#160;&#160; 调试过游戏的人大多数都经历过，一旦用调试器断下播放音乐的线程（不是音效），一般情况下游戏的 BGM 就会像卡带一样，人听了非常不爽。你可以在你程序需要执行秘密代码的线程里加上播放音乐的代码（记住，要用 DirectSound，并且不要一次就把音频数据全部写入 Buffer）。一旦有人调试，断下那个线程，嘿嘿，耳膜时刻受到卡带声音的摧残，大脑嗡嗡作响，最后绝对会把显示器扔到窗外。不过这种反调试方法有一个非常致命的弱点就是调试者可以关掉音响……<br><br>  <br>&#160;&#160;&#160; 如果大家看了上面的方法，说这些是小儿科、无稽之谈、卖萌取宠，并且会质疑 LZ 为什么从碗里跑出来放弃治疗，那么，下面的终极反调试（Ultimate Anti-Debug）方法会让你彻头彻尾地改变对本文的看法！<br><br>  <br>终极方法：不良引导（Missing Target）/ 色○攻击（Sex Attack）<br><br>  <br>&#160;&#160;&#160; 食、色性也，如果调试人员看到了有比调试程序更诱人的东西又会怎么做呢？<br><br>  <br>&#160;&#160;&#160; （下面的其实是正常视频，别删，不信你就看看，我大 Bilibili 的）</p>
+
+<p>代码:</p>
+
+<pre>00401485 | E8 ED280000&#160;&#160;&#160;&#160; CALL 00403D77
+0040148A | E9 95FEFFFF&#160;&#160;&#160;&#160; JMP 00401324
+0040148F | E9 5C690000&#160;&#160;&#160;&#160; JMP 00407DF0
+00401494 | 53 65 78 ..&#160;&#160;&#160;&#160; ASCII &quot;SexVideo:http://&quot;
+004014A4 | 77 77 77 ..&#160;&#160;&#160;&#160; ASCII &quot;www.bilibili.tv/&quot;
+004014B4 | 76 69 64 ..&#160;&#160;&#160;&#160; ASCII &quot;video/av294254/&quot;,0</pre>
+
+<p>&#160;&#160;&#160; 这种信息写在入口点效果更为明显，因为在调试器中一般（不排除 TLS）程序是断在 OEP 的，然后你就可以在 OEP 的上面或者下面写一些不良的、○秽○情信息或者是网站。其实你也完全可以将整个程序中都加入大量这样的信息。调试带这种反调试程序的人，没有定力的、或者被汇编代码消磨完定力的，基本上都会忍不住的！慢慢地，调试着表情会变得猥琐，行为会变得龌龊，肾功能也会渐渐衰竭，最终○尽人亡！英雄难过美人关，此招一出，谁与争锋！！！！<br>  <br>————————————————————————<br><br>  <br>&#160;&#160;&#160; 怎么样，上面的技术简单而又厉害吧！其实像这样厉害的技术还有很多，大家慢慢发掘吧！</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1024.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1024.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1024.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1024.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/1025.seo/">
+        ← 本地快速搭建反向代理平台，实现sebug等高危漏洞验证
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/1023.seo/">
+        渗透德国某华人社区 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

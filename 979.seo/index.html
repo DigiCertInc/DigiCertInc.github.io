@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>买卖宝存储型xss盲打后台 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-03-20T17:28:36.000Z" itemprop="datePublished">
+          2013-03-21
+      </time>
+    
+</span>
+    <h1 class="post-title">买卖宝存储型xss盲打后台</h1>
+    <section class="post-content">
+      <p>买卖宝<a href="http://ha.cker.in/tag/XSS" target="_blank">存储型xss</a>两枚，成功盲打后台，劫持的cookie中尽然有用户名密码信息。。。</p>  <p>详细说明：</p>  <p>1、第一处<a href="http://ha.cker.in/tag/XSS" target="_blank">xss</a>在用户的收获地址处，详细地址为任何过滤，导致xss。</p>  <p><a href="http://www.wooyun.org/upload/201302/04163133017b93675cd4efd581d8d3929eacd7be.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/xss_8523/clip_image001.jpg" width="584" height="614"></a></p>  <p><a href="http://www.wooyun.org/upload/201302/041631533b15266c251df2205494de0d326a66a7.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/xss_8523/clip_image003.jpg" width="604" height="448"></a></p>  <p>2、第二处在用户反馈处，反馈内容为做任何过滤，导致xss。</p><br><a id="more"></a><br><p></p>  <p><a href="http://www.wooyun.org/upload/201302/041632095462b91e219d30952e88593e97e4341b.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/xss_8523/clip_image004.jpg" width="605" height="709"></a></p>  <p>3、买卖宝的反馈处理还是很及时的，刚提交反馈信息，一会就有反映了。。。</p>  <p><a href="http://www.wooyun.org/upload/201302/04163221d133d8b5321a784e3d6dc9cc6aebfa23.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/xss_8523/clip_image006.jpg" width="604" height="604"></a></p>  <p>4、从cookie信息中可以截取到买卖宝的后台地址：</p>  <p><a href="http://admin.ebinf.com/adult-admin/login.do" target="_blank" rel="external">http://admin.ebinf.com/adult-admin/login.do</a></p>  <p><a href="http://www.wooyun.org/upload/201302/0416324566d0870d8487f80ea9650c9108d25ffa.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/xss_8523/clip_image008.jpg" width="604" height="312"></a></p>  <p>5、从上图的cookie信息中可以看出，尽然包含用户名和密码信息：</p>  <p>反馈处理的用户名：zhongxiaomei，zhuyan3</p>  <p>后台管理的用户名：wangchao3</p>  <p>但是没能拿cookie登陆进去，不过，要登录后台也不难，这里已经有了用户名，而且后台登陆没有验证码的，暴力一下很easy就能出来登陆密码的。这里就不做测试了。</p>  <p>修复方案：</p>  <p>1、过滤。   <br>2、禁止cookie中的敏感信息。</p>  <p>&#160;</p>  <p>via xfkxfk@wooyun.org</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/979.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/979.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/979.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/979.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/980.seo/">
+        ← 修改任意apple ID密码
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/978.seo/">
+        Bypassing WAF via HTTP Parameter Pollution →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

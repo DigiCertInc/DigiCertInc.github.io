@@ -45,6 +45,37 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
+      <time datetime="2013-11-08T01:34:03.000Z" itemprop="datePublished">
+          2013-11-08
+      </time>
+    
+    
+    | 
+    <a href='/tag/CSRF/'>CSRF</a>,
+    
+    <a href='/tag/APT/'>APT</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1052.seo/">浅谈路由CSRF危害，和非主流姿势</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><b>0x00 </b><b>环境分析</b></p>  <hr align="center" size="2" width="100%" />  <p>近期爆出的D-link的后门让大家人心惶惶。。还好我不用D-link，这样就完事了？用户有能力补上漏洞吗，厂商能及时通知用户防止中枪吗？很显然，谁都没有做到。</p>  <p>首先只要一公布xxx路由存在xxx漏洞，这就给自己的公司抹黑，首先用户不会升级(能正常上网谁这么无聊去更新路由器的固件，丁丁很大？)，又给公司添加了公关压力，这搁给谁谁都不会去做。</p>  <p>所以我们总结成几个点:</p>  <p>路由器出现漏洞后，用户不会补！厂商不想补！用户懒得补！</p>  <p><b>0x01 </b><b>漏洞从哪里来</b></p>  <hr align="center" size="2" width="100%" />  <p>路由器的漏洞实在是很少。大部分都是远程命令执行和后门，xss等等，但是大牛们手中都是远程命令执行，基本覆盖X科，X为等机房常用的路油器，只需要执行几个poc，啪的一下，权限就到手了，这种场面只有在大牛的<a href="http://Ha.Cker.In/tag/APT" target="_blank">APT</a>场面才能看到。</p>  <p>但是对于那些普通的屌丝黑阔来说，我对APT不感兴趣，我更喜欢那些妹子的路由器。</p>  <p>于是乎，黑阔到了电脑广场，来到路由器批发部，拿出50大洋给老板，告诉老板，我想试试你们热卖的路由器的性能。老板看在软妹币的面子上，拿了二十来款路由器给黑阔看，黑阔看到路由器就笑了，露出大金牙，操起几款wvs就是狂扫，然后按照型号仔细记录漏洞。</p>  <p>就这样，这个灰阔一天花了不到200软妹币，但是记录了国内主流路由器的各种臭虫(→<em>→，真是个淫荡的家伙)</p>  <p><b>0x02 </b><b>邪恶力量的萌发</b></p>  <hr align="center" size="2" width="100%" />  <p>那个黑阔搞完扫描后，满足的关上笔记本，路由器老板还在心中暗爽，又赚了一个傻逼的钱。。。但他不知道这才是游戏的开始。</p>  <p>奔袭了一天，屌丝灰阔在路边的一个炒粉摊上坐了下来，看着周边搬砖的民工，心中总有一种亲切感，望着工头开着宝马远去的身影，黑阔决心继续努力，怒天一吼:老板，两份炒粉加肉！！！</p>  <p>吃饱了以后，灰阔去到一个桌游的店里，选了一个安静的角落，为神马去桌游。。。他告诉我，桌游75软妹币6个小时，饮料无限续杯，重要的是有20M的wifi，而且那些土豪都是陪妹子玩桌游，都木有人跟他抢网速，空气又比网吧好几十倍，撸代码没思路的时候还可以看看旁边的漂亮妹子(→</em>→，哎。我只想说，下次请带上我！！！)</p>  <p>黑阔打开电脑，又开始撸起拿油腻的键盘，打开几个wvs的报告，挑出其中的命令执行，csrf，xss，还有越权访问等漏洞进行分类，并标记是否可控，还把每个功能post,get的包进行整理。</p>  <p>就这样。。。一个通用的路由漏洞库就完成的差不多了。。。</p>  <p>黑阔这些漏洞放到了自己的xss的平台上，规划了几个规则。通过title来确定路由器的牌子，然后再对照型号。。。进行各种姿势的插，可控的CSRF就直接插到路由里，如果不可控就就用默认密码插进去，他告诉我…其实直接插进去的几率很小，但是通过默认密码的CSRF插进去的几率很大。。。(这里说明路由安全意识要提高，别以为你在内网就插不了。。。默认密码没改照样换个姿势插你)</p>  <p>针对路由器渗透有很多种的，但平常灰阔很关心的还是DMZ和DNS。</p>  <p>比如说一个通过<a href="http://Ha.Cker.In/tag/CSRF" target="_blank">CSRF</a>让路由器的DMZ功能打开，把目标主机暴露于公网。。。。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/1052.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
       <time datetime="2013-10-24T18:01:31.000Z" itemprop="datePublished">
           2013-10-25
       </time>
@@ -69,27 +100,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-09-16T05:21:22.000Z" itemprop="datePublished">
-          2012-09-16
+      <time datetime="2013-09-05T05:16:12.000Z" itemprop="datePublished">
+          2013-09-05
       </time>
     
     
     | 
-    <a href='/tag/bypass/'>bypass</a>
+    <a href='/tag/反向代理/'>反向代理</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/828.seo/">如何对付指纹打卡机</a></h2>
+      <h2 class="post-title"><a href="/1025.seo/">本地快速搭建反向代理平台，实现sebug等高危漏洞验证</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><a href="http://img.cker.in/d9c174033be4_12BDF/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/d9c174033be4_12BDF/clip_image001_thumb.jpg" width="470" height="319" /></a></p>  <p>交通拥堵，上班又迟到；</p>  <p>手指脱皮，考勤又不认；</p>  <p>朋友聚会，想提前下班；</p>  <p>冬天想睡个懒觉……指纹考勤，让这一切均记录在案！上班真是烦！烦！烦！</p>  <p>指纹打卡机就无法代打了吗？答案是否定的，一样可以bypass它！</p>  <p>从今天开始，您不用再为此烦恼。</p>  <p>需要物品</p>  <p><a href="http://img.cker.in/d9c174033be4_12BDF/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/d9c174033be4_12BDF/clip_image002_thumb.jpg" width="468" height="356" /></a></p>  <p><em> 透明胶带（比较宽的那种）   <br /></em> 双面胶    <br /><em> 蜡烛    <br /></em> 剪刀    <br /><em> 易拉罐    <br /></em> 打火机</p>  <p>制作步骤</p>
+        0x1,&#160; 惊闻某反向代理平台邀请码一码难求，苦比等了一晚上邀请码无果，大牛们都忙着脱裤，做为一名穷吊丝，只能靠自己的双手解决生理需要了     0x2 工具:破电脑一台，shell一个,反向代理程序1套(或者直接用apahce或者nginx),纸巾若干张，    注:反向代理程序 用@vip推荐的7ghost ，或者php-dynamic-mirror     0x3 本地搭建好代理程序 ,(本例采用7ghost为例),内网
       
       </p>
       
       <p>
-          <a href="/828.seo/" class="excerpt-link">Read More...</a>
+          <a href="/1025.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -98,94 +129,8 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-07-28T10:26:14.000Z" itemprop="datePublished">
-          2012-07-28
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透测试/'>渗透测试</a>,
-    
-    <a href='/tag/xss/'>xss</a>,
-    
-    <a href='/tag/漏洞/'>漏洞</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/729.seo/">xss简单渗透测试</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        转载。  Author: jianxin [80sec]   EMail: jianxin#80sec.com    Site: http://www.80sec.com    Date: 2008-12-24     From: http://www.80sec.com/release/xss-how-to-root.txt    [ 目录 ]    0×00 前言 b    0×01 xss渗透测试基本思路    0×02 一次黑盒
-      
-      </p>
-      
-      <p>
-          <a href="/729.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-07-27T04:18:37.000Z" itemprop="datePublished">
-          2012-07-27
-      </time>
-    
-    
-    | 
-    <a href='/tag/Webshell/'>Webshell</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/726.seo/">webshell中的不死僵尸和隐藏后门的原理以及删除</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        主要是利用系统保留文件名创建无法删除的webshell来隐藏后门。    Windows 下不能够以下面这些字样来命名文件或文件夹：    aux|prn|con|nul|com1|com2|com3|com4|com5|com6|com7|com8|com9|lpt1|lpt2|lpt3|lpt4|lpt5|lpt6|lpt7|lpt8|lpt9&#160; 但是通过cmd的copy命令即可实现：    D:\wwwroot&gt;c
-      
-      </p>
-      
-      <p>
-          <a href="/726.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-07-08T09:16:58.000Z" itemprop="datePublished">
-          2012-07-08
-      </time>
-    
-</span>
-      <h2 class="post-title"><a href="/666.seo/">通过Zend目录权限不严获取执行权限</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>服务器上很多都装了Zend   <br />就算 C:\Program Files\ 设置过权限，安装Zend后，Zend 会自动配置目录的权限    <br />C:\Program Files\Zend\ZendOptimizer-3.3.0\ 下的目录权限为 Everyone 全权,这导致入侵者能写入文件。</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="ACBIWX~WVIQ2IN`Q5CWA$`N" border="0" alt="ACBIWX~WVIQ2IN`Q5CWA$`N" src="http://img.cker.in/Zend_11F4/ACBIWXWVIQ2INQ5CWAN.jpg" width="615" height="607" /></p>  <p>如果黑客入侵一个服务器，只支持 asp,或php,没有执行权限，执行组件也给禁用了，只有读写文件的权限(只要读写权限就够)。   <br />C:\Program Files\Zend\ZendOptimizer-3.3.0\lib 下有 ZendExtensionManager.dll 文件，    <br />而这个文件就算加载了，也能通过&quot;重命名&quot;得以修改。</p>
-      
-      </p>
-      
-      <p>
-          <a href="/666.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-07-08T07:24:48.000Z" itemprop="datePublished">
-          2012-07-08
+      <time datetime="2013-07-03T22:30:53.000Z" itemprop="datePublished">
+          2013-07-04
       </time>
     
     
@@ -194,17 +139,79 @@
     
     
 </span>
-      <h2 class="post-title"><a href="/664.seo/">另类一句话插入技巧</a></h2>
+      <h2 class="post-title"><a href="/1012.seo/">利用php.ini隐藏一句话</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        主题：另类一句话插入技巧   Author：Roker    内容：今天搞渗透的时候，没想到管理员在，上传的shell全被他删了   一句话木马也不放过   无奈写下了下面的脚本         &lt;%id =request(&quot;id&quot;)if id &lt;&gt; &quot;&quot; thenset fso=Server.CreateObject(&quot;Scripting.FileSystemObje
+        利用php中的一个自动在文件中增加页眉和页脚的功能，隐藏一句话。   在站点的某一目录（如：根目录）下编辑文件php脚本文件，名称为：info.php，内容如下   &lt;?php    Phpinfo();    ?&gt;    在本地打开如：http://127.0.0.1/info.php    检查系统使用的配置文件      找到并编辑该配置文件   如下行：    auto_prepend_file =test.php&
       
       </p>
       
       <p>
-          <a href="/664.seo/" class="excerpt-link">Read More...</a>
+          <a href="/1012.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-06-24T21:13:01.000Z" itemprop="datePublished">
+          2013-06-25
+      </time>
+    
+    
+    | 
+    <a href='/tag/提权/'>提权</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1008.seo/">Windows提权时，自动查询补丁号的批处理</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        Windows提权时，自动查询补丁号的批处理     systeminfo&gt;a.txt&amp;(for %i in (KB2360937 KB2478960 KB2507938 KB2566454 KB2646524 KB2645640 KB2641653 KB944653 KB952004 KB971657 KB2620712 KB2393802 kb942831 KB2503665 KB2592799) do @type a
+      
+      </p>
+      
+      <p>
+          <a href="/1008.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-06-17T23:38:08.000Z" itemprop="datePublished">
+          2013-06-18
+      </time>
+    
+    
+    | 
+    <a href='/tag/WAF/'>WAF</a>,
+    
+    <a href='/tag/安全宝/'>安全宝</a>,
+    
+    <a href='/tag/白帽子/'>白帽子</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1005.seo/">浅谈安全宝等云端WAF的绕过思路</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        最近一直在搞些web安全，还是有一些收获的。其实我不是黑客，我真的只是白帽子。今天，准备渗透一个站，用了几个传统的注入方式，发现一直在弹出安全宝的拦截信息。让我很不爽，先来介绍一下安全宝。  什么安全宝  安全宝是创新工场的孵化产品，是一个基于云端的WAF(Web Application Firewall)。国内也有一些产品，比如加速乐、360等。这类产品其实是相当于网站的CDN，所有流量通过它进行转发。但是这些服务其实往往无法真正达到
+      
+      </p>
+      
+      <p>
+          <a href="/1005.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -212,7 +219,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/category/黑客技巧/page/3/">← Newer Posts</a>
-    <span class="page-number">Page 4 of 10</span>
+    <span class="page-number">Page 4 of 13</span>
     <a class="older-posts" href="/category/黑客技巧/page/5/">Older Posts →</a>
   </nav>
 </main>

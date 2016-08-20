@@ -136,37 +136,6 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-25T08:32:36.000Z" itemprop="datePublished">
-          2012-06-25
-      </time>
-    
-    
-    | 
-    <a href='/tag/提权/'>提权</a>,
-    
-    <a href='/tag/Zend/'>Zend</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/606.seo/">通过Zend目录权限不严获取执行权限</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>服务器上很多都装了 Zend   <br />就算 C:\Program Files\ 设置过权限，安装Zend后，Zend 会自动配置目录的权限    <br />C:\Program Files\Zend\ZendOptimizer-3.3.0\ 下的目录权限为 Everyone 全权,这导致入侵者能写入文件。    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Zend_78D/clip_image001.jpg" width="615" height="607" />    <br />如果黑客入侵一个服务器，只支持 asp,或php,没有执行权限，执行组件也给禁用了，只有读写文件的权限(只要读写权限就够)。    <br />但 C:\Program Files\Zend\ZendOptimizer-3.3.0\lib 下有 ZendExtensionManager.dll 文件，    <br />而这个文件就算加载了，也能通过&quot;重命名&quot;得以修改。    <br />而黑客只要把这个DLL换成黑客的DLL，将能加载起来！    <br />在测试中发现，如果直接换上DLL，替换的DLL不能被Zend加载！    <br />转换思路，软件应该是加载相关DLL再查看相关接口!&#160;&#160; <br />Zend 加载 -&gt; 替换后的dll(文件名用 ZendExtensionManager.dll ) -&gt; 加载原DLL (这是原文件，把他改为名 ZendExtensionManager.dll.log 让自己的加载他)    <br />测试能成功加载！</p>
-      
-      </p>
-      
-      <p>
-          <a href="/606.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
       <time datetime="2012-06-25T06:39:29.000Z" itemprop="datePublished">
           2012-06-25
       </time>
@@ -202,13 +171,13 @@
     
     
     | 
+    <a href='/tag/提权/'>提权</a>,
+    
     <a href='/tag/SQLServer/'>SQLServer</a>,
     
     <a href='/tag/Sa/'>Sa</a>,
     
-    <a href='/tag/拿Webshell/'>拿Webshell</a>,
-    
-    <a href='/tag/提权/'>提权</a>
+    <a href='/tag/拿Webshell/'>拿Webshell</a>
     
     
 </span>
@@ -228,9 +197,46 @@
     </section>
   </article>
   
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-23T01:35:43.000Z" itemprop="datePublished">
+          2012-06-23
+      </time>
+    
+    
+    | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/溢出/'>溢出</a>,
+    
+    <a href='/tag/MS12-020/'>MS12-020</a>,
+    
+    <a href='/tag/Exploit/'>Exploit</a>,
+    
+    <a href='/tag/Vulnerability/'>Vulnerability</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/596.seo/">Microsoft RDP Vulnerability Exploit (CVE-2012-0002 ) 微软MS12-020漏洞视频演示</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>Microsoft RDP Vulnerability Exploit (CVE-2012-0002&#160; MS12-020)</p>  <p><embed src="http://player.youku.com/player.php/sid/XNDE3OTc4MjM2/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed></p>  <p>这是一个密报的漏洞，微软肯定是先推送补丁修复了（微软在北京时间2012-03-13号就推送了该补丁），然后才公开的报告。</p>  <p>不然，如果该<strong>ms12-20</strong>漏洞在地下流传，企业、政府、银行、军队等重要机构的大型服务器将无一幸免，完全沦陷！这会造成极其严重的后果！</p>  <p>（这也是为什么重要机构的大型服务器都根本不使用 Windows 系统，一方面是性能原因，另一方面是安全因素，还有一方面是国家安全与战争因素了，</p>  <p>米国政府的秘密机构手中掌握有大量此类零日漏洞，并且都是未公开的一旦发动战争，这些都是武器，平时则用来窃取敌对国家情报……）</p>  <p><strong>ms12-20</strong> 远程桌面(RDP)3389漏洞 exp 如何检查自己是否已安装更新补丁？</p>  <p>这个漏洞的更新补丁号为：KB2621440，用户可以自行在：控制面板 –&gt; 添加删除程序（记得勾选“显示更新”</p>  <p>），然后查找该编号，如果有则表示您已安装，可以不必担心了，或者使用命令：</p>  <blockquote>   <p>systeminfo|find /i &quot;KB2621440&quot;</p> </blockquote>
+      
+      </p>
+      
+      <p>
+          <a href="/596.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
   <nav class="pagination" role="pagination">
     
-    <span class="page-number">Page 1 of 11</span>
+    <span class="page-number">Page 1 of 10</span>
     <a class="older-posts" href="/archives/2012/06/page/2/">Older Posts →</a>
   </nav>
 </main>

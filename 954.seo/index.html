@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>沦陷学生之家，一次漂亮的渗透与源码分析 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-12-12T17:08:42.000Z" itemprop="datePublished">
+          2012-12-13
+      </time>
+    
+    
+    | 
+    <a href='/tag/代码执行/'>代码执行</a>,
+    
+    <a href='/tag/cacti/'>cacti</a>
+    
+    
+</span>
+    <h1 class="post-title">沦陷学生之家，一次漂亮的渗透与源码分析</h1>
+    <section class="post-content">
+      <p></p><p>某某河畔是郫县男子dota技术专修学校里各种骚男闷女无聊打发时间的地方。使用的是pw+php bluster搭建的。负责维护的童鞋几乎把pw的基础代码都改写过了，代码安全性还是比较高的。但是这次无情的被沦陷了。</p>  <p>详细说明：</p>  <p>1. 沦陷备份服务器   <br>各种弱口令+cacti拿shell    <br>访问<a href="http://xxx.xxxhome.net，使用弱密码admin/admin进入管理页面" target="_blank" rel="external">http://xxx.xxxhome.net，使用弱密码admin/admin进入管理页面</a>    <br>上网找了几个cacti的<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>，都没能利用上。于是自己开始下了一套cacti开始折磨。    <br>看到install目录下有几个.php文件，顿时眼前一亮</p>  <p><a href="http://img.cker.in/527aebd1fe39_801B/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/527aebd1fe39_801B/clip_image001_thumb.jpg" width="594" height="273"></a></p>  <p>把cacti的日志文件设置为这几个文件中的一个，重新登陆一下，可以看到日志确实被写进去了，那么只要想办法产生一些&lt;?php这样的日志，就能执行代码了。最直接的想法那就是用&lt;?php这样的用户去登录，有兴趣的同学可以继续深入，我反正没成功，cacti把尖括号神马的都过滤掉了。这条路暂时封死了。</p><br><a id="more"></a><p></p>
+<p></p><p></p>  <p><a href="http://img.cker.in/527aebd1fe39_801B/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/527aebd1fe39_801B/clip_image002_thumb.jpg" width="1066" height="479"></a><a href="http://img.cker.in/527aebd1fe39_801B/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/527aebd1fe39_801B/clip_image003_thumb.jpg" width="1057" height="208"></a></p>  <p>无聊之中，发现了同机器上竟然装了pma，尝试了下，默认密码竟然进去了。</p>  <p><a href="http://img.cker.in/527aebd1fe39_801B/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/527aebd1fe39_801B/clip_image004_thumb.jpg" width="577" height="234"></a></p>  <p>数据库中的poller_command引起了我的兴趣，照理说这应该是一个会导致命令执行的地方。大致看了下源码，水平搓，没有看懂究竟是执行shell命令还是php命令，实践出真知，直接写一句吧。</p>  <p><a href="http://img.cker.in/527aebd1fe39_801B/clip_image005.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image005" border="0" alt="clip_image005" src="http://img.cker.in/527aebd1fe39_801B/clip_image005_thumb.jpg" width="724" height="203"></a></p>  <p><a href="http://img.cker.in/527aebd1fe39_801B/clip_image006.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/527aebd1fe39_801B/clip_image006_thumb.jpg" width="787" height="237"></a></p>  <p>等了5分钟，poller执行（试过的童鞋应该知道，啥命令都不会被执行，不知道为啥），虽然没有直接效果，但是却在log中成功写入了php代码。Then，get shell</p>  <p><a href="http://img.cker.in/527aebd1fe39_801B/clip_image007.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image007" border="0" alt="clip_image007" src="http://img.cker.in/527aebd1fe39_801B/clip_image007_thumb.jpg" width="1017" height="404"></a></p>  <p>2. 代码漏洞，拿到bbs的shell   <br>通过观察，可以知道<a href="http://ha.cker.in/tag/cacti" target="_blank">cacti</a>的服务器同时还是备份服务器，bbs的代码被同步到了这个机器上。然后就是长期而苦逼的读代码的过程了。当然最直接的想法是去找调用了eval或者preg_replace这类直接能执行代码的地方。</p>  <p><a href="http://img.cker.in/527aebd1fe39_801B/clip_image008.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/527aebd1fe39_801B/clip_image008_thumb.jpg" width="353" height="273"></a></p>  <p>下面要扯一下某某河畔的论坛的登录。某某河畔论坛登录采用的是usercenter方式认证，bbs作为uc的一个application存在，每次需要认证的时候产生一个rand，记录在session中，并把需要的相关参数拼接上rand、app_key计算md5散列后作为附加参数，通过用户浏览器GET传递给uc；uc验证用户登录授权是否合法之后，将用户uid拼接上rand和app_key计算md5作为附加参数，通过用户浏览器GET回bbs。   <br>仔细观察登录验证的api代码，惊喜的发现一个eval。</p>  <p><a href="http://img.cker.in/527aebd1fe39_801B/clip_image009.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image009" border="0" alt="clip_image009" src="http://img.cker.in/527aebd1fe39_801B/clip_image009_thumb.jpg" width="315" height="101"></a></p>  <p>回查调用代码，只要通过下面代码的检查就会执行到eval，数据库密码明写在代码中，那么只要在数据库中添加一个名为“xxx.eval($_REQUEST[cmd]);//”的api就可以执行代码了。接下来的写一句话，自是不提。</p>  <p><a href="http://img.cker.in/527aebd1fe39_801B/clip_image010.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image010" border="0" alt="clip_image010" src="http://img.cker.in/527aebd1fe39_801B/clip_image010_thumb.jpg" width="720" height="523"></a></p>  <p><a href="http://img.cker.in/527aebd1fe39_801B/clip_image011.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image011" border="0" alt="clip_image011" src="http://img.cker.in/527aebd1fe39_801B/clip_image011_thumb.jpg" width="1011" height="389"></a></p>  <p>这次检测有几点感觉：   <br>1. 很过管理密码保持默认的危害性非常大，你完全不知道什么时候这个应用会被发现并威胁到服务器安全。特别是各种内部系统会对外开放的时候。    <br>2. 很多应用都是对外部数据防护得很好，而内部数据过于信任，根本就没有任何过滤措施。如这次<a href="http://ha.cker.in/tag/cacti" target="_blank">cacti</a>，可以任意指定log文件的位置，没有检查拓展名；没有检查数据库中commad的内容，直接将错误信息输出到log中；uc没有对api名做基本的检查，导致任意<a href="http://ha.cker.in/tag/代码执行" target="_blank">代码执行</a>。    <br>3. 很多机器web目录权限总是设置不当    <br>4. APT攻击几乎总能成功    <br>5. 安全问题总是很难防护得很完善，一处被击破，处处都受影响</p>  <p>漏洞证明：</p>  <p>见漏洞详情</p>  <p>修复方案：</p>  <p>1. cacti不用就卸载掉   <br>2. web目录的除了上传目录，都不应该让www用户有写权限，而上传目录应该限制死不能执行脚本    <br>3. bbs验证登录时，需要判断referer，从非用户渠道获取是否真正成功登陆，以避免app_key泄漏带来的各种风险    <br>4. 仅仅对于用户提交的数据严格过滤是不够的，对于来自数据库，session，文件这样的内部数据也要进行安全检查</p>  <h5>来源 <a href="http://www.wooyun.org/whitehats/%7F%E5%89%91%E5%BF%83%7F" target="_blank" rel="external">剑心</a>@<a href="http://www.wooyun.org/bugs/wooyun-2010-012209" target="_blank" rel="external">乌云</a></h5><p></p>
+
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/954.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/954.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/954.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/954.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/955.seo/">
+        ← 短信平台相关常见问题整理
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/953.seo/">
+        当Discuz!遇上xsser.me：基础认证钓鱼 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

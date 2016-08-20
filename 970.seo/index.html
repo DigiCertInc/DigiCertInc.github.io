@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>黑客组织Anonymous疯狂入侵中国站点思路分析 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-01-21T23:26:11.000Z" itemprop="datePublished">
+          2013-01-22
+      </time>
+    
+    
+    | 
+    <a href='/tag/Anonymous/'>Anonymous</a>,
+    
+    <a href='/tag/匿名者/'>匿名者</a>
+    
+    
+</span>
+    <h1 class="post-title">黑客组织Anonymous疯狂入侵中国站点思路分析</h1>
+    <section class="post-content">
+      <p>关于<a href="http://ha.cker.in/tag/匿名者" target="_blank">匿名者</a>组织的疯狂拿站和统一黑页显示时间的行为，相信大家已经见怪不怪了，但是当匿名者组织开始侵略中国网站的时候，相信大家都坐不住了。首先，个人感觉反击的意义何在，或者说究竟有没有意义，笔者不是哲学家，思想家，不做过多探讨。但是，知己知彼确实是必要的。笔者对前一段时间，国内地方GOV被疯狂秒杀的一次行动做了一次没什么技术含量的分析和猜想。</p>  <p>（以下敏感域名用WWW.XXX.COM略过）</p>  <p>首先，笔者登陆了FACEBOOK找寻了一些热议的话题：</p>  <p>（以下为GOOGLE翻译，英文不好，只好找谷大哥帮忙）</p>  <p>1.中国3000+政务工作网站 匿名者成功获取权限</p>  <p>2.匿名者再次攻击亚洲各国，宣传独立自由 在网络中</p>  <p>3.亚洲强国网络安全成为匿名者的击打目标。</p>  <p>以上是通过匿名者为关键字模糊搜索的热议转载，基本每个热议都指向匿名者发布新闻和预告信的推特，笔者只好继续翻阅防火长城登陆推特，观看了一些匿名者发布针对亚洲和其他洲的攻击成果发布，评论中充斥着各种赞扬与羡慕，当然不乏我国人士（最大的悲剧），当然，也有进行技术分析的人，有一条评论中带有这样一个域名：</p>  <p>www.xxseo.com（化名）</p>  <p>接着，笔者C段了一下：</p>  <p>IP：</p>  <p>XXX.XXX.XXX.200</p>  <p>XXX.XXX.XXX.201</p>  <p>XXX.XXX.XXX.202</p>  <p>XXX.XXX.XXX.203</p>  <p>XXX.XXX.XXX.204</p>  <p>XXX.XXX.XXX.205</p>  <p>``````````````````````````````</p>  <p>以上IP全部指向中国某省级机房</p>  <p>OK，就这个IP段开始旁站扫描，得到无数四级域名：</p>  <p>XXX.host1068.xxxseo.com.cn</p>  <p>XXX.host1079.xxxseo.com.cn</p>  <p>XXX.host1081.xxxseo.com.cn</p>  <p>XXX.host1083.xxxseo.com.cn</p>  <p>XXX.host1093.xxxseo.com.cn</p>  <p>XXX.host1099.xxxseo.com.cn</p>  <p>·····························</p>  <p>相信看到这里，大家应该明白了些什么，当然笔者还是打开验证了下</p>  <p>无一例外，全部是政务网站，各地GOV。</p>  <p>XXX.host1099.xxxseo.com.cn</p>  <p>都是IDC机房托管的分配四级域名，实际绑定是WWW.XXX.GOV.CN</p>  <p>笔者继续扫描旁站，并导出所有URL（四级域名）</p>  <p>将导出的列表批量经行绑定域名反查，得到实际绑定域名结果列表。</p>  <p>在工具经行这些自动化扫描导出的时候，笔者继续做着准备，将匿名者在推特发布的攻击我国站点的列表下载了一份，可以不是文本，图片质量又狂差，只能美图秀秀去个雾（不会PS的伤不起），勉强看清了URL。</p>  <p>准备工作做完，手上有两份列表，一份是扫描旁站得出的IDC C段的GOV站点 URL列表。另一份是匿名者发布的攻击我国站点公开列表。</p>  <p>然后笔者比对了一下，相信结果大家都猜到了。</p>  <p>IDC下的163个GOV站点，有112个在匿名者攻击列表中，当然匿名者公布了3000+个。</p>  <p>好的，对匿名者每次行动的印象让我立即从庞大组织的集体攻击，变成了组织性的批量拿站。</p>  <p>这个时候，笔者又有了另一个猜想，即使是批量攻击，整个C段也是要花时间的，于是笔者爬行了5个网站的目录，BINGO，全中，居然是一模一样的目录结构，好的，原来是一个公司的业务啊！统一的建站系统，统一的OA系统，统一的邮件系统，统一的VPN登陆远程办公系统，好吧，你赢了！</p>  <p><a href="http://img.cker.in/Anonymous_D8D1/clip_image001.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Anonymous_D8D1/clip_image001_thumb.jpg" width="504" height="344"></a></p><br><a id="more"></a><br><p></p>  <p>关键是，统一的后台，统一的弱口令！！！好吧，你又赢了，给GOV做网站业务，您就不能随机生成密码给管理员么！</p>  <p>有了这个验证，笔者继续猜想和验证，如果这些服务器全部在自己手上，那把站点全部黑掉，集体挂黑页是更轻松的了吧？是不是服务器本身就有问题呢？对这些IP经行端口扫描，发现了都存在999端口，访问后是···················phpmyadmin？</p>  <p><a href="http://img.cker.in/Anonymous_D8D1/clip_image002.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Anonymous_D8D1/clip_image002_thumb.jpg" width="504" height="353"></a></p>  <p><a href="http://img.cker.in/Anonymous_D8D1/clip_image003.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/Anonymous_D8D1/clip_image003_thumb.jpg" width="504" height="196"></a></p>  <p>好吧，空密码不对，默认密码也不对，笔者来到了这个强大IDC公司的官网，资料下载中有：PHPMYADMIN····一键部署程序？？？？</p>  <p><a href="http://img.cker.in/Anonymous_D8D1/clip_image004.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/Anonymous_D8D1/clip_image004_thumb.jpg" width="504" height="274"></a></p>  <p>好吧果断下载下来，原来也是ZKEYS的程序，默认密码 ROOT ZKEYS 好吧，现在100+台政府公务服务器，完全可以用这个万能钥匙登陆PHPMYADMIN经行SHELL导出了，然后提权···批量替换首页么？？</p>  <p>不用，匿名者只需将服务器IIS所有的域名指向一个有黑页的ip就可以了。好吧，惨不忍睹···</p>  <p>剩下的总结和发散联想 就交给大家了，不是对手太强大·····填空题</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/970.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/970.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/970.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/970.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/971.seo/">
+        ← WordPress Zingiri Forums arbitrary file disclosure
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/969.seo/">
+        WordPress WP SlimStat 插件&quot;s&quot;脚本注入漏洞 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

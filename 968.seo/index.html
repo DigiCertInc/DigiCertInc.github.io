@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>对某学校教务系统的一次渗透 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-01-21T20:18:26.000Z" itemprop="datePublished">
+          2013-01-22
+      </time>
+    
+    
+    | 
+    <a href='/tag/提权/'>提权</a>,
+    
+    <a href='/tag/渗透/'>渗透</a>
+    
+    
+</span>
+    <h1 class="post-title">对某学校教务系统的一次渗透</h1>
+    <section class="post-content">
+      <p>目标:oa.school.com&#160; IP:192.168.100.100 OA系统 (域名ip均已经过处理)   <br>目的：登陆该后台管理系统 进行某个目的</p>  <p>   <br>0x01    <br>检测并<a href="http://ha.cker.in/tag/提权" target="_blank">提权</a>     <br>某商业oa程序 无0day 网上也没有相关漏洞信息 ， 无同服务器站点，简单的进行了 常规web漏洞扫描、目录扫描、手工探测、端口信息、简单的对各开放并可能利用的端口进行密码破解 未果    <br>通过google搜索并整理相关二级域名    <br>对可能存在漏洞的站点进行简单的探测 (google搜索目录信息)&#160; <br>发现一二级域名为:test.school.com IP:192.168.100.101 存在目录遍历漏洞 并找到存在漏洞的eweb编辑器(拿shell部分省略)    <br>通过web.config找到 数据库用户名:user 密码：pass&#160;&#160; (信息以处理)    <br>发现是sa权限(提权省略)&#160; <br>query user 发现administrator 为登陆状态 并且 登陆时间 为 5天前 一般遇到这样的情况 通常会抓取明文密码 但是上面装有360 不到万不得已情况下 不会添加用户并登陆远程桌面添加用户 进入服务器 停止360&#160; 使用mimikatz 抓取明文密码(个人喜欢收集密码信息)</p>  <p>   <br>0x02    <br>进一步<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a>     <br>由于是该校二级域名，并且是同内外服务器。上面又可能存有 目标 站点的信息 如数据库信息、网站备份信息，不到万不得以不会去扫描 以及嗅探！    <br>开始菜单分明就有数据库 以 windows身份验证方式登陆进去 果然找到 目标oa相关的用户表 ，查询之：    <br><a href="http://img.cker.in/0a5949ea9c59_AC68/clip_image0024.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002[4]" border="0" alt="clip_image002[4]" src="http://img.cker.in/0a5949ea9c59_AC68/clip_image0024_thumb.jpg" width="604" height="429"></a>    <br>不是常规的md5加密 看起来好像base64加密 hackbar解密发现是乱码，应该是des加密！    <br>DES 数据加密算法（Data Encryption Algorithm，DEA）是一种对称加密算法，是需要密钥的    <br>之前的猜测没错，这台服务上不仅有 该学校数据库 而且还有 网站备份文件！ (运气真好！)    <br>findstr 查了半天未找到加密函数 以及密钥    <br>该OA系统是 VB.NET开发的 看了下程序源码 发现一些函数都封装到dll文件中    <br>找到该OA登陆文件 相关的dll文件School.Accounts.dll 使用.NET dll文件 反编译器 .NET Reflector 找到DECEncrypt:    <br><a href="http://img.cker.in/0a5949ea9c59_AC68/clip_image0044.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004[4]" border="0" alt="clip_image004[4]" src="http://img.cker.in/0a5949ea9c59_AC68/clip_image0044_thumb.jpg" width="604" height="322"></a>    <br>密钥 ：</p>  <p>Public Sub New()</p>  <p>Me.arrDESKey = New Byte() { &amp;H2A, &amp;H10, &amp;H5D, &amp;H9C, &amp;H4E, 4, &amp;HDA, &amp;H20 }&#160;&#160; //密钥</p>  <p>Me.arrDESIV = New Byte() { &amp;H37, &amp;H67, &amp;HF6, &amp;H4F, &amp;H24, &amp;H63, &amp;HA7, 3 } //奇偶校验</p>  <p>End Sub</p>  <p>网上找了几款DES 解密工具 载入key 以及加密字符串 破解未果   <br>看看加密解密函数：    <br>加密函数: encrypt</p>  <p>Public Function Encrypt(ByVal m_Need_Encode_String As String) As String</p>  <p>Dim provider As New DESCryptoServiceProvider</p>  <p>Dim stream2 As New MemoryStream</p>  <p>Dim stream As New CryptoStream(stream2, provider.CreateEncryptor(Me.arrDESKey, Me.arrDESIV), 1)</p>  <p>Dim writer As New StreamWriter(stream)</p>  <p>writer.Write(m_Need_Encode_String)</p>  <p>writer.Flush</p>  <p>stream.FlushFinalBlock</p>  <p>stream2.Flush</p>  <p>Return Convert.ToBase64String(stream2.GetBuffer, 0, CInt(stream2.get_Length))</p>  <p>End Function</p>  <p>解密函数: Decrypt</p>  <p>Public Function Decrypt(ByVal m_Need_Encode_String As String) As String</p>  <p>Dim provider As New DESCryptoServiceProvider</p>  <p>Dim stream2 As New MemoryStream(Convert.FromBase64String(m_Need_Encode_String))</p>  <p>Dim stream As New CryptoStream(stream2, provider.CreateDecryptor(Me.arrDESKey, Me.arrDESIV), 0)</p>  <p>Dim reader As New StreamReader(stream)</p>  <p>Return reader.ReadToEnd</p>  <p>End Function</p>  <p>嗯。有了解密算法 又有 key   <br>直接 利用现成的代码稍加改造 弄个解密工具方便解密    <br><a href="http://img.cker.in/0a5949ea9c59_AC68/clip_image0064.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006[4]" border="0" alt="clip_image006[4]" src="http://img.cker.in/0a5949ea9c59_AC68/clip_image0064_thumb.jpg" width="604" height="357"></a>    <br>解密成功！    <br>登陆OA.SCHOOL.COM成功！    <br><a href="http://img.cker.in/0a5949ea9c59_AC68/clip_image0084.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008[4]" border="0" alt="clip_image008[4]" src="http://img.cker.in/0a5949ea9c59_AC68/clip_image0084_thumb.jpg" width="604" height="328"></a></p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/968.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/968.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/968.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/968.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/969.seo/">
+        ← WordPress WP SlimStat 插件&quot;s&quot;脚本注入漏洞
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/967.seo/">
+        360浏览器抢票专版 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

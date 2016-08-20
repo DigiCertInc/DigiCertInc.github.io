@@ -108,6 +108,39 @@ Flash CSRF通常
     </section>
   </article>
   
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2013-10-21T18:10:58.000Z" itemprop="datePublished">
+          2013-10-22
+      </time>
+    
+    
+    | 
+    <a href='/tag/xss/'>xss</a>,
+    
+    <a href='/tag/CSRF/'>CSRF</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1037.seo/">攻击JavaWeb应用 2 -CS交互安全</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p><a href="http://drops.wooyun.org/tips/164">攻击JavaWeb应用[2]-CS交互安全</a></p>  <p><a href="http://drops.wooyun.org/tips/164">http://drops.wooyun.org/tips/164</a></p>  <h5>注:本节意在让大家了解客户端和服务器端的一个交互的过程,我个人不喜欢xss,对xss知之甚少所以只能简要的讲解下。这一节主要包含HttpServletRequest、HttpServletResponse、session、cookie、HttpOnly和xss，文章是年前几天写的本应该是有续集的但年后就没什么时间去接着续写了。由于工作并非安全行业，所以写的并不算专业希望大家能够理解。后面的章节可能会有Java里的SQL注入、Servlet容器相关、Java的框架问题、eclipse代码审计等。</h5>  <h5>0x00 Request &amp; Response(请求与响应)</h5>  <hr align="center" width="100%" size="2" />  <p>请求和响应在Web开发当中没有语言之分不管是ASP、PHP、ASPX还是JAVAEE也好，Web服务的核心应该是一样的。</p>  <p>在我看来Web开发最为核心也是最为基础的东西就是Request和Response！我们的Web应用最终都是面向用户的，而请求和响应完成了客户端和服务器端的交互。   <br />服务器的工作主要是围绕着客户端的请求与响应的。</p>  <p>如下图我们通过Tamper data拦截请求后可以从请求头中清晰的看到发出请求的客户端请求的地址为：localhost。</p>  <p>浏览器为FireFox，操作系统为Win7等信息，这些是客户端的请求行为，也就是Request。</p>  <p><a href="http://img.cker.in/JavaWeb2CS_8BCE/clip_image001.png"><img title="clip_image001" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="444" alt="clip_image001" src="http://img.cker.in/JavaWeb2CS_8BCE/clip_image001_thumb.png" width="1142" border="0" /></a></p>  <p>当客户端发送一个Http请求到达服务器端之后，服务器端会接受到客户端提交的请求信息(HttpServletRequest)，然后进行处理并返回处理结(HttpServletResopnse)。</p>  <p>下图演示了服务器接收到客户端发送的请求头里面包含的信息：</p>  <p><a href="http://img.cker.in/JavaWeb2CS_8BCE/clip_image002.png"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="549" alt="clip_image002" src="http://img.cker.in/JavaWeb2CS_8BCE/clip_image002_thumb.png" width="655" border="0" /></a></p>  <p>页面输出的内容为：</p>  <pre><code>host=localhost</code></pre><br><br><pre><code>user-agent=Mozilla/5.0 (Windows NT 6.1; rv:18.0) Gecko/20100101 Firefox/18.0</code><code> </code></pre><br><br><pre><code>accept=text/html,application/xhtml+xml,application/xml;q=0.9,<em>/</em>;q=0.8</code><code> </code></pre><br><br><pre><code>accept-language=zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3</code><code> </code></pre><br><br><pre><code>accept-encoding=gzip, deflate</code><code> </code></pre><br><br><pre><code>connection=keep-alive</code></pre><br><br><h6>请求头信息伪造XSS</h6><br><br><p>关于伪造问题我是这样理解的：发送Http请求是客户端的主动行为，服务器端通过ServerSocket监听并按照Http协议去解析客户端的请求行为。</p>
+
+<p>所以请求头当中的信息可能并不一定遵循标准Http协议。</p><br>
+      
+      </p>
+      
+      <p>
+          <a href="/1037.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
   <nav class="pagination" role="pagination">
     
     <span class="page-number">Page 1 of 1</span>

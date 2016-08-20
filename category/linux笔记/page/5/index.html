@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-  <title>Category: linux笔记 | Blog of Secer</title>
+  <title>Category: Linux笔记 | Blog of Secer</title>
   <meta name="description" content="" />
   <meta name="HandheldFriendly" content="True" />
   <meta name="MobileOptimized" content="320" />
@@ -45,27 +45,31 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-12-16T06:49:13.000Z" itemprop="datePublished">
-          2011-12-16
+      <time datetime="2012-04-10T14:33:59.000Z" itemprop="datePublished">
+          2012-04-10
       </time>
     
     
     | 
-    <a href='/tag/Tengine/'>Tengine</a>
+    <a href='/tag/Linux/'>Linux</a>,
+    
+    <a href='/tag/压力测试/'>压力测试</a>,
+    
+    <a href='/tag/siege/'>siege</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/199.seo/">淘宝Web服务器Tengine基本安装步骤</a></h2>
+      <h2 class="post-title"><a href="/372.seo/">linux下的压力测试工具之siege</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>我们很高兴的宣布由淘宝网核心系统部开发的<a href="http://tengine.taobao.org/">Tengine</a>服务器终于正式开源了。<a href="http://www.taobao.com/">淘宝网</a>是亚洲最大的电子商务 网站，Alexa全球排名第12位。每天访问淘宝网的PV超过了几十亿。大压力的访问，对淘宝网的Web服务器提出了严苛的要求。</p>  <p>经过一系列的对比，我们 最终选择了Nginx作为我们的Web服务器，因为它性能高，又非常节省资源（CPU和内存），并且有足够的灵活性。    <br />一开始我们使用Nginx还仅仅用它来处理静态文件、PHP等，接着我们又在Nginx上开发了几十个各种用途的模块。随着对Nginx的 越来越了解，我们发现它本身已经不能够完全满足我们的需求了，所以我们就开始对Nginx核心进行定制和开发。考虑到我们开发的功能中的一些对其它的互联 网用户也可能有用处，所以我们就想到了把这些公用的功能开源出来。淘宝网是开源软件的用户和受益者，我们也想成为开源软件的贡献者。这就是我们决定开源 Tengine的原因。     <br />Tengine基于最新的Nginx稳定版（Nginx-1.0.10），在它的基础上开发了一些功能和做了一些bug修复，比如：</p>  <li>组合多个CSS、JavaScript文件的访问请求变成一个请求； </li>  <li>支持管道和syslog形式的日志和抽样； </li>  <li>自动根据CPU数目设置亲缘性； </li>  <li>监控系统的负载和资源占用从而对系统进行保护； </li>  <li>显示对运维人员更友好的出错信息，便于定位出错机器； </li>  <li>更强大的访问速度限制模块； </li>  <li>backtrace模块，程序崩溃的时候可以显示出错的调用栈； </li>  <li>根据文件类型设置过期时间； </li>  <li>…    <br />基本上，Tengine可以被看作一个更好的Nginx，或者是Nginx的超集。最新1.2.1版可以在这里下载：     <br /><a href="http://tengine.taobao.org/download/tengine-1.2.1.tar.gz">http://tengine.taobao.org/download/tengine-1.2.1.tar.gz</a>     <br />在这里，我们想向Nginx团队致谢，尤其感谢Nginx的作者Igor Sysoev的伟大工作。我们也很乐意并在接下来的时间里将我们的工作成果捐献给Nginx官方。     <br />坦率的讲，现在Tengine的特性还不够多，但这是我们将我们在Nginx上的工作推向开源的第一步。我们已经围绕Tengine组建了 一个团队，而且内部还有一个很长的计划列表。Tengine开源不是项目开发的结束，而是开发的开始。相信接下来大家会看到我们在Tengine上的更多 工作进展。</li>
+        <p>siege是一款http压力测试软件 </p> <p>debian和ubuntu用户可以通过如下命令来安装siege：  <p><strong>apt-get install siege</strong>  <p>我们可以用siege来测试我们的网站和服务器性能。  <p>siege -r 100 -c 10 <a href="http://baidu.com/index.php">http://baidu.com/index.php</a>  <p>-r 是 repeat , -r 100是重复100次测试  <p>-c 10是表示模拟10个用户同时并发连接  <p>最后面是要测试的URL地址。 </p>
       
       </p>
       
       <p>
-          <a href="/199.seo/" class="excerpt-link">Read More...</a>
+          <a href="/372.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -74,39 +78,29 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-12-16T03:57:35.000Z" itemprop="datePublished">
-          2011-12-16
+      <time datetime="2012-04-04T05:24:05.000Z" itemprop="datePublished">
+          2012-04-04
       </time>
     
     
     | 
-    <a href='/tag/Linux/'>Linux</a>,
-    
-    <a href='/tag/虚拟主机/'>虚拟主机</a>,
-    
-    <a href='/tag/管理系统/'>管理系统</a>,
-    
     <a href='/tag/VPS/'>VPS</a>,
     
-    <a href='/tag/CPanel/'>CPanel</a>,
-    
-    <a href='/tag/ZPanel/'>ZPanel</a>,
-    
-    <a href='/tag/Webmin/'>Webmin</a>
+    <a href='/tag/LNMP/'>LNMP</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/197.seo/">Linux下的六个免费的虚拟主机管理系统</a></h2>
+      <h2 class="post-title"><a href="/346.seo/">新购VPS后的一些必要设置</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>收费的虚拟主机控制面板（比如CPanel，DirectAdmin）由于价格昂贵，花钱买不划算。于是一直在苦苦寻找免费或者破解的类似于DirectAdmin的虚拟主机管理系统,没想到开源界已经产生了如此多优秀的免费的虚拟主机管理系统：ZPanel，web-cp，VHCS，virtualmin，PHPMyWebHosting，SysCP。另外还有Kloxo……</p>
+        以下是在LNMP环境下设置，其他环境可能稍有不同。 1.Mysql禁用日志（可选，如果你觉得日志对你来说没有用，建议禁用）/etc/my.cnf把这两行注释掉#log-bin=mysql-bin#binlog_format=mixed 2.修改nginx的进程数量/usr/local/nginx/conf/nginx.conf一般不用修改，如果你的VPS给了你双核，可以修改worker_processes值为2 3.修改php-cgi的
       
       </p>
       
       <p>
-          <a href="/197.seo/" class="excerpt-link">Read More...</a>
+          <a href="/346.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -115,29 +109,33 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-11-12T12:24:56.000Z" itemprop="datePublished">
-          2011-11-12
+      <time datetime="2012-04-04T04:48:06.000Z" itemprop="datePublished">
+          2012-04-04
       </time>
     
     
     | 
-    <a href='/tag/Linux/'>Linux</a>,
+    <a href='/tag/Nginx/'>Nginx</a>,
     
-    <a href='/tag/集群/'>集群</a>
+    <a href='/tag/Nginx平滑升级Tengine/'>Nginx平滑升级Tengine</a>,
+    
+    <a href='/tag/LTM/'>LTM</a>,
+    
+    <a href='/tag/LNMP/'>LNMP</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/182.seo/">集群]基础</a></h2>
+      <h2 class="post-title"><a href="/341.seo/">军哥LNMP一键安装包Nginx平滑升级Tengine(LTMP)</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><p>1.请简要什么是集群技术？为什么要使用集群技术？</p>  <blockquote>   <p>集群是一组协同工作的服务实体，用以提供比单一服务实体<strong>更具扩展性和可用性</strong>的服务平台。</p> </blockquote>  <p>2.请说出你所知道的集群种类，和实现方案？</p>  <blockquote>   <p>目前Linux下的集群主要有三种类型 </p>    <p>1. HA (High Availability) </p>    <p>2. LB (Load Balancing) </p>    <p>3. HPC (High performance Computing) </p>    <p>○ DC (Distributed Computing) </p> </blockquote>  <blockquote>   <p>○ PC (Parallel Computing)</p> </blockquote>  <p></p>
+        <p>Tengine 1.2.0基于最新的Nginx稳定版1.0.10而修改。它是由淘宝核心系统部基于Nginx开发的Web服务器，它在Nginx的基础上，针对大访问量网站的需求添加了很多功能和特性。Tengine的性能和稳定性已经在大型的网站如淘宝网，淘宝商城等得到了很好的验证。而团队的最终目标是打造一个高效、稳定、安全、易用的 Web 平台。 <p>使用军哥的LNMP一键安装包，可平滑从LNMP升级为LTMP（Linux+Tengine+Mysql+PhpmyAdmin）。 <p>一、安装LNMP <p><b>按Lnmp.org/install.html</b><b>先安装好军哥的</b><b>LNMP</b><b>一键安装包。</b> <p>二、平滑升级 <p>1、获取Tengine并解压和编译</p><pre><p>wget -c http:<span style="color: #008000">//tengine.taobao.org/download/tengine.tar.gz #获取压缩包</span></p><p><span style="color: #008000"></span><br></p><p>tar zxvf tengine.tar.gz #解压</p><p><br></p><p>cd tengine/ #进入目录</p><p><br></p><p>./configure #执行安装脚本</p><p><br></p><p>make </p></pre><br><p>SSH执行以上命令。</p><br><p><a href="http://img.cker.in/cf7de857d31d_12160/image.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/cf7de857d31d_12160/image_thumb.png" width="244" height="84"></a> </p><br><p><a href="http://img.cker.in/cf7de857d31d_12160/image_3.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/cf7de857d31d_12160/image_thumb_3.png" width="244" height="188"></a> </p><br><p><a href="http://img.cker.in/cf7de857d31d_12160/image_4.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="http://img.cker.in/cf7de857d31d_12160/image_thumb_4.png" width="244" height="153"></a> </p>
       
       </p>
       
       <p>
-          <a href="/182.seo/" class="excerpt-link">Read More...</a>
+          <a href="/341.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -146,29 +144,71 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-10-19T23:00:46.000Z" itemprop="datePublished">
-          2011-10-20
+      <time datetime="2012-04-01T01:48:19.000Z" itemprop="datePublished">
+          2012-04-01
       </time>
     
     
     | 
-    <a href='/tag/Qubes/'>Qubes</a>,
+    <a href='/tag/虚拟化/'>虚拟化</a>,
     
-    <a href='/tag/Xen/'>Xen</a>
+    <a href='/tag/VMware/'>VMware</a>,
+    
+    <a href='/tag/ESXi/'>ESXi</a>,
+    
+    <a href='/tag/ESX/'>ESX</a>,
+    
+    <a href='/tag/存储/'>存储</a>,
+    
+    <a href='/tag/vClient/'>vClient</a>,
+    
+    <a href='/tag/vCenter/'>vCenter</a>,
+    
+    <a href='/tag/vSphere/'>vSphere</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/133.seo/">Qubes系统</a></h2>
+      <h2 class="post-title"><a href="/335.seo/">VMware虚拟化--ESXi安装时考虑因素</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        由著名的波兰美女黑客Joanna Rutkowska发布的一个基于Xen和Linux的开源操作系统。  最低配置：     4GB内存    64位Intel或AMD处理器（又名x86_64的64又名AMD64）    英特尔GPU的强烈偏好（如果你有NVIDIA GPU，准备一些故障排除 ;我们没有测试ATI硬件）    10GB磁盘（请注意，它是可能的外部USB硬盘上安装的Qubes，所以，你可以尝试在不牺牲你当前的系统，它记住，但
+        <p>虚拟化不仅仅是将服务器虚拟化了，同时包括了网络，存储等，所以在搭建虚拟化环境之前一定要规划好虚拟化的架构。</p>
+<p>搭建虚拟化环境首先要解决几个问题：</p>
+<ol>
+<li><p>安装ESXi的什么版本，是Installable还是Embedded版本？</p>
+</li>
+<li><p>采用哪种型号的硬件服务器？</p>
+</li>
+<li><p>使用哪种存储，采用哪种连接方式与服务器进行连接？ FC-SAN,iSCSI-SAN</p>
+</li>
+<li><p>ESXi网络架构如何设置？</p>
+</li>
+<li><p>ESXi Installable还是Embedded版本</p>
+</li>
+</ol>
+<p>ESXi Installable是传统的安装方式，可以安装到本地硬盘，FC-SAN，U盘等等设备上。</p>
+<p>ESXi Embedded已经安装在服务器上的，这样可以节省了管理员的安装ESXi的时间。</p>
+<ol>
+<li>采用哪种型号的硬件服务器？</li>
+</ol>
+<p>在服务器选型的时候最好去官网的兼容性列表（HLC）查询下，查询地址：<a href="http://www.vmware.com/resources/compatibility/search.php">http://www.vmware.com/resources/compatibility/search.php</a></p>
+<p>选择硬件服务器不单单要考虑兼容性，也要考虑机器的配置，比如CPU，内存，因为物理CPU和内存是和授权的费用息息相关的。</p>
+<ol>
+<li>使用哪种存储，采用哪种连接方式与服务器进行连接？</li>
+</ol>
+<p>使用哪种存储，以及存储与ESXi服务器的连接方式的选择同样总要，是采用FC，FCoE，iSCSI-SAN，NFS等都需要考虑。</p>
+<p>在选择存储的时候，需要解决一下几个问题：</p>
+<p>a. 选择哪种存储才会与现有的存储和网络有较好的兼容性</p>
+<p>b. 选择的存储性能是否能满足需求</p>
+<p>c. 存储是否支持vSphere的高级功能</p>
+<ol>
+<li>ESXi网络架构如何设置？
       
       </p>
       
       <p>
-          <a href="/133.seo/" class="excerpt-link">Read More...</a>
+          <a href="/335.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -177,27 +217,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-10-10T23:19:41.000Z" itemprop="datePublished">
-          2011-10-11
+      <time datetime="2012-03-29T08:39:44.000Z" itemprop="datePublished">
+          2012-03-29
       </time>
     
     
     | 
-    <a href='/tag/CentOS/'>CentOS</a>
+    <a href='/tag/添加swap空间/'>添加swap空间</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/121.seo/">Linux下多线程下载工具 - Axel</a></h2>
+      <h2 class="post-title"><a href="/329.seo/">添加Linux业务服务器SWAP空间</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>Axel 是 Linux 下一个不错的HTTP/FTP高速下载工具。支持多线程下载、断点续传，且可以从多个地址或者从一个地址的多个连接来下载同一个文件。适合网速不给力时多线程下载提高下载速度。比如在国内VPS或服务器上下载lnmp一键安装包用Axel就比wget快。 </p>  <p>CentOS安装Axel： </p>  <p>目前yum源上没有Axel，我们可以到<a href="http://pkgs.repoforge.org/axel/下载rpm包安装。">http://pkgs.repoforge.org/axel/下载rpm包安装。</a> </p>  <p>32位CentOS执行下面命令： </p>  <p>wget -c <a href="http://pkgs.repoforge.org/axel/axel-2.4-1.el5.rf.i386.rpm">http://pkgs.repoforge.org/axel/axel-2.4-1.el5.rf.i386.rpm</a>    <br />rpm -ivh axel-2.4-1.el5.rf.i386.rpm</p>
+        今天一客户突然打电话过来，说有一台Linux服务器发出swap空间不足的报警，要我们过去查看一下并解决。赶到客户机房后，仔细查看一番，发现没有内存泄漏，是真的swap不足。原本是想直接kill掉memcached，但其公司的应用程序使用人员说大半年才存满这点cache，kill掉就全毁了，那么就只能是直接添加swap分区了。由于是要在业务服务器上直接操作，那么就需要很小心加细心的操作，以免造成损失，在此就将增加SWAP空间大小步骤和大家
       
       </p>
       
       <p>
-          <a href="/121.seo/" class="excerpt-link">Read More...</a>
+          <a href="/329.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -206,38 +246,41 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2011-10-08T21:42:44.000Z" itemprop="datePublished">
-          2011-10-09
+      <time datetime="2012-03-26T19:46:11.000Z" itemprop="datePublished">
+          2012-03-27
       </time>
     
     
     | 
-    <a href='/tag/MeeGo/'>MeeGo</a>,
+    <a href='/tag/Tomcat/'>Tomcat</a>,
     
-    <a href='/tag/双系统/'>双系统</a>
+    <a href='/tag/Apache/'>Apache</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/117.seo/">安装MeeGo双系统</a></h2>
+      <h2 class="post-title"><a href="/309.seo/">Tomcat VS. Apache：您钟情于哪一款？</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>MeeGo的常规安装方法是从MeeGo官方网站下载MeeGo最新的镜像，然后用工具写到U盘中，将目标机器从此U盘启动，选择安装MeeGo，按默认方式MeeGo就会被安装到此目标机器中。如果目标机器原来有linux分区，则默认情况下linux分区将会被删除，重新按MeeGo默认方式分区；或者如果原来没有linux分区，有剩余空间，则会在剩余空间上按MeeGo默认方式分区。</p>  <p>&#160;&#160;&#160; 为了能体验不同版本的MeeGo系统，而手头上兼容MeeGo的机器有限的情况下，那如何办呢？有一种方式是主机安装一个系统，其他的系统用U盘直接启动。这种方法不方便的地方有两个：一个是需要为每个MeeGo系统准备一个U盘；二是U盘启动的系统安装的软件 写入的数据好像是不会保存的。现在的电脑一般都有比较大的硬盘，是有足够多的空间安装多个MeeGo系统的，显然只安装一个MeeGo系统是太浪费了。</p>  <p>&#160;&#160;&#160; 笔者的环境是这样的，在一台Lenovo S10-3t可旋转触屏的上网本上已经安装了MeeGo 1.1的Netbook版本，由于最新推出了MeeGo 1.2 tablet预览版，笔者想同时体验一下，需要在同一台上网本上再安装上Tablet系统。下载镜像，写入U盘，然后从U盘启动，在进入到处理分区的如下页面时，我们需要选择“Create custom layout”。   <br /><a href="http://software.intel.com/zh-cn/blogs/wordpress/wp-content/uploads/2011/03/Meego_install_02.jpg"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="wps_clip_image-14810" border="0" alt="wps_clip_image-14810" src="http://img.cker.in/MeeGo_BE46/wps_clip_image14810.png" width="244" height="184" /></a></p>
+        <p><strong>导读：原文作者Michael Dorf是一名专业的软件架构师，Web开发者，开源爱好者，最近沉迷于WordPress。他在Java和J2EE开发领域拥有十几年的开发经验。文中探讨了Apache与Apache Tomcat之间的区别，帮助开发者选择更加适宜的Web服务器。</strong></p>
+<p><img src="http://articles.csdn.net/uploads/allimg/120322/94_120322160558_1.png" alt="" width="576" height="120" border="0" /></p>
+<p>当你选择使用哪种Web服务器时，或许会因它们的差异性和技术细节等方面而困扰。如何区分Web服务器以及如何为你的项目挑选一款最佳的Web服务器，或许对你来说这是一个很难的决定。鉴于Apache目前最流行的一款Web服务器，本文将探讨Apache与Apache Tomcat两者之间的区别，以满足不同开发者的需求。</p>
+<p>Apache Web服务器通常比称之为“Apache”或者“httpd”，1995年由Robert McCool和它的团队开发，由Apache软件基金会提供支持与维护。Apache是目前最流行的Web应用服务器，拥有超过一亿的网站用户和占据互联网应用服务器63%的份额以及全球最繁忙网站中有66%采用Apache的（比方说，维基百科网站服务器就是使用Apache）。
       
       </p>
       
       <p>
-          <a href="/117.seo/" class="excerpt-link">Read More...</a>
+          <a href="/309.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
   </article>
   
   <nav class="pagination" role="pagination">
-    <a class="newer-posts" href="/category/linux笔记/page/4/">← Newer Posts</a>
-    <span class="page-number">Page 5 of 6</span>
-    <a class="older-posts" href="/category/linux笔记/page/6/">Older Posts →</a>
+    <a class="newer-posts" href="/category/Linux笔记/page/4/">← Newer Posts</a>
+    <span class="page-number">Page 5 of 8</span>
+    <a class="older-posts" href="/category/Linux笔记/page/6/">Older Posts →</a>
   </nav>
 </main>
 

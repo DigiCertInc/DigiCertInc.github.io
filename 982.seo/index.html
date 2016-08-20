@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>社会工程学之诱饵攻击真实案列 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-03-27T06:49:01.000Z" itemprop="datePublished">
+          2013-03-27
+      </time>
+    
+    
+    | 
+    <a href='/tag/社会工程学/'>社会工程学</a>
+    
+    
+</span>
+    <h1 class="post-title">社会工程学之诱饵攻击真实案列</h1>
+    <section class="post-content">
+      <p>近日，安全公司Trustwave的SpiderLabs实验室做了一系列<a href="http://ha.cker.in/tag/社会工程学" target="_blank">社会工程学</a>的实验，使用了社工种经典的手法，证明这些手法仍然非常有效，利用人的好奇心获得了需要的信息。</p>  <p>详细过程：</p>  <p>首先SpiderLabs收集了目标公司员工名单信息，包含姓名、住址等，然后决定使用让用户更新自己的杀毒软件的方法进行攻击。</p>  <p>SpiderLabs提供了一个社工中攻击的经典模板，并与U盘或CD光盘一起寄送给目标用户，模板内容如下：</p>  <p>亲爱的员工XX（直呼其名）</p>  <p>在公司最近的一次安全风险评估中，我们在您的电脑上发现杀毒软件已经过期了。对公司造成了一定的潜在风险，通过网络我们查到了您的住址（真实住址），我们需要您合作，一起降低该风险。</p>  <p>您收到的这个U盘中包含了杀毒软件更新程序，请将U盘连接到您的计算机，并按照下面的说明来安装更新：</p>  <div>   <pre>1：双击图标“我的电脑”。<br><br>2：双击可移动磁图标上对应的U盘驱动器。<br><br>3：双击“防病毒更新”程序。<br><br>如果更新程序执行成功，你会看到以下信息：“杀毒软件更新成功”，一旦您执行这些步骤，能将您的杀毒软件更新到最新版本，并能保护您的计算机免受病毒威胁。<br><br>我们非常感谢您对（公司名称）的帮助<br><br>公司的名称<br><br>信息安全团队<br><br>地址</pre><br></div><br><br><br><br><br><p>在此类攻击中，SpiderLabs表示通常使用的U盘，这些“防病毒更新”程序都是特殊定制的木马软件。在本次实验中总共寄出去15个包，其中1个用户中标。</p>
+
+<p>在另外一个实验中，SpiderLabs在目标公司的停车场扔了两个U盘，在大楼前的人行道上又扔了一个U盘。几天后，该公司的某管理人员就在计算机上插入了该U盘，通过用户名得知该用户为看门老大爷，虽然没有权限接入到该公司的核心系统，但是SpiderLabs可以通过该计算机来控制一些出入口、摄像头等。</p>
+
+<p><a href="http://img.cker.in/bc6cc5e42500_140B2/clip_image001.jpg" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/bc6cc5e42500_140B2/clip_image001_thumb.jpg" width="804" height="677"></a></p>
+
+<p>SpiderLabs使用“<a href="http://support.microsoft.com/kb/269523" target="_blank" rel="external">Named Pipe Impersonation</a>” 方法提升到本地管理员权限，并能查找到注册表中存储的WPA密码，加入到无线内网中去，而且还可以穷举或字典破解无线网络密码。</p>
+
+<p>[via <a href="http://blog.spiderlabs.com/2013/03/baiting-attack-exercise-the-old-school-way-still-works.html" target="_blank" rel="external">SpiderLabs</a>]</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/982.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/982.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/982.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/982.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/983.seo/">
+        ← 抓取谷歌搜索结果里的支付宝帐号
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/981.seo/">
+        中国黑客传说：游走在黑暗中的精灵 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

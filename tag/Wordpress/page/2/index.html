@@ -45,6 +45,116 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
+      <time datetime="2012-09-11T21:47:22.000Z" itemprop="datePublished">
+          2012-09-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/Wordpress/'>Wordpress</a>,
+    
+    <a href='/tag/SQL-Injection/'>SQL Injection</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/820.seo/">WordPress BBPress SQL Injection   Path Disclosure</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+         # Exploit Title: Wordpress plugins - bbpress Multiple Vulnerabilities.   # Date: 31 August 2012    # Author: Dark-Puzzle (Souhail Hammou)    # Vendor Website : www.bbpress.ru / www.bbpress.com    # Risk : Critical    # 
+      
+      </p>
+      
+      <p>
+          <a href="/820.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-08-09T18:23:55.000Z" itemprop="datePublished">
+          2012-08-10
+      </time>
+    
+    
+    | 
+    <a href='/tag/Wordpress/'>Wordpress</a>,
+    
+    <a href='/tag/入侵/'>入侵</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/750.seo/">转国外 干掉一个wp站点</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>他站点（旁站：sameip.org）：</p>
+<p><a href="http://img.cker.in/wp_90E7/clip_image001.png" target="_blank"><img style="display: inline; border: 0px;" title="clip_image001" src="http://img.cker.in/wp_90E7/clip_image001_thumb.png" alt="clip_image001" width="541" height="296" border="0" /></a></p>
+<p><a href="http://sameip.org/">Same IP</a>   26 sites hosted on IP Address 173.236.138.113</p>
+<p style="text-align: justify;"><strong>IDDomainSite Link</strong>1</p>
+
+<p><pre>hijackthisforum.com<a href="http://www.hijackthisforum.com/">hijackthisforum.com</a>2sportforum.net<a href="http://www.sportforum.net/">sportforum.net</a>3freeonlinesudoku.net<a href="http://www.freeonlinesudoku.net/">freeonlinesudoku.net</a>4cosplayhell.com<a href="http://www.cosplayhell.com/">cosplayhell.com</a>5videogamenews.org<a href="http://www.videogamenews.org/">videogamenews.org</a>6gametour.com<a href="http://www.gametour.com/">gametour.com</a>7qualitypetsitting.net<a href="http://www.qualitypetsitting.net/">qualitypetsitting.net</a>8brendanichols.com<a href="http://www.brendanichols.com/">brendanichols.com</a>98ez.com<a href="http://www.8ez.com/">8ez.com</a>10hack-test.com<a href="http://www.hack-test.com/">hack-test.com</a>11kisax.com<a href="http://www.kisax.com/">kisax.com</a>12paisans.com<a href="http://www.paisans.com/">paisans.com</a>13mghz.com<a href="http://www.mghz.com/">mghz.com</a>14debateful.com<a href="http://www.debateful.com/">debateful.com</a>15jazzygoodtimes.com<a href="http://www.jazzygoodtimes.com/">jazzygoodtimes.com</a>16fruny.com<a href="http://www.fruny.com/">fruny.com</a>17vbum.com<a href="http://www.vbum.com/">vbum.com</a>18wuckie.com<a href="http://www.wuckie.com/">wuckie.com</a>19force5inc.com<a href="http://www.force5inc.com/">force5inc.com</a>20virushero.com<a href="http://www.virushero.com/">virushero.com</a>21twincitiesbusinesspeernetwork.com<a href="http://www.twincitiesbusinesspeernetwork.com/">twincitiesbusinesspeernetwork.com</a>22jennieko.com<a href="http://www.jennieko.com/">jennieko.com</a>23davereedy.com<a href="http://www.davereedy.com/">davereedy.com</a>24joygarrido.com<a href="http://www.joygarrido.com/">joygarrido.com</a>25prismapp.com<a href="http://www.prismapp.com/">prismapp.com</a>26utiligolf.com<a href="http://www.utiligolf.com/">utiligolf.com</a></pre><br>总计有26个站点在[173.236.138.113]这台服务器上。为了黑掉目标站点，许多黑客会把目标站点同服的其他站点也划入攻击范围内。但是出于学习的目的，我们今天暂且将其他站点放在一边。</p>
+<p>我们需要更多关于目标站点的信息（Ps：笔者认为在渗透测试过程中，这比实施测试的环节来得重要得多。），他们包括：</p>
+<p>1.DNS记录（A，NS，TXT，MX）</p>
+<p>2.WEB服务类型（IIS，APACHE，TOMCAT）</p>
+<p>3.域名注册者的信息（所持有域名公司等）</p>
+<p>4.目标站点管理员（相关人员）的姓名，电话，邮箱和住址等</p>
+<p>5.目标站点所支持的脚本类型（PHP，ASP，JSP，ASP.net，CFM）</p>
+<p>6.目标站点的操作系统（UNIX,LINUX,WINDOWS,SOLARIS）</p>
+<p>7.目标站点开放的端口</p>
+<p>让我们先来查询相关DNS记录吧，这里用的是 who.is：</p>
+<p><a href="http://img.cker.in/wp_90E7/clip_image002.png" target="_blank"><img style="display: inline; border: 0px;" title="clip_image002" src="http://img.cker.in/wp_90E7/clip_image002_thumb.png" alt="clip_image002" width="596" height="326" border="0" /></a></p>
+      
+      </p>
+      
+      <p>
+          <a href="/750.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-07-18T00:15:35.000Z" itemprop="datePublished">
+          2012-07-18
+      </time>
+    
+    
+    | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/Wordpress/'>Wordpress</a>,
+    
+    <a href='/tag/爆路径/'>爆路径</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/717.seo/">Wordpress爆路径漏洞</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>1337爆出个Wordpress全版本爆路径漏洞，某大黑一来就想溢出我，把我给吓尿了……我求求你不要溢出我的小站，各位大黑阔手下留情刀下留人管下留撸。。</p>  <p>全版本<a href="http://ha.cker.in/wp-includes/registration-functions.php">http://ha.cker.in/wp-includes/registration-functions.php</a></p>  <p>&#160;</p>  <p>我也发几个，Wordpress爆路径</p>  <p>&#160;&#160;&#160; /wp-includes/rss.php   <br />&#160;&#160;&#160; /wp-includes/rss-functions.php    <br />&#160;&#160;&#160; /wp-includes/shortcodes.php    <br />&#160;&#160;&#160; wp-includes/taxonomy.php    <br />&#160;&#160;&#160; /wp-includes/script-loader.php</p>  <p>例子   <br /><a href="http://www.wordpress-fr.net/wp-includes/rss.php">http://www.wordpress-fr.net/wp-includes/rss.php</a>    <br /><a href="http://www.jinxiaoblog.com/wp-includes/rss.php">http://www.jinxiaoblog.com/wp-includes/rss.php</a>    <br /><a href="http://www.vibethemes.com/wp-includes/rss.php">http://www.vibethemes.com/wp-includes/rss.php</a>    <br /><a href="http://www.wordpress-fr.net/wp-includes/shortcodes.php">http://www.wordpress-fr.net/wp-includes/shortcodes.php</a>    <br /><a href="http://www.wordpress-fr.net/wp-includes/script-loader.php">http://www.wordpress-fr.net/wp-includes/script-loader.php</a></p>  <p>&#160;</p>  <p>随便测试了几个大牛. 基本都中枪.   <br /></p>  <p><a href="http://blog.gentilkiwi.com/wp-includes/rss.php">http://blog.gentilkiwi.com/wp-includes/rss.php</a>    <br /><a href="http://www.0x50sec.org/wp-includes/rss-functions.php">http://www.0x50sec.org/wp-includes/rss-functions.php</a>    <br /><a href="http://www.dis9.com/wp-includes/shortcodes.php">http://www.dis9.com/wp-includes/shortcodes.php</a>    <br /><a href="http://madman.in/wp-includes/script-loader.php">http://madman.in/wp-includes/script-loader.php</a>    <br /><a href="http://www.tzsec.net/wp-includes/taxonomy.php">http://www.tzsec.net/wp-includes/taxonomy.php</a>    <br /><a href="http://www.secreader.com/wp-includes/rss.php">http://www.secreader.com/wp-includes/rss.php</a></p>
+      
+      </p>
+      
+      <p>
+          <a href="/717.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
       <time datetime="2012-06-21T14:26:53.000Z" itemprop="datePublished">
           2012-06-21
       </time>

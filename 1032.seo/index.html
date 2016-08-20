@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>XAMPP 1.8.1本地文件写入漏洞 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-10-09T22:34:36.000Z" itemprop="datePublished">
+          2013-10-10
+      </time>
+    
+    
+    | 
+    <a href='/tag/xampp/'>xampp</a>
+    
+    
+</span>
+    <h1 class="post-title">XAMPP 1.8.1本地文件写入漏洞</h1>
+    <section class="post-content">
+      <div>   <pre>最近爆出个漏洞 <a href="http://sebug.net/vuldb/ssvid-61054" target="_blank" rel="external">http://sebug.net/vuldb/ssvid-61054</a></pre><br><br>  <pre>先ctrl+c 段e文装逼</pre><br><br>  <pre>XAMPP 1.8.1 Local Write Access Vulnerability<br>From: ISecAuditors Security Advisories <span style="color: #0000ff">&lt;</span><span style="color: #800000">advisories</span> () <span style="color: #ff0000">isecauditors</span> <span style="color: #ff0000">com</span><span style="color: #0000ff">&gt;</span><br>Date: Thu, 26 Sep 2013 12:55:50 +0200<br>=============================================<br>INTERNET SECURITY AUDITORS ALERT 2013-007<br>- Original release date: March 14th, 2013<br>- Last revised:  March 19th, 2013<br>- Discovered by: Manuel García Cárdenas<br>- Severity: 6,8/10 (CVSS Base Score)<br>- CVE-ID: CVE-2013-2586<br>=============================================<br><br>I. VULNERABILITY<br>————————-<br><a href="http://Ha.Cker.In/tag/XAMPP" target="_blank">XAMPP</a> 1.8.1 Local Write Access Vulnerability<br><br>II. BACKGROUND<br>————————-<br>XAMPP is a free and open source cross-platform web server solution stack<br>package, consisting mainly of the Apache HTTP Server, MySQL database, and<br><br>interpreters for scripts written in the PHP and Perl programming languages.<br><br>III. DESCRIPTION<br>————————-<br>It has been detected than an unprivileged user can write in the local<br>disk and the local file &quot;lang.tmp&quot; can be modified in the remote machine.<br><br>The injection is done through the page &quot;/xampp/lang.php&quot;.<br><br>IV. PROOF OF CONCEPT<br>————————-<br>Malicious Request<br><br><a href="http://vulnerablesite.com/xampp/lang.php?WriteIntoLocalDisk" target="_blank" rel="external">http://vulnerablesite.com/xampp/lang.php?WriteIntoLocalDisk</a><br><br>And next, if we access to the file:<br><br><a href="http://vulnerablesite.com/xampp/lang.tmp" target="_blank" rel="external">http://vulnerablesite.com/xampp/lang.tmp</a><br><br>We can verify that the file was modified.<br><br>V. BUSINESS IMPACT<br>————————-<br>An attacker can execute arbitrary HTML or script code in a targeted<br>user’s browser, this can leverage to steal sensitive information as user<br>credentials,<br><br>personal data, etc.<br><br>VI. SYSTEMS AFFECTED<br>————————-<br>XAMPP 1.8.1<br><br>VII. SOLUTION<br>————————-<br>All data received by the application that can be modified by the user<br>must be validated.<br><br>VIII. REFERENCES<br>————————-<br><a href="http://www.apachefriends.org" target="_blank" rel="external">http://www.apachefriends.org</a><br><a href="http://www.isecauditors.com" target="_blank" rel="external">http://www.isecauditors.com</a><br><br>IX. CREDITS<br>————————-<br>This vulnerability has been discovered<br>by Manuel García Cárdenas (mgarcia (at) isecauditors (dot) com).<br><br>X. REVISION HISTORY<br>————————<br>March           14, 2013: Initial release<br>September   26, 2013: Final release<br><br>XI. DISCLOSURE TIMELINE<br>————————-<br>March            14, 2013: Vulnerability acquired by Internet Security<br>Auditors (www.isecauditors.com).<br>March            16, 2013: CVE-ID received.<br>March            18, 2013: Sent to Development Manager.<br>August           30, 2013: New version that includes patched code.<br>September   26, 2013: Sent to lists.<br><br><br>XII. LEGAL NOTICES<br>————————-<br>The information contained within this advisory is supplied &quot;as-is&quot; with<br>no warranties or guarantees of fitness of use or otherwise. Internet<br>Security<br><br>Auditors accepts no responsibility for any damage caused by the use or<br>misuse of this information.<br><br>XIII. ABOUT<br>————————-<br>Internet Security Auditors is a Spain based leader in web application<br>testing, network security, penetration testing, security compliance<br>implementation and<br><br>assessing. Our clients include some of the largest companies in areas<br>such as finance, telecommunications, insurance, ITC, etc. We are vendor<br>independent<br><br>provider with a deep expertise since 2001. Our efforts in R&amp;D include<br>vulnerability research, open security project collaboration and<br>whitepapers,<br><br>presentations and security events participation and promotion. For<br>further information regarding our security services, contact us.<br><br>XIV. FOLLOW US<br>————————-<br>You can follow Internet Security Auditors, news and security advisories at:<br><a href="https://www.facebook.com/ISecAuditors" target="_blank" rel="external">https://www.facebook.com/ISecAuditors</a><br><a href="https://twitter.com/ISecAuditors" target="_blank" rel="external">https://twitter.com/ISecAuditors</a><br><a href="http://www.linkedin.com/company/internet-security-auditors" target="_blank" rel="external">http://www.linkedin.com/company/internet-security-auditors</a><br><a href="http://www.youtube.com/user/ISecAuditors" target="_blank" rel="external">http://www.youtube.com/user/ISecAuditors</a><br><br><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>___</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong><br>Full-Disclosure - We believe in it.<br>Charter: <a href="http://lists.grok.org.uk/full-disclosure-charter.html" target="_blank" rel="external">http://lists.grok.org.uk/full-disclosure-charter.html</a><br>Hosted and sponsored by Secunia - <a href="http://secunia.com/" target="_blank" rel="external">http://secunia.com/</a></pre><br></div>
+
+<p><br></p>
+<p>找个环境看看，<a href="http://124.217.227.162/xampp/lang.php?welcome%20to%20ha.cker.in" target="_blank" rel="external">http://124.217.227.162/xampp/lang.php?welcome%20to%20ha.cker.in</a></p>
+
+<p><a href="http://img.cker.in/XAMPP1.8.1_CCC4/image.png" target="_blank" rel="external"><img title="image" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="250" alt="image" src="http://img.cker.in/XAMPP1.8.1_CCC4/image_thumb.png" width="677" border="0"></a> </p>
+
+<p>再访问下 <a href="http://124.217.227.162/xampp/lang.tmp" target="_blank" rel="external">http://124.217.227.162/xampp/lang.tmp</a></p>
+
+<p>内容写入成功了：</p>
+
+<p><a href="http://img.cker.in/XAMPP1.8.1_CCC4/image_3.png" target="_blank" rel="external"><img title="image" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="86" alt="image" src="http://img.cker.in/XAMPP1.8.1_CCC4/image_thumb_3.png" width="449" border="0"></a> </p>
+
+<p>好吧，写个js看看 <a href="http://124.217.227.162/xampp/lang.php?&lt;script&gt;alert(1)&lt;/script&gt;" target="_blank" rel="external">alert(1)&quot;&gt;alert(1)&quot;&gt;http://124.217.227.162/xampp/lang.php?&lt;script&gt;alert(1)&lt;/script&gt;</a></p>
+
+<p>访问下 内容是这样的</p>
+
+<p><a href="http://img.cker.in/XAMPP1.8.1_CCC4/image_4.png" target="_blank" rel="external"><img title="image" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="89" alt="image" src="http://img.cker.in/XAMPP1.8.1_CCC4/image_thumb_4.png" width="481" border="0"></a></p>
+
+<p>有个毛用啊，写个php试试</p>
+
+<p><a href="http://124.217.227.162/xampp/lang.php?&lt;?phpinfo();?&gt;" target="_blank" rel="external">&quot;&gt;&quot;&gt;http://124.217.227.162/xampp/lang.php?&lt;?phpinfo();?&gt;</a></p>
+
+<p>也不行啊</p>
+
+<p><a href="http://img.cker.in/XAMPP1.8.1_CCC4/image_5.png" target="_blank" rel="external"><img title="image" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="101" alt="image" src="http://img.cker.in/XAMPP1.8.1_CCC4/image_thumb_5.png" width="396" border="0"></a> </p>
+
+<p>还说可以写html代码和脚本代码呢！！！</p>
+
+<p>有试成功的吗？？？</p>
+
+<p>&#160;</p>
+
+<p>下个xampp 1.8.1看看代码</p>
+
+<p>\xampp\lang.php</p>
+
+<p><div><br>  <pre><span style="color: #0000ff">&lt;?</span>php<br> $fp=<a style="color: #ffa500" href="http://www.php.net/fopen" target="_blank" rel="external">fopen</a>(&quot;<span style="color: #8b0000">lang.tmp</span>&quot;,&quot;<span style="color: #8b0000">w</span>&quot;);<br> <a style="color: #ffa500" href="http://www.php.net/fwrite" target="_blank" rel="external">fwrite</a>($fp, <a style="color: #ffa500" href="http://www.php.net/basename" target="_blank" rel="external">basename</a>($_SERVER[‘<span style="color: #8b0000">QUERY_STRING</span>‘])); // basename() 函数返回路径中的文件名部分<br> <a style="color: #ffa500" href="http://www.php.net/fclose" target="_blank" rel="external">fclose</a>($fp);<br> <a style="color: #ffa500" href="http://www.php.net/header" target="_blank" rel="external">header</a>(&quot;<span style="color: #8b0000">Location: index.php</span>&quot;);<br><span style="color: #0000ff">?&gt;</span></pre><br></div><br>想想怎么利用呢。。。够鸡肋、 </p>
+<p><br></p>
+<p>&#160;</p>
+
+<p><a href="http://seclists.org/fulldisclosure/2013/Sep/167" target="_blank" rel="external">http://seclists.org/fulldisclosure/2013/Sep/167</a></p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1032.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1032.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1032.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1032.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/1033.seo/">
+        ← tipask问答系统2.0 ajaxsearch二次编码注入漏洞
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/1031.seo/">
+        四大传奇-中国网络黑客组织 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

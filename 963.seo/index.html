@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>正确重置MySQL密码 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-01-10T02:08:25.000Z" itemprop="datePublished">
+          2013-01-10
+      </time>
+    
+    
+    | 
+    <a href='/tag/Mysql/'>Mysql</a>
+    
+    
+</span>
+    <h1 class="post-title">正确重置MySQL密码</h1>
+    <section class="post-content">
+      <p>如果你忘记了<a href="http://ha.cker.in/tag/MySQL" target="_blank">MySQL</a>密码，如何重置它呢? </p>  <p>下面是错误答案：    <br>首先停止MySQL服务，然后使用skip-grant-tables参数启动它：     <br>shell&gt; /etc/init.d/mysql stop     <br>shell&gt; mysqld_safe –skip-grant-tables &amp;     <br>此时无需授权就可以进入到MySQL命令行，使用SQL重置MySQL密码： </p>  <p>UPDATE mysql.user SET Password=PASSWORD(‘…’) WHERE User=’…’ AND Host= ‘…’;    <br>FLUSH PRIVILEGES; </p>  <p>为什么说它是错误答案?因为在单纯使用skip-grant-tables参数启动服务后，除非数据库服务器屏蔽了外网访问，否则除了自己，其它别有用心的人也可能访问数据库，尽管重置密码所需的时间很短，但俗话说不怕贼偷就怕贼惦记着，任何纰漏都可能酿成大祸。 </p>  <p>下面是正确答案：    <br>关键点是：在使用skip-grant-tables参数的同时，还要加上skip-networking参数：     <br>shell&gt; /etc/init.d/mysql stop     <br>shell&gt; mysqld_safe –skip-grant-tables –skip-networking &amp;     <br>接着使用SQL重置密码后，记得去掉skip-networking，以正常方式重启MySQL服务：     <br>shell&gt; /etc/init.d/mysqld restart     <br>上面的方法需要重启两次服务，实际上还能更优雅一点，重启一次即可： </p>  <p>首先需要把用到的SQL语句保存到一个文本文件里(/path/to/init/file)： </p>  <p>UPDATE mysql.user SET Password=PASSWORD(‘…’) WHERE User=’…’ AND Host= ‘…’;    <br>FLUSH PRIVILEGES; </p>  <p>接着使用init-file参数启动MySQL服务， </p>  <p>shell&gt; /etc/init.d/mysql stop </p>  <p>shell&gt; mysqld_safe –init-file=/path/to/init/file &amp; </p>  <p>此时，密码就已经重置了，最后别忘了删除文件内容，免得泄露密码。 </p>  <p>提示：本文用到的参数都是通过命令行mysqld_safe传递的，实际上也可以通过my.cnf。 </p>  <p>参考：关于重置密码，官方文档里有专门的描述：<a href="http://dev.mysql.com/doc/refman/5.5/en/resetting-permissions.html" target="_blank" rel="external">http://dev.mysql.com/doc/refman/5.5/en/resetting-permissions.html</a></p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/963.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/963.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/963.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/963.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/964.seo/">
+        ← 为什么还有人雇佣糟糕的程序员？
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/962.seo/">
+        代码审计：ECShop V2.7.3 GBK release1106注入0day及修复 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

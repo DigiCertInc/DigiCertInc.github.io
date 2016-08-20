@@ -45,29 +45,22 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-31T03:18:49.000Z" itemprop="datePublished">
-          2012-08-31
+      <time datetime="2012-11-23T05:38:56.000Z" itemprop="datePublished">
+          2012-11-23
       </time>
     
-    
-    | 
-    <a href='/tag/Metasploit/'>Metasploit</a>,
-    
-    <a href='/tag/0day/'>0day</a>
-    
-    
 </span>
-      <h2 class="post-title"><a href="/794.seo/">Metasploit利用CVE-2012-4681 java 0day入侵Windows</a></h2>
+      <h2 class="post-title"><a href="/943.seo/">黑客利用漏洞盗取巨款 买张点卡就能送你20万</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p><p>作者：Secer</p>  <p>博客：<a href="http://Ha.cker.in" target="_blank">http://Ha.cker.in</a></p>  <p>Q Q：278641414</p>  <p>新手教程，仅为交流和进步，大牛勿喷。</p>  <p>最近java爆<a href="http://ha.cker.in/tag/0day" target="_blank">0day</a>了，很多新手童鞋不知道怎么利用，下面把我自己的研究成果抛砖引玉给大家，见笑了。</p>  <p>0x01 肉鸡环境安装</p>  <p>Java的<a href="http://ha.cker.in/tag/0day" target="_blank">0day</a>，首先当然要在XP测试机里面安装Jre环境，Jre下载地址在这<a href="http://jdk7.java.net/download.html">http://jdk7.java.net/download.html</a>或者<a href="http://www.xdowns.com/soft/6/56/2011/Soft_75169.html">http://www.xdowns.com/soft/6/56/2011/Soft_75169.html</a></p>  <p>我下的是Java Runtime Environment (JRE) 7.0 Update 6 windows-i586.exe如图1：</p>  <p><a href="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image001.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image001_thumb.png" width="576" height="51" /></a></p>  <p>图1</p>  <p>安装直接下一步即可，如图2：</p>  <p><a href="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image002.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image002_thumb.png" width="531" height="420" /></a></p>  <p>图2</p>  <p>安装完成后运行java –version命令看是否可以显示版本，如果显示了即表示安装成功！同时下图看到XP测试机IP为192.168.1.107，如图3：</p>  <p><a href="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image004.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image004_thumb.jpg" width="596" height="321" /></a></p>  <p>图3</p>  <p>同时运行Backtrack 5 虚拟机，Backtrack的IP为192.168.1.106，和测试机在同一局域网，运行<a href="http://ha.cker.in/tag/Metasploit" target="_blank">Metasploit</a>如图4：</p>  <p><a href="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image006.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image006_thumb.jpg" width="596" height="373" /></a></p>  <p>图4</p>  <p>0x02 给<a href="http://ha.cker.in/tag/Metasploit" target="_blank">Metasploit</a>添加模块</p>  <p>我的bt5里的<a href="http://ha.cker.in/tag/Metasploit" target="_blank">Metasploit</a>没有更新，默认当然是没有Java <a href="http://ha.cker.in/tag/0day" target="_blank">0day</a>利用模块的，图5中可以看到684个Exploits：</p>  <p><a href="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image008.jpg" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image008_thumb.jpg" width="596" height="216" /></a></p>  <p>图5</p>  <p>下面我们来给<a href="http://ha.cker.in/tag/Metasploit" target="_blank">Metasploit</a>添加利用java漏洞必要的模块，可以到<a href="http://dev.metasploit.com/redmine/projects/framework/repository/revisions/52ca1083c22de7022baf7dca8a1756909f803341">这里</a>下载查看相关模块，如图6：</p>  <p><a href="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image009.png" target="_blank"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image009" border="0" alt="clip_image009" src="http://img.cker.in/MetasploitCVE20124681java0dayWindows_1070E/clip_image009_thumb.png" width="256" height="340" /></a></p>  <p>图6</p>  <p>下载Exploit.class、Exploit.java、java_jre17_exec.rb三个文件分别放到/opt/framework3/msf3目录下如图6所示对应的目录中，添加好了之后运行reload_all重新加载各模块，看到Metasploit里多了一个Exploit现在是685如图8：</p>
+             一张网络游戏点卡竟然定价“-20万元”，这意味着你买这张点卡，卖家还要送你20万元。这样的事情不管你信不信，但还是发生了。合肥高新警方日前破获一起特大网络盗窃案：24岁的电脑高手鲍某利用合肥一家网络公司的网络交易平台的系统漏洞，将平台上所售商品的价格定为负值，从而进行盗窃，涉案金额高达109万元。近日，鲍某被批捕。   今年8月，位于合肥市高新区的一家网络公司的财务人员在梳理账目时发现，公司的网络资金室少了109万元。发现钱少
       
       </p>
       
       <p>
-          <a href="/794.seo/" class="excerpt-link">Read More...</a>
+          <a href="/943.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -76,29 +69,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-31T02:22:26.000Z" itemprop="datePublished">
-          2012-08-31
+      <time datetime="2012-11-22T04:46:22.000Z" itemprop="datePublished">
+          2012-11-22
       </time>
     
     
     | 
-    <a href='/tag/入侵/'>入侵</a>,
-    
-    <a href='/tag/提权/'>提权</a>
+    <a href='/tag/php/'>php</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/791.seo/">轮奸某黑客学校网站</a></h2>
+      <h2 class="post-title"><a href="/942.seo/">服务器变量$_SERVER详解</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>摘自<a href="http://gov.com.im" target="_blank">流亡青年</a></p>  <p>写之前抱怨一下：Fuck,不知道被哪位大牛种马了，刚写好的文档，还有相关文件都没了，囸！</p>  <p>本来没准备搞他，但是前天帮1朋友搞他们学校网络中心时想起来<a href="http://gov.com.im/art_design/2011/1127/CmdH4ck.html">CmdH4ck</a>大黑阔在这个学校（CmdH4ck：吐司黑阔，曾一起参加过比赛，获得第一，RMB3K），于是便顺手检测下主站。    <br />打开主站，<a href="http://wwwxxx.edu.cn">http://wwwxxx.edu.cn</a>    <br />点开一个链接，asp的，加一个’试试，跳出了这个：</p>  <p><a href="http://gov.com.im/uploads/allimg/111127/102Q2G28-0.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/87797fec8afa_10233/clip_image001.png" width="465" height="143" /> </a></p>  <p>还好挂了个VPN，语言这么嚣张，难道是CmdH4ck修补的？   <br />先看看其他分站，主站一般都很安全，突然想起来Gucci那mjj的上次检测我学校时（主站他没拿下，拿的都是有注入和弱口令的一些学院网站），尼玛，他在每个目录都放一个他的Gucci.asp，我删的累死了，然后就去把他学校给xxoo了，不过我囸的是主站，没有恶意，挂了一个txt友情提醒。</p>  <p>走题了，继续，看到<a href="http://A.xxx.edu.cn，感觉页面有点熟悉，随手加了个admin,后台出来了：">http://A.xxx.edu.cn，感觉页面有点熟悉，随手加了个admin,后台出来了：</a></p>  <p><a href="http://gov.com.im/uploads/allimg/111127/102Q2N13-1.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/87797fec8afa_10233/clip_image002.png" width="532" height="174" /></a></p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Powereasy 2006.   <br />注册一个用户abc.asp，上传图片马，    <br />地址：<a href="http://xxx/user/Upload.asp?dialogtype=UserBlogPic&amp;size=5">http://xxx/user/Upload.asp?dialogtype=UserBlogPic&amp;size=5</a>    <br />抓包获得shell地址    <br />原理大家都懂，不解释了。</p>  <p>菜刀成功连接：</p>  <p><a href="http://gov.com.im/uploads/allimg/111127/102Q2K49-2.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/87797fec8afa_10233/clip_image003.png" width="551" height="277" /></a></p>  <p>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; RP爆发了，这么老的洞竟然没补。。。</p>  <p>上大马，发现不支持aspx和php，不过还好组件在，可执行目录也多。端口扫了下，常见端口一个没开。服务器是一机多IP，从ipconfig的结果来看，主站www也在服务器上，不过当前的shell下还没权限跨目录到主站www目录下。只好提权了，传exp，被杀了，tasklist看到杀软竟然是趋势，感慨一句，CmdH4ck学校真有钱。。。</p>
+        服务器变量$_SERVER 详解：   1、$_SESSION[‘PHP_SELF’] – 获取当前正在执行脚本的文件名   2、$_SERVER[‘SERVER_PROTOCOL’] – 请求页面时通信协议的名称和版本。例如，“HTTP/1.0”。   3、$_SERVER[‘REQUEST_TIME’] – 请求开始时的时间戳。从 PHP 5.1.0 起有效。和time函数效果一样。   4、$_SERVER[‘argv’] – 传
       
       </p>
       
       <p>
-          <a href="/791.seo/" class="excerpt-link">Read More...</a>
+          <a href="/942.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -107,27 +98,33 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-31T00:26:36.000Z" itemprop="datePublished">
-          2012-08-31
+      <time datetime="2012-11-21T21:58:30.000Z" itemprop="datePublished">
+          2012-11-22
       </time>
     
     
     | 
-    <a href='/tag/RedHat/'>RedHat</a>
+    <a href='/tag/提权/'>提权</a>,
+    
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/输入法漏洞/'>输入法漏洞</a>,
+    
+    <a href='/tag/Windows-8/'>Windows 8</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/788.seo/">redhat安装chrome</a></h2>
+      <h2 class="post-title"><a href="/941.seo/">经典提权漏洞再现 - Win8的远程桌面配合QQ拼音纯净版可以实现提权</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        最近在学习linux，安装的是redhat，自带的firefox，由于不习惯firefox，想安装一个chrome，在网上找的安装方法，记录一下方便以后查找   1.创建一个文件/etc/yum.repos.d/google.repo   2.如果是32位的   [google-chrome]name=google-chrome - 32-bitbaseurl=http://dl.google.com/linux/chrome/rpm/
+        <p>没有哪个平台是百分之百安全的，虽然微软<a href="http://ha.cker.in/tag/Windows 8" target="_blank">Windows 8</a>在安全方面进行了很大改进，但是仍然不可避免地出现漏洞。<strong>国内博客</strong><strong><a href="http://www.cnblogs.com/maybreath/archive/2012/11/20/2778875.html">MayBreath</a></strong><strong>就在</strong><strong>Windows 8</strong><strong>上再现了曾经出现过的<a href="http://ha.cker.in/tag/输入法漏洞" target="_blank">输入法漏洞</a>，利用</strong><strong>QQ</strong><strong>拼音实现了<a href="http://ha.cker.in/tag/提权" target="_blank">提权</a>，具体来看一下</strong>：</p>  <p>发现这个漏洞的时候，笔者正在机房上课。正想用3389远程桌面去控制宿舍电脑的时候，因为重做系统忘记自己的IP地址，因此就随手扫描了一下IP段开3389端口的电脑。</p>  <p>没想到就随手扫描到一台Win8的系统，而且这个系统还装了QQ输入法Win8纯净版。</p>  <p>当时我就想起初中时候的那个极品五笔的漏洞，就随手测试了一下，没想到在时隔7、8年后的今天，号称非常安全的Win8系统居然还有如此大的<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>。这边就把<a href="http://ha.cker.in/tag/提权" target="_blank">提权</a>过程理一遍。</p>  <p>首先确认装有这个QQ拼音输入法：</p>  <p><a href="http://img.cker.in/Win8QQ_C37E/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Win8QQ_C37E/clip_image001_thumb.jpg" width="620" height="471" /></a></p>  <p>Ctrl+空格调出托盘，找到这个选项：</p>  <p><a href="http://img.cker.in/Win8QQ_C37E/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Win8QQ_C37E/clip_image002_thumb.jpg" width="620" height="462" /></a></p>  <p>顺利开启IE浏览器：</p>  <p><a href="http://img.cker.in/Win8QQ_C37E/clip_image003.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/Win8QQ_C37E/clip_image003_thumb.jpg" width="620" height="468" /></a></p>  <p>需要说明的是，<strong>IE</strong><strong>浏览器和</strong><strong>Win8</strong><strong>安全性确实是提高了非常多</strong>。随手在地址栏输入D:\ file://d: 这样的命令都无法打开文件夹，本以为只要随便上传一个bat批处理，写上提权用的命令，然后利用IE下载下来打开运行即可，没想到各种提示系统要求验证您的用户密码等，根本无法进行下载，可见<strong>常规方式真的行不通</strong>。</p>  <p>微软还是有在修复这些漏洞，但是经过笔者的诸多尝试，最终发现有一处漏洞尚未填补。</p><br>
       
       </p>
       
       <p>
-          <a href="/788.seo/" class="excerpt-link">Read More...</a>
+          <a href="/941.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -136,27 +133,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-30T22:11:19.000Z" itemprop="datePublished">
-          2012-08-31
+      <time datetime="2012-11-19T08:40:25.000Z" itemprop="datePublished">
+          2012-11-19
       </time>
     
     
     | 
-    <a href='/tag/渗透测试/'>渗透测试</a>
+    <a href='/tag/渗透/'>渗透</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/782.seo/">对某非主流外贸网站的渗透测试</a></h2>
+      <h2 class="post-title"><a href="/939.seo/">对某餐饮管理服务有限公司网络渗透</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>首先粗略的看了下网站的整体结构、</p>  <p><a href="http://yezi.us/wp-content/uploads/2012/06/%E5%9B%BE%E7%89%8711.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/62a0b800d9f9_C76C/clip_image001.png" width="320" height="191" /></a></p>  <p>发现不是那种5分钟就能叼下的垃圾企业站。</p>  <p>旁站看了下都是同一个程序做的</p>  <p><a href="http://yezi.us/wp-content/uploads/2012/06/%E5%9B%BE%E7%89%872.png"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/62a0b800d9f9_C76C/clip_image002.png" width="320" height="112" /></a></p>  <p>C 段我就懒的看了，因为像这种站所在机房你能ARP到数据的几率比中国足球队进世界杯还难。</p>  <p>话又说回来了。去年做外贸的时候公司用的貌似就是这套程序，当时只是粗略的看了下这套程序，没看出啥严重的漏洞。</p>  <p>最近公司无事，找以前同事拿来这套程序源码看了下。</p>  <p>发现如下安全问题：</p>  <p>New.asp 中</p>  <div class="codearea linewrap">   <pre class="alt"><span style="color: #333333">&lt;!–#include file=&quot;top.asp&quot;–&gt;</span></pre><br><br>  <pre><span style="color: #333333">&lt;%</span></pre><br><br>  <pre class="alt"><span style="color: #333333">page=clng(request(&quot;page&quot;))</span></pre><br><br>  <pre><span style="color: #333333">Set rs=Server.CreateObject(&quot;ADODB.RecordSet&quot;)</span></pre><br><br>  <pre class="alt"><span style="color: #333333">sql=&quot;select * from member_news where type=’&quot;&amp;request(&quot;type&quot;)&amp;&quot;’ order by order0 desc&quot;</span></pre><br><br>  <pre><span style="color: #333333">rs.Open sql,conn,1,1</span></pre><br><br>  <pre class="alt"><span style="color: #333333">if rs.eof and rs.bof then</span></pre><br><br>  <pre><span style="color: #333333">  response.Write(&quot;No news!&quot;)</span></pre><br><br>  <pre class="alt"><span style="color: #333333">else</span></pre><br><br>  <pre><span style="color: #333333">%&gt;</span></pre><br><br>  <pre class="alt"><span style="color: #333333"></span></pre><br></div><br><style type="text/css"><br><br>.codearea{ color:black;  background-color:white;  line-height:18px;  border:1px solid #4f81bd;  margin:0;  width:auto !important;  width:100%;  overflow:auto;  text-align:left;  font-size:12px;  font-family: “Courier New”,”Consolas”,”Fixedsys”,”BitStream Vera Sans Mono”, courier,monospace,serif}<br>.codearea pre{ color:black; line-height:18px;  padding:0 0 0 12px !important; margin:0em;  background-color:#fff !important}<br>.linewrap pre{white-space:pre-wrap;  white-space:-moz-pre-wrap;  white-space:-pre-wrap;  white-space:-o-pre-wrap;  word-wrap:break-word;  word-break:normal}<br>.codearea pre.alt{ background-color:#f7f7ff !important}<br>.codearea .lnum{color:#4f81bd;line-height:18px}</style>
+        <p>某日与朋友一起去某西餐厅吃饭，餐厅人员向我们介绍说关注他们企业的微博就可以参加他们的免费抽奖，回来后上了他们官方网站看了一下，果然用DZ论坛搭建了个幸运抽奖大转盘插件，抽了好几次都是消费券，运气背啊。看他们网站美工做的不错，不知道安全咋样。仔细看了下他们的网站主站不知道是什么PHP的CMS系统、论坛是DZ-X2.5   <br />.主站看了半天没有发现可利用的地方，又没有可用的论坛0day。</p>  <p><a href="http://img.cker.in/170410a41f50_92E/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/170410a41f50_92E/clip_image001_thumb.jpg" width="578" height="331" /></a></p>  <p>山不转水转，不能在一棵树上吊死，既然网站没有可利用，不妨从服务器上下手，或许有意想不到的收获。ip138.com中解析到的网站IP是我们城市电信IP，初步断定服务器要么托管到电信机房的，要么是在自己公司的机房内的(看他们网站上说有十多家分店，应该用的独立服务器)，直接用X-SCAN扫描IP 服务器开了21、3389 、1433等端口，这下有戏了随便破解出一个账号密码就有机会了，事实是残酷的，扫描完我所有的字典，也没有猜解出来。暴力破解不行。咋们社工吧，用他们的企业名字+电话号码组合了一下字典，还是无获而终，入侵陷入了僵局了。</p>  <p>山重水复疑无路，柳暗花明又一村。有新思路了，一般这样中高档的餐厅，有免费的wifi提供的，可以通过wifi连接到他们店铺的内网，再探索有用的价值。第二天，提着一个本子、叫了一份果汁，问服务员要了密码，迫不及待的连接上wifi 首先用这个wifi密码依次登陆ftp、远程终端、MSSQL均提示密码错误，这也在我意料之内。打开X-SAN扫描了一下网段，就我自己的一台存活主机，应该是网段隔离了吧。管理人员的安全意识还是不错的啊。喝了口果汁，看到服务员在操作点单系统、凑前瞄了一眼，XX餐饮系统，顺手百度了一下，下载一个试用版的安装看有没有可利用的<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>，苍天不负有心人，发现这套餐饮系统用的是ODBC数据源连接MSSQL数据库的意思就是连接数据库的密码是保存在软件中得或者配置文件中的。看到一个新建数据库的SQL脚本打开一看，密码、用户名、数据库名一目了然。</p>  <p><a href="http://img.cker.in/170410a41f50_92E/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/170410a41f50_92E/clip_image002_thumb.jpg" width="578" height="167" /></a></p>  <p>果断的用查询分析器连接网站IP、哈哈人品终于爆发了，连接成功,还是sysadmin权限乘热打铁利用XP_CMDSHELL执行net user命令，添加用户成功。</p><br>
       
       </p>
       
       <p>
-          <a href="/782.seo/" class="excerpt-link">Read More...</a>
+          <a href="/939.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -165,33 +162,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-30T22:01:40.000Z" itemprop="datePublished">
-          2012-08-31
+      <time datetime="2012-11-19T02:17:05.000Z" itemprop="datePublished">
+          2012-11-19
       </time>
     
     
     | 
-    <a href='/tag/社工/'>社工</a>,
-    
-    <a href='/tag/渗透/'>渗透</a>,
-    
-    <a href='/tag/嗅探/'>嗅探</a>,
-    
-    <a href='/tag/C段/'>C段</a>
+    <a href='/tag/短信炸弹/'>短信炸弹</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/779.seo/">友谊的"招呼"-对母校的亲密检测</a></h2>
+      <h2 class="post-title"><a href="/938.seo/">短信炸弹</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>我记得在校的时候某校的领导以及老师来到我们学校参观，虽然我见到对方学校的领导我会非常有礼貌的打招呼，一次回到家里的时候，出于友谊，决定为此国家重点级的学校进行友情的“招呼”！</p>  <p>国家级重点级，相对震精的学校，最近我在看《黑客与画家》，里面第一篇的内容是“为什么书呆子不受欢迎”，有段作者是说公立的学校的老师就像监狱里的狱卒，除了防止你打架做坏事之外，都不会管你！我就得说得非常好！作为国家级重点级的学校，这也是更加的！好了，不说题外话了，这篇文章是以前“招呼”的了！所以现在写下来，给大家参考下，虽然不是很好，但是各位也不要喷我吧！</p>  <p>我重申一次，我确实是个贱人</p>  <p>0x00</p>  <p>作为国家级的重点学校，我听说他的服务器是ZF给的，买了200W左右，当然我也参观过，虽然外表看不出来，我想那个网管老师也不会吹牛B吧，就是这样才出于好奇心，才弄得！</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/df99b5f14772_C386/clip_image002_thumb.jpg" width="574" height="286" /></a></p>  <p>为了防止被万人骑，所以部分过滤了！</p>  <p>手握神器，开始动工！这次的“招呼”任务我会在win下进行，当然如果需要的情况下，我会使用win+linux交互渗透！</p>  <p>0x01</p>  <p>踩点。</p>  <p>作为一个国家级的重点学校，我相信安全也是非常好的！起码也是服务器独立域名，内网等吧！收集下信息，我会采用某社工神器这个软件我非常喜欢</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image004.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/df99b5f14772_C386/clip_image004_thumb.jpg" width="573" height="358" /></a></p>  <p>说下他的用途吧，适用大型<a href="http://ha.cker.in/tag/渗透" target="_blank">渗透</a>适用</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image006.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image006" border="0" alt="clip_image006" src="http://img.cker.in/df99b5f14772_C386/clip_image006_thumb.jpg" width="128" height="478" /></a></p>  <p>有各种信息的收集，不懂E文的朋友，可能会比较亏哦！这个工具其实已经融入了bt5系列了，呵呵，说下现在收集到的情况吧。Win03+iis6.0+内网+C段一个站，无CDN，asp+php+aspx，<a href="http://ha.cker.in/tag/C段" target="_blank">C段</a>的站是asp+aspx+win03+iis6.0+内网！招聘站一个，三台服务器的管理都是同一人，说下怎么收集的吧！首先google语法。Site:url inurl:asp|php|aspx|jsp。还有根据报错等清楚是iis，我就比较懒，火狐插件直接获得</p>  <p><a href="http://img.cker.in/df99b5f14772_C386/clip_image008.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image008" border="0" alt="clip_image008" src="http://img.cker.in/df99b5f14772_C386/clip_image008_thumb.jpg" width="445" height="275" /></a></p>  <p>对两台服务器进行了扫描端口与分析工作，在win下，我会选择用superscan，如果在linux下我会选择更为精准的nmap！superscan比较简单，因为在gui，直接填入IP和所需的端口就行了，如果在linux下的nmap格式就是：namp –v –a ip</p>  <p>得到的端口有：</p>  <p>21 ftp</p>  <p>80 www</p>  <p>面对以上者两个端口，可以参考的攻击思路如下：</p>  <p>21—爆破模式，或者社工，嗅探等。</p>  <p>80—iis写权限，以及脚本渗透。</p>  <p>有些人问，不是有php和aspx吗？！应该会扫描到1433和3306的啊！很简单，以为他不允许对外访问，或者内网，他就扫描不出了啊。</p>  <p>扫描了整站目录以及文件，有二级目录上的站。暂时没发现主站的后台，另一个分站是教师系统，我见过那些老师是在上面进行公告浏览以及发布什么规定的地方。</p>
+        写了个短信炸弹。。  地址：点我吧  可以拿去玩玩。指不定什么时候失效了。
       
       </p>
       
       <p>
-          <a href="/779.seo/" class="excerpt-link">Read More...</a>
+          <a href="/938.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -200,29 +191,27 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-08-30T11:31:12.000Z" itemprop="datePublished">
-          2012-08-30
+      <time datetime="2012-11-17T03:39:40.000Z" itemprop="datePublished">
+          2012-11-17
       </time>
     
     
     | 
-    <a href='/tag/xss/'>xss</a>,
-    
-    <a href='/tag/会话劫持/'>会话劫持</a>
+    <a href='/tag/XSS漏洞/'>XSS漏洞</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/774.seo/">利用XSS跨站漏洞入侵百度投诉中心用xss平台沦陷百度投诉中心后台</a></h2>
+      <h2 class="post-title"><a href="/937.seo/">汽车之家Andriod客户端反馈意见XSS漏洞</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>简要描述：</p>  <p>天天看wooyun上piapiapia弹窗弹的好欢乐，但是真正利用的没几个，也导致了一些人，一些厂商，一些白帽子对XSS危害的蔑视，如果<a href="http://ha.cker.in/tag/xss" target="_blank">XSS</a>的利用回想当年NBSI一样简单化，也许结果就不同了。</p>  <p>用事实说话。</p>  <p>详细说明：</p>  <p>我们要知道的一个事实是，很多大型互联网企业，其前台防护都很到位，但是没有人会挑保护最好的地方下手，对于前台来说，他的后台就是一个容易被忽视的地方，虽然我们不知道后台程序的构造，但是我们可以根据一些功能的性质来大胆推测，比如互联网公司安全短板–客服反馈系统。</p>  <p>目标地址：<a href="http://tousu.baidu.com">http://tousu.baidu.com</a></p>  <p>漏洞证明：</p>  <p>找到一个产品的投诉页面，比如文库，想这种功能比较简单的表单，我们直接提交&quot;&gt;&lt;xss code&gt;&lt;这样的代码猜测</p>  <p><a href="http://img.cker.in/XSSxss_314A/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/XSSxss_314A/clip_image001_thumb.jpg" width="601" height="624" /></a></p>  <p>提交后如果运气好的话。。。。。</p>  <p><a href="http://lcx.cc/File.asp?md5=8b2edef82787fe6c4c9f09e981d113a6"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image003" border="0" alt="clip_image003" src="http://img.cker.in/XSSxss_314A/clip_image003.jpg" width="819" height="532" /></a></p>  <p>访问了一下后台地址，居然是外网可访问的，利用得到的cookie进行<a href="http://ha.cker.in/tag/会话劫持" target="_blank">会话劫持</a></p>
+        <p><b><u>风萧萧</u></b><b><u>@wooyun.org</u></b></p>  <p>简要描述：</p>  <p>汽车之家Andriod客户端反馈意见<a href="http://ha.cker.in/tag/XSS漏洞" target="_blank">XSS漏洞</a>    <br />杀进了汽车之家反馈后台，对一大群数据无爱    <br />亲，cookies里的_Admin是什么东西？    <br />盲打的，居然汽车之家还不是厂商~~    <br />中秋节/国庆节快乐！</p>  <p>详细说明：</p>  <p>1.下载汽车之家android的手机客户端，本人苦逼屌丝党，木有钱买车看看总行的！</p>  <p><a href="http://img.cker.in/AndriodXSS_1144F/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/AndriodXSS_1144F/clip_image001_thumb.jpg" width="500" height="820" /></a></p>  <p>2.点击【更多】-&gt;【意见反馈】，可插入XSS代码，进行后台feedback盲打！</p>  <p><a href="http://img.cker.in/AndriodXSS_1144F/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/AndriodXSS_1144F/clip_image002_thumb.jpg" width="500" height="820" /></a></p><br>
       
       </p>
       
       <p>
-          <a href="/774.seo/" class="excerpt-link">Read More...</a>
+          <a href="/937.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -230,7 +219,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/archives/2012/page/3/">← Newer Posts</a>
-    <span class="page-number">Page 4 of 29</span>
+    <span class="page-number">Page 4 of 40</span>
     <a class="older-posts" href="/archives/2012/page/5/">Older Posts →</a>
   </nav>
 </main>

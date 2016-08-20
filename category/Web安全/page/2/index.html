@@ -45,6 +45,35 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
+      <time datetime="2014-01-10T22:28:49.000Z" itemprop="datePublished">
+          2014-01-11
+      </time>
+    
+    
+    | 
+    <a href='/tag/任意代码执行/'>任意代码执行</a>
+    
+    
+</span>
+      <h2 class="post-title"><a href="/1062.seo/">Eyou（亿邮）任意代码执行</a></h2>
+    </header>
+    <section class="post-excerpt">
+      <p>
+      
+        亿邮在3.6以下的版本存在一个任意代码执行，漏洞文件存在于    \inc\fuction.php   function get_login_ip_config_file($domain, $file) {    $dir      = ‘/var/eyou/Domain/‘;    $dir_mail = exec(‘/var/eyou/sbin/hashid ‘.$domain);  //$domain可以自己控制….}继续跟下$d
+      
+      </p>
+      
+      <p>
+          <a href="/1062.seo/" class="excerpt-link">Read More...</a>
+      </p>
+      
+    </section>
+  </article>
+  
+  <article class="post">
+    <header class="post-header">
+      <span class="post-meta">
       <time datetime="2013-12-21T11:39:02.000Z" itemprop="datePublished">
           2013-12-21
       </time>
@@ -146,7 +175,7 @@
     
     
 </span>
-      <h2 class="post-title"><a href="/1043.seo/">攻击JavaWeb应用 8]-后门篇</a></h2>
+      <h2 class="post-title"><a href="/1043.seo/">攻击JavaWeb应用 8 -后门篇</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
@@ -165,58 +194,41 @@
   <article class="post">
     <header class="post-header">
       <span class="post-meta">
-      <time datetime="2012-09-13T06:16:40.000Z" itemprop="datePublished">
-          2012-09-13
+      <time datetime="2013-10-21T21:04:30.000Z" itemprop="datePublished">
+          2013-10-22
       </time>
     
     
     | 
-    <a href='/tag/Tomcat/'>Tomcat</a>
+    <a href='/tag/Webshell/'>Webshell</a>,
+    
+    <a href='/tag/getshell/'>getshell</a>,
+    
+    <a href='/tag/Java/'>Java</a>,
+    
+    <a href='/tag/Tomcat/'>Tomcat</a>,
+    
+    <a href='/tag/GlassFish/'>GlassFish</a>,
+    
+    <a href='/tag/WebLogic/'>WebLogic</a>,
+    
+    <a href='/tag/Resin/'>Resin</a>,
+    
+    <a href='/tag/Websphere/'>Websphere</a>
     
     
 </span>
-      <h2 class="post-title"><a href="/822.seo/">打造安全的Tomcat服务器</a></h2>
+      <h2 class="post-title"><a href="/1042.seo/">攻击JavaWeb应用 7 -Server篇 1</a></h2>
     </header>
     <section class="post-excerpt">
       <p>
       
-        <p>作者China-Linux</p>  <p>Tomcat是一个开源的Web服务器,基于tomcat的web运行效率高,因为,颇受web站长的青睐,</p>  <p>不过,在默认的配置下,其存在一定的安全隐患,.可被恶意攻击,.另外,其功能比较单纯,需要我们进一步的进行配置,本次将从安全和功能两方面谈谈基于Tomcat的Web服务器的部署.,</p>  <p>希望对大家有帮助.</p>  <p>OS: Windows Server 2003</p>  <p>IP : 125.42.207.94</p>  <p>Tomcat :apache-tomcat-6.0.18</p>  <p>1.安全测试</p>  <p>（1）登陆后台</p>  <p>（2）在Windows Server 2003 上部署Tomcat，一切保持默认。部署Tomcat的时候要记得安装JDK以及配置JDK环境。JDK的安装配置不在本节赘述。然后登陆Tomcat后台。其缺省的后台是：</p>  <p><a href="http://125.42.207.94:8080/manager/html">http://125.42.207.94:8080/manager/html</a></p>  <p>在浏览器输入该地址，回车后弹出登录框，输入缺省的用户名admin 缺省密码为空，成功登陆后台 如图（1）</p>  <p><a href="http://www.iitlab.com/attachment.php?id=1"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/Tomcat_1363A/clip_image001.png" width="520" height="421" /></a></p>  <p>（2）.获得Webshell</p>  <p>（3）在Tomcat的后台有个<b>WAR file to deploy</b><b>模块</b><b>,</b></p>  <p>通过此模块我们可以上传war文件(不是rar),Tomcat可以解析WAR文件,能够将其解压成</p>  <p>Web文件,我们将一个jsp的shell用rar打包,该后缀为(本例为shell.war),将其上传到服务器,可以看到在Tomcat后台多了个shell的目录. 如图2</p>  <p><a href="http://www.iitlab.com/attachment.php?id=2"><img style="border-right-width: 0px; display: inline; border-top-width: 0px; border-bottom-width: 0px; border-left-width: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Tomcat_1363A/clip_image002.png" width="129" height="400" /></a></p>  <p>这样一个shell就成功获取了. 如图</p>
+        <p><a href="http://drops.wooyun.org/tips/604">攻击JavaWeb应用[7]-Server篇[1]</a></p>  <p><a href="http://drops.wooyun.org/tips/604">http://drops.wooyun.org/tips/604</a></p>  <h4>java应用服务器</h4>  <hr align="center" width="100%" size="2" />  <p><a href="http://Ha.Cker.In/tag/Java" target="_blank">Java</a>应用服务器主要为应用程序提供运行环境，为组件提供服务。Java 的应用服务器很多，从功能上分为两类：JSP 服务器和 Java EE 服务器。</p>  <h5>常见的Server概述</h5>  <p>常见的Java服务器:<a href="http://Ha.Cker.In/tag/Tomcat" target="_blank">Tomcat</a>、<a href="http://Ha.Cker.In/tag/Weblogic" target="_blank">Weblogic</a>、<a href="http://Ha.Cker.In/tag/JBoss" target="_blank">JBoss</a>、<a href="http://Ha.Cker.In/tag/GlassFish" target="_blank">GlassFish</a>、Jetty、Resin、IBM Websphere、Bejy Tiger、Geronimo、Jonas、Jrun、Orion、TongWeb、BES Application Server、ColdFusion、Apusic Application Server、Sun Application Server 、Oracle9i/AS、Sun Java System Application Server。</p>  <p>Myeclipse比较方便的配置各式各样的Server，一般只要简单的选择下Server的目录就行了。</p>  <p><a href="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image001.png"><img title="clip_image001" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="607" alt="clip_image001" src="http://img.cker.in/JavaWeb7Server1_9DDC/clip_image001_thumb.png" width="628" border="0" /></a></p>  <p>部署完成后启动进入各个Server的后台：</p><br>
       
       </p>
       
       <p>
-          <a href="/822.seo/" class="excerpt-link">Read More...</a>
-      </p>
-      
-    </section>
-  </article>
-  
-  <article class="post">
-    <header class="post-header">
-      <span class="post-meta">
-      <time datetime="2012-09-11T21:47:22.000Z" itemprop="datePublished">
-          2012-09-12
-      </time>
-    
-    
-    | 
-    <a href='/tag/Wordpress/'>Wordpress</a>,
-    
-    <a href='/tag/SQL-Injection/'>SQL Injection</a>
-    
-    
-</span>
-      <h2 class="post-title"><a href="/820.seo/">WordPress BBPress SQL Injection   Path Disclosure</a></h2>
-    </header>
-    <section class="post-excerpt">
-      <p>
-      
-         # Exploit Title: Wordpress plugins - bbpress Multiple Vulnerabilities.   # Date: 31 August 2012    # Author: Dark-Puzzle (Souhail Hammou)    # Vendor Website : www.bbpress.ru / www.bbpress.com    # Risk : Critical    # 
-      
-      </p>
-      
-      <p>
-          <a href="/820.seo/" class="excerpt-link">Read More...</a>
+          <a href="/1042.seo/" class="excerpt-link">Read More...</a>
       </p>
       
     </section>
@@ -224,7 +236,7 @@
   
   <nav class="pagination" role="pagination">
     <a class="newer-posts" href="/category/Web安全/">← Newer Posts</a>
-    <span class="page-number">Page 2 of 8</span>
+    <span class="page-number">Page 2 of 15</span>
     <a class="older-posts" href="/category/Web安全/page/3/">Older Posts →</a>
   </nav>
 </main>

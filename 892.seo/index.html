@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>通过HTTP参数污染绕过WAF拦截 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-10-15T21:47:56.000Z" itemprop="datePublished">
+          2012-10-16
+      </time>
+    
+    
+    | 
+    <a href='/tag/WAF/'>WAF</a>,
+    
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/注入/'>注入</a>,
+    
+    <a href='/tag/SQL注入/'>SQL注入</a>,
+    
+    <a href='/tag/绕过WAF/'>绕过WAF</a>
+    
+    
+</span>
+    <h1 class="post-title">通过HTTP参数污染绕过WAF拦截</h1>
+    <section class="post-content">
+      <p>译:pnig0s_小P@FreeBuf</p>  <p>上个星期我被邀请组队去参加一个由CSAW组织的CTF夺旗比赛.因为老婆孩子的缘故，我只能挑一个与Web<a href="http://ha.cker.in/tag/漏洞" target="_blank">漏洞</a>利用相关的题目，名字叫做”HorceForce”.这道题价值300点。这道题大概的背景是，你拥有一个低权限的帐号并需要找到方法来获得管理员权限。</p>  <p>当然，有很多种方法来介绍如何通过这关，但我想分享下我的通关经验。</p>  <p>当把一些单引号作为参数值发送之后返回了MySQL的典型报错信息“MySQL SQL Error Message”，因此可以轻易发现这里存在一个SQL<a href="http://ha.cker.in/tag/SQL注入" target="_blank">注入</a>漏洞。</p>  <p>然后，正如你了解的，我们通常会进行如下尝试：</p>  <p><a href="http://128.238.66.217/horse.php?id=7" target="_blank" rel="external">http://128.238.66.217/horse.php?id=7</a> or 1 IN (select current_user)</p>  <p>然后我得到了一个错误信息，类似“请停止攻击该网站“这样的内容。</p>  <p>在我尝试了很多绕过SQLi filter的方法之后，我意识到在网站背后配置了一个WAF来阻止任意包含“select”或“union”等在利用SQL注入时常用的SQL查询关键字。通过这样的黑盒测试可以猜测出WAF使用了类似下面这样的正则：</p>  <p>/^.<em>select.</em>$/ or /^.<em>union.</em>$/ </p>  <p>这意味着，提交任意带有SQL注入企图的字符串，如blablaSELECTblabla或像/<em>!union</em>/这样的绕过方式都会触发WAF拦截的错误信息。</p>  <p>在进行了一些研究之后，我发现通过HTTP参数污染的方式能够使攻击者绕过WAF的拦截。</p>  <p>那么，究竟要如何实现呢？</p>  <p>我们假设有一个通过GET方式提交的参数“id”,你可以重复构造这个参数并以下面的形式发送出去：</p>  <p>?id=value1&amp;id=value2</p>  <p>然后，依你使用的框架不同(PHP,Java,ASP.NET,etc)，参数字符串会以不同的方式进行解析，在我们实验的场景下Apache/PHP，如果你可以多次注入同一个参数值，只有最后一个参数值会被框架解析，但是你猜怎么着？只有第一个参数会经过WAF的分析和过滤！</p>  <p>这意味着，通过注入: id=7&amp;id=[SQLi]   <br><a href="http://ha.cker.in/tag/WAF" target="_blank">WAF</a>的网络层会解析 id=7 &lt;-合法    <br>PHP应用层会解析 id=[SQLi] &lt;-注入语句成功执行</p>  <p>因此，这是一个典型的例子，你注入的东西在网络层和应用层被区别对待了。</p>  <p>下面是一张表格，列举了不同的框架当多次接受同一个参数时的不同表现。像ASP.NET，如果它接受到两个参数值，它会拼接两个相同参数的值，因此你可以将被过滤的关键词拆分到两个参数中进行攻击从而绕过WAF，当然这个主题已经超过这篇文章讨论的范围了。</p>  <p><a href="http://img.cker.in/HTTPWAF_C1B3/clip_image001.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image001" border="0" alt="clip_image001" src="http://img.cker.in/HTTPWAF_C1B3/clip_image001_thumb.jpg" width="1044" height="609"></a>接下来，我们尝试注入一些SQL语句：</p>  <p>128.238.66.217/horse.php?id=0&amp;id=7%20union%20select%201,2,3,current_user</p>  <p>你能注意到，所有的注入利用语句都写到了第二个参数值的位置，这将不会被WAF解析。</p>  <p>我得到了第一次正确的返回结果：</p>  <p>csaw_chal1@localhost </p>  <p>接下来就是常规的MySQL注入过程，这里不再赘述，这篇文章主要在于讲解一种新的<a href="http://ha.cker.in/tag/绕过WAF" target="_blank">绕过WAF</a>的方式，Thx    <br>for reading!    <br>via [<a href="http://danuxx.blogspot.com/2012/10/bypassing-waf-via-http-parameter.html" target="_blank" rel="external">danuxx</a>]</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/892.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/892.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/892.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/892.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/893.seo/">
+        ← wordpress下岗了
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/890.seo/">
+        Test.. →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

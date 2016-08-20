@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>对Android最新fakesms漏洞的分析 | Blog of Secer</title>
+  <meta name="description" content="" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/css/screen.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  <meta name="generator" content="Blog of Secer">
+
+  
+  
+  
+
+  
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body class="home-template">
+<div id="perspective" class="perspective effect-movedown">
+  <div class="container">
+    <!-- wrapper -->
+    <div class="wrapper">
+
+      <header class="site-head"  style="background: #24282b url(/img/img-bg.jpg) 0 -20%" >
+    <div class="vertical">
+        <div class="site-head-content inner">
+             <a class="blog-logo" href="/"><img src="/img/logo.svg" alt="Blog Logo"/></a> 
+            <h1 class="blog-title">Blog of Secer</h1>
+            <h2 class="blog-description"><button id="showMenu">Show Menu</button></h2>
+        </div>
+    </div>
+</header>
+
+      
+
+<main class="content" role="main">
+  <article class="post">
+    <span class="post-meta">
+      <time datetime="2012-11-09T01:17:23.000Z" itemprop="datePublished">
+          2012-11-09
+      </time>
+    
+    
+    | 
+    <a href='/tag/漏洞/'>漏洞</a>,
+    
+    <a href='/tag/Android/'>Android</a>
+    
+    
+</span>
+    <h1 class="post-title">对Android最新fakesms漏洞的分析</h1>
+    <section class="post-content">
+      <p>近期<a href="http://ha.cker.in/tag/Android" target="_blank">Android</a>爆出SMS smishing vuln, 首先来源于<a href="http://www.csc.ncsu.edu/faculty/jiang/smishing.html" target="_blank" rel="external">http://www.csc.ncsu.edu/faculty/jiang/smishing.html</a>， 然后<a href="https://github.com/thomascannon/android-sms-spoof" target="_blank" rel="external">github上给出了poc</a>,具体来说是任意一个app在没有write_sms权限下可以伪造任意发件人的任意短信。</p>  <p>影响平台可上至Android 1.6下至4.1。由于很多以android2.3为主的手机已经不能再升级，此漏洞的危害不可小视。一个攻击场景是malicious app首先向ISP发送一条申请业务的短信，然后伪造ISP发送一条用户需要确认的短信。当用户确认时就中招了。</p>  <p>两张截图：</p>  <p><a href="http://blog.flanker017.me/wp-content/uploads/2012/11/device-2012-11-08-020802.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image002" border="0" alt="clip_image002" src="http://img.cker.in/Androidfakesms_F312/clip_image002.png" width="244" height="420"> </a><a href="http://blog.flanker017.me/wp-content/uploads/2012/11/device-2012-11-08-020818.png" target="_blank" rel="external"><img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="clip_image004" border="0" alt="clip_image004" src="http://img.cker.in/Androidfakesms_F312/clip_image004.png" width="244" height="420"></a></p><br><a id="more"></a><br><p></p>  <p>首先感谢各位大神的贡献。在github上给出poc后，我根据代码进行了一些分析。前面构造pdu的代码非常重要，但不是本文分析的重点。此次分析的POC代码在于</p>  <pre>Intent intent = <span style="color: #0000ff">new</span> Intent();<br><br>intent.setClassName(&quot;<span style="color: #8b0000">com.android.mms</span>&quot;,<br><br>&quot;<span style="color: #8b0000">com.android.mms.transaction.SmsReceiverService</span>&quot;);<br><br>intent.setAction(&quot;<span style="color: #8b0000">android.provider.Telephony.SMS_RECEIVED</span>&quot;);<br><br>intent.putExtra(&quot;<span style="color: #8b0000">pdus</span>&quot;, <span style="color: #0000ff">new</span> Object[] { pdu });<br><br>intent.putExtra(&quot;<span style="color: #8b0000">format</span>&quot;, &quot;<span style="color: #8b0000">3gpp</span>&quot;);<br><br>context.startService(intent);</pre><br><br><p>这里启动了com.android.mms.transaction.smsreceiverService，这个service的代码在<a href="http://grepcode.com/file/repository.grepcode.com/java/ext/com.google.android/android-apps/2.1_r2/com/android/mms/transaction/SmsReceiverService.java" target="_blank" rel="external">这里</a>. 当service启动时，调用链如下：</p>
+
+<p>onStartCommand-&gt;mServiceHandler.sendMessage(msg);</p>
+
+<p>消息进入ServiceHandler的消息队列中，在handleMessage中得到处理。由于Action是SMS_RECEIVED，所以进入handleSmsReceived函数:</p>
+
+<pre><span style="color: #0000ff">public</span> <span style="color: #0000ff">void</span> handleMessage(Message msg) {
+
+<span style="color: #0000ff">int</span> serviceId = msg.arg1;
+
+Intent intent = (Intent)msg.obj;
+
+<span style="color: #0000ff">if</span> (intent != <span style="color: #0000ff">null</span>) {
+
+String action = intent.getAction();
+
+<span style="color: #0000ff">if</span> (MESSAGE_SENT_ACTION.equals(intent.getAction())) {
+
+handleSmsSent(intent);
+
+} <span style="color: #0000ff">else</span> <span style="color: #0000ff">if</span> (SMS_RECEIVED_ACTION.equals(action)) {
+
+handleSmsReceived(intent);
+
+} <span style="color: #0000ff">else</span> <span style="color: #0000ff">if</span> (ACTION_BOOT_COMPLETED.equals(action)) {
+
+handleBootCompleted();
+
+} <span style="color: #0000ff">else</span> <span style="color: #0000ff">if</span> (TelephonyIntents.ACTION_SERVICE_STATE_CHANGED.equals(action)) {
+
+handleServiceStateChanged(intent);
+
+}
+
+}
+
+<span style="color: #008000">// NOTE: We MUST not call stopSelf() directly, since we need to</span>
+
+<span style="color: #008000">// make sure the wake lock acquired by AlertReceiver is released.</span>
+
+SmsReceiver.finishStartingService(SmsReceiverService.<span style="color: #0000ff">this</span>, serviceId);
+
+}
+
+}
+
+handleSmsReceived
+
+<span style="color: #0000ff">private</span> <span style="color: #0000ff">void</span> handleSmsReceived(Intent intent) {
+
+SmsMessage[] msgs = Intents.getMessagesFromIntent(intent);
+
+Uri messageUri = insertMessage(<span style="color: #0000ff">this</span>, msgs);
+
+<span style="color: #0000ff">if</span> (Log.isLoggable(LogTag.TRANSACTION, Log.VERBOSE)) {
+
+SmsMessage sms = msgs[0];
+
+Log.v(TAG, &quot;<span style="color: #8b0000">handleSmsReceived</span>&quot; + (sms.isReplace() ? &quot;<span style="color: #8b0000">(replace)</span>&quot; : &quot;<span style="color: #8b0000"></span>&quot;) +
+
+&quot;<span style="color: #8b0000"> messageUri: </span>&quot; + messageUri +
+
+&quot;<span style="color: #8b0000">, address: </span>&quot; + sms.getOriginatingAddress() +
+
+&quot;<span style="color: #8b0000">, body: </span>&quot; + sms.getMessageBody());
+
+}
+
+<span style="color: #0000ff">if</span> (messageUri != <span style="color: #0000ff">null</span>) {
+
+MessagingNotification.updateNewMessageIndicator(<span style="color: #0000ff">this</span>, <span style="color: #0000ff">true</span>);
+
+}
+
+}</pre>
+
+<p>在291段用户得到通知，即一般大家看到的toast和短信提示框，再来看insertMessage,</p>
+
+<pre><span style="color: #0000ff">private</span> Uri insertMessage(Context context, SmsMessage[] msgs) {
+
+<span style="color: #008000">// Build the helper classes to parse the messages.</span>
+
+SmsMessage sms = msgs[0];
+
+<span style="color: #0000ff">if</span> (sms.getMessageClass() == SmsMessage.MessageClass.CLASS_0) {
+
+displayClassZeroMessage(context, sms);
+
+<span style="color: #0000ff">return</span> <span style="color: #0000ff">null</span>;
+
+} <span style="color: #0000ff">else</span> <span style="color: #0000ff">if</span> (sms.isReplace()) {
+
+<span style="color: #0000ff">return</span> replaceMessage(context, msgs);
+
+} <span style="color: #0000ff">else</span> {
+
+<span style="color: #0000ff">return</span> storeMessage(context, msgs);
+
+}
+
+}</pre>
+
+<p>其中replaceMessage最后调用storeMessage, storeMessage负责将短信存入数据库。这样一个fake message就成功以假乱真。</p>
+
+<p>那为什么会出现这样的问题？对/system/app/Mms.apk进行反编译，获得AndroidManifest.xml，在其中可以看到：</p>
+
+<pre>&lt;application android:label=&quot;<span style="color: #8b0000">@string/app_label</span>&quot; android:icon=&quot;<span style="color: #8b0000">@drawable/ic_launcher_smsmms</span>&quot; android:name=&quot;<span style="color: #8b0000">MmsApp</span>&quot; android:taskAffinity=&quot;<span style="color: #8b0000">android.task.mms</span>&quot; android:allowTaskReparenting=&quot;<span style="color: #8b0000">true</span>&quot;&gt;
+
+&lt;service android:name=&quot;<span style="color: #8b0000">.transaction.TransactionService</span>&quot; android:exported=&quot;<span style="color: #8b0000">true</span>&quot; /&gt;
+
+&lt;service android:name=&quot;<span style="color: #8b0000">.transaction.SmsReceiverService</span>&quot; android:exported=&quot;<span style="color: #8b0000">true</span>&quot; /&gt;
+
+&lt;activity android:theme=&quot;<span style="color: #8b0000">@android:style/Theme.NoTitleBar</span>&quot; android:label=&quot;<span style="color: #8b0000">@string/app_label</span>&quot; android:name=&quot;<span style="color: #8b0000">.ui.MmsTabActivity</span>&quot; android:launchMode=&quot;<span style="color: #8b0000">singleTop</span>&quot; android:configChanges=&quot;<span style="color: #8b0000">keyboardHidden|orientation</span>&quot; android:windowSoftInputMode=&quot;<span style="color: #8b0000">stateAlwaysHidden|adjustPan</span>&quot;&gt;</pre>
+
+<p>SmsReceiverService被export出去后没有使用permission声明signature或signatureOrSystem或Dangerous，甚至也没有Normal声明。在代码中也没有显式调用checkPermission，这违反了android开发规范<a href="http://isecpartners.com/files/isec_securing_android_apps.pdf" target="_blank" rel="external">[1]</a>，造成了事实上的permission-redelegation漏洞。由于Mms属于系统程序，存在于所有android-platform中，后果更加严重。</p>
+
+<p>以上是对android的最新短信漏洞做的分析。由于水平所限，如果有所疏误请不吝赐教。</p>
+
+<p><cite>flanker017@freebuf.com</cite></p>
+
+<p>English version can be seen here:<br>  <br><a href="http://blog.flanker017.me/?p=235&amp;lang=en-us" target="_blank" rel="external">http://blog.flanker017.me/?p=235&amp;lang=en-us</a></p>
+    </section>
+    <footer class="post-footer">
+      <section class="author">
+    <h4>Secer</h4>
+    <p>记录互联网安全历程与个人成长经历</p>
+</section>
+      <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-sina-weibo" href="http://v.t.sina.com.cn/share/share.php?title=记录互联网安全历程与个人成长经历 ?url=http://ha.cker.in/929.seo/" target="_blank">
+        <span class="hidden">weibo</span>
+    </a>
+    <a class="icon-twitter" href="http://twitter.com/share?url=http://ha.cker.in/929.seo/"
+       onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://ha.cker.in/929.seo/"
+       onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=http://ha.cker.in/929.seo/"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+    </footer>
+  </article>
+  <nav class="pagination" role="pagination">
+    
+    <a class="newer-posts" href="/930.seo/">
+        ← 对最近dedecms注入的分析
+    </a>
+    
+    <span class="icon-logo">•</span>
+    
+    <a class="older-posts" href="/928.seo/">
+        Metinfo 代码审计 →
+    </a>
+    
+</nav>
+
+  <div id="comment" class="comments-area">
+    <h4 class="title"><a href="#disqus_comments" name="disqus_comments">Comments</a></h4>
+    
+</div>
+
+</main>
+
+
+      
+<footer class="site-footer">
+  
+  <div class="inner">
+     <section class="copyright">All content copyright <a href="/">Blog of Secer</a> &copy; 2014 &bull; All rights reserved.</section>
+     <section class="poweredby">Proudly published with <a class="icon-ghost" href="http://zespia.tw/hexo/">Hexo</a></section>
+  </div>
+</footer>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script type="text/javascript" src="/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+
+
+
+
+  </div>
+</div>
+
+<nav  class="outer-nav top horizontal">
+
+          <a class="icon-home"  href="/"><span>Home</span></a>
+
+          <a class="icon-news"  href="/archives"><span>Archive</span></a>
+
+          <a class="icon-image"  href="/images"><span>Images</span></a>
+
+          <a class="icon-wiki"  href="/wiki/"><span>Wiki</span></a>
+
+          <a class="icon-Favorites"  href="/favorites"><span>Favorites</span></a>
+
+          <a class="icon-mail"  href="/about/"><span>Contact</span></a>
+
+</nav>
+
+</div>
+</body>
+</html>
