@@ -16,7 +16,7 @@
     
     
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="333" />
+    <meta name="twitter:site" content="2424683170" />
     <meta name="twitter:title" content="攻击JavaWeb应用 2 -CS交互安全 | Blog of Secer" />
       
     
@@ -41,7 +41,7 @@
 				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -59,7 +59,7 @@
 					
 					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="搜索" />
 					</form>
 					
 					</li>
@@ -84,7 +84,7 @@
   -->  
   <p class="article-time">
     <time datetime="2013-10-21T18:10:58.000Z" itemprop="datePublished">2013-10-22</time>
-    Updated:<time datetime="2016-08-20T11:03:54.000Z" itemprop="dateModified">2016-08-20</time>
+    更新日期:<time datetime="2016-08-20T11:03:54.000Z" itemprop="dateModified">2016-08-20</time>
     
   </p>
 </header>
@@ -93,7 +93,7 @@
 		
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		<ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">注:本节意在让大家了解客户端和服务器端的一个交互的过程,我个人不喜欢xss,对xss知之甚少所以只能简要的讲解下。这一节主要包含HttpServletRequest、HttpServletResponse、session、cookie、HttpOnly和xss，文章是年前几天写的本应该是有续集的但年后就没什么时间去接着续写了。由于工作并非安全行业，所以写的并不算专业希望大家能够理解。后面的章节可能会有Java里的SQL注入、Servlet容器相关、Java的框架问题、eclipse代码审计等。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">0x00 Request & Response(请求与响应)</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">请求头信息伪造XSS</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">Java里面伪造Http请求头</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">0x01 Session</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">3.1.</span> <span class="toc-text">Session 生命周期(从创建到销毁)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">3.2.</span> <span class="toc-text">注：浏览器关闭其实并不会让session失效！因为session是存储在服务器端内存当中的。客户端把浏览器关闭了服务器怎么可能知道？正确的解释或许应该是浏览器关闭后不会去记忆关闭前客户端和服务器端之间的session信息且服务器端没有将sessionId以Cookie的方式写入到客户端缓存当中，重新打开浏览器之后并不会带着关闭之前的sessionId去访问服务器URL，服务器从请求中得不到sessionId自然给人的感觉就是session不存在（自己理解的）。</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">3.3.</span> <span class="toc-text">SessionId是神马？有什么用？</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">3.4.</span> <span class="toc-text">如何应对SessionFixation攻击</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">0x02 Cookie</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">0x03 HttpOnly</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">0x04 CSRF (跨站域请求伪造)</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">6.1.</span> <span class="toc-text">CSRF 攻击的对象</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">6.2.</span> <span class="toc-text">Csrf攻击方式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">6.3.</span> <span class="toc-text">防御CSRF：</span></a></li></ol></li></ol>
 		</div>
 		
@@ -429,7 +429,7 @@ var jiathis_config = {data_track_clickback:'true'};
  
  <div class="prev" >
  <a href="/1038.seo/" title="攻击JavaWeb应用 3 -SQL注入 1">
-  <strong>Prev:</strong><br/>
+  <strong>上一篇:</strong><br/>
   <span>
   攻击JavaWeb应用 3 -SQL注入 1</span>
 </a>
@@ -438,7 +438,7 @@ var jiathis_config = {data_track_clickback:'true'};
 
 <div class="next">
 <a href="/1036.seo/"  title="攻击JavaWeb应用 1 -JavaEE 基础">
- <strong>Next:</strong><br/> 
+ <strong>下一篇:</strong><br/> 
  <span>攻击JavaWeb应用 1 -JavaEE 基础
 </span>
 </a>
@@ -455,20 +455,19 @@ var jiathis_config = {data_track_clickback:'true'};
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   <p class="asidetitle">关注</p>
-<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2424683170&verifier=1d07a1a0&dpc=1"></iframe>
-
+<iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=0&isWeibo=0&isFans=0&uid=2424683170&verifier=5bb4676f&dpc=1"></iframe>
 
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分类</p>
 		<ul>
 		
 			<li><a href="/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
@@ -503,7 +502,7 @@ var jiathis_config = {data_track_clickback:'true'};
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
@@ -551,7 +550,7 @@ var jiathis_config = {data_track_clickback:'true'};
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
       <li></li>
       <li></li>
@@ -561,7 +560,7 @@ var jiathis_config = {data_track_clickback:'true'};
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
 
@@ -578,14 +577,16 @@ var jiathis_config = {data_track_clickback:'true'};
 	 
 	<div class="social-font" class="clearfix">
 		
-		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		<a href="http://weibo.com/2424683170" target="_blank" title="weibo"></a>
 		
 		
-		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		<a href="https://twitter.com/2424683170" target="_blank" title="twitter"></a>
 		
 		
-		<a href="https://github.com/333" target="_blank" title="github"></a>
+		<a href="https://github.com/DigiCertInc" target="_blank" title="github"></a>
 		
+		
+		<a href="https://www.facebook.com/2424683170" target="_blank" title="facebook"></a>
 		
 	</div>
 		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 

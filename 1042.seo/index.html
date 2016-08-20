@@ -14,7 +14,7 @@
     
     
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="333" />
+    <meta name="twitter:site" content="2424683170" />
     <meta name="twitter:title" content="攻击JavaWeb应用 7 -Server篇 1 | Blog of Secer" />
       
     
@@ -39,7 +39,7 @@
 				<h1 class="site-name"><a href="/" title="Blog of Secer">Blog of Secer</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -57,7 +57,7 @@
 					
 					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="Search" />
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="30" placeholder="搜索" />
 					</form>
 					
 					</li>
@@ -82,7 +82,7 @@
   -->  
   <p class="article-time">
     <time datetime="2013-10-21T21:04:30.000Z" itemprop="datePublished">2013-10-22</time>
-    Updated:<time datetime="2016-08-20T11:03:54.000Z" itemprop="dateModified">2016-08-20</time>
+    更新日期:<time datetime="2016-08-20T11:03:54.000Z" itemprop="dateModified">2016-08-20</time>
     
   </p>
 </header>
@@ -91,7 +91,7 @@
 		
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">1.</span> <span class="toc-text">java应用服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">1.1.</span> <span class="toc-text">常见的Server概述</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">1.2.</span> <span class="toc-text">构建WebShell war文件</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">2.</span> <span class="toc-text">Tomcat</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">2.1.</span> <span class="toc-text">Tomcat版本</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.</span> <span class="toc-text">Tomcat默认配置</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.1.</span> <span class="toc-text">1、tomcat-users.xml</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.2.</span> <span class="toc-text">2、context.xml</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.3.</span> <span class="toc-text">3、server.xml</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.2.4.</span> <span class="toc-text">4、web.xml</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.</span> <span class="toc-text">Tomcat获取WebShell</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.3.1.</span> <span class="toc-text">Tomcat后台部署war获取WebShell</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">2.4.</span> <span class="toc-text">Tomcat口令爆破</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">2.5.</span> <span class="toc-text">Tomcat漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.5.1.</span> <span class="toc-text">怎样找到Tomcat的历史版本:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.5.2.</span> <span class="toc-text">Tomcat历史版本漏洞?</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.5.3.</span> <span class="toc-text">怎样发现Tomcat有那些漏洞?</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.5.4.</span> <span class="toc-text">怎样快速确定是不是Tomcat?</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">2.5.5.</span> <span class="toc-text">Tomcat稀奇古怪的漏洞：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">3.</span> <span class="toc-text">Resin</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">3.1.</span> <span class="toc-text">Resin版本</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">3.2.</span> <span class="toc-text">Resin默认配置</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">3.2.1.</span> <span class="toc-text">1、resin.conf和resin.xml</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">3.2.2.</span> <span class="toc-text">1>数据源:</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">3.2.3.</span> <span class="toc-text">2>域名绑定</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">3.3.</span> <span class="toc-text">Resin默认安全策略</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">3.3.1.</span> <span class="toc-text">1>管理后台访问权限</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">3.3.2.</span> <span class="toc-text">2>Resin后台管理密码</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">3.4.</span> <span class="toc-text">Resin获取WebShell</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">3.5.</span> <span class="toc-text">Resin漏洞</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">4.</span> <span class="toc-text">Weblogic</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">4.1.</span> <span class="toc-text">Weblogic版本</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">4.2.</span> <span class="toc-text">Weblogic默认配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">4.3.</span> <span class="toc-text">WebLogic中的"域"?</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">4.4.</span> <span class="toc-text">Weblogic 默认安全策略</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">4.5.</span> <span class="toc-text">1、Weblogic默认密码文件:</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">4.5.1.</span> <span class="toc-text">boot.properties：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">4.5.2.</span> <span class="toc-text">boot.properties：</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">4.6.</span> <span class="toc-text">2、Weblogic 数据源(JNDI)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">4.7.</span> <span class="toc-text">Weblogic获取Webshell ￼</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">5.</span> <span class="toc-text">Websphere</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">5.1.</span> <span class="toc-text">Websphere版本</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">5.2.</span> <span class="toc-text">Websphere默认配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">5.3.</span> <span class="toc-text">Websphere  GetShell</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">5.3.1.</span> <span class="toc-text">Websphere 6 GetShell</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#undefined"><span class="toc-number">5.3.2.</span> <span class="toc-text">Websphere8.5 GetShell</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#undefined"><span class="toc-number">6.</span> <span class="toc-text">GlassFish</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">6.1.</span> <span class="toc-text">GlassFish 版本</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">6.2.</span> <span class="toc-text">GlassFish默认配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-number">6.3.</span> <span class="toc-text">GlassFish GetShell ￼</span></a></li></ol></li></ol>
 		</div>
 		
@@ -701,7 +701,7 @@ var jiathis_config = {data_track_clickback:'true'};
  
  <div class="prev" >
  <a href="/1043.seo/" title="攻击JavaWeb应用 8 -后门篇">
-  <strong>Prev:</strong><br/>
+  <strong>上一篇:</strong><br/>
   <span>
   攻击JavaWeb应用 8 -后门篇</span>
 </a>
@@ -710,7 +710,7 @@ var jiathis_config = {data_track_clickback:'true'};
 
 <div class="next">
 <a href="/1041.seo/"  title="攻击JavaWeb应用 6 -程序架构与代码审计">
- <strong>Next:</strong><br/> 
+ <strong>下一篇:</strong><br/> 
  <span>攻击JavaWeb应用 6 -程序架构与代码审计
 </span>
 </a>
@@ -727,20 +727,19 @@ var jiathis_config = {data_track_clickback:'true'};
 
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   <p class="asidetitle">关注</p>
-<iframe width="100%" height="120" class="share_self" marginheight="5px" frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2424683170&verifier=1d07a1a0&dpc=1"></iframe>
-
+<iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=0&isWeibo=0&isFans=0&uid=2424683170&verifier=5bb4676f&dpc=1"></iframe>
 
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分类</p>
 		<ul>
 		
 			<li><a href="/Linux笔记/" title="Linux笔记">Linux笔记<sup>46</sup></a></li>
@@ -775,7 +774,7 @@ var jiathis_config = {data_track_clickback:'true'};
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			<li><a href="/tag/net/" title=".net">.net<sup>1</sup></a></li>
@@ -823,7 +822,7 @@ var jiathis_config = {data_track_clickback:'true'};
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
       <li></li>
       <li></li>
@@ -833,7 +832,7 @@ var jiathis_config = {data_track_clickback:'true'};
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
 
@@ -850,14 +849,16 @@ var jiathis_config = {data_track_clickback:'true'};
 	 
 	<div class="social-font" class="clearfix">
 		
-		<a href="http://weibo.com/111" target="_blank" title="weibo"></a>
+		<a href="http://weibo.com/2424683170" target="_blank" title="weibo"></a>
 		
 		
-		<a href="https://twitter.com/333" target="_blank" title="twitter"></a>
+		<a href="https://twitter.com/2424683170" target="_blank" title="twitter"></a>
 		
 		
-		<a href="https://github.com/333" target="_blank" title="github"></a>
+		<a href="https://github.com/DigiCertInc" target="_blank" title="github"></a>
 		
+		
+		<a href="https://www.facebook.com/2424683170" target="_blank" title="facebook"></a>
 		
 	</div>
 		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="pacman">pacman</a> © 2016 
